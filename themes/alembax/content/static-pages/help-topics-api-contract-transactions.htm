@@ -1,0 +1,1827 @@
+[viewBag]
+title = "Contract Transactions"
+url = "/help/topics/api/contract-transactions"
+layout = "help"
+is_hidden = 0
+navigation_hidden = 0
+==
+                                                    <h1>
+<a name="aanchor67"></a>
+                                                        <concept term="Classic API"></concept>Contract Transactions</h1>
+                                                    <p class="reference"><span class="GeneralVariablesProductName">ASM</span> has two Application Programming Interfaces (or APIs), which enable you to develop programs that automate many common <span class="GeneralVariablesProductName">ASM</span> transactions. This section of the documentation deals with the Classic API. For more information on the RESTful <span class="GeneralVariablesAPIName">Alemba API</span>, see <a href="../alemba%20api/alemba%20api.htm">here</a>.<br><br></p>
+                                                    <p class="intro">The <span class="GeneralVariablesProductName">ASM</span> web service provides basic contract transactions such as create, update, delete and retrieve. In addition to this, the web service can also be used to link and unlink a contract to a Configuration Item or External Contact.</p>
+                                                    <p class="note">The Classic API MessageStakeholders transaction also lets you send an email message to stakeholders linked to a contract. For more information, see MessageStakeHolders Transaction.</p>
+                                                    <h2>ContractCreate Transaction</h2>
+                                                    <p>The ContractCreate transaction can be used to create a new contract record and save its details.</p>
+                                                    <h3>Input Parameters: ContractCreateRequest</h3>
+                                                    <table style="margin-left: 0;margin-right: auto;mc-table-style: url('../../resources/tablestyles/rep hdr row.css');" class="TableStyle-Rep_Hdr_Row" cellspacing="0">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column1">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column2">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column1">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column2">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column1">
+                                                        <thead>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Head-Header1">
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column1-Header1">
+                                                                    <p>Argument</p>
+                                                                </th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column2-Header1">
+                                                                    <p>Type</p>
+                                                                </th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column1-Header1">
+                                                                    <p>Mandatory</p>
+                                                                </th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column2-Header1">
+                                                                    <p>Default</p>
+                                                                </th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadD-Column1-Header1">
+                                                                    <p>Description</p>
+                                                                </th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>sID</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>String</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>No. See <a href="%7B%7B%20'help-using-the-api#Transact'%7CstaticPage%20%7D%7D#Transact">Transaction Login</a>.</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>“”</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>Analyst’s current Session ID</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>sLoginUserID</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>String</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>No. See <a href="%7B%7B%20'help-using-the-api#Transact'%7CstaticPage%20%7D%7D#Transact">Transaction Login</a>.</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>“”</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>Analyst’s Login ID</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>sLoginPassword</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>String</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>No. See <a href="%7B%7B%20'help-using-the-api#Transact'%7CstaticPage%20%7D%7D#Transact">Transaction Login</a>.</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>“”</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>Analyst’s Password</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>sDatabase</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>String</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>No. See <a href="%7B%7B%20'help-using-the-api#Transact'%7CstaticPage%20%7D%7D#Transact">Transaction Login</a>.</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>“”</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>Name of the <span class="GeneralVariablesSystemName">ASM System</span> for logging in.</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>lEntityRef</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>Lookup Field</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Ignored</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>-</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>Ignored on Create transaction</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>sName</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>String</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Yes</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>-</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>Name of the contract</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>lMasterRef</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>Lookup Field</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>No</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>0</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>Master contract</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>lCompany</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>Lookup Field</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>No</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>0</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>External supplier to assign this contract</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>dStartDate</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>Date/Time</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>No</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>Now</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>Contract Start Date</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>dExpiryDate</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>Date/Time</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>No</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>Now</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>Contract End Date</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>nPeriod</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>Integer</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>No</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>0</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>Contract Period</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>fPayCycle</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>Float</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>No</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>0</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>Contract Pay Cycle</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>fPrice</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>Float</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>No</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>0</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>Contract Price</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>sDescription</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>String</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>No</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>“”</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>Contract Description</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>lContractType</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>Lookup Field</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>No</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>0</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>Contract Type</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>lPartition</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>Lookup Field</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>No</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>Analyst’s default partition</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>Partition of the contract</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>sReason</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>String</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>No</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>“”</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>Audit trail reason</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyB-Column1-Body1">
+                                                                    <p>aCustomParameters</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyB-Column2-Body1">
+                                                                    <p>Array</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyB-Column1-Body1">
+                                                                    <p>No</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyB-Column2-Body1">
+                                                                    <p>“”</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyA-Column1-Body1">
+                                                                    <p>See <a href="%7B%7B%20'help-using-the-api#Defining'%7CstaticPage%20%7D%7D#Defining">Defining Custom Parameters</a>.</p>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <h3>Return Values: <a name="ContractResponse"></a>ContractResponse</h3>
+                                                    <table style="margin-left: 0;margin-right: auto;mc-table-style: url('../../resources/tablestyles/rep hdr row.css');" class="TableStyle-Rep_Hdr_Row" cellspacing="0">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column1">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column2">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column1">
+                                                        <thead>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Head-Header1">
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column1-Header1">
+                                                                    <p>Argument</p>
+                                                                </th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column2-Header1">
+                                                                    <p>Type</p>
+                                                                </th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadD-Column1-Header1">
+                                                                    <p>Description</p>
+                                                                </th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>nEntityRef</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>Integer</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>Newly created contract ref</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p><a name="kanchor28"></a>sMessage</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>String</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>Error/Warning message from API</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyB-Column1-Body1">
+                                                                    <p>Ret</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyB-Column2-Body1">
+                                                                    <p><a name="kanchor29"></a>APIReturn</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyA-Column1-Body1">
+                                                                    <p>Error/Warning Message from API</p>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <h2>ContractUpdate Transaction</h2>
+                                                    <p>The ContractUpdate transaction can be used to open and edit the details of a contract record.</p>
+                                                    <h3>Input Parameters: ContractUpdateRequest</h3>
+                                                    <table style="margin-left: 0;margin-right: auto;mc-table-style: url('../../resources/tablestyles/rep hdr row.css');" class="TableStyle-Rep_Hdr_Row" cellspacing="0">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column1">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column2">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column1">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column2">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column1">
+                                                        <thead>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Head-Header1">
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column1-Header1">
+                                                                    <p>Argument</p>
+                                                                </th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column2-Header1">
+                                                                    <p>Type</p>
+                                                                </th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column1-Header1">
+                                                                    <p>Mandatory</p>
+                                                                </th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column2-Header1">
+                                                                    <p>Default</p>
+                                                                </th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadD-Column1-Header1">
+                                                                    <p>Description</p>
+                                                                </th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>sID</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>String</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>No. See <a href="%7B%7B%20'help-using-the-api#Transact'%7CstaticPage%20%7D%7D#Transact">Transaction Login</a>.</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>“”</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>Analyst’s current Session ID</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>sLoginUserID</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>String</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>No. See <a href="%7B%7B%20'help-using-the-api#Transact'%7CstaticPage%20%7D%7D#Transact">Transaction Login</a>.</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>“”</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>Analyst’s Login ID</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>sLoginPassword</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>String</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>No. See <a href="%7B%7B%20'help-using-the-api#Transact'%7CstaticPage%20%7D%7D#Transact">Transaction Login</a>.</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>“”</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>Analyst’s Password</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>sDatabase</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>String</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>No. See <a href="%7B%7B%20'help-using-the-api#Transact'%7CstaticPage%20%7D%7D#Transact">Transaction Login</a>.</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>“”</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>Name of the <span class="GeneralVariablesSystemName">ASM System</span> for logging in.</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>lEntityRef</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>Lookup Field</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Yes</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>-</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>Reference number of contract to update</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>sName</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>String</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>No</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>(As is)</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>Name of the contract</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>lMasterRef</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>Lookup Field</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>No</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>(As is)</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>Master contract</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>lCompany</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>Lookup Field</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>No</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>(As is)</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>External supplier to assign this contract</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>dStartDate</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>Date/Time</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>No</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>(As is)</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>Contract Start Date</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>dExpiryDate</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>Date/Time</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>No</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>(As is)</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>Contract End Date</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>nPeriod</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>Integer</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>No</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>(As is)</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>Contract Period</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>fPayCycle</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>Float</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>No</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>(As is)</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>Contract Pay Cycle</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>fPrice</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>Float</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>No</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>(As is)</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>Contract Price</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>sDescription</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>String</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>No</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>(As is)</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>Contract Description</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>lContractType</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>Lookup Field</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>No</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>(As is)</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>Contract Type</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>lPartition</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>Lookup Field</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>No</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>(As is)</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>Partition of the contract</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>sReason</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>String</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>No</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>“”</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>Audit trail reason</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyB-Column1-Body1">
+                                                                    <p>aCustomParameters</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyB-Column2-Body1">
+                                                                    <p>Array</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyB-Column1-Body1">
+                                                                    <p>No</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyB-Column2-Body1">
+                                                                    <p>“”</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyA-Column1-Body1">
+                                                                    <p>See <a href="%7B%7B%20'help-using-the-api#Defining'%7CstaticPage%20%7D%7D#Defining">Defining Custom Parameters</a>.</p>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <h3>Return Values: ContractResponse</h3>
+                                                    <p>See <a href="#ContractResponse">ContractResponse</a> for more information.</p>
+                                                    <h2>ContractRetrieve Transaction</h2>
+                                                    <p>The ContractRetrieve transaction can be used to open and view the details of a contract record. This transaction cannot be used to update the details of the contract record.</p>
+                                                    <h3>Input Parameters: ContractEntityRequest</h3>
+                                                    <table style="margin-left: 0;margin-right: auto;mc-table-style: url('../../resources/tablestyles/rep hdr row.css');" class="TableStyle-Rep_Hdr_Row" cellspacing="0">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column1">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column2">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column1">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column2">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column1">
+                                                        <thead>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Head-Header1">
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column1-Header1">
+                                                                    <p>Argument</p>
+                                                                </th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column2-Header1">
+                                                                    <p>Type</p>
+                                                                </th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column1-Header1">
+                                                                    <p>Mandatory</p>
+                                                                </th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column2-Header1">
+                                                                    <p>Default</p>
+                                                                </th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadD-Column1-Header1">
+                                                                    <p>Description</p>
+                                                                </th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>sID</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>String</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>No. See <a href="%7B%7B%20'help-using-the-api#Transact'%7CstaticPage%20%7D%7D#Transact">Transaction Login</a>.</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>“”</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>Analyst’s current Session ID</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>sLoginUserID</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>String</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>No. See <a href="%7B%7B%20'help-using-the-api#Transact'%7CstaticPage%20%7D%7D#Transact">Transaction Login</a>.</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>“”</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>Analyst’s Login ID</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>sLoginPassword</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>String</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>No. See <a href="%7B%7B%20'help-using-the-api#Transact'%7CstaticPage%20%7D%7D#Transact">Transaction Login</a>.</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>“”</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>Analyst’s Password</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>sDatabase</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>String</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>No. See <a href="%7B%7B%20'help-using-the-api#Transact'%7CstaticPage%20%7D%7D#Transact">Transaction Login</a>.</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>“”</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>Name of the <span class="GeneralVariablesSystemName">ASM System</span> for logging in.</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>lEntityRef</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>Lookup Field</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Yes</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>-</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>Contract to delete</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyB-Column1-Body1">
+                                                                    <p>aCustomParameters</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyB-Column2-Body1">
+                                                                    <p>Array</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyB-Column1-Body1">
+                                                                    <p>No</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyB-Column2-Body1">
+                                                                    <p>“”</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyA-Column1-Body1">
+                                                                    <p>See <a href="%7B%7B%20'help-using-the-api#Defining'%7CstaticPage%20%7D%7D#Defining">Defining Custom Parameters</a>.</p>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <h3>Return Values: ContractRetrieveResponse</h3>
+                                                    <table style="margin-left: 0;margin-right: auto;mc-table-style: url('../../resources/tablestyles/rep hdr row.css');" class="TableStyle-Rep_Hdr_Row" cellspacing="0">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column1">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column2">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column1">
+                                                        <thead>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Head-Header1">
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column1-Header1">
+                                                                    <p>Argument</p>
+                                                                </th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column2-Header1">
+                                                                    <p>Type</p>
+                                                                </th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadD-Column1-Header1">
+                                                                    <p>Description</p>
+                                                                </th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Ret</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p><a name="kanchor30"></a>APIReturn</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>Error/Warning Number from API</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p><a name="kanchor31"></a>sMessage</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>String</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>Error/Warning Message from API</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyB-Column1-Body1">
+                                                                    <p>ResultSet</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyB-Column2-Body1">
+                                                                    <p>DataSet</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyA-Column1-Body1">
+                                                                    <p><a name="kanchor32"></a>ResultSet containing attribute details</p>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <h2>ContractDelete Transaction</h2>
+                                                    <p>The ContractDelete transaction can be used to find and delete a contract. Only the status and audit trail are updated when this transaction is executed.</p>
+                                                    <h3>Input Parameters: ContractDeleteRequest</h3>
+                                                    <table style="margin-left: 0;margin-right: auto;mc-table-style: url('../../resources/tablestyles/rep hdr row.css');" class="TableStyle-Rep_Hdr_Row" cellspacing="0">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column1">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column2">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column1">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column2">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column1">
+                                                        <thead>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Head-Header1">
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column1-Header1">
+                                                                    <p>Argument</p>
+                                                                </th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column2-Header1">
+                                                                    <p>Type</p>
+                                                                </th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column1-Header1">
+                                                                    <p>Mandatory</p>
+                                                                </th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column2-Header1">
+                                                                    <p>Default</p>
+                                                                </th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadD-Column1-Header1">
+                                                                    <p>Description</p>
+                                                                </th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>sID</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>String</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>No. See <a href="%7B%7B%20'help-using-the-api#Transact'%7CstaticPage%20%7D%7D#Transact">Transaction Login</a>.</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>“”</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>Analyst’s current Session ID</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>sLoginUserID</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>String</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>No. See <a href="%7B%7B%20'help-using-the-api#Transact'%7CstaticPage%20%7D%7D#Transact">Transaction Login</a>.</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>“”</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>Analyst’s Login ID</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>sLoginPassword</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>String</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>No. See <a href="%7B%7B%20'help-using-the-api#Transact'%7CstaticPage%20%7D%7D#Transact">Transaction Login</a>.</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>“”</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>Analyst’s Password</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>sDatabase</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>String</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>No. See <a href="%7B%7B%20'help-using-the-api#Transact'%7CstaticPage%20%7D%7D#Transact">Transaction Login</a>.</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>“”</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>Name of the <span class="GeneralVariablesSystemName">ASM System</span> for logging in.</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>lEntityRef</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>Lookup Field</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Yes</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>-</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>Reference number of the contract to delete</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>sReason</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>String</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>No</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>“”</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>Audit reason</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyB-Column1-Body1">
+                                                                    <p>aCustomParameters</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyB-Column2-Body1">
+                                                                    <p>Array</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyB-Column1-Body1">
+                                                                    <p>No</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyB-Column2-Body1">
+                                                                    <p>“”</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyA-Column1-Body1">
+                                                                    <p>See <a href="%7B%7B%20'help-using-the-api#Defining'%7CstaticPage%20%7D%7D#Defining">Defining Custom Parameters</a>.</p>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <h3>Return Values: ContractResponse</h3>
+                                                    <p>See <a href="#ContractResponse">ContractResponse</a> for more information.</p>
+                                                    <h2>ContractLinkCI Transaction</h2>
+                                                    <p>The ContractLinkCI transaction can be used to link a CMDB item to a contract.</p>
+                                                    <h3>Input Parameters: ContractLinkCIRequest</h3>
+                                                    <table style="margin-left: 0;margin-right: auto;mc-table-style: url('../../resources/tablestyles/rep hdr row.css');" class="TableStyle-Rep_Hdr_Row" cellspacing="0">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column1">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column2">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column1">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column2">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column1">
+                                                        <thead>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Head-Header1">
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column1-Header1">
+                                                                    <p>Argument</p>
+                                                                </th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column2-Header1">
+                                                                    <p>Type</p>
+                                                                </th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column1-Header1">
+                                                                    <p>Mandatory</p>
+                                                                </th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column2-Header1">
+                                                                    <p>Default</p>
+                                                                </th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadD-Column1-Header1">
+                                                                    <p>Description</p>
+                                                                </th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>sID</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>String</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>No. See <a href="%7B%7B%20'help-using-the-api#Transact'%7CstaticPage%20%7D%7D#Transact">Transaction Login</a>.</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>“”</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>Analyst’s current Session ID</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>sLoginUserID</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>String</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>No. See <a href="%7B%7B%20'help-using-the-api#Transact'%7CstaticPage%20%7D%7D#Transact">Transaction Login</a>.</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>“”</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>Analyst’s Login ID</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>sLoginPassword</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>String</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>No. See <a href="%7B%7B%20'help-using-the-api#Transact'%7CstaticPage%20%7D%7D#Transact">Transaction Login</a>.</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>“”</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>Analyst’s Password</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>sDatabase</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>String</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>No. See <a href="%7B%7B%20'help-using-the-api#Transact'%7CstaticPage%20%7D%7D#Transact">Transaction Login</a>.</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>“”</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>Name of the <span class="GeneralVariablesSystemName">ASM System</span> for logging in.</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>lEntityRef</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>Lookup Field</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Ignored</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>-</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>Ignored on create</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>lConfigItem</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>Lookup Field</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Yes</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>-</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>CMDB item in which to link the contract</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>lContract</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>Lookup Field</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Yes</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>-</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>Contract to link to the CMDB item</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>sReason</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>String</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>No</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>“”</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>Audit reason</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyB-Column1-Body1">
+                                                                    <p>aCustomParameters</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyB-Column2-Body1">
+                                                                    <p>Array</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyB-Column1-Body1">
+                                                                    <p>No</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyB-Column2-Body1">
+                                                                    <p>“”</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyA-Column1-Body1">
+                                                                    <p>See <a href="%7B%7B%20'help-using-the-api#Defining'%7CstaticPage%20%7D%7D#Defining">Defining Custom Parameters</a>.</p>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <h3>Return Values: ContractResponse</h3>
+                                                    <p>See <a href="#ContractResponse">ContractResponse</a> for more information.</p>
+                                                    <h2>ContractLinkExtOfficer Transaction</h2>
+                                                    <p><a name="kanchor33"></a>The ContractLinkExtOfficer transaction can be used to link an external contact to a contract.</p>
+                                                    <h3>Input Parameters: ContractLinkExtOfficerRequest</h3>
+                                                    <table style="margin-left: 0;margin-right: auto;mc-table-style: url('../../resources/tablestyles/rep hdr row.css');" class="TableStyle-Rep_Hdr_Row" cellspacing="0">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column1">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column2">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column1">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column2">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column1">
+                                                        <thead>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Head-Header1">
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column1-Header1">
+                                                                    <p>Argument</p>
+                                                                </th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column2-Header1">
+                                                                    <p>Type</p>
+                                                                </th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column1-Header1">
+                                                                    <p>Mandatory</p>
+                                                                </th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column2-Header1">
+                                                                    <p>Default</p>
+                                                                </th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadD-Column1-Header1">
+                                                                    <p>Description</p>
+                                                                </th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>sID</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>String</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>No. See <a href="%7B%7B%20'help-using-the-api#Transact'%7CstaticPage%20%7D%7D#Transact">Transaction Login</a>.</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>“”</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>Analyst’s current Session ID</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>sLoginUserID</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>String</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>No. See <a href="%7B%7B%20'help-using-the-api#Transact'%7CstaticPage%20%7D%7D#Transact">Transaction Login</a>.</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>“”</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>Analyst’s Login ID</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>sLoginPassword</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>String</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>No. See <a href="%7B%7B%20'help-using-the-api#Transact'%7CstaticPage%20%7D%7D#Transact">Transaction Login</a>.</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>“”</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>Analyst’s Password</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>sDatabase</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>String</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>No. See <a href="%7B%7B%20'help-using-the-api#Transact'%7CstaticPage%20%7D%7D#Transact">Transaction Login</a>.</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>“”</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>Name of the <span class="GeneralVariablesSystemName">ASM System</span> for logging in.</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>lEntityRef</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>Lookup Field</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>No</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>-</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>Ignored on Create</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>lExtOfficer</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>Lookup Field</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Yes</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>-</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>External contact to link to the contract</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>lContract</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>Lookup Field</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Yes</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>-</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>Contract in which to link the external contact</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>sReason</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>String</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>No</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>“”</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>Audit reason</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyB-Column1-Body1">
+                                                                    <p>aCustomParameters</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyB-Column2-Body1">
+                                                                    <p>Array</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyB-Column1-Body1">
+                                                                    <p>No</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyB-Column2-Body1">
+                                                                    <p>“”</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyA-Column1-Body1">
+                                                                    <p>See <a href="%7B%7B%20'help-using-the-api#Defining'%7CstaticPage%20%7D%7D#Defining">Defining Custom Parameters</a>.</p>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <h3>Return Values: ContractResponse</h3>
+                                                    <p>See <a href="#ContractResponse">ContractResponse</a> for more information.</p>
+                                                    <h2>ContractUnlinkCI Transaction</h2>
+                                                    <p>The ContractUnlinkCI transaction can be used to delete the link between a contract and a CMDB item.</p>
+                                                    <h3>Input Parameters: ContractUnlinkCIRequest</h3>
+                                                    <table style="margin-left: 0;margin-right: auto;mc-table-style: url('../../resources/tablestyles/rep hdr row.css');" class="TableStyle-Rep_Hdr_Row" cellspacing="0">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column1">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column2">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column1">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column2">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column1">
+                                                        <thead>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Head-Header1">
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column1-Header1">
+                                                                    <p>Argument</p>
+                                                                </th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column2-Header1">
+                                                                    <p>Type</p>
+                                                                </th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column1-Header1">
+                                                                    <p>Mandatory</p>
+                                                                </th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column2-Header1">
+                                                                    <p>Default</p>
+                                                                </th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadD-Column1-Header1">
+                                                                    <p>Description</p>
+                                                                </th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>sID</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>String</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>No. See <a href="%7B%7B%20'help-using-the-api#Transact'%7CstaticPage%20%7D%7D#Transact">Transaction Login</a>.</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>“”</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>Analyst’s current Session ID</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>sLoginUserID</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>String</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>No. See <a href="%7B%7B%20'help-using-the-api#Transact'%7CstaticPage%20%7D%7D#Transact">Transaction Login</a>.</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>“”</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>Analyst’s Login ID</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>sLoginPassword</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>String</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>No. See <a href="%7B%7B%20'help-using-the-api#Transact'%7CstaticPage%20%7D%7D#Transact">Transaction Login</a>.</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>“”</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>Analyst’s Password</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>sDatabase</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>String</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>No. See <a href="%7B%7B%20'help-using-the-api#Transact'%7CstaticPage%20%7D%7D#Transact">Transaction Login</a>.</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>“”</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>Name of the <span class="GeneralVariablesSystemName">ASM System</span> for logging in.</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>lEntityRef</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>Lookup Field</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>No – if the contract and CMDB item are provided.</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>-</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>Link Ref between the contract and configuration item to delete.</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>lConfigItem</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>Lookup Field</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>No – if the Link ref is provided</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>-</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>Configuration Item linked to the contract</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>lContract</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>Lookup Field</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>No – if the Link ref is provided</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>-</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>Contract from which to delete the link to the Configuration Item</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>sReason</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>String</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>No</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>“”</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>Audit Reason</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyB-Column1-Body1">
+                                                                    <p>aCustomParameters</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyB-Column2-Body1">
+                                                                    <p>Array</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyB-Column1-Body1">
+                                                                    <p>No</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyB-Column2-Body1">
+                                                                    <p>“”</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyA-Column1-Body1">
+                                                                    <p>See <a href="%7B%7B%20'help-using-the-api#Defining'%7CstaticPage%20%7D%7D#Defining">Defining Custom Parameters</a>.</p>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <h3>Return Values: ContractResponse</h3>
+                                                    <p>See <a href="#ContractResponse">ContractResponse</a> for more information.</p>
+                                                    <h2>ContractUnlinkExtOfficer Transaction</h2>
+                                                    <p>The ContractUnlinkCI transaction can be used to delete the link between an external contact and a CMDB item.</p>
+                                                    <h3>Input Parameters: ContractUnlinkExtOfficerRequest</h3>
+                                                    <table style="margin-left: 0;margin-right: auto;mc-table-style: url('../../resources/tablestyles/rep hdr row.css');" class="TableStyle-Rep_Hdr_Row" cellspacing="0">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column1">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column2">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column1">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column2">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column1">
+                                                        <thead>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Head-Header1">
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column1-Header1">
+                                                                    <p>Argument</p>
+                                                                </th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column2-Header1">
+                                                                    <p>Type</p>
+                                                                </th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column1-Header1">
+                                                                    <p>Mandatory</p>
+                                                                </th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column2-Header1">
+                                                                    <p>Default</p>
+                                                                </th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadD-Column1-Header1">
+                                                                    <p>Description</p>
+                                                                </th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>sID</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>String</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>No. See <a href="%7B%7B%20'help-using-the-api#Transact'%7CstaticPage%20%7D%7D#Transact">Transaction Login</a>.</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>“”</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>Analyst’s current Session ID</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>sLoginUserID</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>String</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>No. See <a href="%7B%7B%20'help-using-the-api#Transact'%7CstaticPage%20%7D%7D#Transact">Transaction Login</a>.</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>“”</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>Analyst’s Login ID</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>sLoginPassword</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>String</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>No. See <a href="%7B%7B%20'help-using-the-api#Transact'%7CstaticPage%20%7D%7D#Transact">Transaction Login</a>.</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>“”</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>Analyst’s Password</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>sDatabase</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>String</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>No. See <a href="%7B%7B%20'help-using-the-api#Transact'%7CstaticPage%20%7D%7D#Transact">Transaction Login</a>.</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>“”</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>Name of the <span class="GeneralVariablesSystemName">ASM System</span> for logging in.</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>lEntityRef</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>Lookup Field</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>No – if the contract and external contact are provided.</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>-</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>Link Ref between the contract and external contact to delete.</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>lExtOfficer</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>Lookup Field</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>No – if the Link ref is provided</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>-</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>External contact linked to the contract</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>lContract</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>Lookup Field</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>No – if the Link ref is provided</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>-</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>Contract from which to delete the link to the external contact</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>sReason</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>String</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>No</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>“”</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>Audit Reason</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyB-Column1-Body1">
+                                                                    <p>aCustomParameters</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyB-Column2-Body1">
+                                                                    <p>Array</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyB-Column1-Body1">
+                                                                    <p>No</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyB-Column2-Body1">
+                                                                    <p>“”</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyA-Column1-Body1">
+                                                                    <p>See <a href="%7B%7B%20'help-using-the-api#Defining'%7CstaticPage%20%7D%7D#Defining">Defining Custom Parameters</a>.</p>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <h3>Return Values: ContractResponse</h3>
+                                                    <p>See <a href="#ContractResponse">ContractResponse</a> for more information.</p>
+                                                

@@ -1,0 +1,252 @@
+[viewBag]
+title = "CMDB Link Types "
+url = "/help/topics/admin-cmdb/cmdb-link-types"
+layout = "help"
+is_hidden = 0
+navigation_hidden = 0
+==
+                                                    <h1>
+<a name="aanchor172"></a>
+                                                        <concept term="CMDB"></concept>CMDB Link Types </h1>
+                                                    <p class="intro">You can define the types of links that can be used to link CMDB items, specifying which CMDB item types may be linked, as well as the type of relationship the two items can have. You can also set the impact relationship for the link type.</p>
+                                                    <p>The link types you define between <a href="%7B%7B%20'help-cmdb-item-types#top'%7CstaticPage%20%7D%7D#top">CMDB Item Types</a> will be inherited by any sub types configured for a CMDB Item Type, and will display graphically on the<a href="../cmdb/cmdb%20linking%20diagram.htm"> CMDB Linking Diagram</a>. </p>
+                                                    <p>You can configure more than one link type between the same CMDB Types by using different <b>link type categories</b>. These include Peer to Peer, Parent-Child, Container-Component, and so on. For example, you can set up Peer to Peer link, and a Parent-Child link between two CMDB item types. Each link type must be associated with a particular link type category.</p>
+                                                    <p>You can also restrict which item types can be linked. For example, you can allow Servers to be linked to Routers, but stop Routers from being linked to Keyboards.  You can also set the impact relationship for the link type.  </p>
+                                                    <p><span class="GeneralVariablesCoreName">ASM Core</span> provides the Link Types below by default. You cannot delete these link types. However, you can rename them or edit the details:</p>
+                                                    <table style="mc-table-style: url('../../resources/tablestyles/fielddesc.css');" class="TableStyle-FieldDesc" cellspacing="0">
+                                                        <col class="TableStyle-FieldDesc-Column-Column1">
+                                                        <col class="TableStyle-FieldDesc-Column-Column2">
+                                                        <tbody>
+                                                            <tr>
+                                                                <td class="TableStyle-FieldDesc-BodyH-Column1-">Service Bundle to Service Action</td>
+                                                                <td class="TableStyle-FieldDesc-BodyG-Column2-">links a service action to a service bundle so that a User ordering this service bundle must order the linked service action.</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="TableStyle-FieldDesc-BodyH-Column1-">Service Bundle to Service Action (optional)</td>
+                                                                <td class="TableStyle-FieldDesc-BodyG-Column2-"> links a service action to a service bundle so that a User ordering this service bundle does not have to order the linked service action.</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="TableStyle-FieldDesc-BodyB-Column1-">Service to Service Action</td>
+                                                                <td class="TableStyle-FieldDesc-BodyA-Column2-"> links a service action to a service so you can create an impact relationship between the service and any linked service actions.</td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <p class="note">Specific link types are targeted at Cloud Provisioning scenarios and are meant to be used in the Integration Platform when importing resources from the VMware vCloud Director. The names of these links all have the same “(vCloud)” prefix.</p>
+                                                    <h2>
+<a name="Creating"></a>Creating a Link Type</h2>
+                                                    <h2 class="Prerequisite">Before you start</h2>
+                                                    <p class="prereqtext">You must have <b>CMDB Setup</b> enabled within your <a href="../admin%20security%20roles/general%20access%20security%20role%20-%20admin%20tab.htm">General Access security role</a> in order to configure any CMDB administration settings. Depending on if or how your system is partitioned, ensure that you are working in the correct partition.</p>
+                                                    <ol start="1">
+                                                        <li value="1">
+                                                            <p>Select <a href="../general%20topics/asmcorewindow.htm"><span style="font-size: 24pt;">≡</span></a> &gt; <b>Admin</b> &gt;  <b>System Administration</b>.   </p>
+                                                            <p>The System Administration window appears. </p>
+                                                            <p>In the Explorer pane, expand <b>CMDB</b>.</p>
+                                                        </li>
+                                                        <li value="2">Select <b>CMDB Link Types</b> to open the window. A browse table of all existing link types appears.  You can <a href="%7B%7B%20'help-general-topics-working-with-browse-tables#Changing'%7CstaticPage%20%7D%7D#Changing">adjust the column widths</a> if required.</li>
+                                                    </ol>
+                                                    <ol start="3">
+                                                        <li value="3">Select  <img src="/storage/app/media/Help/images/add%20new.png">.</li>
+                                                        <li value="4">
+<a name="Specifyi"></a>Specify the CMDB Link Type Details.</li>
+                                                        <p>
+                                                            </p>
+<table style="mc-table-style: url('../../resources/tablestyles/fielddesc no indent.css');" class="TableStyle-FieldDesc_no_indent" cellspacing="0">
+                                                                <col class="TableStyle-FieldDesc_no_indent-Column-Column1">
+                                                                <col class="TableStyle-FieldDesc_no_indent-Column-Column2">
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">Name </td>
+                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-" style="font-weight: normal;">Name of the link type </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">Category </td>
+                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-" style="font-weight: normal;">
+                                                                            <p>A drop down list of link types to define the relationship between CMDB item types.</p>
+                                                                            <table class="TableStyle-FieldDesc" style="margin-left: 0;margin-right: auto;mc-table-style: url('../../resources/tablestyles/fielddesc.css');" cellspacing="0">
+                                                                                <col class="TableStyle-FieldDesc-Column-Column1">
+                                                                                <col class="TableStyle-FieldDesc-Column-Column2">
+                                                                                <tbody>
+                                                                                    <tr class="TableStyle-Table_with_Repeating_Header_Row-Body-Body1">
+                                                                                        <td class="TableStyle-FieldDesc-BodyH-Column1-">
+                        Container-Component
+                    </td>
+                                                                                        <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                        This can be used when you have a CMDB item that encapsulates other CMDB items. <p>This category is useful when you want to abstract lower CMDB items away from the higher level CMDB linking diagram view, but still want to view them on the CMDB linking diagram when necessary. Take, for example, a Server Farm is the container which is connected to Servers (the component). On the CMDB linking diagram, the Configuration Manager will just see the Server Farm as the CMDB item displayed, although they can drill down further and see the configuration of the servers within.
+                    </p>
+</td>
+                                                                                    </tr>
+                                                                                    <tr class="TableStyle-Table_with_Repeating_Header_Row-Body-Body1">
+                                                                                        <td class="TableStyle-FieldDesc-BodyH-Column1-">
+                        Parent-Child
+                    </td>
+                                                                                        <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                        This can be used when two CMDB items have a logical parent-child relationship in the CMDB. For example, Email Service can be the parent of the Email Server.
+                    </td>
+                                                                                    </tr>
+                                                                                    <tr class="TableStyle-Table_with_Repeating_Header_Row-Body-Body1">
+                                                                                        <td class="TableStyle-FieldDesc-BodyH-Column1-">
+                        Peer-to-Peer
+                    </td>
+                                                                                        <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                        This can be used when there is no hierarchical representation between two CMDB items. For example, a Server connected to a Network Printer.
+                    </td>
+                                                                                    </tr>
+                                                                                    <tr class="TableStyle-Table_with_Repeating_Header_Row-Body-Body1">
+                                                                                        <td class="TableStyle-FieldDesc-BodyB-Column1-">
+<a name="Summary%0A_Link_Type"></a>Summary
+                    </td>
+                                                                                        <td class="TableStyle-FieldDesc-BodyA-Column2-">
+                        This can be used when you have CMDB items that you would like to have entered in the CMDB, but do not really need to see on the CMDB linking diagram. They are listed in summary view on the CMDB linking diagram Info pane. For example, a Desktop CI is connected to Microsoft Office.
+                    </td>
+                                                                                    </tr>
+                                                                                </tbody>
+                                                                            </table>
+                                                                            <p class="note">The category that you select here will determine the item type fields which are displayed on this page.
+If you select the Summary category, the <b>Summarized</b> tab will display in the <a href="%7B%7B%20'help-cmdb-cmdb-linking-diagram#The'%7CstaticPage%20%7D%7D#The">linking diagram information pane</a> if the item is selected.</p>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">Audit</td>
+                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-" style="font-weight: normal;">Check this box to enable auditing for this link.</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">Impact Can Be Overriden Manually</td>
+                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-" style="font-weight: normal;">Check this box to allow analysts to override the impact relationship set by the system administrator for this link type. Analysts can modify the impact relationship when accessing a link on the CMDB Linking Diagram.</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">Container</td>
+                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-" style="font-weight: normal;">The first CMDB Item Type in the Container-Component relationship.<p class="prereq" style="font-weight: normal;">This field only displays if "Container-Component" has been selected under Category.</p>
+</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">Component</td>
+                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-" style="font-weight: normal;">
+                                                                            <p>The CMDB item type to which you want to link the Container item in the Container-Component relationship.</p>
+                                                                            <p class="prereq">This field only displays if "Container-Component" has been selected under <b>Category</b>.</p>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">Parent</td>
+                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-" style="font-weight: normal;">
+                                                                            <p>The first CMDB Item Type in the Parent-Child relationship.</p>
+                                                                            <p class="prereq">This field only displays if "Parent-Child" has been selected under <b>Category</b>.</p>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">Child</td>
+                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-" style="font-weight: normal;">
+                                                                            <p>The CMDB item type to which you want to link the Parent item in the Parent-Child relationship.</p>
+                                                                            <p class="prereq">This field only displays if "Parent-Child" has been selected under <b>Category</b>.</p>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">Peer A</td>
+                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-" style="font-weight: normal;">
+                                                                            <p>The first CMDB Item Type in the Peer-to-Peer relationship.</p>
+                                                                            <p class="prereq">This field only displays if "Peer-to-Peer" has been selected under <b>Category</b>.</p>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">Peer B</td>
+                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-" style="font-weight: normal;">
+                                                                            <p>The CMDB item type to which you want to link the Peer A item in the Peer-to-Peer relationship.</p>
+                                                                            <p class="prereq">This field only displays if "Peer-to-Peer" has been selected under <b>Category</b>.</p>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">Principal</td>
+                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-" style="font-weight: normal;">
+                                                                            <p>The first CMDB Item Type in the Summary relationship.</p>
+                                                                            <p class="prereq">This field only displays if "Summary" has been selected under <b>Category</b>.</p>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">Summarized</td>
+                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-" style="font-weight: normal;">
+                                                                            <p>The CMDB item type to which you want to link the Principal item in the Summary relationship.</p>
+                                                                            <p class="prereq">This field only displays if "Summary" has been selected under <b>Category</b>.</p>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">Impacts</td>
+                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-" style="font-weight: normal;">
+                                                                            <p> This checkbox specifies whether CMDB items using this link type will impact the other linked CMDB items. The impact determines if an outage against this CMDB item will also cause an outage against the linked CMDB item.</p>
+                                                                            <p class="prereq">The label of these checkboxes depends on the type of category selected. </p>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">Role</td>
+                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-" style="font-weight: normal;">
+                       A description for this component’s part in the relationship. This will be displayed on the <a href="../cmdb/cmdb%20linking%20diagram.htm">CMDB Linking Diagram</a>. <p class="note">                       This can be defined for Container, Component, Parent, Child, Peer, Principal and Summarized fields. The Item Types displayed depend on what was selected in the <b>Category</b> field.
+                 
+                    </p>
+</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">Link Styles</td>
+                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-" style="font-weight: normal;">
+                        Styles will be used on the <a href="../cmdb/cmdb%20linking%20diagram.htm">CMDB Linking Diagram</a>. If necessary, click on the title to expand the section.<p>Specify the Line Width (in pixels) or thickness of the linking lines. The line width can be set to a number greater than 1 only when the line type is solid. For other line types, even if you set a thickness greater than 1, it will revert to 1 when you save the link type details. </p>
+<p class="note"><b>Link Styles</b> is unavailable for Container-Component or Summary link types because CMDB items linked using one of these link types are represented by an icon rather than a configurable line on the CMDB Linking Diagram.
+                    </p>
+</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyB-Column1-">Description</td>
+                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyA-Column2-" style="font-weight: normal;">Optional description of the Link Type</td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        
+                                                        <li value="5">Repeat for each link type you wish to create.</li>
+                                                        <li value="6">
+                                                            <p>Select  <img src="/storage/app/media/Help/images/save%20and%20close%20button.png" alt="" title=""> to save the changes and close the window. Provide the <a href="../general%20topics/change%20reasons.htm">Change Reasons</a> if prompted to do so.</p>
+                                                        </li>
+                                                    </ol>
+                                                    <h2>
+<a name="Editing"></a>Updating a Link Type</h2>
+                                                    <h2 class="Prerequisite">Before you start</h2>
+                                                    <p class="prereqtext">You must have <b>CMDB Setup</b> enabled within your <a href="../admin%20security%20roles/general%20access%20security%20role%20-%20admin%20tab.htm">General Access security role</a> in order to configure any CMDB administration settings. Depending on if or how your system is partitioned, ensure that you are working in the correct partition.</p>
+                                                    <ol>
+                                                        <li value="1">
+                                                            <p>Select <a href="../general%20topics/asmcorewindow.htm"><span style="font-size: 24pt;">≡</span></a> &gt; <b>Admin</b> &gt;  <b>System Administration</b>.   </p>
+                                                            <p>The System Administration window appears. </p>
+                                                            <p>In the Explorer pane, expand <b>CMDB</b>.</p>
+                                                        </li>
+                                                        <li value="2">Select <b>CMDB Link Types</b> to display the window.  A browse table of all existing link types appears.  You can <a href="%7B%7B%20'help-general-topics-working-with-browse-tables#Changing'%7CstaticPage%20%7D%7D#Changing">adjust the column widths</a> if required.</li>
+                                                    </ol>
+                                                    <ol start="3">
+                                                        <li value="3">Select the link type you want to edit. </li>
+                                                        <li value="4">Update the <a href="#Specifyi">CMDB Link Type Details</a> as necessary. You may want to rename, assign a different line style, line color, or line size.</li>
+                                                        <li value="5">
+                                                            <p>Select  <img src="/storage/app/media/Help/images/save%20and%20close%20button.png" alt="" title=""> to save the changes and close the window. Provide the <a href="../general%20topics/change%20reasons.htm">Change Reasons</a> if prompted to do so.</p>
+                                                        </li>
+                                                    </ol>
+                                                    <h2>Deleting a Link Type</h2>
+                                                    <h2 class="Prerequisite">Before you start</h2>
+                                                    <p class="prereqtext">You must have <b>CMDB Setup</b> enabled within your <a href="../admin%20security%20roles/general%20access%20security%20role%20-%20admin%20tab.htm">General Access security role</a> in order to configure any CMDB administration settings. Depending on if or how your system is partitioned, ensure that you are working in the correct partition.</p>
+                                                    <p class="warning">You cannot delete the default entries,  Service Bundle to Service Action, Service Bundle to Service Action (optional), and Service to Service Action.</p>
+                                                    <ol start="1">
+                                                        <li value="1">
+                                                            <p>Select <a href="../general%20topics/asmcorewindow.htm"><span style="font-size: 24pt;">≡</span></a> &gt; <b>Admin</b> &gt;  <b>System Administration</b>.   </p>
+                                                            <p>The System Administration window appears. </p>
+                                                            <p>In the Explorer pane, expand <b>CMDB</b>.</p>
+                                                        </li>
+                                                        <li value="2">Select <b>CMDB Link Types</b> to display the window.  A browse table of all existing link types appears.  You can <a href="%7B%7B%20'help-general-topics-working-with-browse-tables#Changing'%7CstaticPage%20%7D%7D#Changing">adjust the column widths</a> if required.</li>
+                                                        <li value="3">Select the link type entry you want to delete.</li>
+                                                        <li value="4">Select  <img src="/storage/app/media/Help/images/delete%20button.png">. Select <img src="/storage/app/media/Help/images/save%20button.png">  to save the changes. Provide the <a href="../general%20topics/change%20reasons.htm">Change Reasons</a> if prompted to do so.</li>
+                                                    </ol>
+                                                    <h2>Restoring a Deleted Link Type</h2>
+                                                    <h2 class="Prerequisite">Before you start</h2>
+                                                    <p class="prereqtext">You must have <b>CMDB Setup</b> enabled within your <a href="../admin%20security%20roles/general%20access%20security%20role%20-%20admin%20tab.htm">General Access security role</a> in order to configure any CMDB administration settings. Depending on if or how your system is partitioned, ensure that you are working in the correct partition.</p>
+                                                    <ol start="1">
+                                                        <li value="1">
+                                                            <p>Select <a href="../general%20topics/asmcorewindow.htm"><span style="font-size: 24pt;">≡</span></a> &gt; <b>Admin</b> &gt;  <b>System Administration</b>.   </p>
+                                                            <p>The System Administration window appears. </p>
+                                                            <p>In the Explorer pane, expand <b>CMDB</b>.</p>
+                                                        </li>
+                                                        <li value="2">Select <b>CMDB Link Types</b> to display the window.  A browse table of all existing link types appears.  You can <a href="%7B%7B%20'help-general-topics-working-with-browse-tables#Changing'%7CstaticPage%20%7D%7D#Changing">adjust the column widths</a> if required.</li>
+                                                        <li value="3">Select <span style="font-weight: bold;">Show Deleted</span> to display the deleted link types as well as the active ones.</li>
+                                                        <li value="4">Select the deleted entry you want to restore.</li>
+                                                        <li value="5">Select  <img src="/storage/app/media/Help/images/restore%20button.png">. Deselect the Show Deleted checkbox to see the link type in the active list.</li>
+                                                    </ol>
+                                                

@@ -1,0 +1,70 @@
+description = "Page links - 2x success stories & 2x blog posts"
+==
+<?php
+use Alemba\Alemba\Models\SuccessStory;
+use RainLab\Blog\Models\Post;
+
+function onStart()
+{
+	// Get the latest success story marked as 'featured'
+
+	$this['featured_success_story'] = SuccessStory::where('featured',1)->orderBy('published_at', 'asc')->get()->sortByDesc('published_at');
+	
+	// Get the latest 2 blog articles marked as 'featured'
+	$this['blog'] = Post::where('featured_banner', '!=', '')->orderBy('published_at', 'desc')->get()->take(2)->sortByDesc('published_at');
+
+}
+?>
+==
+<div style="background: #fff" class="py-5">
+    <div class="container article-cards">
+        <div class="row justify-content-center">
+        
+        
+            {% for success_story in featured_success_story %}
+        		<div class="col-sm-6 col-lg-3">
+        
+        			<div class="card d-flex align-items-stretch">
+        			<div class="card-img-top lazyload" data-bg="{% if success_story.thumbnail %}{{ success_story.thumbnail|media }}{% else %}{{'assets/img/thumbnail-default.png'|theme }}{% endif %}"></div>
+                        <div class="card-body">
+                            <h4 class="card-title text-center">{{ success_story.customer.name }}</h4>
+                            <h5 class="subheading text-center">&nbsp;</h5>
+                            
+                            <p class="card-text text-center">{{ success_story.intro }}</p>
+                            
+                            <div class="text-center">
+                                <a href="{{ 'success-story'|page({ slug: success_story.slug }) }}" class="btn btn-outline pink light-bkg">Read the case study</a>
+                            </div>
+                        </div>
+                        
+                    </div>
+        
+        		</div>
+    		{% endfor %}
+    
+    		
+            {% for entry in blog %}
+    
+    			<div class="col-sm-6 col-lg-3">
+    
+    				<div class="card d-flex align-items-stretch">
+    				<div class="card-img-top lazyload" data-bg="{% if entry.thumbnail %}{{ entry.thumbnail|media }}{% else %}{{'assets/img/thumbnail-default.png'|theme }}{% endif %}"></div>
+                        <div class="card-body">
+                            <h4 class="card-title text-center">{{ entry.title_short }}</h4>
+                            <p class="subheading text-center">{{ entry.published_at|date('d M Y') }}</p>
+                            <p class="card-text text-center">{{ entry.excerpt }}</p>
+                            
+                            <div class="text-center">
+                                <a href="{{ 'blog-entry'|page({ category: entry.categories|first.slug, slug: entry.slug }) }}" class="btn btn-outline pink light-bkg">Read the article</a>
+                            </div>
+                        </div>
+                        
+                    </div>
+    
+    			</div>
+    
+    		{% endfor %}
+    
+        </div>
+    </div>
+</div>

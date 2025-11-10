@@ -1,0 +1,194 @@
+[viewBag]
+title = "Using Outbound Actions"
+url = "/help/topics/integration/using-outbound-actions"
+layout = "help"
+is_hidden = 0
+navigation_hidden = 0
+==
+                                                    <h1>Using Outbound Actions</h1>
+                                                    <p>Three events in <span class="GeneralVariablesCoreName">ASM Core</span> can trigger an Outbound Action:</p>
+                                                    <ul>
+                                                        <li value="1">An Outbound Action Task is activated as part of a workflow.</li>
+                                                        <li value="2">An External Supplier Task is activated or forwarded externally as part of a workflow to a supplier and contract that match an Outbound Action.</li>
+                                                        <li value="3">A call is forwarded externally to a supplier and contract that match an Outbound Action.</li>
+                                                    </ul>
+                                                    <h2>
+<a name="The"></a>The Outbound Action Task</h2>
+                                                    <p>The Outbound Action Task is used to send an Outbound Action to an external system as part of a workflow. This is especially useful for non Service Desk transfers (that is, when you want to initiate an Outbound Action without having to forward a call or task externally).</p>
+                                                    <p>
+                                                        <img src="/storage/app/media/Help/images/outbound%20action%20task.png" class="screenshot">
+                                                    </p>
+                                                    <h3>Configuring the Outbound Action Task</h3>
+                                                    <p class="warning">The mappings defined in the <a href="%7B%7B%20'help-configuring-outbound-actions#top'%7CstaticPage%20%7D%7D#top">Outbound Actions</a> window do not apply to outbound action tasks. They must be defined at the level of the task.</p>
+                                                    <p>To specify the details of an Outbound Action Task:</p>
+                                                    <ol>
+                                                        <li start="1" value="1">Open the task by double-clicking the task in the <b>Task Dependencies</b> diagram of the workflow template. The <b>Outbound Action Details</b> window appears.</li>
+                                                        <p class="note">The Request Description, Task Information, Task Description, Manage CMDB Transactions and Action Information sections are common to all tasks. </p>
+                                                        <li value="2">Expand the <b>Mapping Details</b> section to specify the Outbound Action mapping details for the task.</li>
+                                                        <li value="3">Use the <b>Source</b> drop-down list to select the external system to which you want to send the Outbound Action.</li>
+                                                        <li value="4">All sources <a href="configuring%20integ%20source.htm">defined as instances of a connector with Outbound Action capability</a> are available for selection from this drop-down list. </li>
+                                                        <li value="5">Use the <b>Action</b> drop-down list to select the Outbound Action you want to create in the external system when this task is activated.</li>
+                                                        <p class="note">All the Outbound Actions defined for the selected source are available from this drop-down list.</p>
+                                                        <li value="6">Specify the field mappings for outgoing messages related to this Outbound Action in the <b>Outgoing</b> tab. </li>
+                                                        <p class="note">These are mapped as part of <a href="%7B%7B%20'help-configuring-outbound-actions#Specifyi'%7CstaticPage%20%7D%7D#Specifyi">configuring the outbound action</a>. The internal fields you can select from are the fields from the <b>Outbound Action Task</b> and its parent <b>Request</b> fields.</p>
+                                                        <li value="7">Select Send <b>Notify for system generated history messages</b> to send a NOTIFY outgoing message to the external system whenever a system-generated entry (such as an agreement escalation) is added to the history of the task.</li>
+                                                        <li value="8">Specify <a href="%7B%7B%20'help-configuring-outbound-actions#Specifyi'%7CstaticPage%20%7D%7D#Specifyi">the field mappings for incoming messages related to this Outbound Action</a> in the <b>Incoming</b> tab.</li>
+                                                        <li value="9">Click <b>Save</b> to save the details of the task.</li>
+                                                        <li value="10">Save the workflow template and close it.</li>
+                                                    </ol>
+                                                    <h2>Using the Outbound Action Task</h2>
+                                                    <p>When an Outbound Action Task is activated as part of a request, a create message is automatically sent to the external source specified on the task.</p>
+                                                    <p class="note">Taking over the task for manual update does not send a CANCEL message to the external system.</p>
+                                                    <p>The analyst responsible for the task has three options for actioning the task:</p>
+                                                    <ul>
+                                                        <li value="1">Click <b>Take Back</b> to take back the task – This sends a CANCEL message to the external system. The analyst can then action the task as required.</li>
+                                                        <p class="note">The <b>Take Back</b> button is only displayed once the Outbound Action Task is activated.</p>
+                                                        <li value="2">Click <b>Complete</b> to manually complete the task with a Succeeded physical status – This sends a CANCEL message to the external system and the workflow follows the <b>Success</b> branch (see the green arrow on the illustration below).</li>
+                                                        <p class="note">The <b>Success</b> branch is also followed if <span class="GeneralVariablesCoreName">ASM Core</span> receives a COMPLETE message from the external system for this Outbound Action. The Outbound Action Task is automatically closed upon receipt of this COMPLETE message.</p>
+                                                        <li value="3">Click <b>Not Complete</b> to manually complete the task with a Failed physical status – This sends a CANCEL message to the external system and the workflow follows the <b>Failure</b> branch (see the red arrow on the illustration below).</li>
+                                                        <p class="note">The <b>Failure</b> branch is also followed if <span class="GeneralVariablesCoreName">ASM Core</span> receives a NOT COMPLETE message from the external system for this Outbound Action. The Outbound Action Task is automatically closed (with a Failed physical status) upon receipt of this NOT COMPLETE message.</p>
+                                                    </ul>
+                                                    <p class="note">The task history is updated whether the analyst clicks Take Back, Complete or Not Complete.</p>
+                                                    <p>
+                                                        <img src="/storage/app/media/Help/images/outbound%20action%20tasks%20updated.png" class="screenshot">
+                                                    </p>
+                                                    <h3>Viewing messages regarding the Outbound Action</h3>
+                                                    <p>All messages exchanged between <span class="GeneralVariablesCoreName">ASM Core</span> and the external system in relation to this Outbound Action can be viewed from the Outbound Action Task Details window by selecting Outbound Action from the explorer pane.</p>
+                                                    <p>The Outbound Action window displays a browse table with the following columns:</p>
+                                                    <table class="TableStyle-FieldDesc" style="margin-left: 0;margin-right: auto;mc-table-style: url('../../resources/tablestyles/fielddesc.css');" cellspacing="0">
+                                                        <col class="TableStyle-FieldDesc-Column-Column1">
+                                                        <col class="TableStyle-FieldDesc-Column-Column2">
+                                                        <tbody>
+                                                            <tr>
+                                                                <td class="TableStyle-FieldDesc-BodyH-Column1-">Date/Time</td>
+                                                                <td class="TableStyle-FieldDesc-BodyG-Column2-">The date and time when the message was received or sent</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="TableStyle-FieldDesc-BodyH-Column1-">Origin </td>
+                                                                <td class="TableStyle-FieldDesc-BodyG-Column2-">The system that sent the message (<span class="GeneralVariablesCoreName">ASM Core</span> or the external system)</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="TableStyle-FieldDesc-BodyH-Column1-">Transaction Type</td>
+                                                                <td class="TableStyle-FieldDesc-BodyG-Column2-">The type of message (create, update, cancel, etc.)</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="TableStyle-FieldDesc-BodyH-Column1-">Details </td>
+                                                                <td class="TableStyle-FieldDesc-BodyG-Column2-">The details of the message</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="TableStyle-FieldDesc-BodyB-Column1-">Status </td>
+                                                                <td class="TableStyle-FieldDesc-BodyA-Column2-">The status of the message (Succeeded or Failed)</td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <h2>The External Supplier Task</h2>
+                                                    <p>An Outbound Action can be triggered when an External Supplier Task is activated or forwarded externally to an external supplier and contract associated with an Outbound Action when the <a href="configuring%20outbound%20actions.htm">action was configured</a>. </p>
+                                                    <p>
+                                                        <img src="/storage/app/media/Help/images/external%20supplier%20task.png" class="screenshot">
+                                                    </p>
+                                                    <p>When the External Supplier Task is activated or forwarded externally manually to a supplier and contract associated with an Outbound Action, the task appears on the Service Portal for the external supplier to action and a create message is automatically sent to the external system linked to this Outbound Action. What the external system does in response to this message is configured at the level of the external system itself.</p>
+                                                    <p class="note">In addition, if you are using Service Level Management, any UC (Underpinning Contract) associated with this external supplier and contract is applied to the task.</p>
+                                                    <p>The external source can then send UPDATE, NOTIFY, COMPLETE and NOT COMPLETE messages to <span class="GeneralVariablesCoreName">ASM Core</span> in relation to the Outgoing Action that was created. What <span class="GeneralVariablesCoreName">ASM Core</span> does in response to these messages is <a href="configuring%20outbound%20actions.htm">configured at the level of <span class="GeneralVariablesCoreName">ASM Core</span></a>.</p>
+                                                    <h3>Actioning the External Supplier Task from the Main Application</h3>
+                                                    <p>Once the External Supplier Task is activated or forwarded externally, an analyst can:</p>
+                                                    <ul>
+                                                        <li value="1">Click <b>Take Back</b> to take back the task and forward it to another supplier (for example) – This sends a CANCEL message to the external system and removes the task from the Portal. The analyst can then action the task as he wishes. </li>
+                                                        <p class="NOTE">When clicking <b>Take Back</b>, the analyst has the option of notifying the external supplier that the task has been taken back. In addition, any UC clock applied to the task is stopped. To action a task that has been forwarded externally, the analyst must first click Take Back. Clicking Take Back sends an update outgoing message to the external system.</p>
+                                                        <li value="2">Click <b>Complete</b> to manually complete the task with a Succeeded physical status – This sends a CANCEL message to the external system and the workflow follows the Success. The Success branch is also followed (and the External Supplier Task automatically closed with a Succeeded status) if <span class="GeneralVariablesCoreName">ASM Core</span> receives a COMPLETE message from the external system for this Outbound Action.</li>
+                                                        <li value="3">Click <b>Not Complete</b> to manually complete the task with a Failed physical status – This sends a CANCEL message to the external system and the workflow follows the Failure branch. The Failure branch is also followed (and the External Supplier Task automatically closed with a Failed status) if <span class="GeneralVariablesCoreName">ASM Core</span> receives a NOT COMPLETE message from the external system for this Outbound Action.</li>
+                                                        <p>
+                                                            <img src="/storage/app/media/Help/images/external%20supplier%20task%202.png" class="screenshot">
+                                                        </p>
+                                                    </ul>
+                                                    <h3>Actioning the External Supplier Task from the Portal</h3>
+                                                    <p>An External Supplier Task that has been forwarded externally to a supplier appears on the supplier’s Portal page. The supplier or the supplier’s external contact can action the task in the following ways:</p>
+                                                    <ul>
+                                                        <li value="1">Click <b>Defer</b> to defer the task. This sends a notify message to <span class="GeneralVariablesCoreName">ASM Core</span> for the Outbound Action initiated when the task was activated or forwarded externally. What <span class="GeneralVariablesCoreName">ASM Core</span> does with this message is <a href="configuring%20outbound%20actions.htm">configured at the level of the Outbound Action</a>. <span class="GeneralVariablesCoreName">ASM Core</span> then sends an acknowledgment message to the external system to inform it that a NOTIFY message has been received from the Portal.</li>
+                                                        <li value="2">Click <b>Complete</b> to complete the task with a Succeeded physical status. This sends a complete message to <span class="GeneralVariablesCoreName">ASM Core</span> for the Outbound Action initiated when the task was activated or forwarded externally. What <span class="GeneralVariablesCoreName">ASM Core</span> does with this message is <a href="configuring%20outbound%20actions.htm">configured at the level of the Outbound Action</a>. <span class="GeneralVariablesCoreName">ASM Core</span> then sends an acknowledgment message to the external system to inform it that a complete message has been received from the Portal. When the task is completed from the Portal with a Succeeded status, the workflow follows the Success branch</li>
+                                                        <li value="3">Click <b>Not Complete</b> to complete the task with a Failed physical status. This sends a NOT COMPLETE message to <span class="GeneralVariablesCoreName">ASM Core</span> for the Outbound Action initiated when the task was activated or forwarded externally. What <span class="GeneralVariablesCoreName">ASM Core</span> does with this message is <a href="configuring%20outbound%20actions.htm">configured at the level of the Outbound Action</a>. <span class="GeneralVariablesCoreName">ASM Core</span> then sends an acknowledgment message to the external system to inform it that a NOT COMPLETE message has been received from the Portal. When the task is completed from the Portal with a Failed status, the workflow follows the Failure branch.</li>
+                                                    </ul>
+                                                    <h3>Viewing messages regarding the Outbound Action</h3>
+                                                    <p>All messages exchanged between <span class="GeneralVariablesCoreName">ASM Core</span> and the external system in relation to this Outbound Action can be viewed from the External Supplier Task Details window by selecting Outbound Action from the explorer pane.</p>
+                                                    <p>The Outbound Action window displays a browse table with the following columns:</p>
+                                                    <table class="TableStyle-FieldDesc" style="mc-table-style: url('../../resources/tablestyles/fielddesc.css');margin-left: 0;margin-right: auto;" cellspacing="0">
+                                                        <col class="TableStyle-FieldDesc-Column-Column1">
+                                                        <col class="TableStyle-FieldDesc-Column-Column2">
+                                                        <tbody>
+                                                            <tr>
+                                                                <td class="TableStyle-FieldDesc-BodyH-Column1-">Action </td>
+                                                                <td class="TableStyle-FieldDesc-BodyG-Column2-">The Outbound Action initiated from this task.<p class="note">The Outbound Action window can display more than one Outbound Action because an External Supplier Task can be forwarded externally to more than one supplier and therefore trigger more than one Outbound Action (although not at the same time).</p>
+</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="TableStyle-FieldDesc-BodyH-Column1-">Date/Time</td>
+                                                                <td class="TableStyle-FieldDesc-BodyG-Column2-">The date and time when the message was received or sent</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="TableStyle-FieldDesc-BodyH-Column1-">Origin </td>
+                                                                <td class="TableStyle-FieldDesc-BodyG-Column2-">The system that sent the message (<span class="GeneralVariablesCoreName">ASM Core</span> or the external system)</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="TableStyle-FieldDesc-BodyH-Column1-">Transaction Type</td>
+                                                                <td class="TableStyle-FieldDesc-BodyG-Column2-">The type of message (create, update, cancel, etc.)</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="TableStyle-FieldDesc-BodyH-Column1-">Details </td>
+                                                                <td class="TableStyle-FieldDesc-BodyG-Column2-">The details of the message</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="TableStyle-FieldDesc-BodyB-Column1-">Status </td>
+                                                                <td class="TableStyle-FieldDesc-BodyA-Column2-">The status of the message (Succeeded or Failed)</td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <h2>Externally Forwarded Call </h2>
+                                                    <p>An Outbound Action can be triggered when a call is forwarded externally to an external supplier and contract associated with an Outbound Action. This function is particularly useful in a distributed Help Desk environment where calls are transferred between different Service Desk Management systems (including <span class="GeneralVariablesCoreName">ASM Core</span> to <span class="GeneralVariablesCoreName">ASM Core</span>). For details on how to associate an Outbound Action with an external supplier and contract, see <a href="configuring%20outbound%20actions.htm">Configuring Outbound Actions</a>.</p>
+                                                    <p>When the call is forwarded externally to a supplier and contract associated with an Outbound Action, the call appears on the Service Portal for the external supplier to action and a CREATE message is automatically sent to the external system linked to this Outbound Action. What the external system does in response to this message is configured at the level of the external system itself. In addition, if you are using Service Level Management, any UC (Underpinning Contract) associated with this external supplier and contract is applied to the call.</p>
+                                                    <p>The external source can then send UPDATE, NOTIFY, COMPLETE and NOT COMPLETE messages to <span class="GeneralVariablesCoreName">ASM Core</span> in relation to the Outgoing Action that was created. What <span class="GeneralVariablesCoreName">ASM Core</span> does in response to these messages is <a href="configuring%20outbound%20actions.htm">configured at the level of <span class="GeneralVariablesCoreName">ASM Core</span></a>.</p>
+                                                    <h3>Actioning the Call from the Main Application</h3>
+                                                    <p>Once the call is forwarded externally, an analyst can:</p>
+                                                    <ul>
+                                                        <li value="1">Click <b>Close</b> to close the call – This sends a CANCEL message to the external system and removes the call from the Portal. In addition, any UC clock applied to the call is stopped.</li>
+                                                        <li value="2">Click <b>Take Back</b> on the <b>Forward Call Externally</b> window to take back the call and forward it to another supplier (for example) – This sends a CANCEL message to the external system and removes the call from the Portal. The analyst can then action the call as required. In addition, any UC clock applied to the call is stopped. When clicking Take Back, the analyst has the option of notifying the external supplier that the call has been taken back.</li>
+                                                    </ul>
+                                                    <h3>Actioning the Call from the Portal</h3>
+                                                    <p>A call that has been forwarded externally to a supplier appears on the supplier’s Portal page. The supplier or the supplier’s external contact can action the call in the following ways:</p>
+                                                    <ul>
+                                                        <li value="1">Click <b>Defer</b> to defer the call. This sends a NOTIFY message to <span class="GeneralVariablesCoreName">ASM Core</span> for the Outbound Action initiated when the call was forwarded externally. What <span class="GeneralVariablesCoreName">ASM Core</span> does with this message is <a href="configuring%20outbound%20actions.htm">configured at the level of the Outbound Action</a>. <span class="GeneralVariablesCoreName">ASM Core</span> then sends an acknowledgement message to the external system to inform it that a NOTIFY message has been received from the Portal.</li>
+                                                        <li value="2">Click <b>Complete</b> to resolve the call. This sends a COMPLETE message to <span class="GeneralVariablesCoreName">ASM Core</span> for the Outbound Action initiated when the call was forwarded externally. What <span class="GeneralVariablesCoreName">ASM Core</span> does with this message is <a href="configuring%20outbound%20actions.htm">configured at the level of the Outbound Action</a>. <span class="GeneralVariablesCoreName">ASM Core</span> then sends an acknowledgement message to the external system to inform it that a COMPLETE message has been received from the Portal.</li>
+                                                        <li value="3">Click <b>Not Complete</b> to indicate that the call has not been resolved. This sends a NOT COMPLETE message to <span class="GeneralVariablesCoreName">ASM Core</span> for the Outbound Action initiated when the call was forwarded externally. What <span class="GeneralVariablesCoreName">ASM Core</span> does with this message is <a href="configuring%20outbound%20actions.htm">configured at the level of the Outbound Action</a>. <span class="GeneralVariablesCoreName">ASM Core</span> then sends an acknowledgement message to the external system to inform it that a NOT COMPLETE message has been received from the Portal.</li>
+                                                    </ul>
+                                                    <h3>Viewing Messages regarding the Outbound Action</h3>
+                                                    <p>All messages exchanged between <span class="GeneralVariablesCoreName">ASM Core</span> and the external system in relation to this Outbound Action can be viewed from the Call Details window by clicking the Outbound Action Explorer option.</p>
+                                                    <p>The Outbound Action window displays a browse table with the following columns:</p>
+                                                    <table class="TableStyle-FieldDesc" style="mc-table-style: url('../../resources/tablestyles/fielddesc.css');margin-left: 0;margin-right: auto;" cellspacing="0">
+                                                        <col class="TableStyle-FieldDesc-Column-Column1">
+                                                        <col class="TableStyle-FieldDesc-Column-Column2">
+                                                        <tbody>
+                                                            <tr>
+                                                                <td class="TableStyle-FieldDesc-BodyH-Column1-">Action </td>
+                                                                <td class="TableStyle-FieldDesc-BodyG-Column2-">The Outbound Action initiated from this call. The Outbound Action window can display more than one Outbound Action because a call can be forwarded externally to more than one supplier and therefore trigger more than one Outbound Action (although not at the same time).</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="TableStyle-FieldDesc-BodyH-Column1-">Date/Time</td>
+                                                                <td class="TableStyle-FieldDesc-BodyG-Column2-">The date and time when the message was received or sent</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="TableStyle-FieldDesc-BodyH-Column1-">Origin </td>
+                                                                <td class="TableStyle-FieldDesc-BodyG-Column2-">The system that sent the message (<span class="GeneralVariablesCoreName">ASM Core</span> or the external system)</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="TableStyle-FieldDesc-BodyH-Column1-">Transaction Type</td>
+                                                                <td class="TableStyle-FieldDesc-BodyG-Column2-">The type of message (create, update, cancel, etc.)</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="TableStyle-FieldDesc-BodyH-Column1-">Details </td>
+                                                                <td class="TableStyle-FieldDesc-BodyG-Column2-">The details of the message</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="TableStyle-FieldDesc-BodyB-Column1-">Status </td>
+                                                                <td class="TableStyle-FieldDesc-BodyA-Column2-">The status of the message (Succeeded or Failed)</td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                

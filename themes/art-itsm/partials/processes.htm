@@ -1,0 +1,53 @@
+==
+<?php
+use Alemba\Alemba\Models\ITIL;
+
+function onStart()
+{
+
+    $this['itil'] = ITIL::whereNotNull('icon')->where('icon', '!=', '')->orderBy('sort_order')->get();
+
+}
+?>
+==
+<div id="homepage-processes" class="mb-3">
+
+  <div class="row mb-5">
+
+    <div class="col-11 col-lg-8 offset-1">
+      <h3>Simply the best ITSM software.</h3>
+      <h5>An intuitive, ITIL-aligned IT Service Management solution for your whole business.</h5>
+    </div>
+
+    <div class="col-11 offset-1 col-lg-3 offset-lg-0">
+      <a class="btn btn-lg btn-outline pink mt-3" href="{{ 'itsm101'|page }}" role="button">What is ITSM? Read our guide</a>
+    </div>
+
+  </div>
+
+  <div class="row">
+
+    <div class="col offset-1">
+
+      <ul class="itil-list list-unstyled list-inline">
+
+        {% for item in itil %}
+
+          <li class="list-inline-item">
+            <a href="{{ 'itil-detail'|page({ 'slug':item.slug }) }}">
+              <div class="icon-itil">
+                <img class="icon-itil-graphic lazyload" data-src="{{ item.icon|media }}" role="presentation" />
+                <h6 class="icon-itil-name">{{ item.name }}</h6>
+              </div>
+            </a>
+          </li>
+
+        {% endfor %}
+
+      </ul>
+
+    </div>
+
+  </div>
+
+</div>

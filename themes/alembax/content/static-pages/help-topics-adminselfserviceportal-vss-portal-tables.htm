@@ -1,0 +1,94 @@
+[viewBag]
+title = "Self Service Portal Tables"
+url = "/help/topics/adminselfserviceportal/vss-portal-tables"
+layout = "help"
+is_hidden = 0
+navigation_hidden = 0
+==
+                                                    <h1>
+<span class="GeneralVariablesSelfServicePortalName">Self Service Portal</span> Tables</h1>
+                                                    <p class="onlysql">This feature is only available on SQL systems.</p>
+                                                    <p class="intro">In <span class="GeneralVariablesSelfServicePortalName">Self Service Portal</span>, information  appears in tables, such as My Requests and My Incidents. <a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="../../resources/images/vss%20tables.png"><img class="MCPopupThumbnail img imgthumbnail" data-mc-width="1330" data-mc-height="589" src="/storage/app/media/Help/images/vss%20tables_thumb_0_48.png" tabindex=""></a> You can configure the tables to contain the columns that you want, in the order you want them, sorted by any available column.</p>
+                                                    <h2 class="Prerequisite">Before you start</h2>
+                                                    <p class="prereqtext">You must have <b>System Setup</b> selected in the <a href="../admin%20security%20roles/general%20access%20security%20role%20-%20admin%20tab.htm">Admin</a> tab of your <b>General Access Security Role</b>.</p>
+                                                    <p> </p>
+                                                    <ol>
+                                                        <li value="1">
+                                                            <p>Select <a href="../general%20topics/asmcorewindow.htm"><span style="font-size: 24pt;">≡</span></a> &gt; <b>Admin</b> &gt;  <b>System Administration</b>.   </p>
+                                                            <p>The System Administration window appears.</p>
+                                                            <p>In the Explorer pane, expand <b><span class="GeneralVariablesSelfServicePortalName">Self Service Portal</span></b>.</p>
+                                                        </li>
+                                                        <li value="2">Select <b><span class="GeneralVariablesSelfServicePortalName">Self Service Portal</span> Tables</b> to display the window.</li>
+                                                        <li value="3">At the top of the window you can see a box containing a list of all of the sets of tables that are held on your system. Initially, you will only see a single <b>Default</b> set. Beneath this there are three more boxes; <b>Tables</b> contains all of the tables on the <span class="GeneralVariablesSelfServicePortalName">Self Service Portal</span>; <b>Available Columns</b> contains all of the columns that can be held on the selected table; and <b>Selected Columns</b> lists all of the columns that currently appear in the table on the <span class="GeneralVariablesSelfServicePortalName">Self Service Portal</span>.</li>
+                                                        <li value="4">
+<b>To create a new set of tables,</b> click <b>Add</b> beneath the box at the top of the window. This will create a default set of portal tables. If you want to copy a set of tables that you have already configured, select the set name, and then click <img src="/storage/app/media/Help/images/clone%20word%20button.png" alt="" title="">. <b>To modify an existing set of tables</b>, select the set in the top box to highlight it.</li>
+                                                        <li value="5">Select the table you want to modify in the <b>Tables</b> box. You will see a set of <b>Home Pages</b>, with the <b>Default</b> and <b>Classic</b> layouts; and a set of <b>Search Results</b> tables. Some of the items will represent groups of tables, as indicated by the <img src="/storage/app/media/Help/images/expand%20button.png"> sign. Expand the group by selecting the  symbol.</li>
+                                                        <li value="6">When you select a table, all of the columns that could appear in that table are displayed in the <b>Available Columns</b> box. This list is made up of all of the fields for the entity, or any linked entities. Some of the entries in the box will display a small arrow to their right - <img src="/storage/app/media/Help/images/arrow%20right%20line.png">. This indicates that these are categories, and there are lower tiers from which you can select. Double click on the category title to see the items within it. You will notice that the category name appears in the banner at the top of the box, with an arrow <img src="/storage/app/media/Help/images/arrow%20left%20blue.png">. Select the arrow to return to the top level list.<br>For some of the tables, you will also see some buttons listed. These will generally also appear in the Selected Columns list, and will be mandatory, so cannot be removed. They do not have a Display name, as they are not columns as such, and they will be prefixed by a small orange dot, indicating that they are mandatory.</li>
+                                                        <p class="exampletext">In the Major Incidents table, you will find the <b>add me</b> button listed in the Available Columns and Selected Columns boxes. <a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="../../resources/images/vss%20portal%20tables%20buttons.png"><img class="MCPopupThumbnail img imgthumbnail" data-mc-width="1015" data-mc-height="380" src="/storage/app/media/Help/images/vss%20portal%20tables%20buttons_thumb_0_48.png" tabindex=""></a></p>
+                                                        <li value="7">To select a column, you can either double click on it in the <b>Available Columns</b> box, or select it and click <b>Add</b>. Alternatively, you can click and drag it into the <b>Selected Columns</b> box.</li>
+                                                        <p class="warning">Select your columns with care, noting the following:</p>
+                                                        </ol>
+<ul class="prereq">
+                                                            <li value="1">Ensure that you do not introduce a conflict into your results. For example, only <i>open</i> requests are displayed in the <span class="GeneralVariablesSelfServicePortalName">Self Service Portal</span>, so you should avoid selecting any of the Closure Analyst or Closure Group items, as this will instruct the system to find only <i>closed</i> requests, leading to blank search results.</li>
+                                                            <li value="2">Including extension fields in search results can slow down performance.</li>
+                                                            <li value="3">If you use the Catalog Portal, do not use column names that consist only of numbers. You can include numbers in the title, but it must also contain letters.</li>
+                                                            <li value="4">Do not use special symbols in column names.</li>
+                                                            <li value="5">Ensure that all of the columns can be accommodated in the table. If you are using the Default home page view, which shows two tables side by side, we advise a maximum of six columns for each table.</li>
+                                                        </ul>
+                                                        <p class="note">Columns in the <b>Selected Columns</b> box are prefixed with colored dots. Columns with an orange dot are mandatory, and cannot be removed.</p>
+                                                        <li value="8">To rename a selected column, select it and select <b>Rename</b>. In the <b>Rename</b> dialog box, type the <b>Display Column Name</b> you want to appear in the table on the portal. You cannot change the Default Column name, as it is used in the database, and may be referenced elsewhere.</li>
+                                                        <p class="warning">When you rename a column, bear in mind that the column width will adjust to accommodate the length of the column names. The table width will also expand to accommodate the wider columns, if necessary, which will have an impact, particularly if your home page is the default view, which shows two tables side by side. In order to avoid distorting the page layout, you should keep the column names short.</p>
+                                                        <p class="note">If you insert multiple spaces in a column name, it will be displayed as a single space.</p>
+                                                        <li value="9">To change the order in which the columns are displayed in the table, select the columns and use the <b>Move up</b>and<b>Move Down</b> buttons, or click and drag the items you want to move.</li>
+                                                        <li value="10">You can choose whether you want to paginate the results:</li>
+                                                        <p>
+                                                            </p>
+<table class="TableStyle-FieldDesc" cellspacing="0">
+                                                                <col class="TableStyle-FieldDesc-Column-Column1">
+                                                                <col class="TableStyle-FieldDesc-Column-Column2">
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyH-Column1-">Paged?</td>
+                                                                        <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                            <p>This checkbox is selected by default. Leave selected to display the results in "pages", in which a specified number of items are displayed. If there are more entries in the table than can be displayed on a single page, pagination buttons appear beneath the table in the portal to display further entries. </p>
+                                                                            <p>Deselect to display a scroll bar, enabling the user to scroll down the list of entries.</p>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyB-Column1-">Page Size</td>
+                                                                        <td class="TableStyle-FieldDesc-BodyA-Column2-">
+                                                                            <p class="prereq">This field is only visible if <b>Paged?</b> is selected.</p>
+                                                                            <p>Use the drop down list to select the number of entries you want to display on each page.</p>
+                                                                        </td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        
+                                                        <li value="11">You can sort the information on the table:</li>
+                                                        <p>
+                                                            </p>
+<table class="TableStyle-FieldDesc" cellspacing="0" style="mc-table-style: url('../../resources/tablestyles/fielddesc.css');">
+                                                                <col class="TableStyle-FieldDesc-Column-Column1">
+                                                                <col class="TableStyle-FieldDesc-Column-Column2">
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyH-Column1-">Sort By</td>
+                                                                        <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                            <p> Use the drop down list to select the column on which you want to sort the table results.</p>
+                                                                            <p>The drop down list contains all of the columns in the Available Columns list. The <b>Sort By</b> column does not have to be in the <b>Selected Columns</b>. It must be at the top level; you cannot sort on extension or lower level fields.</p>
+                                                                            <p class="note">If you select to sort on a search field, the results are grouped by item, rather than in alphabetical order.</p>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyB-Column1-">Desc/Asc</td>
+                                                                        <td class="TableStyle-FieldDesc-BodyA-Column2-">
+                                                                            <p>Use the drop down list to choose whether the information is sorted in descending or ascending order.</p>
+                                                                        </td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        
+                                                        <li value="12">When you have finished, select <img src="/storage/app/media/Help/images/save%20button.png">.</li>
+                                                    
+                                                    <p>Next, you need to select/confirm the set of portal tables that is being used in your <a href="cp%20systems.htm">self service portal system</a> to ensure that your settings are displayed on the portal.</p>
+                                                

@@ -1,0 +1,433 @@
+[viewBag]
+title = "Partition Settings"
+url = "/help/topics/admin-system/partition-settings"
+layout = "help"
+is_hidden = 0
+navigation_hidden = 0
+==
+                                                    <h1>
+<a name="top"></a>Partition Settings</h1>
+                                                    <p class="intro">It is important that you consider seriously how you want to partition your database, as partitioned information is restricted to Analysts with access to that partition. Non-partitioned information can be accessed and updated by all Analysts.</p>
+                                                    <p class="warning">It is recommended that you contact <span class="GeneralVariablesCompanyName2">Alemba®</span> Support if you want to disable partitioning at any point.</p>
+                                                    <p>The options that you can select for partitioning are grouped by:</p>
+                                                    <ul>
+                                                        <li value="1">IPK (If IPK status/streams are not enabled, these options relate to calls)</li>
+                                                        <li value="2">CMDB </li>
+                                                        <li value="3">Request </li>
+                                                        <li value="4">Tasks </li>
+                                                        <li value="5">SLM </li>
+                                                        <li value="6">General </li>
+                                                        <li value="7">
+<span class="GeneralVariablesSelfServicePortalName">Self Service Portal</span> </li>
+                                                    </ul>
+                                                    <p class="warning">IPK Workflow Rules cannot be partitioned, and will be available across all partitions. The Analyst who sets up the rules will therefore have access to data from all partitions, including those to which they do not have access.</p>
+                                                    <h2>
+<a name="Partitio2"></a>Partitioning by IPK</h2>
+                                                    <h2 class="Prerequisite">Before you start</h2>
+                                                    <p class="prereqtext">You must have <b>System Settings</b> selected in your <a href="%7B%7B%20'help-admin-security-roles-general-access-security-role#General'%7CstaticPage%20%7D%7D#General">General Access security role</a> to configure partition settings.</p>
+                                                    <ol>
+                                                        <li value="1">
+                                                            <div class="MCDropDown MCDropDown_Closed dropDown">
+<span class="MCDropDownHead dropDownHead"><a href="#" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCHotSpotImage" aria-expanded="false"><img class="MCDropDown_Image_Icon" src="/storage/app/media/Help/images/transparent.gif" height="11" width="16" alt="Closed" data-mc-alt2="Open">
+Display the Partition Settings window, if it is not already on screen.</a></span>
+                                                                <div class="MCDropDownBody dropDownBody">
+                                                                    <p>
+                                                                        </p>
+<p>Select <a href="../general%20topics/asmcorewindow.htm"><span style="font-size: 24pt;">≡</span></a> &gt; <b>Admin</b> &gt;  <b>System Administration</b>.   </p>
+                                                                        <p>The System Administration window appears.</p>
+                                                                    
+                                                                    <p>In the Explorer pane, expand <b>System</b>, then select <b>Partition Settings</b>.</p>
+                                                                    <p><a href="%7B%7B%20'help-enabling-partitioning#top'%7CstaticPage%20%7D%7D#top">Enable partitioning</a> and select the <a href="%7B%7B%20'help-enabling-partitioning#Partitio'%7CstaticPage%20%7D%7D#Partitio">method by which you want to partition</a>, if this has not already been done.</p>
+                                                                </div>
+                                                            </div>
+                                                        </li>
+                                                        <li value="2">Choose the settings you wish to use.  These are options that enable you to partition your database based on call or IPK information, if IPK status/streams are enabled:</li>
+                                                    </ol>
+                                                    <table class="TableStyle-FieldDesc" style="mc-table-style: url('../../resources/tablestyles/fielddesc.css');" cellspacing="0">
+                                                        <col class="TableStyle-FieldDesc-Column-Column1">
+                                                        <col class="TableStyle-FieldDesc-Column-Column2">
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">
+                                                                <p>Call Details</p>
+                                                            </td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                <p>Calls are assigned to the partition of the Analyst who logs them. A call retains its original partition even when it is forwarded to or actioned by an Analyst in a different partition.</p>
+                                                                <p>Selecting this options enables the Change Call Partition option within the <a href="%7B%7B%20'help-admin-security-roles-ipk-management-security-roles#IPK2'%7CstaticPage%20%7D%7D#IPK2">IPK Management security role</a>.</p>
+                                                                <p class="prereq">This checkbox is unavailable if you have selected to partition by screen set</p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">
+                                                                <p><a name="Call_Screen_Set"></a>Call Screen Set</p>
+                                                            </td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                <p>Analysts will only be able to access the call screen sets configured for the partitions to which they have access.</p>
+                                                                <p class="prereq">This checkbox is unavailable if you have selected to partition by screen set</p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">
+                                                                <p>Call Templates</p>
+                                                            </td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                <p>Analysts will only be able to access the call templates linked to their partition.</p>
+                                                                <p class="prereq">This checkbox is unavailable if you have selected to partition by screen set</p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">
+                                                                <p>Custom Call Profiles</p>
+                                                            </td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                <p>Partitions the <b>Custom Call Profile</b> fields that can be added to <b class="Xref_outstanding">Call Details</b> windows configured in <span class="GeneralVariablesDesignerName">ASM Designer</span></p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">
+                                                                <p>Urgency, Impact, and Priority</p>
+                                                            </td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                <p>If you are using the ITIL IPK Tiers module, you will probably have priority automatically derived from the <b>Urgency</b> and <b>Impact</b> fields on a call. All these three fields can be partitioned in <span class="GeneralVariablesCoreName">ASM Core</span>. </p>
+                                                                <p class="warning">If you are partitioning by <b>Priority</b>, Analysts can see priorities from all partitions when they assign specific colors to priorities. This is because an Analyst may be forwarded a call with a priority in another partition. This applies to priority for calls, requests, and tasks.</p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">
+                                                                <p>IPK Partition Settings</p>
+                                                            </td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                <p>Enables you to set different IPK Settings for each partition on your system. You can configure these settings for a particular partition through <b class="Xref_outstanding">IPK Settings (Partitioned)</b>. The settings are then available to Analysts with access to the partition. </p>
+                                                                <p class="prereq">This checkbox is unavailable if you have selected to partition by screen set</p>
+                                                                <p class="warning">The IPK Settings for a particular partition can only be updated by a System Administrator working within that partition. If this option is not selected, only the analyst logged in as ADMIN can configure settings for the “Unspecified” system partition. </p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">
+                                                                <p>Type, Question Map, Call Status Titles, Reasons</p>
+                                                            </td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                <p>When a call is logged in a particular partition, the available values in the corresponding fields are those that are defined for the partition in which the call is logged</p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">
+                                                                <p>IPK Streams</p>
+                                                            </td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                <p>Enables definition of different streams in different partitions. Only streams defined for that partition are available.</p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">
+                                                                <p>Change Partition on Take Action</p>
+                                                            </td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                <p class="prereq"><b>Call Details</b> must be selected to enable this option.</p>
+                                                                <p class="prereq">This checkbox is unavailable if you have selected to partition by screen set</p>
+                                                                <p>The partition of a call is automatically set to the partition the Analyst is working in when they take action on a call. </p>
+                                                                <p>All Analysts in the Group to which partitioned calls are forwarded will be able to view the calls but only Analysts with access to the current partition of the call may take action on it.</p>
+                                                                <p class="warning">When a call is actioned by an Analyst in a different partition to the call, any values that have been specified for the previous partition will still display. However, Analysts can only update the call using values available in their current working partition.</p>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                    <h2>Partitioning by CMDB Item</h2>
+                                                    <h2 class="Prerequisite">Before you start</h2>
+                                                    <p class="prereqtext">You must have <b>System Settings</b> selected in your <a href="%7B%7B%20'help-admin-security-roles-general-access-security-role#General'%7CstaticPage%20%7D%7D#General">General Access security role</a> to configure partition settings.</p>
+                                                    <ol>
+                                                        <li value="1">
+                                                            <div class="MCDropDown MCDropDown_Closed dropDown">
+<span class="MCDropDownHead dropDownHead"><a href="#" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCHotSpotImage" aria-expanded="false"><img class="MCDropDown_Image_Icon" src="/storage/app/media/Help/images/transparent.gif" height="11" width="16" alt="Closed" data-mc-alt2="Open">
+Display the Partition Settings window, if it is not already on screen.</a></span>
+                                                                <div class="MCDropDownBody dropDownBody">
+                                                                    <p>
+                                                                        </p>
+<p>Select <a href="../general%20topics/asmcorewindow.htm"><span style="font-size: 24pt;">≡</span></a> &gt; <b>Admin</b> &gt;  <b>System Administration</b>.   </p>
+                                                                        <p>The System Administration window appears.</p>
+                                                                    
+                                                                    <p>Select the <b>Partition Settings</b> option from within the <b>System</b> group.</p>
+                                                                    <p><a href="%7B%7B%20'help-enabling-partitioning#top'%7CstaticPage%20%7D%7D#top">Enable partitioning</a> and select the <a href="%7B%7B%20'help-enabling-partitioning#Partitio'%7CstaticPage%20%7D%7D#Partitio">method by which you want to partition</a>, if this has not already been done.</p>
+                                                                </div>
+                                                            </div>
+                                                        </li>
+                                                        <li value="2">
+                                                            <p>Select any of the items listed to ensure that they are added to the partition of the Analyst who creates them and will only be available to other Analysts who have access to this partition. </p>
+                                                        </li>
+                                                    </ol>
+                                                    <p class="note">If you selected to partition by screen set, when you create, say, a User from the Call Details window, the User is added to the partition of the <b>call</b>, not necessarily your partition.</p>
+                                                    <p class="warning">CMDB Items created from resources discovered on an External Source are assigned the source’s partition. If the source is not partitioned, the CMDB Items inherit the partition through the template assigned to them, if a partition is assigned to the template. If a source is partitioned but CMDB Items are not, CMDB Items created from the external source are not partitioned. </p>
+                                                    <p class="warning">If you are using the <b>Asset Management</b> Module, asset Transactions made against asset CMDB items are created in the partition of the CMDB Item.</p>
+                                                    <h2>Partitioning by Request</h2>
+                                                    <h2 class="Prerequisite">Before you start</h2>
+                                                    <p class="prereqtext">You must have <b>System Settings</b> selected in your <a href="%7B%7B%20'help-admin-security-roles-general-access-security-role#General'%7CstaticPage%20%7D%7D#General">General Access security role</a> to configure partition settings.</p>
+                                                    <ol>
+                                                        <li value="1">
+                                                            <div class="MCDropDown MCDropDown_Closed dropDown">
+<span class="MCDropDownHead dropDownHead"><a href="#" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCHotSpotImage" aria-expanded="false"><img class="MCDropDown_Image_Icon" src="/storage/app/media/Help/images/transparent.gif" height="11" width="16" alt="Closed" data-mc-alt2="Open">
+Display the Partition Settings window, if it is not already on screen.</a></span>
+                                                                <div class="MCDropDownBody dropDownBody">
+                                                                    <p>
+                                                                        </p>
+<p>Select <a href="../general%20topics/asmcorewindow.htm"><span style="font-size: 24pt;">≡</span></a> &gt; <b>Admin</b> &gt;  <b>System Administration</b>.   </p>
+                                                                        <p>The System Administration window appears.</p>
+                                                                    
+                                                                    <p>Select the <b>Partition Settings</b> option from within the <b>System</b> group.</p>
+                                                                    <p><a href="%7B%7B%20'help-enabling-partitioning#top'%7CstaticPage%20%7D%7D#top">Enable partitioning</a> and select the <a href="%7B%7B%20'help-enabling-partitioning#Partitio'%7CstaticPage%20%7D%7D#Partitio">method by which you want to partition</a>, if this has not already been done.</p>
+                                                                </div>
+                                                            </div>
+                                                        </li>
+                                                        <li value="2">Select any of the items listed to ensure that they are added to the partition of the Analyst who creates them and will only be available to other Analysts who have access to this partition. </li>
+                                                        <p>
+                                                            </p>
+<table class="TableStyle-FieldDesc" style="mc-table-style: url('../../resources/tablestyles/fielddesc.css');margin-left: 0;margin-right: auto;" cellspacing="0">
+                                                                <col class="TableStyle-FieldDesc-Column-Column1">
+                                                                <col class="TableStyle-FieldDesc-Column-Column2">
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Request</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">Requests are added to the partition of the Analyst who logs them. A request retains its original partition even if it is forwarded to or actioned by an Analyst in a different partition. <p>Selecting this option will automatically select the <b>Task</b> option in the <b>Task</b> group. </p>
+<p class="warning">Once selected, it cannot be deselected. If you select it by accident, close the window without saving.</p>
+<p class="prereq">This checkbox is unavailable if you have selected to partition by screen set</p>
+</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Request Screen Set</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">Analysts will only have access to request screen sets that are configured for the partition they log in to.<p class="prereq">This checkbox is unavailable if you have selected to partition by screen set</p>
+</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Workflow Templates</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">Analysts will only have access to the workflow templates in the partition in which the request is logged. <p class="prereq">This checkbox is unavailable if you have selected to partition by screen set</p>
+</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Request Type, Request Risk, Request Priority, Request Activity, Request Implementation Profile, Request Status, Request Extension Profiles 1 to 4</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">When a request is logged in a particular partition, the values available in the corresponding fields for selection are those that are defined for the partition in which the request is logged, and to which the Analyst has access.</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Change Calendar</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">You can define different change calendars in different partitions. Analysts will only have access to those change calendars that have been created in the partitions to which they have access.</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Change Partition on Take Action</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">The partition is automatically set to the partition the Analyst is working in when they take action on the request. <p>All Analysts in the Group to which partitioned requests are forwarded will be able to view the request but only Analysts with access to the request’s original partition may take action on it.</p>
+<p class="prereq">This checkbox is unavailable if you have selected to partition by screen set</p>
+<p class="warning">When a request is actioned by an Analyst in a different partition to the request, any values that have been specified for the previous partition will still display. However, Analysts can only update the request using values available in their current working partition.</p>
+</td>
+                                                                </tr>
+                                                            </table>
+                                                        
+                                                    </ol>
+                                                    <h2>Partitioning by Task</h2>
+                                                    <h2 class="Prerequisite">Before you start</h2>
+                                                    <p class="prereqtext">You must have <b>System Settings</b> selected in your <a href="%7B%7B%20'help-admin-security-roles-general-access-security-role#General'%7CstaticPage%20%7D%7D#General">General Access security role</a> to configure partition settings.</p>
+                                                    <ol>
+                                                        <li value="1">
+                                                            <div class="MCDropDown MCDropDown_Closed dropDown">
+<span class="MCDropDownHead dropDownHead"><a href="#" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCHotSpotImage" aria-expanded="false"><img class="MCDropDown_Image_Icon" src="/storage/app/media/Help/images/transparent.gif" height="11" width="16" alt="Closed" data-mc-alt2="Open">
+Display the Partition Settings window, if it is not already on screen.</a></span>
+                                                                <div class="MCDropDownBody dropDownBody">
+                                                                    <p>
+                                                                        </p>
+<p>Select <a href="../general%20topics/asmcorewindow.htm"><span style="font-size: 24pt;">≡</span></a> &gt; <b>Admin</b> &gt;  <b>System Administration</b>.   </p>
+                                                                        <p>The System Administration window appears.</p>
+                                                                    
+                                                                    <p>Select the <b>Partition Settings</b> option from within the <b>System</b> group.</p>
+                                                                    <p><a href="%7B%7B%20'help-enabling-partitioning#top'%7CstaticPage%20%7D%7D#top">Enable partitioning</a> and select the <a href="%7B%7B%20'help-enabling-partitioning#Partitio'%7CstaticPage%20%7D%7D#Partitio">method by which you want to partition</a>, if this has not already been done.</p>
+                                                                </div>
+                                                            </div>
+                                                        </li>
+                                                        <li value="2">Select any of the items listed to ensure that they are added to the partition of the Analyst who creates them and will only be available to other Analysts who have access to this partition. </li>
+                                                        <p>
+                                                            </p>
+<table class="TableStyle-FieldDesc" style="mc-table-style: url('../../resources/tablestyles/fielddesc.css');margin-left: 0;margin-right: auto;" cellspacing="0">
+                                                                <col class="TableStyle-FieldDesc-Column-Column1">
+                                                                <col class="TableStyle-FieldDesc-Column-Column2">
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">
+                                                                        <p>Task</p>
+                                                                    </td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                        <p class="prereq">This is automatically selected when the <b>Request</b> checkbox is selected, and disabled if the <b>Request</b> checkbox is cleared.</p>
+                                                                        <p>A task retains its original partition even if it is forwarded to an Analyst in a different partition or actioned by an Analyst in a different partition. If the <b>Change partition on Take Action</b> box is ticked for the Request, all of the tasks will move also.</p>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">
+                                                                        <p>Task/Approval Type, Task Priority, Task Phase, Task Activity, Task Defer Status, Task Extension Profiles 1, 2, 3, and 4</p>
+                                                                    </td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                        <p>When a task is logged in a partition, the values available in the corresponding fields for selection are those defined for the partition in which the task is logged, and to which the Analyst has access.</p>
+                                                                    </td>
+                                                                </tr>
+                                                            </table>
+                                                        
+                                                    </ol>
+                                                    <h2>Partitioning by Agreement/SLM</h2>
+                                                    <h2 class="Prerequisite">Before you start</h2>
+                                                    <p class="prereqtext1">You must have <b>System Settings</b> selected in your <a href="%7B%7B%20'help-admin-security-roles-general-access-security-role#General'%7CstaticPage%20%7D%7D#General">General Access security role</a> to configure partition settings.</p>
+                                                    <p class="prereqtextlast">Agreements and agreement matrices cannot be partitioned if you are partitioning by screen set.</p>
+                                                    <ol>
+                                                        <li value="1">
+                                                            <div class="MCDropDown MCDropDown_Closed dropDown">
+<span class="MCDropDownHead dropDownHead"><a href="#" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCHotSpotImage" aria-expanded="false"><img class="MCDropDown_Image_Icon" src="/storage/app/media/Help/images/transparent.gif" height="11" width="16" alt="Closed" data-mc-alt2="Open">
+Display the Partition Settings window, if it is not already on screen.</a></span>
+                                                                <div class="MCDropDownBody dropDownBody">
+                                                                    <p>
+                                                                        </p>
+<p>Select <a href="../general%20topics/asmcorewindow.htm"><span style="font-size: 24pt;">≡</span></a> &gt; <b>Admin</b> &gt;  <b>System Administration</b>.   </p>
+                                                                        <p>The System Administration window appears.</p>
+                                                                    
+                                                                    <p>Select the <b>Partition Settings</b> option from within the <b>System</b> group.</p>
+                                                                    <p><a href="%7B%7B%20'help-enabling-partitioning#top'%7CstaticPage%20%7D%7D#top">Enable partitioning</a> and select the <a href="%7B%7B%20'help-enabling-partitioning#Partitio'%7CstaticPage%20%7D%7D#Partitio">method by which you want to partition</a>, if this has not already been done.</p>
+                                                                </div>
+                                                            </div>
+                                                        </li>
+                                                        <li value="2">Select any of the items listed to ensure that they are added to the partition of the Analyst who creates them and will only be available to other Analysts who have access to this partition. </li>
+                                                        <p>
+                                                            </p>
+<table class="TableStyle-FieldDesc" style="mc-table-style: url('../../resources/tablestyles/fielddesc.css');margin-left: 0;margin-right: auto;" cellspacing="0">
+                                                                <col class="TableStyle-FieldDesc-Column-Column1">
+                                                                <col class="TableStyle-FieldDesc-Column-Column2">
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Agreements</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">Links agreements to the partition of the Analyst who creates them. <p class="prereq">This checkbox is unavailable if you have selected to partition by screen set</p>
+</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Agreement Matrix</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">Partitions the matrices that drive the escalation and breach times from an agreement. Analysts will only be able to apply a matrix to an agreement if the agreement and matrix are in the same partition. If any element in an agreement matrix (such as a configuration item) is partitioned, the matrix will be partitioned automatically, even if you have not selected this checkbox.<p class="prereq">This checkbox is unavailable if you have selected to partition by screen set</p>
+</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Working Hours and Public Holidays</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">When an Analyst creates an agreement, only the working hours and public holiday schedules in the same partition as the agreement are available for selection.</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Exclusion Reasons</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">Limits Analysts to exclusion reasons in the same partition as the agreement. <p class="note">Exclusion reasons are defined in <a href="%7B%7B%20'help-admin-slm-exclusion-reasons#Creating'%7CstaticPage%20%7D%7D#Creating">Service Level Management administration</a>.</p>
+</td>
+                                                                </tr>
+                                                            </table>
+                                                        
+                                                    </ol>
+                                                    <h2>
+<a name="Partitio3"></a>Partitioning by General Options</h2>
+                                                    <h2 class="Prerequisite">Before you start</h2>
+                                                    <p class="prereqtext">You must have <b>System Settings</b> selected in your <a href="%7B%7B%20'help-admin-security-roles-general-access-security-role#General'%7CstaticPage%20%7D%7D#General">General Access security role</a> to configure partition settings.</p>
+                                                    <ol>
+                                                        <li value="1">
+                                                            <div class="MCDropDown MCDropDown_Closed dropDown">
+<span class="MCDropDownHead dropDownHead"><a href="#" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCHotSpotImage" aria-expanded="false"><img class="MCDropDown_Image_Icon" src="/storage/app/media/Help/images/transparent.gif" height="11" width="16" alt="Closed" data-mc-alt2="Open">
+Display the Partition Settings window, if it is not already on screen.</a></span>
+                                                                <div class="MCDropDownBody dropDownBody">
+                                                                    <p>
+                                                                        </p>
+<p>Select <a href="../general%20topics/asmcorewindow.htm"><span style="font-size: 24pt;">≡</span></a> &gt; <b>Admin</b> &gt;  <b>System Administration</b>.   </p>
+                                                                        <p>The System Administration window appears.</p>
+                                                                    
+                                                                    <p>In the Explorer pane, expand <b>System</b>, then select <b>Partition Settings</b>.</p>
+                                                                    <p><a href="%7B%7B%20'help-enabling-partitioning#top'%7CstaticPage%20%7D%7D#top">Enable partitioning</a> and select the <a href="%7B%7B%20'help-enabling-partitioning#Partitio'%7CstaticPage%20%7D%7D#Partitio">method by which you want to partition</a>, if this has not already been done.</p>
+                                                                </div>
+                                                            </div>
+                                                        </li>
+                                                        <li value="2">Select any of the items listed to ensure that they are added to the partition of the Analyst who creates them and will only be available to other Analysts who have access to this partition. </li>
+                                                        <p>
+                                                            </p>
+<table class="TableStyle-FieldDesc" style="mc-table-style: url('../../resources/tablestyles/fielddesc.css');margin-left: 0;margin-right: auto;" cellspacing="0">
+                                                                <col class="TableStyle-FieldDesc-Column-Column1">
+                                                                <col class="TableStyle-FieldDesc-Column-Column2">
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Knowledge Bank</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">Restricts Analysts to Knowledge Bank search results in their partition. Knowledge entries will be added to the current partition of the Analyst creating the entry.</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Security Profiles</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">Restricts Analysts to selecting only those profiles that are defined in the partition in which the call, request, or task is being logged.</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Security Roles</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">Roles are created in the partition you have chosen to work in as System Administrator.<p>The role will be available in the partition in which it is created. However, it may be linked to groups and people from different partitions. Analysts can only be assigned a security role that is in one of the partitions to which they have access.</p>
+</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Bulletin Board</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">Analysts will only be able to read (and edit, if they have sufficient permissions) messages posted in the partitions to which they belong.</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Attributes</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">Partitions attributes for all the entities that can be partitioned and have for which attributes can be defined.</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Email Templates</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">Partitions the message templates that are used when sending an outgoing email for all the entities that can be partitioned, and from which an outgoing email can be sent.</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Outgoing Email ID</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">Partitions the Sender Email IDs that are used when sending an outgoing email for all the entities that can be partitioned, and from which an outgoing email can be sent.</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Forward to Group Members Included</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">Enables Analysts to view calls, requests, or tasks that are forwarded to any group of which they are a member, including those forwarded to a partition to which the Analyst does not have access. <p class="warning"><span class="GeneralVariablesCompanyName2">Alemba®</span> recommends that organizations which implement a Shared Services model select this option.</p>
+</td>
+                                                                </tr>
+                                                            </table>
+                                                        
+                                                    </ol>
+                                                    <h2>
+<a name="Partitio"></a>Partitioning by <span class="GeneralVariablesSelfServicePortalName">Self Service Portal</span>
+</h2>
+                                                    <h2 class="Prerequisite">Before you start</h2>
+                                                    <p class="prereqtext">You must have <b>System Settings</b> selected in your <a href="%7B%7B%20'help-admin-security-roles-general-access-security-role#General'%7CstaticPage%20%7D%7D#General">General Access security role</a> to configure partition settings.</p>
+                                                    <p class="note">Options in this section also apply to Users who are accessing the portal from the WSRP. For more information, contact <span class="GeneralVariablesCompanyName2">Alemba®</span> Support.</p>
+                                                    <ol>
+                                                        <li value="1">
+                                                            <div class="MCDropDown MCDropDown_Closed dropDown">
+<span class="MCDropDownHead dropDownHead"><a href="#" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCHotSpotImage" aria-expanded="false"><img class="MCDropDown_Image_Icon" src="/storage/app/media/Help/images/transparent.gif" height="11" width="16" alt="Closed" data-mc-alt2="Open">
+Display the Partition Settings window, if it is not already on screen.</a></span>
+                                                                <div class="MCDropDownBody dropDownBody">
+                                                                    <p>
+                                                                        </p>
+<p>Select <a href="../general%20topics/asmcorewindow.htm"><span style="font-size: 24pt;">≡</span></a> &gt; <b>Admin</b> &gt;  <b>System Administration</b>.   </p>
+                                                                        <p>The System Administration window appears.</p>
+                                                                    
+                                                                    <p>Select the <b>Partition Settings</b> option from within the <b>System</b> group.</p>
+                                                                    <p><a href="%7B%7B%20'help-enabling-partitioning#top'%7CstaticPage%20%7D%7D#top">Enable partitioning</a> and select the <a href="%7B%7B%20'help-enabling-partitioning#Partitio'%7CstaticPage%20%7D%7D#Partitio">method by which you want to partition</a>, if this has not already been done.</p>
+                                                                </div>
+                                                            </div>
+                                                        </li>
+                                                        <li value="2">Specify in which partition(s) information on the <span class="GeneralVariablesSelfServicePortalName">Self Service Portal</span> can be submitted or viewed.</li>
+                                                        <p>
+                                                            </p>
+<table class="TableStyle-FieldDesc" style="mc-table-style: url('../../resources/tablestyles/fielddesc.css');margin-left: 0;margin-right: auto;" cellspacing="0">
+                                                                <col class="TableStyle-FieldDesc-Column-Column1">
+                                                                <col class="TableStyle-FieldDesc-Column-Column2">
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Use Analyst’s Partition</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">If the person logged into the <span class="GeneralVariablesSelfServicePortalName">Self Service Portal</span> is flagged as both Analyst and User, this setting uses their default <span class="GeneralVariablesCoreName">ASM Core</span> partition rather than their <span class="GeneralVariablesSelfServicePortalName">Self Service Portal</span> partition, when calls or requests are logged from the portal, and when searching for data in the portal.<p>If this option is not selected, the partition specified in the <span class="GeneralVariablesSelfServicePortalName">Self Service Portal</span> Partition field of their Person record is used for the portal when logging calls or requests and viewing or searching for data. </p>
+<p>If Users are not partitioned, the calls and requests are logged using the default partition of the call or request and Users can only view and search for items in the Unspecified partition.</p>
+<p>If your system has workflow templates partitioned, any requests logged from the <span class="GeneralVariablesSelfServicePortalName">Self Service Portal</span> are created using the partition of the workflow template. If workflow templates are not partitioned, any requests logged from the <span class="GeneralVariablesSelfServicePortalName">Self Service Portal</span> are created using the default partition (Partition 0 – Unspecified).</p>
+<p>Similarly, if call templates are partitioned, calls logged from the <span class="GeneralVariablesSelfServicePortalName">Self Service Portal</span> are created using the partition of the call template. If call templates are not partitioned, they are created using the using the default partition (Partition 0 – Unspecified).</p>
+<p class="note">Users can always view calls they have logged using the <span class="GeneralVariablesSelfServicePortalName">Self Service Portal</span>, even if the partition of the call is changed in the main application.</p>
+<p class="warning">If your system is partitioned, the call is logged in the partition specified in the URL of the page you are viewing, regardless of whether you have access to this partition.</p>
+</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Display results from All Partitions</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                        <p class="prereq">This option is only available if <b>Users</b> is <span class="span_2">not</span> selected in the CMDB section. </p>
+                                                                        <p>Allows Users who are <span class="span_2">not partitioned</span> to view and search for items in all partitions. If this option is not selected, Users who are not partitioned will only be able to view and search for items in the Unspecified partition.</p>
+                                                                        <p class="warning">If you select this option, <span class="GeneralVariablesCompanyName2">Alemba®</span> recommends that you use additional settings within <span class="GeneralVariablesCoreName">ASM Core</span> to limit the information displayed on the <span class="GeneralVariablesSelfServicePortalName">Self Service Portal</span>, either through the <a href="%7B%7B%20'help-admin-security-roles-security-roles#top'%7CstaticPage%20%7D%7D#top">security roles</a> or the  Portal option when creating <a href="%7B%7B%20'help-knowledge-bank-managing-knowledge-entries#Creating'%7CstaticPage%20%7D%7D#Creating">Knowledge</a> or <a href="../bulletins/managing%20bulletins.htm">Bulletin</a> entries, adding <b>notes</b> or <b>Actions &amp; Solutions</b> to a <b class="Xref_outstanding">call</b>.</p>
+                                                                        <p class="warning"><span class="GeneralVariablesCompanyName2">Alemba®</span> recommends that if you are using a <b>Shared Services</b> model (<b>Display Results from All partitions</b> is selected and the Users are not partitioned), Call <b>Impact</b>, <b>Urgency</b> and <b>Priority</b> should not be partitioned to ensure correct call priority is allocations based on the impact and urgency selected by the User when logging a call. Alternatively, you should <b class="Xref_outstanding">configure your portal call logging screen</b> not to display the Urgency and Impact fields.</p>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Filter Results by Template Partition</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                        <p class="prereq">This option is only available if <b>Display results from All Partitions </b> is  selected. </p>
+                                                                        <p>Select to filter the displayable content by the partition of the template. Users can still see templates from all partitions.</p>
+                                                                        <p class="exampletext">if Call Impact is partitioned, with this setting you only see the Impact values for the partition of the call being created (which comes from the template). If the checkbox is not selected, you can pick Impact values from all partitions.</p>
+                                                                    </td>
+                                                                </tr>
+                                                            </table>
+                                                        
+                                                    </ol>
+                                                

@@ -1,0 +1,184 @@
+tabs:
+    fields:
+        intro:
+            label: Intro
+            size: tiny
+            span: full
+            type: markdown
+            tab: Text
+        text:
+            label: Text
+            size: large
+            span: full
+            type: markdown
+            mode: split
+            tab: Text
+        brief:
+            label: In-brief
+            span: auto
+            type: markdown
+            tab: 'Main information'
+        reach:
+            label: Reach
+            span: auto
+            type: markdown
+            tab: 'Main information'
+        software:
+            label: Software
+            span: auto
+            type: text
+            tab: 'Main information'
+        timeline:
+            label: Timeline
+            span: auto
+            type: text
+            tab: 'Main information'
+        benefits:
+            label: Benefits
+            span: auto
+            type: markdown
+            mode: split
+            size: huge
+            commentAbove: 'These should be bullet points'
+            tab: 'Main information'
+        download:
+            label: 'Case Study download'
+            span: auto
+            type: mediafinder
+            mode: file
+            commentAbove: 'The Case Study in PDF format'
+            tab: 'Main information'
+        sections:
+            label: Sections
+            type: repeater
+            span: full
+            tab: Sections
+            form:
+                fields:
+                    heading:
+                        label: Heading
+                        type: text
+                        span: full
+                    intro:
+                        label: Intro
+                        type: textarea
+                        size: tiny
+                        span: full
+                    text:
+                        label: Text
+                        type: markdown
+                        mode: split
+                        size: giant
+                        span: full
+                    quote:
+                        label: Quote
+                        type: textarea
+                        size: tiny
+                        span: left
+                        commentAbove: 'Do not include quote marks!'
+                    quote_position:
+                        label: 'Quote position'
+                        span: right
+                        type: dropdown
+                        options:
+                            left: Left
+                            right: Right
+                    quote_author:
+                        label: 'Quote author'
+                        type: text
+                        span: left
+        thumbnail:
+            label: Thumbnail
+            type: mediafinder
+            mode: image
+            span: full
+            commentAbove: "250px x 250px image - remember it'll be cropped as a circle"
+            tab: Images/Video
+        banner_image:
+            label: 'Banner image'
+            type: mediafinder
+            mode: image
+            span: full
+            tab: Images/Video
+        banner_heading:
+            label: 'Banner heading'
+            type: text
+            span: full
+            commentAbove: 'This is the heading used when the event is featured on the Customers page - something snappy!'
+            tab: Images/Video
+        banner_quote:
+            label: 'Banner quote'
+            type: textarea
+            size: tiny
+            span: full
+            commentAbove: 'Do not include quote marks!'
+            tab: Images/Video
+        video_mp4:
+            label: 'Video (MP4 format)'
+            mode: file
+            span: auto
+            type: mediafinder
+            commentAbove: 'Choose a video in MP4 format.'
+            tab: Images/Video
+        video_poster:
+            label: 'Video poster image'
+            mode: image
+            span: auto
+            type: mediafinder
+            commentAbove: "This is the image that'll be displayed before the video plays."
+            tab: Images/Video
+        featured:
+            label: 'Featured?'
+            span: full
+            type: switch
+            tab: Featured
+            commentAbove: 'If switched-on, event will appear on the Homepage and the Customers page banner (if no more recent success stories have been marked as Featured as well)'
+        home_quote:
+            label: 'Homepage quote'
+            type: textarea
+            size: tiny
+            span: right
+            commentAbove: 'Do not include quote marks!'
+            tab: Featured
+        home_author:
+            label: 'Quote author'
+            type: text
+            span: right
+            tab: Featured
+        home_image:
+            label: 'Homepage image'
+            type: mediafinder
+            mode: image
+            span: right
+            commentAbove: 'This should be faded out to white on the right'
+            tab: Misc
+        tags:
+            label: Tags
+            nameFrom: name
+            descriptionFrom: description
+            span: auto
+            type: relation
+            tab: Tags
+fields:
+    name:
+        label: Heading
+        span: left
+        required: 1
+        type: text
+    slug:
+        label: Slug
+        span: auto
+        preset:
+            field: name
+            type: slug
+        type: text
+    customer:
+        label: Customer
+        nameFrom: name
+        span: auto
+        type: relation
+    published_at:
+        label: Published
+        mode: date
+        span: auto
+        type: datepicker

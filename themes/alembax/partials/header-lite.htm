@@ -1,0 +1,134 @@
+description = "Header without Nav, and non indexed"
+
+[seoTags]
+==
+<?php
+use Jenssegers\Agent\Agent;
+
+function onStart()
+{
+
+	// Check for user agent
+
+	$agent = new Agent();
+
+	$this['ismobile'] = FALSE;
+
+	if( $agent->isMobile() || $agent->isTablet() ) {
+		
+		$this['ismobile'] = TRUE;
+
+	}
+
+	$this['countrycode'] = isset($_SERVER["HTTP_CF_IPCOUNTRY"]) ? $_SERVER["HTTP_CF_IPCOUNTRY"] : '';
+
+}
+?>
+==
+<!DOCTYPE html>
+<html lang="en" {% if htmlClass %}class="{{ htmlClass }}"{% endif %}>
+<head>
+<meta charset="utf-8">
+
+{% if this.environment == 'production' and allow_cookies() %}
+
+    {% partial 'analytics-etc' %}
+
+{% endif %}
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="google-site-verification" content="cgpiWrzV47MUzoeYn2LTd0rApPYN5vBzYaocEWQZbVo" />
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<!-- NO INDEX -->
+<meta name="robots" content="noindex" />
+<meta name=”robots” content=”nofollow” />
+<meta name="googlebot" content="noindex" />
+<meta name="googlebot-news" content="nosnippet" />
+
+{% partial 'head-scripts-styles' %}
+
+{% partial 'favicons' %}
+
+{% if this.page.meta_title %}
+
+    {% component 'seoTags' %}
+
+{% else %}
+
+    <title>Alemba - {{ this.page.title }}</title>
+    
+{% endif %}
+
+</head>
+
+{% put scripts %}
+
+    <script>
+
+        $(document).ready(function(){
+
+            $('body form').on('submit', function() {
+
+                var email = $('.validateEmail input[name=email]').val();
+
+                // If free e-mail clients have been used, alert and return to the form
+
+                var check_email = '[a-zA-Z0-9]{0,}([.]?[a-zA-Z0-9]{1,})[@](gmail.com|hotmail.com|yahoo.com|gmail.co.uk|googlemail.com|hotmail.co.uk|yahoo.co.uk)';
+                var patt = new RegExp(check_email);
+                var result = patt.test(email);
+
+                if (result === true) {
+
+                    alert("Sorry, you can't use that e-mail. Please use another.");
+                    return false;
+
+                }
+
+            });
+
+        });
+
+    </script>
+
+{% endput %}
+
+<body class="page-{{ this.page.id }}">
+
+    {% if this.environment == 'production' and allow_cookies() %}
+
+        {% partial 'google-tag-manager-noscript' %}
+
+    {% endif %}
+
+    <header id="header" class="site-header" role="banner">
+
+        <noscript>
+            <div class="alert alert-info" role="alert">
+                For full functionality of this site it is necessary to enable JavaScript. Here are the <a href="http://www.enable-javascript.com/" target="_blank">instructions how to enable JavaScript in your web browser</a>.
+            </div>
+        </noscript>
+
+        {% if countrycode == 'US' %}
+
+            <ul class="header-flags list-unstyled">
+                <li onclick="window.location='{{ 'office-us'|page }}'"><a href="{{ 'office-us'|page }}"><img src="{{ 'Offices/flag-simple-usa.png'|media }}" alt="US" /> <span class="subheading">US</span></a></li>
+            </ul>
+
+        {% endif %}
+
+        <div class="container-fluid site-header-container">
+
+            <div class="header-logo">
+
+                <a href="{{ 'home'|page }}"><img src="{{ 'assets/img/alemba-header-logo.svg'|theme }}" alt="Alemba" /></a>
+
+            </div><!-- /header-logo -->
+
+            
+
+        </div> <!-- /container -->
+
+    </header>
+
+    <div class="clearfix"></div>

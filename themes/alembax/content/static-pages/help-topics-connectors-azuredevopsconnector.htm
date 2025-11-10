@@ -1,0 +1,243 @@
+[viewBag]
+title = "MS Azure DevOps Connector"
+url = "/help/topics/connectors/azuredevopsconnector"
+layout = "help"
+is_hidden = 0
+navigation_hidden = 0
+==
+                                                    <h1>MS Azure DevOps Connector</h1>
+                                                    <p>The Microsoft Azure DevOps Connector connects <span class="GeneralVariablesProductName">ASM</span> to Azure DevOps using API methodology, enabling you to create work items in DevOps from Calls in your <span class="GeneralVariablesSystemName">ASM System</span>, and create calls in your <span class="GeneralVariablesSystemName">ASM System</span> from work items in DevOps. The Microsoft Azure DevOps Connector enables you to integrate with any type of work item across all DevOps projects.</p>
+                                                    <p class="note">You can use Azure DevOps to update calls in <span class="GeneralVariablesProductName">ASM</span>, and calls in <span class="GeneralVariablesProductName">ASM</span> to update work items in DevOps.</p>
+                                                    <h2>Installing the Microsoft Azure DevOps Connector</h2>
+                                                    <p>For information about installing the Microsoft Azure DevOps Connector, contact your Account Manager.</p>
+                                                    <p>For information about versions and licensing, see the <a href="connector%20matrix.htm" class="MCXref xref">ASM Connector Matrix</a>.</p>
+                                                    <p>After installation, the <span class="GeneralVariablesCompanyName3">Alemba</span>.Connector.Azure.DevOps.dll file should exist on your server. </p>
+                                                    <h2>
+<a name="ConnParams"></a>Connection parameters</h2>
+                                                    <p><span class="GeneralVariablesProductNameFull">Alemba Service Manager™</span> uses the following connection parameters:</p>
+                                                    <table class="TableStyle-Rep_Hdr_Row" style="margin-left: 0;margin-right: auto;mc-table-style: url('../../resources/tablestyles/rep hdr row.css');" cellspacing="0">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column1">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column2" style="width: 558px;">
+                                                        <thead>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Head-Header1">
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column1-Header1">
+                                                                    <p class="Strong">Parameters</p>
+                                                                </th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadD-Column2-Header1">
+                                                                    <p class="Strong">Description</p>
+                                                                </th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr style="height: 19pt;" class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Endpoint</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p>The Azure DevOps system web address.</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Access Token</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p>Personal Access Token for the Azure DevOps system.</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1" data-mc-conditions="">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyB-Column1-Body1">API Version</td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyA-Column2-Body1">
+                                                                    <p>The version of the Azure DevOps API that has fields and functions you want the DevOps Connector to use. This does not need to be the latest version.</p>
+                                                                    <p class="note">If your API version is not available for selection, contact your Account Manager.</p>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <h2>Required permissions</h2>
+                                                    <p>You need the permission <b>Integration Setup</b> in the General Access Security Role, to configure and use the Microsoft Azure DevOps Connector.</p>
+                                                    <h2>Additional Considerations</h2>
+                                                    <p>To create calls in ASM from work items in Azure DevOps, the DevOps project  must have Service Hooks configured for <span class="GeneralVariablesProductName">ASM</span>.</p>
+                                                    <h4>
+<a name="ConfigSvcHooks"></a>Configuring  Service Hooks for <span class="GeneralVariablesProductName">ASM</span>
+</h4>
+                                                    <ol>
+                                                        <li value="1">Navigate to the <b>Project Settings</b> in Azure DevOps, and select <b>Service Hooks</b> from the menu on the left.</li>
+                                                        <li value="2">Press the Add button in the toolbar. The New Service Hook Subscription window appears.</li>
+                                                        <li value="3">Select <b>Web Hooks</b> from the menu on the left, and then press the <b>Next</b> button.</li>
+                                                        <li value="4">Select a value for the field <b>Trigger on this type of event</b>. These values are supported for <span class="GeneralVariablesProductName">ASM</span>:<ul>
+<li value="1">Work item commented on</li>
+<li value="2">Work item created</li>
+<li value="3">Work item deleted</li>
+<li value="4">Work item restored</li>
+<li value="5">Work item updated</li>
+</ul>
+</li>
+                                                        <li value="5">Complete the trigger configuration by selecting filters as needed, and then press the <b>Next</b> button.</li>
+                                                        <li value="6">In the <b>URL</b> field, enter the URL for <span class="GeneralVariablesProductName">ASM</span> in this format: 
+						<p>https://<code>Server_Name</code>/<code>System_Name</code>/alemba.api/api/v1/webhook/azuredevops</p>
+<p>(where <code>Server_Name</code> is  the <span class="GeneralVariablesProductName">ASM</span> server name, and <code>System_Name</code> is the <span class="GeneralVariablesProductName">ASM</span> system name)</p>
+<p class="exampletext">https://AlembaServer/Production/alemba.api/api/v1/webhook/azuredevops</p>
+</li>
+                                                        <li value="7">The <b>Basic authentication username</b> field requires the Login ID of an analyst record in <span class="GeneralVariablesProductName">ASM</span> that has an IPK Management Security Role with permissions to create and update calls. </li>
+                                                        <li value="8">Enter the corresponding password for that analyst record in the <b>Basic authentication password</b> field, and then select <b>Finish</b>.</li>
+                                                    </ol>
+                                                    <p class="note">For more information, visit the official Microsoft page <b>Create a service hook with WebHooks</b> under Azure DevOps / Marketplace &amp; extensibility / Service hooks / How-to Guides.</p>
+                                                    <h2>Configuring <span class="GeneralVariablesProductName">ASM</span> for Azure DevOps Service Desk Actions</h2>
+                                                    <p>Configuration  is comprised of these steps:</p>
+                                                    <ol>
+                                                        <li value="1">
+<a href="#ConfigSvcHooks">Configuring Service Hooks for <span class="GeneralVariablesProductName">ASM</span></a>
+                                                        </li>
+                                                        <li value="2">
+<a href="#EnableActions">Enabling Service Desk Actions</a>
+                                                        </li>
+                                                        <li value="3">
+<a href="#CreateSource">Creating an Integration Source</a>
+                                                        </li>
+                                                        <li value="4">
+<a href="#ConfigActions">Configuring Service Desk Actions</a>
+                                                        </li>
+                                                    </ol>
+                                                    <h4>
+<a name="EnableActions"></a>Enabling Service Desk Actions</h4>
+                                                    <ol start="1" class="ol_5">
+                                                        <li value="1">Select <a href="../general%20topics/asmcorewindow.htm"><span style="font-size: 24pt;">≡</span></a> &gt; <b>Admin</b> &gt;  <b>Integration</b>. </li>
+                                                        <li value="2">In the Explorer pane, under Integration, select <b>Integration Platform Settings</b> to view the window.</li>
+                                                        <li value="3">Under section heading Service Desk Actions, select the <b>Enabled</b> checkbox, then save the changes.</li>
+                                                        <li value="4">In the Explorer pane, under Integration, select <b>Connectors</b>.</li>
+                                                        <li value="5">On the <b>Integration Connectors</b> window, locate the Azure DevOps  Connector, and ensure that the <b>Service Desk</b> and <b>Visible</b> checkboxes are selected.</li>
+                                                    </ol>
+                                                    <h4>
+<a name="CreateSource"></a>Creating an Integration Source</h4>
+                                                    <ol start="1" class="ol_5">
+                                                        <li value="1">In the Explorer pane, under Integration, select <b>Sources</b> to view the window.</li>
+                                                        <li value="2">Select the <img src="/storage/app/media/Help/images/add%20new.png"> button on the toolbar. In the pop up window, select <b>Azure DevOps Connector</b> from the drop-down list.</li>
+                                                        <li value="3">In the <b>Integration Source Details</b> window, complete the details. Refer to <a href="#ConnParams" class="MCXref xref">Connection parameters</a> for more information.</li>
+                                                        <li value="4">Select the <img src="/storage/app/media/Help/images/test%20connector%20btn.png"> button on the toolbar to test the connection.</li>
+                                                        <li value="5">Save the details.</li>
+                                                    </ol>
+                                                    <h4>
+<a name="ConfigActions"></a>Configuring Service Desk Actions</h4>
+                                                    <p class="prereq">An Integration Source for Azure DevOps must exist and connect successfully  in <span class="GeneralVariablesProductName">ASM</span>.</p>
+                                                    <ol start="1" class="ol_5">
+                                                        <li value="1">In the Explorer pane, under Integration, select <b>Service Desk Actions</b> to view the window.</li>
+                                                        <li value="2">In the <b>Filter by Source</b> field, select the Integration Source you created for the connector. </li>
+                                                        <li value="3">All Azure DevOps projects and work item types are listed in the browse table. Select the one you want to work with and then select <img src="/storage/app/media/Help/images/action%20button.png">.</li>
+                                                        <li value="4">The <b>Service Desk Action Type</b> window appears. </li>
+                                                        <li value="5">Select the <b>New</b> button to add a new mapping. The <b>Mapping</b> window appears.</li>
+                                                        <li value="6">Select the <b>Action</b> tab and complete the details:</li>
+                                                        <table style="mc-table-style: url('../../resources/tablestyles/fielddesc.css');" class="TableStyle-FieldDesc" cellspacing="0">
+                                                            <col class="TableStyle-FieldDesc-Column-Column1">
+                                                            <col class="TableStyle-FieldDesc-Column-Column2">
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Name</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">Type a name for the mapping. This name appears in the Mappings table.</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Screen Set</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                        <p>Select a call  screen set from the multi-tiered list. The screen set determines:</p>
+                                                                        <ul>
+                                                                            <li value="1"> the fields that will be available for this mapping</li>
+                                                                            <li value="2">the calls that create and update work items in DevOps.</li>
+                                                                        </ul>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Action Type</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                        <p>Select the type of action this mapping performs:</p>
+                                                                        <ul>
+                                                                            <li value="1">
+<b>Create</b> work items in DevOps, and calls in <span class="GeneralVariablesProductName">ASM</span>
+</li>
+                                                                            <li value="2">
+<b>Update</b> work items in DevOps, and calls in <span class="GeneralVariablesProductName">ASM</span>
+</li>
+                                                                        </ul>
+                                                                        <p class="note">To create and update the same work item type and project in DevOps, you must create a mapping for Create and another for Update. The same applies to creating and updating calls in ASM from DevOps.</p>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Unique Ref</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">Not applicable for the Azure DevOps Connector.</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Last Modified</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">Not applicable for the Azure DevOps Connector.</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Send Notify for system generated history messages</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                        <p>Select this option to update the work item in DevOps whenever a system-generated entry (such as an agreement escalation) is added to the history of the call that resulted in the creation of the work item from this service desk action. </p>
+                                                                        <p>Unselect this option to update the work item in DevOps only when an Analyst or User action is added to the call history.</p>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyB-Column1-">Only process if Visible in Portal</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyA-Column2-">
+                                                                        <p>Select this option to update the work item in DevOps only when the Analyst or User action added to the history of the call is visible in the Self Service Portal.</p>
+                                                                        <p>Unselect this option to update the work item in DevOps whenever an Analyst or User action is added to the history of the call.</p>
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                        <li value="7">Select the <b>Criteria</b> tab to specify the criteria for creating or updating work items in DevOps.</li>
+                                                        <table style="mc-table-style: url('../../resources/tablestyles/fielddesc.css');" class="TableStyle-FieldDesc" cellspacing="0">
+                                                            <col class="TableStyle-FieldDesc-Column-Column1">
+                                                            <col class="TableStyle-FieldDesc-Column-Column2">
+                                                            <tr>
+                                                                <td class="TableStyle-FieldDesc-BodyH-Column1-">Default Mapping</td>
+                                                                <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                    <p>Select to specify that this is the default mapping for all calls with the screen set defined in the Actions tab.</p>
+                                                                    <p>Clear to set the conditions for applying this mapping. These conditions are set through defining a rule. You can only select internal fields or attributes as the criteria in your rule, since this is the criteria <span class="GeneralVariablesProductName">ASM</span> uses to select calls to create or update work items in DevOps. </p>
+                                                                    <p class="exampletext">You may wish to only create  work items in DevOps from  calls assigned to a specific IPK Group. In this case, you would select the criteria, “Assigned Group”, the operator, equal to (=), and the value as the name of the IPK Group.</p>
+                                                                </td>
+                                                            </tr>
+                                                        </table>
+                                                        <li value="8">Select the <b>Fields - Outgoing</b> tab to map fields to be updated in the DevOps work item  created from the call that activated this mapping.
+				</li>
+                                                        <li value="9">Select the <b>Outgoing - Response</b> tab to map fields to be updated in the call when it creates the work item in DevOps.
+This tab can be ignored if this service desk action performs an Update.</li>
+                                                        <p class="warning">The DevOps field <b>Work Item ID</b> must be mapped (in the Action column) if this service desk action performs a Create.</p>
+                                                        <li value="10">Select the <b>Fields - Incoming</b> tab to map fields to be updated in the  call created from the DevOps work item that activated this mapping:</li>
+                                                        <p class="prereq">Service Hooks for <span class="GeneralVariablesProductName">ASM</span> must be configured in the Azure DevOps project before mapping incoming fields. See <a href="#ConfigSvcHooks" class="MCXref xref">Configuring  Service Hooks for ASM</a>.</p>
+                                                        <table style="mc-table-style: url('../../resources/tablestyles/fielddesc.css');" class="TableStyle-FieldDesc" cellspacing="0">
+                                                            <col class="TableStyle-FieldDesc-Column-Column1">
+                                                            <col class="TableStyle-FieldDesc-Column-Column2">
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Default Incoming Field Mapping</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                        <p>Select to flag this as the default field mapping for calls created or updated in <span class="GeneralVariablesProductName">ASM</span> from this DevOps project and work item type. This mapping will apply to an incoming service desk action if no other mapping for the project and work item type can be applied. </p>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Using Template</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                        <p>Select the <a href="../admingeneral/admin%20call%20template.htm">Call Template</a> that <span class="GeneralVariablesCoreName">ASM Core</span> will use when creating the call, and determines the fields available for mapping.</p>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Reference Field</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                        <p>Select the DevOps field to update with the number of the call created in ASM from this mapping. If the field is not blank in DevOps, the connector attempts to find the matching call in <span class="GeneralVariablesProductName">ASM</span>, and creates the call if no match is found.</p>
+                                                                        <p>This field is required for mappings that create and update.</p>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyB-Column1-">Fields Mapping browse table</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyA-Column2-">
+                                                                        <p>Map fields to be updated in <span class="GeneralVariablesProductName">ASM</span> when a call is created or updated from a work item in DevOps using this service desk action mapping.</p>
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                        <li value="11">Select the <b>Attachment- Criteria</b> tab to define conditions for sending call attachments from <span class="GeneralVariablesProductName">ASM</span> to the work item in DevOps that was created from this mapping. Different criteria can be configured for the Update vs Create mappings.</li>
+                                                        <li value="12">
+                                                            <p class="note">There are no conditions for attachments on the DevOps work item, all attachments are sent to the call in ASM.</p>
+                                                        </li>
+                                                    </ol>
+                                                

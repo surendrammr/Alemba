@@ -1,0 +1,31 @@
+[viewBag]
+title = "Server Console: Updating Scripts  "
+url = "/help/topics/server-console/sc-appendix-b"
+layout = "help"
+is_hidden = 0
+navigation_hidden = 0
+==
+                                                    <h1>Server Console: Updating Scripts  </h1>
+                                                    <p class="pdflink" data-mc-conditions="Default.ScreenOnly">To view a PDF version of the server console documentation, select the following link <a href="%7B%7B%20'help--help-content-Resources-pdfs-vFire_Core_Server_Console_Guide.pdf#C:%5CAlemba%5CReleaseDocs'%7CstaticPage%20%7D%7D#C:%5CAlemba%5CReleaseDocs"><img src="/storage/app/media/Help/images/link%20pdf.png">.</a></p>
+                                                    <p>The Upgrade Database, Patch Database and Run Custom SQL Script tasks are run by executing several <span class="GeneralVariablesCoreName">ASM Core</span> L Script files or .SCP files.  </p>
+                                                    <p>The .SCP files that are executed for each operation are determined by a list in two XML files named CONFIG-UPGRADE.XML and CONFIG-PATCH.XML respectively. Both these files reside in the system configuration directory. They list the file names of .SCP files to execute. The listed files are required to exist in the system config directory. Refer to the file XML files for a list of the .SCP files required.  </p>
+                                                    <p>If neither .INI file exists, the console executes each task as if the files did exist with the above default contents. </p>
+                                                    <p>The console will execute the Upgrade Database task in the following order: </p>
+                                                    <ul>
+                                                        <li value="1">Run half the files defined in CONFIG-UPGRADE.XML. </li>
+                                                        <li value="2">Pre-parse query files </li>
+                                                        <li value="3">Import the XML file containing the core data model. </li>
+                                                        <li value="4">Run the rest of the files defined in CONFIG-UPGRADE.XML. </li>
+                                                        <li value="5">Copy language titles </li>
+                                                    </ul>
+                                                    <p>The database rights required to install a patch script depends on whether you are using DB NT Auth or not, on a SQL Server database. If DB NT Auth is used, the person who is running the patch tool should be one who has access to the database. Otherwise, the patch tool exe will use the database login information specified in the <span class="GeneralVariablesCoreName">ASM Core</span> Server Console. </p>
+                                                    <h2>Parse Query Files </h2>
+                                                    <p>Any number of query files can be applied to a system via IESQL.INI. This file functions much like CONFIG-UPGRADE.XML used by the Upgrade Database Task. IESQL.INI should list the query files to be applied to a system including the standard file which should always come first. Refer to the XML file for a list of the default query files included. </p>
+                                                    <p>If the .INI does not exist, these contents are assumed. For example, there is the standard <span class="GeneralVariablesCoreName">ASM Core</span> query file, a query file for a specific piece of licensed functionality and an SQL file for the organization’s specific customizations.  </p>
+                                                    <ul>
+                                                        <li value="1">QUERIES-*.SQL – the standard query files for each <span class="GeneralVariablesCoreName">ASM Core</span> module </li>
+                                                        <li value="2">ADV_ITIL.SQL – advanced ITIL licensed functionality supplied by <span class="GeneralVariablesCompanyName2">Alemba®</span>.  </li>
+                                                        <li value="3">IONIXPROJ001.SQL – organization specific customizations which override anything in the advanced ITIL file. </li>
+                                                    </ul>
+                                                    <p>All query files are parsed into a single parsed query file called PARSED_QUERIES.SQP. This is a binary file and cannot be read or edited in a text editor. </p>
+                                                

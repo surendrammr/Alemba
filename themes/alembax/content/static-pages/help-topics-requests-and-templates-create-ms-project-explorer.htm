@@ -1,0 +1,489 @@
+[viewBag]
+title = "Create MS Project Explorer Option"
+url = "/help/topics/requests-and-templates/create-ms-project-explorer"
+layout = "help"
+is_hidden = 0
+navigation_hidden = 0
+==
+                                                    <h1>Create MS Project Explorer Option</h1>
+                                                    <p class="intro">The Create MS Project Explorer option enables you to transfer the details of a request, as well as its associated tasks and approvals to Microsoft Project. </p>
+                                                    <p>You can export information relating to the request – the start date, end date and even dependencies. This option therefore enables you to use Microsoft Project to implement procedures such as scheduling or resource utilization analysis.</p>
+                                                    <p class="note">Integration between Microsoft Project and <span class="GeneralVariablesCoreName">ASM Core</span> is not simply limited to Microsoft Project. Integration is possible with any application that complies with ActiveX automation.</p>
+                                                    <h2 class="Prerequisite">Before you start</h2>
+                                                    <p class="prereqtext1">For Microsoft Project integration to work properly, you may need to change your Internet Explorer security settings on the client machine. To change your settings:</p>
+                                                    <ul start="1" class="prereq">
+                                                        <li value="1">Open an Internet Explorer browser.</li>
+                                                        <li value="2">Select Tools &gt; Internet Options.</li>
+                                                        <li value="3">Click the Security tab within the Tools menu.</li>
+                                                        <li value="4">Click on the Local Intranet icon on the Security tab to select as the web content zone. </li>
+                                                        <li value="5">Click Custom Level as your security zone. The Security Settings window appears.</li>
+                                                        <li value="6">Scroll through the Settings box until you reach the heading “Initialize and script ActiveX controls not marked as safe”.</li>
+                                                        <li value="7">For the set of options specified under this heading, select Prompt. This means that, whenever you initialize Microsoft Project, a dialog box will be displayed, asking you to confirm whether you would like to use ActiveX controls. </li>
+                                                        <li value="8">You can select the Enable option instead. This will remove display of the dialog box. However, the Prompt option is recommended for security reasons</li>
+                                                        <li value="9">Click OK to save your security settings.</li>
+                                                        <p class="note">If you access <span class="GeneralVariablesCoreName">ASM Core</span> over the Internet, you should also change your Internet Explorer settings. Repeat Steps 1 to 3 above and instead click the Internet icon to select as the web content zone. Continue with Steps 5 to 8 to implement your custom security settings.</p>
+                                                    </ul>
+                                                    <p><span class="GeneralVariablesCoreName">ASM Core</span> supports integration with Microsoft Project 2008 and its later versions.</p>
+                                                    <p> </p>
+                                                    <ol>
+                                                        <li value="1">Select the <b>Take Action</b> button on the <b>Request Details</b> window if necessary to allow you to work on the request.</li>
+                                                        <li value="2">In the Explorer pane, expand <b>Data</b>, then select <b>Create MS Project</b>. </li>
+                                                        <li value="3">You can also export request and task information into MS Project from the <a href="viewing%20outstanding%20requests.htm">Requests Outstanding</a> and <a href="searching%20for%20requests.htm">Request Search</a> windows.</li>
+                                                        <li value="4">The Microsoft Project application opens and displays all the information about the request, its associated phases and linked tasks.</li>
+                                                        <p class="note">Recursive links from the Reject branch of an approval task are considered when exporting to MS Project. All other recursive links in your workflow are not exported into MS Project; they are discarded.</p>
+                                                    </ol>
+                                                    <p> </p>
+                                                    <p>The table below indicates which <span class="GeneralVariablesCoreName">ASM Core</span> Request and Task fields are exported to Microsoft Project and the equivalent name. </p>
+                                                    <p class="note">A number of these fields may be displayed in the Microsoft Project Task Information window, which can be accessed by double-clicking the icon for that particular task in the first column on the Microsoft Project application. When exporting a request to Microsoft Project, the dates specified on the project file may differ from those on the <span class="GeneralVariablesCoreName">ASM Core</span> request. The request start date, end date and duration are calculated by Microsoft Project when the request is exported, rather than directly picked up by <span class="GeneralVariablesCoreName">ASM Core</span>. Furthermore, the task end date is automatically calculated by Microsoft Project based upon the task start time and task duration.</p>
+                                                    <p> </p>
+                                                    <table style="margin-left: 0;margin-right: auto;mc-table-style: url('../../resources/tablestyles/rep hdr row.css');" class="TableStyle-Rep_Hdr_Row" cellspacing="0">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column1">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column2">
+                                                        <thead>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Head-Header1">
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column1-Header1">
+                                                                    <p>Request/Task field in <span class="GeneralVariablesCoreName">ASM Core</span></p>
+                                                                </th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadD-Column2-Header1">
+                                                                    <p>Equivalent field in Microsoft Project</p>
+                                                                </th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Request Title</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p>Task Name</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Request Manager</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p>Task Resource</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Request Created Date</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p>Date 1</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Target Date</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p>End Date</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Authorization Date</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p>Start Date</p>
+                                                                    <p> </p>
+                                                                    <p>If the Authorization Date field is null, the start date will be set to the Request Created Date</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>User</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p>Notes</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Organization</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p>Notes</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Location</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p>Notes</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Request Description</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p>Notes</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Request Ref</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p>Notes</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Request Type</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p>Notes</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Request Status</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p>Notes</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Request Priority</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p>Notes</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Request Risk</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p>Notes</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Request Current Phase</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p>Notes</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Task Order</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p>Task Name</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Task Title</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p>Task Name</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Task Type</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p>Task Name</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Task Description</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p>Notes</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Fwd/Assign to Analyst</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p>Task Resource</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Planned Start Date</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p>Task Start Date</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Planned Time</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p>Task Duration (in hours)</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Task State</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p>% Complete</p>
+                                                                    <p class="prereqtext1">If the task state is:</p>
+                                                                    <ul class="prereq">
+                                                                        <li style="list-style-type: disc;" value="1">Closed, Approved, Rejected or Closed Redundant, % Complete is 100%.</li>
+                                                                        <li style="list-style-type: disc;" value="2">Active, % Complete is 50%.</li>
+                                                                        <li style="list-style-type: disc;" value="3">Suspended or Inactive, % Complete is 0%.</li>
+                                                                    </ul>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Task Dependencies</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p>Predecessors</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Task Created Date</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p>Date1</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Task Phase</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p>Text 1</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Task Priority</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p>Text2</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Task Type</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p>Text3</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Task Entity Type</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p>Text4</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Task State</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p>Text5</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Task Status</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p>Text6</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Task Number</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p>Number1</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Phase Reference</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p>Number2</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyB-Column1-Body1">
+                                                                    <p>Summary line </p>
+                                                                    <p>(Phase Name)</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyA-Column2-Body1">
+                                                                    <p>Flag1</p>
+                                                                    <p class="note">Flag1 is set to true. When you export task data to Microsoft Project, phases are converted to summary tasks. A summary task uses the start and end time of its child tasks to determine the total duration it spans.</p>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <p class="note"><b>Task End date</b> is not imported into MS Project. It is automatically calculated by MS Project based upon the task start time and task duration.</p>
+                                                    <h2>Creating a project for multiple requests</h2>
+                                                    <p>You can generate an MS Project file for multiple requests.</p>
+                                                    <ol>
+                                                        <li value="1">Search for the requests that you want to use for creating the project. Requests that match your search criteria are displayed in the Results pane.</li>
+                                                        <li value="2">Select the <img src="/storage/app/media/Help/images/ms%20project%20button.png"> button from the toolbar. The requests are displayed in MS Project. The following request fields are displayed:</li>
+                                                        <p>
+                                                            </p>
+<table style="margin-left: 0;margin-right: auto;mc-table-style: url('../../resources/tablestyles/rep hdr row.css');" class="TableStyle-Rep_Hdr_Row" cellspacing="0">
+                                                                <col class="TableStyle-Rep_Hdr_Row-Column-Column1">
+                                                                <col class="TableStyle-Rep_Hdr_Row-Column-Column2">
+                                                                <thead>
+                                                                    <tr class="TableStyle-Rep_Hdr_Row-Head-Header1">
+                                                                        <th class="TableStyle-Rep_Hdr_Row-HeadE-Column1-Header1">
+                                                                            <p>Request/Task field in <span class="GeneralVariablesCoreName">ASM Core</span></p>
+                                                                        </th>
+                                                                        <th class="TableStyle-Rep_Hdr_Row-HeadD-Column2-Header1">
+                                                                            <p>Equivalent field in Microsoft Project</p>
+                                                                        </th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                        <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                            <p>Request No, Title</p>
+                                                                        </td>
+                                                                        <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                            <p>Task Name</p>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                        <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                            <p>Request Manager</p>
+                                                                        </td>
+                                                                        <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                            <p>Task Resource</p>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                        <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                            <p>Request Created Date</p>
+                                                                        </td>
+                                                                        <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                            <p>Date 1</p>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                        <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                            <p>Target Date</p>
+                                                                        </td>
+                                                                        <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                            <p>End Date</p>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                        <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                            <p>Authorization Date</p>
+                                                                        </td>
+                                                                        <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                            <p>Start Date</p>
+                                                                            <p class="note">If Authorization Date is NULL, start date will be set to request created date</p>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                        <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                            <p>User</p>
+                                                                        </td>
+                                                                        <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                            <p>Notes</p>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                        <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                            <p>Organization</p>
+                                                                        </td>
+                                                                        <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                            <p>Notes</p>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                        <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                            <p>Request Description</p>
+                                                                        </td>
+                                                                        <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                            <p>Notes</p>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                        <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                            <p>Request Ref</p>
+                                                                        </td>
+                                                                        <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                            <p>Notes</p>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                        <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                            <p>Request Type</p>
+                                                                        </td>
+                                                                        <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                            <p>Notes</p>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                        <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                            <p>Request Status</p>
+                                                                        </td>
+                                                                        <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                            <p>Notes</p>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                        <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                            <p>Request Priority</p>
+                                                                        </td>
+                                                                        <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                            <p>Notes</p>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                        <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                            <p>Request Risk</p>
+                                                                        </td>
+                                                                        <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                            <p>Notes</p>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                        <td class="TableStyle-Rep_Hdr_Row-BodyB-Column1-Body1">
+                                                                            <p>Request Current Phase</p>
+                                                                        </td>
+                                                                        <td class="TableStyle-Rep_Hdr_Row-BodyA-Column2-Body1">
+                                                                            <p>Notes</p>
+                                                                        </td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                            <p> </p>
+                                                        
+                                                    </ol>
+                                                    <h2>Internet Explorer Settings</h2>
+                                                    <p>For MS Project integration to work properly, you may also need to change some Internet Explorer settings on the client machine.</p>
+                                                    <ol>
+                                                        <li value="1">Click on the <b>Tools</b> Menu and select <b>Internet Options</b>.</li>
+                                                        <li value="2">Go to the <b>Security</b> tab.</li>
+                                                        <li value="3">Click on the <b>Local Intranet</b> icon.</li>
+                                                        <li value="4">Click <b>Custom Level</b>.</li>
+                                                        <li value="5">Scroll through the settings box to the option "Initialize and script ActiveX controls not marked as safe"</li>
+                                                        <li value="6">Select the <b>Prompt</b> option. This will popup a confirm dialog box whenever MS Project is initialized (selecting Enable will remove the dialog but having the dialog is recommended for security reasons).</li>
+                                                        <li value="7">Click <b>OK</b>.</li>
+                                                        <p class="note">If accessing <span class="GeneralVariablesProductName">ASM</span> over the Internet, click on the Internet icon and repeat steps 4 - 7.</p>
+                                                    </ol>
+                                                

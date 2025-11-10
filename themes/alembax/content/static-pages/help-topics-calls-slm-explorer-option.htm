@@ -1,0 +1,79 @@
+[viewBag]
+title = "SLM Explorer Option"
+url = "/help/topics/calls/slm-explorer-option"
+layout = "help"
+is_hidden = 0
+navigation_hidden = 0
+==
+                                                    <h1>SLM Explorer Option</h1>
+                                                    <p>The SLM explorer option allows you to view <a href="../slm/managing%20agreements.htm">Service Level Management agreements</a> currently in effect on a call. If an agreement is in effect against a call an orange indicator appears before the SLM option on the Call Details Explorer. </p>
+                                                    <p>Additional SLM actions can be performed through the Service window, such as suspending or resuming an agreement (also referred to as stopping or starting the clock on the agreement) or closing events on all linked agreements when the service has resumed.</p>
+                                                    <h2>Viewing linked agreements</h2>
+                                                    <ol>
+                                                        <li value="1">Display the <b>Call Details</b> window, if it is not already on screen.</li>
+                                                        <li value="2">In the Explorer pane, expand <b>Details</b>, then select <b>SLM</b>.</li>
+                                                        <li value="3">The <b>Call Service Level Management</b> window appears showing any agreements that are currently in effect against the call.  The SLA, OLA, and UC fields display which agreements have been applied to the call currently. There can be up to three agreements simultaneously in effect, though only one of each type. The lower part of the window contains a table listing all agreement events for this call. There are three different types of agreements that get linked to calls: </li>
+                                                        <p>
+                                                            </p>
+</ol>
+<ul>
+                                                                <li style="list-style-type: disc;" value="1">SLAs: agreements with users</li>
+                                                                <li style="list-style-type: disc;" value="2">OLAs: agreements with internal groups</li>
+                                                                <li style="list-style-type: disc;" value="3">UCs: agreements with external suppliers</li>
+                                                            </ul>
+                                                        
+                                                        <li value="4">Select the agreement hyperlink to view the <b>Agreement Details</b> window.</li>
+                                                    
+                                                    <p><a name="aanchor130"></a>
+                                                        <concept term="IPK"></concept><span class="GeneralVariablesProductName">ASM</span> automatically applies agreements to calls based on a combination of information (the call details, IPK selection criteria, agreement selection priority, and the action performed by the analyst). </p>
+                                                    <h2>Applying SLAs when a call is logged</h2>
+                                                    <p>When a call is logged and then saved, deferred or forwarded, <span class="GeneralVariablesProductName">ASM</span> tries to find a matching agreement (SLA) where field values specified in call details match IPK Selection Criteria on any SLAs. When multiple SLAs are matched, <span class="GeneralVariablesProductName">ASM</span> will use the agreement with the matching IPK Selection Criterion that has the higher priority (defined in the Agreement Selection Priority in SLM administration). If no matches are found, <span class="GeneralVariablesProductName">ASM</span> checks for a default SLA and applies it, otherwise no SLA is applied.  </p>
+                                                    <h2>Applying OLAs</h2>
+                                                    <p>When a call is logged and then forwarded internally, <span class="GeneralVariablesProductName">ASM</span> tries to find a matching agreement (OLA) where the group selected on the Forward Internally window matches the group selected in the IPK Selection Criteria on any OLAs. If a match is found, the OLA is applied to the call, otherwise, no OLA is applied. </p>
+                                                    <h2>Applying UCs</h2>
+                                                    <p>The rules for forwarding externally and selecting UCs are more complex. UCs are only invoked if you forward a call externally to an analyst who is linked to the contract matching the UC Selection Criteria, that is, they are the point of contact for the external supplier. If the UC is linked to both an External Supplier and Contract through the Selection Criteria, then both the External Supplier and Contract selected on the Forward Externally window must match those linked to the UC. Otherwise, if the UC is only linked to either an External Supplier, or Contract, then, only one of these needs to match when forwarding the call externally. </p>
+                                                    <h2>Applying SLAs when a call is updated</h2>
+                                                    <p>If no SLA was initially linked to the call when it was logged, <span class="GeneralVariablesProductName">ASM</span> tries to find a matching agreement when the updated call is saved, deferred, or forwarded in the same way as if you applied the SLA when a call is logged. </p>
+                                                    <p class="note">If an agreement is now applied, the target times for all events will be based on the original time the call was logged, not the time you update the call.</p>
+                                                    <p>If an SLA was initially applied to the call, the new SLA invoked is determined by the <b>Lock IPK SLA</b> setting in the <b>Agreement Details</b>. </p>
+                                                    <ul>
+                                                        <li value="1">If the option is selected, the original agreement applied to the call will always be assigned regardless of any changes made to the fields of the call, even if those details were used to select the agreement in the first place. </li>
+                                                        <p class="exampletext">If after logging a call with a certain user, you decide to change the user for that call assuming you made a mistake when the call was logged, <span class="GeneralVariablesProductName">ASM</span> will not change the agreement on the call. The original agreement for the first user will still be in effect. An analyst with sufficient permissions will have to change the agreement manually on the Call Service Level Management window</p>
+                                                        <li value="2">If the option is cleared, and the original agreement assigned by the system still applies (that is, the original agreement has not been manually changed), the Agreement Selection Criteria is reassessed each time the call is updated and deferred/forwarded/saved. If a new matching agreement is found, the current agreement is closed and the new agreement is applied. If the same agreement still applies, then the existing agreement continues to be applied to the call. If no matches are found, <span class="GeneralVariablesProductName">ASM</span> checks for a default agreement and applies it, otherwise no SLA is applied and the original agreement is closed.</li>
+                                                    </ul>
+                                                    <p>If no SLA was initially applied to a call, selecting the <b>Lock IPK SLA</b> setting in the SLA agreement details does not prevent the SLA from being applied to a call if the call is updated.</p>
+                                                    <p>When a new agreement is applied to a call, keep in mind that the target times for all events will be based on the original time the call was logged, not the time you changed the agreement over. </p>
+                                                    <p class="exampletext">You log a call and Agreement A is applied to the call automatically. According to its matrix, it will breach the agreement in one hour. Half an hour later, you change over to agreement B, which also has a time of 45 minutes until breach. However, changing the agreement has not “reset the clock”; you now only have 15 minutes before the agreement is breached, even though it has just come into effect on the agreement.</p>
+                                                    <h2>CMDB items and agreements</h2>
+                                                    <p>If needed, when multiple CMDB items (config items, services, service actions, and service bundles) are linked to a call, <span class="GeneralVariablesProductName">ASM</span> will evaluate the CMDB Selection Priority list defined in administration. This enables the system to determine which CMDB item to use for finding and applying an agreement. </p>
+                                                    <p>If required, you can override an agreement that the system has applied to the call through manually changing the agreement. </p>
+                                                    <p class="prereq">You must have <b>Service Agreement Override</b> selected in the <a href="../admin%20security%20roles/ipk%20management%20security%20roles%20-%20options%20tab.htm">Options</a> tab of your <b>IPK Management security role</b>.</p>
+                                                    <ol start="1">
+                                                        <li value="1">If you know the name of the agreement, type the entire name or part of it in the SLA, OLA, or UC field depending on the type of agreement you want to attach. Alternatively, use , <a href="../general%20topics/using%20the%20search%20button.htm">use the <img src="/storage/app/media/Help/images/qd%20button.png" alt="" title=""> button</a> to search for and find the agreement.</li>
+                                                        <li value="2">Once an SLA is selected, the Information Panel on the <b>Call Details</b> window displays the name of the selected SLA.</li>
+                                                    </ol>
+                                                    <p>This table shows all the events being calculated for the agreements on this call. The columns displayed can be configured using the Columns toolbar button, but can include the following: </p>
+                                                    <ul>
+                                                        <li value="1">Agreement Ref – the reference code for the agreement. </li>
+                                                        <li value="2">Title – the title of the agreement. </li>
+                                                        <li value="3">Type – the type of the agreement. </li>
+                                                        <li value="4">Activity – a code describing the actual event. </li>
+                                                        <li value="5">Target Time – the time the event will take place (or has taken place). </li>
+                                                        <li value="6">Status – the current status of the event, such as Active (open), Closed (completed), Suspended (when the clock on the agreement is temporarily stopped), Resumed (when the event resumes after a suspension), and Failed. </li>
+                                                        <li value="7">Closing Event – if the event has been closed, this describes what caused that to happen (closed, call updated, agreement manually changed, or clock restarted). </li>
+                                                        <li value="8">Description – if the clock was stopped, this field shows the reason entered as to why this happened. </li>
+                                                        <li value="9">Start Time – this is the time when the agreement starts recording events against the call.</li>
+                                                        <li value="10">Exclude – this column appears if SLM Exclusions have been configured by your system administrator and enables you to exclude selected events from SLM reporting.</li>
+                                                    </ul>
+                                                    <p>Events are color-coded to indicate whether they are <b>Active/Closed</b> (appear in black), <b>Suspended</b> (appear in blue), and <b>Failed</b> (appear in red). </p>
+                                                    <p> Events that were closed when a stopped clock is started again will have the <b>Status</b> “Resumed” and <b>Closing Event</b> “Clock Started”. This identifies that the events have been resumed by new events. </p>
+                                                    <p>To view the old events in the Events table, select <b>Include Closed Events</b>.</p>
+                                                    <h2>Excluding Events from SLM Reports</h2>
+                                                    <p class="prereq">You must have <b>SLM Exclusions</b> selected in the <a href="../admin%20security%20roles/ipk%20management%20security%20roles%20-%20options%20tab.htm">Options</a> tab of your <b>IPK Management security role</b>.</p>
+                                                    <p>If you have the appropriate security role permissions, an additional column, <b>Exclude</b>, appears in the browse table. This enables you to hide selected SLM events from appearing in SLM reports. To exclude selected SLM events, follow these steps:</p>
+                                                    <ol start="1">
+                                                        <li value="1">Select the checkbox in the <b>Exclude</b> column.</li>
+                                                        <li value="2">Click <b>Apply</b>.</li>
+                                                        <li value="3">If exclusion reasons are configured in the SLM Settings, choose a reason for excluding the event.</li>
+                                                    </ol>
+                                                

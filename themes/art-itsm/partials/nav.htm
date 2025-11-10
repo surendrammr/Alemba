@@ -1,0 +1,98 @@
+description = "The main menu"
+==
+<?php
+use Alemba\Alemba\Models\ITIL;
+use Alemba\Alemba\Models\SuccessStory;
+use Alemba\Alemba\Models\Release;
+
+function onStart()
+{
+	// Get ITIL processes
+
+	$this['itil'] = ITIL::orderBy('sort_order')->get();
+	
+	// Get all success stories
+	
+	$this['success_stories'] = SuccessStory::get();
+	
+	// Get list of releases
+
+	$this['latest_release'] = Release::where('live', 1)->orderBy('date', 'desc')->first();
+
+}
+?>
+==
+<nav class="navbar navbar-expand-md navbar-dark px-5  sticky-top">
+	<a href="/" class="d-flex align-items-center me-md-auto link-body-emphasis text-decoration-none">
+		<img class="navbar-logo" src="{{ 'assets/images/logo-alemba-white.svg'|theme }}" alt="Alemba" />
+	</a>
+
+	<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+		<span class="navbar-toggler-icon"></span>
+	</button>
+	<div class="collapse navbar-collapse justify-content-end" id="navbarCollapse">
+
+		<div class="d-md-flex flex-wrap align-items-end flex-md-column mt-4 mt-md-0">
+
+			<div class="mb-3">
+				<div id="searchbox"></div>
+				<div id="hits" class="list-group"></div>
+
+				{% component 'searchResults' %}
+
+				<!-- <div class="text-center">
+					<a href="#" class="btn th-cta-re "> Request a Demo</a>
+				  </div> -->
+			</div>
+			
+			<ul class="navbar-nav">
+
+				<li role="menuitem" class="dropdown nav-item">
+					<a class="dropdown-toggle collapsed" data-bs-toggle="collapse" role="button" data-bs-target="#nav-solutions" aria-controls="nav-solutions" aria-expanded="false" aria-label="Toggle navigation">Start here!<span class="caret"></span></a>
+				</li>
+
+				<li role="menuitem" class="dropdown nav-item">
+					<a class="dropdown-toggle collapsed" data-bs-toggle="collapse" role="button" data-bs-target="#nav-features" aria-controls="nav-features" aria-expanded="false" aria-label="Toggle navigation">Features<span class="caret"></span></a>
+				</li>
+				
+				{# Resources dropdown #}
+
+				<li role="menuitem" class="dropdown nav-item">
+					<a class="dropdown-toggle collapsed" data-bs-toggle="collapse" role="button" data-bs-target="#nav-resources" aria-controls="nav-resources" aria-expanded="false" aria-label="Toggle navigation">Resources<span class="caret"></span></a>
+				</li>
+				
+				{# Company dropdown #}
+
+				<li role="menuitem" class="dropdown nav-item">
+					<a class="dropdown-toggle collapsed" data-bs-toggle="collapse" role="button" data-bs-target="#nav-company" aria-controls="nav-company" aria-expanded="false" aria-label="Toggle navigation">Company<span class="caret"></span></a>
+				</li>
+
+				{# Support dropdown #}
+
+				<li role="menuitem" class="dropdown nav-item">
+					<a class="dropdown-toggle collapsed" data-bs-toggle="collapse" role="button" data-bs-target="#nav-support" aria-controls="nav-support" aria-expanded="false" aria-label="Toggle navigation">Support<span class="caret"></span></a>
+				</li>
+
+				<li role="menuitem" class="nav-item ml-5">
+					<a href="{{ 'contact'|page }}" role="button" aria-haspopup="true">Contact</a>
+				</li>
+
+				<li role="menuitem" class="nav-item ml-5" id="nav-demo-link">
+					<a href="{{ 'demo'|page }}" role="button" aria-haspopup="true">Demo</a>
+				</li>
+
+			</ul>
+
+		</div>
+	</div>
+</nav>
+
+<div class="accordion" id="nav-dropdowns">
+
+	{% partial 'nav/solutions' %}
+	{% partial 'nav/features' %}
+	{% partial 'nav/resources' %}
+	{% partial 'nav/company' %}
+	{% partial 'nav/support' %}
+
+</div>

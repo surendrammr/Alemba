@@ -1,0 +1,65 @@
+[viewBag]
+title = "Incoming and Outgoing Emails"
+url = "/help/topics/using-email/email-introduction"
+layout = "help"
+is_hidden = 0
+navigation_hidden = 0
+==
+                                                    <h1>Incoming and Outgoing Emails</h1>
+                                                    <p><span class="GeneralVariablesCoreName">ASM Core</span> includes an email capability which enables analysts to not only send emails from within the application using <span class="GeneralVariablesCoreName">ASM Core</span> data, but also send emails to the <span class="GeneralVariablesCoreName">ASM Core</span> application to log calls, requests and tasks.</p>
+                                                    <p>To enable incoming and outgoing emails in <span class="GeneralVariablesCoreName">ASM Core</span>, the system administrator needs to:</p>
+                                                    <ul>
+                                                        <li value="1">
+<a href="%7B%7B%20'help-configure-email#Start_vFire_Service'%7CstaticPage%20%7D%7D#Start_vFire_Service">Start the <span class="GeneralVariablesMessagingServiceName">ASM Messaging Service</span></a>
+                                                        </li>
+                                                        <li value="2">
+<a href="%7B%7B%20'help-configure-email#Configure_Email_Settings'%7CstaticPage%20%7D%7D#Configure_Email_Settings">Configure the <span class="GeneralVariablesCoreName">ASM Core</span> Email Settings</a>
+                                                        </li>
+                                                        <li value="3">
+<a href="%7B%7B%20'help-configure-email#Configure_Email_Notifications'%7CstaticPage%20%7D%7D#Configure_Email_Notifications">Configure Email Notifications</a>
+                                                        </li>
+                                                        <li value="4">
+<a href="%7B%7B%20'help-configure-email#Design_Email_Templates'%7CstaticPage%20%7D%7D#Design_Email_Templates">Configure or Design Email Templates</a>
+                                                        </li>
+                                                        <li value="5">
+<a href="%7B%7B%20'help-configure-email#Map_Email_Templates'%7CstaticPage%20%7D%7D#Map_Email_Templates">Map Email Templates to Message Types</a>
+                                                        </li>
+                                                        <li value="6">
+<a href="%7B%7B%20'help-configure-email#Email_Options_for_IPK_and_Workflow_Groups'%7CstaticPage%20%7D%7D#Email_Options_for_IPK_and_Workflow_Groups">Set Email Options for IPK and Workflow Groups</a>
+                                                        </li>
+                                                    </ul>
+                                                    <p> Click <a href="configure%20email.htm">here</a> for details on how to  configure the web server and <span class="GeneralVariablesSystemName">ASM System</span> to use incoming and outgoing email.</p>
+                                                    <p>After incoming and outgoing email has been configured, it is possible to :</p>
+                                                    <ul>
+                                                        <li value="1">
+<a href="use%20incoming%20email.htm">use incoming email</a> to log, update or close calls, requests and tasks</li>
+                                                        <li value="2">
+<a href="../general%20topics/sending%20an%20email.htm">use outgoing email</a> to send emails </li>
+                                                    </ul>
+                                                    <h2>Incoming Email</h2>
+                                                    <p>The Incoming Email module enables remote access to calls and tasks through the use of incoming emails.</p>
+                                                    <p><span class="GeneralVariablesCoreName">ASM Core</span> has a polling service which can be configured to check a number of incoming mail accounts for any received email messages. If the polling service picks up an email, it can take the appropriate course of action, whether it is to log or close a call, approve or reject tasks, or simply update an existing call, request or task. The action to be taken is dependent on the subject of the email.</p>
+                                                    <p>The <span class="GeneralVariablesCoreName">ASM Core</span> Incoming Email module provides great flexibility for a support desk or workflow management system. Any person with access to email can for example log calls and action tasks by way of a specific email address. The mail server holding this address will routinely check for these messages and log or update calls and tasks accordingly. This functionality is especially useful for analysts who are out fixing problems in the field or people who are traveling or using hand-held devices and have limited Internet access.</p>
+                                                    <p>For details on incoming email, and how to use it, click <a href="use%20incoming%20email.htm">here</a>.</p>
+                                                    <h2>Outgoing Email</h2>
+                                                    <p>Outgoing Email enables emails to be sent either manually (by analysts) or automatically (by the system) upon various events such as call and task forwarding, or Service Level Management escalation.</p>
+                                                    <p>Outgoing Email is an important component to any service desk or workflow management system. It ensures analysts are aware of calls, tasks and requests as soon as these are forwarded to them, and helps keep your staff informed of escalation and breach events as they happen. It is especially useful for people who only receive a small amount of calls or tasks and do not want to be logged in to <span class="GeneralVariablesCoreName">ASM Core</span> all the time.</p>
+                                                    <p>For details on how to use outgoing email and send emails, click <a href="../general%20topics/sending%20an%20email.htm">here</a>.</p>
+                                                    <h2>Architecture</h2>
+                                                    <p>Incoming and Outgoing Email run through the <span class="GeneralVariablesCoreName">ASM Core</span> Messaging Service – this is a polling service that operates under the <span class="GeneralVariablesCoreName">ASM Core</span> application.</p>
+                                                    <p>Administrators can set up incoming and outgoing email accounts, configure notification settings, design email templates, and map email templates to message types. For information on how to do this, click <a href="configure%20email.htm">here</a>. For information on message types, click here.</p>
+                                                    <p>The <span class="GeneralVariablesCoreName">ASM Core</span> Messaging service, which is a component of the polling service, checks these accounts at regular one-minute intervals.</p>
+                                                    <p>In the case of incoming emails, the service analyzes the subject heading of the email(s) it picks up and acts according to any key words found in the subject line. Click <a href="recognized%20incoming%20subject%20lines.htm">here</a> to see which subject lines are accepted or rejected by <span class="GeneralVariablesCoreName">ASM Core</span>.</p>
+                                                    <p>In the case of outgoing emails, if an instruction to send an email has been put into the message table, an email is sent through one of the configured outgoing servers. For information on how to send emails, click <a href="../general%20topics/sending%20an%20email.htm">here</a>.</p>
+                                                    <h2>Prerequisites</h2>
+                                                    <p>The prerequisites for Incoming Email are the following:</p>
+                                                    <ul>
+                                                        <li value="1">A POP3, IMAP or MAPI mail server</li>
+                                                        <li value="2">The <span class="GeneralVariablesCoreName">ASM Core</span> Messaging service must be running</li>
+                                                    </ul>
+                                                    <p>The prerequisites for Outgoing Email are the following:</p>
+                                                    <ul>
+                                                        <li value="1">An SMTP or MAPI mail server</li>
+                                                        <li value="2">The <span class="GeneralVariablesCoreName">ASM Core</span> Messaging service must be running</li>
+                                                    </ul>
+                                                

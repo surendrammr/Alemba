@@ -1,0 +1,140 @@
+url = "/integration-platform/microsoft-teams"
+layout = "home"
+title = "Microsoft Teams Integration"
+description = "Features > Integration Platform > MS Teams"
+is_hidden = 0
+meta_title = "Microsoft Teams integration | ITSM Features - Alemba"
+meta_description = "Connect with Microsoft Teams for seamless messaging within ASM. Find out more."
+robot_index = "index"
+robot_follow = "follow"
+seoOptionsEnabledInSitemap = 0
+seoOptionsUseUpdatedAt = 1
+seoOptionsRobotIndex = "index"
+seoOptionsRobotFollow = "follow"
+seoOptionsChangefreq = "daily"
+seoOptionsPriority = 0.5
+canonical_url = "https://alemba.com/integration-platform/microsoft-teams"
+seo_title = "Features > Integration Platform > MS Teams"
+seo_description = "Connect with Microsoft Teams for seamless messaging within ASM. Find out more."
+
+[viewBag]
+seo_title = "Microsoft Teams integration | ITSM Features - Alemba"
+seo_description = "Connect with Microsoft Teams for seamless messaging within ASM. Find out more."
+robot_index = "index"
+robot_follow = "follow"
+==
+<!-- banner -->
+
+<div class="jumbotron jumbotron-fluid banner dark pageBanner" style="background-image:url('{{ 'assets/img/banners/banner-facilities@0.5x.jpg'|theme }}')">
+
+	<div class="container-fluid h-100">
+	    <div class="row h-100">
+    	    <div class="col my-auto text-center">
+    	        <img src="{{ 'Misc/asm-ms-teams-logos.png'|media }}" srcset="{{ 'Misc/asm-ms-teams-logos@2x.png'|media }} 2x" alt="ASM and MS Teams" class="mt-5 mb-5 mx-auto d-block img-fluid" />
+		    </div>
+		</div>
+	</div>
+
+</div>
+
+<!-- /banner -->
+
+{% partial 'demo-button' %}
+
+<div class="container copy">
+
+    <header class="col-md-12 copy-heading">
+
+		<nav aria-label="breadcrumb">
+            <ol class="breadcrumb justify-content-center">
+                <li class="breadcrumb-item">Features</li>
+                <li class="breadcrumb-item">Integration Platform</li>
+                <li class="breadcrumb-item active">{{ this.page.title }}</li>
+            </ol>
+        </nav>
+	
+		<h1>{{ this.page.title }}</h1>
+
+	</header>
+	    
+    <div class="row justify-content-center">
+    
+        <div class="col-md-10">
+            <p class="lead">Alemba Service Manager's integration with Microsoft Teams enhances customer support operations by offering a seamless communication channel between customers and support agents. This integration allows users of the customer portal to directly chat with agents through Microsoft Teams. This feature streamlines communication and provides a more responsive support experience.</p>
+            <p>Key features of this integration include:</p>
+            <ol>
+                <li><strong>Direct Chat Communication:</strong> Customers using the Alemba Service Manager (ASM) portal can initiate chats with support agents directly via Microsoft Teams. This real-time communication facility helps in faster resolution of queries and issues.</li>
+                <li><strong>Call Queue Management:</strong> The ASM system enables agents to have their calls organised and prioritised. This feature ensures that urgent or critical requests are addressed promptly, enhancing the overall efficiency of the support process.</li>
+                <li><strong>Support for War Rooms:</strong> The integration facilitates the creation of 'War Rooms' in Teams. These are dedicated channels where agents can collaborate to resolve complex or high-priority issues. This collaborative environment allows for pooling of expertise and faster problem-solving.</li>
+                <li><strong>Call Audit Trail Integration:</strong> All interactions between customers and agents through Microsoft Teams are automatically logged into the ASM call audit trail. This ensures that there is a comprehensive record of all communications, which is essential for quality assurance, compliance, and review purposes.</li>
+            </ol>
+            <p>This integration effectively brings together the robustness of Alemba Service Manager’s ticketing and workflow management with the collaborative and communicative strengths of Microsoft Teams. It enhances the support experience for both customers and agents, leading to improved resolution times and greater customer satisfaction, while maintaining governance and process compliance.</p>
+            <img src="{{ 'Diagrams/diagram-integration-ms-teams.jpg'|media }}" alt="End user logging a Teams chat" class="mt-3 img-fluid" />
+            <p class="caption"><small>Alemba Service Manager customer portal creates and records MS Teams chats between analysts and end users.</small></p>
+        </div>
+        <div class="col-12 mt-4">
+            <div class="shadow" style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/938155577?h=fc6d6a4fc5&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Alemba Microsoft Teams Integration"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>
+        </div>
+        <div class="col-md-10 mt-4">
+            <h2>Getting Started</h2>
+            <h3>Step 1</h3>
+            <p>Assuming your organization already uses Microsoft Teams, you will need to create an additional account for Alemba Service Manager. Sign in to Azure Portal with admin permissions (within the same Microsoft 365 subscription tenant as the intended app registration).</p>
+
+            <h3>Step 2: Register ASM as an app in Azure Active Directory/Microsoft Entra ID</h3>
+            <p>First, you’ll need to register ASM in Azure Active Directory/Microsoft Entra ID to obtain an Application (client) ID and Directory (tenant) ID that are required for authentication purposes.</p>
+            <ul>
+                <li>Log into the Azure Portal: Visit https://portal.azure.com and log in with your administrative credentials. </li>
+                <li>Navigate to Azure Active Directory: From the left-hand menu, select “Azure Active Directory”.</li>
+                <li>Go to ‘App registrations’: Click on “App registrations” in the left-hand menu.</li>
+                <li>Register a new application: Click on “New registration” at the top of the pane. </li>
+                <li>Set up the registration: Enter a name for your application (ASM), specify who can use the application, and then set the redirect URI (if applicable). The redirect URI is typically the URL where your app is hosted.</li>
+                <li>Register ASM: Click the “Register” button to create the application. You will then be taken to ASM’s overview page, where you can find the Application (client) ID and Directory (tenant) ID.</li>
+            </ul>
+
+            <h3>Step 3: Configure Authentication and Permissions</h3>
+            <ul>
+                <li>Configure settings: In ASM’s registration page, you can configure settings such as authentication methods, API permissions, and more.</li>
+                <li>Add permissions: In the API permissions section, add any required Microsoft Graph permissions that ASM needs to interact with Microsoft Teams, such as User.Read, Group.ReadWrite.All, etc.
+                    <img data-src="{{ 'Diagrams/teams-set-up-0.jpg'|media }}" alt="Typical Permissions screenshot" class="lazyload d-block img-fluid mx-auto my-3 shadow rounded">
+                </li>
+            </ul>
+
+            <h3>Step 4: Generate Client Secrets or Certificate</h3>
+            <p>Your Teams Administrator will need to: </p>
+            <ul>
+                <li>Create a client secret:  Under “Certificates & secrets”, you can create a new client secret or upload a certificate. This is necessary for ASM to authenticate with Azure Active Directory/Microsoft Entra ID. </li>
+                <li>Save the client secret: Make sure to copy and save the client secret value; you won’t be able to retrieve it after you leave the page.</li>
+            </ul>
+
+            <h3>Step 5: Set up in Alemba Service Manager</h3>
+            <ul>
+                <li>Access <strong>System Administration &gt; Preview Features &gt; Settings</strong> and change the Chat Type to Teams.</li>
+                <li>Insert all the values for Teams Service account, Tenant ID, Client ID and Client secret and then restart IIS.</li>
+                <li>For the MS Teams Service Account, create and configure a Generic Office 365 account.</li>
+                <li>In the App Registration Certificates & secrets section: copy the Secret ID
+                    <img data-src="{{ 'Diagrams/teams-set-up-1.jpg'|media }}" alt="Copy Secret ID screenshot" class="lazyload d-block img-fluid mx-auto my-3 shadow rounded">
+                </li>
+                <li>In the App Registration Overview section: copy the Application (Client) ID and the Directory (Tenant ID)
+                    <img data-src="{{ 'Diagrams/teams-set-up-2.jpg'|media }}" alt="Copy Client ID screenshot" class="lazyload d-block img-fluid mx-auto my-3 shadow rounded">
+                </li>
+                <li>Insert all these values in ASM in the respective fields:
+                    <img data-src="{{ 'Diagrams/teams-set-up-3.jpg'|media }}" alt="Insert values into ASM screenshot" class="lazyload d-block img-fluid mx-auto my-3 shadow rounded">
+                </li>
+            </ul>
+
+            <h3>Step 6: Testing and Deployment</h3>
+            <p>Test the integration - ensure that it’s working as expected in a development environment before rolling it out broadly. </p>
+            <ul>
+                <li>Start a chat from the portal. </li>
+                <li>Respond to the chat in ASM core.</li>
+                <li>Click Start Chat to initiate a chat in Microsoft Teams. </li>
+                <li>End the chat when completed.</li>
+            </ul>
+        </div>
+    </div>
+
+</div>
+
+{% partial 'banners/banner-connectors' %}
+
+{% partial 'pagelinks-recent' %}

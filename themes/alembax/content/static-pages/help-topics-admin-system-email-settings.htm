@@ -1,0 +1,1133 @@
+[viewBag]
+title = "Email Settings"
+url = "/help/topics/admin-system/email-settings"
+layout = "help"
+is_hidden = 0
+navigation_hidden = 0
+==
+                                                    <h1>
+<a name="top"></a>Email Settings</h1>
+                                                    <p class="intro"> </p>
+                                                    <p class="intro">You can configure your outgoing and incoming email server settings, which allows for the creation of multiple email servers for outgoing and incoming emails, which is particularly useful for partitioned systems. For example, an organization that has assigned one partition per department – IT, Support, HR – can associate each department with its own mail server for incoming and outgoing mail.</p>
+                                                    <h2>How Calls are Logged using Email Settings</h2>
+                                                    <p>If an incoming email is detected by the <span class="GeneralVariablesCoreName">ASM Core</span> messaging service, the call is logged using the call template specified for the incoming mail server, which determines the call properties, such as the partition, call screen set, IPK status and stream, assigned office and group.</p>
+                                                    <p><span class="GeneralVariablesCoreName">ASM Core</span> looks in the CMDB for a User or Analyst with an email address matching the address used to send the email. Based on the findings and the settings for the incoming email account used, a User and Logging Analyst will be allocated to the new call.</p>
+                                                    <p>If an email is sent from an address which does not correspond to an existing User or Analyst, a new User record is created (that is, a new person record flagged as a User) and the call is logged with this User specified in the <b>User</b> field. The Logging Analyst of the call is set as the Analyst specified in the <b>Default Logging Analyst</b> field on the incoming email account.</p>
+                                                    <p>If an email is sent from an address which corresponds to an existing Analyst in the <span class="GeneralVariablesDatabaseName">ASM database</span> and this Analyst is flagged as an Analyst Only (not as a User), the call is logged with this person specified in the <b>User</b> field. The Logging Analyst is set as follows:</p>
+                                                    <ul>
+                                                        <li value="1">If the <b>Use Linked Analyst</b> option is selected for the incoming email account, the logging Analyst is set to the person who sent the email. If not, the logging Analyst is set to the Analyst specified in the <b>Default Logging Analyst</b> field for the incoming email server.</li>
+                                                        <li value="2">If an Analyst logs a call by incoming email and the Analyst is not already a User, the <b>User</b> flag will be selected on their <a href="../managing%20people/managing%20people.htm">person details</a>.</li>
+                                                        <li value="3">If an email is sent from an address which corresponds to an existing User in the <span class="GeneralVariablesDatabaseName">ASM database</span>, the call is logged with this User specified in the <b>User</b> field. The logging Analyst is set to the Analyst specified in the <b>Default Logging Analyst</b> field for the incoming email server (whether <b>Use Linked Analyst</b> is selected or not).</li>
+                                                        <li value="4">If an email is sent from an address which corresponds to an existing person in the <span class="GeneralVariablesDatabaseName">ASM database</span> and this person is flagged as both an Analyst and a User, the call is logged with the person specified in the <b>User</b> field. If <b>Use Linked Analyst</b> is selected for the incoming email account, the Logging Analyst is set to the person who sent the email. If not, the Logging Analyst is set to the Analyst specified in the <b>Default Logging Analyst</b> field for the incoming email server.</li>
+                                                    </ul>
+                                                    <h2>Viewing Email Server Settings</h2>
+                                                    <h2 class="Prerequisite">Before you start</h2>
+                                                    <p class="prereqtext">You must have <b>System Set Up</b> selected in the <a href="../admin%20security%20roles/general%20access%20security%20role%20-%20admin%20tab.htm">Admin</a> tab of your <b>General Access security role</b>.</p>
+                                                    <ol start="1">
+                                                        <li value="1">Select <a href="../general%20topics/asmcorewindow.htm"><span style="font-size: 24pt;">≡</span></a> &gt; <b>Admin</b> &gt;  <b>System Administration</b>.   The System Administration window appears.</li>
+                                                        <li value="2">In the Explorer pane, expand <b>System</b>, then select <b>Email Settings</b>. The <b>Email Settings</b> window appears, showing details of the existing outgoing and incoming email servers. At the top of the window there are two fields:</li>
+                                                        <p>
+                                                            </p>
+<table class="TableStyle-FieldDesc" style="mc-table-style: url('../../resources/tablestyles/fielddesc.css');margin-left: 0;margin-right: auto;" cellspacing="0">
+                                                                <col class="TableStyle-FieldDesc-Column-Column1">
+                                                                <col class="TableStyle-FieldDesc-Column-Column2">
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Default Format</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                        <p>Select the default format for any outgoing emails sent, either as <b>HTML</b> or <b>Plain Text</b>.</p>
+                                                                        <p class="warning"><span class="GeneralVariablesProduct2Name">Nano</span> does not support outgoing email or systems  configured for plain text. If <b>Plain Text</b> is enabled, emails should not be sent from <span class="GeneralVariablesProduct2Name">Nano</span>.</p>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Message Format per Analyst/User</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">Select to enable the ability to specify an Email Format in the <a href="../managing%20people/managing%20people.htm">person's details</a> and set the message format to the one identified for the Analyst/User, overriding the default format.<p>Deselect to disable the ability to specify an Email Format in the person's details and use the default format.</p>
+</td>
+                                                                </tr>
+                                                            </table>
+                                                        
+                                                        <p>Below these fields, the window is divided into two parts, showing read only information for:</p>
+                                                        <p>
+                                                            </p>
+<table class="TableStyle-FieldDesc" style="mc-table-style: url('../../resources/tablestyles/fielddesc.css');margin-left: 0;margin-right: auto;" cellspacing="0">
+                                                                <col class="TableStyle-FieldDesc-Column-Column1">
+                                                                <col class="TableStyle-FieldDesc-Column-Column2">
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Outgoing Email Servers</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">A list of the configured outgoing email server settings that <span class="GeneralVariablesCoreName">ASM Core</span> will use for sending email. Supported email transfer protocols for outgoing email include SMTP and MAPI. </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Incoming Email Servers</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">A list of the configured incoming email server settings that <span class="GeneralVariablesCoreName">ASM Core</span> will use for receiving emails. Supported email protocols include: POP3, IMAP, and MAPI. <p class="note">For more information on using MAPI for Incoming Email, contact <span class="GeneralVariablesCompanyName2">Alemba®</span> Support Services.</p>
+</td>
+                                                                </tr>
+                                                            </table>
+                                                        
+                                                        <li value="3">Select a server to view its settings in more detail. Then select <b>Open</b>. The Email Server Details window appears, showing all of the <span class="crossref">existing settings</span>. The parameters vary depending on the email server type.</li>
+                                                    </ol>
+                                                    <h2>Adding an Email Server </h2>
+                                                    <p class="intro">You can add as many incoming email servers as you wish.</p>
+                                                    <h2 class="Prerequisite">Before you start</h2>
+                                                    <p class="prereqtext1">If you have details for another server displayed, you must close these before adding a new server.</p>
+                                                    <p class="prereqtext1">You must have <b>System Set Up</b> selected in the <a href="../admin%20security%20roles/general%20access%20security%20role%20-%20admin%20tab.htm">Admin</a> tab of your <b>General Access security role</b>.</p>
+                                                    <p class="prereqtextlast">You must first create the mail accounts separately on the mail server. The Email Settings window only enables you to create mail systems that are connected to an already existing mail account(s), which <span class="GeneralVariablesCoreName">ASM Core</span> checks through its messaging service.</p>
+                                                    <ol start="1">
+                                                        <li value="1">Select <a href="../general%20topics/asmcorewindow.htm"><span style="font-size: 24pt;">≡</span></a> &gt; <b>Admin</b> &gt;  <b>System Administration</b>.   The System Administration window appears.</li>
+                                                        <li value="2">In the Explorer pane, expand <b>System</b>, then select <b>Email Settings</b>. The <b>Email Settings</b> window appears, showing details of the existing outgoing and incoming email servers.</li>
+                                                        <li value="3">Select <b>Add</b> beneath the appropriate browse table – top for outgoing, bottom for incoming.</li>
+                                                        <li value="4">Select an email server type from the drop-down list.</li>
+                                                        <li value="5">Complete the <a href="#MAPI">additional steps</a> involved if you choose to use MAPI servers.</li>
+                                                        <li value="6">Select <b>Ok</b>.</li>
+                                                        <li value="7">Complete the details. The email server parameters will depend on the type of <a href="#Configur">Outgoing Email Server</a> or <a href="#Configur2">Incoming Email Server</a> you have selected.</li>
+                                                        <li value="8">Select <img src="/storage/app/media/Help/images/test%20button.png"> to <a href="#Testing">test the email functionality</a> with the parameters you have specified.</li>
+                                                        <li value="9">Select <img src="/storage/app/media/Help/images/save%20button.png">  to save the changes. Provide the <a href="../general%20topics/change%20reasons.htm">Change Reasons</a> if prompted to do so.</li>
+                                                    </ol>
+                                                    <p class="warning">If your system is enabled for partitioning, you should define <b>Call Impact</b>, <b>Call Urgency</b> and <b>Call Priority</b> values and a <b>Priority</b> <b>Matrix</b> in each partition when configuring the partitions to ensure that calls logged through an incoming email account will automatically be assigned the correct Call Priority.</p>
+                                                    <h3>
+<a name="MAPI"></a>Adding MAPI Servers</h3>
+                                                    <p class="warning">Although MAPI is supported, <span class="GeneralVariablesCompanyName2">Alemba®</span> recommends using one of the other protocols as MAPI is complex to set up correctly.</p>
+                                                    <p class="warning">You must configure the MAPI server, and the web server, before you can format the parameters for incoming and outgoing mail within System Admin. Refer to <a href="config%20mapi%20server.htm">Configuring MAPI</a></p>
+                                                    <h2>Updating an Email Server</h2>
+                                                    <h2 class="Prerequisite">Before you start</h2>
+                                                    <p class="prereqtext">You must have <b>System Set Up</b> selected in the <a href="../admin%20security%20roles/general%20access%20security%20role%20-%20admin%20tab.htm">Admin</a> tab of your <b>General Access security role</b>.</p>
+                                                    <ol start="1">
+                                                        <li value="1">Select <a href="../general%20topics/asmcorewindow.htm"><span style="font-size: 24pt;">≡</span></a> &gt; <b>Admin</b> &gt;  <b>System Administration</b>.   The System Administration window appears.</li>
+                                                        <li value="2">In the Explorer pane, expand <b>System</b>, then select <b>Email Settings</b>. The <b>Email Settings</b> window appears, showing details of the existing outgoing and incoming email servers.</li>
+                                                        <li value="3">Select the server you wish to update and select <b>Open</b>.</li>
+                                                        <li value="4">Update the details. The parameters will vary depending on what type of <a href="#Configur"><span class="crossref">Outgoing Server</span></a> or <a href="#Configur2">Incoming Server</a> you are updating.</li>
+                                                        <li value="5">Select <img src="/storage/app/media/Help/images/test%20button.png"> to <a href="#Testing">test the email functionality</a> with the parameters you have specified.</li>
+                                                        <li value="6">Select <img src="/storage/app/media/Help/images/save%20button.png">  to save the changes. Provide the <a href="../general%20topics/change%20reasons.htm">Change Reasons</a> if prompted to do so.</li>
+                                                    </ol>
+                                                    <h2>Deleting an Email Server </h2>
+                                                    <h2 class="Prerequisite">Before you start</h2>
+                                                    <p class="prereqtext1">If you have details for another server displayed, you must close these before adding a new server.</p>
+                                                    <p class="prereqtext">You must have <b>System Set Up</b> selected in the <a href="../admin%20security%20roles/general%20access%20security%20role%20-%20admin%20tab.htm">Admin</a> tab of your <b>General Access security role</b>.</p>
+                                                    <ol start="1">
+                                                        <li value="1">Select <a href="../general%20topics/asmcorewindow.htm"><span style="font-size: 24pt;">≡</span></a> &gt; <b>Admin</b> &gt;  <b>System Administration</b>.   The System Administration window appears.</li>
+                                                        <li value="2">In the Explorer pane, expand <b>System</b>, then select <b>Email Settings</b>. The <b>Email Settings</b> window appears, showing details of the existing outgoing and incoming email servers.</li>
+                                                        <li value="3">Select the server you wish to delete in the browse table.</li>
+                                                        <li value="4">Select <img src="/storage/app/media/Help/images/delete%20button.png"> and confirm the deletion when prompted.</li>
+                                                    </ol>
+                                                    <h2>
+<a name="Configur"></a>Configuring Outgoing Email Servers</h2>
+                                                    <h2 class="Prerequisite">Before you start</h2>
+                                                    <p class="prereqtext1">If you have details for another server displayed, you must close these before adding a new server.</p>
+                                                    <p class="prereqtext">You must have <b>System Set Up</b> selected in the <a href="../admin%20security%20roles/general%20access%20security%20role%20-%20admin%20tab.htm">Admin</a> tab of your <b>General Access security role</b>.</p>
+                                                    <p>The parameters you can configure vary depending on the email server type. </p>
+                                                    <div class="MCDropDown MCDropDown_Closed dropDown">
+<span class="MCDropDownHead dropDownHead"><a href="#" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCHotSpotImage" aria-expanded="false"><img class="MCDropDown_Image_Icon" src="/storage/app/media/Help/images/transparent.gif" height="11" width="16" alt="Closed" data-mc-alt2="Open">SMTP Outgoing Mail Server Parameters</a></span>
+                                                        <div class="MCDropDownBody dropDownBody">
+                                                            <p>You can set the following options to configure outgoing email for <b>SMTP</b>:</p>
+                                                            <table class="TableStyle-FieldDesc" style="mc-table-style: url('../../resources/tablestyles/fielddesc.css');margin-left: 0;margin-right: auto;" cellspacing="0">
+                                                                <col class="TableStyle-FieldDesc-Column-Column1">
+                                                                <col class="TableStyle-FieldDesc-Column-Column2">
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Name</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">The name of the email system. This must be unique</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Protocol</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">A read-only field displaying the email protocol for this email server account</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Server</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">The address used to connect to the SMTP server</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Port Number</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">The port number on the mail server to which <span class="GeneralVariablesCoreName">ASM Core</span> must connect. The standard SMTP port is 25, which is the default setting</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Login ID and Password</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                        <p>The username and password required to connect to the mail server. </p>
+                                                                        <p class="warning">Ensure that this account is set up on the mail server or <span class="GeneralVariablesCoreName">ASM Core</span> will not be able to send outgoing mail.</p>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Active</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">This option must be selected to activate this email account in the system so that it can be used </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Use SSL</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                        <p>This option must be selected to specify that any communications sent by this mail server should be SSL (Secure Socket Layer). It is selected by default.</p>
+                                                                        <p class="warning">If you are using Microsoft Exchange 365, this option must be selected.</p>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Pager Encoding</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">An encoding type for emails sent to pagers from this mail server. You can select from a drop-down list </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Mailbox Authentication Methods</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">The authentication method that must be used for this mail server account. <b>Automatically select Authentication Method</b> allows <span class="GeneralVariablesCoreName">ASM Core</span> to select the most secure method of authentication supported by the server or a less secure method, if the server does not support a particular form of authentication. Clearing <b>Automatically select Authentication Method</b> allows you to <span class="crossref">specify the authentication method(s).</span><p class="warning">If you clear <b>Automatically select Authentication Method</b> and do not select an authentication method, no authentication will be used.</p>
+</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Send Receipt Email</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">Select this option to send a receipt with any emails sent from this mail server</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Connection Timeout (secs)</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">The time in seconds that the connection can be left idle before it is automatically timed out. The default is 120.</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Enable chunking</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">Enable data chunking on outgoing email messages to assist in the transmission of emails with large attachments </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Outgoing Email ID</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">The email address that appears in the <b>From</b> field of any emails sent from this server. This is the email address that is used when neither <b>Sent From Analyst</b> nor <b>Reply to Forwarding Analyst</b> is selected on this window</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Default Outgoing Email Server</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">Select this option to use this email server as the outgoing email server to be used if no email server is defined for a partition from which an email is being sent. <p class="note">Selecting this option overrides the <b>Default Outgoing Email Server</b> setting configured for another server. </p>
+</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Sent From Analyst</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">Select this option if you want the email address of the Analyst triggering the email to appear in the <b>From</b> field of any emails sent from this server. <p>If this option is cleared, the <b>From</b> field displays the email address specified in the <b>Outgoing Email ID</b> field.</p>
+</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Reply to Forwarding Analyst</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">Select this option if you want the email address of the Analyst triggering the outgoing email to appear in the <b>To</b> field, if the recipient decides to reply to the email. <p>If this option is cleared, the <b>To</b>  field displays the email address specified in the <b>Outgoing Email ID</b> field.</p>
+</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Partition</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">This list appears if Email IDs are <b>partitioned</b>. Use it to assign a partition to this outgoing email system. This means any emails sent from an entity belonging to the specified partition will use this mail server.<p> You can only select the partitions to which you have access. If you want to use the same email server for two or more partitions but do not have it as the default server, you need to reconfigure the email server on another record.  If you specify more than one active email server for a particular partition, <span class="GeneralVariablesCoreName">ASM Core</span> simply selects one. </p>
+<p class="warning"><span class="GeneralVariablesCompanyName2">Alemba®</span> recommends that you set only one active email server per partition. </p>
+</td>
+                                                                </tr>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                    <div class="MCDropDown MCDropDown_Closed dropDown">
+<span class="MCDropDownHead dropDownHead"><a href="#" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCHotSpotImage" aria-expanded="false"><img class="MCDropDown_Image_Icon" src="/storage/app/media/Help/images/transparent.gif" height="11" width="16" alt="Closed" data-mc-alt2="Open">MAPI Outgoing Mail Server Parameters </a></span>
+                                                        <div class="MCDropDownBody dropDownBody">
+                                                            <h2 class="Prerequisite">Before you start</h2>
+                                                            <p class="prereqtext">The <a href="config%20mapi%20server.htm">MAPI Mail Server must be configured</a> before you can configure outgoing email for MAPI.</p>
+                                                            <p>You can set the following options to configure outgoing email for <b>MAPI</b>:</p>
+                                                            <table class="TableStyle-FieldDesc" style="mc-table-style: url('../../resources/tablestyles/fielddesc.css');margin-left: 0;margin-right: auto;" cellspacing="0">
+                                                                <col class="TableStyle-FieldDesc-Column-Column1">
+                                                                <col class="TableStyle-FieldDesc-Column-Column2">
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Name</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">The name of the outgoing email system you are adding or editing. This must be unique.</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Protocol</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">A read-only field displaying the email protocol for this email server account.</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Server</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">The address used to connect to the MAPI server. <span class="span_2">localhost</span> appears as default but can be overwritten.</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Port Number</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">The port number on the mail server to which <span class="GeneralVariablesCoreName">ASM Core</span> must connect. The standard MAPI port is 593, which is the default setting.</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Login ID and Password</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">The username and password required to connect to the mail server. Ensure that this account is set up on the mail server or <span class="GeneralVariablesCoreName">ASM Core</span> will not be able to send outgoing mail.</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Active</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">Select this option to activate this email account in the system so that it can be used.</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Use NT Authentication</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">Select this option to use NTLM authentication for this outgoing email server account. If this option is not selected, <span class="GeneralVariablesCoreName">ASM Core</span> will try to use the most secure authentication method available on the mail server, and downgrade to less secure methods if secure methods are not provided.</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Send Receipt Email</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">Select this option to send a receipt with any outgoing emails sent from this mail server</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Outgoing Email ID</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">The email address that appears in the <b>From</b> field of any emails sent from this server. This is the email address that is used when neither <b>Sent From Analyst</b> nor <b>Reply to Forwarding Analyst</b> is selected on this window.</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Default Outgoing Email Server</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">Indicates that this email server should be used if no email server is defined for a partition from which an email is being sent. Selecting this option overrides the <b>Default Outgoing Email Server</b> setting configured for another server.</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Partition</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">If Email IDs are partitioned (enabled in <span class="crossref">Partition Settings</span>) this list displays. Use it to assign a partition to this outgoing email system. This means any emails sent from an entity belonging to the specified partition will use this mail server. <p>You can only select the partitions to which you have access. If you want to use the same email server for two or more partitions but do not have it as the default server, you need to reconfigure the email server for each partition.  If you specify more than one active email server for a particular partition, <span class="GeneralVariablesCoreName">ASM Core</span> simply selects one. </p>
+<p class="warning"><span class="GeneralVariablesCompanyName2">Alemba®</span> recommends that you set only one active email server per partition.</p>
+</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Sent From Analyst</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">Select this option if you want the email address of the Analyst triggering the email to appear in the <b>From</b> field of any emails sent from this server. If this option is cleared, the <b>From</b> field displays the email address specified in the <b>Outgoing Email ID</b> field.</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Reply to Forwarding Analyst</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">Select this option if you want the email address of the Analyst triggering the outgoing email to appear in the <b>To</b> field, if the recipient decides to reply to the email. This means if you get an email about a call, you can reply to the email and it will go to the person who sent the call to you, rather than the server that created and delivered the email. If this option is cleared, the <b>To</b>  field displays the email address specified in the <b>Outgoing Email ID</b> field.</td>
+                                                                </tr>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                    <div class="MCDropDown MCDropDown_Closed dropDown">
+<span class="MCDropDownHead dropDownHead"><a href="#" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCHotSpotImage" aria-expanded="false"><img class="MCDropDown_Image_Icon" src="/storage/app/media/Help/images/transparent.gif" height="11" width="16" alt="Closed" data-mc-alt2="Open">EWS Outgoing Mail Server Parameters </a></span>
+                                                        <div class="MCDropDownBody dropDownBody">
+                                                            <h2 class="Prerequisite">Before you start</h2>
+                                                            <p class="prereqtext">Before you can configure outgoing email for EWS you must generate an <b>app password</b> for the mail account. Log into Office365 with the mail account  and navigate to the Security &amp; Privacy page, then selected <b>Create and manage app passwords</b>.</p>
+                                                            <p>You can set the following options to configure outgoing email for <b>EWS</b>:</p>
+                                                            <table class="TableStyle-FieldDesc" style="mc-table-style: url('../../resources/tablestyles/fielddesc.css');margin-left: 0;margin-right: auto;" cellspacing="0">
+                                                                <col class="TableStyle-FieldDesc-Column-Column1">
+                                                                <col class="TableStyle-FieldDesc-Column-Column2">
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Name</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">The name of the outgoing email system you are adding or editing. This must be unique.</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Protocol</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">A read-only field displaying the email protocol for this email server account.</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Server</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">The web address for Office365 Exchange.</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Port Number</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">The port number of the mail server to which <span class="GeneralVariablesCoreName">ASM Core</span> must connect. The standard EWS port is 443, which is the default setting.</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Login ID and Password</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">The email address of the mail account, and corresponding app password generated from Office 365.</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Active</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">Select this option to activate this email account in the system so that it can be used.</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Enable SSL Certificate Generation</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">Select this option when the SSL Certificate of the exchange server needs to be validated. Required when <b>Require HTTPS</b> is enabled.</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Exchange Version</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">Select the version of the exchange server. </td>
+                                                                </tr>
+                                                                <tr data-mc-conditions="">
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Use UTC Time Zone</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">Not Applicable.</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Accept GZIP Encoding</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                        <p>Select this option to accept GZIP compressed content. The exchange server must also be configured to accept GZIP compressed content.</p>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Connection Timeout</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                        <p>Enter the number of seconds after which timeouts fail. Set the value to zero (0) to have no timeout.</p>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr data-mc-conditions="">
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Content Encoding</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">Not Applicable.</td>
+                                                                </tr>
+                                                                <tr data-mc-conditions="">
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Shared Mailbox</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">Not Applicable.</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Require HTTPS</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">Selected by default. Required for Exchange 365.</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Outgoing Email ID</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">The email address that appears in the <b>From</b> field of any emails sent from this server. This is the email address that is used when neither <b>Sent From Analyst</b> nor <b>Reply to Forwarding Analyst</b> is selected on this window.</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Default Outgoing Email Server</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">Indicates that this email server should be used if no email server is defined for a partition from which an email is being sent. Selecting this option overrides the <b>Default Outgoing Email Server</b> setting configured for another server.</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Partition</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">If Email IDs are partitioned (enabled in <span class="crossref">Partition Settings</span>) this list displays. Use it to assign a partition to this outgoing email system. This means any emails sent from an entity belonging to the specified partition will use this mail server. <p>You can only select the partitions to which you have access. If you want to use the same email server for two or more partitions but do not have it as the default server, you need to reconfigure the email server for each partition.  If you specify more than one active email server for a particular partition, <span class="GeneralVariablesCoreName">ASM Core</span> simply selects one. </p>
+<p class="warning"><span class="GeneralVariablesCompanyName2">Alemba®</span> recommends that you set only one active email server per partition.</p>
+</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Sent From Analyst</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">Select this option if you want the email address of the Analyst triggering the email to appear in the <b>From</b> field of any emails sent from this server. If this option is cleared, the <b>From</b> field displays the email address specified in the <b>Outgoing Email ID</b> field.</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Reply to Forwarding Analyst</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">Select this option if you want the email address of the Analyst triggering the outgoing email to appear in the <b>To</b> field, if the recipient decides to reply to the email. This means if you get an email about a call, you can reply to the email and it will go to the person who sent the call to you, rather than the server that created and delivered the email. If this option is cleared, the <b>To</b>  field displays the email address specified in the <b>Outgoing Email ID</b> field.</td>
+                                                                </tr>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                    <h2>
+<a name="Configur2"></a>Configuring Incoming Email Servers</h2>
+                                                    <h2 class="Prerequisite">Before you start</h2>
+                                                    <p class="prereqtext1">You must have <b>System Set Up</b> selected in the <a href="../admin%20security%20roles/general%20access%20security%20role%20-%20admin%20tab.htm">Admin</a> tab of your <b>General Access security role</b>.</p>
+                                                    <p class="prereqtext">The <a href="config%20mapi%20server.htm">MAPI Mail Server must be configured</a> before you can configure incoming email for MAPI.</p>
+                                                    <p>The parameters you can configure vary depending on the email server type. </p>
+                                                    <p>When an incoming email is received the sending email address is checked against person records for a matching email. If a matching email address is found, that person record is used as the person performing the action, such as logging a new call, updating existing call, task or request, or closing a call or task.</p>
+                                                    <p class="note">If multiple Person records have the same email address, the first Person record found is used.</p>
+                                                    <div class="MCDropDown MCDropDown_Closed dropDown">
+<span class="MCDropDownHead dropDownHead"><a href="#" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCHotSpotImage" aria-expanded="false"><img class="MCDropDown_Image_Icon" src="/storage/app/media/Help/images/transparent.gif" height="11" width="16" alt="Closed" data-mc-alt2="Open">POP3 Incoming Mail Server Parameters</a></span>
+                                                        <div class="MCDropDownBody dropDownBody">
+                                                            <p>You can set the following options to configure incoming email for <b>POP3</b>:</p>
+                                                            <table class="TableStyle-FieldDesc" style="mc-table-style: url('../../resources/tablestyles/fielddesc.css');margin-left: 0;margin-right: auto;" cellspacing="0">
+                                                                <col class="TableStyle-FieldDesc-Column-Column1" style="width: 107px;">
+                                                                <col class="TableStyle-FieldDesc-Column-Column2">
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Name</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">Type the name of the incoming email system you are adding or editing. This must be unique</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Protocol</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">This is a read-only field displaying the email protocol for this email server account.</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Server</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">Specify the address used to connect to the POP3 server.</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Port Number</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">Type the port number on the mail server to which <span class="GeneralVariablesCoreName">ASM Core</span> must connect. The standard POP3 port is 110, which is the default setting.</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Login ID and Password</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">Type the username and password required to connect to the mail server. Ensure that this account is set up on the mail server otherwise <span class="GeneralVariablesCoreName">ASM Core</span> will not be able to receive incoming mail.</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Active</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">Select this option to activate this email account in the system so that it can be used. If this option is cleared, <span class="GeneralVariablesCoreName">ASM Core</span> will not poll this system for incoming mail.</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Use SSL</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                        <p>Select this option to specify that any communications sent by this mail server should be SSL (Secure Socket Layer).</p>
+                                                                        <p class="warning">This option must be selected if you are using Microsoft Exchange 365.</p>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Max Messages per Session</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">Specify the number of messages that will be deleted in the current POP3 email server before disconnecting and reconnecting.</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Mailbox Authentication Methods</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">Select the authentication method that must be used for this mail server account. Selecting <b>Automatically select Authentication Method</b> allows <span class="GeneralVariablesCoreName">ASM Core</span> to select the most secure method of authentication supported by the server. Clearing <b>Automatically select Authentication Method</b> allows you to specify the <b>authentication method(s)</b>. Some may not apply to the protocol. If <span class="GeneralVariablesCoreName">ASM Core</span> detects that the specified method is not applicable to the server, it will apply another one.<p class="warning">If you clear <b>Automatically select Authentication Method</b> and do not select an authentication method, no authentication will be used.</p>
+</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Ignore Mail Server Report Messages</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-"> Select this option to ignore auto-reply emails with content-type: multipart/report to prevent bounce-back messages causing a mail loop.</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Ignore On Blank Return Path</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">Select this option to ignore emails that have a blank return path in the email header to prevent bounce-back messages causing a mail loop.</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Call Template</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">Select the <a href="../admingeneral/admin%20call%20template.htm">call template</a> to be used when a call is logged from an incoming email originating from this mail server. The details specified in the template are used to populate the fields of the call. This list only displays call templates for which an Analyst or group has been assigned, to ensure that any call logged as a result of an incoming email is forwarded to an Analyst or group in the system.</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Default Logging Analyst</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">Specify the Analyst to be used as the Logging Analyst of any call logged by incoming email when either the <b>Use Linked Analyst</b> option is cleared or the <b>Use Linked Analyst</b> option is selected but the email was sent from a User only (that is, a person flagged as a User but not as an Analyst). Template Person records cannot be set as the Default Logging Analyst. If you leave this field blank, the logging Analyst will be the person who sent the email.<p class="note">Refer to the notes on <a href="#determining_a_logging_officer">how a logging Analyst is determined</a> for more details.</p>
+</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Use Linked Analyst</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">Select this option if you want the Analyst who sent the email logging the call to be the Logging Analyst.<p class="note">If the person who sent the email is flagged only as a User, the logging Analyst will be the Analyst specified in the <b>Default Logging Analyst</b> field. </p>
+<p class="note">If this option is cleared, the logging Analyst of any call generated from this incoming email server will be the Analyst specified in the <b>Default Logging Analyst</b> field. If you want the logging Analyst to always be the one specified in the <b>Default Logging Analyst</b> field, clear <b>Use Linked Analyst</b> for this incoming email account</p>
+<p class="note">Refer to the notes on <a href="#determining_a_logging_officer">how a logging Analyst is determined</a> for more details.</p>
+</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Send Auto Reply</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">Select this option if you want an automatically generated email response to be sent to any person who sends an email to this email server (for example, to log a call). </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Log New Call on Invalid Number</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">Select this option if you want a new call to be logged whenever the email server receives an incoming email with a recognized format but an invalid call number.</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Update Closed Calls</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                        <p>Enables <span class="GeneralVariablesCoreName">ASM Core</span> to add a note to a closed call when this server receives an incoming email to update the call. An email reply will be sent back to the sender stating “Call No &lt;call number&gt; has been updated by <span class="GeneralVariablesCoreName">ASM Core</span>”. Clearing this option will not add a note to the closed call and send back a reply stating “Call No &lt;call number&gt; already closed and has not been updated”.</p>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Reopen Closed Calls</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">Enables <span class="GeneralVariablesCoreName">ASM Core</span> to reopen a closed call when this server receives an incoming email with the call number in the subject line, in a recognized format, and the specified call is closed.<p class="prereq"><b>Update Closed Calls</b> must be selected to enable this option. </p>
+</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">On Reopening of Calls</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                        <p>Select one of the following options to determine what happens to a call when it is reopened from incoming email.</p>
+                                                                        <ul>
+                                                                            <li value="1">
+<b>Assign to Analyst/Group Assigned on Template</b> forwards the reopened call to the analyst/group defined in the template selected in <b>Call Template</b>
+</li>
+                                                                            <li value="2">
+<b>Assign to Analyst Sending Email</b> forwards the call to the analyst who sent the email that caused the call to reopen. If the person who sent the email does not have <b>Analyst</b> ticked in their Person record, the call is forwarded to the group selected in <b>If none then assign to IPK Group</b>.</li>
+                                                                            <li value="3">
+<b>Assign to Logging Analyst</b> forwards the reopened call to the analyst who originally logged it. If the person who logged the call does not have <b>Analyst</b> selected in their Person record, the call is forwarded to the group selected in <b>If none then assign to IPK Group</b>.</li>
+                                                                            <li value="4">
+<b>If none then assign to IPK Group</b> - select the group the reopened call is to be assigned to if none of the options above are selected, or if the conditions cannot be met.</li>
+                                                                        </ul>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Create New Calls Anonymously</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                        <p>Select this option if you want to allow creation of calls from email addresses not yet in the system. In this circumstance, a new Person record is created and used as the User for the call unless <b>Use Default User for Anonymous Email</b> is selected.</p>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Update Calls Anonymously</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">Allows the update of calls from email addresses not yet in the system. In this circumstance, a new Person record is created and used as the User performing the update action on the call unless <b>Use Default User for Anonymous Email</b> is selected.</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Close Calls Anonymously</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">Allows the closure of calls from email addresses not yet in the system.  In this circumstance, a new Person record is created and used as the User closing the call unless <b>Use Default User for Anonymous Email</b> is selected.</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Use Default User  for Anonymous Email</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">Select a User record to use for all anonymous incoming email actions. When this option is selected new Person records are not created if the sender's email address does not exist in the system.</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column1-" colspan="2">
+                                                                        <p class="warning"><span style="font-weight: normal;">Enabling the ability to allow messages from external email addresses increases the risk of unwanted updates to the call records in the system, including from unauthorized and SPAM type email addresses.</span>
+                                                                        </p>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Preserve HTML Formatting in History</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                        <p>Select this option if you want the history of calls, requests, or tasks being updated from incoming email to display the HTML formatting from the incoming email. When not selected, the incoming email is recorded in the history in plain text.</p>
+                                                                        <p class="note">Plain text emails appear as plain text in the history.</p>
+                                                                        <p class="note">If <b>Plain Text</b> is selected as the <b>Default Format</b> on the <b>Email Settings</b> window, the incoming email appears as plain text in history.</p>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Attach Email as Text</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">Select this option if you want <span class="GeneralVariablesCoreName">ASM Core</span> to attach the raw email data as an object to any calls generated or updated from incoming email. <p class="note">Raw email data consists of the entire SMTP packet in hexadecimal format, and is stored as a TXT object file.</p>
+</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Attach Email as HTML</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                        <p>Select this option if you want <span class="GeneralVariablesCoreName">ASM Core</span> to attach the formatted HTML email data as an object to any calls generated or updated from incoming email.</p>
+                                                                        <p class="note">Plain text emails are attached as a TXT object file.</p>
+                                                                    </td>
+                                                                </tr>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                    <div class="MCDropDown MCDropDown_Closed dropDown">
+<span class="MCDropDownHead dropDownHead"><a href="#" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCHotSpotImage" aria-expanded="false"><img class="MCDropDown_Image_Icon" src="/storage/app/media/Help/images/transparent.gif" height="11" width="16" alt="Closed" data-mc-alt2="Open">IMAP Incoming Mail Server Parameters</a></span>
+                                                        <div class="MCDropDownBody dropDownBody">
+                                                            <p>You can set the following options to configure incoming email for <b>IMAP</b>:</p>
+                                                            <table class="TableStyle-FieldDesc" style="mc-table-style: url('../../resources/tablestyles/fielddesc.css');margin-left: 0;margin-right: auto;" cellspacing="0">
+                                                                <col class="TableStyle-FieldDesc-Column-Column1">
+                                                                <col class="TableStyle-FieldDesc-Column-Column2">
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Name</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">The name of the incoming email system. This must be unique.</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Protocol</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">A read-only field displaying the email protocol for this email server account.</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Server</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">The address used to connect to the IMAP server. <span class="span_2">localhost</span> appears by default but can be overwritten.</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Port Number</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">The port number on the mail server to which <span class="GeneralVariablesCoreName">ASM Core</span> must connect. The standard IMAP port is 143, which is the default setting</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Login ID and Password</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">The username and password required to connect to the mail server. Ensure that this account is set up on the mail server otherwise <span class="GeneralVariablesCoreName">ASM Core</span> will not be able to receive incoming mail.</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Active</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">Activates this email account in the system so that it can be used. <p class="warning">If this option is not selected, <span class="GeneralVariablesCoreName">ASM Core</span> will not poll this system for incoming mail.</p>
+</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Use SSL</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                        <p>Select this option to specify that any communications sent by this mail server should be SSL (Secure Socket Layer).</p>
+                                                                        <p class="warning">This option must be selected if you are using Microsoft Exchange 365.</p>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Authentication Methods</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">Select the authentication method that must be used for this mail server account. Selecting <b>Automatically select Authentication Method</b> allows <span class="GeneralVariablesCoreName">ASM Core</span> to select the most secure method of authentication supported by the server. Clearing it allows you to <a href="#Methods">specify the authentication method(s)</a>. <p class="warning">If you clear <b>Automatically select Authentication Method</b> and do not select an authentication method, then no authentication will be used.</p>
+</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Deleted Items Folder</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">The folder into which deleted items for this email server should be moved. By default, this field displays “Deleted Items”. However, you can specify the name of another folder.  <p>Deleted emails are moved into this folder but not permanently deleted. You must go to the mail server itself to permanently delete these items from the specified folder. If you leave this field blank, any emails received by this server and deleted,  are permanently deleted. If you specify a folder that does not exist on the mail server, any emails received by this server are not deleted and are kept in the Inbox folder of this account.</p>
+</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Ignore Mail Server Report Messages</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-"> Select this option to ignore auto-reply emails with content-type: multipart/report to prevent bounce-back messages causing a mail loop.</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Ignore On Blank Return Path</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">Select this option to ignore emails that have a blank return path in the email header to prevent bounce-back messages causing a mail loop.</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Call Template</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">Select the <a href="../admingeneral/admin%20call%20template.htm">call template</a> to be used when a call is logged from an incoming email originating from this mail server. The details specified in the template are used to populate the fields of the call. This list only displays call templates for which an Analyst or group has been assigned, to ensure that any call logged as a result of an incoming email is forwarded to an Analyst or group in the system.</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Default Logging Analyst</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">Specify the Analyst to be used as the Logging Analyst of any call logged by incoming email when either the <b>Use Linked Analyst</b> option is cleared or the <b>Use Linked Analyst</b> option is selected but the email was sent from a User only (that is, a person flagged as a User but not as an Analyst). Template Person records cannot be set as the Default Logging Analyst. If you leave this field blank, the logging Analyst will be the person who sent the email.<p class="note">Refer to the notes on <a href="#determining_a_logging_officer">how a logging Analyst is determined</a> for more details.</p>
+</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Use Linked Analyst</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">Select this option if you want the Analyst who sent the email logging the call to be the Logging Analyst.<p class="note">If the person who sent the email is flagged only as a User, the logging Analyst will be the Analyst specified in the <b>Default Logging Analyst</b> field. </p>
+<p class="note">If this option is cleared, the logging Analyst of any call generated from this incoming email server will be the Analyst specified in the <b>Default Logging Analyst</b> field. If you want the logging Analyst to always be the one specified in the <b>Default Logging Analyst</b> field, clear <b>Use Linked Analyst</b> for this incoming email account</p>
+<p class="note">Refer to the notes on <a href="#determining_a_logging_officer">how a logging Analyst is determined</a> for more details.</p>
+</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Send Auto Reply</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">Select this option if you want an automatically generated email response to be sent to any person who sends an email to this email server (for example, to log a call). </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Log New Call on Invalid Number</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">Select this option if you want a new call to be logged whenever the email server receives an incoming email with a recognized format but an invalid call number.</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Update Closed Calls</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                        <p>Enables <span class="GeneralVariablesCoreName">ASM Core</span> to add a note to a closed call when this server receives an incoming email to update the call. An email reply will be sent back to the sender stating “Call No &lt;call number&gt; has been updated by <span class="GeneralVariablesCoreName">ASM Core</span>”. Clearing this option will not add a note to the closed call and send back a reply stating “Call No &lt;call number&gt; already closed and has not been updated”.</p>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Reopen Closed Calls</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">Enables <span class="GeneralVariablesCoreName">ASM Core</span> to reopen a closed call when this server receives an incoming email with the call number in the subject line, in a recognized format, and the specified call is closed.<p class="prereq"><b>Update Closed Calls</b> must be selected to enable this option. </p>
+</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">On Reopening of Calls</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                        <p>Select one of the following options to determine what happens to a call when it is reopened from incoming email.</p>
+                                                                        <ul>
+                                                                            <li value="1">
+<b>Assign to Analyst/Group Assigned on Template</b> forwards the reopened call to the analyst/group defined in the template selected in <b>Call Template</b>
+</li>
+                                                                            <li value="2">
+<b>Assign to Analyst Sending Email</b> forwards the call to the analyst who sent the email that caused the call to reopen. If the person who sent the email does not have <b>Analyst</b> ticked in their Person record, the call is forwarded to the group selected in <b>If none then assign to IPK Group</b>.</li>
+                                                                            <li value="3">
+<b>Assign to Logging Analyst</b> forwards the reopened call to the analyst who originally logged it. If the person who logged the call does not have <b>Analyst</b> selected in their Person record, the call is forwarded to the group selected in <b>If none then assign to IPK Group</b>.</li>
+                                                                            <li value="4">
+<b>If none then assign to IPK Group</b> - select the group the reopened call is to be assigned to if none of the options above are selected, or if the conditions cannot be met.</li>
+                                                                        </ul>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Create New Calls Anonymously</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                        <p>Select this option if you want to allow creation of calls from email addresses not yet in the system. In this circumstance, a new Person record is created and used as the User for the call unless <b>Use Default User for Anonymous Email</b> is selected.</p>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Update Calls Anonymously</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">Allows the update of calls from email addresses not yet in the system. In this circumstance, a new Person record is created and used as the User performing the update action on the call unless <b>Use Default User for Anonymous Email</b> is selected.</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Close Calls Anonymously</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">Allows the closure of calls from email addresses not yet in the system.  In this circumstance, a new Person record is created and used as the User closing the call unless <b>Use Default User for Anonymous Email</b> is selected.</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Use Default User  for Anonymous Email</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">Select a User record to use for all anonymous incoming email actions. When this option is selected new Person records are not created if the sender's email address does not exist in the system.</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column1-" colspan="2">
+                                                                        <p class="warning"><span style="font-weight: normal;">Enabling the ability to allow messages from external email addresses increases the risk of unwanted updates to the call records in the system, including from unauthorized and SPAM type email addresses.</span>
+                                                                        </p>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Preserve HTML Formatting in History</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                        <p>Select this option if you want the history of calls, requests, or tasks being updated from incoming email to display the HTML formatting from the incoming email. When not selected, the incoming email is recorded in the history in plain text.</p>
+                                                                        <p class="note">Plain text emails appear as plain text in the history.</p>
+                                                                        <p class="note">If <b>Plain Text</b> is selected as the <b>Default Format</b> on the <b>Email Settings</b> window, the incoming email appears as plain text in history.</p>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Attach Email as Text</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">Select this option if you want <span class="GeneralVariablesCoreName">ASM Core</span> to attach the raw email data as an object to any calls generated or updated from incoming email. <p class="note">Raw email data consists of the entire SMTP packet in hexadecimal format, and is stored as a TXT object file.</p>
+</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Attach Email as HTML</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                        <p>Select this option if you want <span class="GeneralVariablesCoreName">ASM Core</span> to attach the formatted HTML email data as an object to any calls generated or updated from incoming email.</p>
+                                                                        <p class="note">Plain text emails are attached as a TXT object file.</p>
+                                                                    </td>
+                                                                </tr>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                    <div class="MCDropDown MCDropDown_Closed dropDown">
+<span class="MCDropDownHead dropDownHead"><a href="#" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCHotSpotImage" aria-expanded="false"><img class="MCDropDown_Image_Icon" src="/storage/app/media/Help/images/transparent.gif" height="11" width="16" alt="Closed" data-mc-alt2="Open">MAPI (RECEIVE) Incoming Mail Server Parameters</a></span>
+                                                        <div class="MCDropDownBody dropDownBody">
+                                                            <p>You can set the following options to configure incoming email for <b>MAPI</b>:</p>
+                                                            <table class="TableStyle-FieldDesc" style="mc-table-style: url('../../resources/tablestyles/fielddesc.css');margin-left: 0;margin-right: auto;" cellspacing="0">
+                                                                <col class="TableStyle-FieldDesc-Column-Column1" style="width: 186px;">
+                                                                <col class="TableStyle-FieldDesc-Column-Column2">
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Name</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">Type the name of the incoming email system you are adding or editing. This must be unique</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Protocol</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">This is a read-only field displaying the email protocol for this email server account</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Server</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">Specify the address used to connect to the MAPI server.</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Port Number</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">Type the port number on the mail server to which <span class="GeneralVariablesCoreName">ASM Core</span> must connect. The standard MAPI port is 593, which is the default setting.</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Login ID and Password</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">Type the username and password required to connect to the mail server. Ensure that this account is set up on the mail server or <span class="GeneralVariablesCoreName">ASM Core</span> will not be able to receive incoming mail.</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Active</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">Select this option to activate this email account in the system so that it can be used. <p class="warning">If this option is cleared, <span class="GeneralVariablesCoreName">ASM Core</span> will not poll this system for incoming mail.</p>
+</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Use NT Authentication</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">Select this option to use NTLM authentication for this outgoing email server account.<p class="warning">If you clear <b>Use NT Authentication</b> <span class="GeneralVariablesCoreName">ASM Core</span> will try to use the most secure authentication method available on the server and if secure methods are not provided, downgrade to less secure methods.</p>
+</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Empty Trash</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">Select this option to permanently delete all items in the Deleted Items folder for this mail account as soon as a message is deleted. Deselect it to allow the deleted items to remain in the Deleted Items folder without automatically emptying this folder.</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Ignore Mail Server Report Messages</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-"> Select this option to ignore auto-reply emails with content-type: multipart/report to prevent bounce-back messages causing a mail loop.</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Ignore On Blank Return Path</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">Select this option to ignore emails that have a blank return path in the email header to prevent bounce-back messages causing a mail loop.</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Call Template</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">Select the <a href="../admingeneral/admin%20call%20template.htm">call template</a> to be used when a call is logged from an incoming email originating from this mail server. The details specified in the template are used to populate the fields of the call. This list only displays call templates for which an Analyst or group has been assigned, to ensure that any call logged as a result of an incoming email is forwarded to an Analyst or group in the system.</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Default Logging Analyst</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">Specify the Analyst to be used as the Logging Analyst of any call logged by incoming email when either the <b>Use Linked Analyst</b> option is cleared or the <b>Use Linked Analyst</b> option is selected but the email was sent from a User only (that is, a person flagged as a User but not as an Analyst). Template Person records cannot be set as the Default Logging Analyst. If you leave this field blank, the logging Analyst will be the person who sent the email.<p class="note">Refer to the notes on <a href="#determining_a_logging_officer">how a logging Analyst is determined</a> for more details.</p>
+</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Use Linked Analyst</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">Select this option if you want the Analyst who sent the email logging the call to be the Logging Analyst.<p class="note">If the person who sent the email is flagged only as a User, the logging Analyst will be the Analyst specified in the <b>Default Logging Analyst</b> field. </p>
+<p class="note">If this option is cleared, the logging Analyst of any call generated from this incoming email server will be the Analyst specified in the <b>Default Logging Analyst</b> field. If you want the logging Analyst to always be the one specified in the <b>Default Logging Analyst</b> field, clear <b>Use Linked Analyst</b> for this incoming email account</p>
+<p class="note">Refer to the notes on <a href="#determining_a_logging_officer">how a logging Analyst is determined</a> for more details.</p>
+</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Send Auto Reply</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">Select this option if you want an automatically generated email response to be sent to any person who sends an email to this email server (for example, to log a call). </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Log New Call on Invalid Number</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">Select this option if you want a new call to be logged whenever the email server receives an incoming email with a recognized format but an invalid call number.</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Update Closed Calls</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                        <p>Enables <span class="GeneralVariablesCoreName">ASM Core</span> to add a note to a closed call when this server receives an incoming email to update the call. An email reply will be sent back to the sender stating “Call No &lt;call number&gt; has been updated by <span class="GeneralVariablesCoreName">ASM Core</span>”. Clearing this option will not add a note to the closed call and send back a reply stating “Call No &lt;call number&gt; already closed and has not been updated”.</p>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Reopen Closed Calls</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">Enables <span class="GeneralVariablesCoreName">ASM Core</span> to reopen a closed call when this server receives an incoming email with the call number in the subject line, in a recognized format, and the specified call is closed.<p class="prereq"><b>Update Closed Calls</b> must be selected to enable this option. </p>
+</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">On Reopening of Calls</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                        <p>Select one of the following options to determine what happens to a call when it is reopened from incoming email.</p>
+                                                                        <ul>
+                                                                            <li value="1">
+<b>Assign to Analyst/Group Assigned on Template</b> forwards the reopened call to the analyst/group defined in the template selected in <b>Call Template</b> initially used to create the call. If the call was not logged via a Call Template or if it was used by a Call Template and the template does not have an analyst or group assigned then the call is assigned to the IPK Group selected in the box below.</li>
+                                                                            <li value="2">
+<b>Assign to Analyst Sending Email</b> forwards the call to the analyst who sent the email that caused the call to reopen. If the person who sent the email does not have <b>Analyst</b> ticked in their Person record, the call is forwarded to the group selected in <b>If none then assign to IPK Group</b>.</li>
+                                                                            <li value="3">
+<b>Assign to Logging Analyst</b> forwards the reopened call to the analyst who originally logged it. If the person who logged the call does not have <b>Analyst</b> selected in their Person record, the call is forwarded to the group selected in <b>If none then assign to IPK Group</b>.</li>
+                                                                            <li value="4">
+<b>If none then assign to IPK Group</b> - select the group the reopened call is to be assigned to if none of the options above are selected, or if the conditions cannot be met.</li>
+                                                                        </ul>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Create New Calls Anonymously</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                        <p>Select this option if you want to allow creation of calls from email addresses not yet in the system. In this circumstance, a new Person record is created and used as the User for the call unless <b>Use Default User for Anonymous Email</b> is selected.</p>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Update Calls Anonymously</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">Allows the update of calls from email addresses not yet in the system. In this circumstance, a new Person record is created and used as the User performing the update action on the call unless <b>Use Default User for Anonymous Email</b> is selected.</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Close Calls Anonymously</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">Allows the closure of calls from email addresses not yet in the system.  In this circumstance, a new Person record is created and used as the User closing the call unless <b>Use Default User for Anonymous Email</b> is selected.</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Use Default User  for Anonymous Email</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">Select a User record to use for all anonymous incoming email actions. When this option is selected new Person records are not created if the sender's email address does not exist in the system.</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column1-" colspan="2">
+                                                                        <p class="warning"><span style="font-weight: normal;">Enabling the ability to allow messages from external email addresses increases the risk of unwanted updates to the call records in the system, including from unauthorized and SPAM type email addresses.</span>
+                                                                        </p>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Preserve HTML Formatting in History</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                        <p>Select this option if you want the history of calls, requests, or tasks being updated from incoming email to display the HTML formatting from the incoming email. When not selected, the incoming email is recorded in the history in plain text.</p>
+                                                                        <p class="note">Plain text emails appear as plain text in the history.</p>
+                                                                        <p class="note">If <b>Plain Text</b> is selected as the <b>Default Format</b> on the <b>Email Settings</b> window, the incoming email appears as plain text in history.</p>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Attach Email as Text</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">Select this option if you want <span class="GeneralVariablesCoreName">ASM Core</span> to attach the raw email data as an object to any calls generated or updated from incoming email. <p class="note">Raw email data consists of the entire SMTP packet in hexadecimal format, and is stored as a TXT object file.</p>
+</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Attach Email as HTML</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                        <p>Select this option if you want <span class="GeneralVariablesCoreName">ASM Core</span> to attach the formatted HTML email data as an object to any calls generated or updated from incoming email.</p>
+                                                                        <p class="note">Plain text emails are attached as a TXT object file.</p>
+                                                                    </td>
+                                                                </tr>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                    <div class="MCDropDown MCDropDown_Closed dropDown">
+<span class="MCDropDownHead dropDownHead"><a href="#" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCHotSpotImage" aria-expanded="false"><img class="MCDropDown_Image_Icon" src="/storage/app/media/Help/images/transparent.gif" height="11" width="16" alt="Closed" data-mc-alt2="Open">EWS Incoming Mail Server Parameters</a></span>
+                                                        <div class="MCDropDownBody dropDownBody">
+                                                            <p>You can set the following options to configure incoming email for <b>POP3</b>:</p>
+                                                            <table class="TableStyle-FieldDesc" style="mc-table-style: url('../../resources/tablestyles/fielddesc.css');margin-left: 0;margin-right: auto;" cellspacing="0">
+                                                                <col class="TableStyle-FieldDesc-Column-Column1" style="width: 107px;">
+                                                                <col class="TableStyle-FieldDesc-Column-Column2">
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Name</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">Type the name of the incoming email system you are adding or editing. This must be unique</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Protocol</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">This is a read-only field displaying the email protocol for this email server account.</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Server</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">Specify the address used to connect to the POP3 server.</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Port Number</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">Type the port number on the mail server to which <span class="GeneralVariablesCoreName">ASM Core</span> must connect. The standard POP3 port is 110, which is the default setting.</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Login ID and Password</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">Type the username and password required to connect to the mail server. Ensure that this account is set up on the mail server otherwise <span class="GeneralVariablesCoreName">ASM Core</span> will not be able to receive incoming mail.</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Active</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">Select this option to activate this email account in the system so that it can be used. If this option is cleared, <span class="GeneralVariablesCoreName">ASM Core</span> will not poll this system for incoming mail.</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Enable SSL Certificate Generation</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">Select this option when the SSL Certificate of the exchange server needs to be validated. Required when <b>Require HTTPS</b> is enabled.</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Exchange Version</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">Select the version of the exchange server. </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Use UTC Time Zone</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">Not Applicable.</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Accept GZIP Encoding</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                        <p>Select this option to accept GZIP compressed content. The exchange server must also be configured to accept GZIP compressed content.</p>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Connection Timeout</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                        <p>Enter the number of seconds after which timeouts fail. Set the value to zero (0) to have no timeout.</p>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Content Encoding</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">Not Applicable.</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Shared Mailbox</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">Not Applicable.</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Require HTTPS</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">Selected by default. Required for Exchange 365.</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Call Template</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">Select the <a href="../admingeneral/admin%20call%20template.htm">call template</a> to be used when a call is logged from an incoming email originating from this mail server. The details specified in the template are used to populate the fields of the call. This list only displays call templates for which an Analyst or group has been assigned, to ensure that any call logged as a result of an incoming email is forwarded to an Analyst or group in the system.</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Default Logging Analyst</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">Specify the Analyst to be used as the Logging Analyst of any call logged by incoming email when either the <b>Use Linked Analyst</b> option is cleared or the <b>Use Linked Analyst</b> option is selected but the email was sent from a User only (that is, a person flagged as a User but not as an Analyst). Template Person records cannot be set as the Default Logging Analyst. If you leave this field blank, the logging Analyst will be the person who sent the email.<p class="note">Refer to the notes on <a href="#determining_a_logging_officer">how a logging Analyst is determined</a> for more details.</p>
+</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Use Linked Analyst</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">Select this option if you want the Analyst who sent the email logging the call to be the Logging Analyst.<p class="note">If the person who sent the email is flagged only as a User, the logging Analyst will be the Analyst specified in the <b>Default Logging Analyst</b> field. </p>
+<p class="note">If this option is cleared, the logging Analyst of any call generated from this incoming email server will be the Analyst specified in the <b>Default Logging Analyst</b> field. If you want the logging Analyst to always be the one specified in the <b>Default Logging Analyst</b> field, clear <b>Use Linked Analyst</b> for this incoming email account</p>
+<p class="note">Refer to the notes on <a href="#determining_a_logging_officer">how a logging Analyst is determined</a> for more details.</p>
+</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Send Auto Reply</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">Select this option if you want an automatically generated email response to be sent to any person who sends an email to this email server (for example, to log a call). </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Log New Call on Invalid Number</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">Select this option if you want a new call to be logged whenever the email server receives an incoming email with a recognized format but an invalid call number.</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Update Closed Calls</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                        <p>Enables <span class="GeneralVariablesCoreName">ASM Core</span> to add a note to a closed call when this server receives an incoming email to update the call. An email reply will be sent back to the sender stating “Call No &lt;call number&gt; has been updated by <span class="GeneralVariablesCoreName">ASM Core</span>”. Clearing this option will not add a note to the closed call and send back a reply stating “Call No &lt;call number&gt; already closed and has not been updated”.</p>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Reopen Closed Calls</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">Enables <span class="GeneralVariablesCoreName">ASM Core</span> to reopen a closed call when this server receives an incoming email with the call number in the subject line, in a recognized format, and the specified call is closed.<p class="prereq"><b>Update Closed Calls</b> must be selected to enable this option. </p>
+</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">On Reopening of Calls</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                        <p>Select one of the following options to determine what happens to a call when it is reopened from incoming email.</p>
+                                                                        <ul>
+                                                                            <li value="1">
+<b>Assign to Analyst/Group Assigned on Template</b> forwards the reopened call to the analyst/group defined in the template selected in <b>Call Template</b>
+</li>
+                                                                            <li value="2">
+<b>Assign to Analyst Sending Email</b> forwards the call to the analyst who sent the email that caused the call to reopen. If the person who sent the email does not have <b>Analyst</b> ticked in their Person record, the call is forwarded to the group selected in <b>If none then assign to IPK Group</b>.</li>
+                                                                            <li value="3">
+<b>Assign to Logging Analyst</b> forwards the reopened call to the analyst who originally logged it. If the person who logged the call does not have <b>Analyst</b> selected in their Person record, the call is forwarded to the group selected in <b>If none then assign to IPK Group</b>.</li>
+                                                                            <li value="4">
+<b>If none then assign to IPK Group</b> - select the group the reopened call is to be assigned to if none of the options above are selected, or if the conditions cannot be met.</li>
+                                                                        </ul>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Create New Calls Anonymously</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                        <p>Select this option if you want to allow creation of calls from email addresses not yet in the system. In this circumstance, a new Person record is created and used as the User for the call unless <b>Use Default User for Anonymous Email</b> is selected.</p>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Update Calls Anonymously</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">Allows the update of calls from email addresses not yet in the system. In this circumstance, a new Person record is created and used as the User performing the update action on the call unless <b>Use Default User for Anonymous Email</b> is selected.</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Close Calls Anonymously</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">Allows the closure of calls from email addresses not yet in the system.  In this circumstance, a new Person record is created and used as the User closing the call unless <b>Use Default User for Anonymous Email</b> is selected.</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Use Default User  for Anonymous Email</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">Select a User record to use for all anonymous incoming email actions. When this option is selected new Person records are not created if the sender's email address does not exist in the system.</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column1-" colspan="2">
+                                                                        <p class="warning"><span style="font-weight: normal;">Enabling the ability to allow messages from external email addresses increases the risk of unwanted updates to the call records in the system, including from unauthorized and SPAM type email addresses.</span>
+                                                                        </p>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Preserve HTML Formatting in History</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                        <p>Select this option if you want the history of calls, requests, or tasks being updated from incoming email to display the HTML formatting from the incoming email. When not selected, the incoming email is recorded in the history in plain text.</p>
+                                                                        <p class="note">Plain text emails appear as plain text in the history.</p>
+                                                                        <p class="note">If <b>Plain Text</b> is selected as the <b>Default Format</b> on the <b>Email Settings</b> window, the incoming email appears as plain text in history.</p>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Attach Email as Text</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">Select this option if you want <span class="GeneralVariablesCoreName">ASM Core</span> to attach the raw email data as an object to any calls generated or updated from incoming email. <p class="note">Raw email data consists of the entire SMTP packet in hexadecimal format, and is stored as a TXT object file.</p>
+</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Attach Email as HTML</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                        <p>Select this option if you want <span class="GeneralVariablesCoreName">ASM Core</span> to attach the formatted HTML email data as an object to any calls generated or updated from incoming email.</p>
+                                                                        <p class="note">Plain text emails are attached as a TXT object file.</p>
+                                                                    </td>
+                                                                </tr>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                    <h2>
+<a name="Methods"></a>Methods of Authentication for Mail Servers</h2>
+                                                    <p>The following table describes the different methods of mail server authentication that can be selected for incoming and outgoing email on the <b>Email Settings</b> window. </p>
+                                                    <table class="TableStyle-Rep_Hdr_Row" style="mc-table-style: url('../../resources/tablestyles/rep hdr row.css');margin-left: 0;margin-right: auto;" cellspacing="0">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column1">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column2">
+                                                        <thead>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Head-Header1">
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column1-Header1">Authentication Method</th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadD-Column2-Header1">Description</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr style="height: 15pt;" class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">(No authentication) </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">No authentication is used. This is often used with SMTP servers. </td>
+                                                            </tr>
+                                                            <tr style="height: 38pt;" class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">Standard Authentication </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">The Standard authentication method is used.  Passwords are transmitted as clear-text. This method is not supported by SMTP servers. </td>
+                                                            </tr>
+                                                            <tr style="height: 39pt;" class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">APOP Authentication </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">Secure APOP authentication. This is supported by most POP3 servers, but cannot be used with other servers like SMTP because APOP is not a SASL method. </td>
+                                                            </tr>
+                                                            <tr style="height: 27pt;" class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">SASL Login Authentication </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">SASL LOGIN authentication. It is not secure but is widely supported. Passwords are transmitted as Base64 strings. </td>
+                                                            </tr>
+                                                            <tr style="height: 27pt;" class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">SASL Plain Authentication </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">SASL PLAIN authentication. It is not secure but is widely supported. Passwords are transmitted as Base64 strings. </td>
+                                                            </tr>
+                                                            <tr style="height: 27pt;" class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">SASL Cram-MD5 Authentication </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">Secure SASL CRAM-MD5 authentication. Might not be supported by particular server implementations. </td>
+                                                            </tr>
+                                                            <tr style="height: 27pt;" class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">SASL Digest-MD5 Authentication </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">Secure SASL DIGEST-MD5 authentication. Might not be supported by particular server implementations. </td>
+                                                            </tr>
+                                                            <tr style="height: 38pt;" class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">SASL NTLM Authentication </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">Secure SASL NTLM authentication (also known as Secure Password Authentication - SPA). Might not be supported by particular server implementations. </td>
+                                                            </tr>
+                                                            <tr style="height: 27pt;" class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">SASL MSN Authentication </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">Secure SASL MSN authentication (equivalent to NTLM). Might not be supported by particular server implementations. </td>
+                                                            </tr>
+                                                            <tr style="height: 39pt;" class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyB-Column1-Body1">SASL GSS Authentication </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyA-Column2-Body1">Secure SASL GSS API authentication (Kerberos). Used to authenticate the current Windows account in Windows domain environments such as Active Directory. </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <h3>
+<a name="determining_a_logging_officer"></a>How the Logging Analyst is Determined on an Incoming Email </h3>
+                                                    <p>The following table summarizes who is considered as the logging Analyst for a call logged through incoming email.</p>
+                                                    <table class="TableStyle-Rep_Hdr_Row" style="margin-left: 0;margin-right: auto;mc-table-style: url('../../resources/tablestyles/rep hdr row.css');" cellspacing="0">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column1">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column2">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column1">
+                                                        <thead>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Head-Header1">
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column1-Header1">
+                                                                    <p>Person sending call</p>
+                                                                </th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column2-Header1">
+<b style="font-style: italic;">Use Linked Analyst</b> is deselected</th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadD-Column1-Header1">
+<b style="font-style: italic;">Use Linked Analyst</b> is selected</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">Analyst only, or person flagged both as an Analyst and a User </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">The logging Analyst is the person specified in the <b>Default Logging Analyst</b> field.</td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">The logging Analyst is the person sending the email</td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyB-Column1-Body1">User only</td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyB-Column2-Body1">The logging Analyst is the person specified in the <b>Default Logging Analyst</b> field.</td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyA-Column1-Body1">The logging Analyst is the person specified in the <b>Default Logging Analyst</b> field.</td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <h2>
+<a name="Testing"></a>Testing Email Server Settings</h2>
+                                                    <p>You can test the functionality of the outgoing and incoming email servers.</p>
+                                                    <h3>Testing Outgoing Email Settings</h3>
+                                                    <h2 class="Prerequisite">Before you start</h2>
+                                                    <p class="prereqtext">Make sure you have entered the relevant fields to <a href="#Configur">set up Outgoing Email</a>; this includes the <b>Password</b> field for the email account you are using for outgoing email.</p>
+                                                    <ol>
+                                                        <li value="1">Complete the details as follows:</li>
+                                                        <p>
+                                                            </p>
+<table class="TableStyle-FieldDesc" style="mc-table-style: url('../../resources/tablestyles/fielddesc.css');margin-left: 0;margin-right: auto;" cellspacing="0">
+                                                                <col class="TableStyle-FieldDesc-Column-Column1">
+                                                                <col class="TableStyle-FieldDesc-Column-Column2">
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">To Address</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">Type the email address to which the message is being sent</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">CC</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">Further address(es) for people to be copied in on an email</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">BCC</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">Further address(es) for people to be blind copied in on an email</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Subject</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">The subject of the email</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Message</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">You can put in some text for the email in the <b>Message</b> box if you like, though it is not necessary.</td>
+                                                                </tr>
+                                                            </table>
+                                                        
+                                                        <li value="2">Select <b>OK</b> to test the email.</li>
+                                                        <p>
+                                                            </p>
+<table class="TableStyle-FieldDesc" style="mc-table-style: url('../../resources/tablestyles/fielddesc.css');margin-left: 0;margin-right: auto;" cellspacing="0">
+                                                                <col class="TableStyle-FieldDesc-Column-Column1">
+                                                                <col class="TableStyle-FieldDesc-Column-Column2">
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Status</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">The result of the test, that is, whether the email was successfully sent</td>
+                                                                </tr>
+                                                            </table>
+                                                        
+                                                    </ol>
+                                                    <h3>Testing Incoming Email Settings</h3>
+                                                    <p>To use this window, first send a message to the incoming mailbox you have selected to test, and then select <b>OK</b>. The sender, subject and message are displayed in the <b>Message</b> box (if the mail gets through). The status of the mail, that is whether it was successfully received, appears in the <b>Status</b> box. </p>
+                                                

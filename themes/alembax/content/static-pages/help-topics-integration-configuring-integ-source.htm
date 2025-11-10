@@ -1,0 +1,81 @@
+[viewBag]
+title = "Configuring an Integration Source"
+url = "/help/topics/integration/configuring-integ-source"
+layout = "help"
+is_hidden = 0
+navigation_hidden = 0
+==
+                                                    <h1>
+<a name="top"></a>Configuring an Integration Source</h1>
+                                                    <p style="background-color: #ffff00;">Sources enables us to define and configure instances of external sources with which <span class="GeneralVariablesProductName">ASM</span> can connect in order to import or update any object, manage alert or exchange information. In order to achieve this, we need to define the source.</p>
+                                                    <p>To import resources from a source for Federated CMDB integration, or handle events for Event Management, you must configure the source.</p>
+                                                    <h2 class="Prerequisite">Before you start</h2>
+                                                    <p class="prereqtextlast">You must have <b>Integration Setup</b> selected in the <a href="../admin%20security%20roles/general%20access%20security%20role%20-%20admin%20tab.htm">Admin</a> tab of your <b>General Access Security Role</b>. </p>
+                                                    <p> </p>
+                                                    <ol>
+                                                        <li value="1">
+                                                            <p>Select <a href="../general%20topics/asmcorewindow.htm"><span style="font-size: 24pt;">≡</span></a> &gt; <b>Admin</b> &gt;  <b>Integration</b>.  </p>
+                                                            <p>The <b>Integration Platform Settings</b> window appears.</p>
+                                                        </li>
+                                                        <li value="2">Select the <b>Sources</b> option from the explorer pane. Add a new source, or select one of the existing sources.</li>
+                                                        <li value="3">The <b>Integration Source Details</b> window allows you to create an instance of a source for a particular connector. It displays the details for the selected source when integrated with the selected connector. Some details are common while others are particular to the connector.</li>
+                                                        <li value="4">Complete the details.</li>
+                                                        <table style="mc-table-style: url('../../resources/tablestyles/fielddesc.css');" class="TableStyle-FieldDesc" cellspacing="0">
+                                                            <col class="TableStyle-FieldDesc-Column-Column1">
+                                                            <col class="TableStyle-FieldDesc-Column-Column2">
+                                                            <tr>
+                                                                <td class="TableStyle-FieldDesc-BodyH-Column1-">Name</td>
+                                                                <td class="TableStyle-FieldDesc-BodyG-Column2-">Type a name to identify the source</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="TableStyle-FieldDesc-BodyH-Column1-">Status</td>
+                                                                <td class="TableStyle-FieldDesc-BodyG-Column2-">Select a status for the source in the drop-down list. This can be Active or Inactive, depending on whether the source is currently in use:<p>Select Active to activate the source and perform any integration tasks on the source, such as a scheduled scan.</p>
+<p>Select Inactive to disable any tasks for the source.</p>
+</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="TableStyle-FieldDesc-BodyH-Column1-">Connector</td>
+                                                                <td class="TableStyle-FieldDesc-BodyG-Column2-">This field is automatically populated based on the selected connector, as defined in the Connector DLL, and is read-only.</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="TableStyle-FieldDesc-BodyH-Column1-">Assembly.TypeName</td>
+                                                                <td class="TableStyle-FieldDesc-BodyG-Column2-">This field is automatically populated based on the selected connector, as defined in the Connector DLL, and is read-only.</td>
+                                                            </tr>
+                                                        </table>
+                                                        <li value="5">Specify the <b>Connection Parameters</b> and any other parameters for the specific connector. These fields are dependent on the source and connector, that is, only the fields which apply to the source appear, and they may be named differently for different sources. For more information, select the type of integration connector whose source details you are defining:<ul start="1">
+<li value="1">
+<a href="directory%20server%20parameters.htm">Federated CMDB</a> (Directory Server)</li>
+<li value="2">
+<a href="network%20discovery%20tool%20parameters.htm">Federated CMDB</a> (Network Discovery Tool)</li>
+<li value="3"><a href="event%20management%20source%20parameters.htm">Event Management </a></li>
+<li value="4"><a href="configuring%20inbound%20and%20outbound.htm">Inbound and Outbound Actions</a></li>
+</ul>
+</li>
+                                                        <li value="6">Connector-specific fields are described in the <a href="../connectors/connector%20installation%20guide.htm">Connector Installation</a> documentation, as well as in the technical notes for each connector.</li>
+                                                        <li value="7">Select <img src="/storage/app/media/Help/images/save%20button.png">  to save the changes.</li>
+                                                        <li value="8">Select <img src="/storage/app/media/Help/images/test%20connector%20btn.png"> from the toolbar to verify that <span class="GeneralVariablesCoreName">ASM Core</span> can connect to this source. A dialog box appears informing you of the success or failure of this test.</li>
+                                                    </ol>
+                                                    <h2>Network Discovery Tool Parameters</h2>
+                                                    <p>Besides the common fields for configuring an integration source, some fields for a network discovery tool may appear for the specific third party connector. These fields are dependent on the source and will be named differently for different sources. </p>
+                                                    <table style="mc-table-style: url('../../resources/tablestyles/fielddesc.css');" class="TableStyle-FieldDesc" cellspacing="0">
+                                                        <col class="TableStyle-FieldDesc-Column-Column1">
+                                                        <col class="TableStyle-FieldDesc-Column-Column2">
+                                                        <tr class="TableStyle-scenario_table-Body-Body1">
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">
+                                                                <p>Connection String</p>
+                                                            </td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                <p>This is the database connector string. </p>
+                                                                <p class="exampletext">Data Source=GLO2K3SYSQL2005;User ID=DEV_USER;Password=*****;Initial Catalog=SMS_MOD;Persist Security Info=True;Application Name=<span class="GeneralVariablesProductName">ASM</span>.</p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="TableStyle-scenario_table-Body-Body1">
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">
+                                                                <p>Login ID and Password</p>
+                                                            </td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                <p>These are the user ID and password that will be used to log onto the source database</p>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                

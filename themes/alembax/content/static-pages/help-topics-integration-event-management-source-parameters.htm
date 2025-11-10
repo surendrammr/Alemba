@@ -1,0 +1,68 @@
+[viewBag]
+title = "Event Management Source Parameters"
+url = "/help/topics/integration/event-management-source-parameters"
+layout = "help"
+is_hidden = 0
+navigation_hidden = 0
+==
+                                                    <h1>Event Management Source Parameters</h1>
+                                                    <p>Besides the common fields for configuring an integration source, more fields are available when you configure a source for an event management connector:</p>
+                                                    <table style="margin-left: 0;margin-right: auto;mc-table-style: url('../../resources/tablestyles/fielddesc.css');" class="TableStyle-FieldDesc" cellspacing="0">
+                                                        <col class="TableStyle-FieldDesc-Column-Column1">
+                                                        <col class="TableStyle-FieldDesc-Column-Column2">
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">
+                                                                <p>Max Number of Transaction Attempts</p>
+                                                            </td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                <p>Specify the number of attempts for <span class="GeneralVariablesCoreName">ASM Core</span> to establish a connection with the source before declaring a failure to connect. This applies to each event management transaction that <span class="GeneralVariablesCoreName">ASM Core</span> attempts to send to the source</p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">
+                                                                <p>Time between Transaction Attempts</p>
+                                                            </td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                <p>The length of time between each connection attempt</p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">
+                                                                <p>Asynchronous Transaction Timeout</p>
+                                                            </td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                <p>The maximum length of time given to the connector to notify <span class="GeneralVariablesCoreName">ASM Core</span> as to whether a transaction has completed or failed. This is a mandatory field.</p>
+                                                                <p>Synchronous transactions are transactions that complete or fail immediately when they are executed. Asynchronous transactions, on the other hand, are transactions that do not complete or fail immediately: the connector notifies <span class="GeneralVariablesCoreName">ASM Core</span> within a specified time as to whether the transaction has completed or failed. The timeout is the maximum time given to the connector to notify <span class="GeneralVariablesCoreName">ASM Core</span>. If the transaction is not completed or failed within this period, the transaction is declared “timed out” and the attempt considered failed. </p>
+                                                                <p class="note">This setting applies to individual transactions for a particular event – not to the event itself. For example, an event has an unlimited amount of time after the CREATE event to send <span class="GeneralVariablesCoreName">ASM Core</span> a RESOLVE or a DELETE transaction. However, each individual UPDATE or NOTIFY transaction related to that event is bound by this setting.</p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">
+                                                                <p>Send Fault Notifications</p>
+                                                            </td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                <p>Select this option to send notifications to specified parties when a transaction fails to be sent to the source. When this option is selected, the fields below are enabled. Use these fields to configure notifications and the recipients who need to be notified.</p>
+                                                                <table style="mc-table-style: url('../../resources/tablestyles/fielddesc no indent.css');" class="TableStyle-FieldDesc_no_indent" cellspacing="0">
+                                                                    <col style="width: 55px;" class="TableStyle-FieldDesc_no_indent-Column-Column1">
+                                                                    <col class="TableStyle-FieldDesc_no_indent-Column-Column2">
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">
+                                                                            <p>Always</p>
+                                                                        </td>
+                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">
+                                                                            <p>sends notifications to the specified recipients after each failed attempt</p>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">
+                                                                            <p>After</p>
+                                                                        </td>
+                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">
+                                                                            <p>sends notifications to the specified recipients only after a defined number of failed attempts. Type the number of attempts in the Failed Attempt(s) field</p>
+                                                                        </td>
+                                                                    </tr>
+                                                                </table>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                

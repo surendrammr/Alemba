@@ -1,0 +1,848 @@
+[viewBag]
+title = "Pre-Populating Search Fields"
+url = "/help/topics/urls-and-access-parameters/url-portal-searches"
+layout = "help"
+is_hidden = 0
+navigation_hidden = 0
+==
+                                                    <h1>Pre-Populating Search Fields</h1>
+                                                    <p>This section lists parameters that can be appended to the base Self Service portal URLs  for the purpose of pre-populating fields on search criteria pages in the <span class="GeneralVariablesSelfServicePortalName">Self Service Portal</span>.</p>
+                                                    <h2>
+<a name="top"></a>Knowledge Search</h2>
+                                                    <p>The Knowledge Search page in the <span class="GeneralVariablesSelfServicePortalName">Self Service Portal</span> can be pre-populated by appending parameters to the basic Knowledge Search URL: </p>
+                                                    <p>URL: http://&lt;server_name&gt;/&lt;virtual_directory&gt;/Core.aspx?Lite&amp;<span class="Bold">Form=KnowledgeSearchCriteria</span></p>
+                                                    <table class="TableStyle-Rep_Hdr_Row" style="mc-table-style: url('../../resources/tablestyles/rep hdr row.css');width: 100%;" cellspacing="0">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column1" style="width: 60%;">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column2" style="width: 40%;">
+                                                        <thead>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Head-Header1">
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column1-Header1">
+                                                                    <p class="Tableheading">Parameter</p>
+                                                                </th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadD-Column2-Header1">
+                                                                    <p class="Tableheading">Description</p>
+                                                                </th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p class="Tabletext"><b>BTN_SEARCH</b>
+                                                                    </p>
+                                                                    <p class="Tabletext">http://&lt;server_name&gt;/&lt;virtual_directory&gt;/Core.aspx?Lite&amp;Form=KnowledgeSearchCriteria&amp;<span class="Bold">BTN_SEARCH=Search</span></p>
+                                                                    <p class="exampletext"><b>Example 1</b>
+                                                                        <br>http://&lt;server_name&gt;/&lt;virtual_directory&gt;/Core.aspx?Lite&amp;Form=KnowledgeSearchCriteria&amp;BTN_SEARCH=Search</p>
+                                                                    <p class="exampletext"><b>Example 2</b>
+                                                                        <br>http://&lt;server_name&gt;/&lt;virtual_directory&gt;/Core.aspx?Lite&amp;Form=KnowledgeSearchCriteria&amp;Type_List=501,503<span class="Bold">&amp;BTN_SEARCH=Search</span></p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p class="Tabletext">Add <span class="Bold">BTN_SEARCH=Search</span> to the URL to automatically run the search. Users will be taken directly to the results page. </p>
+                                                                    <p class="Tabletext">If the URL does not contain this parameter, users are taken to the search criteria page where they will need to manually select the Search button.</p>
+                                                                    <p class="Tabletext"><b>Example 1</b> opens the Knowledge Search Results page with a list of all knowledge articles published to the Portal. This is equivalent to clicking Search without having specified any search options.</p>
+                                                                    <p class="Tabletext"><b>Example 2</b> opens the Knowledge Search Results page with a list of all FAQ and Known Issue knowledge entries published to the Portal.</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p class="Tabletext"><b>Type_List</b>
+                                                                    </p>
+                                                                    <p class="Tabletext">http://&lt;server_name&gt;/&lt;virtual_directory&gt;/Core.aspx?Lite&amp;Form=KnowledgeSearchCriteria&amp;<span class="Bold">Type_List=&lt;type_ref&gt;,&lt;type_ref&gt;</span></p>
+                                                                    <ul>
+                                                                        <li class="Tabletext_1" value="1">where <span class="Bold">&lt;type_ref&gt;</span> is the unique reference of the knowledge type</li>
+                                                                    </ul>
+                                                                    <p class="exampletext">Example: http://&lt;server_name&gt;/&lt;virtual_directory&gt;/Core.aspx?Lite&amp;Form=KnowledgeSearchCriteria&amp;<span class="Bold">Type_List=501,503</span></p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p class="Tabletext">Use this parameter to specify the knowledge type in the URL, such as FAQ or Call. The TYPE_LIST parameter can have multiple comma separated values.</p>
+                                                                    <p class="Tabletext">The example URL opens the Knowledge Search criteria page with the <span class="Bold">Known Issues</span> and <span class="Bold">FAQ</span> checkboxes already selected.</p>
+                                                                    <p class="Tabletext">The unique reference is found in ENTITY_TYPE.KB_BASE_TYPE in the database.</p>
+                                                                    <p class="Tabletext">The following values are the <span class="span_2">default</span> values for each knowledge type, these values may differ in non-standard databases:</p>
+                                                                    <ul>
+                                                                        <li value="1">
+<span class="Bold">500</span> = Abstract</li>
+                                                                        <li value="2">
+<span class="Bold">502</span> = Call</li>
+                                                                        <li value="3">
+<span class="Bold">501 </span>= FAQ</li>
+                                                                        <li value="4">
+<span class="Bold">503 </span>= Known issue</li>
+                                                                        <li value="5">
+<span class="Bold">505</span> = Physical directory</li>
+                                                                        <li value="6">
+<b>504</b> = URL / Website</li>
+                                                                    </ul>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p class="Tabletext"><b>KnowledgeTemplate</b>
+                                                                    </p>
+                                                                    <p class="Tabletext">http://&lt;server_name&gt;/&lt;virtual_directory&gt;/Core.aspx?Lite&amp;Form=KnowledgeSearchCriteria&amp;<span class="Bold">KnowledgeTemplate=&lt;kbtemplate&gt;</span></p>
+                                                                    <ul>
+                                                                        <li class="Tabletext_1" value="1">where <span class="Bold">&lt;kbtemplate</span>&gt; is the page template</li>
+                                                                    </ul>
+                                                                    <p class="exampletext">http://&lt;server_name&gt;/&lt;virtual_directory&gt;/Core.aspx?Lite&amp;Form=KnowledgeSearchCriteria&amp;<span class="Bold">KnowledgeTemplate=FAQ</span></p>
+                                                                    <p class="warning">If appending <span class="Bold">BTN_Search=Search</span> to the example URL, the search results display automatically and include <i>all</i> knowledge articles, not just FAQ. To ensure articles of the correct type are returned when automating the search, include the <b>Type_List</b> parameter.</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p class="Tabletext">Use this parameter to specify a non-default template for the knowledge search criteria page. The FAQ and KnownIssues templates display the heading as FAQ or Known Issues respectively, and offer different search options.</p>
+                                                                    <p class="Tabletext">The default knowledge search criteria template is LiteKnowledgeSearchResults.htm</p>
+                                                                    <p class="Tabletext">The example URL opens the FAQ Knowledge Search criteria page.  selecting <span class="Bold">Search</span> on that window returns FAQ knowledge articles only.</p>
+                                                                    <p class="Tabletext">Search criteria templates exist in the system folder on the server.</p>
+                                                                    <p class="Tabletext">The following values can be passed to this parameter:</p>
+                                                                    <ul>
+                                                                        <li value="1">
+<span class="Bold">FAQ</span> = FAQ search criteria window</li>
+                                                                        <li value="2">
+<span class="Bold">KnownIssues</span> = Known Issue search criteria window</li>
+                                                                    </ul>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p class="Tabletext"><b>Format_Template</b>
+                                                                    </p>
+                                                                    <p class="Tabletext">http://&lt;server_name&gt;/&lt;virtual_directory&gt;/Core.aspx? Lite&amp;Form=KnowledgeSearchCriteria&amp;<b>Format_Template=&lt;format_file&gt;</b></p>
+                                                                    <ul>
+                                                                        <li class="Tabletext_1" value="1">where <span class="Bold">&lt;format_file&gt;</span> is the file name of the format template</li>
+                                                                    </ul>
+                                                                    <p class="exampletext">http://&lt;server_name&gt;/&lt;virtual_directory&gt;/Core.aspx? Lite&amp;Form=KnowledgeSearchCriteria&amp;<b>Format_Template=FormatLiteFAQ</b>&amp;<b>KnowledgeTemplate=FAQ</b></p>
+                                                                    <p class="Tabletext">As shown in the example, when using <b>Format_Template</b>, you must append a compatible <b>KnowledgeTemplate</b> parameter otherwise formatting issues may occur.<br>The default KnowledgeTemplate is not compatible with all format templates.</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p class="Tabletext">Use this parameter to specify a non-default template for the search results page. These templates control the format of the rows in the results.</p>
+                                                                    <p class="Tabletext">The default knowledge results format template is FormatKnowledgeSearchLite.ifmt</p>
+                                                                    <p class="Tabletext">The example URL displays results using the format defined for FAQs.</p>
+                                                                    <p class="Tabletext">The templates are found in the Format folder under the system folder on the server.</p>
+                                                                    <p class="Tabletext">Templates that ship with the application:</p>
+                                                                    <ul>
+                                                                        <li value="1">FormatLiteFAQ.ifmt</li>
+                                                                        <li value="2">FormatLiteKnownIssues.ifmt</li>
+                                                                        <li value="3">FormatKnowledgeSearchLiteSimple.ifmt</li>
+                                                                    </ul>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p class="Tabletext"><b>Search_Query</b>
+                                                                    </p>
+                                                                    <p class="Tabletext">http://&lt;server_name&gt;/&lt;virtual_directory&gt;/Core.aspx?Lite&amp;Form=KnowledgeSearchCriteria&amp;<b>Search_Query=&lt;text&gt;</b></p>
+                                                                    <ul>
+                                                                        <li class="Tabletext_1" value="1">where <span class="Bold">&lt;text&gt;</span> is the text to search on</li>
+                                                                    </ul>
+                                                                    <p class="exampletext">http://&lt;server_name&gt;/&lt;virtual_directory&gt;/Core.aspx?Lite&amp;Form=KnowledgeSearchCriteria&amp;<b>Search_Query=broken laptop screen</b></p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p class="Tabletext">Use this parameter to populate the <span class="Bold">Search Text</span> field on the search window.</p>
+                                                                    <p class="Tabletext">The example URL opens the knowledge search criteria window with the words “broken laptop screen” in the Search Text field.</p>
+                                                                    <p class="Tabletext">This parameter can be blank.</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p class="Tabletext"><b>All_Words</b>
+                                                                    </p>
+                                                                    <p class="Tabletext">http://&lt;server_name&gt;/&lt;virtual_directory&gt;/Core.aspx?Lite&amp;Form=KnowledgeSearchCriteria&amp;<b>All_Words=&lt;Y/N&gt;</b></p>
+                                                                    <ul>
+                                                                        <li class="Tabletext_1" value="1">where <span class="Bold">&lt;Y/N&gt;</span> is the flag indicating whether to include all words or any words</li>
+                                                                    </ul>
+                                                                    <p class="exampletext">http://&lt;server_name&gt;/&lt;virtual_directory&gt;/Core.aspx?Lite&amp;Form=KnowledgeSearchCriteria&amp;<b>All_Words=N</b></p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p class="Tabletext">Use this parameter to enable one of the <span class="Bold">Search Text</span> options on the search window.</p>
+                                                                    <p class="Tabletext">The default selection is All Words.</p>
+                                                                    <p class="Tabletext">The example URL opens the knowledge search criteria window with the Any Words option selected.</p>
+                                                                    <p class="Tabletext">Options available:</p>
+                                                                    <ul>
+                                                                        <li value="1">
+<span class="Bold">Y</span> = All Words is selected</li>
+                                                                        <li value="2">
+<span class="Bold">N</span> = Any Words is selected</li>
+                                                                    </ul>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p class="Tabletext"><b>Text_Search_Type</b>
+                                                                    </p>
+                                                                    <p class="Tabletext">http://&lt;server_name&gt;/&lt;virtual_directory&gt;/Core.aspx?Lite&amp;Form=KnowledgeSearchCriteria&amp;<b>Text_Search_Type=&lt;type&gt;</b></p>
+                                                                    <ul>
+                                                                        <li class="Tabletext_1" value="1">where <span class="Bold">&lt;type&gt;</span> is the type of text search to run</li>
+                                                                    </ul>
+                                                                    <p class="exampletext">http://&lt;server_name&gt;/&lt;virtual_directory&gt;/Core.aspx?Lite&amp;Form=KnowledgeSearchCriteria&amp;<b>Text_Search_Type=R</b></p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p class="Tabletext">Use this parameter to enable one of the <span class="Bold">Search Type </span>options on the search window.</p>
+                                                                    <p class="Tabletext">The default selection is Exact.</p>
+                                                                    <p class="Tabletext">The example URL opens the knowledge search criteria window with the Regular Expression option selected.</p>
+                                                                    <p class="Tabletext">Options available:</p>
+                                                                    <ul>
+                                                                        <li value="1">
+<span class="Bold">X</span> = Exact</li>
+                                                                        <li value="2">
+<span class="Bold">S</span> = Related</li>
+                                                                        <li value="3">
+<span class="Bold">R</span> = Regular Expression</li>
+                                                                    </ul>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p class="Tabletext"><b>Article_Ref</b>
+                                                                    </p>
+                                                                    <p class="Tabletext">http://&lt;server_name&gt;/&lt;virtual_directory&gt;/Core.aspx?Lite&amp;Form=KnowledgeSearchCriteria&amp;<b>Article_Ref=&lt;number&gt;,&lt;number&gt;</b></p>
+                                                                    <ul>
+                                                                        <li class="Tabletext_1" value="1">where <span class="Bold">&lt;number&gt;</span> is the knowledge article number</li>
+                                                                    </ul>
+                                                                    <p class="exampletext">http://&lt;server_name&gt;/&lt;virtual_directory&gt;/Core.aspx?Lite&amp;Form=KnowledgeSearchCriteria&amp;<b>Article_Ref=32,17</b></p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p class="Tabletext">Use this parameter to populate the <span class="Bold">Article Numbers</span> field on the search window. This parameter can have multiple comma separated values.</p>
+                                                                    <p class="Tabletext">Article numbers are visible on the Knowledge Details in <span class="GeneralVariablesCoreName">ASM Core</span>.</p>
+                                                                    <p class="Tabletext">The example URL opens the knowledge search criteria window with <span class="Bold">32,17</span> already entered.</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p class="Tabletext"><b>Profile_Ref</b>
+                                                                    </p>
+                                                                    <p class="Tabletext">http://&lt;server_name&gt;/&lt;virtual_directory&gt;/Core.aspx?Lite&amp;Form=KnowledgeSearchCriteria&amp;<b>Profile_Ref=&lt;prof_ref&gt;</b></p>
+                                                                    <ul>
+                                                                        <li class="Tabletext_1" value="1">where <span class="Bold">&lt;prof_ref&gt;</span> is the unique reference of the knowledge profile</li>
+                                                                    </ul>
+                                                                    <p class="exampletext">http://&lt;server_name&gt;/&lt;virtual_directory&gt;/Core.aspx?Lite&amp;Form=KnowledgeSearchCriteria&amp;<b>Profile_Ref=32</b></p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p class="Tabletext">Use this parameter to populate the <span class="Bold">Profile</span> field on the search window, which is a tiered list.</p>
+                                                                    <p class="Tabletext">The example URL opens the Knowledge Search criteria page with the profile value <span class="Bold">Process/HR</span> already selected, which is the NAME value for REF 32 in the database.</p>
+                                                                    <p class="Tabletext">Knowledge Profiles are created in System Admin.</p>
+                                                                    <p class="Tabletext">The unique reference is found in REF.KB_PROFILE in the database.</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p class="Tabletext"><b>CMDB_Item_Ref </b>
+                                                                    </p>
+                                                                    <p class="Tabletext">http://&lt;server_name&gt;/&lt;virtual_directory&gt;/Core.aspx?Lite&amp;Form=KnowledgeSearchCriteria&amp;<b>CMDB_Item_Ref=&lt;item_ref&gt;</b></p>
+                                                                    <ul>
+                                                                        <li class="Tabletext_1" value="1">where <span class="Bold">&lt;item_ref&gt;</span> is the unique reference of the CMDB item</li>
+                                                                    </ul>
+                                                                    <p class="exampletext">http://&lt;server_name&gt;/&lt;virtual_directory&gt;/Core.aspx?Lite&amp;Form=KnowledgeSearchCriteria&amp;<b>CMDB_Item_Ref=32</b></p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p class="Tabletext">Use this parameter to populate the <span class="Bold">CMDB Item</span> field on the search window.</p>
+                                                                    <p class="Tabletext">The example URL opens the Knowledge Search criteria page with the CMDB Item <span class="Bold">Email Server</span> already selected, which is the name value for REF 32 in the database.</p>
+                                                                    <p class="Tabletext">CMDB Items are created in <span class="GeneralVariablesCoreName">ASM Core</span>. </p>
+                                                                    <p class="Tabletext">The unique reference is found in ITEM_REF.AR_PRIMARY_ASSET in the database.</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p class="Tabletext"><b>Ref_Composite</b>
+                                                                    </p>
+                                                                    <p class="Tabletext">http://&lt;server_name&gt;/&lt;virtual_directory&gt;/Core.aspx?Lite&amp;Form=KnowledgeSearchCriteria&amp;<b>Ref_Composite=&lt;problem_type&gt;</b></p>
+                                                                    <ul>
+                                                                        <li class="Tabletext_1" value="1">where <b>&lt;problem_type&gt;</b> is the unique reference of the Type tiered list value</li>
+                                                                    </ul>
+                                                                    <p class="exampletext">http://&lt;server_name&gt;/&lt;virtual_directory&gt;/Core.aspx?Lite&amp;Form=KnowledgeSearchCriteria&amp;<b>Ref_Composite=32</b></p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p class="Tabletext">Use this parameter to populate the <span class="Bold">Type</span> field on the search window, which is a tiered list.</p>
+                                                                    <p class="Tabletext">The example URL opens the Knowledge Search criteria page with the Type value <span class="Bold">Payroll/Expenses </span>already selected, which is the NAME value for REF 32 in the database.</p>
+                                                                    <p class="Tabletext">Types are created in System Admin. </p>
+                                                                    <p class="Tabletext">The unique reference is found in REF.CL_PROBLEM_TYPE in the database.</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p class="Tabletext"><b>Update_Date_Day</b>
+                                                                    </p>
+                                                                    <p class="Tabletext">http://&lt;server_name&gt;/&lt;virtual_directory&gt;/Core.aspx?Lite&amp;Form=KnowledgeSearchCriteria&amp;<b>Update_Date_Day=&lt;day&gt;</b></p>
+                                                                    <ul>
+                                                                        <li class="Tabletext_1" value="1">where <span class="Bold">&lt;day&gt;</span> is numerical day of the month</li>
+                                                                    </ul>
+                                                                    <p class="exampletext">http://&lt;server_name&gt;/&lt;virtual_directory&gt;/Core.aspx?Lite&amp;Form=KnowledgeSearchCriteria&amp;<b>Update_Date_Day=12</b></p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p class="Tabletext">Use this parameter to populate the day (<span class="Bold">dd)</span> value in the <span class="Bold">Updated Since</span> date picker field on the search window.</p>
+                                                                    <p class="Tabletext">The example URL opens the Knowledge Search criteria page with <span class="Bold">12</span> already selected in the day (dd) portion of the Updated Since field.</p>
+                                                                    <p class="Tabletext">Up to 2 digits are accepted.</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p class="Tabletext"><b>Update_Date_Month</b>
+                                                                    </p>
+                                                                    <p class="Tabletext">http://&lt;server_name&gt;/&lt;virtual_directory&gt;/Core.aspx?Lite&amp;Form=KnowledgeSearchCriteria&amp;<b>Update_Date_Month=&lt;month&gt;</b></p>
+                                                                    <ul>
+                                                                        <li class="Tabletext_1" value="1">where <span class="Bold">&lt;month&gt;</span> is numerical month</li>
+                                                                    </ul>
+                                                                    <p class="exampletext">http://&lt;server_name&gt;/&lt;virtual_directory&gt;/Core.aspx?Lite&amp;Form=KnowledgeSearchCriteria&amp;<b>Update_Date_Month=10</b></p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p class="Tabletext">Use this parameter to populate the month (<span class="Bold">MM)</span> value in the <span class="Bold">Updated Since</span> date picker field on the search window.</p>
+                                                                    <p class="Tabletext">The example URL opens the Knowledge Search criteria page with <span class="Bold">10</span> already selected in the month (MM) portion of the Updated Since field.</p>
+                                                                    <p class="Tabletext">Up to 2 digits are accepted, between 1 and 12.</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p class="Tabletext"><b>Update_Date_Year</b>
+                                                                    </p>
+                                                                    <p class="Tabletext">http://&lt;server_name&gt;/&lt;virtual_directory&gt;/Core.aspx?Lite&amp;Form=KnowledgeSearchCriteria&amp;<b>Update_Date_Month=&lt;year&gt;</b></p>
+                                                                    <ul>
+                                                                        <li class="Tabletext_1" value="1">where <span class="Bold">&lt;year&gt;</span> is the year</li>
+                                                                    </ul>
+                                                                    <p class="exampletext">http://&lt;server_name&gt;/&lt;virtual_directory&gt;/Core.aspx?Lite&amp;Form=KnowledgeSearchCriteria&amp;<b>Update_Date_Year=2016</b></p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p class="Tabletext">Use this parameter to populate the year (<span class="Bold">yyyy)</span> value in the <span class="Bold">Updated Since</span> date picker field on the search window.</p>
+                                                                    <p class="Tabletext">The example URL opens the Knowledge Search criteria page with <span class="Bold">2016</span> already selected in the year (yyyy) portion of the Updated Since field.</p>
+                                                                    <p class="Tabletext">Up to 4 digits are accepted, between 1900 and 3000.</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p class="Tabletext"><b>Update_Date_Day,  Update_Date_Year, Update_Date_Month</b>
+                                                                    </p>
+                                                                    <p class="exampletext"><span class="Hyperlink_1">http://&lt;server_name&gt;/&lt;virtual_directory&gt;/Core.aspx?Lite&amp;Form=KnowledgeSearchCriteria&amp;</span><span class="Bold">Update_Date_Day=12&amp;Update_Date_Year=2016&amp;Update_Date_Month=10</span>
+                                                                    </p>
+                                                                    <p class="Tabletext"> </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p class="Tabletext">Use these parameters in combination to populate the <b>Updated Since</b> field on the search window.</p>
+                                                                    <p class="Tabletext">The example URL opens the Knowledge Search criteria page with <span class="Bold">12/10/2016</span> already selected.</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyB-Column1-Body1">
+                                                                    <p class="Tabletext"><b>Knowledge_Order_By</b>
+                                                                    </p>
+                                                                    <p class="Tabletext">http://&lt;server_name&gt;/&lt;virtual_directory&gt;/Core.aspx?Lite&amp;Form=KnowledgeSearchCriteria&amp;<b>Knowledge_Order_By=&lt;order&gt;</b></p>
+                                                                    <ul>
+                                                                        <li class="Tabletext_1" value="1">where <span class="Bold">&lt;order&gt;</span> is the type of sorting to apply to the search results</li>
+                                                                    </ul>
+                                                                    <p class="exampletext"><b>Example 1:</b>
+                                                                        <br>http://&lt;server_name&gt;/&lt;virtual_directory&gt;/Core.aspx?Lite&amp;Form=KnowledgeSearchCriteria&amp;<b>Knowledge_Order_By=_rating</b></p>
+                                                                    <p>When appending <b>BTN_SEARCH=Search</b> to the URL, some of the Sort By options will not sort the results unless additional criteria is added to the URL. This reflects Portal Knowledge Search behavior. Refer to the examples below.</p>
+                                                                    <p class="exampletext"><b>Example 2</b> – returns an unsorted list of all knowledge articles:<br>http://&lt;server_name&gt;/&lt;virtual_directory&gt;/Core.aspx?Lite&amp;Form=KnowledgeSearchCriteria&amp;Knowledge_Order_By=_rating&amp;BTN_SEARCH=Search</p>
+                                                                    <p class="exampletext"><b>Example 3</b> – returns a sorted list of knowledge articles containing the text “email”:<br>http://localhost/test/Core.aspx?Lite&amp;Form=KnowledgeSearchCriteria&amp;Search_Query=email&amp;Knowledge_Order_By=_rating&amp;BTN_SEARCH=Search</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyA-Column2-Body1">
+                                                                    <p class="Tabletext">Use this parameter to populate the <span class="Bold">Sort By</span> parameter on the search window.</p>
+                                                                    <p class="Tabletext">The default selection is Search Score (_rank).</p>
+                                                                    <p class="Tabletext">The URL in example 1 opens the knowledge search criteria window with <span class="Bold">Rating</span> already selected.</p>
+                                                                    <p class="Tabletext">Options available:</p>
+                                                                    <ul>
+                                                                        <li value="1">
+<span class="Bold">_rank</span> = Search Score</li>
+                                                                        <li value="2">
+<span class="Bold">_rating </span>= Rating</li>
+                                                                        <li value="3">
+<b>last_updated desc</b> = Most Recent</li>
+                                                                        <li value="4">
+<b>profile_name</b> = Profile</li>
+                                                                        <li value="5">
+<b>document_title asc</b> = Title</li>
+                                                                    </ul>
+                                                                    <p class="note">The space in the last two options is intentional and represents descending vs ascending.</p>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <h2>
+<a name="Incident"></a>Incident Search</h2>
+                                                    <p>The Review Past/Current Incidents window can be pre-populated by appending parameters to the basic Incident search URL.</p>
+                                                    <p>URL: http://&lt;server_name&gt;/&lt;virtual_directory&gt;/Core.aspx?Lite&amp;<b>Form=CallSearchCriteria</b></p>
+                                                    <table class="TableStyle-Rep_Hdr_Row" style="mc-table-style: url('../../resources/tablestyles/rep hdr row.css');margin-left: 0;margin-right: auto;width: 100%;" cellspacing="0">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column1" style="width: 60%;">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column2" style="width: 40%;">
+                                                        <thead>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Head-Header1">
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column1-Header1">
+                                                                    <p class="Tableheading">Parameter</p>
+                                                                </th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadD-Column2-Header1">
+                                                                    <p class="Tableheading">Description</p>
+                                                                </th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p class="Tabletext"><b>Incident_Owner</b>
+                                                                    </p>
+                                                                    <p class="Tabletext">http://&lt;server_name&gt;/&lt;virtual_directory&gt;/Core.aspx?Lite&amp;Form=CallSearchCriteria&amp;<b>Incident_Owner=&lt;owner_flag&gt;</b></p>
+                                                                    <ul>
+                                                                        <li class="Tabletext_1" value="1">where <b>&lt;owner_flag&gt;</b> represents whether to search all incidents, org incidents, or the user’s incidents only</li>
+                                                                    </ul>
+                                                                    <p class="exampletext">http://&lt;server_name&gt;/&lt;virtual_directory&gt;/Core.aspx?Lite&amp;Form=CallSearchCriteria&amp;<b>Incident_Owner=O</b></p>
+                                                                    <p class="Tabletext"> </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p class="Tabletext">Use this parameter to pre-select one of the options of the <span class="Bold">Search within</span> field on the search window, which is a set of radio options.</p>
+                                                                    <p class="Tabletext">The default selection is Your Incidents.</p>
+                                                                    <p class="Tabletext">The example URL opens the Review Past/Current Incidents criteria page with the Search Within option <span class="Bold">Your  Organization’s Incidents</span> already selected.</p>
+                                                                    <p class="Tabletext">Options available:</p>
+                                                                    <ul>
+                                                                        <li class="Tabletext_2" value="1">
+<span class="Bold">Y</span> = Your Incidents</li>
+                                                                        <li class="Tabletext_2" value="2">
+<span class="Bold">O</span> = Your Organization’s Incidents</li>
+                                                                        <li class="Tabletext_2" value="3">
+<span class="Bold">A</span> = All Incidents</li>
+                                                                    </ul>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p class="Tabletext"><b>Call_Numbers</b>
+                                                                    </p>
+                                                                    <p class="Tabletext">http://&lt;server_name&gt;/&lt;virtual_directory&gt;/Core.aspx?Lite&amp;Form=CallSearchCriteria&amp;<b>Call_Numbers=&lt;number&gt;,&lt;number&gt;</b></p>
+                                                                    <ul>
+                                                                        <li class="Tabletext_1" value="1">where <span class="Bold">&lt;number&gt;</span> is the Incident number</li>
+                                                                    </ul>
+                                                                    <p class="exampletext">http://&lt;server_name&gt;/&lt;virtual_directory&gt;/Core.aspx?Lite&amp;Form=CallSearchCriteria&amp;<b>Call_Numbers=10,15</b></p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p class="Tabletext">Use this parameter to populate the <span class="Bold">Incident No</span> field on the search window. This parameter can have multiple comma separated values.</p>
+                                                                    <p class="Tabletext">The example URL opens the Review Past/Current Incidents criteria page with values <b>10,15</b> already entered.</p>
+                                                                    <p class="Tabletext">Incident numbers are visible on the Incident Details window in <span class="GeneralVariablesCoreName">ASM Core</span>.</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p class="Tabletext"><b>Status</b>
+                                                                    </p>
+                                                                    <p class="Tabletext">http://&lt;server_name&gt;/&lt;virtual_directory&gt;/Core.aspx?Lite&amp;Form=CallSearchCriteria&amp;<b>Status=&lt;status&gt;</b></p>
+                                                                    <ul>
+                                                                        <li class="Tabletext_1" value="1">where <span class="Bold">&lt;status&gt;</span> represents whether to search all incidents, org incidents, or the user’s incidents only</li>
+                                                                    </ul>
+                                                                    <p class="exampletext">http://&lt;server_name&gt;/&lt;virtual_directory&gt;/Core.aspx?Lite&amp;Form=CallSearchCriteria&amp;<b>Status=1</b></p>
+                                                                    <p class="Tabletext"> </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p class="Tabletext">Use this parameter to pre-select one of the options of the <span class="Bold">Incident State</span> field on the search window, which is a set of radio options.</p>
+                                                                    <p class="Tabletext">The default selection is Open Incidents.</p>
+                                                                    <p class="Tabletext">The example URL opens the Review Past/Current Incidents criteria page with the Incident State value <span class="Bold">Resolved &lt; 1 Week</span> already selected.</p>
+                                                                    <p class="Tabletext">Options available:</p>
+                                                                    <ul>
+                                                                        <li class="Tabletext_2" value="1">
+<span class="Bold">0</span> = Open Incidents</li>
+                                                                        <li class="Tabletext_2" value="2">
+<span class="Bold">1</span> = Resolved &lt; 1 Week</li>
+                                                                        <li class="Tabletext_2" value="3">
+<span class="Bold">4</span> = Resolved &lt; 4 Weeks</li>
+                                                                    </ul>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p class="Tabletext"><b>Text_Search</b>
+                                                                    </p>
+                                                                    <p class="Tabletext">http://&lt;server_name&gt;/&lt;virtual_directory&gt;/Core.aspx?Lite&amp;Form=CallSearchCriteria&amp;<b>Text_Search=&lt;text&gt;</b></p>
+                                                                    <ul class="ul_6">
+                                                                        <li class="Tabletext_1" value="1">where <span class="Bold">&lt;text&gt;</span> is the text  to search on</li>
+                                                                    </ul>
+                                                                    <p class="exampletext">http://&lt;server_name&gt;/&lt;virtual_directory&gt;/Core.aspx?Lite&amp;Form=CallSearchCriteria&amp;<b>Text_Search=broken laptop screen</b></p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p class="Tabletext">Use this parameter to populate the <span class="Bold">Text Search</span> field on the search window.</p>
+                                                                    <p class="Tabletext">The example URL opens the Review Past/Current Incidents criteria page with the words “broken laptop screen” in the Text Search field.</p>
+                                                                    <p class="Tabletext">This parameter can be blank.</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p class="Tabletext"><b>Service_Ref</b> </p>
+                                                                    <p class="Tabletext">http://&lt;server_name&gt;/&lt;virtual_directory&gt;/Core.aspx?Lite&amp;Form=CallSearchCriteria&amp;<b>Service_Ref=&lt;service_ref&gt;</b></p>
+                                                                    <ul class="ul_6">
+                                                                        <li class="Tabletext_1" value="1">where <span class="Bold">&lt;service_ref&gt;</span> is the unique reference of the Service item</li>
+                                                                    </ul>
+                                                                    <p class="exampletext">http://&lt;server_name&gt;/&lt;virtual_directory&gt;/Core.aspx?Lite&amp;Form=CallSearchCriteria&amp;<b>Service_Ref=22</b></p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p class="Tabletext">Use this parameter to populate the <span class="Bold">Service</span> field on the search window.</p>
+                                                                    <p class="Tabletext">The example URL opens the Review Past/Current Incidents criteria page with the Service <span class="Bold">Consulting</span> already selected, which is the name value for REF <b>22</b> in the database.</p>
+                                                                    <p class="Tabletext">Services are created in <span class="GeneralVariablesCoreName">ASM Core</span>. </p>
+                                                                    <p class="Tabletext">The unique reference is found in ITEM_REF.AR_PRIMARY_ASSET in the database.</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p class="Tabletext"><b>Ref_Composite</b>
+                                                                    </p>
+                                                                    <p class="Tabletext">http://&lt;server_name&gt;/&lt;virtual_directory&gt;/Core.aspx?Lite&amp;Form=CallSearchCriteria&amp;<b>Ref_Composite=&lt;ref_comp&gt;</b></p>
+                                                                    <ul>
+                                                                        <li class="Tabletext_1" value="1">where <span class="Bold">&lt;ref_comp&gt;</span> is the unique reference of the Type tiered list value</li>
+                                                                    </ul>
+                                                                    <p class="exampletext">http://&lt;server_name&gt;/&lt;virtual_directory&gt;/Core.aspx?Lite&amp; Form=CallSearchCriteria&amp;<b>Ref_Composite=22</b></p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p class="Tabletext">Use this parameter to populate the <span class="Bold">Type</span> field on the search window, which is a tiered list.</p>
+                                                                    <p class="Tabletext">The example URL opens the Review Past/Current Incidents criteria page with the Type value <span class="Bold">Payroll/Expenses </span>already selected, which is the name value for REF <b>22</b> in the database.</p>
+                                                                    <p class="Tabletext">Types are created in System Admin. </p>
+                                                                    <p class="Tabletext">The unique reference is found in REF.CL_PROBLEM_TYPE in the database.</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p class="Tabletext"><b>Call_Priority</b>
+                                                                    </p>
+                                                                    <p class="Tabletext">http://&lt;server_name&gt;/&lt;virtual_directory&gt;/Core.aspx?Lite&amp;Form=CallSearchCriteria&amp;<b>Call_Priority=&lt;priority_ref&gt;</b></p>
+                                                                    <ul>
+                                                                        <li class="Tabletext_1" value="1">where <span class="Bold">&lt;priority_ref&gt;</span> is the unique reference of the Priority value you want to select</li>
+                                                                    </ul>
+                                                                    <p class="exampletext">http://&lt;server_name&gt;/&lt;virtual_directory&gt;/Core.aspx?Lite&amp; Form=CallSearchCriteria&amp;<b>Call_Priority=3</b></p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p class="Tabletext">Use this parameter to populate the <span class="Bold">Priority</span> field on the search window, which is a dropdown list.</p>
+                                                                    <p class="Tabletext">The example URL opens the Review Past/Current Incidents criteria page with the Priority <span class="Bold">High</span> already selected, which is the name value for REF 3 in the database.</p>
+                                                                    <p class="Tabletext">Priorities are created in System Admin. </p>
+                                                                    <p class="Tabletext">The unique reference is found in REF.SU_CALL_PRIORITY in the database.</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p class="Tabletext"><b>Date_From</b>
+                                                                    </p>
+                                                                    <p class="Tabletext">http://&lt;server_name&gt;/&lt;virtual_directory&gt;/Core.aspx?Lite&amp;Form=CallSearchCriteria&amp;<b>Date_From=&lt;date&gt;</b></p>
+                                                                    <ul>
+                                                                        <li class="Tabletext_1" value="1">where <span class="Bold">&lt;date&gt;</span> is a numerical date format</li>
+                                                                    </ul>
+                                                                    <p class="exampletext">http://&lt;server_name&gt;/&lt;virtual_directory&gt;/Core.aspx?Lite&amp;Form=CallSearchCriteria&amp;<b>Date_From=2015-12-09</b></p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p class="Tabletext">Use this parameter to populate the <span class="Bold">Logged Date From</span> field on the search window.</p>
+                                                                    <p class="Tabletext">The example URL opens the Review Past/Current Incidents criteria page with <b>2015-12-09</b> already entered in the Logged Date From field.</p>
+                                                                    <p class="Tabletext">The format is YYYY-MM-DD</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyB-Column1-Body1">
+                                                                    <p class="Tabletext"><b>Date_To</b>
+                                                                    </p>
+                                                                    <p class="Tabletext">http://&lt;server_name&gt;/&lt;virtual_directory&gt;/Core.aspx?Lite&amp;Form=CallSearchCriteria&amp;<b>Date_To=&lt;date&gt;</b></p>
+                                                                    <ul>
+                                                                        <li class="Tabletext_1" value="1">where <span class="Bold">&lt;date&gt;</span> is a numerical date format</li>
+                                                                    </ul>
+                                                                    <p class="Tabletext">http://&lt;server_name&gt;/&lt;virtual_directory&gt;/Core.aspx?Lite&amp;Form=CallSearchCriteria&amp;<b>Date_To=2015-12-09</b></p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyA-Column2-Body1">
+                                                                    <p class="Tabletext">Use this parameter to populate the <span class="Bold">Logged Date To</span> field on the search window.</p>
+                                                                    <p class="Tabletext">The example URL opens the Review Past/Current Incidents criteria page with <b>2015-12-09</b> already entered in the Logged Date To field.</p>
+                                                                    <p class="Tabletext">The format is YYYY-MM-DD</p>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <h2 class="Heading2_1">
+<a name="Request"></a>Request Search</h2>
+                                                    <p>The Review Past/Current Requests window can be pre-populated by appending parameters to the basic Request search URL.</p>
+                                                    <p>URL: http://&lt;server_name&gt;/&lt;virtual_directory&gt;/Core.aspx?Lite&amp;<b>Form=RequestSearchCriteria</b></p>
+                                                    <table class="TableStyle-Rep_Hdr_Row" style="margin-left: 0;margin-right: auto;mc-table-style: url('../../resources/tablestyles/rep hdr row.css');width: 100%;" cellspacing="0">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column1" style="width: 60%;">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column2" style="width: 40%;">
+                                                        <thead>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Head-Header1">
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column1-Header1">
+                                                                    <p class="Tableheading">Parameter</p>
+                                                                </th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadD-Column2-Header1">
+                                                                    <p class="Tableheading">Description</p>
+                                                                </th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p class="Tabletext"><b>Request_Owner</b>
+                                                                    </p>
+                                                                    <p class="Tabletext">http://&lt;server_name&gt;/&lt;virtual_directory&gt;/Core.aspx?Lite&amp;Form=RequestSearchCriteria&amp;<b>Request_Owner=&lt;owner_flag&gt;</b></p>
+                                                                    <ul>
+                                                                        <li class="Tabletext_1" value="1">where <span class="Bold">&lt;owner_flag&gt;</span> represents whether to search all incidents, org incidents, or the user’s incidents only</li>
+                                                                    </ul>
+                                                                    <p class="exampletext">http://&lt;server_name&gt;/&lt;virtual_directory&gt;/Core.aspx?Lite&amp; Form=RequestSearchCriteria&amp;<b>Request_Owner=O</b></p>
+                                                                    <p class="Tabletext"> </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p class="Tabletext">Use this parameter to pre-select one of the options of the <span class="Bold">Search within</span> field on the search window, which is a set of radio options.</p>
+                                                                    <p class="Tabletext">The default selection is Your Requests.</p>
+                                                                    <p class="Tabletext">The example URL opens the Review Past/Current Requests criteria page with the Search Within option <b>Your  Organization’s Requests</b> already selected.</p>
+                                                                    <p class="Tabletext">Options available:</p>
+                                                                    <ul>
+                                                                        <li class="Tabletext_2" value="1">
+<span class="Bold">Y</span> = Your Requests</li>
+                                                                        <li class="Tabletext_2" value="2">
+<span class="Bold">O</span> = Your Organization’s Requests</li>
+                                                                        <li class="Tabletext_2" value="3">
+<span class="Bold">A</span> = All Requests</li>
+                                                                    </ul>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p class="Tabletext"><b>Request_Nos</b>
+                                                                    </p>
+                                                                    <p class="Tabletext">http://&lt;server_name&gt;/&lt;virtual_directory&gt;/Core.aspx?Lite&amp;Form=RequestSearchCriteria&amp;<b>Request_Nos=&lt;number&gt;,&lt;number&gt;</b></p>
+                                                                    <ul>
+                                                                        <li class="Tabletext_1" value="1">where <span class="Bold">&lt;number&gt;</span> is the Request number</li>
+                                                                    </ul>
+                                                                    <p class="exampletext">http://&lt;server_name&gt;/&lt;virtual_directory&gt;/Core.aspx?Lite&amp;Form=RequestSearchCriteria&amp;<b>Request_Nos=10,15</b></p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p class="Tabletext">Use this parameter to populate the <span class="Bold">Request</span><span class="Bold"> No</span> field on the search window. This parameter can have multiple comma separated values.</p>
+                                                                    <p class="Tabletext">The example URL opens the Review Past/Current Requests criteria page with values <b>10,15</b> already entered. Running the search returns Requests 10 and 15, if they exist.</p>
+                                                                    <p class="Tabletext">Request numbers are visible on the Request Details window in <span class="GeneralVariablesCoreName">ASM Core</span>.</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyB-Column1-Body1">
+                                                                    <p class="Tabletext"><b>Status</b>
+                                                                    </p>
+                                                                    <p class="Tabletext">http://&lt;server_name&gt;/&lt;virtual_directory&gt;/Core.aspx?Lite&amp;Form=RequestSearchCriteria&amp;<b>Status=&lt;status&gt;</b></p>
+                                                                    <ul>
+                                                                        <li class="Tabletext_1" value="1">where <span class="Bold">&lt;status&gt;</span> represents whether to search all requests, org requests, or the user’s requests only</li>
+                                                                    </ul>
+                                                                    <p class="exampletext">http://&lt;server_name&gt;/&lt;virtual_directory&gt;/Core.aspx?Lite&amp;Form=RequestSearchCriteria&amp;<b>Status=1</b></p>
+                                                                    <p class="Tabletext"> </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyA-Column2-Body1">
+                                                                    <p class="Tabletext">Use this parameter to pre-select one of the options of the <span class="Bold">Request</span><span class="Bold"> State</span> field on the search window, which is a set of radio options.</p>
+                                                                    <p class="Tabletext">The default selection is Open Requests.</p>
+                                                                    <p class="Tabletext">The example URL opens the Review Past/Current Requests criteria page with the Request State value <b>Closed &lt; 1 Week</b> already selected.</p>
+                                                                    <p class="Tabletext">Options available:</p>
+                                                                    <ul>
+                                                                        <li class="Tabletext_2" value="1">
+<span class="Bold">O</span> = Open Requests</li>
+                                                                        <li class="Tabletext_2" value="2">
+<span class="Bold">1</span> = Closed &lt; 1 Week</li>
+                                                                        <li class="Tabletext_2" value="3">
+<span class="Bold">4</span> = Closed &lt; 4 Weeks</li>
+                                                                        <li class="Tabletext_2" value="4">
+<span class="Bold">U</span> = Not Submitted</li>
+                                                                    </ul>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <h2 class="Heading2_1">
+<a name="Browse"></a>Browse the <span class="GeneralVariablesServiceRequestCatalog">Service Request Catalog</span>
+</h2>
+                                                    <p>The Browse the <span class="GeneralVariablesServiceRequestCatalog">Service Request Catalog</span> window can be pre-populated by appending parameters to the basic <span class="GeneralVariablesServiceRequestCatalog">Service Request Catalog</span> search URL. It is also possible to select individual Service Actions and Service Bundles, opening their submission forms.</p>
+                                                    <p>URL: http://&lt;server_name&gt;/&lt;virtual_directory&gt;/Core.aspx?Lite&amp;<span class="Bold">Form=ServiceCatalogSearch</span></p>
+                                                    <table class="TableStyle-Rep_Hdr_Row" style="margin-left: 0;margin-right: auto;mc-table-style: url('../../resources/tablestyles/rep hdr row.css');width: 100%;" cellspacing="0">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column1" style="width: 555px;">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column2" style="width: 40%;">
+                                                        <thead>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Head-Header1">
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column1-Header1">
+                                                                    <p class="Tableheading">Parameter</p>
+                                                                </th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadD-Column2-Header1">
+                                                                    <p class="Tableheading">Description</p>
+                                                                </th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p class="Tabletext"><b>Portal_Category</b>
+                                                                    </p>
+                                                                    <p class="Tabletext">http://&lt;server_name&gt;/&lt;virtual_directory&gt;/Core.aspx?Lite&amp;Form=ServiceCatalogSearch&amp;<b>Portal_Category=&lt;cat_t3&gt;</b>&amp;<b>Portal_Category_1=&lt;cat_t1&gt;</b>&amp;<b>Portal_Category_2=&lt;cat_t2&gt;</b>&amp;<b>Portal_Category_3=&lt;cat_t3&gt;</b></p>
+                                                                    <ul>
+                                                                        <li class="Tabletext_1" value="1">where <b>&lt;cat_t1&gt;</b> is the REF of the 1<sup>st</sup>  tier category</li>
+                                                                        <li class="Tabletext_1" value="2">where <b>&lt;cat_t2&gt;</b> is the REF of the 2<sup>nd</sup> tier category</li>
+                                                                        <li class="Tabletext_1" value="3">where <b>&lt;cat_t3&gt;</b> is the REF of the 3<sup>rd</sup> tier category</li>
+                                                                    </ul>
+                                                                    <p class="exampletext">http://&lt;server_name&gt;/&lt;virtual_directory&gt;/Core.aspx?Lite&amp;Form=ServiceCatalogSearch&amp;<b>Portal_Category=<span style="color: #ff0000;">11</span></b>&amp;<b>Portal_Category_1=<span style="color: #0000ff;">7</span></b>&amp;<b>Portal_Category_2=<span style="color: #ff0000;">11</span></b>&amp;BTN_Show_Items=Show Catalog Items</p>
+                                                                    <p class="exampletext">http://&lt;server_name&gt;/&lt;virtual_directory&gt;/Core.aspx?Lite&amp;Form=ServiceCatalogSearch&amp;<b>Portal_Category=<span style="color: #ff0000;">11</span></b>&amp;<b>Portal_Category_1=<span style="color: #ff0000;">11</span></b>&amp;BTN_Show_Items=Show Catalog Items</p>
+                                                                    <p class="Tabletext">The parameter <b>BTN_Show_Items=Show Catalog Items</b> must be appended, otherwise the Category values are selected and visible, but no services are displayed on the screen.</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p class="Tabletext">Use this parameter to populate the <span class="Bold">Category</span> field on the search window, which is a tiered drop down list.</p>
+                                                                    <p class="Tabletext">The example URL opens the <span class="GeneralVariablesServiceRequestCatalog">Service Request Catalog</span> page with the Category <span class="Bold">Software/<span class="GeneralVariablesProductName">ASM</span> </span>already selected, and the matching results displayed. <span style="color: #0000ff;">Software </span>is REF <span style="color: #0000ff;">7</span>, <span style="color: #ff0000;"><span class="GeneralVariablesProductName">ASM</span> </span>is REF <span style="color: #ff0000;">11</span> in the database.</p>
+                                                                    <p class="note">The <span class="Bold">Portal_Category</span> (first one) parameter's value must match the lowest tier value included in the URL, regardless of the number of tiers included.</p>
+                                                                    <p>Categories are created in System Admin.</p>
+                                                                    <p>The unique reference is found in REF.AR_PORTAL_CATEGORY in the database.</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p class="Tabletext"><b>Title</b>
+                                                                    </p>
+                                                                    <p class="Tabletext">http://&lt;server_name&gt;/&lt;virtual_directory&gt;/Core.aspx?Lite&amp;Form=ServiceCatalogSearch&amp;<b>Title=&lt;text&gt;</b></p>
+                                                                    <ul>
+                                                                        <li class="Tabletext_1" value="1">where <span class="Bold">&lt;text&gt;</span> is the title of the Service(s) to search for</li>
+                                                                    </ul>
+                                                                    <p class="exampletext">http://&lt;server_name&gt;/&lt;virtual_directory&gt;/Core.aspx?Lite&amp; Form=ServiceCatalogSearch&amp;<b>Title=<span class="GeneralVariablesAppName">ASM app</span></b></p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p class="Tabletext">Use this parameter to populate the untitled text box on the search window.</p>
+                                                                    <p class="Tabletext">The example URL opens the <span class="GeneralVariablesServiceRequestCatalog">Service Request Catalog</span> page with the words “<span class="GeneralVariablesAppName">ASM app</span>” in the text box, and all Services listed beneath and ready for the Search button to be manually pressed. Once the Search button is pressed the list of services will be filtered to those matching the entered text.</p>
+                                                                    <p class="Tabletext">This parameter can be blank.</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p class="Tabletext"><b>BTN_MINI_SEARCH=Search</b>
+                                                                    </p>
+                                                                    <p class="Tabletext">http://localhost/test/Core.aspx?Lite&amp;Form=ServiceCatalogSearch&amp;Title=&lt;text&gt;&amp;<b>BTN_MINI_SEARCH=Search</b></p>
+                                                                    <p class="exampletext">http://localhost/test/Core.aspx?Lite&amp;Form=ServiceCatalogSearch&amp;Title=<span class="GeneralVariablesAppName">ASM app</span>&amp;<b>BTN_MINI_SEARCH=Search</b></p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p class="Tabletext">Add <span class="Bold">BTN_MINI_SEARCH=Search</span> to the URL to automatically run the search and filter the <span class="GeneralVariablesServiceRequestCatalog">Service Request Catalog</span> by the criteria in the URL, as would selecting the Search button.</p>
+                                                                    <p class="Tabletext">The example URL opens the <span class="GeneralVariablesServiceRequestCatalog">Service Request Catalog</span> page with the words “<span class="GeneralVariablesAppName">ASM app</span>” in the text box and the Service <b><span class="GeneralVariablesAppName">ASM app</span></b> the only one showing beneath.</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyB-Column1-Body1">
+                                                                    <p class="Tabletext"><b>BTN_ADDTOCART</b>#<b>=Order</b></p>
+                                                                    <p class="Tabletext">http://localhost/test/Core.aspx?Lite&amp;Form=ServiceCatalogSearch&amp;<b>Quantity&lt;<span style="color: #ff0000;">ref</span>&gt;=&lt;qty</b>&gt;&amp;<b>MaxItems&lt;<span style="color: #ff0000;">ref</span>&gt;=&lt;max&gt;</b>&amp;<b>BTN_ADDTOCART&lt;<span style="color: #ff0000;">ref</span>&gt;=Order</b></p>
+                                                                    <ul>
+                                                                        <li class="Tabletext_1" value="1">where <span class="Bold">&lt;ref&gt;</span> is the unique ref of the Service Action/Bundle  to order</li>
+                                                                        <li class="Tabletext_1" value="2">where <b>&lt;qty&gt;</b> is the quantity of this item to order</li>
+                                                                        <li class="Tabletext_1" value="3">where <span class="Bold">&lt;max&gt;</span> is the maximum number of items allowed in this order</li>
+                                                                    </ul>
+                                                                    <p class="exampletext">http://localhost/test/Core.aspx?Lite&amp;Form=ServiceCatalogSearch&amp;<b>Quantity<span style="color: #ff0000;">7</span>=1</b>&amp;<b>MaxItems<span style="color: #ff0000;">7</span>=1</b>&amp;<b>BTN_ADDTOCART<span style="color: #ff0000;">7</span>=Order</b></p>
+                                                                    <p class="warning">The BTN_ADDTOCART parameter will not work for Service Actions that are configured to download objects or launch URLs.</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyA-Column2-Body1">
+                                                                    <p class="Tabletext">Use this parameter to order a service, as though selecting the Order button on a Service Action/Bundle. This takes the user to the Order submission form to complete the details and submit the order.</p>
+                                                                    <p class="Tabletext">The example URL opens the submission form for the <b><span class="GeneralVariablesAppName">ASM app</span></b> service action, which is the service action with a REF of <span style="color: #ff0000;">7</span> in the database.</p>
+                                                                    <p class="Tabletext">These parameters must be included, even if the value is set to 1:</p>
+                                                                    <ul>
+                                                                        <li class="Tabletext_2" value="1">Quantity#</li>
+                                                                        <li class="Tabletext_2" value="2">MaxItems#</li>
+                                                                    </ul>
+                                                                    <p class="Tabletext">Service Actions/Bundles are created in <span class="GeneralVariablesCoreName">ASM Core</span>. </p>
+                                                                    <p class="Tabletext">The unique reference is found in ITEM_REF.AR_PRIMARY_ASSET in the database.</p>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <h2 class="Heading2_1">
+<a name="Service"></a>Service Order Search</h2>
+                                                    <p>The Review Past/Current Service Orders window can be pre-populated by appending parameters to the basic Service Order search URL.</p>
+                                                    <p>URL: http://&lt;server_name&gt;/&lt;virtual_directory&gt;/Core.aspx?Lite&amp;<span class="Bold">Form=ServiceOrderSearchCriteria</span></p>
+                                                    <table class="TableStyle-Rep_Hdr_Row" style="margin-left: 0;margin-right: auto;mc-table-style: url('../../resources/tablestyles/rep hdr row.css');width: 100%;" cellspacing="0">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column1" style="width: 60%;">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column2" style="width: 40%;">
+                                                        <thead>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Head-Header1">
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column1-Header1">
+                                                                    <p class="Tableheading">Parameter</p>
+                                                                </th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadD-Column2-Header1">
+                                                                    <p class="Tableheading">Description</p>
+                                                                </th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p class="Tabletext"><b>Order_No</b>
+                                                                    </p>
+                                                                    <p class="Tabletext">http://&lt;server_name&gt;/&lt;virtual_directory&gt;/Core.aspx?Lite&amp;Form=ServiceOrderSearchCriteria&amp;<b>Order_No=&lt;number&gt;,&lt;number&gt;</b></p>
+                                                                    <ul>
+                                                                        <li class="Tabletext_1" value="1">where <span class="Bold">&lt;number&gt;</span> is the Service Order number(s) to search for</li>
+                                                                    </ul>
+                                                                    <p class="exampletext"><b>Example 1:</b>
+                                                                        <br>http://&lt;server_name&gt;/&lt;virtual_directory&gt;/Core.aspx?Lite&amp;Form=ServiceOrderSearchCriteria&amp;<b>Order_No=10,15</b></p>
+                                                                    <p class="exampletext"><b>Example 2:</b>
+                                                                        <br>http://&lt;server_name&gt;/&lt;virtual_directory&gt;/Core.aspx?Lite&amp;Form=ServiceOrderSearchCriteria&amp;Order_No=10,15&amp;<b>BTN_SEARCH=Search</b></p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p class="Tabletext">Use this parameter to populate the <span class="Bold">Order No</span> field on the search window. This parameter can have multiple comma separated values.</p>
+                                                                    <p class="Tabletext"><b>Example 1</b> opens the Review Past/Current Orders page with values <b>10,15</b> already entered. </p>
+                                                                    <p class="Tabletext"><b>Example 2</b> automatically runs the search and opens the Service Order Summary window with Orders <b>10</b> and <b>15</b> listed, if they exist.</p>
+                                                                    <p class="Tabletext">Service Order numbers are visible on the Service Order Details window in <span class="GeneralVariablesCoreName">ASM Core</span>.</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p class="Tabletext"><b>Order_Status</b>
+                                                                    </p>
+                                                                    <p class="Tabletext">http://&lt;server_name&gt;/&lt;virtual_directory&gt;/Core.aspx?Lite&amp;Form=ServiceOrderSearchCriteria&amp;<b>Order_Status=&lt;status_ref&gt;</b></p>
+                                                                    <ul>
+                                                                        <li class="Tabletext_1" value="1">where <b>&lt;status_ref&gt;</b> is the unique reference of the Order Status  to search for</li>
+                                                                    </ul>
+                                                                    <p class="exampletext">http://&lt;server_name&gt;/&lt;virtual_directory&gt;/Core.aspx?Lite&amp;Form=ServiceOrderSearchCriteria&amp;<b>Order_Status=22</b></p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p class="Tabletext">Use this parameter to populate the <span class="Bold">Order Status</span> field on the search window.</p>
+                                                                    <p class="Tabletext">The example URL opens the Review Past/Current Requests criteria page with values <span class="Bold">In Progress</span> already selected, which is the name value for REF <b>22</b> in the database.</p>
+                                                                    <p class="Tabletext">Order Statuses are created in System Admin. </p>
+                                                                    <p class="Tabletext">The unique reference is found in REF.SU_SERVICE_TITLES in the database.</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p class="Tabletext"><b>Order_State</b>
+                                                                    </p>
+                                                                    <p class="Tabletext">http://&lt;server_name&gt;/&lt;virtual_directory&gt;/Core.aspx?Lite&amp;Form=ServiceOrderSearchCriteria&amp;<b>Order_State=&lt;state&gt;</b></p>
+                                                                    <ul>
+                                                                        <li class="Tabletext_1" value="1">where <b>&lt;state&gt;</b> represents whether to search Service Orders that are open, completed, or not submitted</li>
+                                                                    </ul>
+                                                                    <p class="exampletext">http://&lt;server_name&gt;/&lt;virtual_directory&gt;/Core.aspx?Lite&amp;Form=ServiceOrderSearchCriteria&amp;<b>Order_State=1</b></p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p class="Tabletext">Use this parameter to pre-select one of the options of the <span class="Bold">Request State</span> field on the search window, which is a set of radio options.</p>
+                                                                    <p class="Tabletext">The default selection is Open Orders.</p>
+                                                                    <p class="Tabletext">The example URL opens the Review Past/Current Orders page with the Order State <b>Completed &lt; 1 Week</b> already selected.</p>
+                                                                    <p class="Tabletext">Options available:</p>
+                                                                    <ul>
+                                                                        <li class="Tabletext_2" value="1">
+<span class="Bold">O</span> = Open Orders</li>
+                                                                        <li class="Tabletext_2" value="2">
+<span class="Bold">1</span> = Completed &lt; 1 Week</li>
+                                                                        <li class="Tabletext_2" value="3">
+<span class="Bold">4</span> = Completed &lt; 4 Weeks</li>
+                                                                        <li class="Tabletext_2" value="4">
+<span class="Bold">N</span> = Not Submitted</li>
+                                                                    </ul>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p class="Tabletext"><b>Service_Action_Ref </b>
+                                                                    </p>
+                                                                    <p class="Tabletext">http://&lt;server_name&gt;/&lt;virtual_directory&gt;/Core.aspx?Lite&amp;Form=ServiceOrderSearchCriteria&amp;<b>Service_Action_Ref=&lt;sa_ref&gt;</b></p>
+                                                                    <ul>
+                                                                        <li class="Tabletext_1" value="1">where <b>&lt;sa_ref&gt;</b> is the unique reference of the Service Action  to search on</li>
+                                                                    </ul>
+                                                                    <p class="exampletext">http://&lt;server_name&gt;/&lt;virtual_directory&gt;/Core.aspx?Lite&amp;Form=ServiceOrderSearchCriteria&amp;<b>Service_Action_Ref=22</b></p>
+                                                                    <p class="Tabletext"> </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p class="Tabletext">Use this parameter to populate the <b>Service Action</b> field on the search window.</p>
+                                                                    <p class="Tabletext">The example URL opens the Review Past/Current Orders page with the Service Action <span class="Bold">Consulting</span> already selected, which is the NAME value for REF <b>22</b> in the database.</p>
+                                                                    <p class="Tabletext">Services Actions are created in <span class="GeneralVariablesCoreName">ASM Core</span>. </p>
+                                                                    <p class="Tabletext">The unique reference is found in ITEM_REF.AR_PRIMARY_ASSET in the database where ENTITY_TYPE=2 </p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyB-Column1-Body1">
+                                                                    <p class="Tabletext"><b>Service_Bundle_Ref </b>
+                                                                    </p>
+                                                                    <p class="Tabletext">http://&lt;server_name&gt;/&lt;virtual_directory&gt;/Core.aspx?Lite&amp;Form=ServiceOrderSearchCriteria&amp;<b>Service_Bundle_Ref=&lt;sb_ref&gt;</b></p>
+                                                                    <ul>
+                                                                        <li class="Tabletext_1" value="1">where <span class="Bold">&lt;sb_ref&gt;</span> is the unique reference of the Service Bundle to search on</li>
+                                                                    </ul>
+                                                                    <p class="exampletext"><b>Example 1:</b>
+                                                                        <br>http://&lt;server_name&gt;/&lt;virtual_directory&gt;/Core.aspx?Lite&amp;Form=ServiceOrderSearchCriteria&amp;<b>Service_Bundle_Ref=22</b></p>
+                                                                    <p class="exampletext"><b>Example 2:</b>
+                                                                        <br>http://&lt;server_name&gt;/&lt;virtual_directory&gt;/Core.aspx?Lite&amp;Form=ServiceOrderSearchCriteria&amp;Service_Bundle_Ref=31&amp;<b>Order_State=O</b>&amp;<b>BTN_SEARCH=Search</b></p>
+                                                                    <p class="Tabletext">The <span class="Bold">Order_State</span> parameter is required if automating the search for service bundles through URL</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyA-Column2-Body1">
+                                                                    <p class="Tabletext">Use this parameter to populate the <span class="Bold">Service Bundle</span> field on the search window.</p>
+                                                                    <p class="Tabletext"><b>Example 1</b> opens the Review Past/Current Orders page with the Service Bundle <span class="Bold">New Starter</span> already selected, which is the name value for REF <b>22</b> in the database.</p>
+                                                                    <p class="Tabletext"><b>Example 2</b> opens the Service Order Summary page, listing all open service orders for New Starter bundles.</p>
+                                                                    <p class="Tabletext">Services Bundles are created in <span class="GeneralVariablesCoreName">ASM Core</span>. </p>
+                                                                    <p class="Tabletext">The unique reference is found in ITEM_REF.AR_PRIMARY_ASSET in the database where ENTITY_TYPE=33.</p>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                

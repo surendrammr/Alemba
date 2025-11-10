@@ -1,0 +1,165 @@
+[viewBag]
+title = "Porting Configuration Data"
+url = "/help/topics/config-port/porting-configuration-data"
+layout = "help"
+is_hidden = 0
+navigation_hidden = 0
+==
+                                                    <h1>Porting Configuration Data</h1>
+                                                    <p>Once an organization has configured and tested the settings on the <b>source system</b> (development environment), the settings can be ported to the <b>target</b> system (test environment) to test the import and settings, and then ported to the live environment, referred to as the <b>master target system</b>.</p>
+                                                    <p>To export data from a source system and import it into a master/target system, take the following steps:</p>
+                                                    <ol>
+                                                        <li value="1">Start the <b><span class="GeneralVariablesProductName">ASM</span> Config Portability</b> service.</li>
+                                                        <li value="2">Open the <b>Configuration Portability Settings</b> window.</li>
+                                                        <li value="3">Select the settings you want to export.</li>
+                                                        <li value="4">Click the <b>Export</b> button to export the data from the source system into a file.</li>
+                                                        <li value="5">Verify that the export has gone through as expected by reviewing the export log file.</li>
+                                                        <li value="6">Click the link available in the log file to save the exported file.</li>
+                                                        <li value="7">Log out of the source system.</li>
+                                                        <li value="8">Create a backup of the target system or master target system.</li>
+                                                        <li value="9">Log in to the target system or master target system.</li>
+                                                        <li value="10">Open the <b>Configuration Portability Settings</b> window.</li>
+                                                        <li value="11">Select the settings you want to import.</li>
+                                                        <p class="note">The actual import settings are derived from the file and not the target setting. The settings here are only used to label the import with an easily identifiable name.</p>
+                                                        <li value="12">Import the data into the target system using the exported file.</li>
+                                                        <li value="13">Verify that the import has gone through as expected by reviewing the import log file.</li>
+                                                    </ol>
+                                                    <h2>
+<a name="Selectin"></a>Exporting Configuration Settings</h2>
+                                                    <h2 class="Prerequisite">Before you start</h2>
+                                                    <p class="prereqtext1">You must have <b>Configuration Portability</b> selected in the <a href="../admin%20security%20roles/general%20access%20security%20role%20-%20admin%20tab.htm">Admin</a> tab of your <b>General Access security role</b>.</p>
+                                                    <p class="prereqtext1">Familiarize yourself with the <a href="%7B%7B%20'help-configuration-portability#Prerequi'%7CstaticPage%20%7D%7D#Prerequi">Prerequisites and Considerations</a>, and <a href="cp%20overview%20best%20practice.htm">Best Practices</a>.</p>
+                                                    <p class="prereqtext1">The <b>Configuration Portability Polling Service</b> must be running on the <span class="GeneralVariablesCoreName">ASM Core</span> server.</p>
+                                                    <p class="prereqtextlast">If porting IPK/Workflow groups, ensure that the <b class="Xref_outstanding">recipient analyst</b> (in <a href="../admin%20security/ipk%20groups.htm">IPK Groups</a> or <a href="../admin%20security/workflow%20management%20groups.htm">Workflow Management Groups</a> windows) and <a href="../admin%20system/partition%20settings.htm">partition settings</a> are the same on the source and target system.</p>
+                                                    <p class="note">For administrator values that can be flagged, for example the Request Completion Statuses, where a status can be set as the one to use for Closure, if different values are flagged in the source and target system, the value set in the target system is retained on import. For porting knowledge screens, both knowledge entry types and knowledge base entry types are ported.</p>
+                                                    <h3>Selecting Settings to Export</h3>
+                                                    <ol>
+                                                        <li value="1">Log on to the <span class="GeneralVariablesCoreName">ASM Core</span> config port source system.</li>
+                                                        <li value="2">
+                                                            <p>Select <a href="../general%20topics/asmcorewindow.htm"><span style="font-size: 24pt;">≡</span></a> &gt; <b>Admin</b> &gt;  <b>Configuration Portability</b>. </p>
+                                                            <p>The Configuration Portability Settings window appears. All defined configuration portability settings are listed in a browse table. If no settings have been added yet, only the standard entry <b>All Options</b> appears. This standard configuration portability setting is set up to export all configuration settings and cannot be edited or deleted.  </p>
+                                                        </li>
+                                                        <li value="3">Select <img src="/storage/app/media/Help/images/add%20new.png"> on the toolbar.</li>
+                                                        <li value="4">The <b>Add New Configuration Settings</b> window appears. </li>
+                                                        <li value="5">Key a descriptive name for the settings (such as "Test environment Config Settings") into the <b>Name</b> field.</li>
+                                                        <li value="6">Provide a description for the setting.</li>
+                                                        <li value="7">Beneath the main heading, there is a number of tabs. Each tab corresponds to a heading on the System Administration Explorer (such as System, Security and Security Roles). In addition, Screens, Forms, and Messages Templates tabs are available to select the screens, forms and message templates you have created and/or configured using the <a href="../designer/using%20designer.htm"><span class="GeneralVariablesDesignerName">ASM Designer</span></a> and wish to copy to another system. You can use the global <b>Select All</b> and <b>Unselect All</b> buttons to select or deselect all of the screen, forms and templates. You can then view specific tabs and select/deselect individual settings.</li>
+                                                        <li value="8">Using the tabs, specify the new configuration settings.  Selecting an entity (for example, Contract) selects all the screens, forms or message templates associated with it. If you want to export specific screens for a screen set, use the Screens – Individual tab. To select all settings under a particular tab, click <b>Select All</b>. To clear all settings under a particular tab, click <b>Unselect All</b>.</li>
+                                                        <li value="9">Save the changes by selecting <b>Save Configuration Settings</b> to save now and export later, or <b>Save and Export Configuration</b> to save and continue with export.</li>
+                                                    </ol>
+                                                    <h3>Exporting Selected Settings</h3>
+                                                    <p>After you select and save the configuration settings you want to copy to another system, you can export them.</p>
+                                                    <ol>
+                                                        <li value="1">
+                                                            <div class="MCDropDown MCDropDown_Closed dropDown">
+<span class="MCDropDownHead dropDownHead"><a href="#" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCHotSpotImage" aria-expanded="false"><img class="MCDropDown_Image_Icon" src="/storage/app/media/Help/images/transparent.gif" height="11" width="16" alt="Closed" data-mc-alt2="Open">To open the Export Configuration window if you previously saved configuration settings to export later</a></span>
+                                                                <div class="MCDropDownBody dropDownBody">
+                                                                    <ul>
+                                                                        <li value="1">Log on to the <span class="GeneralVariablesCoreName">ASM Core</span> config port source system.</li>
+                                                                        <li value="2">
+                                                                            <p>Select <a href="../general%20topics/asmcorewindow.htm"><span style="font-size: 24pt;">≡</span></a> &gt; <b>Admin</b> &gt;  <b>Configuration Portability</b>. </p>
+                                                                            <p>The Configuration Portability Settings window appears. All defined configuration portability settings are listed in a browse table.</p>
+                                                                        </li>
+                                                                        <li value="3">Select the row with the settings you want to export and select:<ul>
+<li value="1">
+<b>Edit Configuration Settings</b> to change the selections, and then select <b>Save and Export Configuration</b> to open the Export Configuration window; or</li>
+<li value="2">
+<b>Export Configuration</b> to open the Export Configuration window</li>
+</ul>
+</li>
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+                                                        </li>
+                                                        <li value="2">Review the configuration settings you have selected on the <b>Export Configuration</b> window. This window displays two tabs that correspond to two different views:<ul>
+<li value="1">
+<b>By Selection</b> lists the settings grouped first by selection (Selected, Unselected) and then by system administration heading (System, Security, and so on).</li>
+<li value="2">
+<b>By Section</b> lists the settings grouped first by system administration heading (System, Security, and so on) and then by selection (Selected, Unselected).</li>
+</ul>
+</li>
+                                                        <p>
+                                                            </p>
+<p class="note">To expand a section and view the details of the settings you have selected or not selected, click the name of the heading or tab (for example, System tings you have selected or not selected, ). The options under the heading or tab are displayed.</p>
+                                                        
+                                                        <p>To change any of the selections, select <b>Edit Configuration Settings</b>. The Edit Configuration Settings window appears.</p>
+                                                        <li value="3">
+                                                            <p>When you are ready to export the data, select <b>Export Configuration</b>. A dialog box opens prompting you to continue or abandon the export.</p>
+                                                        </li>
+                                                        <li value="4">
+                                                            <p>The Configuration Portability Process window appears while the export is in progress.</p>
+                                                        </li>
+                                                        <li value="5">
+                                                            <p>When the export is complete, the Configuration Portability Log window appears with a link to the exported settings file. It also lists details of the items that have been exported as well as any warning or error messages.</p>
+                                                        </li>
+                                                        <p>
+                                                            </p>
+<p class="note">You can save the log to an external file by selecting <b>Save Log to File</b> on the toolbar. The log can also be retrieved from the Configuration Portability Logs window, which you can access by selecting <b>Export and Import Logs</b> on the Explorer.</p>
+                                                        
+                                                        <li value="6">
+                                                            <p>Select <b>Cancel</b> to close the log.</p>
+                                                        </li>
+                                                    </ol>
+                                                    <h2>
+<a name="Importin"></a>Importing Configuration Data</h2>
+                                                    <p>After you export the configuration data from the source system into an export file, you can import the file into the target or master target system.</p>
+                                                    <p class="note"><span class="GeneralVariablesCompanyName2">Alemba®</span> recommends that you first import the configuration settings on a copy of the production database to verify that there are no errors with the export file or the import process.</p>
+                                                    <p class="prereq">Before any import, perform a backup of the target system. If the import does not complete as intended, you can roll back to the previous version of the database.</p>
+                                                    <p>The import processes dependent data first. If, during the import process, the application encounters missing or inconsistent data, an error is written to the log file. Any log file errors should be investigated after the import to ensure the integrity of data in the target system. </p>
+                                                    <p>The following types of errors are written to the import log file:</p>
+                                                    <ul>
+                                                        <li value="1">Data errors such as data dependency errors, the existence of duplicate names, or the impossibility to find exact matches.</li>
+                                                        <li value="2">System errors such as network failures or memory errors.</li>
+                                                    </ul>
+                                                    <p>The log file also provides the list of values that were exported or imported. This enables you to compare what was exported and what was imported.</p>
+                                                    <h2 class="Prerequisite">Before you start</h2>
+                                                    <p class="prereqtext1">You must have <b>Configuration Portability</b> selected in the <a href="../admin%20security%20roles/general%20access%20security%20role%20-%20admin%20tab.htm">Admin</a> tab of your <b>General Access security role</b>.</p>
+                                                    <p class="prereqtext1">Familiarize yourself with the <a href="%7B%7B%20'help-configuration-portability#Prerequi'%7CstaticPage%20%7D%7D#Prerequi">Prerequisites and Considerations</a>.</p>
+                                                    <p class="prereqtext1">The <b>Configuration Portability Polling Service</b> must be running on the <span class="GeneralVariablesCoreName">ASM Core</span> server.</p>
+                                                    <p class="prereqtextlast">If porting IPK/Workflow groups, ensure that the <b class="Xref_outstanding">recipient analyst</b> (in <a href="../admin%20security/ipk%20groups.htm">IPK Groups</a> or <a href="../admin%20security/workflow%20management%20groups.htm">Workflow Management Groups</a> windows) and <a href="../admin%20system/partition%20settings.htm">partition settings</a> are the same on the source and target system.</p>
+                                                    <ol>
+                                                        <li value="1">Log on to the <span class="GeneralVariablesCoreName">ASM Core</span> config port target or master target system. </li>
+                                                        <li value="2">
+                                                            <p>Select <a href="../general%20topics/asmcorewindow.htm"><span style="font-size: 24pt;">≡</span></a> &gt; <b>Admin</b> &gt;  <b>Configuration Portability</b>.</p>
+                                                            <p>The Configuration Portability Settings window appears.</p>
+                                                        </li>
+                                                        <li value="3">
+                                                            <p>Select the default <b>All Options</b> row and then select <b>Import Configuration</b>. The Windows file browser dialog box appears.</p>
+                                                        </li>
+                                                        <li value="4">
+                                                            <p>Select the file to import. It is the export file you created previously (see <a href="#Selectin" class="MCXref xref">Exporting Configuration Settings</a>).</p>
+                                                        </li>
+                                                        <li value="5">
+                                                            <p>Select <b>Open</b>. The file browser dialog box closes and the <b>Import Configuration</b> window appears.</p>
+                                                            <p>The <b>Import Configuration</b> window displays two tabs that correspond to two different views:</p>
+                                                            <ul>
+                                                                <li value="1">
+<b>By Selection</b> lists the settings grouped first by selection (Selected Available, Selected unavailable, and so on) and then by system administration heading (System, Security, and so on).</li>
+                                                                <li value="2">
+<b>By Section</b> lists the settings grouped first by system administration heading (System, Security, and so on) and then by selection (Selected Available, Selected Unavailable, and so on).</li>
+                                                            </ul>
+                                                            <p>Configuration settings are grouped by selection (Selected, Unselected) and by availability (Available, Unavailable):</p>
+                                                            <ul>
+                                                                <li value="1">
+<b>Selected Available</b> lists the selected settings that are available in the import file.</li>
+                                                                <li value="2">
+<b>Unselected Available</b> lists the unselected settings that are available in the import file.</li>
+                                                                <li value="3">
+<b>Selected Unavailable</b> lists the selected settings that are not available in the import file (because they were not exported to the file).</li>
+                                                                <li value="4">
+<b>Unselected Unavailable</b> lists the unselected settings that are not available in the import file (because they were not exported to the file).</li>
+                                                                <p class="note">To expand a section and view the details of the set, click the name of the heading or tab. The options under the heading or tab are displayed.</p>
+                                                            </ul>
+                                                        </li>
+                                                        <p>If there is a fatal error with the format of the file content, an error message appears.</p>
+                                                        <li value="6">Review the configuration settings to be imported and, if needed, make any changes by selecting <b>Edit Configuration Settings</b>. The <b>Edit Configuration Settings</b> window appears. You can only change the available settings.</li>
+                                                        <li value="7">Select <b>Import Configuration</b>. A message appears asking whether you wish to import the configuration. Select <b>Yes</b> to import the configuration data or <b>No</b> to cancel the import. The <b>Configuration Portability Process</b> window appears while the import is in progress.</li>
+                                                        <li value="8">As soon as the import is complete, the <b>Configuration Portability Log</b> window appears. It lists the details of the items that have been imported as well as any warning or error messages.</li>
+                                                        <p>You can save the log to an external file by selecting <b>Save Log to File</b> on the toolbar. The log can also be retrieved from the <b>Configuration Portability Logs</b> window, which you can access by selecting the <b>Export and Import Logs</b> explorer option.</p>
+                                                        <li value="9">
+                Click <b>Cancel</b> to close the log.
+</li>
+                                                        <li value="10">The settings are saved in the database table SU_CONFIG_PORT_SETTINGS.</li>
+                                                        <p class="note">The cache is cleared automatically.</p>
+                                                    </ol>
+                                                

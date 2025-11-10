@@ -1,0 +1,17 @@
+[viewBag]
+title = "Re-opening a Manage CMDB Task"
+url = "/help/topics/tasks/re-opening-a-manage-cmdb-task"
+layout = "help"
+is_hidden = 0
+navigation_hidden = 0
+==
+                                                    <h1>Re-opening a Manage CMDB Task</h1>
+                                                    <p>You may want to rerun transactions on CMDB items linked to a request in case the first attempt to apply these transactions failed, or if changes have been made to linked CMDB items outside of the current request. In both case, you would want to run the Manage CMDB task again in order to apply the transactions.</p>
+                                                    <p>You can do this by re-opening this task through a recursive branch in your workflow. To re-open a Manage CMDB task, click Re-Open. Re-opening a Manage CMDB Task will re-open all the transactions that were defined as part of this task. When you re-open this task, one of the following actions will be taken:</p>
+                                                    <ul>
+                                                        <li value="1">If the transactions were applied to the linked CMDB items, and this task is invoked through a recursive branch, the transactions will be applied again.</li>
+                                                        <li value="2">If changes have been made to the linked CMDB items subsequent to this task running, re-opening this task will apply the transactions to the linked items again.</li>
+                                                    </ul>
+                                                    <p>You can specify whether a transaction will re-run or not when adding the Transaction Details.</p>
+                                                    <p class="note">If you update any request fields mapped to a transaction for the Manage CMDB task, you must save the request before these changes will be picked up by the task on re-opening. For example, if you have set up the task to update the configuration item linked to the request, but on running, the task fails because no matching item is found, and you then update the request to link a configuration item, if you do not save the request, the task will fail again. However, on saving the updated request, the task will succeed on re-opening.</p>
+                                                

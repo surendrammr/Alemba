@@ -1,0 +1,40 @@
+[viewBag]
+title = "Single Sign-On using SAML"
+url = "/help/topics/sso-technical-reference-guide/about-sso"
+layout = "help"
+is_hidden = 0
+navigation_hidden = 0
+==
+                                                    <h1>Single Sign-On using SAML</h1>
+                                                    <p class="onlysql">This feature is only available on SQL systems.</p>
+                                                    <p class="intro">This topic provides an introduction to how <span class="GeneralVariablesCoreName">ASM Core</span> can be configured for Single Sign-On (SSO) using Security Assertion Markup Language (SAML) and the technical requirements to use this functionality.</p>
+                                                    <p class="intro"> </p>
+                                                    <p><span class="GeneralVariablesCoreName">ASM Core</span> Analysts and Users will typically need access to a large number of internally and externally hosted (Cloud) applications each requiring usernames and passwords. Identity federation helps to solve this issue by providing a secure mechanism for sharing identities and therefore removing the need to maintain a separate user profile for <span class="GeneralVariablesCoreName">ASM Core</span>.</p>
+                                                    <p>SAML is an identity federation standard language that enables SSO without the need to remember passwords and is a convenient way to access web applications due to enhanced security. It limits potential risks by eliminating the need for extra web application passwords by establishing a trust between the <span class="GeneralVariablesAppName">ASM app</span> and the Organization's Federated Identity system(s).</p>
+                                                    <p style="text-align: center;">
+                                                        <img src="/storage/app/media/Help/images/sso%20technical%20reference%20guide/sso_690x266.png" style="width: 690;height: 266;" class="screenshot">
+                                                    </p>
+                                                    <h2>The SAML Transaction Steps for <span class="GeneralVariablesProductName">ASM</span>
+</h2>
+                                                    <ol>
+                                                        <li value="1">The <span class="GeneralVariablesProductName">ASM</span> User or Analyst makes a request to access the application by loading an appropriate <span class="GeneralVariablesProductName">ASM</span> URL in a browser. </li>
+                                                        <li value="2">The <span class="GeneralVariablesAppName">ASM app</span> will detect this request and generate a SAML request.</li>
+                                                        <li value="3">This is sent to the Identity Provider via the User/Analyst’s browser, with the SSO URL. </li>
+                                                        <li value="4">The Identity Provider, MS ADFS or other Partner, checks the request and then authenticates the User/Analyst. </li>
+                                                        <li value="5">The SAML Response is generated.</li>
+                                                        <li value="6">It is then passed back to the <span class="GeneralVariablesProductName">ASM</span> URL via the User/Analyst’s Browser . </li>
+                                                        <p class="note">If you are using ADFS, the details that are sent are called ‘claim rules’ and are configured within ADFS when creating the relying party trust. See <a href="sso%20id%20provider%20import%20sp.htm" class="MCXref xref">Importing Service Provider metadata into the Identity Provider </a>for more details.</p>
+                                                        <li value="7">
+<span class="GeneralVariablesProductName">ASM</span> verifies this response. it tries to fiend an existing user. The criteria it uses depend on whether SSO is enabled within the Service Provider. If disabled, the application will always attempt to match the ‘NameID’ (set within the ADFS claim rules) with the ‘LoginID’ of the user. If the SSO resource has been enabled, resource mappings can be configured to match alternative fields instead of the default ‘LoginID’. See <a href="sso%20id%20provider%20import%20sp.htm" class="MCXref xref">Importing Service Provider metadata into the Identity Provider </a>for more details. It operates in the same way as normal integration; the first time a user is encountered the resource mapping matching tab is used and thereafter the external resource link is used.</li>
+                                                        <li value="8">If a user is found, they are logged in. If not, and there is an existing account in AD and the SSO resource has been selected within the service provider, a new user is created using the resource mapping. If SSO is disabled, the login process will fail and no user account will be created.</li>
+                                                    </ol>
+                                                    <p style="text-align: center;">
+                                                        <img src="/storage/app/media/Help/images/sso%20technical%20reference%20guide/sso%20process_595x361.png" style="width: 595;height: 361;" class="screenshot">
+                                                    </p>
+                                                    <h2>Glossary of Terms</h2>
+                                                    <p><b>Federated Identity</b> is the means of linking a person’s electronic identity across multiple distinct identity management systems.</p>
+                                                    <p><b>Single Sign-On</b> is a property of access control of multiple related but independent software systems allowing a user to log in to <span class="GeneralVariablesCoreName">ASM Core</span> with a single ID and password.</p>
+                                                    <p><b>SAML</b> is an XML based open standard for exchanging authentication and authorization data between for instance, an application with a user’s own organizational log in credentials.</p>
+                                                    <p><b>Service Provider (sP)</b> in this case is the application for which Users are attempting to access and log in to i.e. the <span class="GeneralVariablesAppName">ASM app</span>.</p>
+                                                    <p><b>Identity Provider (IdP)</b> is the source of the SAML service (e.g. ADFS, Shibboleth) which provides the Service Provider (<span class="GeneralVariablesAppName">ASM app</span>) with the authorization for users to log on and use the application.</p>
+                                                

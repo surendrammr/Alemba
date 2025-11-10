@@ -1,0 +1,165 @@
+[viewBag]
+title = "Security Roles"
+url = "/help/topics/admin-security-roles/security-roles"
+layout = "help"
+is_hidden = 0
+navigation_hidden = 0
+==
+                                                    <h1>
+<a name="top"></a>Security Roles</h1>
+                                                    <p class="intro">Security Roles are a way of restricting Analysts' access to different parts of <span class="GeneralVariablesCoreName">ASM Core</span>. Instead of defining access permissions for each Analyst in the system, you simply create a security role, assign permissions to that role, and then assign the role to whoever needs these permissions.</p>
+                                                    <p>Controlling access to different parts of the system is important. Often, large numbers of analysts need the same access permissions. For example, fifty members of staff working on the service desk all need the same permissions. It would be inefficient to set up specific permissions for each of them, so instead, you can create <b>security roles</b> for different areas of the system, each with their own set of permissions, and then simply assign security roles to each Analyst. Then every Analyst with the same security role will have the same access permissions.</p>
+                                                    <p class="note">You can set security role permissions for users, using the options in the <a href="../adminselfserviceportal/cp%20roles.htm" class="MCXref xref">Self Service Portal Roles</a> group in the System Administration window.</p>
+                                                    <p><a name="security_roles_types"></a>You can define security roles for:</p>
+                                                    <table class="TableStyle-FieldDesc" style="mc-table-style: url('../../resources/tablestyles/fielddesc.css');margin-left: 0;margin-right: auto;" cellspacing="0">
+                                                        <col class="TableStyle-FieldDesc-Column-Column1">
+                                                        <col class="TableStyle-FieldDesc-Column-Column2">
+                                                        <tbody>
+                                                            <tr>
+                                                                <td class="TableStyle-FieldDesc-BodyH-Column1-">
+<a href="%7B%7B%20'help-general-access-security-role#top'%7CstaticPage%20%7D%7D#top">General Access </a>
+                                                                </td>
+                                                                <td class="TableStyle-FieldDesc-BodyG-Column2-"> which covers basic <span class="GeneralVariablesCoreName">ASM Core</span> Administration rights and Timesheet permissions, including maintaining security roles</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="TableStyle-FieldDesc-BodyH-Column1-">
+<a href="%7B%7B%20'help-ipk-management-security-roles#top'%7CstaticPage%20%7D%7D#top">IPK Management</a>
+                                                                </td>
+                                                                <td class="TableStyle-FieldDesc-BodyG-Column2-">which covers permissions for calls and related entities. It also includes permissions for Call screen sets, IPK groups (including default groups), IPK statuses, IPK streams, and forms</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="TableStyle-FieldDesc-BodyH-Column1-">
+<a href="%7B%7B%20'help-workflow-mgt-sec-role#top'%7CstaticPage%20%7D%7D#top">Workflow Management</a>
+                                                                </td>
+                                                                <td class="TableStyle-FieldDesc-BodyG-Column2-">which  covers permissions for the workflow (change, release, configuration management) request procedures in <span class="GeneralVariablesCoreName">ASM Core</span>
+</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="TableStyle-FieldDesc-BodyH-Column1-">
+<a href="%7B%7B%20'help-config-mgt-sec-roles#top'%7CstaticPage%20%7D%7D#top">Configuration Management</a>
+                                                                </td>
+                                                                <td class="TableStyle-FieldDesc-BodyG-Column2-">which covers permissions for managing configuration items, services and related entities within the CMDB. It also includes permissions for viewing, creating, updating and deleting CMDB item details, attaching objects to CMDB items and forms</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="TableStyle-FieldDesc-BodyH-Column1-">
+<a href="%7B%7B%20'help-slm-security-roles#top'%7CstaticPage%20%7D%7D#top">Service Level Management</a>
+                                                                </td>
+                                                                <td class="TableStyle-FieldDesc-BodyG-Column2-">which covers permissions for agreements in <span class="GeneralVariablesCoreName">ASM Core</span> including Service Level Agreements (SLAs), Operating Level Agreements (OLAs) and Underpinning Contracts (UCs)</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="TableStyle-FieldDesc-BodyH-Column1-">
+<a href="%7B%7B%20'help-availability-management-security#top'%7CstaticPage%20%7D%7D#top">Availability Management</a>
+                                                                </td>
+                                                                <td class="TableStyle-FieldDesc-BodyG-Column2-">which covers permissions for viewing, creating and updating Outages, Schedules and viewing Availability Data for CMDB items</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="TableStyle-FieldDesc-BodyH-Column1-">
+<a href="%7B%7B%20'help-knowledge-mgt-sec-role#top'%7CstaticPage%20%7D%7D#top">Knowledge Management</a>
+                                                                </td>
+                                                                <td class="TableStyle-FieldDesc-BodyG-Column2-">which covers permissions for viewing, creating and editing knowledge entries within the Knowledge Bank</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="TableStyle-FieldDesc-BodyB-Column1-">
+<a href="%7B%7B%20'help-bulletin-board-security-roles#top'%7CstaticPage%20%7D%7D#top">Bulletin Board</a>
+                                                                </td>
+                                                                <td class="TableStyle-FieldDesc-BodyA-Column2-">which covers permissions for viewing, creating and editing Bulletins</td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <p class="note">For convenience, each type of security role comes with a pre-defined role called “All”. Typically, this role has all the options enabled, but <b>not always</b>. You can redefine what options are available to suit the needs of your organization. You can also use this role to create other roles that suit your organization’s requirements.</p>
+                                                    <h2>
+<a name="Creating"></a>Creating a Security Role</h2>
+                                                    <h2 class="Prerequisite">Before you start</h2>
+                                                    <p class="prereqtext">You must have <a href="#Security_Roles_Setup">Security Roles setup</a> selected in your own <b>General Access security role</b> before you can assign or remove permissions for any security roles.</p>
+                                                    <ol start="1">
+                                                        <li value="1">
+                                                            <p>Select <a href="../general%20topics/asmcorewindow.htm"><span style="font-size: 24pt;">≡</span></a> &gt; <b>Admin</b> &gt;  <b>System Administration</b>.   </p>
+                                                            <p>The System Administration window appears.</p>
+                                                            <p>In the Explorer pane, expand <b>Security Roles</b>, then select the type of role you want to view. </p>
+                                                            <p>A browse table appears, displaying all of the existing roles of this type. You can create, update or rename a security role of this type. </p>
+                                                            <p class="note">The pre-defined role <b class="Bold">All</b> typically has all role options selected. However, some of the options are not selected by default and you should explore the permissions set before assigning the role.</p>
+                                                        </li>
+                                                        <li value="2">
+                                                            <p>Select  <img src="/storage/app/media/Help/images/add%20new.png">. </p>
+                                                        </li>
+                                                        <li value="3">Key the name of the role you want to create into the <b class="Bold">Role Name</b> field.</li>
+                                                        <li value="4">Select the permissions you want associated with the role. The fields available will vary depending on the <a href="#security_roles_types">type of security role</a>. </li>
+                                                    </ol>
+                                                    <h2>
+<a name="Viewing"></a>Viewing a Security Role</h2>
+                                                    <h2 class="Prerequisite">Before you start</h2>
+                                                    <p class="prereqtext">You must have <a href="#Security_Roles_Setup">Security Roles setup</a> selected in your own <b>General Access security role</b> before you can assign or remove permissions for any security roles.</p>
+                                                    <ol>
+                                                        <li value="1">
+                                                            <p>Select <a href="../general%20topics/asmcorewindow.htm"><span style="font-size: 24pt;">≡</span></a> &gt; <b>Admin</b> &gt;  <b>System Administration</b>.   </p>
+                                                            <p>The System Administration window appears.</p>
+                                                            <p>In the Explorer pane, expand <b>Security Roles</b>, then select the type of role you want to view. </p>
+                                                            <p>A browse table appears, displaying all of the existing roles of this type. You can create, update or rename a security role of this type. </p>
+                                                            <p class="note">The pre-defined role <b class="Bold">All</b> typically has all role options selected. However, some of the options are not selected by default and you should explore the permissions set before assigning the role.</p>
+                                                        </li>
+                                                        <li value="2">
+                                                            <p>To view or update a security role, select the role in the browse table and select <img src="/storage/app/media/Help/images/action%20button.png">.</p>
+                                                        </li>
+                                                        <li value="3">The details window appears. It may have several tabs, each containing different settings. Select the relevant tab to view the information you wish to examine.</li>
+                                                    </ol>
+                                                    <h2>Updating a Security Role</h2>
+                                                    <h2 class="Prerequisite">Before you start</h2>
+                                                    <p class="prereqtext">You must have <a href="#Security_Roles_Setup">Security Roles setup</a> selected in your own <b>General Access security role</b> before you can assign or remove permissions for any security roles.</p>
+                                                    <p>You can update any of the details already set for a security role, including the name. Analysts who already have the security role assigned are affected by any changes. </p>
+                                                    <ol start="1">
+                                                        <li value="1">
+<a href="#Viewing">View the security role.</a>
+                                                        </li>
+                                                        <li value="2">Make the updates. The fields available will vary depending on the <a href="#security_roles_types">type of security role</a>.</li>
+                                                    </ol>
+                                                    <h2>Renaming a Security Role</h2>
+                                                    <h2 class="Prerequisite">Before you start</h2>
+                                                    <p class="prereqtext">You must have <a href="#Security_Roles_Setup">Security Roles setup</a> selected in your own <b>General Access security role</b> before you can assign or remove permissions for any security roles.</p>
+                                                    <p>You can rename roles which are currently in use or assigned to active Analysts. The name will be updated in the <a href="../managing%20people/managing%20people.htm">person details</a> for the Analysts affected..</p>
+                                                    <ol start="1">
+                                                        <li value="1">
+                                                            <p>Select <a href="../general%20topics/asmcorewindow.htm"><span style="font-size: 24pt;">≡</span></a> &gt; <b>Admin</b> &gt;  <b>System Administration</b>.   </p>
+                                                            <p>The System Administration window appears.</p>
+                                                            <p>In the Explorer pane, expand <b>Security Roles</b>, then select the type of role you want to view. </p>
+                                                            <p>A browse table appears, displaying all of the existing roles of this type. You can create, update or rename a security role of this type. </p>
+                                                            <p class="note">The pre-defined role <b class="Bold">All</b> typically has all role options selected. However, some of the options are not selected by default and you should explore the permissions set before assigning the role.</p>
+                                                        </li>
+                                                        <li value="2">Select the role you want to rename. The entry is highlighted. </li>
+                                                        <li value="3">Overtype with the name you want to use for the selected role.</li>
+                                                        <li value="4">Select  <img src="/storage/app/media/Help/images/save%20and%20close%20button.png" alt="" title=""> to save the changes and close the window. Provide the <a href="../general%20topics/change%20reasons.htm">Change Reasons</a> if prompted to do so. Alternatively, select another tab, if appropriate.The security role name is automatically updated in the details of all Analysts with that name assigned.</li>
+                                                    </ol>
+                                                    <h2>Deleting a Security Role </h2>
+                                                    <h2 class="Prerequisite">Before you start</h2>
+                                                    <p class="prereqtext">You must have <a href="#Security_Roles_Setup">Security Roles setup</a> selected in your own <b>General Access security role</b> before you can assign or remove permissions for any security roles.</p>
+                                                    <p>You can delete roles which are currently in use or assigned to active Analysts. The Analyst’s role for the function will default to <b class="Bold">None</b>.</p>
+                                                    <ol start="1">
+                                                        <li value="1">
+                                                            <p>Select <a href="../general%20topics/asmcorewindow.htm"><span style="font-size: 24pt;">≡</span></a> &gt; <b>Admin</b> &gt;  <b>System Administration</b>.   </p>
+                                                            <p>The System Administration window appears.</p>
+                                                            <p>In the Explorer pane, expand <b>Security Roles</b>, then select the type of role you want to view. </p>
+                                                            <p>A browse table appears, displaying all of the existing roles of this type. You can create, update or rename a security role of this type. </p>
+                                                            <p class="note">The pre-defined role <b class="Bold">All</b> typically has all role options selected. However, some of the options are not selected by default and you should explore the permissions set before assigning the role.</p>
+                                                        </li>
+                                                        <li value="2">Select the role you want to delete. The entry is highlighted.</li>
+                                                        <li value="3">Select  <img src="/storage/app/media/Help/images/delete%20button.png">. If the role is in use, you will receive the following warning: :<a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="../../resources/images/role%20in%20use%20warning.png"><img class="MCPopupThumbnail img imgthumbnail" data-mc-width="341" data-mc-height="194" src="/storage/app/media/Help/images/role%20in%20use%20warning_thumb_0_48.png" tabindex=""></a>
+</li>
+                                                        <li value="4">Select <b>Yes</b> to confirm the deletion. The entry is deleted from the window but it is not yet deleted from the database.</li>
+                                                        <li value="5">Select  <img src="/storage/app/media/Help/images/save%20and%20close%20button.png" alt="" title=""> to delete the role from the database and close the window. Provide the <a href="../general%20topics/change%20reasons.htm">Change Reasons</a> if prompted to do so.</li>
+                                                    </ol>
+                                                    <h3>Restoring a Deleted Security Role</h3>
+                                                    <h2 class="Prerequisite">Before you start</h2>
+                                                    <p class="prereqtext">You must have <a href="#Security_Roles_Setup">Security Roles setup</a> selected in your own <b>General Access security role</b> before you can assign or remove permissions for any security roles.</p>
+                                                    <ol start="1">
+                                                        <li value="1">
+                                                            <p>Select <a href="../general%20topics/asmcorewindow.htm"><span style="font-size: 24pt;">≡</span></a> &gt; <b>Admin</b> &gt;  <b>System Administration</b>.   </p>
+                                                            <p>The System Administration window appears.</p>
+                                                            <p>In the Explorer pane, expand <b>Security Roles</b>, then select the type of role you want to view. </p>
+                                                            <p>A browse table appears, displaying all of the existing roles of this type. You can create, update or rename a security role of this type. </p>
+                                                            <p class="note">The pre-defined role <b class="Bold">All</b> typically has all role options selected. However, some of the options are not selected by default and you should explore the permissions set before assigning the role.</p>
+                                                        </li>
+                                                        <li value="2">Select <b class="Bold">Show Deleted</b> to include deleted roles in the list of defined roles. </li>
+                                                        <li value="3">Select the role entry you want to restore. The entry is highlighted.</li>
+                                                        <li value="4">Select <img src="/storage/app/media/Help/images/restore%20button.png">  to restore the deleted role.</li>
+                                                        <li value="5">Select  <img src="/storage/app/media/Help/images/save%20and%20close%20button.png" alt="" title=""> to delete the role from the database and close the window. Provide the <a href="../general%20topics/change%20reasons.htm">Change Reasons</a> if prompted to do so.</li>
+                                                    </ol>
+                                                

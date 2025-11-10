@@ -1,0 +1,108 @@
+[viewBag]
+title = "Adding Transactions to a Manage CMDB task"
+url = "/help/topics/tasks/adding-transactions-to-a-manage"
+layout = "help"
+is_hidden = 0
+navigation_hidden = 0
+==
+                                                    <h1>Adding Transactions to a Manage CMDB task</h1>
+                                                    <p>The transaction details vary depending on the type of transaction you are performing. Below is a description of all fields that can appear on the transaction details window. To access the transaction details window, choose a transaction type and click the Add button when creating the Manage CMDB task.</p>
+                                                    <table style="width: 100%;mc-table-style: url('../../resources/tablestyles/fielddesc.css');margin-left: 0;margin-right: auto;" class="TableStyle-FieldDesc" cellspacing="0">
+                                                        <col class="TableStyle-FieldDesc-Column-Column1">
+                                                        <col class="TableStyle-FieldDesc-Column-Column2">
+                                                        <tbody>
+                                                            <tr>
+                                                                <td class="TableStyle-FieldDesc-BodyH-Column1-">Transaction Name</td>
+                                                                <td class="TableStyle-FieldDesc-BodyG-Column2-">Type the name of the transaction</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="TableStyle-FieldDesc-BodyH-Column1-">Description</td>
+                                                                <td class="TableStyle-FieldDesc-BodyG-Column2-">If required, type a description of the transaction</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="TableStyle-FieldDesc-BodyH-Column1-">Status</td>
+                                                                <td class="TableStyle-FieldDesc-BodyG-Column2-">A read-only field which displays the status of the transaction. The transaction status is either <b>Pending</b> or <b>Complete</b>
+</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="TableStyle-FieldDesc-BodyH-Column1-">Results</td>
+                                                                <td class="TableStyle-FieldDesc-BodyG-Column2-"> A read-only field which displays the result of the transaction. The transaction result is either, <b>Not Run</b>, <b>Succeeded</b>, or <b>Failed</b>
+</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="TableStyle-FieldDesc-BodyH-Column1-">Rerun transaction / Skip transaction</td>
+                                                                <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                    <p class="prereq">These options are only enabled if the transaction has run and are thus only available if the task is re-opened from the request. </p>
+                                                                    <p>Select <b>Rerun transaction</b> to enable a transaction which completed but failed to re-run on re-opening a Manage CMDB task. </p>
+                                                                    <p>Otherwise, select <b>Skip transaction</b> to ignore this transaction on re-opening a Manage CMDB task</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="TableStyle-FieldDesc-BodyH-Column1-">Type</td>
+                                                                <td class="TableStyle-FieldDesc-BodyG-Column2-">Use the selector to select a CMDB Item or Person that will be created, updated, or deleted by the specific transaction. When you click CMDB Item, this expands a sub menu of CMDB items</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="TableStyle-FieldDesc-BodyH-Column1-">Template</td>
+                                                                <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                    <p>For a <b>Create Item</b> transaction, specify a CMDB Item or Person template to use to create the new CMDB Item or Person. </p>
+                                                                    <p>Alternatively, select a request field from the multi-tiered pop-up list that corresponds to the CMDB Item or Person template to allow the system to determine which template to use based on the template specified in this field when the task runs.</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="TableStyle-FieldDesc-BodyH-Column1-">Quantity</td>
+                                                                <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                    <p>For a <b>Create Item</b> transaction, specify the number of items you wish to add to the CMDB through the transaction. You can specify a particular quantity in this field by selecting <b>Use field value</b>. Alternatively, you can allow the system to determine the amount of items to create by selecting <b>Create Items for each field value</b> and selecting a field using the Quantity field selector button. </p>
+                                                                    <p class="exampletext">You can select “User” in the Quantity field to enable the system to create a request for each person selected in the User multi-value field on the request.</p>
+                                                                    <p class="note">If Quantity is changed <b>Create item for each field value</b> is selected, then any item mapped to the Iterator entity will be removed from the Mapping Table. A warning will appear when change is attempted.</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="TableStyle-FieldDesc-BodyH-Column1-">Add to Request Field</td>
+                                                                <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                    <p>For a <b>Create Item</b> transaction, select this checkbox to add the item(s) created by the transaction to a specific field on the request. Select <img src="/storage/app/media/Help/images/expandtiersbutton.png">.</p>
+                                                                    <p class="note">If the field specified is a single-select field (for example, an extensible field called Request CI) and the number of items created by the transaction is greater than 1, the first item created will be used to update the field value. If the field specified is a multi-select field (for example, Request Services), the items created will be appended to the values already existing for this field (if any).</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="TableStyle-FieldDesc-BodyH-Column1-">CMDB Link / Stakeholder Link</td>
+                                                                <td class="TableStyle-FieldDesc-BodyG-Column2-">For <b>Create Link</b>, <b>Update Link</b>, or <b>Delete Link</b> transactions, select the option for the link type. Depending on your choice, additional fields appear enabling you to select a CMDB link type, stakeholder type, or stakeholder role</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="TableStyle-FieldDesc-BodyH-Column1-">Link Participant A/B</td>
+                                                                <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                    <p>For <b>Create Link</b>, <b>Update Link</b>, or <b>Delete Link</b> transactions, select the items to link, update the link details, or unlink. </p>
+                                                                    <p>Depending on the link type, Participant A assumes the first role in the link (that is, the Parent, Container, Peer A, or Summary), and Participant B assumes the second role in the link (that is, the Child, Component, Peer B, or Summarized item). After each selection, click <b>Add to List</b> to associate the item selection criteria with the transaction. To remove a criterion, select it in the list and click <b>Remove</b>.</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="TableStyle-FieldDesc-BodyH-Column1-">Select items(s) to update</td>
+                                                                <td class="TableStyle-FieldDesc-BodyG-Column2-">For transaction types where an existing CMDB item must be updated (such as the Update Item, Delete Item, and Asset Management transactions), select the items to be updated. After each selection, click <b>Add to List</b> to associate the item selection criteria with the transaction. To remove a criterion, select it in the list and click <b>Remove</b>.</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="TableStyle-FieldDesc-BodyH-Column1-">Field mapping table</td>
+                                                                <td class="TableStyle-FieldDesc-BodyG-Column2-">The field mapping table enables you to add and specify values for CMDB item or Person fields to be updated by the transaction</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="TableStyle-FieldDesc-BodyH-Column1-">Error</td>
+                                                                <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                    <p>For each transaction, you can set whether you want the transaction to fail if any errors occur.</p>
+                                                                    <p> At <b>Fail this transaction if:</b> select <b>Error</b> to fail the transaction if it encounters an error (such as if CMDB items to be updated cannot be found or if the fields you mapped cannot be updated).</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="TableStyle-FieldDesc-BodyH-Column1-">Items and Execution History view</td>
+                                                                <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                    <p>The tables in these views are read-only and only populate after the task has run in a workflow.</p>
+                                                                    <p> Select <b>Items</b> to view a record of all successfully completed actions performed by the transaction. </p>
+                                                                    <p>Select <b>Execution History</b> to view the details of all failed actions performed by the transaction. </p>
+                                                                    <p>The messages associated with the action will indicate the success or failure of the action. For example, the message after an Update Item transaction is “CMDB Item/Person] [Item Ref/Person Name] updated successfully” if the action was successful, or “Unable to update [CMDB Item/Person] due to [Reason]”, if the action was unsuccessful.</p>
+                                                                    <p class="note">The <b>Execution History</b> view at the task level shows both failed and successful transactions, while the same named view on the <b>Transaction Details</b> only shows failed transactions.</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="TableStyle-FieldDesc-BodyB-Column1-">Transaction Type</td>
+                                                                <td class="TableStyle-FieldDesc-BodyA-Column2-">For an asset management transaction, select the type of asset management transaction you would like to add</td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                

@@ -1,0 +1,1333 @@
+[viewBag]
+title = "Message Transactions"
+url = "/help/topics/api/message-transactions"
+layout = "help"
+is_hidden = 0
+navigation_hidden = 0
+==
+                                                    <h1>
+<a name="aanchor314"></a>
+                                                        <concept term="Classic API"></concept>Message Transactions</h1>
+                                                    <p class="reference"><span class="GeneralVariablesProductName">ASM</span> has two Application Programming Interfaces (or APIs), which enable you to develop programs that automate many common <span class="GeneralVariablesProductName">ASM</span> transactions. This section of the documentation deals with the Classic API. For more information on the RESTful <span class="GeneralVariablesAPIName">Alemba API</span>, see <a href="../alemba%20api/alemba%20api.htm">here</a>.<br><br></p>
+                                                    <p class="intro">The Classic API provides a number of generic messaging transactions. </p>
+                                                    <p>Most email transactions also provide internal message and pager support.  The bEmail, bInternal and bPager options allow you to specify which message types you want to send.  </p>
+                                                    <p class="note">Recipients must have the correct permissions and settings to receive emails/internal messages and pagers.</p>
+                                                    <p>For most messaging transactions, you can specify two parameters that the message template uses. The nMessageMapRef parameter is a reference to the HD_MESSAGE_MAP table.  This specifies the message template as well as the message type and query to use. The nMessageType parameter is a <span class="GeneralVariablesProductName">ASM</span> message type number.  From this, the API will find the default template and query.</p>
+                                                    <p>Similarly, the pager message type and map options will define the template to use.</p>
+                                                    <p class="note">For a list of message types used by the API, see <a href="api%20message%20types.htm">Message Types</a>.</p>
+                                                    <h2>
+<a name="MessageS"></a>MessageSendMessage Transaction</h2>
+                                                    <p><a name="kanchor142"></a>The SendMessage transaction can be used to send messages to selected recipients from a selected email address. This transaction can only send the message.</p>
+                                                    <h3>Input Parameters: MessageRequest</h3>
+                                                    <table style="margin-left: 0;margin-right: auto;mc-table-style: url('../../resources/tablestyles/rep hdr row.css');" class="TableStyle-Rep_Hdr_Row" cellspacing="0">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column1">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column2">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column1">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column2">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column1">
+                                                        <thead>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Head-Header1">
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column1-Header1">
+                                                                    <p>Argument</p>
+                                                                </th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column2-Header1">
+                                                                    <p>Type</p>
+                                                                </th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column1-Header1">
+                                                                    <p>Mandatory</p>
+                                                                </th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column2-Header1">
+                                                                    <p>Default</p>
+                                                                </th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadD-Column1-Header1">
+                                                                    <p>Description</p>
+                                                                </th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>sID</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>String</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>No. See <a href="%7B%7B%20'help-using-the-api#Transact'%7CstaticPage%20%7D%7D#Transact">Transaction Login</a>.</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>“”</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>Analyst’s current Session ID</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>sLoginUserID</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>String</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>No. See <a href="%7B%7B%20'help-using-the-api#Transact'%7CstaticPage%20%7D%7D#Transact">Transaction Login</a>.</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>“”</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>Analyst’s Login ID</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>sLoginPassword</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>String</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>No. See <a href="%7B%7B%20'help-using-the-api#Transact'%7CstaticPage%20%7D%7D#Transact">Transaction Login</a>.</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>“”</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>Analyst’s Password</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>sDatabase</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>String</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>No. See <a href="%7B%7B%20'help-using-the-api#Transact'%7CstaticPage%20%7D%7D#Transact">Transaction Login</a>.</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>“”</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>Name of the <span class="GeneralVariablesSystemName">ASM System</span> for logging in.</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>sFromEmailID</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>String</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>No</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>Sending analyst’s email address</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>From Email ID</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>lSentBy</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>Lookup Field</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>No</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>Analyst calling transaction</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>Analyst sending the message</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>eEntityType</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>Enumerated</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Yes</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>-</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>Entity from which to send the email. Values:</p>
+                                                                    <ul>
+                                                                        <li value="1">Call</li>
+                                                                        <li value="2">Request</li>
+                                                                        <li value="3">Task</li>
+                                                                        <li value="4">Bulletin</li>
+                                                                        <li value="5">Knowledge</li>
+                                                                        <li value="6">CMDB item</li>
+                                                                    </ul>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>nEntityRef</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>Integer</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Yes</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>-</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>Number of the entity (e.g. call, request, CMDB item) from which to send the email.</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>ePriority</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>Enumerated</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>No</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>No Priority</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>Priority associated with the email sent. Values:</p>
+                                                                    <ul>
+                                                                        <li value="1">No Priority</li>
+                                                                        <li value="2">Lowest</li>
+                                                                        <li value="3">Low</li>
+                                                                        <li value="4">Normal</li>
+                                                                        <li value="5">High</li>
+                                                                        <li value="6">Highest</li>
+                                                                    </ul>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>sSubject</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>String</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>No</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>“”</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>Subject line of the email sent</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>eMMAMessageType</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>Enumerated</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>No</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>None</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>MMA Message Type. Values:</p>
+                                                                    <ul>
+                                                                        <li value="1">None</li>
+                                                                        <li value="2">Call</li>
+                                                                        <li value="3">Request</li>
+                                                                        <li value="4">Task</li>
+                                                                        <li value="5">Question</li>
+                                                                        <li value="6">Approval</li>
+                                                                        <li value="7">Placeholder (not relevant to the API)</li>
+                                                                    </ul>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>nMessageMapRef</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>Integer</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>No</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>None</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>Reference to the HD_MESSAGE_MAP table.  This specifies the message template as well as the message type and query to use.</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>nMessageType</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>Integer</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>No</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>None</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p><span class="GeneralVariablesProductName">ASM</span> message type to use for this email.</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>eFormat</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>Enumerated</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>No</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>System default email out format</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>Email format. Values:</p>
+                                                                    <ul>
+                                                                        <li value="1">Plain Text</li>
+                                                                        <li value="2">HTML</li>
+                                                                        <li value="3">Related HTML</li>
+                                                                    </ul>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>nPagerMapRef</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>Integer</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>No</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>None</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>Reference to the HD_PAGER_MAP table. This specifies the pager template as well as message type and query to use.</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>nPagerType</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>Integer</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>No</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>None</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p><span class="GeneralVariablesProductName">ASM</span> pager type to use for this message.</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>lRecipientRef</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>Lookup Field</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Yes</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>-</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>Recipient of the email</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>eRecipientType</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>Enumerated</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Yes</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>-</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>Type of receipient to which to send the email. Values:</p>
+                                                                    <ul>
+                                                                        <li value="1">IPK Group</li>
+                                                                        <li value="2">Workflow Group</li>
+                                                                        <li value="3">Person</li>
+                                                                    </ul>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>bEmail</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>Boolean</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>No</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>False</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>Indicate whether to send an email to the intended recipient. Values:</p>
+                                                                    <ul>
+                                                                        <li value="1">True = send email</li>
+                                                                        <li value="2">False = do not send email</li>
+                                                                    </ul>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>bInternal</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>Boolean</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>No</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>False</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>Indicate whether to send an internal message to the intended recipient. Values:</p>
+                                                                    <ul>
+                                                                        <li value="1">True = send internal message</li>
+                                                                        <li value="2">False = do not send internal message</li>
+                                                                    </ul>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>bPager</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>Boolean</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>No</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>False</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>Indicate whether to send a pager message to the intended recipient. Values:</p>
+                                                                    <ul>
+                                                                        <li value="1">True = send pager message</li>
+                                                                        <li value="2">False = do not send pager message</li>
+                                                                    </ul>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyB-Column1-Body1">
+                                                                    <p>aCustomParameters</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyB-Column2-Body1">
+                                                                    <p>Array</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyB-Column1-Body1">
+                                                                    <p>No</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyB-Column2-Body1">
+                                                                    <p>“”</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyA-Column1-Body1">
+                                                                    <p>See <a href="%7B%7B%20'help-using-the-api#Defining'%7CstaticPage%20%7D%7D#Defining">Defining Custom Parameters</a>.</p>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <h3>Return Values: <a name="MessageResponse"></a>MessageResponse</h3>
+                                                    <table style="margin-left: 0;margin-right: auto;mc-table-style: url('../../resources/tablestyles/rep hdr row.css');" class="TableStyle-Rep_Hdr_Row" cellspacing="0">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column1">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column2">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column1">
+                                                        <thead>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Head-Header1">
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column1-Header1">
+                                                                    <p>Argument</p>
+                                                                </th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column2-Header1">
+                                                                    <p>Type</p>
+                                                                </th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadD-Column1-Header1">
+                                                                    <p>Description</p>
+                                                                </th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p><a name="kanchor143"></a>sMessage</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>String</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>Error/Warning message returned from the API Transaction</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyB-Column1-Body1">
+                                                                    <p>nRet</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyB-Column2-Body1">
+                                                                    <p>Integer</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyA-Column1-Body1">
+                                                                    <p>Error/warning number returned from the API Transaction</p>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <h2>MessageSendMessageByTemplate Transaction</h2>
+                                                    <h3>Input Parameters: MessageByTemplateRequest</h3>
+                                                    <table style="margin-left: 0;margin-right: auto;mc-table-style: url('../../resources/tablestyles/rep hdr row.css');" class="TableStyle-Rep_Hdr_Row" cellspacing="0">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column1">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column2">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column1">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column2">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column1">
+                                                        <thead>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Head-Header1">
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column1-Header1">
+                                                                    <p>Argument</p>
+                                                                </th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column2-Header1">
+                                                                    <p>Type</p>
+                                                                </th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column1-Header1">
+                                                                    <p>Mandatory</p>
+                                                                </th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column2-Header1">
+                                                                    <p>Default</p>
+                                                                </th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadD-Column1-Header1">
+                                                                    <p>Description</p>
+                                                                </th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>sID</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>String</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>No. See <a href="%7B%7B%20'help-using-the-api#Transact'%7CstaticPage%20%7D%7D#Transact">Transaction Login</a>.</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>“”</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>Analyst’s current Session ID</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>sLoginUserID</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>String</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>No. See <a href="%7B%7B%20'help-using-the-api#Transact'%7CstaticPage%20%7D%7D#Transact">Transaction Login</a>.</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>“”</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>Analyst’s Login ID</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>sLoginPassword</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>String</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>No. See <a href="%7B%7B%20'help-using-the-api#Transact'%7CstaticPage%20%7D%7D#Transact">Transaction Login</a>.</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>“”</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>Analyst’s Password</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>sDatabase</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>String</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>No. See <a href="%7B%7B%20'help-using-the-api#Transact'%7CstaticPage%20%7D%7D#Transact">Transaction Login</a>.</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>“”</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>Name of the <span class="GeneralVariablesSystemName">ASM System</span> for logging in.</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>sTemplateName</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>String</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Yes</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>-</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>Message template to use to send the message</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>sSubject</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>String</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>No</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>“”</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>Subject line of the email sent</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>ePriority</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>Enumerated</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>No</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>No Priority</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>Priority associated with the email sent. Values:</p>
+                                                                    <ul>
+                                                                        <li value="1">No Priority</li>
+                                                                        <li value="2">Lowest</li>
+                                                                        <li value="3">Low</li>
+                                                                        <li value="4">Normal</li>
+                                                                        <li value="5">High</li>
+                                                                        <li value="6">Highest</li>
+                                                                    </ul>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>lRecipientRef</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>Lookup Field</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Yes</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>-</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>Recipient of the email</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>eRecipientType</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>Enumerated</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Yes</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>-</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>Type of receipient to which to send the email. Values:</p>
+                                                                    <ul>
+                                                                        <li value="1">IPK Group</li>
+                                                                        <li value="2">Workflow Group</li>
+                                                                        <li value="3">Person</li>
+                                                                    </ul>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>sEmailID</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>String</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Yes</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>-</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>To Email ID</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>lSentBy</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>Lookup Field</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>No</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>Sending analyst’s email address</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>Analyst sending the message </p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>sFromEmailID</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>String</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>No</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>Analyst calling transaction</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>From Email ID</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>nEntityRef</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>Integer</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Yes</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>-</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>Number of the entity (e.g. call, request, CMDB item) from which to send the email.</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>eMMAMessageType</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>Enumerated</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>No</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>None</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>MMA Message Type. Values:</p>
+                                                                    <ul>
+                                                                        <li value="1">None</li>
+                                                                        <li value="2">Call</li>
+                                                                        <li value="3">Request</li>
+                                                                        <li value="4">Task</li>
+                                                                        <li value="5">Question</li>
+                                                                        <li value="6">Approval</li>
+                                                                        <li value="7">Placeholder (not relevant to the API)</li>
+                                                                    </ul>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>bEmail</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>Boolean</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>No</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>False</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>Indicate whether to send an email to the intended recipient. Values:</p>
+                                                                    <ul>
+                                                                        <li value="1">True = send email</li>
+                                                                        <li value="2">False = do not send email</li>
+                                                                    </ul>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>bInternal</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>Boolean</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>No</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>False</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>Indicate whether to send an internal message to the intended recipient. Values:</p>
+                                                                    <ul>
+                                                                        <li value="1">True = send internal message</li>
+                                                                        <li value="2">False = do not send internal message</li>
+                                                                    </ul>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>bPager</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>Boolean</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>No</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>False</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>Indicate whether to send a pager message to the intended recipient. Values:</p>
+                                                                    <ul>
+                                                                        <li value="1">True = send pager message</li>
+                                                                        <li value="2">False = do not send pager message</li>
+                                                                    </ul>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyB-Column1-Body1">
+                                                                    <p>aCustomParameters</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyB-Column2-Body1">
+                                                                    <p>Array</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyB-Column1-Body1">
+                                                                    <p>No</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyB-Column2-Body1">
+                                                                    <p>“”</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyA-Column1-Body1">
+                                                                    <p>See <a href="%7B%7B%20'help-using-the-api#Defining'%7CstaticPage%20%7D%7D#Defining">Defining Custom Parameters</a>.</p>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <h3>Return Values: MessageResponse</h3>
+                                                    <p>See <a href="#MessageResponse">MessageResponse</a> for more information.</p>
+                                                    <h2>
+<a name="MessageS2"></a>MessageStakeHolders Transaction</h2>
+                                                    <h3>Input Parameters: MessageStakeHoldersRequest</h3>
+                                                    <table style="margin-left: 0;margin-right: auto;mc-table-style: url('../../resources/tablestyles/rep hdr row.css');" class="TableStyle-Rep_Hdr_Row" cellspacing="0">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column1">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column2">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column1">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column2">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column1">
+                                                        <thead>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Head-Header1">
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column1-Header1">
+                                                                    <p>Argument</p>
+                                                                </th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column2-Header1">
+                                                                    <p>Type</p>
+                                                                </th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column1-Header1">
+                                                                    <p>Mandatory</p>
+                                                                </th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column2-Header1">
+                                                                    <p>Default</p>
+                                                                </th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadD-Column1-Header1">
+                                                                    <p>Description</p>
+                                                                </th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>sID</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>String</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>No. See <a href="%7B%7B%20'help-using-the-api#Transact'%7CstaticPage%20%7D%7D#Transact">Transaction Login</a>.</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>“”</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>Analyst’s current Session ID</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>sLoginUserID</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>String</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>No. See <a href="%7B%7B%20'help-using-the-api#Transact'%7CstaticPage%20%7D%7D#Transact">Transaction Login</a>.</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>“”</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>Analyst’s Login ID</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>sLoginPassword</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>String</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>No. See <a href="%7B%7B%20'help-using-the-api#Transact'%7CstaticPage%20%7D%7D#Transact">Transaction Login</a>.</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>“”</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>Analyst’s Password</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>sDatabase</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>String</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>No. See Transaction Login.</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>“”</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>Name of the <span class="GeneralVariablesSystemName">ASM System</span> for logging in.</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>sFromEmailID</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>String</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>No</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>Sending analyst’s email address</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>From Email ID</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>lSentBy</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>Lookup Field</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>No</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>Analyst calling transaction</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>Analyst sending the message</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>eEntityType</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>Enumerated</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Yes</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>-</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>Entity from which to send the email. Values:</p>
+                                                                    <ul>
+                                                                        <li value="1">Call</li>
+                                                                        <li value="2">Request</li>
+                                                                        <li value="3">Task</li>
+                                                                        <li value="4">Bulletin</li>
+                                                                        <li value="5">Knowledge</li>
+                                                                        <li value="6">CMDB item</li>
+                                                                    </ul>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>nEntityRef</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>Integer</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Yes</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>-</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>Number of the entity (e.g. call, request, CMDB item) from which to send the email.</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>ePriority</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>Enumerated</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>No</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>No Priority</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>Priority associated with the email sent. Values:</p>
+                                                                    <ul>
+                                                                        <li value="1">No Priority</li>
+                                                                        <li value="2">Lowest</li>
+                                                                        <li value="3">Low</li>
+                                                                        <li value="4">Normal</li>
+                                                                        <li value="5">High</li>
+                                                                        <li value="6">Highest</li>
+                                                                    </ul>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>sSubject</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>String</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>No</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>“”</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>Subject line of the email sent</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>eMMAMessageType</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>Enumerated</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>No</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>None</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>MMA Message Type. Values:</p>
+                                                                    <ul>
+                                                                        <li value="1">None</li>
+                                                                        <li value="2">Call</li>
+                                                                        <li value="3">Request</li>
+                                                                        <li value="4">Task</li>
+                                                                        <li value="5">Question</li>
+                                                                        <li value="6">Approval</li>
+                                                                        <li value="7">Placeholder (not relevant to the API)</li>
+                                                                    </ul>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>eRecipientTypes</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>Enumerated</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Yes</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>-</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>Type of receipient to which to send the email. Values:</p>
+                                                                    <ul>
+                                                                        <li value="1">IPK Group</li>
+                                                                        <li value="2">Workflow Group</li>
+                                                                        <li value="3">Person</li>
+                                                                    </ul>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>nMessageMapRef</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>Integer</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>No</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>None</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p><span class="GeneralVariablesProductName">ASM</span> message type to use for this email.</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>nMessageType</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>Integer</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>No</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>System default email out format</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>Email format. Values:</p>
+                                                                    <ul style="list-style-type: disc;margin-left: 36pt;">
+                                                                        <p style="list-style-type: disc;">Plain Text</p>
+                                                                        <p style="list-style-type: disc;">HTML</p>
+                                                                        <p style="list-style-type: disc;">Related HTML</p>
+                                                                    </ul>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>eFormat</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>Enumerated</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>No</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>System default email out format</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>Email format. Values:</p>
+                                                                    <ul>
+                                                                        <li value="1">Plain Text</li>
+                                                                        <li value="2">HTML</li>
+                                                                        <li value="3">Related HTML</li>
+                                                                    </ul>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>nPagerMapRef</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>Integer</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>No</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>None</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>Reference to the HD_PAGER_MAP table. This specifies the pager template as well as message type and query to use.</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>nPagerType</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>Integer</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>No</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>None</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p><span class="GeneralVariablesProductName">ASM</span> pager type to use for this message.</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>bEmail</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>Boolean</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>No</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>False</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>Type of recipient to which to send the email. Values:</p>
+                                                                    <ul>
+                                                                        <li value="1">IPK Group</li>
+                                                                        <li value="2">Workflow Group</li>
+                                                                        <li value="3">Person</li>
+                                                                    </ul>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>bInternal</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>Boolean</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>No</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>False</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>Indicate whether to send an email to the intended recipient. Values:</p>
+                                                                    <ul>
+                                                                        <li value="1">True = send email</li>
+                                                                        <li value="2">False = do not send email</li>
+                                                                    </ul>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>bPager</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>Boolean</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>No</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>False</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>Indicate whether to send an internal message to the intended recipient. Values:</p>
+                                                                    <ul>
+                                                                        <li value="1">True = send internal message</li>
+                                                                        <li value="2">False = do not send internal message</li>
+                                                                    </ul>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyB-Column1-Body1">
+                                                                    <p>aCustomParameters</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyB-Column2-Body1">
+                                                                    <p>Array</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyB-Column1-Body1">
+                                                                    <p>No</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyB-Column2-Body1">
+                                                                    <p>False</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyA-Column1-Body1">
+                                                                    <p>Indicate whether to send a pager message to the intended recipient. Values:</p>
+                                                                    <ul>
+                                                                        <li value="1">True = send pager message</li>
+                                                                        <li value="2">False = do not send pager message</li>
+                                                                    </ul>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <h3>Return Values: MessageResponse</h3>
+                                                    <p>See <a href="#MessageResponse">MessageResponse</a> for more information.</p>
+                                                

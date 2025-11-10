@@ -1,0 +1,769 @@
+[viewBag]
+title = "Managing Agreements"
+url = "/help/topics/slm/managing-agreements"
+layout = "help"
+is_hidden = 0
+navigation_hidden = 0
+==
+                                                    <h1>Managing Agreements</h1>
+                                                    <p><b>Service Level Management (SLM)</b> covers advanced management of various agreements or service commitments that businesses can enter into. A service commitment refers to the speed and quality of service the user expects and the provider is able to provide. Failure to meet an agreed service commitment is called a breach. The expectations of all stakeholders can be formalized and documented in the form of an agreement.</p>
+                                                    <p>SLM in <span class="GeneralVariablesCoreName">ASM Core</span> covers three different types of agreements: </p>
+                                                    <ul style="list-style-type: disc;">
+                                                        <li style="list-style-type: disc;" value="1">
+<b>Service Level Agreements (SLAs)</b> are agreements between a service provider and its Users. SLAs are applicable to both calls and requests. For example, you might have an agreement with your Users to respond to and fix PC service calls within a set timeframe. They can be driven off Service Levels, or configured to be applied based on individual Users, config items, organizations, locations, or types.</li>
+                                                        <li style="list-style-type: disc;" value="2">
+<b>Operational Level Agreements (OLAs)</b> are agreements between internal departments of a service provider. OLAs are applicable to calls, tasks, and approvals. For example, you might have an agreement that states that Third Level Support will resolve technical issues sent to them from the service desk within a certain amount of time. </li>
+                                                        <li style="list-style-type: disc;" value="3">
+<b>Underpinning Contracts (UCs)</b> are agreements between a service provider and the external suppliers who provide additional services or support to the service provider. UCs are applicable to calls, tasks, and approvals. For example, you might have an agreement with a hardware supplier that they will deliver computers or parts within a certain number of days from when they are ordered. </li>
+                                                    </ul>
+                                                    <p>You can create and update agreements in <span class="GeneralVariablesCoreName">ASM Core</span>, and add:</p>
+                                                    <ul>
+                                                        <li value="1">
+<a href="#Adding">Profile Info</a>
+                                                        </li>
+                                                        <li value="2">
+<a href="#Adding2">Significant dates</a> </li>
+                                                        <li value="3" data-mc-conditions="Default.Not Pink">
+<a href="#Applying">Work Hours</a> </li>
+                                                        <li value="4" data-mc-conditions="Default.Pink">
+<a href="#Applying">Support Hours</a>
+                                                        </li>
+                                                        <li value="5">
+<a href="#Adding3">Financial details</a>
+                                                        </li>
+                                                    </ul>
+                                                    <p>You can also: </p>
+                                                    <ul>
+                                                        <li value="1">Define <a href="attaching%20selection%20criteria.htm">selection criteria</a> for the agreement (that is, the rules that define in what situations the agreement is used) </li>
+                                                        <li value="2">Define <a href="defining%20agreement%20thresholds.htm">thresholds</a> for the agreement (that is, the times at which escalation and agreement breaches occur) </li>
+                                                        <li value="3">Define <a href="agreement%20measurements.htm">measurements</a> and penalties for the agreement </li>
+                                                        <li value="4">Upload or download an <a href="../cmdb%20explorer%20options/object%20explorer%20option.htm">attachment </a>
+</li>
+                                                        <li value="5">Specify Agreement <a href="../cmdb%20explorer%20options/stakeholders%20explorer%20option.htm">Stakeholders</a>
+</li>
+                                                        <li value="6">View the <a href="../cmdb%20explorer%20options/audit%20explorer%20option.htm">audit trail</a> for the agreement </li>
+                                                    </ul>
+                                                    <p><span class="GeneralVariablesProductName">ASM</span> automatically applies agreements to calls based on a combination of information (the call details, IPK selection criteria, agreement selection priority, and the action performed by the analyst). </p>
+                                                    <p>Only SLAs (Service Level Agreements) can be linked to requests. The appropriate SLA is identified in the following way:</p>
+                                                    <ol>
+                                                        <li value="1">The system looks for an SLA assigned to the workflow template on which a request is based. If one is found, it is applied.</li>
+                                                        <li value="2">If no SLA has been defined in the workflow template, the first time a request is authorized <span class="GeneralVariablesProductName">ASM</span> tries to find an SLA to apply. It checks the fields defined for the request, in a specific order defined for each field, to see if the particular entity defined is matched to an SLA as a <b>Workflow Selection Criterion</b>. If so, the agreement is applied. </li>
+                                                        <li value="3">If no matches are found for any of the fields, <span class="GeneralVariablesProductName">ASM</span> checks for a default agreement; if one is found, it is applied. </li>
+                                                        <li value="4">Otherwise, no SLA is applied to the request.</li>
+                                                    </ol>
+                                                    <h2>Creating an Agreement</h2>
+                                                    <p>You can create three types of agreements in <span class="GeneralVariablesCoreName">ASM Core</span>: SLA, OLAs, and UCs.</p>
+                                                    <h2 class="Prerequisite">Before you start</h2>
+                                                    <p class="prereqtext">You must have <b>Agreement New</b> selected in the <a href="../admin%20security%20roles/slm%20sec%20role%20-%20options%20tab.htm">Options</a> tab of your <b>Service Level Management security role</b> to create agreements.</p>
+                                                    <ol>
+                                                        <li value="1">Select <span style="font-size: 24pt;">≡</span> and then <b>New</b>. In the submenu, scroll down and select <b>Agreement</b>.</li>
+                                                        <p>
+                                                            </p>
+<p class="note">You can also create an agreement from the Search window by selecting the <b>Add New</b> button in the left pane, or clone it from an existing agreement. </p>
+                                                        
+                                                        <li value="2">From the <b>Select Agreement Type</b> list, select the type of agreement you want to create. The available types are:</li>
+                                                        <p>
+                                                            </p>
+<table class="TableStyle-FieldDesc" style="mc-table-style: url('../../resources/tablestyles/fielddesc.css');margin-left: 0;margin-right: auto;" cellspacing="0">
+                                                                <col class="TableStyle-FieldDesc-Column-Column1">
+                                                                <col class="TableStyle-FieldDesc-Column-Column2">
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyH-Column1-">SLA</td>
+                                                                        <td class="TableStyle-FieldDesc-BodyG-Column2-">to create a Service Level Agreement</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyH-Column1-">OLA</td>
+                                                                        <td class="TableStyle-FieldDesc-BodyG-Column2-">to create an Operational Level Agreement</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyB-Column1-">UC</td>
+                                                                        <td class="TableStyle-FieldDesc-BodyA-Column2-">to create an underpinning contract</td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        
+                                                        <li value="3">The <b>Agreement Details</b> window appears. The upper part of the window contains some basic information about the agreement. The lower part contains a number of tabs, which can be selected by clicking on them. Depending on the type of agreement you are creating, some fields and explorer options are enabled or disabled.</li>
+                                                        <li value="4">
+<a name="Complete_the_agreement_details"></a>Complete the agreement details.</li>
+                                                        <p>
+                                                            </p>
+<table class="TableStyle-FieldDesc" style="mc-table-style: url('../../resources/tablestyles/fielddesc.css');margin-left: 0;margin-right: auto;" cellspacing="0">
+                                                                <col class="TableStyle-FieldDesc-Column-Column1">
+                                                                <col class="TableStyle-FieldDesc-Column-Column2">
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyH-Column1-">Title </td>
+                                                                        <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                            <p> Type a name for the agreement. </p>
+                                                                            <p class="tip">Choose an appropriate name, such as Laptop Service Agreement</p>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyH-Column1-">Reference </td>
+                                                                        <td class="TableStyle-FieldDesc-BodyG-Column2-">Type a reference code for the agreement. It can be any number of letters or numbers, up to 50 characters long. </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyH-Column1-">Status </td>
+                                                                        <td class="TableStyle-FieldDesc-BodyG-Column2-">Select the current status of the agreement, using the drop-down list. The default value is Active. You can change it to inactive if appropriate.<p class="note">While there can be more types of status set up, each must be considered to be active or inactive, which is shown in this field. The actual status for the agreement is selected on the Profile Info tab from the Status list.</p>
+</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyH-Column1-">Default</td>
+                                                                        <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                            <p class="prereq">This option is only used for SLAs and is therefore disabled for OLAs and UCs.</p>
+                                                                            <p>Select the checkbox to specify that this agreement is to be considered the default Service Level Agreement by <span class="GeneralVariablesCoreName">ASM Core</span>. The system will apply the default SLA if no match is found based on the IPK or Workflow Selection Criteria for the agreement. Default SLAs can be defined when your system requirements are quite simple. These agreements are system wide agreements. Default SLAs can be used in two ways:</p>
+                                                                            <ul>
+                                                                                <li value="1">To set up a simple escalation strategy</li>
+                                                                                <li value="2">For calls not specifically measured by an agreement. </li>
+                                                                            </ul>
+                                                                            <p>Multiple default SLA agreements can exist. The default agreement with the latest End Date will be applied if no other agreement settings affect the selection, such ask IPK Status, for example.  </p>
+                                                                            <p class="warning"><b>Do not</b> select the Default option for SLAs unless you are sure that this agreement is set up correctly as the default agreement. </p>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyG-Column1-" colspan="2" style="font-weight: normal;"> <p><span style="font-weight: normal;">Expand the </span><b>Select Setting(s)</b> section if necessary, and specify the settings for the agreement, such as locking, IPK events, or re-opening.
+ </p>
+<p class="note" style="font-weight: normal;">Additional global settings are set by your administrator through <a href="../admin%20slm/service%20level%20management.htm">Service Level Management administration</a>.                            </p>
+</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyH-Column1-">Lock IPK SLA</td>
+                                                                        <td class="TableStyle-FieldDesc-BodyG-Column2-">Select this option to prevent an SLA that has been assigned to a call initially from being changed automatically by the system, even if call details affecting SLA selection criteria change. Clear this option to allow the IPK Selection Criteria to be reassessed each time the call is updated and saved. In this case if another SLA is matched, it is applied and the current SLA is closed.<p>If the original SLA was manually assigned to the call, any changes made to the call/request details affecting the selection criteria will not be considered. A manually assigned agreement can only be replaced manually.</p>
+<p class="note"> Selecting this option does not prevent analysts from manually changing an SLA assigned to a call. </p>
+</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyH-Column1-">Lock Workflow SLA</td>
+                                                                        <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                            <p class="prereq">This is only displayed for SLAs.</p>
+                                                                            <p>Select this option to prevent an SLA that has been assigned to a request initially from being changed automatically by the system, even if request details affecting SLA selection criteria change. Clear this option to allow the Workflow Selection Criteria to be reassessed each time the request is updated and saved. In this case if another SLA is matched, it is applied and the current SLA is closed.</p>
+                                                                            <p>If the original SLA was manually assigned to the request, any changes made to the call/request details affecting the selection criteria will not be considered. A manually assigned agreement can only be replaced manually.</p>
+                                                                            <p class="note">Selecting this option does not prevent analysts from manually changing an SLA assigned to a request. </p>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyH-Column1-">Start Response Immediately</td>
+                                                                        <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                            <p class="prereq">This is only displayed for SLAs.</p>
+                                                                            <p>Select this option to start the Response Escalation at the time an SLA is linked to a call rather than when the First Call Back Escalation is completed or breached. Clear this option to start Response Escalation as soon as the First Call Back Escalation ends (or, at the time an SLA is linked to the call if no First Call Back Escalation is configured for the SLA).</p>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyH-Column1-">Auto Stop Clock on Agreement Suspension</td>
+                                                                        <td class="TableStyle-FieldDesc-BodyG-Column2-">Select this option to automatically turn off the ‘clock’ (i.e. how much time has passed since the call, request, or task was logged) when a call, request, or task is suspended. The clock restarts when the call, request or task becomes active again. Clear this option to allow a suspended call, request, or task to continue running the clock, meaning escalation and agreement breach events will continue to count down and occur even though the call, request or task is suspended.</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyH-Column1-">Stop Clock Reason Required</td>
+                                                                        <td class="TableStyle-FieldDesc-BodyG-Column2-">Select this option to enable the <b>Change Reasons</b> window to appear when an SLM clock is stopped on the agreement, forcing the analyst to provide a reason for stopping the clock.</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyG-Column1-" colspan="2">
+                                                                            <p colspan="2">Complete SLM IPK Events</p>
+                                                                            <p colspan="2" style="font-weight: normal;">If closure rules are used to determine the method for closing calls, these options enable you to specify when SLM events for an agreement applied to a call are closed, that is, either when the call is resolved (and forwarded to an analyst/group for closure), or when the call is closed by the analyst/group for the relevant closure rule.</p>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyH-Column1-">On Call Resolve</td>
+                                                                        <td class="TableStyle-FieldDesc-BodyG-Column2-">Select this option to close all SLM events for the agreement when the call to which the agreement applies is resolved (and forwarded to a closure group for closure).</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyH-Column1-">On Call Closure</td>
+                                                                        <td class="TableStyle-FieldDesc-BodyG-Column2-">Select this option to close all SLM events for the agreement when the call to which the agreement applies is closed by a closure group.</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyG-Column1-" colspan="2">
+                                                                            <p colspan="2">On Re-opening Resolved Calls</p>
+                                                                            <p colspan="2" style="font-weight: normal;">If closure rules are used to determine the method for closing calls, meaning that calls are resolved, and then closed, these options enable you to specify how SLM events are handled when a resolved call is reopened. </p>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyH-Column1-">Resume Previous Agreement, and Include Resolved Interval</td>
+                                                                        <td class="TableStyle-FieldDesc-BodyG-Column2-">Select this option to restart any agreement previously running against the resolved call when it is reopened. All escalation and breach target times will be the same as before the call was resolved, as if the SLM clock had never stopped.</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyH-Column1-">Resume Previous Agreement, and Exclude Resolved Interval</td>
+                                                                        <td class="TableStyle-FieldDesc-BodyG-Column2-">Select this option to restart any agreement previously running against the resolved call when it is reopened. All escalation and breach target times will be increased to take into account the time lapse between when the call was resolved and reopened.</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyH-Column1-">Restart Previous Agreement</td>
+                                                                        <td class="TableStyle-FieldDesc-BodyG-Column2-">Select this option to restart from scratch any agreement previously running against the resolved call when it is reopened. All escalation and breach target times are restarted.</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyH-Column1-">Ignore Previous Agreement</td>
+                                                                        <td class="TableStyle-FieldDesc-BodyG-Column2-">Select this option to ignore any agreement previously running against the resolved call when it is reopened. The service will look like it has been resumed and all events relating to this agreement will remain closed. However, if the call details have changed, a brand new agreement may apply to the call.</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyG-Column1-" colspan="2">
+                                                                            <p colspan="2">On Re-opening Closed Calls/Requests/Tasks</p>
+                                                                            <p colspan="2" style="font-weight: normal;">These options enable you to specify how SLM events are handled when a closed call, request, or task is reopened. </p>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyH-Column1-">Resume Previous Agreement, and Include Resolved Interval</td>
+                                                                        <td class="TableStyle-FieldDesc-BodyG-Column2-">Select this option to restart any agreement previously running against the closed call/request/task when it is reopened. All escalation and breach times will be the same as before the call/request/task was closed, as though the SLM clock had never stopped.</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyH-Column1-">Resume Previous Agreement, and Exclude Resolved Interval</td>
+                                                                        <td class="TableStyle-FieldDesc-BodyG-Column2-">Select this option to restart any agreement previously running against the closed call/request/task when it is reopened. All escalation and breach times will be increased to take into account the time lapse between when the call/request/task was closed and reopened.</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyH-Column1-">Restart Previous Agreement</td>
+                                                                        <td class="TableStyle-FieldDesc-BodyG-Column2-">Select this option to restart from scratch any agreement previously running against the closed call/request/task when it is reopened. All escalation and breach times are restarted.</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyB-Column1-">Ignore Previous Agreement</td>
+                                                                        <td class="TableStyle-FieldDesc-BodyA-Column2-">Select this option to ignore any agreement previously running against the closed call/request/task when it is reopened. The service will look like it has been resumed and all events relating to this agreement will remain closed. However, if the call/request/task details have changed, a brand new agreement may apply to the call/request/task.</td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        
+                                                        <li value="5">Having completed the details, use the tabs at the bottom of the window to provide <a href="#Adding">profile info</a>, <a href="#Adding2">significant dates</a>, <a href="#Applying" data-mc-conditions="Default.Not Pink">working hours</a><a href="#Applying" data-mc-conditions="Default.Pink">, support hours</a> and <a href="#Adding3">financial information</a> for the agreement.</li>
+                                                        <li value="6">You can also use the <a href="#Options">options in the explorer pane</a> to:</li>
+                                                        </ol>
+<ul>
+                                                            <li value="1">Define <a href="%7B%7B%20'help-attaching-selection-criteria#top'%7CstaticPage%20%7D%7D#top">selection criteria</a> for the agreement (that is, the rules that define in what situations the agreement is used) </li>
+                                                            <li value="2">Define <a href="%7B%7B%20'help-defining-agreement-thresholds#top'%7CstaticPage%20%7D%7D#top">thresholds</a> for the agreement (that is, the times at which escalation and agreement breaches occur) </li>
+                                                            <li value="3">Define <a href="%7B%7B%20'help-agreement-measurements#top'%7CstaticPage%20%7D%7D#top">measurements</a> and penalties for the agreement </li>
+                                                            <li value="4">
+<a href="../cmdb%20explorer%20options/object%20explorer%20option.htm">Upload or download an object</a> from the agreement </li>
+                                                            <li value="5">Specify Agreement <a href="../cmdb%20explorer%20options/stakeholders%20explorer%20option.htm">Stakeholders</a>
+</li>
+                                                            <li value="6">View the <a href="%7B%7B%20'help-cmdb-explorer-options-audit-explorer-option#top'%7CstaticPage%20%7D%7D#top">audit trail</a> for the agreement </li>
+                                                        </ul>
+                                                        <li value="7">When you have finished, select <b>Ok</b> to save the details, or <b>Save New</b> to save the details and display the <b>Agreement Details</b> window with blank fields, for creation of another agreement of the same type.</li>
+                                                    
+                                                    <h3>
+<a name="Adding"></a>Adding Profile Information to an Agreement </h3>
+                                                    <h2 class="Prerequisite">Before you start</h2>
+                                                    <p class="prereqtext">You must have <b>Agreement New</b> selected in the <a href="../admin%20security%20roles/slm%20sec%20role%20-%20options%20tab.htm">Options</a> tab of your <b>Service Level Management security role</b> to create agreements. You must have <b>Agreement Update</b> selected in the same tab to update the information.</p>
+                                                    <p>The Profile Info view contains some of the basic settings for the agreement, such as type and status. It is shown by default when you first go to the Agreement Details window. </p>
+                                                    <ol style="list-style-type: decimal;" start="1">
+                                                        <li value="1">Display the <b>Agreement Details</b> window, if it is not already visible on screen, by <a href="#top">searching for the agreement</a>.</li>
+                                                        <li value="2">Select the <b>Profile Info</b> tab  if necessary. </li>
+                                                        <li value="3">Complete the details.</li>
+                                                        <table class="TableStyle-FieldDesc" style="mc-table-style: url('../../resources/tablestyles/fielddesc.css');margin-left: 0;margin-right: auto;" cellspacing="0">
+                                                            <col class="TableStyle-FieldDesc-Column-Column1">
+                                                            <col class="TableStyle-FieldDesc-Column-Column2">
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Type</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">This list enables you to choose an agreement type. Note that while your administrator might have created many different Agreement Types, they all come under one of the three basic types of SLA, OLA and UC. The name should make it clear which of these types it is. </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">IPK Status</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                        <p class="prereq">This is only available only if your system is configured for the IPK Management module.</p>
+                                                                        <p>You can set an agreement to only apply to Incidents, Problems, or Known Errors, or all of the basic call statuses. Select the status you want to apply to the agreement from the list, or choose All if you want the agreement to apply regardless of the IPK status. Your system administrator may have created additional IPK statuses. If so, these will also appear in the list.</p>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyB-Column1-">Workflow Process</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyA-Column2-">You can set an agreement to apply to any workflow process that is enabled on your system.  From the Workflow Process list, select the process for which you this agreement to apply, or select All if you want the agreement to apply regardless of the workflow process.</td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </ol>
+                                                    <h3>
+<a name="Adding2"></a>Adding Dates to an Agreement</h3>
+                                                    <p>You can apply certain important dates relating to the agreement.</p>
+                                                    <h2 class="Prerequisite">Before you start</h2>
+                                                    <p class="prereqtext">You must have <b>Agreement New</b> selected in the <a href="../admin%20security%20roles/slm%20sec%20role%20-%20options%20tab.htm">Options</a> tab of your <b>Service Level Management security role</b> to create agreements. You must have <b>Agreement Update</b> selected in the same tab to update the information.</p>
+                                                    <ol style="list-style-type: decimal;" start="1">
+                                                        <li value="1">Display the <b>Agreement Details</b> window, if it is not already visible on screen, by <a href="#top">searching for the agreement</a>.</li>
+                                                        <li value="2">Select the <b>Dates</b> tab. </li>
+                                                        <li value="3">The controls on this tab are date pickers. Clicking the dropdown displays a calendar for the current month. You can select any date by clicking on it, or change months by using the arrow buttons in the top left and right corners of the calendar, or change years by clicking on the year and clicking on the up and down arrows. </li>
+                                                        <table class="TableStyle-FieldDesc" style="mc-table-style: url('../../resources/tablestyles/fielddesc.css');margin-left: 0;margin-right: auto;" cellspacing="0">
+                                                            <col class="TableStyle-FieldDesc-Column-Column1">
+                                                            <col class="TableStyle-FieldDesc-Column-Column2">
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Start Date</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">This is the date at which the agreement starts. <span class="GeneralVariablesCoreName">ASM Core</span> will not apply an agreement to a call if it has not yet reached its start date.</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">End Date</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">This is the end date for the agreement. Like the Start Date, an agreement will not be applied to a call if the current date is past the End Date of the agreement. The default end date is today, therefore you must select a suitable end date otherwise the agreement expires straight away.</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyB-Column1-">Review Date</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyA-Column2-">This is a date you can set for reviewing the agreement. The agreement will still function normally once this date is reached. The Review Date is available as a search criterion on the Agreement Search window, enabling analysts to search for agreements requiring review.</td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </ol>
+                                                    <h3>
+<a name="Applying"></a>Applying <conditionaltext data-mc-conditions="Default.Not Pink">Work </conditionaltext><conditionaltext data-mc-conditions="Default.Pink">Support </conditionaltext>Hours to an Agreement
+</h3>
+                                                    <p>Agreements in <span class="GeneralVariablesCoreName">ASM Core</span> can be linked to time zones. This is an important part of a global enterprise’s service level management system, because Users may be logging calls in time zones different from the time zones in which they are resolved.
+For this reason, you should ensure that all the agreements you create are set with the correct time zone based on the selection criteria for the agreement. </p>
+                                                    <div class="MCDropDown MCDropDown_Closed dropDown">
+<span class="MCDropDownHead dropDownHead"><a href="#" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCHotSpotImage" aria-expanded="false"><img class="MCDropDown_Image_Icon" src="/storage/app/media/Help/images/transparent.gif" height="11" width="16" alt="Closed" data-mc-alt2="Open">Using Time Zones in the SLA</a></span>
+                                                        <div class="MCDropDownBody dropDownBody">
+                                                            <p class="exampletext">The following example illustrates how time zones interact with <span class="GeneralVariablesCoreName">ASM Core</span>’s Service Level Management system to provide global support for service commitments.
+<br><br>TechCorp has offices in three locations: London, Sydney and Seattle. The base of operations including the <span class="GeneralVariablesCoreName">ASM Core</span> server is in Seattle, though their IT service desk is based in Sydney. The server time zone for Pacific USA (Seattle) is GMT -8:00, London office is GMT 0:00 and Sydney office (and all their support staff) are in GMT +10:00.
+One of their staff is working in London and at midnight he attempts to access the company website, which is hosted in Seattle; he discovers that the web server has gone down and the website cannot be accessed.
+<br><br>He logs a call to the service desk in Sydney (where it is currently 10:00 am); the configuration item is identified as being a web server in Seattle, and <span class="GeneralVariablesCoreName">ASM Core</span> picks up and applies the Seattle Support Agreement. This agreement is in the Pacific USA time zone (where it is currently 4:00 pm), and has a set of working hours that specify that support is offered from 9:00 am to 5:00 pm, seven days a week.
+<br><br>The agreement specifies that Resolve escalation will occur two hours after the call is logged, and the agreement will be broken (that is, Resolve breach will occur) four hours after the call is logged. However, those times are based on the time zone and working hours for the Seattle Support Agreement, not for where the call was logged from (London) or logged to (Sydney).
+<br><br>It is currently 4:00 pm in Seattle, and with a 9:00 am to 5:00 pm set of working hours, escalation will occur at 10:00 am the next day Seattle time; one hour from 4:00 till 5:00 pm, then when work hours begin the next day at 9:00 am, the second hour (and thus resolve escalation) is at 10:00 am. The agreement will be broken if the call is not resolved two hours after that, that is, midday.
+<br><br>The resolve escalation and resolve breach will occur at 10:00 am and midday Seattle time, and are converted to any local analyst’s time zone, if they have one defined. The analyst in Sydney forwards it to a senior technician (also in Sydney), who opens the call and looks at the Call SLA window to check the status of the call in terms of its agreements. <span class="GeneralVariablesCoreName">ASM Core</span> shows him that resolve escalation and breach will occur at 2:00 am and 4:00 am the next day respectively; these are the Seattle times converted to local (that is, Sydney) time zone.
+<br><br>In London, the staff member can expect the Resolve Escalation by 6:00 pm and Resolve Breach at 8:00 pm.
+
+</p>
+                                                        </div>
+                                                    </div>
+                                                    <p>If you are applying agreements based on User and you have some Users in time zone A and some in time zone B, you should create two agreements, one for each time zone. This will ensure that <span class="GeneralVariablesCoreName">ASM Core</span> performs the right calculations for escalation and breach times based on the User’s expectations in their actual time zone, not the time zone where the call is being actioned.
+</p>
+                                                    <h2 class="Prerequisite">Before you start</h2>
+                                                    <p class="prereqtext">You must have <b>Agreement New</b> selected in the <a href="../admin%20security%20roles/slm%20sec%20role%20-%20options%20tab.htm">Options</a> tab of your <b>Service Level Management security role</b> to create agreements. You must have <b>Agreement Update</b> selected in the same tab to update the information.</p>
+                                                    <ol>
+                                                        <li value="1">Display the <b>Agreement Details</b> window, if it is not already visible on screen, by <a href="#top">searching for the agreement</a>.</li>
+                                                        <li value="2"> 
+Select the <b>Work Hours</b>   tab.</li>
+                                                        <li value="3">Complete the details.</li>
+                                                        <table style="margin-left: 0;margin-right: auto;mc-table-style: url('../../resources/tablestyles/fielddesc.css');" class="TableStyle-FieldDesc" cellspacing="0">
+                                                            <col class="TableStyle-FieldDesc-Column-Column1">
+                                                            <col class="TableStyle-FieldDesc-Column-Column2">
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Working Hours</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">Select the working hours you want to apply from the drop-down list. <p class="note">The entries in the drop down list are defined in the <a href="%7B%7B%20'help-admin-system-defining-working-hours#top'%7CstaticPage%20%7D%7D#top">Hours Definition</a> window.</p>
+</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Holidays</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                        <p>Select the Public Holiday calendar to apply to the agreement from the drop-down list.</p>
+                                                                        <p class="note">The entries in the drop down list are defined in the <a href="../admin%20system/public%20holidays%20definition.htm">Public Holidays Definition</a> window.</p>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Time Zone</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                        <p>Select the time zone  that you want to apply to the current agreement from the drop-down list. </p>
+                                                                        <p>Escalation and breach events will be calculated based on this time zone when <b>Default Agreement Time Zone</b> is selected under <b>IPK Time Zone</b> (for calls) or <b>Workflow Time Zone</b> (for requests and tasks).</p>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Override IPK Conditions</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">Select this option to <a href="#Setting_Special_Working_Hours" data-mc-conditions="Default.Not Pink">set special working hours</a> <a href="#Setting_Special_Working_Hours" data-mc-conditions="Default.Pink">set special support hours</a> for an agreement.</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Default Agreement Time Zone</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">Select this option if you want the time zone to be the same as that specified in the Time Zone field.</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column1-" colspan="2" style="font-weight: normal;">
+                                                                        <p colspan="2" style="font-weight: normal;">If the agreement is for a call or request, you can select the time zone for the agreement to be one of the options below the IPK or Workflow Time Zone heading. Some of the fields available vary depending on the type of agreement. </p>
+                                                                        <ul>
+                                                                            <li value="1">
+<b>SLAs</b> – you can apply the time zone set based on a Config Item, User, or Service linked to the call, request or task to which the agreement applies.</li>
+                                                                            <li value="2">
+<b>OLAs</b> – you can apply the time zone set based on an IPK Group (if the agreement applies to a call) or Workflow Group (if the agreement applies to a task or approval).</li>
+                                                                            <li value="3">
+<b>UCs</b> – you can apply the time zone set based on an External Supplier or Contract.</li>
+                                                                        </ul>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Config Item via Agreement Identification</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                        <p>Select to use the same time zone as is used for the configuration item to which this agreement is applied.</p>
+                                                                        <p colspan="2" class="prereq" style="font-weight: normal;">The <b>Time Zoning</b> options for the configuration item will be used only if the call or request using the agreement has <b>Config Item</b> selected. It must also be listed under the IPK or Workflow Agreement <b>Selection Criteria</b> for the time zone to be used.
+</p>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">User via Agreement Identification</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                        <p class="prereq">This option is only displayed for SLAs.</p>
+                                                                        <p>Select to use the same time zone as is used for the User for whom this agreement is applicable.</p>
+                                                                        <p colspan="2" class="prereq" style="font-weight: normal;">The <b>Time Zoning</b> options for the User will be used only if the call or request using the agreement has <b>User</b> selected. It must also be listed under the IPK or Workflow Agreement <b>Selection Criteria</b> for the time zone to be used.
+</p>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Service via Agreement Identification</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                        <p class="prereq">This option is only displayed for SLAs.</p>
+                                                                        <p>Select to use the same time zone as is used for the service for which this agreement is applicable.</p>
+                                                                        <p colspan="2" class="prereq" style="font-weight: normal;">The <b>Time Zoning</b> options for the service will be used only if the call or request using the agreement has the <b>service</b> selected. It must also be listed under the IPK or Workflow Agreement <b>Selection Criteria</b> for the time zone to be used.
+</p>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Config Item of the Call</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                        <p class="prereq">This option is only displayed for SLAs.</p>
+                                                                        <p>Select to use the same time zone as is used for the config item identified in the call.</p>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">User of the Call</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                        <p class="prereq">This option is only displayed for SLAs.</p>
+                                                                        <p>Select to use the same time zone as is used for the User identified in the call.</p>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Service of the Call</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                        <p class="prereq">This option is only displayed for SLAs.</p>
+                                                                        <p>Select to use the same time zone as is used for the service identified in the call.</p>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">User of the Request</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                        <p class="prereq">This option is only displayed for SLAs.</p>
+                                                                        <p>Select to use the same time zone as is used for the User identified in the request.</p>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">
+                                                                        <p>IPK Group via Agreement Identification</p>
+                                                                    </td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                        <p class="prereq">This option is only displayed for OLAs.</p>
+                                                                        <p>Select to make the time zone to be the same as that specified for the IPK group in the <b>Selection Criteria</b> of the agreement.</p>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">
+                                                                        <p>Workflow Group via Agreement Identification</p>
+                                                                    </td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                        <p class="prereq">This option is only displayed for OLAs.</p>
+                                                                        <p>Select to make the time zone to be the same as that specified for the workflow group in the <b>Selection Criteria</b> of the agreement.</p>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">External Supplier via Agreement Identification</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                        <p class="prereq">This option is only displayed for UCs.</p>
+                                                                        <p>Select to make the time zone to be the same as that specified for the External Supplier in the <b>Selection Criteria</b> of the agreement.</p>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyB-Column1-">Contract via Agreement Identification</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyA-Column2-">
+                                                                        <p class="prereq">This option is only displayed for UCs.</p>
+                                                                        <p>Select to make the time zone to be the same as that specified for the Contract in the <b>Selection Criteria</b> of the agreement.</p>
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                        <li value="4">Select <b>Save</b> to save the details.</li>
+                                                    </ol>
+                                                    <h3>
+<a name="Setting_Special_Working_Hours"></a>Setting Special Working Hours for an Agreement
+</h3>
+                                                    <h2 class="Prerequisite">Before you start</h2>
+                                                    <p class="prereqtext1">IPK Thresholds must be configured to set special IPK working hours.</p>
+                                                    <p class="prereqtext">You must have <b>Agreement New</b> selected in the <a href="../admin%20security%20roles/slm%20sec%20role%20-%20options%20tab.htm">Options</a> tab of your <b>Service Level Management security role</b> to create agreements. You must have <b>Agreement Update</b> selected in the same tab to update the information.</p>
+                                                    <ol>
+                                                        <li value="1">Display the <b>Agreement Details</b> window, if it is not already visible on screen, by <a href="#top">searching for the agreement</a>.</li>
+                                                        <li value="2"> 
+Select the <b>Work Hours</b>   tab .</li>
+                                                        <li value="3">Select <b>Override IPK Conditions</b>. The <b>Special Working Hours</b> window appears.</li>
+                                                        <li value="4">Select the Matrix.</li>
+                                                        <li value="5">Set the X, Y and Z dimensions to invoke the set of special working hours <i>to be added to</i> the list of special working hours.</li>
+                                                        <li value="6">Select <b>Save</b> to save the details.</li>
+                                                    </ol>
+                                                    <h3>
+<a name="Adding3"></a>Adding Financial Information to an Agreement</h3>
+                                                    <p>You can enter financial information relating to the agreement. Note that financial data such as payment types is only stored as text fields attached to an agreement. If you want certain calculations to be performed with your agreements based on payments, contact <span class="GeneralVariablesCompanyName2">Alemba®</span> Professional Services to discuss. </p>
+                                                    <ol>
+                                                        <li value="1">Display the <b>Agreement Details</b> window, if it is not already visible on screen, by <a href="#top">searching for the agreement</a>.</li>
+                                                        <li value="2"> 
+Select the <b>Financials</b> tab.</li>
+                                                        <li value="3">Complete the details.</li>
+                                                        <table class="TableStyle-FieldDesc" style="mc-table-style: url('../../resources/tablestyles/fielddesc.css');margin-left: 0;margin-right: auto;" cellspacing="0">
+                                                            <col class="TableStyle-FieldDesc-Column-Column1">
+                                                            <col class="TableStyle-FieldDesc-Column-Column2">
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Payment Type</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">Use the drop-down list to choose a <a href="../admin%20slm/payment%20types.htm">payment type</a> (Yearly, Monthly, Once-off, etc.) to attach to the agreement.</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Price</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">You can type a price for the payment.</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyB-Column1-">Total Spent</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyA-Column2-">Type a running total for the payments on the agreement.</td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                        <li value="4">Select <b>Save</b> to save the details.</li>
+                                                    </ol>
+                                                    <h2>
+<a name="Options"></a>Agreement Details Explorer Options</h2>
+                                                    <p>The <b>Agreement Details</b> explorer pane consists of the following options:</p>
+                                                    <table style="margin-left: 0;margin-right: auto;mc-table-style: url('../../resources/tablestyles/fielddesc.css');" class="TableStyle-FieldDesc" cellspacing="0">
+                                                        <col class="TableStyle-FieldDesc-Column-Column1">
+                                                        <col class="TableStyle-FieldDesc-Column-Column2">
+                                                        <tbody>
+                                                            <tr>
+                                                                <td class="TableStyle-FieldDesc-BodyH-Column1-">
+<a href="attaching%20selection%20criteria.htm">IPK and Workflow Selection Criteria</a>
+                                                                </td>
+                                                                <td class="TableStyle-FieldDesc-BodyG-Column2-">Agreements have selection criteria attached to them. These are rules which tell <span class="GeneralVariablesCoreName">ASM Core</span> when to apply the agreement. Agreements are selected and applied to calls, requests, and tasks based on the IPK and Workflow selection criteria, respectively. Updates to call or request details may trigger a new agreement to be applied to the call/request, if these details affect the selection criteria.</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="TableStyle-FieldDesc-BodyH-Column1-">
+<a href="defining%20agreement%20thresholds.htm">IPK and Workflow Thresholds</a>
+                                                                </td>
+                                                                <td class="TableStyle-FieldDesc-BodyG-Column2-">Thresholds define the points at which an agreement should start escalation events, and the point at which an agreement is breached. You can define IPK and Workflow Thresholds for SLAs, OLAs, and UCs. </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="TableStyle-FieldDesc-BodyH-Column1-">
+<a href="linking%20service%20items%20to%20agree.htm">Service Items</a>
+                                                                </td>
+                                                                <td class="TableStyle-FieldDesc-BodyG-Column2-">You can link and remove service items (that is, services, service actions, and service bundles) to and from the current agreement.</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="TableStyle-FieldDesc-BodyH-Column1-">
+                                                                    <p><a href="../cmdb%20explorer%20options/object%20explorer%20option.htm">Object</a>
+                                                                    </p>
+                                                                </td>
+                                                                <td class="TableStyle-FieldDesc-BodyG-Column2-">The Object Management functionality enables you to attach objects or files from Windows applications to the current agreement.</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="TableStyle-FieldDesc-BodyH-Column1-">
+<a href="../cmdb%20explorer%20options/attributes%20explorer%20option.htm">Attributes</a>
+                                                                </td>
+                                                                <td class="TableStyle-FieldDesc-BodyG-Column2-">The Attributes explorer option can be used to access the Agreement Attributes window where you can type data into categories set up in the Administration module. </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="TableStyle-FieldDesc-BodyH-Column1-">
+<a href="../cmdb%20explorer%20options/forms%20explorer%20option.htm">Forms</a>
+                                                                </td>
+                                                                <td class="TableStyle-FieldDesc-BodyG-Column2-">Forms are specially designed windows attached to specific agreements. They can be used to capture general, non-reportable, non-searchable information about the agreement. Use the Forms explorer option to access the attached form and specify the required details.</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="TableStyle-FieldDesc-BodyH-Column1-">
+<a href="../cmdb%20explorer%20options/audit%20explorer%20option.htm">Audit</a>
+                                                                </td>
+                                                                <td class="TableStyle-FieldDesc-BodyG-Column2-">All changes to an item in the CMDB (such as config item, agreement, or User) can be seen at a glance on the Audit Trail window. Changes may range from a rename of a config item, upload of an object or deletion of an object. <p>To enable auditing, the system administrator must select the option in the Audit Trail section on the CMDB Settings window.</p>
+<p>An entry is made in the audit trail table for the creation of a CMDB item. </p>
+</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="TableStyle-FieldDesc-BodyH-Column1-">
+<a href="agreement%20measurements.htm">Measurements</a>
+                                                                </td>
+                                                                <td class="TableStyle-FieldDesc-BodyG-Column2-">You can record measurements against an agreement.</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="TableStyle-FieldDesc-BodyB-Column1-">
+<a href="../cmdb%20explorer%20options/stakeholders%20explorer%20option.htm">Stakeholders</a>
+                                                                </td>
+                                                                <td class="TableStyle-FieldDesc-BodyA-Column2-">Stakeholders are Users, organizations, other support analysts or groups who have an interest in the agreement. They may be related to it or a call or request to which the current agreement is applied, and need to be kept informed of developments. Use the Stakeholder explorer option to link stakeholders to the current agreement.  </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <h2>
+<a name="top"></a>Searching for an Agreement</h2>
+                                                    <h2 class="Prerequisite">Before you start</h2>
+                                                    <p class="prereqtext">You must have <b>Agreement Read</b> selected in the <a href="../admin%20security%20roles/slm%20sec%20role%20-%20options%20tab.htm">Options</a> tab of your <b>Service Level Management security role</b>.</p>
+                                                    <ol style="list-style-type: decimal;" start="1">
+                                                        <li value="1">Select <span style="font-size: 24pt;">≡</span> and then <b>Search</b>. From the submenu, select <b>Agreements</b>.</li>
+                                                        <li value="2">The Agreement Search window is divided into two panes. You can select the criteria for the search in the left frame. The results are displayed in the right pane. You can apply as many filters as you wish (some of the fields require you to select a check box for that criteria to apply).</li>
+                                                        <p>
+                                                            </p>
+<table class="TableStyle-FieldDesc" style="mc-table-style: url('../../resources/tablestyles/fielddesc.css');margin-left: 0;margin-right: auto;" cellspacing="0">
+                                                                <col class="TableStyle-FieldDesc-Column-Column1">
+                                                                <col class="TableStyle-FieldDesc-Column-Column2">
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyH-Column1-">SLA </td>
+                                                                        <td class="TableStyle-FieldDesc-BodyG-Column2-">Select to filter your search by SLA</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyH-Column1-">OLA </td>
+                                                                        <td class="TableStyle-FieldDesc-BodyG-Column2-">Select to filter your search by OLA</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyH-Column1-">UC </td>
+                                                                        <td class="TableStyle-FieldDesc-BodyG-Column2-">Select to filter your search by UC</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyH-Column1-">Active </td>
+                                                                        <td class="TableStyle-FieldDesc-BodyG-Column2-">Select to search for active agreements, that is agreements with an end date later than today</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyH-Column1-">Deleted </td>
+                                                                        <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                Select to search for agreements that have been created, and subsequently deleted
+                            </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyH-Column1-">Include Deleted Field Values</td>
+                                                                        <td class="TableStyle-FieldDesc-BodyG-Column2-">Select  to include deleted values in the other search criteria lists so that these values can be included in your search</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyH-Column1-">Partition</td>
+                                                                        <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                            <p class="prereq">This is only visible if your system is partitioned and you have access to more than one partition.</p>
+                                                                            <p>Select the partition to search for agreements created in the partitions to which you have access.</p>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyH-Column1-">Agreement Ref</td>
+                                                                        <td class="TableStyle-FieldDesc-BodyG-Column2-">This is the reference number assigned to the agreement. Select the checkbox and then type the agreement ref. If you do not know the reference number, you can use the wildcard symbol % to retrieve all the agreements defined on your system.</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyB-Column1-">Title</td>
+                                                                        <td class="TableStyle-FieldDesc-BodyA-Column2-">This is the name of the agreement. Select the checkbox and then type the title. If you do not know the title, you can use the wildcard symbol % to retrieve all the agreements defined on your system.</td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        
+                                                        <li value="3">To <a href="#Additional_Search_Criteria">add more fields to your search criteria</a>, select <img src="/storage/app/media/Help/images/configure%20search%20criteria.png"> at the top of the pane and <a href="../general%20topics/configuring%20search%20criteria.htm">configure your search criteria</a>.</li>
+                                                        <li value="4">Select <b>Search</b>. The results are displayed in a browse table located in the right hand pane.</li>
+                                                        <li value="5">When the browse table appears, the following buttons are available in addition to the standard ones.</li>
+                                                        <p>
+                                                            </p>
+<table style="margin-left: 0;margin-right: auto;mc-table-style: url('../../resources/tablestyles/fielddesc.css');" class="TableStyle-FieldDesc" cellspacing="0">
+                                                                <col class="TableStyle-FieldDesc-Column-Column1">
+                                                                <col class="TableStyle-FieldDesc-Column-Column2">
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyH-Column1-">
+                                                                            <img src="/storage/app/media/Help/images/clone%20button.png" alt="" title="">
+                                                                        </td>
+                                                                        <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                            <p>to clone the selected agreement and create a new one.</p>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyB-Column1-">
+                                                                            <img src="/storage/app/media/Help/images/review%20button.png">
+                                                                        </td>
+                                                                        <td class="TableStyle-FieldDesc-BodyA-Column2-">If your system is configured so that double-clicking an entity in the search results will open it in action mode, rather than review mode, select the entity and then this button on the toolbar to open the item details in review mode.</td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        
+                                                    </ol>
+                                                    <h3>
+<a name="Additional_Search_Criteria"></a>Additional Search Criteria</h3>
+                                                    <p>By configuring your search criteria, you can add more fields to your search criteria panel, including:</p>
+                                                    <table class="TableStyle-FieldDesc" style="mc-table-style: url('../../resources/tablestyles/fielddesc.css');margin-left: 0;margin-right: auto;" cellspacing="0">
+                                                        <col class="TableStyle-FieldDesc-Column-Column1">
+                                                        <col class="TableStyle-FieldDesc-Column-Column2">
+                                                        <tbody>
+                                                            <tr>
+                                                                <td class="TableStyle-FieldDesc-BodyH-Column1-">Agreement Status</td>
+                                                                <td class="TableStyle-FieldDesc-BodyG-Column2-">The current <a href="../admin%20slm/agreement%20statuses.htm">status</a> of the agreement</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="TableStyle-FieldDesc-BodyH-Column1-">External Supplier</td>
+                                                                <td class="TableStyle-FieldDesc-BodyG-Column2-">If you want to locate a UC, you can search by the external supplier you have specified in the <a href="%7B%7B%20'help-attaching-selection-criteria#Adding'%7CstaticPage%20%7D%7D#Adding">UC selection criteria</a>.</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="TableStyle-FieldDesc-BodyH-Column1-">Contract</td>
+                                                                <td class="TableStyle-FieldDesc-BodyG-Column2-">If you want to locate a UC, you can search by the contract you have specified in the <a href="%7B%7B%20'help-attaching-selection-criteria#Adding'%7CstaticPage%20%7D%7D#Adding">UC selection criteria</a>.</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="TableStyle-FieldDesc-BodyH-Column1-">IPK Group, Workflow Group</td>
+                                                                <td class="TableStyle-FieldDesc-BodyG-Column2-">Use these fields to locate OLAs that have the select group identified as the agreement group in the <a href="%7B%7B%20'help-attaching-selection-criteria#Adding2'%7CstaticPage%20%7D%7D#Adding2">OLA selection criteria</a>.</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="TableStyle-FieldDesc-BodyH-Column1-">Date From and Date To</td>
+                                                                <td class="TableStyle-FieldDesc-BodyG-Column2-">You can use various date fields to search for agreements, such as Start Date, Review Date, Created Date, or Updated Date.</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="TableStyle-FieldDesc-BodyH-Column1-">Created By</td>
+                                                                <td class="TableStyle-FieldDesc-BodyG-Column2-">Select the name of the analyst who created the agreement(s) you want to locate. </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="TableStyle-FieldDesc-BodyH-Column1-">Updated By</td>
+                                                                <td class="TableStyle-FieldDesc-BodyG-Column2-">Select the name of the analyst who last edited the agreement(s) you want to locate. </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="TableStyle-FieldDesc-BodyH-Column1-">Call Type Selection Criteria</td>
+                                                                <td class="TableStyle-FieldDesc-BodyG-Column2-">Select a value for the issue Type, if it has been set as an IPK selection criterion on the agreement(s) you want to locate.</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="TableStyle-FieldDesc-BodyH-Column1-">Request Type Selection Criteria</td>
+                                                                <td class="TableStyle-FieldDesc-BodyG-Column2-">Select the request type value, if it has been set as a selection criterion on the agreement(s) you want to locate.</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="TableStyle-FieldDesc-BodyH-Column1-">Source</td>
+                                                                <td class="TableStyle-FieldDesc-BodyG-Column2-">Select the source from which the agreement was created, such as <span class="GeneralVariablesCoreName">ASM Core</span>, or API.</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="TableStyle-FieldDesc-BodyH-Column1-">[CMDB Item] Selection Criteria</td>
+                                                                <td class="TableStyle-FieldDesc-BodyG-Column2-">
+<a href="../general%20topics/using%20the%20search%20button.htm">S</a>pecify CMDB items linked to the agreement you want to locate.</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="TableStyle-FieldDesc-BodyB-Column1-">User/Organization/Location Selection Criteria</td>
+                                                                <td class="TableStyle-FieldDesc-BodyA-Column2-">Select the name of the User, organization, or location if it has been set up as a selection criterion on the agreement(s) you want to locate. </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <h2>Cloning an Agreement</h2>
+                                                    <h2 class="Prerequisite">Before you start</h2>
+                                                    <p class="prereqtext">You must have <b>Agreement New</b> selected in the <a href="../admin%20security%20roles/slm%20sec%20role%20-%20options%20tab.htm">Options</a> tab of your <b>Service Level Management security role</b> to create agreements.</p>
+                                                    <ol>
+                                                        <li value="1">
+<a href="#top">Search for the agreement</a>.</li>
+                                                        <li value="2">Select the agreement you want to update from the browse table, and select <img src="/storage/app/media/Help/images/clone%20button.png" alt="" title="">.</li>
+                                                        <li value="3">When the new agreement's details are displayed on the screen, select <img src="/storage/app/media/Help/images/edit%20button.png"> if necessary to activate the fields.</li>
+                                                        <li value="4">
+<a href="#Complete_the_agreement_details">Update the details</a> as necessary.</li>
+                                                        <li value="5">You can use the tabs at the bottom of the window to provide <a href="#Adding">profile info</a>, <a href="#Adding2">significant dates</a>, <a href="#Applying" data-mc-conditions="Default.Not Pink">working hours</a> <a href="#Applying" data-mc-conditions="Default.Pink">support hours</a> and <a href="#Adding3">financial information</a> for the agreement.</li>
+                                                        <li value="6">You can also use the <a href="#Options">options in the explorer pane</a> to:</li>
+                                                        </ol>
+<ul>
+                                                            <li value="1">Define <a href="%7B%7B%20'help-attaching-selection-criteria#top'%7CstaticPage%20%7D%7D#top">selection criteria</a> for the agreement (that is, the rules that define in what situations the agreement is used) </li>
+                                                            <li value="2">Define <a href="%7B%7B%20'help-defining-agreement-thresholds#top'%7CstaticPage%20%7D%7D#top">thresholds</a> for the agreement (that is, the times at which escalation and agreement breaches occur) </li>
+                                                            <li value="3">Define <a href="%7B%7B%20'help-agreement-measurements#top'%7CstaticPage%20%7D%7D#top">measurements</a> and penalties for the agreement </li>
+                                                            <li value="4">
+<a href="../cmdb%20explorer%20options/object%20explorer%20option.htm">Upload or download an object</a> from the agreement </li>
+                                                            <li value="5">Specify Agreement <a href="../cmdb%20explorer%20options/stakeholders%20explorer%20option.htm">Stakeholders</a>
+</li>
+                                                            <li value="6">View the <a href="%7B%7B%20'help-cmdb-explorer-options-audit-explorer-option#top'%7CstaticPage%20%7D%7D#top">audit trail</a> for the agreement </li>
+                                                        </ul>
+                                                        <li value="7">When you have finished, select <b>Ok</b> to save the details, or <b>Save New</b> to save the details and display the <b>Agreement Details</b> window with blank fields, for creation of another agreement of the same type.</li>
+                                                    
+                                                    <h2>Updating an Agreement</h2>
+                                                    <h2 class="Prerequisite">Before you start</h2>
+                                                    <p class="prereqtext">You must have <b>Agreement Update</b> selected in the <a href="../admin%20security%20roles/slm%20sec%20role%20-%20options%20tab.htm">Options</a> tab of your <b>Service Level Management security role</b> to create agreements.</p>
+                                                    <ol>
+                                                        <li value="1">
+<a href="#top">Search for the agreement</a>.</li>
+                                                        <li value="2">Select the agreement you want to update from the browse table, and select <img src="/storage/app/media/Help/images/action%20button.png">.</li>
+                                                        <li value="3">When the details are displayed on the screen, select <img src="/storage/app/media/Help/images/edit%20button.png"> if necessary to activate the fields.</li>
+                                                        <li value="4">
+<a href="#Complete_the_agreement_details">Update the details</a> as necessary.</li>
+                                                        <li value="5">You can use the tabs at the bottom of the window to provide <a href="#Adding">profile info</a>, <a href="#Adding2">significant dates</a>, <a href="#Applying"></a><a href="#Applying" data-mc-conditions="Default.Not Pink">working hours</a> <a href="#Applying" data-mc-conditions="Default.Pink">support hours</a> and <a href="#Adding3">financial information</a> for the agreement.</li>
+                                                        <li value="6">You can also use the <a href="#Options">options in the explorer pane</a> to:</li>
+                                                        </ol>
+<ul>
+                                                            <li value="1">Define <a href="%7B%7B%20'help-attaching-selection-criteria#top'%7CstaticPage%20%7D%7D#top">selection criteria</a> for the agreement (that is, the rules that define in what situations the agreement is used) </li>
+                                                            <li value="2">Define <a href="%7B%7B%20'help-defining-agreement-thresholds#top'%7CstaticPage%20%7D%7D#top">thresholds</a> for the agreement (that is, the times at which escalation and agreement breaches occur) </li>
+                                                            <li value="3">Define <a href="%7B%7B%20'help-agreement-measurements#top'%7CstaticPage%20%7D%7D#top">measurements</a> and penalties for the agreement </li>
+                                                            <li value="4">
+<a href="../cmdb%20explorer%20options/object%20explorer%20option.htm">Upload or download an object</a> from the agreement </li>
+                                                            <li value="5">Specify Agreement <a href="../cmdb%20explorer%20options/stakeholders%20explorer%20option.htm">Stakeholders</a>
+</li>
+                                                            <li value="6">View the <a href="%7B%7B%20'help-cmdb-explorer-options-audit-explorer-option#top'%7CstaticPage%20%7D%7D#top">audit trail</a> for the agreement </li>
+                                                        </ul>
+                                                        <li value="7">When you have finished, select <b>Ok</b> to save the details, or <b>Save New</b> to save the details and display the <b>Agreement Details</b> window with blank fields, for creation of another agreement of the same type.</li>
+                                                    
+                                                    <h2>Deleting an Agreement</h2>
+                                                    <h2 class="Prerequisite">Before you start</h2>
+                                                    <p class="prereqtext">You must have <b>Agreement Delete</b> selected in the <a href="../admin%20security%20roles/slm%20sec%20role%20-%20options%20tab.htm">Options</a> tab of your <b>Service Level Management security role</b> to create agreements.</p>
+                                                    <ol>
+                                                        <li value="1">
+<a href="#top">Search for the agreement</a>.</li>
+                                                        <li value="2">Select the agreement you want to delete from the browse table, and select <img src="/storage/app/media/Help/images/delete%20button.png">.</li>
+                                                        <li value="3">Confirm the deletion.</li>
+                                                    </ol>
+                                                    <p class="note">Deleted agreements are not removed from calls, requests, or tasks they were assigned to before the agreement was deleted. If there are active events at the time of deletion, they will continue to count down until the agreement events are completed.</p>
+                                                

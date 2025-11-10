@@ -1,0 +1,56 @@
+[viewBag]
+title = "Creating a WCF Client"
+url = "/help/topics/api/api-creating-wcf-client"
+layout = "help"
+is_hidden = 0
+navigation_hidden = 0
+==
+                                                    <h1>
+<a name="aanchor203"></a>
+                                                        <concept term="Classic API"></concept>Creating a WCF Client</h1>
+                                                    <p class="reference"><span class="GeneralVariablesProductName">ASM</span> has two Application Programming Interfaces (or APIs), which enable you to develop programs that automate many common <span class="GeneralVariablesProductName">ASM</span> transactions. This section of the documentation deals with the Classic API. For more information on the RESTful <span class="GeneralVariablesAPIName">Alemba API</span>, see <a href="../alemba%20api/alemba%20api.htm">here</a>.<br><br></p>
+                                                    <p class="intro">The API is based on Windows Communication Foundation (WCF). <span class="GeneralVariablesProductName">ASM</span> provides a WCF service and exposes an end point which can be accessed by third party applications to call standard <span class="GeneralVariablesProductName">ASM</span> transactions. </p>
+                                                    <p>This end point is in the location http://&lt;machinename&gt;/&lt;VirtualDirectory&gt;/ServiceManager.svc</p>
+                                                    <p>To access this end point, you must create a WCF client and add it to your web application.</p>
+                                                    <p>This section outlines the relevant steps which you can undertake to create a WCF client, and use this in a third party application to access the API. All examples have been created using Microsoft Visual Studio and have been written in VB.NET.</p>
+                                                    <h2 class="Prerequisite">Prerequisites</h2>
+                                                    <p class="prereqtext">In order to access the Classic API, you should make sure that .NET 4.5 or later is installed on the system on which you are building your third party application.</p>
+                                                    <h2>Generating a Client Class</h2>
+                                                    <p>You can use the ServiceModel Metadata Utility Tool (svcutil.exe) to create a client class. This is the class which will be used to call the web service. The client class output consists of a configuration file and a code file. These need to be added to your third party application project.</p>
+                                                    <p>To generate a client class, you must first:</p>
+                                                    <ul style="list-style-type: disc;">
+                                                        <li style="list-style-type: disc;" value="1">Set your environment variable to the Visual Studio compiler</li>
+                                                        <li style="list-style-type: disc;" value="2">Use svcutil.exe to generate a client class.</li>
+                                                    </ul>
+                                                    <h3>Setting the Environment Variable</h3>
+                                                    <p>Before using svcutil.exe to generate a client class, Microsoft recommends that you set the Visual Studio compiler vcvarsall.bat batch file as an environment variable.</p>
+                                                    <p>To do this, create a batch file (for example, myBatchFile.bat) that contains the following command:</p>
+                                                    <p><code>%comspec% /k ""c:\Program Files\Microsoft Visual Studio 9.1\VC\vcvarsall.bat"" x86</code>
+                                                    </p>
+                                                    <p class="note">The example above points to the Vsvarsall.bat location assuming a Microsoft Visual Studio 9.1 installation. If you are using a different instance of Microsoft Visual Studio, you should update the command above to point to the equivalent location of the Vcvarsall.bat batch file.</p>
+                                                    <p class="note">For more information on setting your environment variable for command line builds, see http://msdn.microsoft.com/en-us/library/x4d2c09s(VS.80).aspx.</p>
+                                                    <h3>Using Svcutil.exe to Generate a Client Class</h3>
+                                                    <p>Once you have set your environment variable, use Svcutil.exe to generate a client class. To do this, run the following from the command prompt:</p>
+                                                    <p><code>svcutil /t:code /language=VB /messageContract http://&lt;machine_name&gt;/&lt;virtual_directory&gt;/ServiceManager.svc /out:ISMAPI.vb /config:ISMAPI.config</code>
+                                                    </p>
+                                                    <p>This will output the files ISMAPI.vb and ISMAPI.config; these files contain the client class. You can change these to your required output names.</p>
+                                                    <p class="note">For more information on using svcutil.exe including an explanation of options, see http://msdn.microsoft.com/en-us/library/aa347733.aspx.</p>
+                                                    <h2>Adding Client Class Files</h2>
+                                                    <p>You should have two output files:</p>
+                                                    <ul style="list-style-type: disc;">
+                                                        <li style="list-style-type: disc;" value="1">A configuration file</li>
+                                                        <li style="list-style-type: disc;" value="2">A code file</li>
+                                                    </ul>
+                                                    <h3>Output Configuration File</h3>
+                                                    <p>For the output configuration file (ISMAPI.config using the above example), find the &lt;System.ServiceModel&gt; section and add this to your web.config / app.config configuration with the correct endpoint address. </p>
+                                                    <p>The endpoint address is in the format: <code>http://&lt;machine_name&gt;/&lt;virtual_directory&gt;/ServiceManager.svc</code></p>
+                                                    <h3>Output Code File</h3>
+                                                    <p>For the output code file (ISMAPI.vb using the above example), make sure you add this to your third party application project. If you are creating a web application using Visual Studio 2008, this will be under the App_Code section.</p>
+                                                    <h2>Creating Client and Access API</h2>
+                                                    <p>From the third party application project, use the client class to create the code that will access the Classic API.</p>
+                                                    <h3>Example Login</h3>
+                                                    <p>The following VB.NET example demonstrates how to create a Service Client and log into the application using the <span class="GeneralVariablesProductName">ASM</span> LogIn Transaction.</p>
+                                                    <p>
+                                                        <img src="/storage/app/media/Help/images/api%20creating%20wcf%20client_627x549.png" style="visibility: visible;mso-wrap-style: square;width: 627;height: 549;">
+                                                    </p>
+                                                

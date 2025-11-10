@@ -1,0 +1,173 @@
+url = "/blog/:category?"
+layout = "home"
+title = "ITSM News and Insights | ITSM Blog - Alemba"
+description = "Blog page"
+is_hidden = 0
+meta_title = "ITSM News & Insights | Alemba Blog"
+meta_description = "Explore the latest ITSM news, tips, and insights on the Alemba blog. Stay informed about IT service management trends and best practices."
+robot_index = "index"
+robot_follow = "follow"
+seoOptionsEnabledInSitemap = 1
+seoOptionsUseUpdatedAt = 1
+seoOptionsRobotIndex = "index"
+seoOptionsRobotFollow = "follow"
+seoOptionsChangefreq = "daily"
+seoOptionsPriority = 0.5
+canonical_url = "https://alemba.com/blog/"
+
+[tagFilter]
+contentType = "blog"
+tagCategories[] = "topic"
+tagCategories[] = "region"
+tagCategories[] = "industry"
+==
+<?php
+use RainLab\Blog\Models\Post;
+use RainLab\Blog\Models\Category;
+
+function onStart()
+{
+
+	$this['blog_category'] = $this->param('category');
+
+	// If a category exists, get blog entries for it...
+
+	if($this['blog_category']) {
+
+		// Create a Builder object of the query to get blog posts
+
+		$blog_posts = Post::where('published', 1)->whereHas('categories', function($query) {
+			$query->where('slug', $this['blog_category']);
+		})->orderBy('published_at', 'desc');
+
+		// Change the meta tags
+
+		$category = Category::where('slug', $this['blog_category'])->first();
+
+		if($category) {
+
+			$this->page->meta_title = $category->meta_title;
+			$this->page->meta_description = $category->meta_description;
+
+		}
+
+	} else {
+
+		// ...otherwise, get all blog articles
+
+		$blog_posts = Post::where('published', 1)->orderBy('published_at', 'desc');
+
+	}
+
+	// Assign to the blog variable
+
+	$this['blog'] = $blog_posts->get();
+
+	// Get only the latest blog entry (with a featured banner)
+	// We'll fetch it as an array, otherwise it seems to overwrite the page's SEO data with its own
+	
+	$featured_blog = $blog_posts->where('featured_banner', '!=', '')->first();
+
+	if($featured_blog) {
+
+		$this['featured_blog'] = $featured_blog->toArray();
+		$this['featured_blog_category'] = $featured_blog->categories()->first()->slug;
+
+	}
+
+	// If no articles exist, redirect to the main blog page
+
+	if(count($this['blog']) == 0) {
+		return redirect('/blog');
+	}
+
+	$category = $this['blog_category'] ? '/'.$this['blog_category'] : '';
+
+	$this->page->canonical_url = "https://alemba.com/blog".$category;
+}
+?>
+==
+{% if featured_blog %}
+	{#
+	<script type="text/javascript">
+        document.addEventListener("DOMContentLoaded", function(){
+            var category = '{{ blog_category }}';
+            if (category) {
+                var spacer = " - ";
+            } else {
+                var spacer = "";
+            }
+            $('title').html("ITSM News and Insights | ITSM Blog - Alemba" + spacer + category);
+            $('meta[name="title"]').attr('content', "ITSM News and Insights | ITSM Blog - Alemba" + spacer + category);
+            $('meta[name="description"]').attr('content', "Follow the Alemba blog for the latest ITSM news and insights into IT Service Management industry hot topics" + spacer + category);
+            $('meta[property="og:title"]').attr('content', "ITSM News and Insights | ITSM Blog - Alemba" + spacer + category);
+            $('meta[property="og:description"]').attr('content', "Follow the Alemba blog for the latest ITSM news and insights into IT Service Management industry hot topics" + spacer + category);
+        });
+    </script>
+    #}
+	<!-- banner -->    
+	<div class="jumbotron jumbotron-fluid banner-large dark grey featured pageBanner" style="background-image:url('{{ featured_blog.featured_banner|media }}')">
+	    <div class="container h-100">
+	       <div class="row h-100">
+	           <div class="col-3 col-lg-5"></div>
+	            <div class="col-9 col-lg-7 my-auto">
+	                <h1 class="text-center featured-blog-title"><a href="{{ 'blog-entry'|page({ category: featured_blog_category, slug: featured_blog.slug }) }}">{{ featured_blog.featured_banner_heading }}</a></h1>
+	                <h2 class="text-center">{{ featured_blog.published_at|date('d M Y') }}</h2>
+	            </div>
+	       </div>
+	    </div>
+	</div>
+
+	<!-- /banner -->
+
+{% endif %}
+
+{% partial 'demo-button' %}
+
+<!-- featured -->
+
+<div class="container article-cards article-index">
+
+	<div class="row justify-content-center">
+
+		<div class="col-7 col-md-10">
+
+			<div class="row">
+
+				{% for entry in blog %}
+
+					<div class="col-12 col-md-6 col-lg-4 col-xl-3 tagged-item {% for tag in entry.tags %} tag-{{ tag.slug }}{% endfor %}">
+
+						<div class="card d-flex align-items-stretch">
+						
+							<div class="card-img-top" style="background-image: url({% if entry.thumbnail %}{{ entry.thumbnail|media }}{% else %}{{'assets/img/thumbnail-default.png'|theme }}{% endif %});"></div>
+		                    <div class="card-body">
+		                        <h4 class="card-title text-center">{{ entry.title_short }}</h4>
+		                        <h5 class="subheading text-center">{{ entry.published_at|date('d M Y') }}</h5>
+		                        <p class="card-text text-center">{{ entry.excerpt }}</p>
+		                        
+		                        <div class="text-center">
+		                            <a href="{{ 'blog-entry'|page({ category: entry.categories|first.slug, slug: entry.slug }) }}" class="btn btn-primary">Read the article</a>
+		                        </div>
+		                    </div>
+		                    
+		                </div>
+
+					</div>
+
+				{% endfor %}
+
+			</div>
+		
+		</div>
+
+		<div class="col-5 col-md-2 tag-column">
+			{% component 'tagFilter' %}
+		</div>
+
+	</div>
+
+
+</div>
+
+<!-- /featured -->

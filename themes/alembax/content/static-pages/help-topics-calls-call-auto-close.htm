@@ -1,0 +1,160 @@
+[viewBag]
+title = "Configuring Call Auto Close Rules"
+url = "/help/topics/calls/call-auto-close"
+layout = "help"
+is_hidden = 0
+navigation_hidden = 0
+==
+                                                    <h1>
+<a name="top"></a>Configuring Call Auto Close Rules</h1>
+                                                    <p class="onlysql">This feature is only available on SQL systems.</p>
+                                                    <p class="intro">Call Auto Close reduces aged call backlog and promotes activity on potentially forgotten calls. </p>
+                                                    <p class="intro"> </p>
+                                                    <p>Define parameters to identify aged calls, notify selected recipients of impending closure, and automatically close those calls if no action is taken.  Multiple auto close rules can be configured, each with different call matching criteria, notification intervals, notification recipients, and call closure field settings to apply on closed calls.</p>
+                                                    <p class="exampletext">Call 12345 is with the closure group and awaiting confirmation from the User to complete closure; in this scenario a rule can be configured to automatically close calls with a physical status of Open/Resolved and priority of Low after one month of inactivity, and automatically email the User or Current Analyst up to three times in the lead-up to call closure.</p>
+                                                    <p>When configuring call auto closure settings, you can:</p>
+                                                    <ul>
+                                                        <li value="1">Define how long since a call was last updated before it is considered for auto closure.</li>
+                                                        <li value="2">Define call criteria to determine which aged calls are to be auto closed. </li>
+                                                        <li value="3">Select recipients to notify prior to call closure, and at call closure.</li>
+                                                        <li value="4">Set notification intervals and select email templates for those notifications. </li>
+                                                        <li value="5">Specify values to apply to the call closure fields of calls that are closed automatically.</li>
+                                                    </ul>
+                                                    <p class="tip" data-mc-conditions="Default.Work in Progress">The report <b>IPK Statistics - Calls Auto Closed</b> provides a summary and statistical data for calls automatically closed during a defined period. </p>
+                                                    <h2>Configuring Call Auto Close</h2>
+                                                    <h2 class="Prerequisite">Before you begin</h2>
+                                                    <p class="prereqtext1">You must have <b>Call Auto Close</b> selected in the <a href="../admin%20security%20roles/ipk%20management%20security%20roles%20-%20options%20tab.htm" class="MCXref xref">IPK Management Role: Options Tab</a> tab of your <b><a name="aanchor71"></a><concept term="IPK"></concept>IPK Management security role</b>.</p>
+                                                    <p class="prereqtext1">The <b class="Bold">vFire 9 Core Service</b> must be running for the closure rules to process.</p>
+                                                    <p class="prereqtext">For notifications to be sent, <b>Email</b> must be enabled in <a href="../admin%20system/messaging.htm" class="MCXref xref">Messaging</a> in System Administration, the <b>vFire 9 Messaging Service</b> must be running, and selected recipients must have a valid email address.</p>
+                                                    <ol>
+                                                        <li value="1">
+                                                            <p>Select <a href="../general%20topics/asmcorewindow.htm"><span style="font-size: 24pt;">≡</span></a> &gt; <b>Admin</b> &gt;  <b>IPK Workflow Rules</b>.   </p>
+                                                            <p>The <b>IPK Workflow Rules</b> window appears.</p>
+                                                        </li>
+                                                        <li value="2">
+                                                            <p>In the Explorer pane, expand <b>Auto Close Configuration</b>, then select <b>Call Auto Close</b>.</p>
+                                                            <p>The <b>Call Auto Close Rules</b> window is displayed. It lists all rules already defined, if any. </p>
+                                                        </li>
+                                                        <li value="3">To edit an existing rule, select it then select <img src="/storage/app/media/Help/images/action%20button_23x21.png" style="width: 23;height: 21;">. </li>
+                                                        <li value="4">To add a new rule, select <img src="/storage/app/media/Help/images/add%20new.png">. </li>
+                                                        <li value="5">The <b>Call Auto Close Settings</b> window is displayed. Complete or update the details: </li>
+                                                        <p>
+                                                            </p>
+<table style="width: 100%;mc-table-style: url('../../resources/tablestyles/fielddesc no indent.css');" class="TableStyle-FieldDesc_no_indent" cellspacing="0">
+                                                                <col class="TableStyle-FieldDesc_no_indent-Column-Column1" style="width: 15%;">
+                                                                <col class="TableStyle-FieldDesc_no_indent-Column-Column2" style="width: 85%;">
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">Title</td>
+                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">Provide a name for the rule. This value appears in the list of rules in the <b>Call Auto Close Rules</b> window. This field is mandatory.</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">Active</td>
+                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">Select to activate this rule. Deselect to stop any auto closures or notifications from this rule.</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">Auto close when time since Call Last Updated Date is greater than</td>
+                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">Set the period of time of call inactivity after which the call is to be closed. Type a number between 1 and 999 into the number field and select the period from the drop down.  These fields are mandatory.<p class="exampletext">Type "2" and select "Week" to close calls with a Last Updated Date older than 2 weeks.<br>Type "4" and select "Month" to close calls with a Last Updated Date older than 4 months.</p>
+</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">Apply to calls matching this criteria</td>
+                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">
+                                                                            <p>Use the Rules Builder to define matching criteria for calls to be automatically closed.  Calls will only be automatically closed if they are not suspended, they match this criteria, <i style="text-decoration: underline;">and</i> they have a Last Updated Date that exceeds the time period defined in the field above. <a href="%7B%7B%20'help-general-topics-using-the-rules-builder#Defining'%7CstaticPage%20%7D%7D#Defining" class="MCXref xref">Rules Builder</a>.</p>
+                                                                            <p>Fields on the <b>Call</b> screen set are available for selection in the Rules Builder. If you want to define criteria using extension fields on other screen sets, add those fields to the <b>Call</b> screen set (they do not need to be visible on the screen).</p>
+                                                                            <p class="warning">Leaving this field blank will apply this Auto Close Rule to <u>all</u> open calls.</p>
+                                                                            <p class="exampletext">To auto close calls with a Priority of <b>Low</b> and a Call State of <b>Open/Resolved</b>, you would define the criteria as shown: <img src="/storage/app/media/Help/images/autocloserule_139x33.png" style="width: 139;height: 33;"></p>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyG-Column1-" colspan="2" style="font-weight: normal;">
+                                                                            <p colspan="2" style="font-weight: normal;">The <b>Close Call Fields</b> section contains settings that represent fields on the call closure window. Values selected here are applied to calls auto closed by this rule.</p>
+                                                                            <p class="note" style="font-weight: normal;">Values from all partitions are displayed in the <b>Reason</b> and <b>Call Status</b> drop downs. If you want to apply different Reasons and Call Statuses to calls based on their partition,  create separate rules per partition and define the call partition in the criteria field.</p>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">Reason</td>
+                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">
+                                                                            <p>Select the value to be applied to the auto closed call's <b>Reason</b> field. This field is mandatory.</p>
+                                                                            <p class="note">Reasons are defined by the System Administrator in the <a href="../admin%20ipk%20management/reasons.htm" class="MCXref xref">Reasons</a> screen under the IPK Management section of System Admin.</p>
+                                                                            <p class="note">This field ignores Reason configuration settings in the <a href="../admin%20ipk%20management/ipk%20settings%20(partitioned).htm" class="MCXref xref">IPK Settings (Partitioned)</a> screen in System Admin. Therefore, it is mandatory when configuring auto close rules regardless of the <b>Reason Forced</b> setting, and all Reasons are available for selection regardless of the <b>Closure Reason Linking</b> settings. </p>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">Call Status</td>
+                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">
+                                                                            <p>Select the value to be applied to the auto closed call's <b>Call Status</b> field. This field is mandatory.</p>
+                                                                            <p class="note">Call Statuses are defined by the System Administrator in the <a href="../admin%20ipk%20management/call%20status%20titles.htm" class="MCXref xref">Call Status Titles</a> screen under the IPK Management section of System Admin.</p>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">One Liner</td>
+                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">Enter text to be written to the auto closed call's One Liner field.</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyG-Column1-" colspan="2" style="font-weight: normal;">
+                                                                            <p colspan="2" style="font-weight: normal;">Use the <b>Notifications</b> section to send emails to selected recipients informing them the call will be automatically closed, and again when the call is auto closed. Up to three pre-closure notifications can be sent, and one post-closure notification.</p>
+                                                                            <p class="note" style="font-weight: normal;">The default message templates can be modified <a href="../designer/using%20designer.htm" class="MCXref xref">Using ASM Designer</a>, or new message templates created and mapped to the <b>Call - Auto Close</b> <a href="../admin%20system/message%20types.htm" class="MCXref xref">Message Types</a> in System Administration.</p>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">Notify on auto close</td>
+                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">
+                                                                            <p>Select the check box to send an email to the Notification Recipients when the call is closed. </p>
+                                                                            <p>Use the drop down to select an email template, or use the default.</p>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">Notify before auto close</td>
+                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">
+                                                                            <p>Select the check box to send an email to the Notification Recipients before the call is automatically closed. </p>
+                                                                            <p>Define how long before auto closure to send the notification. Type a number between 1 and 999 into the number field and select the period from the drop down.</p>
+                                                                            <p>Use the drop down to select an email template, or use the default.</p>
+                                                                            <p class="note">Up to three emails can be sent before the call is closed automatically.</p>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyB-Column1-">Notification Recipients</td>
+                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyA-Column2-">Add or remove recipients for the notification emails. Press <b>Add</b> to display the <a href="../general%20topics/finding%20recipients.htm" class="MCXref xref">Finding Recipients</a> window to search for and add recipients. To remove recipients, select the recipient and press <img src="/storage/app/media/Help/images/remove%20button.png">.<p class="note">No emails are sent when <b>Email</b> is disabled in <a href="../admin%20system/messaging.htm" class="MCXref xref">Messaging</a> in System Administration and/or no recipients are selected.</p>
+</td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        
+                                                        <li value="6">Click <img src="/storage/app/media/Help/images/save%20button.png">. The <b>Call Auto Close Rules</b> window is displayed with your new rule added to the bottom of the list.</li>
+                                                        <li value="7">You can change the order of the rules by using the <img src="/storage/app/media/Help/images/move%20up.png"> and <img src="/storage/app/media/Help/images/move%20down.png"> buttons. Rules are processed in the order in which they appear.</li>
+                                                        <li value="8">To delete a rule select the rule you want to delete, and click <img src="/storage/app/media/Help/images/delete%20button.png"> . Confirm the deletion.</li>
+                                                    </ol>
+                                                    <h3>How are rules processed?</h3>
+                                                    <p>Once daily, vFire processes the Auto Close Rules. Rules are processed in the order in which they appear in the Auto Close Rules window. After the first rule  has completed processing, the second rule in the list is processed and so on to the end of the Auto Close Rules list. During the processing of each rule, the system performs the following actions:</p>
+                                                    <ol>
+                                                        <li value="1">vFire compares the criteria defined in the rule to all calls in the system that are open, not suspended, and not already linked to an auto close rule. </li>
+                                                        <li value="2">When a call is found that matches the rule, that call is 'linked' to that rule and no other rules will attempt to match against that call while the link remains.</li>
+                                                        <li value="3">Call closures  are processed<ul>
+<li value="1">The Close Call Fields settings are applied to calls closed by the rule (Reason, Status, One Liner).</li>
+<li value="2">The closing analyst of the call is set to System User and closure group is set to the system default (SU_SUPPORT_GROUP.REF=0)</li>
+<li value="3">Closure Methods defined in System Admin, such as "Closure Groups", are ignored and the call is closed immediately.</li>
+<li value="4">IPK Workflow Rule Assignments and Requests are ignored.</li>
+<li value="5">User Surveys and IPK Workflow Rule Notifications and Forums are processed if the call meets those conditions.</li>
+<p class="note">For conditions defined on Closure Group (such as in User Surveys), be aware that the closure group for auto closed calls is the system default group.</p>
+<li value="6"> Events, such as SLA events, Reminders, etc, are automatically closed.</li>
+<li value="7">Linked calls and requests remain linked. Child calls are not automatically closed.</li>
+<li value="8">Outages are not automatically closed.</li>
+<li value="9">An entry is written to the <a href="../admin%20system/activity%20log.htm" class="MCXref xref">Activity Log</a> in System Admin for each call closed by auto close rules.</li>
+</ul>
+</li>
+                                                        <li value="4">Closure notification emails are sent for calls closed by the rule, if defined.</li>
+                                                        <li value="5">Pre-closure notification emails are sent for calls that are open and linked to the rule, and that meet the notification period, if defined.</li>
+                                                        <p class="note">A maximum of one notification is sent per call per day. If a call is eligible for 2 or more notifications only the most recent is sent.</p>
+                                                    </ol>
+                                                    <h3>Links between calls and rules</h3>
+                                                    <p>When a call is matched to an Auto Close Rule, it remains associated with that rule until:</p>
+                                                    <ul>
+                                                        <li value="1">the call's <b>Last Updated Date</b> is changed</li>
+                                                        <li value="2">the call is closed</li>
+                                                        <li value="3">the Auto Close Rule is deactivated by deselecting the <b>Active</b> check box</li>
+                                                        <li value="4">the rule is deleted from the <b>Call Auto Close Rules</b> window</li>
+                                                        <li value="5">the criteria in the Auto Close Rule is changed</li>
+                                                    </ul>
+                                                    <p>After a call is no longer associated with an Auto Close Rule, it can be matched to a different rule the next time the rules are processed.</p>
+                                                

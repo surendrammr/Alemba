@@ -1,0 +1,160 @@
+[viewBag]
+title = "Using Workflow Templates"
+url = "/help/topics/admin-workflow-mgt/workflow-templates"
+layout = "help"
+is_hidden = 0
+navigation_hidden = 0
+==
+                                                    <h1>Using Workflow Templates</h1>
+                                                    <p>Workflow templates are pre-built Request Details windows with predefined field values. They include prebuilt workflows, featuring the tasks and approvals that will execute when a request is created from this template. These can be used to define and implement a range of repeatable defined processes, such as implementing Standard Changes, developing Service Level Requirements, or managing the production of complex documents such as Service Quality or Improvement Plans.</p>
+                                                    <p>Each request for change created in <span class="GeneralVariablesCoreName">ASM Core</span> is based on a workflow template. To create a request without any details, simply create a workflow template without any information on it.</p>
+                                                    <p>You can also create <a href="../requests%20and%20templates/component%20workflows.htm">component workflows</a>, which are workflows that are generic across a number of workflow templates.</p>
+                                                    <p class="exampletext1">Workflow templates can be used for:</p>
+                                                    <ul class="prereq">
+                                                        <li value="1">Requests logged by a user through the <span class="GeneralVariablesSelfServicePortalName">Self Service Portal</span>. Any request submitted by a user from the Portal results in a request automatically logged in the main application based on the selected workflow template.</li>
+                                                        <li value="2">Requests logged as a result of an <a href="../integration/managing%20events.htm">event or Inbound Action</a>.</li>
+                                                    </ul>
+                                                    <h2>
+<a name="Viewing"></a>Viewing Workflow Templates</h2>
+                                                    <h2 class="Prerequisite">Before you start</h2>
+                                                    <p class="prereqtext">You must have <b>Template Security</b> selected in the <a href="../admin%20security%20roles/workflow%20mgt%20sec%20role%20-%20template.htm">Template</a> tab of your <b>Workflow Management</b> security role.</p>
+                                                    <ol>
+                                                        <li value="1">
+                                                            <p>Select <a href="../general%20topics/asmcorewindow.htm"><span style="font-size: 24pt;">≡</span></a> &gt; <b>Admin</b> &gt;  <b>Workflow Template</b>. </p>
+                                                            <p>The <b>Workflow Template Administration</b> window appears. Use the filter parameters displayed:</p>
+                                                        </li>
+                                                        <p>
+                                                            </p>
+<table style="mc-table-style: url('../../resources/tablestyles/fielddesc.css');" class="TableStyle-FieldDesc" cellspacing="0">
+                                                                <col class="TableStyle-FieldDesc-Column-Column1">
+                                                                <col class="TableStyle-FieldDesc-Column-Column2">
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyH-Column1-">Select Workflow Process</td>
+                                                                        <td class="TableStyle-FieldDesc-BodyG-Column2-">If you have several workflow processes, use the drop-down list to select the one you wish to view.</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyH-Column1-">Display</td>
+                                                                        <td class="TableStyle-FieldDesc-BodyG-Column2-">Use the options to select the templates you want to display.<p><b>All Templates</b> lists all of the templates that have been created on your system. This is the default option.</p>
+<p><b>Templates by Type</b> shows templates based on a selected request type and activates the list and options below. Use the button to display the drop-down list, and select the request type. </p>
+<p>Select the <b>Hunting</b> options:</p>
+<table class="TableStyle-FieldDesc_no_indent" style="mc-table-style: url('../../resources/tablestyles/fielddesc no indent.css');" cellspacing="0">
+<col class="TableStyle-FieldDesc_no_indent-Column-Column1">
+<col class="TableStyle-FieldDesc_no_indent-Column-Column2">
+<tbody>
+<tr>
+<td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">None</td>
+<td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">This is the default setting. In this case, the templates that have been created with the specific request type selected are displayed.</td>
+</tr>
+<tr>
+<td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">Up</td>
+<td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">When you select a type, the system displays the names of any templates created with that type, plus any ‘parent templates’; i.e. templates created from a type of which the current stencil is a sub-type.</td>
+</tr>
+<tr>
+<td class="TableStyle-FieldDesc_no_indent-BodyB-Column1-">Down</td>
+<td class="TableStyle-FieldDesc_no_indent-BodyA-Column2-">When you select a type, the system displays the names of any templates created with that type, plus any ‘child templates’; i.e., templates created from a sub-type of the current type.</td>
+</tr>
+</tbody>
+</table>
+</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyH-Column1-">Show in List</td>
+                                                                        <td class="TableStyle-FieldDesc-BodyG-Column2-">To view current templates, select <b>Active Templates</b>. Select <b>Deleted Templates</b> to see deleted templates.<p class="note">You cannot create requests from deleted templates.</p>
+</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyB-Column1-">Show List by</td>
+                                                                        <td class="TableStyle-FieldDesc-BodyA-Column2-">Select <b>Workflow</b> to display the workflow templates, or <b>Component Workflow</b> to display the <a href="#Componen">Component Workflow templates</a>. </td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        
+                                                        <li value="2">From here you can <a href="#Creating">create</a>, update, <a href="#Deleting">delete</a> or <a href="#Cloning">clone</a> templates.</li>
+                                                    </ol>
+                                                    <h2>
+<a name="Creating"></a>Creating a Workflow Template</h2>
+                                                    <p>You can create a template for a specific workflow process with predefined tasks. The templates can be based on a request type and workflow process. </p>
+                                                    <p>Depending upon your organization’s requirements, you can create a very detailed template with task dependencies and component workflows or just a simple template without any tasks, budgets and more. You can create a request without any details by creating a template and leaving the details blank. You can select extension fields defined through <span class="GeneralVariablesDesignerName">ASM Designer</span> as an item for which to create a Condition or Action for a Conditional Branching Task within a Workflow Template.</p>
+                                                    <h2 class="Prerequisite">Before you start</h2>
+                                                    <p class="prereqtext">You must have <b>Template Admin</b> selected in the <a href="../admin%20security%20roles/workflow%20mgt%20sec%20role%20-%20requests%20tab.htm">Requests</a> tab of your <b>Workflow Management security role</b>.</p>
+                                                    <p>Workflow templates can be created in one of the following ways:</p>
+                                                    <ul style="list-style-type: disc;margin-left: 36pt;">
+                                                        <li style="list-style-type: disc;" value="1">creating it using the <b>Workflow Template Administration window</b> (as explained below)</li>
+                                                        <li style="list-style-type: disc;" value="2">
+<a href="#Cloning">cloning</a> it, and then updating the details</li>
+                                                        <li style="list-style-type: disc;" value="3">by converting an existing request into a workflow template. To do this, you <a href="../requests%20and%20templates/searching%20for%20requests.htm">search for a saved request,</a> and in the <b>Request Search</b> browse table, select the required request and then select <img src="/storage/app/media/Help/images/convert%20to%20template.png"> from the toolbar.</li>
+                                                    </ul>
+                                                    <ol style="list-style-type: decimal;" start="1">
+                                                        <li value="1">
+                                                            <p>Select <a href="../general%20topics/asmcorewindow.htm"><span style="font-size: 24pt;">≡</span></a> &gt; <b>Admin</b> &gt;  <b>Workflow Template</b>. </p>
+                                                            <p>The <b>Workflow Template Administration</b> window appears. Use the filter parameters displayed:  </p>
+                                                        </li>
+                                                        <p>
+                                                            </p>
+<table style="mc-table-style: url('../../resources/tablestyles/fielddesc.css');" class="TableStyle-FieldDesc" cellspacing="0">
+                                                                <col class="TableStyle-FieldDesc-Column-Column1">
+                                                                <col class="TableStyle-FieldDesc-Column-Column2">
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyH-Column1-">Select Workflow Process</td>
+                                                                        <td class="TableStyle-FieldDesc-BodyG-Column2-">If you have several workflow processes, use the drop-down list to select the one in which you wish to create the template.</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyH-Column1-">Show in List</td>
+                                                                        <td class="TableStyle-FieldDesc-BodyG-Column2-">Select <b>Active Templates</b>.<p class="note">You cannot create requests from deleted templates.</p>
+</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyB-Column1-">Show List by</td>
+                                                                        <td class="TableStyle-FieldDesc-BodyA-Column2-">Select <b>Workflow</b> to create a workflow template, or <b>Component Workflow</b> to create a <a href="#Componen">Component Workflow template</a>. </td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        
+                                                        <li value="2">Select <b>New</b>. The <b>Workflow Templates</b> or <b>Workflow Components</b> dialog box appears, depending on your selection in the previous step.</li>
+                                                        <li value="3">Type a relevant name for the workflow template or workflow component in the <b>Workflow Template Name</b> field.</li>
+                                                        <li value="4">Select <b>OK</b>. The <b>Workflow Template &lt;name&gt; Details</b> window appears. This window is similar to the <b>Request Details</b> window.</li>
+                                                        <li value="5">
+<a name="Complete-the-details"></a>You can now specify information on all fields as you would in a request, such as link CMDB items, create tasks, set action dates for the tasks, create task dependencies, specify task assignment, set agreements for the requests and tasks created from this template, and finally specify request assignment. You can link tasks to form a sequence or in parallel, simply by joining multiple tasks to a single predecessor. Your workflow template can be as detailed or as generic as you want it to be. You can even create a blank template for a workflow process. When you open a task in the dependency diagram on a template or a workflow component, the task opens in Review mode.</li>
+                                                        <p class="note">
+                Any tasks you create for a workflow template will have an additional field on the <a href="../tasks/creating%20a%20task.htm"><b>Task Details</b> window</a>: <b>Request Status on Completion</b>, where you can update the request with the specified status once the current task is closed.
+            </p>
+                                                        <p class="note">Some features are not available from the workflow template details, such as the ability to perform asset management transactions.</p>
+                                                        <li value="6">Insert any workflow components required by displaying the <a href="../requests%20and%20templates/dependency%20diagrams.htm">dependency diagram</a>, and then selecting the component workflow icon. <img src="/storage/app/media/Help/images/component%20workflow%20icon.png"> All available workflow components are listed. Select the one you want to insert, and click <b>OK</b>.</li>
+                                                        <li value="7">To set the <span class="GeneralVariablesSelfServicePortalName">Self Service Portal</span> submission form to use when Users log requests using this workflow template through the <span class="GeneralVariablesSelfServicePortalName">Self Service Portal</span>, select the <b>Screen Set</b> explorer option.
+            </li>
+                                                        <li value="8">After specifying the details, you can either save the template or assign it to an analyst or group. </li>
+                                                    </ol>
+                                                    <h2>
+<a name="Cloning"></a>Cloning a Workflow Template</h2>
+                                                    <p>If you wish to create a template that is very similar to one that already exists, you can clone the existing template and then update it to make the necessary changes.</p>
+                                                    <h2 class="Prerequisite">Before you start</h2>
+                                                    <p class="prereqtext">You must have <b>Template Admin</b> selected in the <a href="../admin%20security%20roles/workflow%20mgt%20sec%20role%20-%20requests%20tab.htm">Requests</a> tab of your <b>Workflow Management security role</b>.</p>
+                                                    <ol>
+                                                        <li value="1">
+<a href="#Viewing">View the templates</a>.</li>
+                                                        <li value="2">Select the template you want to clone from the list.</li>
+                                                        <li value="3">Select <b>Clone</b>.</li>
+                                                        <li value="4">In the <b>Workflow Name</b> dialog box, type the name for the new template. You can also change the workflow process in this window.</li>
+                                                        <li value="5">Select <b>OK</b>.</li>
+                                                        <li value="6">The <b>Workflow Template Details</b> window appears. <a href="#Complete-the-details">Make the necessary changes</a>.</li>
+                                                    </ol>
+                                                    <h2>Assigning Workflow Templates</h2>
+                                                    <p>When assigning a task from a workflow template (or forwarding an inactive task), the request manager can <a href="../tasks/forwarding%20a%20task%20internally.htm">specify multiple recipients for the task</a>. When the task is activated as part of a request, <span class="GeneralVariablesCoreName">ASM Core</span> will automatically create a copy of the task and forward it to each recipient.  </p>
+                                                    <p>When specifying recipients, you can also select field values, such as Logging Analyst, rather than specifying particular analysts or groups.</p>
+                                                    <p class="note">Once a task assigned to multiple recipients is activated, cloned and assigned to each analyst, the original task from which the cloned tasks were created no longer exists. Therefore, you can only forward active tasks to single recipients. If additional people need to be assigned the task after it has already activated, request managers can manually add these tasks to the workflow.</p>
+                                                    <p>If you have reached the <b>Workflow Template Forward</b> window by clicking the <b>Assign</b> button on a template, an <b>Unassign</b> button appears on the window after the request is assigned to an Analyst. To unassign a request, select the current managing analyst/group from the list and click <b>Unassign</b> to remove them as the default manager for this template.</p>
+                                                    <h2>
+<a name="Deleting"></a>Deleting a Workflow Template or Component Workflow</h2>
+                                                    <p>You can delete workflow templates or component workflows on the Workflow Template Administration window.</p>
+                                                    <ol style="list-style-type: decimal;margin-left: 36pt;" start="1">
+                                                        <li value="1">
+<a href="#Viewing">View your templates or components</a> by name or type.</li>
+                                                        <li value="2">Select the workflow template or component.</li>
+                                                        <li value="3">Select <b>Delete</b>. A message appears prompting you to confirm the deletion.</li>
+                                                        <p class="note">If there are existing IPK Request Workflows that are using the template you are deleting, you will be prompted with a warning message. If you choose to continue deleting the template, any IPK Request Workflows using this template will then have an asterisk, ‘*’, succeeding its name.</p>
+                                                        <li value="4">Confirm the deletion.</li>
+                                                    </ol>
+                                                    <p> </p>
+                                                

@@ -1,0 +1,421 @@
+[viewBag]
+title = " Altiris Network Discovery Connector"
+url = "/help/topics/connectors/altirisnetworkconnector"
+layout = "help"
+is_hidden = 0
+navigation_hidden = 0
+==
+                                                    <h1> Altiris Network Discovery Connector</h1>
+                                                    <p class="intro">This section of the documentation contains technical specifications about the connector that is implemented to link <b><span class="GeneralVariablesCoreName">ASM Core</span></b> and <b>Symantec Altiris Network Discovery</b>. It describes the details of the third-party application, that is, Altiris Network Discovery including:</p>
+                                                    <ul>
+                                                        <li class="Bulleted_1" value="1">The <b class="crossref">name of the .NET assembly file</b>
+</li>
+                                                        <li value="2"> <b class="crossref_1">Connection methodology</b>
+</li>
+                                                        <li class="Bulleted_1" value="3">The <b class="crossref">resource and link types</b> that can be discovered on the application</li>
+                                                        <li class="Bulleted_1" value="4">The <b class="crossref">attributes</b> of each resource and link types that can be imported into the <span class="GeneralVariablesCoreName">ASM Core</span> Configuration Management Database (CMDB)</li>
+                                                    </ul>
+                                                    <p class="note">For compatibility and version support details, refer to the <a href="connector%20matrix.htm" class="MCXref xref">ASM Connector Matrix</a>.</p>
+                                                    <p class="note">You should familiarize yourself with the information in <a href="connector%20installation%20guide.htm" class="MCXref xref">Installing Connectors</a> before installing any connectors, and read the <a href="../integration/integrate.htm" class="MCXref xref">Integration</a> topics for more information on how to configure them.</p>
+                                                    <h2>Use Case Scenario</h2>
+                                                    <table class="TableStyle-scenario_table" style="mc-table-style: url('../../resources/tablestyles/scenario table.css');" cellspacing="0">
+                                                        <col style="width: 50pt;" class="TableStyle-scenario_table-Column-Column1">
+                                                        <col style="width: 419pt;" class="TableStyle-scenario_table-Column-Column2">
+                                                        <tr class="TableStyle-scenario_table-Body-Body1">
+                                                            <td class="TableStyle-scenario_table-BodyE-Column1-Body1">
+                                                                <p class="Strong">Purpose</p>
+                                                            </td>
+                                                            <td class="TableStyle-scenario_table-BodyD-Column2-Body1">
+                                                                <p>An organization uses Altiris Network Discovery v6.0/7.0/7.1 to discover and maintain resources present in its organization networks.</p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="TableStyle-scenario_table-Body-Body1">
+                                                            <td class="TableStyle-scenario_table-BodyE-Column1-Body1">
+                                                                <p class="Strong">Role</p>
+                                                            </td>
+                                                            <td class="TableStyle-scenario_table-BodyD-Column2-Body1">
+                                                                <p>The role of this connector is to expose the resources and their relationships in order to allow for population and ongoing consistency checks of the <span class="GeneralVariablesCoreName">ASM Core</span> CMDB.</p>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                    <h2>Connector Parameters</h2>
+                                                    <h3>Altiris Connection Parameters</h3>
+                                                    <p>The table below provides a description of the connection parameters of the  Altiris Connector.</p>
+                                                    <table class="TableStyle-Rep_Hdr_Row" style="mc-table-style: url('../../resources/tablestyles/rep hdr row.css');" cellspacing="0">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column1">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column2">
+                                                        <thead>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Head-Header1">
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column1-Header1">
+                                                                    <p>Information fields</p>
+                                                                </th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadD-Column2-Header1">
+                                                                    <p>Names</p>
+                                                                </th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Connector </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p>Altiris &lt;-&gt; <span class="GeneralVariablesCoreName">ASM Core</span></p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p><span class="GeneralVariablesDatabaseName">ASM database</span> version</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p>SQL  (See <a href="http://alemba.com/downloads"><b class="crossref">Prerequisites</b></a> for details)</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Third-party application</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p>Altiris Network Discovery</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Assembly</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p>Infra.Connector.Altiris.dll</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Connector class</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p>Infra.Connector.Altiris.AltirisConnector</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Configuration file</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p>Infra.Connector.Altiris.icnf</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyB-Column1-Body1">
+                                                                    <p>Connection methodology</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyA-Column2-Body1">
+                                                                    <p>SQL Server database</p>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <p class="note">The Altiris Deployment Server installation that uses the express database is not supported.</p>
+                                                    <h3>Microsoft Active Directory Server Connection parameters</h3>
+                                                    <p>The table below provides a description of the Microsoft Active Directory Server connection parameters.</p>
+                                                    <table class="TableStyle-FieldDesc" style="mc-table-style: url('../../resources/tablestyles/fielddesc.css');" cellspacing="0">
+                                                        <col style="width: 105pt;" class="TableStyle-FieldDesc-Column-Column1">
+                                                        <col style="width: 357pt;" class="TableStyle-FieldDesc-Column-Column2">
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-" style="font-weight: bold;">
+                                                                <p>Parameters</p>
+                                                            </td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-" style="font-weight: bold;">
+                                                                <p>Description</p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">
+                                                                <p>DB connection </p>
+                                                            </td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                <p>Database connection string or system DSN to the Altiris Network Discovery database</p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">
+                                                                <p>DB Login ID </p>
+                                                            </td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                <p>Database Login ID</p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">
+                                                                <p>DB password</p>
+                                                            </td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                <p>Database password</p>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                    <h2>Customization</h2>
+                                                    <p>This connector permits extensions to the schema through customization of the configuration file. The possible customizations are listed below. However, the customizations are not limited to these:</p>
+                                                    <ul class="ul_1">
+                                                        <li class="Bulleted_1" value="1">New resource types</li>
+                                                        <li class="Bulleted_1" value="2">New resource properties</li>
+                                                        <li class="Bulleted_1" value="3">New link types</li>
+                                                    </ul>
+                                                    <h2>Connector Diagnostics</h2>
+                                                    <p>The connector has the facility to trace information. The data can be obtained through Polling tracing or Application tracing.</p>
+                                                    <h1>Resource types</h1>
+                                                    <p>This section lists the resource types and their properties that the connector has to discover on Altiris Network Discovery systems. The connector later imports the resource types it has discovered into the <span class="GeneralVariablesCoreName">ASM Core</span> CMDB.</p>
+                                                    <table style="margin-left: 0;margin-right: auto;mc-table-style: url('../../resources/tablestyles/rep hdr row.css');" class="TableStyle-Rep_Hdr_Row" cellspacing="0">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column1">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column2" style="width: 13px;">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column1" style="width: 191px;">
+                                                        <thead>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Head-Header1">
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column1-Header1">Resource Type</th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column2-Header1">Attributes in Altiris 6.0/7.0</th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadD-Column1-Header1">Attributes in Altiris 7.1</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Computer</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p class="Bulleted_1">Computer name</p>
+                                                                    <p class="Bulleted_1">Domain</p>
+                                                                    <p class="Bulleted_1">OS Name</p>
+                                                                    <p class="Bulleted_1">OS Version</p>
+                                                                    <p class="Bulleted_1">IP Address</p>
+                                                                    <p class="Bulleted_1">MAC Address</p>
+                                                                    <p class="Bulleted_1">OS Revision</p>
+                                                                    <p class="Bulleted_1">Server</p>
+                                                                    <p class="Bulleted_1">System Type</p>
+                                                                    <p class="Bulleted_1">Modified Date</p>
+                                                                    <p class="Bulleted_1">Config Item Type </p>
+                                                                    <p class="Bulleted_1">Serial No</p>
+                                                                    <p class="Bulleted_1">Manufacturer</p>
+                                                                    <p class="Bulleted_1">Model</p>
+                                                                    <p class="Bulleted_1">BIOS Details</p>
+                                                                    <p class="Bulleted_1">BIOS Date</p>
+                                                                    <p class="Bulleted_1">Total Memory in MB</p>
+                                                                    <p class="Bulleted_1">Total Storage in GB</p>
+                                                                    <p class="Bulleted_1">Monitor Info</p>
+                                                                    <p class="Bulleted_1">Location Name</p>
+                                                                    <p class="Bulleted_1">Default Gateway</p>
+                                                                    <p class="Bulleted_1">Processor Type</p>
+                                                                    <p class="Bulleted_1">Processor Speed</p>
+                                                                    <p class="Bulleted_1">OS Type</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p class="Bulleted_1">Computer name</p>
+                                                                    <p class="Bulleted_1">Domain</p>
+                                                                    <p class="Bulleted_1">OS Name</p>
+                                                                    <p class="Bulleted_1">OS Version</p>
+                                                                    <p class="Bulleted_1">IP Address</p>
+                                                                    <p class="Bulleted_1">MAC Address</p>
+                                                                    <p class="Bulleted_1">OS Revision</p>
+                                                                    <p class="Bulleted_1">Server</p>
+                                                                    <p class="Bulleted_1">System Type</p>
+                                                                    <p class="Bulleted_1">Modified Date</p>
+                                                                    <p class="Bulleted_1">Config Item Type </p>
+                                                                    <p class="Bulleted_1">Serial No</p>
+                                                                    <p class="Bulleted_1">Manufacturer</p>
+                                                                    <p class="Bulleted_1">Model</p>
+                                                                    <p class="Bulleted_1">BIOS Details</p>
+                                                                    <p class="Bulleted_1">Total Memory in MB</p>
+                                                                    <p class="Bulleted_1">Total Storage in GB</p>
+                                                                    <p class="Bulleted_1">Monitor Info</p>
+                                                                    <p class="Bulleted_1">Location Name</p>
+                                                                    <p class="Bulleted_1">Default Gateway</p>
+                                                                    <p class="Bulleted_1">Processor Type</p>
+                                                                    <p class="Bulleted_1">Processor Speed</p>
+                                                                    <p class="Bulleted_1">OS Type</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">Printer</td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>Printer Name</p>
+                                                                    <p>Driver Name</p>
+                                                                    <p>Driver Version</p>
+                                                                    <p>Manufacturer</p>
+                                                                    <p>Port</p>
+                                                                    <p>Config Item Type</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p class="Bulleted_1">Printer Name</p>
+                                                                    <p class="Bulleted_1">Server Name</p>
+                                                                    <p class="Bulleted_1">Color</p>
+                                                                    <p class="Bulleted_1">Double sided</p>
+                                                                    <p class="Bulleted_1">Speed</p>
+                                                                    <p class="Bulleted_1">Max Resolution</p>
+                                                                    <p class="Bulleted_1">Description</p>
+                                                                    <p class="Bulleted_1">Config Item Type</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">Subnet</td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>Subnet</p>
+                                                                    <p>Subnet Mask</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p class="Bulleted_1">Subnet</p>
+                                                                    <p class="Bulleted_1">Subnet Mask</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">Virtual machines</td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p class="Bulleted_1">Product</p>
+                                                                    <p class="Bulleted_1">Manufacturer</p>
+                                                                    <p class="Bulleted_1">Version</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>VM Product</p>
+                                                                    <p class="Bulleted_1">VM Manufacturer</p>
+                                                                    <p class="Bulleted_1">VM Version</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">Monitor</td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p class="Bulleted_1">Monitor Info</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p class="Bulleted_1">Monitor Info</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">Computer Storage</td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p class="Bulleted_1">Total Storage (GB)</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p class="Bulleted_1">Total Storage (GB)</p>
+                                                                    <p class="Bulleted_1">Total Free Space (GB)</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">Computer Processor</td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p class="Bulleted_1">Processor Type</p>
+                                                                    <p class="Bulleted_1">Processor Speed (Mhz)</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p class="Bulleted_1">Processor Type</p>
+                                                                    <p class="Bulleted_1">Processor Speed (Mhz)</p>
+                                                                    <p class="Bulleted_1">Processor Core Number</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">Computer Processor Summary</td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1"> </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p class="Bulleted_1">Total Processor Speed (Mhz)</p>
+                                                                    <p class="Bulleted_1">Number of Processors</p>
+                                                                    <p class="Bulleted_1">Total Processor Cores</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">Computer Disks Local</td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1"> </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>Disk Mount Point</p>
+                                                                    <p class="Bulleted_1">Disk Storage (GB)</p>
+                                                                    <p class="Bulleted_1">Disk Free Space (GB)</p>
+                                                                    <p class="Bulleted_1">Disk file System</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">Software Product</td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1"> </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p class="Bulleted_1">Name</p>
+                                                                    <p class="Bulleted_1">Version</p>
+                                                                    <p class="Bulleted_1">Description</p>
+                                                                    <p class="Bulleted_1">Software Type</p>
+                                                                    <p class="Bulleted_1">Manufacturer</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyB-Column1-Body1">Software Component</td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyB-Column2-Body1"> </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyA-Column1-Body1">
+                                                                    <p class="Bulleted_1">Name</p>
+                                                                    <p class="Bulleted_1">Version</p>
+                                                                    <p class="Bulleted_1">Description</p>
+                                                                    <p class="Bulleted_1">Software Type</p>
+                                                                    <p class="Bulleted_1">Manufacturer</p>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <h1>Link Types</h1>
+                                                    <p>The table below lists the link types that the connector is able to expose on Altiris systems. These links can then be imported into the <span class="GeneralVariablesCoreName">ASM Core</span> CMDB.</p>
+                                                    <p> </p>
+                                                    <table class="TableStyle-Rep_Hdr_Row" style="mc-table-style: url('../../resources/tablestyles/rep hdr row.css');" cellspacing="0">
+                                                        <col style="width: 179pt;" class="TableStyle-Rep_Hdr_Row-Column-Column1">
+                                                        <col style="width: 112pt;" class="TableStyle-Rep_Hdr_Row-Column-Column2">
+                                                        <col style="width: 112pt;" class="TableStyle-Rep_Hdr_Row-Column-Column1">
+                                                        <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                            <td rowspan="2" class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1" style="font-weight: bold;">
+                                                                <p>Link name</p>
+                                                            </td>
+                                                            <td colspan="2" class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1" style="font-weight: bold;">
+                                                                <p>Resource type</p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                            <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1" style="font-weight: bold;">
+                                                                <p>Resource type A</p>
+                                                            </td>
+                                                            <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1" style="font-weight: bold;">
+                                                                <p>Resource type B</p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                            <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                <p>Computer to Software Component</p>
+                                                            </td>
+                                                            <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                <p>Computer</p>
+                                                            </td>
+                                                            <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                <p>Software Component</p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                            <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                <p>Computer to Software Product</p>
+                                                            </td>
+                                                            <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                <p>Computer</p>
+                                                            </td>
+                                                            <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                <p>Software Product</p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                            <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                <p>Virtual Machine to Software Component</p>
+                                                            </td>
+                                                            <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                <p>Virtual Machine</p>
+                                                            </td>
+                                                            <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                <p>Software Component</p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                            <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                <p>Virtual Machine to Software Product</p>
+                                                            </td>
+                                                            <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                <p>Virtual Machine</p>
+                                                            </td>
+                                                            <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                <p>Software Product</p>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                

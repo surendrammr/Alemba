@@ -1,0 +1,55 @@
+description = "Page links - show all success stories"
+==
+<?php
+use Alemba\Alemba\Models\SuccessStory;
+
+use Carbon\Carbon;
+
+function onStart()
+{
+	// Get all Success Stories
+
+	$this['success_stories'] = SuccessStory::whereNotNull('published_at')->orderBy('created_at', 'desc')->get()->sortByDesc('created_at');
+
+}
+?>
+==
+<div class="container article-cards mt-4">
+    <div class="row justify-content-center">
+
+        <div class="col-7 col-md-10">
+
+            <div class="row">
+    
+                {% for success_story in success_stories %}
+                    <div class="col-12 col-md-6 col-lg-4 col-xl-3 tagged-item {% for tag in success_story.tags %} tag-{{ tag.slug }}{% endfor %}">
+            
+            			<div class="card d-flex align-items-stretch">
+            			
+                            <div class="card-img-top lazyload" data-bg="{% if success_story.thumbnail %}{{ success_story.thumbnail|media }}{% else %}{{'assets/img/thumbnail-default.png'|theme }}{% endif %}"></div>
+                            <div class="card-body">
+                                <h4 class="card-title text-center">{{ success_story.customer.name }}</h4>
+                                <h5 class="subheading text-center">&nbsp;</h5>
+                                
+                                <p class="card-text text-center">{{ success_story.intro|md|striptags }}</p>
+                                
+                                <div class="text-center">
+                                    <a href="{{ 'success-story'|page({ slug: success_story.slug }) }}" class="btn btn-primary">Read the case study</a>
+                                </div>
+                            </div>
+                            
+                        </div>
+            
+            		</div>
+        		{% endfor %}
+
+            </div>
+
+        </div>
+
+        <div class="col-5 col-md-2 tag-column">
+            {% component 'tagFilter' %}
+        </div>
+
+    </div>
+</div>

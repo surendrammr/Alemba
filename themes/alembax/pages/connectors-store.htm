@@ -1,0 +1,128 @@
+url = "/connectors-store"
+layout = "home"
+title = "Connectors Store"
+description = "Connectors Store"
+is_hidden = 0
+meta_title = "Service Management Integration Library | ITSM Services - Alemba"
+meta_description = "Browse available connectors for your Alemba Service Manager ITSM system, including support for Jira, Solarwinds, Zendesk, ServiceNow, Salesforce and more."
+robot_index = "index"
+robot_follow = "follow"
+seoOptionsEnabledInSitemap = 0
+seoOptionsUseUpdatedAt = 1
+seoOptionsRobotIndex = "index"
+seoOptionsRobotFollow = "follow"
+seoOptionsChangefreq = "daily"
+seoOptionsPriority = 0.5
+canonical_url = "https://alemba.com/connectors-store"
+seoOptionsMetaTitle = "Service Management Integration Library | ITSM Services - Alemba"
+seoOptionsMetaDescription = "Browse available connectors for your Alemba Service Manager ITSM system, including support for Jira, Solarwinds, Zendesk, ServiceNow, Salesforce and more."
+seoOptionsCanonicalUrl = "https://alemba.com/connectors-store"
+seoOptionsOgCard = "summary_large_image"
+
+[viewBag]
+seo_title = "Service Management Integration Library | ITSM Services - Alemba"
+seo_description = "Browse available connectors for your Alemba Service Manager ITSM system, including support for Jira, Solarwinds, Zendesk, ServiceNow, Salesforce and more."
+robot_index = "index"
+robot_follow = "follow"
+==
+<?php
+use Alemba\Alemba\Models\ConnectorCategory;
+
+function onStart()
+{
+	// Get the connector categorys
+    $this['connector_categories'] = ConnectorCategory::orderBy('sort_order', 'asc')->get();
+
+}
+?>
+==
+<!-- banner -->
+
+<div class="jumbotron jumbotron-fluid banner dark pageBanner" style="background-image:url('{{ 'assets/img/banners/banner-bg-connectors@0.5x.jpg'|theme }}')">
+
+	<div class="container-fluid h-100">
+	    <div class="row h-100">
+    	    <div class="col my-auto text-center">
+    	        <h2 class="xl-heading text-center">{{ this.page.title }}</h2>
+		    </div>
+		</div>
+	</div>
+
+</div>
+
+<!-- /banner -->
+
+{% partial 'demo-button' %}
+
+<div class="container copy pb-0">
+
+    <header class="col-md-12 copy-heading">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb justify-content-center">
+                <li class="breadcrumb-item"><a href="{{ 'integration-platform'|page }}">Integration Platform</a></li>
+                <li class="breadcrumb-item active">{{ this.page.title }}</li>
+            </ol>
+        </nav>
+	
+		<h1>Alemba Service Manager Integration Library</h1>
+
+	</header>
+	    
+    <div class="row justify-content-center pb-0">
+    
+        <div class="col-md-10 copy-main pb-0">
+            <p class="lead">Alemba Service Manager has a number of pre-built add-ons that allow it to communicate with other third-party applications and increase the out-of-the-box functionality.</p>
+            <p>Connectors allow Alemba Service Manager to talk to and interrogate other third-party tools. There are essentially four types of connectors:</p>
+        </div>
+        
+    </div>
+
+</div>
+
+
+    
+{% for category in connector_categories %}
+    
+<div class="container article-cards">
+    <div class="row">
+        <div class="col-12">
+            <h2 class="mt-3" style="font-size: 36px;">{{ category.name }}</h2>
+            {% if category.description %}<p>{{ category.description }}</p>{% endif %}
+        </div>
+        
+    {% for connector in category.connectors %}
+    
+        <div class="col-sm-6 col-lg-3">
+        
+        	<div class="card d-flex align-items-stretch">
+        	
+        	    <div class="card-img-top connector" style="background-image: url({% if connector.logo %}{{ connector.logo|media }}{% else %}{{'assets/img/thumbnail-default.png'|theme }}{% endif %});"></div>
+                <div class="card-body connector">
+                
+                    <div class="flex-grow-1">
+                        <h4 class="card-title text-center">{{ connector.name }}</h4>
+                        
+                        {% if connector.description %}<p class="card-text text-center">{{ connector.description }}</p>{% endif %}
+                    </div>
+                    
+                    <div class="text-center">
+                        <a href="{{ 'connectors-store-form'|page }}?e={{ connector.name }}" class="btn btn-primary">Request connector</a>
+                    </div>
+                </div>
+                
+            </div>
+        
+        </div>
+    
+    {% endfor %}
+        
+    </div>
+    
+    <hr>
+    
+</div>
+    
+{% endfor %}
+
+
+{% partial 'pagelinks-recent' %}

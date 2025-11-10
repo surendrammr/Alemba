@@ -1,0 +1,170 @@
+[viewBag]
+title = "Configuring Reminders"
+url = "/help/topics/general-topics/managing-reminders"
+layout = "help"
+is_hidden = 0
+navigation_hidden = 0
+==
+                                                    <h1>Configuring Reminders</h1>
+                                                    <h2>
+<a name="Configur"></a>Configuring Repeat Reminders</h2>
+                                                    <p class="onlysql">This feature is only available on SQL systems.</p>
+                                                    <p class="intro">The Repeat Reminders window can be used to configure a reminder that sends one notification, or repeatedly sends notifications at a defined interval for a defined number of repeats, or until closure/completion of the call, request or task. Multiple recipients can be defined for repeat reminders and the notifications sent by email or pager.</p>
+                                                    <h2 class="Prerequisite">Before you start</h2>
+                                                    <p class="prereqtext1">For a reminder to trigger at the specified time, the <span class="GeneralVariablesEscalationServiceName">ASM Escalation Service</span> must be running.</p>
+                                                    <p class="prereqtext1">For a reminder email or pager notification to be sent, the <span class="GeneralVariablesEscalationServiceName">ASM Escalation Service</span> must also be running, and the recipients must have a valid email address or pager number in their Person Details.</p>
+                                                    <p class="prereqtext1">To set or edit a Reminder you must Take Action on the call request or task that you want to configure a reminder for. While a call request or task is in 'Review' mode an existing reminder can be viewed but not edited.</p>
+                                                    <p class="prereqtext">Reminders cannot be set on automated tasks. Tasks with the 'Automated' check box can have reminders defined if the checkbox is unselected. </p>
+                                                    <p> </p>
+                                                    <ol>
+                                                        <li value="1">Take action on the call, request or task you want to set the reminder on.</li>
+                                                        <li value="2">Select the <b>Reminders</b> option from the Explorer pane on the left. You may need to expand the Communications group if it is collapsed.</li>
+                                                        <li value="3">The <b>Repeat Reminders</b> window is displayed.  Complete the details.</li>
+                                                    </ol>
+                                                    <ol start="1" class="multilist">
+                                                        <p>
+                                                            </p>
+<table class="TableStyle-FieldDesc" style="margin-left: 0;margin-right: auto;mc-table-style: url('../../resources/tablestyles/fielddesc.css');width: 100%;" cellspacing="0">
+                                                                <col class="TableStyle-FieldDesc-Column-Column1" style="width: 15%;">
+                                                                <col class="TableStyle-FieldDesc-Column-Column2">
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Set Reminders</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">Select this check box to enable the other fields in the window. <p>De-select this check box to disable the repeat reminder and disable other fields in the window.</p>
+</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column1-" colspan="2" style="font-weight: normal;">Start Reminders - on non-template items the <b>Start Reminders on</b> date field is displayed, while on template items the <b>Start Reminders</b> drop down field is displayed.</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-" style="text-align: left;">Start Reminders on</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">Select the date and time for the first reminder notification.<p class="note">This field is visible on calls, submitted requests, and active tasks. It is not visible in template items.</p>
+<p>A date and time may already be populated in this field if:</p>
+<ul>
+<li value="1">A Single Reminder is active - the date and time of the Single Reminder is displayed</li>
+<li value="2">A Repeat Reminder was previously set and then completed, or was set and then disabled.</li>
+</ul>
+</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-" style="text-align: left;">Start Reminders </td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">Select the period of time after the call, request, or task is submitted/activated, to send the first reminder notification. Type a number between 0 and 99 into the number field and select the period from the drop down. Entering "0" sends the reminder immediately on submission/activation. Leaving the number field blank on Save defaults it to "0".<p class="exampletext">Type "16" and select "Hour" to start reminders 16 hours after the task is activated.<br>Type "2" and select "Day" to start reminders 2 days (48 hours) after the request is submitted.<br>Type "0" and select any value from the drop down to start reminders immediately after the call is submitted.</p>
+<p class="note">This field is visible on template items and un-submitted items; this includes call templates, workflow templates, tasks in workflow templates, un-submitted requests, and inactive tasks.</p>
+</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Repeat Reminder Every</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">Set the period of time between each subsequent reminder. Type a number between 1 and 99 into the number field and select the period from the drop down. Leaving the number field blank on Save defaults it to "1".<p class="exampletext">Type "45" and select "Minute" to send reminders every 45 minutes after the first reminder.<br>Type "3" and select "Day" to send reminders once every 3 days (or once every 72 hours) after the first reminder.</p>
+<p class="note">These settings are ignored if <b>End after </b>[_]<b> reminders have been sent</b> is set to "1"</p>
+</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Calculate Reminders using Working Hours</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">Leave unselected to use a 24/7 calculation. Select to apply the working hours of the call, request or task to the Reminder calculations. Working Hours will be applied to the calculation for sending the first reminder (the <b>Start Reminders</b> field) and the interval for subsequent reminders (the <b>Repeat Reminders Every </b>field).<p class="exampletext1">On a call template <b>Start Reminders </b> is set to "1" and "Day". A call from that template is submitted at 2 PM on Monday. </p>
+<ul class="prereq">
+<li value="1">If Working Hours is unselected the first reminder is sent at 2 PM on Tuesday (24 hours later using a 24/7 calculation). </li>
+<li value="2">If Working Hours  is selected and the working hours are 9:00 AM - 5:00 PM, the first reminder is sent at 2 PM on Thursday (24 hours later using an 8 hour per day calculation)</li>
+</ul>
+<p class="note">The working hours of a call, request or task is the Working Hours defined as 'Default' in System Admin; unless an SLA/OLA agreement is attached, in which case the Working Hours on the agreement , if defined, is used.</p>
+</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column1-" colspan="2" style="font-weight: normal;">End Reminders - select between <b>End after </b>[_]<b> reminders have been sent</b> or <b>No end</b>
+</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-" style="text-align: left;">End after <span style="font-weight: normal;">[_]</span> reminders have been sent</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                        <p>Specify the number of reminders you want to send before ending the reminder.</p>
+                                                                        <p>Select the radio button to enable the number field then type a number between 1 and 99. Entering "1" sends only 1 reminder. Entering "2" sends the first reminder and one repeat. Leaving the number field blank on Save defaults it to "1".</p>
+                                                                        <p class="note">This will only end the reminders; it will not close the call/request.</p>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-" style="text-align: left;">No end</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">This radio button is selected by default. Reminders will continue at the specified interval until the item is closed or completed.</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Message Template</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">Select the email message template to use for this reminder and any defined repeats.<p class="note">The default message template can be modified in <span class="GeneralVariablesDesignerName">ASM Designer</span>, or new message templates created and mapped to the relevant <a href="../admin%20system/message%20types.htm" class="MCXref xref">Message Types</a> in System Administration.</p>
+</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Recipients</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">Add or remove recipients for the reminder and configure whether they will receive email or pager notifications.<p>Press <b>Add</b> to display the <a href="finding%20recipients.htm" class="MCXref xref">Finding Recipients</a> window in which you can search for and add recipients. Press in the Recipients window to add those recipients to the Reminder Recipients table. In the Reminder Recipients table, select the <b>Email</b> or <b>Pager</b> check boxes to send email or pager notifications to each of the selected recipients.</p>
+<p>To remove recipients from the table, select the record in the Reminder Recipients table and press <b>Remove</b>.</p>
+<p class="warning">The <b>Email</b> and <b>Pager</b> check boxes will not be displayed if <b>Email</b> and <b>Pager</b>  (respectively) are not selected in <a href="../admin%20system/messaging.htm" class="MCXref xref">Messaging</a> in System Administration. In this scenario no email or pager notification is sent to the recipients.</p>
+<p class="note">When no recipients are set, no email or pager is sent, and the reminder is visible in Search and Outstanding windows.</p>
+</td>
+                                                                </tr>
+                                                            </table>
+                                                        
+                                                    </ol>
+                                                    <ol class="multilist" start="4">
+                                                        <li value="4">When you have completed the details, select <b>Save</b>. Or select <b>Cancel</b> to close the Repeat Reminders window without saving any changes.</li>
+                                                        <p class="note">If no recipients were selected, a warning message will appear asking if you want to proceed. Press <b>Yes</b> to save the details and return to the call, request or task. Press <b>No</b> to remain on the Repeat Reminders window.</p>
+                                                    </ol>
+                                                    <h2>
+<a name="Configur2"></a>Configuring Single Reminders</h2>
+                                                    <p class="intro">Single Reminders enable Analysts to set a one-off reminder email for themselves while deferring or forwarding a call, request or task.</p>
+                                                    <h2 class="Prerequisite">Before you start</h2>
+                                                    <p class="prereqtext1">For a reminder to trigger at the specified time, the <span class="GeneralVariablesEscalationServiceName">ASM Escalation Service</span> must be running.</p>
+                                                    <p class="prereqtext1">For a reminder email or pager notification to be sent, the <span class="GeneralVariablesMessagingServiceName">ASM Messaging Service</span> must also be running, and the receiving Analyst must have a valid email address or pager number in their Person Details.</p>
+                                                    <p class="prereqtext">Reminders cannot be set on automated tasks. Tasks with the 'Automated' check box can have reminders defined if the check box is unselected. </p>
+                                                    <p class="prereqtext">Single Reminders cannot be set if a Repeat Reminder has been set on that call, request or task.</p>
+                                                    <p> </p>
+                                                    <ol>
+                                                        <li value="1">Take action on the call, request or task you want to set the reminder on.</li>
+                                                        <li value="2">Navigate to the <b>Defer</b>, <b>Forward Internal</b> or <b>Forward External</b> screen by selecting the relevant option from the Explorer Menu or buttons at the base of the details window.</li>
+                                                        <p class="note">If a Repeat Reminder has already been set, the text "Repeat Reminder Set" will be displayed and the Reminder section is disabled.</p>
+                                                        <li value="3">Select the <b>Reminder</b> check box and specify the date and time when a reminder notification should be sent to you. De-select the <b>Reminder</b> check box to disable a previously configured single reminder.</li>
+                                                        <li value="4">When you have completed the details, select <b>OK</b> to save the reminder details and defer/forward the item. </li>
+                                                    </ol>
+                                                    <p class="note">Single Reminder notifications are emailed  to the Analyst who set the reminder. If another Analyst takes over the call, request or task before the Reminder Time is reached, the reminder is removed and no reminder notification is sent.</p>
+                                                    <h2>Reminder Data in Search and Outstanding Windows</h2>
+                                                    <p>Reminder data can be searched and displayed on Search windows and Outstanding and Workload windows.</p>
+                                                    <p class="onlysql">Repeat reminders are only available on SQL systems.</p>
+                                                    <h3>Reminder Columns </h3>
+                                                    <p>Reminder fields can be added as columns to call, request, and task search windows as well as the Workload and Outstanding windows:</p>
+                                                    <table style="width: 100%;margin-left: 0;margin-right: auto;mc-table-style: url('../../resources/tablestyles/fielddesc.css');" class="TableStyle-FieldDesc" cellspacing="0">
+                                                        <col class="TableStyle-FieldDesc-Column-Column1" style="width: 15%;">
+                                                        <col class="TableStyle-FieldDesc-Column-Column2" style="width: 50%;">
+                                                        <tbody>
+                                                            <tr class="TableStyle-Table_with_borders-Body-Body1">
+                                                                <td class="TableStyle-FieldDesc-BodyH-Column1-" style="font-weight: bold;">Reminder</td>
+                                                                <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                    <p> If a Single Reminder is set, displays <b>Single</b>. If a Repeat Reminder is set, displays <b>Repeat</b>. Blank if no reminder set.</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Table_with_borders-Body-Body1">
+                                                                <td class="TableStyle-FieldDesc-BodyH-Column1-" style="font-weight: bold;">Reminder Time</td>
+                                                                <td class="TableStyle-FieldDesc-BodyG-Column2-">Date and time of the upcoming reminder. Blank if no reminder set.</td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Table_with_borders-Body-Body1">
+                                                                <td class="TableStyle-FieldDesc-BodyB-Column1-" style="font-weight: bold;">Reminder Recipient</td>
+                                                                <td class="TableStyle-FieldDesc-BodyA-Column2-"> Displays the name of the person if there is one recipient. Displays <b>(multiple)</b> when a repeat reminder is configured with multiple recipients, a group, or dynamic field (<b>Other</b> option)  as recipient. Blank if no recipient set.</td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <h3>Reminder Search Criteria</h3>
+                                                    <p>Reminder fields can be added to the search criteria panel of Search windows:</p>
+                                                    <table style="width: 100%;margin-left: 0;margin-right: auto;mc-table-style: url('../../resources/tablestyles/fielddesc.css');" class="TableStyle-FieldDesc" cellspacing="0">
+                                                        <col class="TableStyle-FieldDesc-Column-Column1" style="width: 15%;">
+                                                        <col class="TableStyle-FieldDesc-Column-Column2" style="width: 50%;">
+                                                        <tbody>
+                                                            <tr class="TableStyle-Table_with_borders-Body-Body1">
+                                                                <td class="TableStyle-FieldDesc-BodyH-Column1-" style="font-weight: bold;">Reminder Time</td>
+                                                                <td class="TableStyle-FieldDesc-BodyG-Column2-">Select dates in the <b>From</b> and <b>To</b> fields to search for calls, requests or tasks with a Reminder Time that occurs within that period</td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Table_with_borders-Body-Body1">
+                                                                <td class="TableStyle-FieldDesc-BodyH-Column1-" style="font-weight: bold;">Reminder - Single</td>
+                                                                <td class="TableStyle-FieldDesc-BodyG-Column2-">Select <b>Yes</b> to include calls requests or tasks that Single Reminders enabled. Select <b>No</b> to exclude items with Single Reminders.</td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Table_with_borders-Body-Body1">
+                                                                <td class="TableStyle-FieldDesc-BodyB-Column1-" style="font-weight: bold;">Reminder - Repeat</td>
+                                                                <td class="TableStyle-FieldDesc-BodyA-Column2-">
+                                                                    <p> Select <b>Yes</b> to include calls requests or tasks that have Repeat Reminders enabled. Select <b>No</b> to exclude items with Repeat Reminders. </p>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                

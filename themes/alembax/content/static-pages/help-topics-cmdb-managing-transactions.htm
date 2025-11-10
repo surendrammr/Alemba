@@ -1,0 +1,99 @@
+[viewBag]
+title = "Managing Transactions"
+url = "/help/topics/cmdb/managing-transactions"
+layout = "help"
+is_hidden = 0
+navigation_hidden = 0
+==
+                                                    <h1>
+<a name="top"></a>Managing Transactions</h1>
+                                                    <p class="intro">A transaction transfers licenses or inventory items to and from various “transaction pools”. For instance you might have 25 licenses for a software product, Microsoft Word, in the On Hand pool and 60 in the In Use pool, meaning that you have 25 available to allocate, and 60 already allocated. After each transaction, <span class="GeneralVariablesCoreName">ASM Core</span> automatically recalculates the levels in each pool (that is the quantity of items). Transactions can also be automated through requests.</p>
+                                                    <p><a name="aanchor42"></a>
+                                                        <concept term="CMDB"></concept><span class="GeneralVariablesCoreName">ASM Core</span> enables you to perform various transactions on inventory items and software products, such as ordering items, adding them to your CMDB once the order has been received, purchasing items (making them immediately available in the CMDB rather than ‘on order’ as is the case for an order transaction), reserving them for certain Users, or retiring items.</p>
+                                                    <p>It is possible to perform many different types of transactions in order to manage assets. You can add transactions manually through the Transaction Details window on a software product or inventory. Transactions can also be created automatically through the <b class="Xref_outstanding">Manage CMDB Task</b> in the workflow palette. You can also allocate or reserve licenses and inventory items from a call, request or task.</p>
+                                                    <p>An example of bulk inventory tracking would be if, say, configuration manager is told that there is a new office opening for 50 new employees in North Sydney. The configuration manager needs to order new configuration items for the office such as computers, printers, keyboards, computer mice, and telephones. Because of the large number of peripheral items such as keyboards, it makes sense to manage them as a single Inventory, Keyboards – North Sydney Office, rather than 50 separate keyboard records. The configuration manager:</p>
+                                                    <ol>
+                                                        <li value="1">
+<a href="ordering%20items.htm">Adds a new order</a> for 50 new keyboards to the Keyboard – North Sydney Office inventory record in <span class="GeneralVariablesCoreName">ASM Core</span>, and contacts the supplier to place the order.</li>
+                                                        <li value="2">
+<a href="%7B%7B%20'help-ordering-items#Receivin'%7CstaticPage%20%7D%7D#Receivin">Receives the full order</a> and records the keyboards as being purchased and On Hand.</li>
+                                                        <li value="3">Out of the 50 keyboards in stock, <a href="allocating%20items.htm">allocates 10 keyboards</a> to the IT team, <a href="reserving%20items.htm">reserves 10</a> for use by the Sales team, and <a href="changing%20availability%20status.htm">changes the status</a> of the remaining keyboards to On Hand – Unavailable (so that there are spares if needed).</li>
+                                                        <li value="4">Six month later, a member of the IT team leaves, <a href="transferring%20items.htm">transfers</a> the person’s keyboard to a new employee.</li>
+                                                        <li value="5">After a year, <a href="%7B%7B%20'help-changing-availability-status#top'%7CstaticPage%20%7D%7D#top">returns</a> two keyboards which are faulty and still under warranty to the supplier for repair or replacement, and records these as being On Hand – Unavailable.</li>
+                                                        <li value="6">
+<a href="retiring%20items.htm">Retires</a> the allocated keyboards, in order to allocate the unused keyboards still in stock.</li>
+                                                    </ol>
+                                                    <p>In an even simpler scenario, the configuration manager may simply <a href="purchasing%20items.htm">purchase</a> a quantity of items, <a href="allocating%20items.htm">allocate</a> some or all of them, and at later stage, <a href="retiring%20items.htm">retire</a> them.</p>
+                                                    <h2>Tracking items in transaction pools</h2>
+                                                    <p>As illustrated in the scenario, each time you perform a transaction on an inventory or software product, you are in fact moving a number of items from one state or “pool” to another: </p>
+                                                    <table class="TableStyle-FieldDesc" style="mc-table-style: url('../../resources/tablestyles/fielddesc.css');margin-left: 0;margin-right: auto;" cellspacing="0">
+                                                        <col class="TableStyle-FieldDesc-Column-Column1">
+                                                        <col class="TableStyle-FieldDesc-Column-Column2">
+                                                        <tbody>
+                                                            <tr>
+                                                                <td class="TableStyle-FieldDesc-BodyH-Column1-">Orders </td>
+                                                                <td class="TableStyle-FieldDesc-BodyG-Column2-">Items your organization has ordered but not yet actually purchased, that is, ON ORDER</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="TableStyle-FieldDesc-BodyB-Column1-">Purchases </td>
+                                                                <td class="TableStyle-FieldDesc-BodyA-Column2-">
+                                                                    <p>Items your organization has actually purchased, that is, PURCHASED, as well as the items that have been received from an order. The purchase pool is further broken down into the items which are:</p>
+                                                                    <table class="TableStyle-FieldDesc_no_indent" style="mc-table-style: url('../../resources/tablestyles/fielddesc no indent.css');margin-left: 0;margin-right: auto;" cellspacing="0">
+                                                                        <col class="TableStyle-FieldDesc_no_indent-Column-Column1">
+                                                                        <col class="TableStyle-FieldDesc_no_indent-Column-Column2">
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">On Hand</td>
+                                                                                <td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">The default pool for the purchased items your organization has in stock, that is, ON HAND</td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">In Use</td>
+                                                                                <td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">Items your organization has allocated to people or CMDB items in the organization, that is, ALLOCATED</td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">Reserved </td>
+                                                                                <td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">Items your organization has reserved for people or CMDB items in the organization, that is, RESERVED</td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td class="TableStyle-FieldDesc_no_indent-BodyB-Column1-">Retired </td>
+                                                                                <td class="TableStyle-FieldDesc_no_indent-BodyA-Column2-">Items your organization has retired (no longer on hand or in use), that is, RETIRED</td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <p>When viewing the Transactions window, these pools are accessed using the tabs or views on the window. You can only perform transactions in the view relevant to the particular pool.</p>
+                                                    <h2>Partitioning Transactions</h2>
+                                                    <p>If you are using partitioning, transactions may be created in particular partitions. The transaction will be assigned to the partition of the CMDB item or person that the software license or inventory item is to be reserved or allocated to or for. If CMDB items or people are not partitioned, the transaction will be assigned to the partition of the <span class="GeneralVariablesCoreName">ASM Core</span> entity from which the transaction is performed, that is, the call, request, or task where you are performing a transaction. If the call, request, or task is not partitioned, the transaction will be assigned to the current working partition.</p>
+                                                    <h2>Integrating Transactions with IPK and Workflow Processes</h2>
+                                                    <p>Transactions are integrated with IPK and Workflow processes through the following:</p>
+                                                    <ul>
+                                                        <li value="1">CMDB Item and User fields: provide actions relating to Transactions such as allocate and reserve.  </li>
+                                                        <li value="2">Transactions explorer option: enables you to view and manage transactions added to the call, request or task.</li>
+                                                        <li value="3">Transaction History explorer option: enables you to view a record of the transactions initiated from the call, request or task. </li>
+                                                    </ul>
+                                                    <p>To find out more about managing transactions, see the following topics:</p>
+                                                    <ul>
+                                                        <li value="1">
+<a href="ordering%20items.htm">Ordering Items</a>
+                                                        </li>
+                                                        <li value="2">
+<a href="purchasing%20items.htm">Purchasing Items</a>
+                                                        </li>
+                                                        <li value="3">
+<a href="reserving%20items.htm">Reserving Items</a>
+                                                        </li>
+                                                        <li value="4">
+<a href="allocating%20items.htm">Allocating Items</a>
+                                                        </li>
+                                                        <li value="5">
+<a href="transferring%20items.htm">Transferring ownership</a> of Items</li>
+                                                        <li value="6">
+<a href="changing%20availability%20status.htm">Changing Availability</a> of Items</li>
+                                                        <li value="7">
+<a href="retiring%20items.htm">Retiring Items</a>
+                                                        </li>
+                                                    </ul>
+                                                

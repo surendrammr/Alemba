@@ -1,0 +1,273 @@
+url = "/customers/:slug"
+layout = "home"
+title = "Success Story"
+description = "Success Story detail page"
+is_hidden = 0
+meta_title = "Success Story | ITSM Services - Alemba"
+meta_description = "Find out how Alemba have helped customers from a variety of industries across the globe streamline their Service Management processes."
+robot_index = "index"
+robot_follow = "follow"
+seoOptionsEnabledInSitemap = 1
+seoOptionsUseUpdatedAt = 1
+seoOptionsRobotIndex = "index"
+seoOptionsRobotFollow = "follow"
+seoOptionsChangefreq = "daily"
+seoOptionsPriority = 0.5
+canonical_url = "https://alemba.com/customers"
+seoOptionsModelClass = "Alemba\Alemba\Models\SuccessStory"
+seoOptionsModelParams = "slug:slug"
+==
+<?php
+use Alemba\Alemba\Models\SuccessStory;
+
+function onStart()
+{
+
+	// Get all Success Stories
+
+	$this['page'] = SuccessStory::where('slug', $this->param('slug'))->first();
+
+	if($this['page']) {
+
+		$this->page->title = "Success Story - ".$this['page']->customer->name;
+
+		$this['page_name'] = $this['page']->name;
+		$this['subheading'] = $this['page']->customer->name.' &bull; '.$this['page']->customer->sector->name.' &bull; '.$this['page']->customer->region;
+		$this['intro'] = $this['page']->intro;
+		$this['text'] = $this['page']->text;
+		$this['customer_name'] = $this['page']->customer->name;
+
+	} else {
+
+		$this->page->title = "Error!";
+		$this['page_name'] = "Error!";
+		$this['subheading'] = "Sorry, this page doesn't exist.";
+		$this['intro'] = 'Go back to the <a href="/customers">Customers</a> page to see other great Success Stories.';
+		$this['text'] = "";
+
+	}
+
+}
+?>
+==
+<!-- banner -->
+{#
+{% if page.banner_image %}
+
+	<div class="jumbotron jumbotron-fluid banner pageBanner" style="background-image:url('{{ page.banner_image|media }}')">
+        <div class="container-fluid h-100">
+            <div class="row h-100">
+                <div class="col offset-sm-6 offset-4 my-auto">
+                    {% if page.banner_quote %}
+				
+					<header>
+
+						<blockquote>{{ page.banner_quote }}</blockquote>
+
+					</header>
+					
+				    {% endif %}
+                </div>
+            </div>
+        </div>
+
+	</div>
+
+{% else %}
+
+<div class="jumbotron jumbotron-fluid banner dark pageBanner" style="background-image:url('{{ 'Banners/banner-office@0.5x.jpg'|media }}')">
+
+	<div class="container">
+	</div>
+
+</div>
+
+{% endif %}
+#}
+<!-- /banner -->
+
+{% partial 'demo-button' %}
+
+<!-- copy -->
+
+<div class="container-fluid bkg-dark">
+
+	<div class="container copy">
+
+		<header class="col-10 offset-1 copy-heading">
+
+	        <nav aria-label="breadcrumb">
+	            <ol class="breadcrumb">
+	                <li class="breadcrumb-item"><a href="{{ 'customers'|page }}">Customers</a></li>
+	                <li class="breadcrumb-item"><a href="{{ 'case-studies'|page }}">Case Studies</a></li>
+	                <li class="breadcrumb-item active">Success Story {{ customer_name ? ': '.customer_name : '' }}</li>
+	            </ol>
+	        </nav>
+		
+			<h1>{{ page_name }}</h1>
+			<h2>{{ subheading|raw }}</h2>
+
+		</header>
+
+		<div class="row">
+			{% if page and page.customer.logo %}
+				<div class="col-12 col-md-2 offset-md-1 order-1 order-md-2 mb-3 mb-md-0">
+					<div class="p-3 {{ page.customer.is_transparent ? '' : 'bkg-white' }}">
+						<img src="{{ page.customer.logo|media }}" alt="{{ page.customer.name }}" class="img-fluid d-block mx-auto" />
+					</div>
+				</div>
+			{% endif %}
+
+			<div class="col-12 col-md-6 offset-md-1 order-2 order-md-1 copy-main">
+				<div class="lead">
+					{% if page %}
+						{{ intro|md }}
+					{% else %}
+						{{ intro|raw }}
+					{% endif %}
+				</div>
+				{{ page ? text|md : text|raw }}
+			</div>
+		</div>
+
+	</div>
+
+</div>
+
+<div class="container-fluid bkg-light">
+
+	<div class="container copy">
+
+		{% if page %}
+
+			<!-- success-story-table -->
+
+			<div class="row row-cols-1 row-cols-md-2 pt-5 success-story-table mb-5">
+				<div class="col-md-5 offset-md-1 success-story-brief">
+					{% if page.brief %}
+						<div class="success-story-table-cell">
+							<h3>In brief</h3>
+							<p>{{ page.brief|md }}</p>
+						</div>
+					{% endif %}
+
+					{% if page.reach %}
+						<div class="success-story-table-cell">
+							<h3>Reach</h3>
+							<p>{{ page.reach|md }}</p>
+						</div>
+					{% endif %}
+
+					{% if page.software %}
+						<div class="success-story-table-cell">
+							<h3>Software</h3>
+							<p>{{ page.software }}</p>
+						</div>
+					{% endif %}
+
+					{% if page.timeline %}
+						<div class="success-story-table-cell">
+							<h3>Timeline</h3>
+							<p>{{ page.timeline }}</p>
+						</div>
+					{% endif %}
+				</div>
+
+				{% if page.benefits %}
+					<div class="col-md-5 success-story-benefits mt-4 mt-md-0">
+						{% if page.video_mp4 %}
+							<video id="0" width="100%" controls {% if page.video_poster %} poster="{{ page.video_poster|media }}" {% endif %} class="mb-3">
+								<source src="{{ page.video_mp4|media }}" type="video/mp4">
+								<p>If you can't view this video, your browser does not support HTML5 videos.</p>
+							</video>
+						{% endif %}
+
+						<h3>Benefits</h3>
+						{{ page.benefits|md }}
+					</div>
+				{% endif %}
+			</div>
+
+			<!-- /success-story-table -->
+
+			{% if page.download %}
+
+				<div class="row">
+
+					<div class="col-10 offset-1 copy-links">
+
+						<a href="{{ page.download|media }}" class="button-link btn btn-outline pink light-bkg">Download Case Study (PDF)</a>
+
+					</div>
+
+				</div>
+
+			{% endif %}
+
+			{% if page.sections %}
+				{% for section in page.sections %}
+					{% set has_heading_or_intro = section.heading or section.intro %}
+
+					<div class="row">
+						{% if has_heading_or_intro %}
+							<div class="col-10 offset-1 copy-main">
+								{% if section.heading %}
+									<h2>{{ section.heading }}</h2>
+								{% endif %}
+
+								{% if section.intro %}
+									<p class="inner-lead">{{ section.intro }}</p>
+								{% endif %}
+
+								{% if section.quote %}
+									<figure class="text-{{ section.quote_position == 'right' ? 'end' : 'start' }}">
+										<blockquote class="blockquote">
+											<p>&ldquo;{{ section.quote }}&rdquo;</p>
+										</blockquote>
+										{% if section.quote_author %}
+											<figcaption class="blockquote-footer">{{ section.quote_author }}</figcaption>
+										{% endif %}
+									</figure>
+								{% endif %}
+
+								{{ section.text|md }}
+							</div>
+						{% else %}
+							<div class="col-12">
+								{% if section.quote %}
+									<figure class="my-5" style="width:100%;">
+										<blockquote class="blockquote m-0" style="width:100%;">
+											<p>&ldquo;{{ section.quote }}&rdquo;</p>
+										</blockquote>
+									</figure>
+									<figure class="text-center my-5">
+										{% if section.quote_author %}
+											<figcaption class="blockquote-footer">{{ section.quote_author }}</figcaption>
+										{% endif %}
+									</figure>
+								{% endif %}
+							</div>
+						{% endif %}
+					</div>
+				{% endfor %}
+			{% endif %}
+
+		{% endif %}
+
+	</div>
+
+</div>
+
+<!-- /copy -->
+
+{% if page %}
+
+	<!-- copy-links -->
+
+	{% partial 'banners/banner-demo' %}
+
+	<!-- /copy-links -->
+
+{% endif %}
+
+{% partial 'pagelinks-success-stories' %}

@@ -1,0 +1,64 @@
+// FEATURES INDEX - ITSM & ESM PAGES
+
+.features-index {
+    padding-top: 2rem;
+    
+    > .row > div {
+        margin-bottom: 2rem;
+        &:hover .features-index-icon img {
+            transform: scale(1.1);
+        }
+        
+        p {
+            padding: 0 4rem;
+            margin-top: 1.5rem;
+        }
+    }
+    
+    .features-index-icon-container {
+        height: 100px;
+        margin-bottom: 0.5rem;
+    }
+    
+    .features-index-icon {
+        padding-left: 7px;
+        
+        img {
+            @include vendor-prefixes(transition, all 0.2s ease);
+            margin: 0 auto 0 auto;
+            display: block;
+            filter: invert(36%) sepia(85%) saturate(2710%) hue-rotate(175deg) brightness(101%) contrast(101%); // Alemba blue
+        }
+    }
+}
+
+.copy + .features-index {
+    padding-top: 0;
+}
+
+@include media-breakpoint-up(sm) {
+    .features-index {
+        > .row > div {
+            p {
+                min-height: 6rem;
+                padding: 0;
+                &.no-button {
+                    min-height: auto;
+                }
+            }
+        }
+    }
+}
+
+@include media-breakpoint-up(md) {
+    .features-index {
+        padding-top: 3rem;
+        
+        > .row > div {
+            margin-bottom: 4rem;
+        }
+    }
+    .copy + .features-index {
+        padding-top: 0;
+    }
+}

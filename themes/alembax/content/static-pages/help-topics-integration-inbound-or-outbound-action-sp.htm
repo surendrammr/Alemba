@@ -1,0 +1,51 @@
+[viewBag]
+title = "Inbound or Outbound Action Source Parameters"
+url = "/help/topics/integration/inbound-or-outbound-action-sp"
+layout = "help"
+is_hidden = 0
+navigation_hidden = 0
+==
+                                                    <h1>Inbound or Outbound Action Source Parameters</h1>
+                                                    <p>Besides the common fields for configuring an integration source, more fields are available when you configure a source for a connector used for Inbound and Outbound Actions:</p>
+                                                    <table style="mc-table-style: url('../../resources/tablestyles/fielddesc.css');" class="TableStyle-FieldDesc" cellspacing="0">
+                                                        <col class="TableStyle-FieldDesc-Column-Column1">
+                                                        <col class="TableStyle-FieldDesc-Column-Column2">
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">Inbound Action</td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">Select this option to enable this source to initiate Actions within <span class="GeneralVariablesCoreName">ASM Core</span> (that is, enable <span class="GeneralVariablesCoreName">ASM Core</span> to receive a CREATE message from this source). Any Inbound Actions configured for this source are not visible to the external system unless this option is selected. <p>You must complete the User and/or Organization fields. The User and the linked organization will be used to populate the User and/or Organization fields on the call or request logged as a result of the Inbound Action (unless specified otherwise at the level of the Action).</p>
+<p class="note">If the User is linked to an organization, the Organization field is automatically populated when you select a User. If the linked organization is later changed, the User field is cleared. </p>
+<p class="note">If no User is specified or if the specified User has been deleted from the system, the system will randomly select a User from the organization specified in the Organization field. </p>
+<p class="note">If both the User and the organization no longer exist, the action will fail and notifications will be sent, if fault notifications have been configured.  </p>
+</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">Max Number of Transaction Attempts</td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">Specify the number of attempts for <span class="GeneralVariablesCoreName">ASM Core</span> to establish a connection with the source before declaring a failure to connect. This applies to each message that <span class="GeneralVariablesCoreName">ASM Core</span> attempts to send to the source.</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">Time between Transaction Attempts</td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">The length of time between each connection attempt.</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">Asynchronous Transaction Timeout</td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">Asynchronous transactions do not complete or fail immediately: the connector notifies <span class="GeneralVariablesCoreName">ASM Core</span> within a specified time as to whether the transaction has completed or failed. Specify the maximum length of time given to the connector to notify <span class="GeneralVariablesCoreName">ASM Core</span>. If the transaction is not completed or failed within this period, the transaction is declared “timed out” and the attempt considered failed.<p class="note"> This setting applies to individual transactions (messages) for a particular action – not to the action itself. An Outbound Action has an unlimited amount of time after the CREATE transaction to send <span class="GeneralVariablesCoreName">ASM Core</span> a COMPLETE transaction. However, each individual UPDATE, NOTIFY, or CANCEL transaction related to that Outbound Action is bound by this setting.</p>
+</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">Send Fault Notifications</td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">Select this option to send notifications to specified parties when a message fails to be sent to the source. When this option is selected, the fields below are enabled. Use these fields to configure notifications and the recipients who need to be notified.<table style="mc-table-style: url('../../resources/tablestyles/fielddesc no indent.css');margin-left: 0;margin-right: auto;" class="TableStyle-FieldDesc_no_indent" cellspacing="0">
+<col class="TableStyle-FieldDesc_no_indent-Column-Column1">
+<col class="TableStyle-FieldDesc_no_indent-Column-Column2">
+<tr>
+<td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-"><p>Always</p></td>
+<td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-"><p>sends notifications to the specified recipients after each failed attempt</p></td>
+</tr>
+<tr>
+<td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-"><p>After</p></td>
+<td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-"><p>sends notifications to the specified recipients only after a defined number of failed attempts. Type the number of attempts in the Failed Attempt(s) field</p></td>
+</tr>
+</table>
+</td>
+                                                        </tr>
+                                                    </table>
+                                                

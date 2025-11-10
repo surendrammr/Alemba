@@ -1,0 +1,89 @@
+title = "News"
+url = "/news"
+layout = "home"
+description = "News Page"
+meta_description = "Welcome to the Alemba news page. You can keep up to date with Alemba news and read about the latest developments in the IT Service Management field here."
+is_hidden = 0
+canonical_url = "https://alemba.com/news"
+meta_title = "News"
+robot_index = "index"
+robot_follow = "follow"
+seoOptionsEnabledInSitemap = 0
+seoOptionsUseUpdatedAt = 1
+seoOptionsRobotIndex = "index"
+seoOptionsRobotFollow = "follow"
+seoOptionsChangefreq = "daily"
+seoOptionsPriority = 0.5
+
+[viewBag]
+seo_title = "News"
+seo_description = "Welcome to the Alemba news page. You can keep up to date with Alemba news and read about the latest developments in the IT Service Management field here."
+robot_index = "index"
+robot_follow = "follow"
+==
+<?php
+use RainLab\Blog\Models\Post;
+
+function onStart()
+{
+	// Get blog entries
+
+	$this['blog'] = Post::where('published', 1)->orderBy('published_at', 'desc')->get();
+
+	// Get latest blog entry (with a featured banner)
+
+	$this['latest_blog'] = Post::where('featured_banner', '!=', '')->orderBy('published_at', 'desc')->first();
+
+}
+?>
+==
+<!-- banner -->
+
+<div class="jumbotron jumbotron-fluid banner dark grey pageBanner" style="background-image: url({{ 'assets/img/banners/banner-generic-3@0.5x.jpg'|theme }})">
+    <div class="container h-100">
+       <div class="row h-100">
+            <div class="col my-auto">
+                <h1 class="text-center xl-header">{{ this.page.title }}</h1>
+            </div>
+       </div>
+    </div>
+</div>
+
+<!-- /banner -->
+
+{% partial 'demo-button' %}
+
+<!-- featured -->
+
+<div class="container article-cards article-index">
+
+	<div class="row justify-content-center">
+
+		{% for entry in blog %}
+
+			<div class="col-sm-6 col-lg-3">
+
+				<div class="card d-flex align-items-stretch">
+				<div class="card-img-top" style="background-image: url({% if entry.thumbnail %}{{ entry.thumbnail|media }}{% else %}{{'assets/img/thumbnail-default.png'|theme }}{% endif %});"></div>
+                    <div class="card-body">
+                        <h4 class="card-title text-center">{{ entry.title_short }}</h4>
+                        <h5 class="subheading text-center">{{ entry.published_at|date('d M Y') }}</h5>
+                        <h5 class="subheading text-center">{{ entry.category.name }}</h5>
+                        <p class="card-text text-center">{{ entry.excerpt }}</p>
+                        
+                        <div class="text-center">
+                            <a href="{{ 'blog-entry'|page({ category: entry.categories|first.slug, slug: entry.slug }) }}" class="btn btn-primary">Read the article</a>
+                        </div>
+                    </div>
+                    
+                </div>
+
+			</div>
+
+		{% endfor %}
+		
+
+	</div>
+
+
+</div>

@@ -1,0 +1,168 @@
+[viewBag]
+title = "Linking Explorer Option"
+url = "/help/topics/calls/linking-explorer-option"
+layout = "help"
+is_hidden = 0
+navigation_hidden = 0
+==
+                                                    <h1>
+<a name="top"></a>Linking Explorer Option</h1>
+                                                    <p>Linking calls enables you to easily access related calls from the <b>Call Details</b> window, instead of having to search for each of them separately. You can link a call as a parent or a child of the current call. A call can be linked to only one parent call, but may be linked to several child calls. It is also possible to link a call to a call that has calls linked to it. In a typical ITIL environment, several Incidents are usually linked to a problem that is in turn linked to a known error.</p>
+                                                    <p>You can also <a href="#">link requests to the current call</a> from the Linking window.</p>
+                                                    <p>When linking the current call to a new request, you can select the Copy Details option to copy the details of the current call to the new call or request. Selecting this option will copy the description of the current call to the new call or request. Attached objects, forms, or attributes (if applicable) will not be copied to the new call or request.</p>
+                                                    <p class="note">You could define the parent as a Major Incident or a Problem. This depends on the criteria identified for either type by the organization. You may also decide that you want to treat urgent issues as Major Incidents, and underlying issues that trigger them as Problems, which require addressing longer term.<br><br>You could also use AI Ops rules to automatically create a Major Incident/Problem based on a set of criteria being triggered.</p>
+                                                    <p class="exampletext">The company’s mail server goes down. A call is logged to the service desk that “the mail server has gone down” (Call 100). The support analyst realizes that this event will inevitably lead to more calls. He knows that within a couple of hours, there will be more calls logged relating to this event, such calls as “I cannot send email” (Call 101) or “I cannot receive email” (Call 102). The analyst creates a Major Incident for call 100 by cloning it (MI 50), and links it as a parent so that when other calls are logged due to the same issue as provoked Call 100, they can be linked to MI 50. This then forms a Parent-Child hierarchy, whereby the parent call, the Major Incident, is the  cause, (the mail server has gone down), and Child calls are events that result from the Major Incident.<br></p>
+                                                    <h2>
+<a name="Linking"></a>Linking Calls</h2>
+                                                    <p class="prereq">This explorer option is only enabled if <b>Call Linking</b> is selected in the <a href="../admin%20ipk%20management/ipk%20settings%20(partitioned).htm" name="aanchor19">IPK Settings (Partitioned)</a> window. You must also <b>Take Action</b> on the call before you can link it to other calls.</p>
+                                                    <ol>
+                                                        <li value="1">Display the <b>Call Details</b> window, if it is not already on screen.</li>
+                                                        <li value="2">In the explorer pane, expand <b>Workflow</b>, then select <b>Linking</b>.</li>
+                                                        <li value="3">The Linking window appears. It is divided into two panes:</li>
+                                                        </ol>
+<ul>
+                                                            <li value="1">the upper pane displays the call linking diagram</li>
+                                                            <li value="2">the lower one displays the details of the selected linked call or request in a tabular format</li>
+                                                        </ul>
+                                                        <p>
+                                                            </p>
+<p>When you link calls of the same type, say two Incidents, the calls are grouped into one node and total number of calls appears. If you select the node, all the calls that make up the node are displayed in the table below. The nodes in the linking diagram display the abbreviation assigned to the IPK status of the linked calls. The colors assigned to a node are those that are assigned to the IPK status. However, the current call is always displayed in gray. This is to make it easy for you to identify the current call on which you are working.</p>
+                                                            <p class="exampletext">If the abbreviation assigned to Incidents is I, an incident linked to the current call will display I in the linking diagram. If three incidents are linked to the current call, the node will display 3 I. Clicking this node will display the three linked calls in the browse table below.</p>
+                                                        
+                                                        <li value="4">
+                                                            <p>
+                    If you know which call you wish to link, use <img src="/storage/app/media/Help/images/linkcall.png"> to type the number, then select: </p>
+                                                            <ul>
+                                                                <li value="1">
+                                                                    <img src="/storage/app/media/Help/images/link%20as%20parent.png"> to link it as a parent </li>
+                                                                <li value="2">
+                                                                    <img src="/storage/app/media/Help/images/link%20as%20child.png"> to link it as a child 
+                </li>
+                                                                <li value="3">
+                                                                    <img src="/storage/app/media/Help/images/call%20search.png"> to display the <b>Call Search</b> window, with the search criteria updated from the current call</li>
+                                                            </ul>
+                                                        </li>
+                                                        <li value="5">Modify the search criteria, if required and click <b>Search</b>. Calls that match your search criteria are displayed in a browse table.</li>
+                                                        <li value="6">To link a call as a parent, select the required call, and select <img src="/storage/app/media/Help/images/link%20as%20parent.png">from the toolbar. </li>
+                                                        <p class="note">You can link only one call as a parent. If you select more than one call in the browse table, this button is disabled. </p>
+                                                        <li value="7">To link calls as child calls, select the required call(s), and select <img src="/storage/app/media/Help/images/link%20as%20child.png">. The selected calls are linked and the Linking window appears with the linking diagram updated. </li>
+                                                        <li value="8">Select a linked call in the linking diagram to view its details in the browse table in the lower pane. The following buttons are available in the upper pane:</li>
+                                                        <p>
+                                                            </p>
+<table class="TableStyle-FieldDesc" style="mc-table-style: url('../../resources/tablestyles/fielddesc.css');margin-left: 0;margin-right: auto;" cellspacing="0">
+                                                                <col class="TableStyle-FieldDesc-Column-Column1">
+                                                                <col class="TableStyle-FieldDesc-Column-Column2">
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyH-Column1-">Unlink</td>
+                                                                        <td class="TableStyle-FieldDesc-BodyG-Column2-">To unlink a selected linked call</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyH-Column1-">Open</td>
+                                                                        <td class="TableStyle-FieldDesc-BodyG-Column2-">To open the details of a linked call for action, that is, without immediately taking ownership of the call</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyB-Column1-">Review</td>
+                                                                        <td class="TableStyle-FieldDesc-BodyA-Column2-">To open the details of a linked call for review only</td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        
+                                                        <p>
+                                                            </p>
+<p>The browse table shows the following columns:</p>
+                                                            <table class="TableStyle-FieldDesc" style="mc-table-style: url('../../resources/tablestyles/fielddesc.css');margin-left: 0;margin-right: auto;" cellspacing="0">
+                                                                <col class="TableStyle-FieldDesc-Column-Column1">
+                                                                <col class="TableStyle-FieldDesc-Column-Column2">
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyH-Column1-">Ind </td>
+                                                                        <td class="TableStyle-FieldDesc-BodyG-Column2-">The indicator icon for relevant actions such as ‘linked as parent’ or ‘linked as child’. The icons which appear in the Ind column are described in the topic about Calls Outstanding window</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyH-Column1-">Call No</td>
+                                                                        <td class="TableStyle-FieldDesc-BodyG-Column2-">the call number of the current call</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyH-Column1-">Linked To</td>
+                                                                        <td class="TableStyle-FieldDesc-BodyG-Column2-">the call number of the linked call</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyH-Column1-">Type </td>
+                                                                        <td class="TableStyle-FieldDesc-BodyG-Column2-">The issue type selected on the call</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyH-Column1-">Description </td>
+                                                                        <td class="TableStyle-FieldDesc-BodyG-Column2-">The description of the issue</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyH-Column1-">Workaround</td>
+                                                                        <td class="TableStyle-FieldDesc-BodyG-Column2-">if one has been specified for the call</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyH-Column1-">Last Action Date</td>
+                                                                        <td class="TableStyle-FieldDesc-BodyG-Column2-">Date on which the call was last actioned (forwarded, deferred, or saved)</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyH-Column1-">
+                                                                            <p>Physical Status of the call</p>
+                                                                        </td>
+                                                                        <td class="TableStyle-FieldDesc-BodyG-Column2-"> </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyH-Column1-">Priority</td>
+                                                                        <td class="TableStyle-FieldDesc-BodyG-Column2-"> </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyH-Column1-">Current Analyst </td>
+                                                                        <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                            <p>who owns the call</p>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyB-Column1-">Call Status</td>
+                                                                        <td class="TableStyle-FieldDesc-BodyA-Column2-">set when the call was actioned</td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        
+                                                    
+                                                    <h2>Linking a Request to a Call</h2>
+                                                    <p>You may want to link a request that has been created to resolve an issue specified in a call. You can link open and closed requests. Requests can only be linked to calls as parents.</p>
+                                                    <p class="exampletext">A user reports an issue that their color printer is not printing. The service desk logs a call, and sends a technician to look into the issue. The technician finds out that the color cartridge has run out. He switches the printer to print in grayscale, and raises a request to procure a new color cartridge and have it installed. The request is linked to the call logged by the user.</p>
+                                                    <p class="exampletext">From the previous scenario, another technician installs a new cartridge and tests the printer, finds that it is working, and subsequently the request is closed. After a couple of days, the color printouts are all not clear and appear blurred. The user logs a call again and it is found that the newly installed cartridge is faulty. The request that was raise to install it and closed after the installation is linked to this call.</p>
+                                                    <p class="prereq">This explorer option is only enabled if <b>Call Linking</b> is selected in the <a href="../admin%20ipk%20management/ipk%20settings%20(partitioned).htm" name="aanchor20">IPK Settings (Partitioned)</a> window. You must also <b>Take Action</b> on the call before you can link it to other requests.</p>
+                                                    <ol>
+                                                        <li value="1">Display the <b>Call Details</b> window, if it is not already on screen.</li>
+                                                        <li value="2">
+                                                            <p>In the explorer pane, expand <b>Workflow</b>, then select <b>Linking</b>.</p>
+                                                            <p>The <b>Linking</b> window appears.</p>
+                                                        </li>
+                                                        <li value="3">
+                                                            <p>                    If you know which request you wish to link, use <img src="/storage/app/media/Help/images/linkrequest.png"> to type the number, then select: </p>
+                                                            <ul>
+                                                                <li value="1">
+                                                                    <img src="/storage/app/media/Help/images/link%20as%20parent.png"> to link it as a parent</li>
+                                                                <li value="2">
+                                                                    <p>
+                                                                        <img src="/storage/app/media/Help/images/request%20search.png"> to display the <b>Request Search</b> window, with the search criteria updated from the current call</p>
+                                                                    <p>You can modify the search criteria, if required.</p>
+                                                                </li>
+                                                            </ul>
+                                                        </li>
+                                                        <li value="4">Requests that match your search criteria are displayed in a browse table. Select the request you wish to link to the call, and click <img src="/storage/app/media/Help/images/link%20as%20parent.png">. The selected request is linked to call, and the call linking diagram is updated to display the linked request.</li>
+                                                        <p class="note">You can only link one request to a call at a time.</p>
+                                                        <li value="5">Selecting a linked request in the linking diagram displays its details in the browse table in the lower pane. The browse table displays the following details:</li>
+                                                        </ol>
+<ul>
+                                                            <li value="1">Request Number</li>
+                                                            <li value="2">Description</li>
+                                                            <li value="3">Title</li>
+                                                            <li value="4">Profile</li>
+                                                            <li value="5">Request Priority</li>
+                                                            <li value="6">Risk</li>
+                                                            <li value="7">Link Type</li>
+                                                            <li value="8">Link (Linked Call No)</li>
+                                                        </ul>
+                                                    
+                                                

@@ -1,0 +1,196 @@
+[viewBag]
+title = "Upgrading from vFire 9.2 or Below"
+url = "/help/topics/installation-and-upgrade/install-and-upgrade/install-appendixc-upgrade-from-92"
+layout = "help"
+is_hidden = 0
+navigation_hidden = 0
+==
+                                                    <h1>Upgrading from vFire 9.2 or Below</h1>
+                                                    <p>This topic describes three methods for upgrading <span class="GeneralVariablesSystemName">ASM System</span>s on 9.2 or lower.</p>
+                                                    <p>Newer <span class="GeneralVariablesProductName">ASM</span> <b>Setup</b> and <b>Patch</b> packages cannot be applied to web servers configured for 9.2 or below due to incompatible server requirements. Therefore vFire must be installed on a new web server that meets the updated server requirements as detailed in <a href="../../prerequisites/prereqpowershell.htm" class="nolink MCXref xref xrefnolink"><b>PowerShell requirements</b></a>.</p>
+                                                    <p class="note"> It is assumed the database is on a separate server to the web server used by <span class="GeneralVariablesProductName">ASM</span>, and that the database server is not being migrated as part of this activity.</p>
+                                                    <h2>Select a method</h2>
+                                                    <p>Select the method that best suits the business needs of the organization, taking into consideration how many web servers or VMs are available, and whether or not you want legacy folder structures, files, and registry keys  on the new server.</p>
+                                                    <table class="TableStyle-Rep_Hdr_Row" style="mc-table-style: url('../../../resources/tablestyles/rep hdr row.css');margin-left: 0;margin-right: auto;" cellspacing="0">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column1" style="width: 148px;">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column2" style="width: 148px;">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column1">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column2">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column1">
+                                                        <thead>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Head-Header1">
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column1-Header1" style="font-weight: bold;text-align: center;">Method</th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column2-Header1" style="text-align: center;">As described on</th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column1-Header1" style="text-align: center;">Complexity Level</th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column2-Header1" style="text-align: center;">Legacy Items</th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadD-Column1-Header1" style="text-align: center;">Multiple Servers Available</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1" style="font-weight: bold;text-align: center;">Method 1</td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1" style="text-align: center;">
+<a href="#Method" class="MCXref xref">Method 1</a>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1" style="text-align: center;">Easy</td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1" style="text-align: center;">Yes</td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1" style="text-align: center;">No</td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1" style="font-weight: bold;text-align: center;">Method 2</td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1" style="text-align: center;">
+<a href="#Method2" class="MCXref xref">Method 2</a>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1" style="text-align: center;">Easy</td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1" style="text-align: center;">No</td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1" style="text-align: center;">Yes</td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyB-Column1-Body1" style="font-weight: bold;text-align: center;">Method 3</td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyB-Column2-Body1" style="text-align: center;">
+<a href="#Method3" class="MCXref xref">Method 3</a>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyB-Column1-Body1" style="text-align: center;">Very complex</td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyB-Column2-Body1" style="text-align: center;">No</td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyA-Column1-Body1" style="text-align: center;">No</td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <h2>
+<a name="Method"></a>Method 1</h2>
+                                                    <p>Use this method if:</p>
+                                                    <ul>
+                                                        <li value="1"> There are only two servers available: the old server, and the new server the system is being migrated to.</li>
+                                                        <li value="2">You do not mind legacy registry keys, folder structures, and files on the new server.</li>
+                                                        <p class="note">Legacy items are harmless but redundant, and consume space unnecessarily.</p>
+                                                    </ul>
+                                                    <h2 class="Prerequisite">Before you begin</h2>
+                                                    <p class="prereqtext1">Ensure the new server meets the Prerequisites.</p>
+                                                    <p class="prereqtext1">Download the vFire Setup package that matches the version of the  system on the old server.</p>
+                                                    <p class="prereqtext">Download the <span class="GeneralVariablesProductName">ASM</span> Patch package for the version you wish to upgrade to.</p>
+                                                    <h3>On the new web server the system is migrating to</h3>
+                                                    <ol>
+                                                        <li value="1">
+                                                            <p>Install vFire by running the Setup package that matches the version of the  system on the old server.</p>
+                                                        </li>
+                                                        <li value="2">
+                                                            <p>After  installation is complete, create a new system using the System Setup Wizard in the  Server Console.</p>
+                                                            <ul>
+                                                                <li value="1">
+                                                                    <p>At the <b>Database</b> step, enter the existing database details.</p>
+                                                                </li>
+                                                                <li value="2">
+                                                                    <p>If prompted to upgrade the database, select <b>NO</b>.</p>
+                                                                </li>
+                                                                <li value="3">Complete the steps in the System Setup Wizard.</li>
+                                                            </ul>
+                                                        </li>
+                                                        <p class="tip">Log into the new system and ensure it works before continuing</p>
+                                                        <li value="3">
+                                                            <p>Install the <span class="GeneralVariablesProductName">ASM</span> Patch package of the version you wish to upgrade to.</p>
+                                                        </li>
+                                                        <li value="4">
+                                                            <p>Select <b>Run</b> on the Patch Tool, which launches automatically when InstallShield Wizard completes.</p>
+                                                            <ul>
+                                                                <li value="1">If prompted to upgrade the database, select <b>YES</b>.</li>
+                                                            </ul>
+                                                        </li>
+                                                        <li value="5">
+                                                            <p>When the Patch Tool completes, the  system is ready to be used.</p>
+                                                        </li>
+                                                        <li value="6">Once system links  have been redirected to the new server, the old server can be decommissioned. If this is not immediately possible, ensure the vFire Services on the old server are <b>Stopped</b> and set to <b>Manual </b>to prevent conflicts.</li>
+                                                    </ol>
+                                                    <h2 class="newpage">
+<a name="Method2"></a>Method 2</h2>
+                                                    <p>Use this method if:</p>
+                                                    <ul>
+                                                        <li value="1"> There are three servers available: the old server, a temporary server, and the new server the system is being migrated to.</li>
+                                                        <li value="2">You prefer not to have legacy registry keys, folder structures, and files on the new server.</li>
+                                                    </ul>
+                                                    <h2 class="Prerequisite">Before you begin</h2>
+                                                    <p class="prereqtext1">Ensure the temporary server, and new permanent server, both meet the Prerequisites.</p>
+                                                    <p class="prereqtext1">Download the vFire Setup package that matches the version of the  system on the old server.</p>
+                                                    <p class="prereqtext">Download the <span class="GeneralVariablesProductName">ASM</span> Patch package for the version you wish to upgrade to.</p>
+                                                    <h3>On the temporary web server</h3>
+                                                    <ol>
+                                                        <li value="1">Install vFire by running the Setup package that matches the version of the  system on the old server.</li>
+                                                        <li value="2">After  installation is complete, create a new system using the System Setup Wizard in the Server Console.<ul>
+<li value="1">At the <b>Database</b> step, enter the existing database details.</li>
+<li value="2">If prompted to upgrade the database, select <b>NO</b>.</li>
+<li value="3">Complete the steps in the System Setup Wizard.</li>
+</ul>
+</li>
+                                                        <p class="tip">Log into the new system and ensure it works before continuing.</p>
+                                                        <li value="3">Install the <span class="GeneralVariablesProductName">ASM</span> Patch package of the version you wish to upgrade to.</li>
+                                                        <li value="4">Select <b>Run</b> on the Patch Tool, which launches automatically when InstallShield Wizard completes.<ul><li value="1">If prompted to upgrade the database, select <b>YES</b>.</li></ul>
+</li>
+                                                    </ol>
+                                                    <h3>On the new web server the system is migrating to</h3>
+                                                    <ol data-mc-continue="true">
+                                                        <li value="5">Install <span class="GeneralVariablesProductName">ASM</span> by running the Setup package for the version you wish to upgrade to.</li>
+                                                        <li value="6">After  installation is complete, create a new <span class="GeneralVariablesSystemName">ASM System</span> using the System Setup Wizard in the <span class="GeneralVariablesProductName">ASM</span> Server Console.<ul>
+<li value="1">At the <b>Database</b> step, enter the existing database details.</li>
+<li value="2">If prompted to upgrade the database, select <b>NO</b>.</li>
+<li value="3">Complete the steps in the System Setup Wizard.</li>
+</ul>
+</li>
+                                                        <li value="7">When the Patch Tool completes, the  system is ready to be used.</li>
+                                                    </ol>
+                                                    <h3>Decommission the unneeded web servers</h3>
+                                                    <p><b>Temporary Server:</b> Uninstall <span class="GeneralVariablesProductName">ASM</span> from the temporary web server once <span class="GeneralVariablesProductName">ASM</span> is ready for use on the new server. Or, decommission the server. If this is not immediately possible, ensure the <span class="GeneralVariablesProductName">ASM</span> Services are <b>Stopped</b> and set to <b>Manual.</b></p>
+                                                    <li value="30">
+<b>Old Server:</b> Once system links  have been redirected to the new server, the old server can be decommissioned. If this is not immediately possible, ensure the vFire Services are <b>Stopped</b> and set to <b>Manual </b>to prevent conflicts.</li>
+                                                    <h2>
+<a name="Method3"></a>Method 3</h2>
+                                                    <p class="warning">This method should not be used without assistance from <span class="GeneralVariablesCompanyName2">Alemba®</span> Professional Services.</p>
+                                                    <p>Use this method if:</p>
+                                                    <ul>
+                                                        <li value="1"> There are only two servers available: the old server, and the new server the system is being migrated to.</li>
+                                                        <li value="2">You prefer not to have legacy registry keys, folder structures, and files on the new server.</li>
+                                                    </ul>
+                                                    <h2 class="Prerequisite">Before you begin</h2>
+                                                    <p class="prereqtext1">Ensure the new server meets the Prerequisites.</p>
+                                                    <p class="prereqtext1">Download the <span class="GeneralVariablesCoreName">ASM Core</span> Setup package that is one version lower than the version you wish to upgrade to.</p>
+                                                    <p class="prereqtext">Download the <span class="GeneralVariablesCoreName">ASM Core</span> Patch package for the version you wish to upgrade to.</p>
+                                                    <p class="prereqtext">Create a blank database on the database server.</p>
+                                                    <h3>On the new web server the system is migrating to</h3>
+                                                    <ol>
+                                                        <li value="1">Install <span class="GeneralVariablesProductName">ASM</span> by running the Setup package of the version lower than the one you wish to upgrade to.<p class="exampletext">If you want to upgrade to 10.1, install 10.0 at this step.</p>
+</li>
+                                                        <li value="2">After <span class="GeneralVariablesProductName">ASM</span> installation is complete, create a new <span class="GeneralVariablesSystemName">ASM System</span> using the System Setup Wizard in the <span class="GeneralVariablesProductName">ASM</span> Server Console.<ul>
+<li value="1">At the <b>Database</b> step, enter details of a new blank database (which should have been already created on the database server).</li>
+<li value="2">If prompted to upgrade the database, select <b>NO.</b>
+</li>
+<li value="3">Complete the steps in the System Setup Wizard.</li>
+</ul>
+</li>
+                                                        <li value="3">Update the database details for the newly created system:<ul>
+<li value="1">In the Server Console, select the newly created system and select <b>Properties.</b>
+</li>
+<li value="2">Select the <b>Database</b> tab and enter details for the database used by the system you are planning to upgrade.</li>
+<li value="3">Save the system properties and exit the Server Console.</li>
+</ul>
+</li>
+                                                        <li value="4">Navigate to the directory where <span class="GeneralVariablesProductName">ASM</span> is installed and update files as follows:<ul>
+<li value="1">Overwrite the files in the <b>Original</b> directory with the files from vFire  on the old web server.</li>
+<p class="exampletext">Copy files from the Original directory on the old server; e.g.: <code>C:\Program Files (x86)\VMware\Service Manager\Original</code><br>Past files into the Original directory on the new server: <code>C:\Program Files\<span class="GeneralVariablesCompanyName3">Alemba</span>\<span class="GeneralVariablesProductName">ASM</span>\Original</code></p>
+<li value="2">Overwrite the files in the <b>system</b> directory with the files from vFire on the old web server.</li>
+<p class="exampletext">Copy files from the system directory on the old server: <code>C:\Program Files (x86)\VMware\Service Manager\System1</code><br>Past files into the system directory on the new server: <code>C:\Program Files\<span class="GeneralVariablesCompanyName3">Alemba</span>\<span class="GeneralVariablesProductName">ASM</span>\System1</code></p>
+</ul>
+</li>
+                                                        <li value="5">Update the <span class="GeneralVariablesProductName">ASM</span> registry keys:<ul>
+<li value="1">Navigate to <code>HKEY_LOCAL_MACHINE\SOFTWARE\<span class="GeneralVariablesCompanyName3">Alemba</span>\vFireCore</code>
+</li>
+<li value="2">Find string <b>Version</b> and change the value to the version of your old vFire system.</li>
+<p class="exampletext">Change 10.0.2 to 9.1.9 (where 10.0.2 is the <span class="GeneralVariablesProductName">ASM</span> version installed on the new server, and 9.1.9 is the vFire version on the old server).</p>
+</ul>
+</li>
+                                                        <li value="6">Install the <span class="GeneralVariablesProductName">ASM</span> Patch package of the version you wish to upgrade to.</li>
+                                                        <li value="7">Select <b>Run</b> on the Patch Tool, which launches automatically when InstallShield Wizard completes.<ul><li value="1">If prompted to upgrade the database, select <b>YES</b>.</li></ul>
+</li>
+                                                        <li value="8">Navigate to the directory where <span class="GeneralVariablesProductName">ASM</span>is installed, and copy files from the <b>Original</b> directory to the <b>system</b> directory.</li>
+                                                        <p class="note">Only perform this step if standard system files were customized. This reverts all files to default.</p>
+                                                        <p class="exampletext">Copy files from the Original directory on the new server: <code>C:\Program Files\<span class="GeneralVariablesCompanyName3">Alemba</span>\vFire\Original</code><br>Paste files into the system directory on the new server: <code>C:\Program Files\<span class="GeneralVariablesCompanyName3">Alemba</span>\vFire\System</code></p> <li value="9">The new system is ready to be used.</li>
+<li value="10">Once system links have been redirected to the new server, the old server can be decommissioned. If this is not immediately possible, ensure the vFire Services on the old server are <b>Stopped</b> and set to <b>Manual </b> to prevent conflicts.</li>
+</ol>
+                                                

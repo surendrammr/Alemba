@@ -1,0 +1,129 @@
+[viewBag]
+title = "Developer Notes for the Jira ICNF"
+url = "/help/topics/connectors/jiraicnfnotesconnector"
+layout = "help"
+is_hidden = 0
+navigation_hidden = 0
+==
+                                                    <h1>Developer Notes for the Jira ICNF</h1>
+                                                    <p>This topic provides developer notes for configuring elements of the Jira connector ICNF file  <b>Alemba.Connector.Jira.icnf</b></p>
+                                                    <p>The information is provided as-is.</p>
+                                                    <p>This information is intended for developers who are experienced at customizing ICNF files.</p>
+                                                    <p class="warning">For assistance with configuring the ICNF file, contact your Account Manager to engage an Alemba Professional Services Consultant.</p>
+                                                    <p class="warning">For assistance with troubleshooting problems with the ICNF file, contact your Account Manager to engage an Alemba Professional Services Consultant.</p>
+                                                    <p class="warning">For assistance understanding the information contained in this topic, contact your Account Manager to engage an Alemba Professional Services Consultant.</p>
+                                                    <h2 class="Heading2">synchIntervalSec Attribute</h2>
+                                                    <p>
+                                                        <img src="/storage/app/media/Help/images/jira_icnf_0.png">
+                                                    </p>
+                                                    <p>Number of seconds between polling Jira for outbound action updates. Default is 300 seconds (5 mins).</p>
+                                                    <h2 class="Heading2">Outbound Action Schema State Element</h2>
+                                                    <p>The state element determines whether the outbound action is completed, not completed, open or canceled. By default it is currently using the state matrix defined lower down in the icnf file, based on the statusCategory value being returned from Jira. This could be changed to use the status field instead, if preferred.</p>
+                                                    <p>
+                                                        <img src="/storage/app/media/Help/images/jira_icnf_1.png">
+                                                    </p>
+                                                    <h3>
+<span class="GeneralVariablesCoreName">ASM Core</span> outbound action states:</h3>
+                                                    <table style="mc-table-style: url('../../resources/tablestyles/fielddesc.css');" class="TableStyle-FieldDesc" cellspacing="0">
+                                                        <col class="TableStyle-FieldDesc-Column-Column1" style="width: 5%;">
+                                                        <col class="TableStyle-FieldDesc-Column-Column2">
+                                                        <tbody>
+                                                            <tr>
+                                                                <td class="TableStyle-FieldDesc-BodyH-Column1-">0</td>
+                                                                <td class="TableStyle-FieldDesc-BodyG-Column2-">Open</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="TableStyle-FieldDesc-BodyH-Column1-">1</td>
+                                                                <td class="TableStyle-FieldDesc-BodyG-Column2-">Canceled</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="TableStyle-FieldDesc-BodyH-Column1-">2</td>
+                                                                <td class="TableStyle-FieldDesc-BodyG-Column2-">Completed</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="TableStyle-FieldDesc-BodyB-Column1-">3</td>
+                                                                <td class="TableStyle-FieldDesc-BodyA-Column2-">Not completed</td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <h2 class="Heading2">Outbound Action Element</h2>
+                                                    <p>
+                                                        <img src="/storage/app/media/Help/images/jira_icnf_2.png">
+                                                    </p>
+                                                    <p>The classID attribute is the unique ID for the outbound action definition.</p>
+                                                    <p>The display attribute is the name of the outbound action which will be displayed in <span class="GeneralVariablesCoreName">ASM Core</span>.</p>
+                                                    <p>The schemaID is the reference to the outbound action schema.</p>
+                                                    <h3>Outbound Action Fields</h3>
+                                                    <p>
+                                                        <img src="/storage/app/media/Help/images/jira_icnf_3.png">
+                                                    </p>
+                                                    <p>The fieldSetID attributes relates to the incoming field definition.</p>
+                                                    <p>The Action Fields HTTP field set should be present in all outbound actions.</p>
+                                                    <p>Another field set (in this case ALP-Bug Incoming Fields) is also required. This field set needs to be created and is dynamic. Example:</p>
+                                                    <p>
+                                                        <img src="/storage/app/media/Help/images/jira_icnf_4.png">
+                                                    </p>
+                                                    <p>The fieldSetID attribute is the unique identifier for this field set.</p>
+                                                    <p>The queryID should not change and should remain as “Get Task From Source”.</p>
+                                                    <p>The schema projectKey and issueType attributes relate to the project and issue type the fields are for. These are required and will be different for each field set.</p>
+                                                    <h3>Outbound Action Arguments</h3>
+                                                    <p>
+                                                        <img src="/storage/app/media/Help/images/jira_icnf_5.png">
+                                                    </p>
+                                                    <p>The argument element is used to populate the outgoing fields for Jira. These should be retrieved dynamically, but need to be defined as above for each outbound action.</p>
+                                                    <p>The argumentSetID references an argumentSet defined lower in the incf file. Example:</p>
+                                                    <p>
+                                                        <img src="/storage/app/media/Help/images/jira_icnf_6.png">
+                                                    </p>
+                                                    <p>The argumentSetID attribute is the unique identifier for this argument set.</p>
+                                                    <p>The queryID references a query to bring back the available fields to be mapped. Example:</p>
+                                                    <p>
+                                                        <img src="/storage/app/media/Help/images/jira_icnf_7.png">
+                                                    </p>
+                                                    <p>The argument query will define the RESTful request to bring back the list of available fields from Jira. The highlighted values need to be changed based on the project key and issue type.</p>
+                                                    <p>The yellow highlighting above indicates the lines of code that require editing, as follows:</p>
+                                                    <p><code>projectKeys</code>={enter project key}</p>
+                                                    <p><code>issuetypeIds</code>={enter issue type}</p>
+                                                    <h3>Outbound Action Create Query</h3>
+                                                    <p>
+                                                        <img src="/storage/app/media/Help/images/jira_icnf_8.png">
+                                                    </p>
+                                                    <p>The create element defines which query will be run when the outbound action is first created in <span class="GeneralVariablesCoreName">ASM Core</span>.</p>
+                                                    <p>The queryID attribute references the query which will create the issue in Jira. </p>
+                                                    <p class="exampletext">
+                                                        <img src="/storage/app/media/Help/images/jira_icnf_9.png">
+                                                    </p>
+                                                    <p>The highlighted text will need to be changed based on the project key and issue type. The format of the text is {project key}/{issue type}.</p>
+                                                    <h3>Outbound Action Receive Query</h3>
+                                                    <p>
+                                                        <img src="/storage/app/media/Help/images/jira_icnf_10.png">
+                                                    </p>
+                                                    <p>The receive element defines which query will be run when <span class="GeneralVariablesCoreName">ASM Core</span> queries Jira to determine whether any of the outbound actions have been updated since it last polled.</p>
+                                                    <p>The queryID attribute references the query which will search for the linked issues in Jira. </p>
+                                                    <p class="exampletext">
+                                                        <img src="/storage/app/media/Help/images/jira_icnf_11.png">
+                                                    </p>
+                                                    <p>The highlighted text will need to be changed based on the project key and issue type.</p>
+                                                    <p><code>project</code>={enter project key}</p>
+                                                    <p><code>type</code>={enter issue type}</p>
+                                                    <h3>Outbound Action Retrieve Query</h3>
+                                                    <p>
+                                                        <img src="/storage/app/media/Help/images/jira_icnf_12.png">
+                                                    </p>
+                                                    <p>The retrieve element defines which query will be run when selecting/retrieving information from a Jira issue. It uses the “Get Task” query which will be used across all outbound actions as it uses the unique value of the Jira Issue.</p>
+                                                    <h3>Outbound Action Update Query</h3>
+                                                    <p>
+                                                        <img src="/storage/app/media/Help/images/jira_icnf_13.png">
+                                                    </p>
+                                                    <p>The update element defines which query will be run when the <span class="GeneralVariablesCoreName">ASM Core</span> has call/request has been updated. It uses the “Update Query” query which will be used across all outbound actions as it uses the unique value of the Jira Issue.</p>
+                                                    <h3>Outbound Action Notify Query</h3>
+                                                    <p>
+                                                        <img src="/storage/app/media/Help/images/jira_icnf_14.png">
+                                                    </p>
+                                                    <p>The notify element defines which query will be run when a note has been added to the call and will send as a comment to Jira. It uses the “Notify Query” query which will be used across all outbound actions as it uses the unique value of the Jira Issue.</p>
+                                                    <h3>Outbound Action Cancel Query</h3>
+                                                    <p>
+                                                        <img src="/storage/app/media/Help/images/jira_icnf_15.png">
+                                                    </p>
+                                                    <p>The cancel element defines which query will be run when the call/request has been closed in <span class="GeneralVariablesCoreName">ASM Core</span>. It uses the “Update Query” query which will be used across all outbound actions as it uses the unique value of the Jira Issue.</p>
+                                                

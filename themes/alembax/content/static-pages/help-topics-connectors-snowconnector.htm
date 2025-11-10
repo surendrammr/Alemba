@@ -1,0 +1,88 @@
+[viewBag]
+title = "Snow Connector"
+url = "/help/topics/connectors/snowconnector"
+layout = "help"
+is_hidden = 0
+navigation_hidden = 0
+==
+                                                    <h1>Snow Connector</h1>
+                                                    <p>The Snow Connector connects <span class="GeneralVariablesProductNameFull">Alemba Service Manager™</span> to Snow Inventory and License Manager using API methodology, enabling you to expose live network resources and their relationships to your IT service management workflows. The Snow Connector enables you to expose the following resource types:</p>
+                                                    <ul>
+                                                        <li value="1">Computer</li>
+                                                        <li value="2">Mobile Device</li>
+                                                        <li value="3">Application</li>
+                                                        <li value="4">User </li>
+                                                    </ul>
+                                                    <p class="note">You can use Snow Inventory and License Manager to discover devices, software and cloud services on all platforms, audit software installs and track hardware and software usage. </p>
+                                                    <h2>Installing the Snow Connector</h2>
+                                                    <p class="note">For information about installing the Snow Connector, contact your Account Manager.</p>
+                                                    <p class="note">For information about versions and licensing, see <a href="connector%20matrix.htm" class="MCXref xref">ASM Connector Matrix</a>.</p>
+                                                    <p>After installation, the following files should exist on your server:</p>
+                                                    <ul>
+                                                        <li value="1">
+<span class="GeneralVariablesCompanyName3">Alemba</span>.Connector.Snow.Rest.dll</li>
+                                                        <li value="2">
+<span class="GeneralVariablesCompanyName3">Alemba</span>.Connector.Snow.Rest.icnf</li>
+                                                    </ul>
+                                                    <p class="note">The .icnf file is installed here by default: <code>C:\Program Files\Alemba\vFire\SystemName\Config</code>, where <i>SystemName</i> is the name of your current <span class="GeneralVariablesSystemName">ASM System</span>.</p>
+                                                    <p>The .icnf file contains information about each resource type and their mapped fields, including details like field data type.</p>
+                                                    <h2>Connection parameters</h2>
+                                                    <p><span class="GeneralVariablesProductNameFull">Alemba Service Manager™</span> uses the following connection parameters:</p>
+                                                    <table class="TableStyle-Rep_Hdr_Row" style="margin-left: 0;margin-right: auto;mc-table-style: url('../../resources/tablestyles/rep hdr row.css');" cellspacing="0">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column1">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column2" style="width: 558px;">
+                                                        <thead>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Head-Header1">
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column1-Header1">
+                                                                    <p class="Strong">Parameters</p>
+                                                                </th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadD-Column2-Header1">
+                                                                    <p class="Strong">Description</p>
+                                                                </th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr style="height: 19pt;" class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Snow Inventory RESTful API URL</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p>You can connect to Snow using the following URL format:</p>
+                                                                    <p><code>https://endpoint/api/customers/customernumber</code>
+                                                                    </p>
+                                                                    <p>where <i>endpoint</i> is the Snow server IP address, server name, or virtual directory, and <i>customernumber</i> is the customer's number  within Snow Inventory.</p>
+                                                                    <p class="exampletext"><code>https://www.MyCompany.com/api/customers/45/</code>
+                                                                    </p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyB-Column1-Body1">
+                                                                    <p>Login ID and Password</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyA-Column2-Body1">
+                                                                    <p>Credentials for the server where Snow Inventory is installed</p>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <h2>Required permissions</h2>
+                                                    <p>You need the following Configuration Management permissions to configure and use the Snow Connector:</p>
+                                                    <ul>
+                                                        <li value="1">External Resource Search</li>
+                                                        <li value="2">Federated CMDB Admin</li>
+                                                        <li value="3">The required CMDB permissions for your system</li>
+                                                    </ul>
+                                                    <p class="note"> For more information, see <conditionaltext data-mc-conditions="Default.ScreenOnly"><a href="../admin%20security%20roles/config%20mgt%20sec%20roles.htm" class="MCXref xref">Configuration Management Security Roles</a></conditionaltext>.</p>
+                                                    <h2>Exposing Snow Inventory data in <span class="GeneralVariablesProductNameFull">Alemba Service Manager™</span>
+</h2>
+                                                    <p>For information about accessing and managing your Snow Inventory and License Manager data in <span class="GeneralVariablesProductNameFull">Alemba Service Manager™</span>, see <conditionaltext data-mc-conditions="Default.ScreenOnly"><a href="../integration/managing%20external%20resources.htm" class="MCXref xref" data-mc-conditions="Default.NotforReleaseNotes">Managing External Resources</a></conditionaltext>. </p>
+                                                    <p>You can use the external resource <b>Linked Items</b> to do the following:</p>
+                                                    <ul>
+                                                        <li value="1">Link the external resource to an existing <span class="GeneralVariablesProductNameFull">Alemba Service Manager™</span> CMDB Item</li>
+                                                        <li value="2">Create a new linked CMDB item</li>
+                                                        <li value="3">Create a new linked person</li>
+                                                        <li value="4">Review the item – depending on your CMDB permissions, this option can open the resource in view mode, rather than edit mode</li>
+                                                        <li value="5">Manage the columns on display</li>
+                                                    </ul>
+                                                    <p>For more information, see <conditionaltext data-mc-conditions="Default.ScreenOnly"><a href="../integration/federated%20cmdb%20toolbar%20buttons.htm" class="MCXref xref">Federated CMDB Toolbar Buttons</a></conditionaltext>.</p>
+                                                

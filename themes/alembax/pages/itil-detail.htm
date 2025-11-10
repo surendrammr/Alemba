@@ -1,0 +1,174 @@
+url = "/itsm/:slug"
+layout = "home"
+title = "ITIL Process"
+description = "ITIL Process detail page"
+is_hidden = 0
+meta_title = "ITIL Process"
+meta_description = "ITIL Process"
+robot_index = "index"
+robot_follow = "follow"
+seoOptionsEnabledInSitemap = 0
+seoOptionsUseUpdatedAt = 1
+seoOptionsRobotIndex = "index"
+seoOptionsRobotFollow = "follow"
+seoOptionsChangefreq = "daily"
+seoOptionsPriority = 0.5
+seoOptionsModelClass = "Alemba\Alemba\Models\ITIL"
+seoOptionsModelParams = "slug:slug"
+seoOptionsOgCard = "summary_large_image"
+
+[viewBag]
+seo_title = "ITIL Process"
+seo_description = "ITIL Process"
+robot_index = "index"
+robot_follow = "follow"
+==
+<?php
+use Alemba\Alemba\Models\ITIL;
+
+function onStart()
+{
+	// Get selected ITIL process
+
+	$this['itil'] = ITIL::where('slug', $this->param('slug'))->first();
+	$this['itil_list'] = ITIL::orderBy('sort_order')->get();
+
+	// If the ITIL process doesn't exist (if the page has been deleted or the slug is incorrect) then redirect back to the ITSM page
+
+	if(!$this['itil']) {
+
+		return redirect('/itsm');
+	}
+
+	// Next ITIL process
+
+	$this['next-itil'] = ITIL::where('sort_order', $this['itil']->sort_order + 1)->first();
+
+	$this->page->title = "ITSM Process - ".$this['itil']->name;
+
+}
+?>
+==
+<!-- banner -->
+
+{% if itil.banner_image %}
+
+	<div class="jumbotron jumbotron-fluid banner dark pageBanner" style="background-image:url('{{ itil.banner_image|media }}')">
+
+    	<div class="container h-100">
+    	    <div class="row h-100">
+        	    <div class="col my-auto">
+    		    </div>
+    		</div>
+    	</div>
+    
+    </div>
+    
+{% else %}
+
+    <div class="jumbotron jumbotron-fluid banner dark" style="background-image:url('{{ 'assets/img/banners/banner-itsm.jpg'|theme }}')">
+
+    	<div class="container h-100">
+    	    <div class="row h-100">
+        	    <div class="col my-auto">
+    		    </div>
+    		</div>
+    	</div>
+    
+    </div>
+
+{% endif %}
+
+<!-- /banner -->
+
+{% partial 'demo-button' %}
+
+<!-- copy -->
+
+<div class="container copy">
+
+	<header class="col-md-12 copy-heading">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb justify-content-center">
+                <li class="breadcrumb-item"><a href="{{ 'it-service-management'|page }}">ITSM</a></li>
+                <li class="breadcrumb-item active">{{ itil.name }}</li>
+            </ol>
+        </nav>
+	
+		<h1>{{ itil.name }}</h1>
+		{% if itil.pink_verify %}
+
+			{#
+			<div class="accreditations mt-5">
+				<a href="https://www.pinkelephant.com/en-ca/PinkVERIFY/PinkVERIFYCertification"><img src="{{ 'Partner logos/logo-pinkverify13p-50h.png'|media }}" alt="{{ itil.name }} in Alemba Service Manager has PinkVERIFY&trade; accreditation" /></a>
+			</div>
+			#}
+			
+		{% endif %}
+
+	</header>
+
+	<div class="row justify-content-center">
+
+		<div class="col-md-8 copy-main">
+
+			<p class="lead">{{ itil.intro }}</p>
+
+			{{ itil.text|md }}
+
+			<div class="itil-benefits">
+
+				<h2>Business benefits:</h2>
+
+				{{ itil.benefits|md }}
+
+			</div>
+			
+			<div class="itil-provides">
+
+				<h3>Alemba Service Manager provides:</h3>
+
+				{{ itil.provides|md }}
+
+		    </div>
+		    
+		    {% if itil.images is not empty %}
+
+				{% for image in itil.images %}
+
+					{% if image.image is not empty %}
+
+						<div class="image full-width-image mt-5">
+
+							<img src="{{ image.image|media }}" alt="{{ image.caption_heading }}" class="mx-auto d-block img-fluid" />
+							<p class="caption text-center"><strong>{{ image.caption_heading }}</strong>{% if image.caption_description %} - {{ image.caption_description }} {% endif %}</p>
+
+						</div>
+
+					{% endif %}
+					
+				{% endfor %}    
+    
+        	{% endif %}
+
+		</div>
+		
+		<div class="col-md-4">
+           <nav id="sidebarNav" class="position-md-sticky">
+               <ul>
+                    <li><a href="{{'itsm101'|page}}">What is ITSM?</a></li>
+                    <li><a href="{{'esm'|page}}">What is ESM?</a></li>
+                    {% for page in itil_list %}
+                        <li><a href="{{ 'itil-detail'|page({ slug: page.slug }) }}">What is {{ page.name }}?</a></li>
+                    {% endfor %}
+               </ul>
+           </nav>
+       </div>
+
+	</div>
+
+</div>
+
+{% partial 'banners/banner-demo' %}
+
+{% partial 'pagelinks-recent' %}

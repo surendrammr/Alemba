@@ -1,0 +1,199 @@
+[viewBag]
+title = "Agreement Selection Priority"
+url = "/help/topics/admin-slm/agreement-selection-priority"
+layout = "help"
+is_hidden = 0
+navigation_hidden = 0
+==
+                                                    <h1>Agreement Selection Priority</h1>
+                                                    <p class="intro">The Agreement Selection Priority determines how SLM works on your system. You can determine which SLA agreement should be applied to calls and requests, and specify selection priority for calls and requests. </p>
+                                                    <p class="note">The Agreement Selection Priority only applies to SLA agreements.</p>
+                                                    <h2>How <span class="GeneralVariablesCoreName">ASM Core</span> uses the Selection Priority</h2>
+                                                    <p>As soon as a call or request is saved (such as when it is forwarded or deleted), <span class="GeneralVariablesCoreName">ASM Core</span> goes through the Agreement Selection Criteria list associated with every agreement in the order you have configured, looking for entity values that match the ones specified in that call or request. If it finds a match, it applies that agreement. If it does not find a match, it applies the default agreement for your system, if there is one. If there is no default agreement, an agreement is not applied.</p>
+                                                    <p class="exampletext">You create Agreement A that is linked to the User John Smith, and Agreement B that is linked to the config item Printer. A call is logged that has John Smith and the Printer. If you set up <span style="font-weight: bold;">Agreement Selection Priority</span> with <span style="font-weight: bold;">User</span> as a higher priority than <span style="font-weight: bold;">Config Item</span>, then <span class="GeneralVariablesCoreName">ASM Core</span> will apply Agreement A. If <span style="font-weight: bold;">Config Item</span> has a higher priority than <span style="font-weight: bold;">User</span>, Agreement B will be applied to the call. </p>
+                                                    <p>It is possible to remove entity types from the selection priority altogether. If you set a selection priority with neither config item nor User, in the above example, <span class="GeneralVariablesCoreName">ASM Core</span> would search across any other fields you had in your priority, and then apply the appropriate agreement or the default agreement if one was specified (even though there are agreements in your system linked to John Smith and printers). </p>
+                                                    <h2>Setting up Agreement Selection Priority</h2>
+                                                    <h2 class="Prerequisite">Before you start</h2>
+                                                    <p class="prereqtextlast">You must have <b>SLM Setup</b> enabled within your <a href="../admin%20security%20roles/general%20access%20security%20role%20-%20admin%20tab.htm">General Access Security Role</a> in order to configure any SLM administration settings.</p>
+                                                    <p>Verify that you have already defined options for Workflow Management and the CMDB, especially priorities, types, service levels, service types and CMDB item types.
+</p>
+                                                    <ol>
+                                                        <li value="1">
+                                                            <p>Select the <a href="../general%20topics/asmcorewindow.htm" style="font-weight: bold;">Menu</a> button <img src="/storage/app/media/Help/images/menu%20button.png">, then <b>Admin</b>, and then select <b>System Administration</b>. The System Administration window is displayed, with a menu of options available <a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="../../resources/images/sys%20admin%20menu.png"><img class="MCPopupThumbnail img imgthumbnail" data-mc-width="780" data-mc-height="488" src="/storage/app/media/Help/images/sys%20admin%20menu_thumb_0_48.png" tabindex=""></a>. In the Explorer pane, select <b>Service Level Management</b>.</p>
+                                                        </li>
+                                                        <li value="2">Select <b>Agreement Selection Priority</b> to open the window.</li>
+                                                        <li value="3">To set up the agreement selection priority for calls, select the <span style="font-weight: bold;">Calls </span>option. (This is selected by default.) To set up the agreement selection priority for requests, select the <span style="font-weight: bold;">Workflow</span> option. </li>
+                                                        <li value="4">In the left-hand browse table, choose the selection priority you wish to make available as agreement selection criteria. The following priorities are available:</li>
+                                                        <p>
+                                                            </p>
+<table style="mc-table-style: url('../../resources/tablestyles/rep hdr row.css');" class="TableStyle-Table_with_Repeating_Header_Row TableStyle-Rep_Hdr_Row" cellspacing="0">
+                                                                <col class="TableStyle-Rep_Hdr_Row-Column-Column1">
+                                                                <col class="TableStyle-Rep_Hdr_Row-Column-Column2">
+                                                                <thead>
+                                                                    <tr class="TableStyle-Rep_Hdr_Row-Head-Header1">
+                                                                        <th class="TableStyle-Rep_Hdr_Row-HeadE-Column1-Header1">
+                                                                            <p>Calls</p>
+                                                                        </th>
+                                                                        <th class="TableStyle-Rep_Hdr_Row-HeadD-Column2-Header1">
+                                                                            <p>Workflow</p>
+                                                                        </th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                        <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                            <p>Config Item</p>
+                                                                        </td>
+                                                                        <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                            <p>Config Item
+                    </p>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                        <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                            <p>User</p>
+                                                                        </td>
+                                                                        <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                            <p>User</p>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                        <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                            <p>Organization</p>
+                                                                        </td>
+                                                                        <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                            <p>Organization</p>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                        <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                            <p>Config Item Service Level</p>
+                                                                        </td>
+                                                                        <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                            <p>Config Item Service Level
+                    </p>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                        <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                            <p>Location</p>
+                                                                        </td>
+                                                                        <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                            <p>Location</p>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                        <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                            <p>Type</p>
+                                                                        </td>
+                                                                        <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                            <p>Request Type</p>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                        <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                            <p>Service</p>
+                                                                        </td>
+                                                                        <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                            <p>Service</p>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                        <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                            <p>Business Service</p>
+                                                                        </td>
+                                                                        <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                            <p>Workflow Template</p>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                        <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                            <p>Priority</p>
+                                                                        </td>
+                                                                        <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                            <p> </p>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                        <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                            <p>VIP</p>
+                                                                        </td>
+                                                                        <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                            <p>VIP</p>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                        <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                            <p>Service Action</p>
+                                                                        </td>
+                                                                        <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                            <p>Service Action</p>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                        <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                            <p>Service Bundle</p>
+                                                                        </td>
+                                                                        <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                            <p>Service Bundle</p>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                        <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                            <p>Service Level – Service Action</p>
+                                                                        </td>
+                                                                        <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                            <p>Service Level – Service Action</p>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                        <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                            <p>Service Level – Service Bundle</p>
+                                                                        </td>
+                                                                        <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                            <p>Service Level – Service Bundle</p>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                        <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                            <p>Rules Builder</p>
+                                                                        </td>
+                                                                        <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                            <p>Rules Builder</p>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                        <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                            <p>Org. Service Level</p>
+                                                                        </td>
+                                                                        <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                            <p>Org. Service Level</p>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                        <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                            <p>Person Service Level</p>
+                                                                        </td>
+                                                                        <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                            <p>Person Service Level</p>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                        <td class="TableStyle-Rep_Hdr_Row-BodyB-Column1-Body1">
+                                                                            <p>Service Level – Service</p>
+                                                                        </td>
+                                                                        <td class="TableStyle-Rep_Hdr_Row-BodyA-Column2-Body1">
+                                                                            <p>Service Level – Service</p>
+                                                                        </td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        
+                                                        <li value="5">Select <img src="/storage/app/media/Help/images/add%20button%20with%20arrows.png"> or double-click the priority. </li>
+                                                        <p class="note">You do not have to include all of these options in your priority list. </p>
+                                                        <li value="6">To remove an added selection priority, select it in the right-hand browse table. Select  <img src="/storage/app/media/Help/images/remove%20button%20with%20arrows.png"> or double-click. </li>
+                                                        <p class="warning" style="list-style-type: disc;">You should only remove a field from the list if you are sure you do not want <span class="GeneralVariablesCoreName">ASM Core</span> to search against that field when looking for an agreement. </p>
+                                                        <li value="7">Use  <img src="/storage/app/media/Help/images/move%20up%20word%20button.png"> and <img src="/storage/app/media/Help/images/move%20down%20word%20button.png"> to specify the order in which you want the criteria to be evaluated when <span class="GeneralVariablesCoreName">ASM Core</span> searches for a matching agreement to apply. </li>
+                                                        <li value="8">Select <img src="/storage/app/media/Help/images/save%20button.png">  to save the changes. Provide the <a href="../general%20topics/change%20reasons.htm">Change Reasons</a> if prompted to do so.</li>
+                                                    </ol>
+                                                

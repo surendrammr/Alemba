@@ -1,0 +1,222 @@
+[viewBag]
+title = "Managing Integration"
+url = "/help/topics/integration/managing-integration"
+layout = "help"
+is_hidden = 0
+navigation_hidden = 0
+==
+                                                    <h1>Managing Integration</h1>
+                                                    <p>There are numerous third party applications and technologies to discover and maintain information about many of these external resources. <span class="GeneralVariablesCoreName">ASM Core</span> provides a common Integration Platform to set up various types of integration with external applications and technologies with a view to automate the transfer of information (for the resolution of calls or the completion of tasks, for example), the management of alerts across different systems, and the population of the <span class="GeneralVariablesCoreName">ASM Core</span> CMDB with externally discovered resources.</p>
+                                                    <p>The <span class="GeneralVariablesCoreName">ASM Core</span> Integration Platform encapsulates the following capabilities:</p>
+                                                    <table style="mc-table-style: url('../../resources/tablestyles/scenario table.css');" class="TableStyle-scenario_table" cellspacing="0">
+                                                        <col class="TableStyle-scenario_table-Column-Column1">
+                                                        <col class="TableStyle-scenario_table-Column-Column2">
+                                                        <tbody>
+                                                            <tr class="TableStyle-scenario_table-Body-Body1">
+                                                                <td class="TableStyle-scenario_table-BodyE-Column1-Body1">
+                                                                    <p><a href="configuring%20the%20federated.htm">The Federated CMDB</a>
+                                                                    </p>
+                                                                </td>
+                                                                <td class="TableStyle-scenario_table-BodyD-Column2-Body1">
+                                                                    <p>This capability enables you to communicate with external applications (network discovery tools or LDAP-compliant directory servers) in order to discover resources on these applications. Once detected, those resources can be imported into <span class="GeneralVariablesCoreName">ASM Core</span> as CMDB records or linked to existing CMDB records.</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-scenario_table-Body-Body1">
+                                                                <td class="TableStyle-scenario_table-BodyE-Column1-Body1">
+                                                                    <p><a href="managing%20events.htm">Event Management</a> </p>
+                                                                </td>
+                                                                <td class="TableStyle-scenario_table-BodyD-Column2-Body1">
+                                                                    <p>This capability enables <span class="GeneralVariablesCoreName">ASM Core</span> to handle incoming alerts received from network monitoring tools and track the progress of these alerts through calls or requests.</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-scenario_table-Body-Body1">
+                                                                <td class="TableStyle-scenario_table-BodyE-Column1-Body1">
+                                                                    <p><a href="configuring%20inbound%20and%20outbound.htm">Incoming and Outgoing Actions</a> </p>
+                                                                </td>
+                                                                <td class="TableStyle-scenario_table-BodyD-Column2-Body1">
+                                                                    <p>This capability enables <span class="GeneralVariablesCoreName">ASM Core</span> to handle actions received from external applications such as other Service Desk systems or initiate items such as calls and tasks in other applications.</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-scenario_table-Body-Body1">
+                                                                <td class="TableStyle-scenario_table-BodyB-Column1-Body1">Service Desk Actions</td>
+                                                                <td class="TableStyle-scenario_table-BodyA-Column2-Body1">This capability enables <span class="GeneralVariablesCoreName">ASM Core</span> to handle the actions received from and sent to external applications such as other Service Desk systems, to create and update calls in <span class="GeneralVariablesProductName">ASM</span> and the external application.</td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <h2>The Role of Connectors</h2>
+                                                    <p>Communication with supported external applications is performed through a series of connectors (one per external application) supplied with <span class="GeneralVariablesCoreName">ASM Core</span> and which must be installed on the <span class="GeneralVariablesCoreName">ASM Core</span> server.</p>
+                                                    <p class="note">The list of connectors to supported external applications is available <a href="../connectors/coreconnectors.htm">here</a>.</p>
+                                                    <h2>Administrator and Analysts</h2>
+                                                    <p>Once a connector is installed, the system administrator must:</p>
+                                                    <ul>
+                                                        <li value="1">
+<a href="configuring%20integ%20source.htm">Configure sources</a>, which are instances of the connector or external system in <span class="GeneralVariablesCoreName">ASM Core</span>
+</li>
+                                                        <li value="2">
+<a href="setting%20up%20the%20integration.htm">Enable and further configure</a> each module of the Integration Platform</li>
+                                                        <li value="3">
+<a href="setting%20up%20the%20integration.htm">Set up the appropriate security rights for analysts</a> to manage external resources, events and Inbound and Outbound Actions.</li>
+                                                    </ul>
+                                                    <h2>Terms and Concepts</h2>
+                                                    <p>Before you read about configuring the Integration Platform on your <span class="GeneralVariablesSystemName">ASM System</span>, it is important that you become familiar with the following terms and concepts.
+</p>
+                                                    <h3>Integration Platform
+</h3>
+                                                    <table class="TableStyle-scenario_table" style="mc-table-style: url('../../resources/tablestyles/scenario table.css');" cellspacing="0">
+                                                        <col class="TableStyle-scenario_table-Column-Column1">
+                                                        <col class="TableStyle-scenario_table-Column-Column2">
+                                                        <tbody>
+                                                            <tr class="TableStyle-scenario_table-Body-Body1">
+                                                                <td class="TableStyle-scenario_table-BodyE-Column1-Body1">Connector	</td>
+                                                                <td class="TableStyle-scenario_table-BodyD-Column2-Body1">A connector provides an interface between <span class="GeneralVariablesCoreName">ASM Core</span> and an external application. Each application that needs to be integrated with <span class="GeneralVariablesCoreName">ASM Core</span> requires a connector.  Connectors are .NET Assemblies that are designed to expose data through code in a format that is not application-specific. Therefore, connectors can be customized to enable integration with any external application.
+</td>
+                                                            </tr>
+                                                            <tr class="TableStyle-scenario_table-Body-Body1">
+                                                                <td class="TableStyle-scenario_table-BodyB-Column1-Body1">Source	</td>
+                                                                <td class="TableStyle-scenario_table-BodyA-Column2-Body1">A source is configured for each external system with which you want <span class="GeneralVariablesCoreName">ASM Core</span> to communicate. It represents an “instance” of the external application within <span class="GeneralVariablesCoreName">ASM Core</span>. 
+For integration with the Federated CMDB, a source is the system to which <span class="GeneralVariablesCoreName">ASM Core</span> can connect to import objects discovered by a network discovery tool into <span class="GeneralVariablesCoreName">ASM Core</span> or import users from a directory server. 
+For Event Management, a source is the system from which events are received (for example, a network monitoring tool monitoring the IT infrastructure). 
+For Inbound and Outbound Actions, a source is the system to or from which Actions are sent. It can be, for example, a procurement system, a Service Desk system or another <span class="GeneralVariablesSystemName">ASM System</span>.
+</td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <h3>Federated CMDB
+</h3>
+                                                    <table class="TableStyle-scenario_table" style="mc-table-style: url('../../resources/tablestyles/scenario table.css');margin-left: 0;margin-right: auto;" cellspacing="0">
+                                                        <col class="TableStyle-scenario_table-Column-Column1">
+                                                        <col class="TableStyle-scenario_table-Column-Column2">
+                                                        <tbody>
+                                                            <tr class="TableStyle-scenario_table-Body-Body1">
+                                                                <td class="TableStyle-scenario_table-BodyE-Column1-Body1">Federated CMDB</td>
+                                                                <td class="TableStyle-scenario_table-BodyD-Column2-Body1">The Federated CMDB can be viewed as an extension to an organization’s Configuration Management Database (CMDB). The CMDB is a virtual repository for your organization’s assets. The Federated CMDB enables you to import external resources from external applications and add them to your CMDB or link them to existing CMDB items.
+The Federated CMDB is distinct from the CMDB.
+</td>
+                                                            </tr>
+                                                            <tr class="TableStyle-scenario_table-Body-Body1">
+                                                                <td class="TableStyle-scenario_table-BodyE-Column1-Body1">Primary or External Resources</td>
+                                                                <td class="TableStyle-scenario_table-BodyD-Column2-Body1">These are the principal objects that a connector is responsible for discovering in a source. A Primary Resource can possess child objects (Secondary Resources) that represent the components of that Resource.
+An External Resource can include a person record discovered on a directory server source.</td>
+                                                            </tr>
+                                                            <tr class="TableStyle-scenario_table-Body-Body1">
+                                                                <td class="TableStyle-scenario_table-BodyE-Column1-Body1">Definitive Resource Record</td>
+                                                                <td class="TableStyle-scenario_table-BodyD-Column2-Body1">
+	For each Primary Resource discovered, the <span class="GeneralVariablesCoreName">ASM Core</span> database stores a cached replica of that object known as a Definitive Resource Record. 
+Neither Secondary Resources nor their properties are cached.
+</td>
+                                                            </tr>
+                                                            <tr class="TableStyle-scenario_table-Body-Body1">
+                                                                <td class="TableStyle-scenario_table-BodyE-Column1-Body1">Cached Resource Search</td>
+                                                                <td class="TableStyle-scenario_table-BodyD-Column2-Body1">This is a type of external resources search that returns only those external resources that have been imported into <span class="GeneralVariablesCoreName">ASM Core</span> and are not excluded.</td>
+                                                            </tr>
+                                                            <tr class="TableStyle-scenario_table-Body-Body1">
+                                                                <td class="TableStyle-scenario_table-BodyB-Column1-Body1">Scan	</td>
+                                                                <td class="TableStyle-scenario_table-BodyA-Column2-Body1">Sources can be scanned either as a one-off or regularly in order to discover resources on the external system and the links between these resources.</td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <h3>			
+
+
+Event Management
+</h3>
+                                                    <table class="TableStyle-scenario_table" style="mc-table-style: url('../../resources/tablestyles/scenario table.css');margin-left: 0;margin-right: auto;" cellspacing="0">
+                                                        <col class="TableStyle-scenario_table-Column-Column1">
+                                                        <col class="TableStyle-scenario_table-Column-Column2">
+                                                        <tbody>
+                                                            <tr class="TableStyle-scenario_table-Body-Body1">
+                                                                <td class="TableStyle-scenario_table-BodyE-Column1-Body1">Event	</td>
+                                                                <td class="TableStyle-scenario_table-BodyD-Column2-Body1">An event is an alert or notification generated on an external source which may lead to a call or request being logged in <span class="GeneralVariablesCoreName">ASM Core</span>.</td>
+                                                            </tr>
+                                                            <tr class="TableStyle-scenario_table-Body-Body1">
+                                                                <td class="TableStyle-scenario_table-BodyB-Column1-Body1">
+                                                                    <p>Incoming and Outgoing Transactions</p>
+                                                                </td>
+                                                                <td class="TableStyle-scenario_table-BodyA-Column2-Body1">Throughout its lifecycle, an event goes through a series of transactions as information is exchanged between <span class="GeneralVariablesCoreName">ASM Core</span> and the external system. A transaction is incoming when it is received by <span class="GeneralVariablesCoreName">ASM Core</span> from the external source and outgoing when it is sent from <span class="GeneralVariablesCoreName">ASM Core</span> to the source.
+For more details on event transactions, see <a href="%7B%7B%20'help-managing-events#About'%7CstaticPage%20%7D%7D#About">About Event Transactions</a>.
+</td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <h3>
+Inbound and Outbound Actions
+</h3>
+                                                    <table class="TableStyle-scenario_table" style="mc-table-style: url('../../resources/tablestyles/scenario table.css');margin-left: 0;margin-right: auto;" cellspacing="0">
+                                                        <col class="TableStyle-scenario_table-Column-Column1">
+                                                        <col class="TableStyle-scenario_table-Column-Column2">
+                                                        <tbody>
+                                                            <tr class="TableStyle-scenario_table-Body-Body1">
+                                                                <td class="TableStyle-scenario_table-BodyE-Column1-Body1">Action</td>
+                                                                <td class="TableStyle-scenario_table-BodyD-Column2-Body1">An Action is either initiated by <span class="GeneralVariablesCoreName">ASM Core</span> or the Source with which it is integrated, and results in various actions in <span class="GeneralVariablesCoreName">ASM Core</span> or the Source. The lifecycle of an Action consists of Messages.</td>
+                                                            </tr>
+                                                            <tr class="TableStyle-scenario_table-Body-Body1">
+                                                                <td class="TableStyle-scenario_table-BodyE-Column1-Body1">Outbound Action</td>
+                                                                <td class="TableStyle-scenario_table-BodyD-Column2-Body1">This is an action initiated by <span class="GeneralVariablesCoreName">ASM Core</span> which triggers a response on the Source (for example, when a call or external supplier task is forwarded externally).</td>
+                                                            </tr>
+                                                            <tr class="TableStyle-scenario_table-Body-Body1">
+                                                                <td class="TableStyle-scenario_table-BodyE-Column1-Body1">Inbound Action</td>
+                                                                <td class="TableStyle-scenario_table-BodyD-Column2-Body1">This is an action initiated by the Source which triggers a response in <span class="GeneralVariablesCoreName">ASM Core</span> (for example, when the source triggers a call or request in <span class="GeneralVariablesCoreName">ASM Core</span>).</td>
+                                                            </tr>
+                                                            <tr class="TableStyle-scenario_table-Body-Body1">
+                                                                <td class="TableStyle-scenario_table-BodyE-Column1-Body1">Messages	</td>
+                                                                <td class="TableStyle-scenario_table-BodyD-Column2-Body1">Throughout the lifecycle of an Inbound or Outbound Action, <span class="GeneralVariablesCoreName">ASM Core</span> and the external system exchange a series of messages to inform each other of the status of the Action. A message is incoming when it is received by <span class="GeneralVariablesCoreName">ASM Core</span> from the external source and outgoing when it is sent from <span class="GeneralVariablesCoreName">ASM Core</span> to the source.
+For more details on messages for Inbound and Outbound Actions, see <a href="%7B%7B%20'help-managing-actions#The'%7CstaticPage%20%7D%7D#The">The Lifecycle of an Action</a>.
+</td>
+                                                            </tr>
+                                                            <tr class="TableStyle-scenario_table-Body-Body1">
+                                                                <td class="TableStyle-scenario_table-BodyE-Column1-Body1">Creator	</td>
+                                                                <td class="TableStyle-scenario_table-BodyD-Column2-Body1">The name given to the system which sends the initial CREATE message (the message which generates the Inbound or Outbound Action).
+</td>
+                                                            </tr>
+                                                            <tr class="TableStyle-scenario_table-Body-Body1">
+                                                                <td class="TableStyle-scenario_table-BodyE-Column1-Body1">Receiver	</td>
+                                                                <td class="TableStyle-scenario_table-BodyD-Column2-Body1">The name given to the system which receives the initial CREATE message (the message which generates the Inbound or Outbound Action).
+</td>
+                                                            </tr>
+                                                            <tr class="TableStyle-scenario_table-Body-Body1">
+                                                                <td class="TableStyle-scenario_table-BodyE-Column1-Body1">CREATE</td>
+                                                                <td class="TableStyle-scenario_table-BodyD-Column2-Body1">This type of Message can be sent by a Creator to initiate an Action. For Outbound Actions, this message is sent when a call or External Supplier task is forwarded to the external supplier linked to the Outbound Action, or when an Outbound Action task is activated in a request. For Inbound Actions, this message logs a call or request in <span class="GeneralVariablesCoreName">ASM Core</span>.</td>
+                                                            </tr>
+                                                            <tr class="TableStyle-scenario_table-Body-Body1">
+                                                                <td class="TableStyle-scenario_table-BodyE-Column1-Body1">RECEIVE</td>
+                                                                <td class="TableStyle-scenario_table-BodyD-Column2-Body1">An Incoming Transaction in which the Event generated on the Source is sent to <span class="GeneralVariablesCoreName">ASM Core</span>. <span class="GeneralVariablesCoreName">ASM Core</span> may then log a call or request depending on how the event is mapped.</td>
+                                                            </tr>
+                                                            <tr class="TableStyle-scenario_table-Body-Body1">
+                                                                <td class="TableStyle-scenario_table-BodyE-Column1-Body1">ACKNOWLEDGE</td>
+                                                                <td class="TableStyle-scenario_table-BodyD-Column2-Body1">An Outgoing Transaction in which <span class="GeneralVariablesCoreName">ASM Core</span> acknowledges the Event received from the Source.</td>
+                                                            </tr>
+                                                            <tr class="TableStyle-scenario_table-Body-Body1">
+                                                                <td class="TableStyle-scenario_table-BodyE-Column1-Body1">NOTIFY</td>
+                                                                <td class="TableStyle-scenario_table-BodyD-Column2-Body1">This type of Message can be sent by both the Creator and the Receiver. For Outbound Actions, this message is triggered when a note is added to a call or task that initiated the Outbound Action. For Inbound Actions, the message can lead to <span class="GeneralVariablesCoreName">ASM Core</span> adding a note to a call or request, or taking no action.</td>
+                                                            </tr>
+                                                            <tr class="TableStyle-scenario_table-Body-Body1">
+                                                                <td class="TableStyle-scenario_table-BodyE-Column1-Body1">UPDATE</td>
+                                                                <td class="TableStyle-scenario_table-BodyD-Column2-Body1">An Incoming or Outgoing Transaction in which a call or request is updated in <span class="GeneralVariablesCoreName">ASM Core</span> by an analyst who takes action on the call or request. The Outgoing Transaction can be configured to update the call or request, add a note to the call or request, or take no action on the call or request.</td>
+                                                            </tr>
+                                                            <tr class="TableStyle-scenario_table-Body-Body1">
+                                                                <td class="TableStyle-scenario_table-BodyE-Column1-Body1">CANCEL</td>
+                                                                <td class="TableStyle-scenario_table-BodyD-Column2-Body1">The Creator sends this message to stop further processing of the Action by the Receiver.</td>
+                                                            </tr>
+                                                            <tr class="TableStyle-scenario_table-Body-Body1">
+                                                                <td class="TableStyle-scenario_table-BodyE-Column1-Body1">RESOLVE</td>
+                                                                <td class="TableStyle-scenario_table-BodyD-Column2-Body1">An Incoming Transaction to inform <span class="GeneralVariablesCoreName">ASM Core</span> that the Event has been resolved on the Source. This transaction can be configured to close the call or request, add a note to the call or request, or take no action on the call or request.</td>
+                                                            </tr>
+                                                            <tr class="TableStyle-scenario_table-Body-Body1">
+                                                                <td class="TableStyle-scenario_table-BodyE-Column1-Body1">DELETE</td>
+                                                                <td class="TableStyle-scenario_table-BodyD-Column2-Body1">An Incoming Transaction to inform <span class="GeneralVariablesCoreName">ASM Core</span> that the Event is no longer valid. This transaction can be configured to close the call or request, add a note to the call or request, or take no action on the call or request.</td>
+                                                            </tr>
+                                                            <tr class="TableStyle-scenario_table-Body-Body1">
+                                                                <td class="TableStyle-scenario_table-BodyE-Column1-Body1">COMPLETE</td>
+                                                                <td class="TableStyle-scenario_table-BodyD-Column2-Body1">This message is sent by the Receiver when an Action is successfully performed.</td>
+                                                            </tr>
+                                                            <tr class="TableStyle-scenario_table-Body-Body1">
+                                                                <td class="TableStyle-scenario_table-BodyE-Column1-Body1">NOT COMPLETE</td>
+                                                                <td class="TableStyle-scenario_table-BodyD-Column2-Body1">This message is sent by the Receiver when the Action failed.</td>
+                                                            </tr>
+                                                            <tr class="TableStyle-scenario_table-Body-Body1">
+                                                                <td class="TableStyle-scenario_table-BodyB-Column1-Body1">CLEAR</td>
+                                                                <td class="TableStyle-scenario_table-BodyA-Column2-Body1">An Outgoing Transaction to inform the Source that the call or request has been closed in <span class="GeneralVariablesCoreName">ASM Core</span>.</td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                

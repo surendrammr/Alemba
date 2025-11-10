@@ -1,0 +1,761 @@
+[viewBag]
+title = "Oracle Directory Server Connector"
+url = "/help/topics/connectors/oracledirectoryconnector"
+layout = "help"
+is_hidden = 0
+navigation_hidden = 0
+==
+                                                    <h1>Oracle Directory Server Connector</h1>
+                                                    <p>This section of the documentation contains technical specification about the  Oracle Directory Server Connector that is implemented to link <span class="GeneralVariablesCoreName">ASM Core</span> and Oracle Directory Server. It describes the details of the third-party application, that is, Oracle Directory Server including:</p>
+                                                    <ul>
+                                                        <li class="Bulleted_12" value="1">The name of the .NET assembly file</li>
+                                                        <li class="Bulleted_12" value="2">Connection methodology </li>
+                                                        <li class="Bulleted_12" value="3">The resource and link types that can be discovered on the application</li>
+                                                        <li class="Bulleted_12" value="4">The attributes of each resource and link types that can be imported into Service Manager version Configuration Management Database (CMDB).</li>
+                                                    </ul>
+                                                    <p class="note">For compatibility and version support details, refer to the <a href="connector%20matrix.htm" class="MCXref xref">ASM Connector Matrix</a>.</p>
+                                                    <p class="note">You should familiarize yourself with the information in <a href="connector%20installation%20guide.htm" class="MCXref xref">Installing Connectors</a> before installing any connectors, and read the <a href="../integration/integrate.htm" class="MCXref xref">Integration</a> topics for more information on how to configure them.</p>
+                                                    <h2>Use Case Scenario</h2>
+                                                    <p>Directory servers, such as Oracle Directory Server, store information about an organization’s users in groups and organizational units. <span class="GeneralVariablesCoreName">ASM Core</span> person entities are defined as person records. These persons can act as Users, analysts, or both. Organizations that use <span class="GeneralVariablesCoreName">ASM Core</span> may want to synchronize these sources to import users from directory servers into <span class="GeneralVariablesCoreName">ASM Core</span> as persons. </p>
+                                                    <p>The table below presents an integration scenario based on the  Oracle Directory Server Connector.</p>
+                                                    <table class="TableStyle-scenario_table" style="mc-table-style: url('../../resources/tablestyles/scenario table.css');margin-left: 0;margin-right: auto;" cellspacing="0">
+                                                        <col class="TableStyle-scenario_table-Column-Column1">
+                                                        <col class="TableStyle-scenario_table-Column-Column2">
+                                                        <tr class="TableStyle-scenario_table-Body-Body1">
+                                                            <td class="TableStyle-scenario_table-BodyE-Column1-Body1">Scenario</td>
+                                                            <td class="TableStyle-scenario_table-BodyD-Column2-Body1">An organization maintains a list of all its employees in Oracle Directory Server. The groups are configured in Oracle Directory Server based on the department to which an employee belongs. One such group in Oracle Directory Server is the Help Desk group.</td>
+                                                        </tr>
+                                                        <tr class="TableStyle-scenario_table-Body-Body1">
+                                                            <td class="TableStyle-scenario_table-BodyE-Column1-Body1">Goal</td>
+                                                            <td class="TableStyle-scenario_table-BodyD-Column2-Body1">The organization intends to import all users classified under the Help Desk group into <span class="GeneralVariablesCoreName">ASM Core</span> as analysts.</td>
+                                                        </tr>
+                                                        <tr class="TableStyle-scenario_table-Body-Body1">
+                                                            <td class="TableStyle-scenario_table-BodyE-Column1-Body1">Action</td>
+                                                            <td class="TableStyle-scenario_table-BodyD-Column2-Body1">The  Oracle Directory Server Connector is installed, the source is created, the resource type mappings are set up, the Oracle group is specified and the Oracle users are imported in <span class="GeneralVariablesCoreName">ASM Core</span> as persons.</td>
+                                                        </tr>
+                                                    </table>
+                                                    <h2>Connector Description</h2>
+                                                    <p>The  Oracle Directory Server Connector is part of the base kit of <span class="GeneralVariablesCoreName">ASM Core</span>. As soon as it is installed, the connector is available for configuration and use from the Integration menu. Therefore, there is no need to proceed with its installation.</p>
+                                                    <p class="note">This connector must be scheduled.</p>
+                                                    <p>The table below provides a description of the  Oracle Directory Server Connector.<br></p>
+                                                    <table class="TableStyle-Rep_Hdr_Row" style="mc-table-style: url('../../resources/tablestyles/rep hdr row.css');" cellspacing="0">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column1">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column2">
+                                                        <thead>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Head-Header1">
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column1-Header1">
+                                                                    <p class="Strong">Information fields</p>
+                                                                </th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadD-Column2-Header1">
+                                                                    <p class="Strong">Name</p>
+                                                                </th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1" style="font-weight: bold;">
+                                                                    <p>Connector </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p>LDAP Oracle  &lt;-&gt; <span class="GeneralVariablesCoreName">ASM Core</span></p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1" style="font-weight: bold;">
+                                                                    <p>Third-party application</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p>Oracle Directory Server</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1" style="font-weight: bold;">
+                                                                    <p>Assembly</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p>Infra.Connector.LDAP.Sun.dll</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1" style="font-weight: bold;">
+                                                                    <p>Connector class</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p>SunConnector</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1" style="font-weight: bold;">
+                                                                    <p>Configuration file</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p>Infra.Connector.LDAP.Sun.icnf</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyB-Column1-Body1" style="font-weight: bold;">
+                                                                    <p>Connection methodology</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyA-Column2-Body1">
+                                                                    <p>LDAP v3, by using Microsoft .NET System.DirectoryServices library</p>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <h2>Connection Parameters</h2>
+                                                    <p>The table below provides a description of the Oracle Directory Server connection parameters.</p>
+                                                    <table class="TableStyle-Rep_Hdr_Row" style="mc-table-style: url('../../resources/tablestyles/rep hdr row.css');" cellspacing="0">
+                                                        <col style="width: 96pt;" class="TableStyle-Rep_Hdr_Row-Column-Column1">
+                                                        <col style="width: 341pt;" class="TableStyle-Rep_Hdr_Row-Column-Column2">
+                                                        <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                            <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                <p class="Strong">Parameters</p>
+                                                            </td>
+                                                            <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                <p class="Strong">Description</p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                            <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                <p>LDAP Server Path </p>
+                                                                <p> </p>
+                                                            </td>
+                                                            <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                <p>The full LDAP path of the directory server, incorporating:</p>
+                                                                <ul class="ul_21">
+                                                                    <li class="Bulleted_1" value="1">Protocol, usually LDAP://</li>
+                                                                    <li class="Bulleted_1" value="2">
+                                                                        <p class="note">This URL is only valid if Integrated Security is disabled for your system.</p>
+                                                                    </li>
+                                                                    <li class="Bulleted_1" value="3">Server</li>
+                                                                    <li class="Bulleted_1" value="4">Portal number (optional)</li>
+                                                                    <li class="note" value="5">
+                                                                        <p class="note">This URL is only valid if Integrated Security is disabled for your system.</p>
+                                                                    </li>
+                                                                    <li class="Bulleted_1" value="6">Root naming context</li>
+                                                                </ul>
+                                                                <p>Expanded examples:</p>
+                                                                <p>Server Bind</p>
+                                                                <p>LDAP://myldapserver.mydomain.com/dc=mydomain,dc=com</p>
+                                                                <p>Server-less Bind</p>
+                                                                <p>LDAP://dc=mydomain,dc=com</p>
+                                                                <p>Using custom port no 80389:</p>
+                                                                <p>LDAP://myldapserver.mydomain.com: 80389/dc=mydomain,dc=com</p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                            <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                <p>User DN/ID</p>
+                                                                <p> </p>
+                                                            </td>
+                                                            <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                <p>User DN/ID must be a distinguished name, for example, CN=User 1, DC=mydomain, and so on.</p>
+                                                                <p class="note">If this is not provided, the connector will use the credentials of the executing accounts. In this case, it will use the credentials of web server and Integration service. Ensure that both these accounts have appropriate rights.</p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                            <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                <p>Password</p>
+                                                            </td>
+                                                            <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                <p>Provided</p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                            <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                <p>Server Bind</p>
+                                                            </td>
+                                                            <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                <p>Checkbox</p>
+                                                                <p>Select this option if the connection string provides a specific server for optimal performance.</p>
+                                                                <p class="note">Do not select this option for server-less connection strings.</p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                            <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                <p>Use SSL</p>
+                                                            </td>
+                                                            <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                <p>Checkbox</p>
+                                                                <p>Indicates that communication should use SSL.</p>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                    <p>The  Oracle Directory Server Connector and other LDAP connectors permit users on one source to be members of groups on other sources, scheduled within the same integration schedule. When a group member is found, their distinguished name is used to ascertain to which source they belong to. Only sources with a defined root naming context are considered for selection. The user is associated with the source with the longest root naming context contained at the end of the user’s DN. <a href="#_Root_naming_assessment" class="MCXref xref">Root Naming Assessment</a> provides more information.</p>
+                                                    <p class="note">The <b>Update Date</b> field in the information section of the person record shows the date of the last update in the <span class="GeneralVariablesDatabaseName">ASM database</span> and not the last date the user had modified in Oracle Directory Server database.</p>
+                                                    <h2>Resolve Functionality</h2>
+                                                    <p>The Resolve functionality is a functionality that can be accessed through the Federated CMDB Integration Platform when setting up mappings between third-party resource fields and <span class="GeneralVariablesCoreName">ASM Core</span> fields.</p>
+                                                    <p>Oracle Directory Server allows specifying a manager value for every user. The Resolve functionality handles this particular Oracle <b>Manager</b> field in the following way:</p>
+                                                    <ul>
+                                                        <li class="Bulleted_12" value="1">
+<b>Background:</b> One Oracle Directory Server user possesses one Oracle Directory Server Manager.</li>
+                                                        <li class="Bulleted_12" value="2">
+<b>Expected operation:</b> In the context of the  Oracle Directory Server Connector, the Resolve capability allows the importation of both user and its manager, and also the creation of a link between them. In case, the manager cannot be found or imported or if it is not mapped, then the Resolve functionality would resort to a default user-defined value for the <b>Manager</b> field in the <span class="GeneralVariablesCoreName">ASM Core</span> user record.</li>
+                                                        <li class="note" value="3">The <b>Manager</b> field is not a default field in Oracle. Administrators need to activate this Oracle attributes in case the Resolve function is to be used during the importation process.</li>
+                                                    </ul>
+                                                    <h2>Miscellaneous</h2>
+                                                    <p>Although it is possible to customize the Oracle Directory Server schema so that a unique user can have several managers, this aspect is not handled by the Resolve functionality.</p>
+                                                    <h2>Oracle Directory Server Base Mapping</h2>
+                                                    <p>Person records in <span class="GeneralVariablesCoreName">ASM Core</span> must be created with a minimum set of fields populated. The table below lists the recommended base field mappings that administrators should configure for all person mappings from Oracle. The left-hand column reflect the current field names as viewed in <span class="GeneralVariablesCoreName">ASM Core</span>.</p>
+                                                    <table class="TableStyle-FieldDesc" style="mc-table-style: url('../../resources/tablestyles/fielddesc.css');" cellspacing="0">
+                                                        <col style="width: 185pt;" class="TableStyle-FieldDesc-Column-Column1">
+                                                        <col style="width: 194pt;" class="TableStyle-FieldDesc-Column-Column2">
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-" style="font-weight: bold;">
+                                                                <p><span class="GeneralVariablesCoreName">ASM Core</span> person field</p>
+                                                            </td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-" style="font-weight: bold;">
+                                                                <p class="Strong">Oracle Directory Server user field</p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">
+                                                                <p>Login ID</p>
+                                                            </td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                <p>Login ID</p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">
+                                                                <p>User Qualified Name</p>
+                                                            </td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                <p>User Principal Name</p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">
+                                                                <p>Surname</p>
+                                                            </td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                <p>Surname</p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">
+                                                                <p>First Name</p>
+                                                            </td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                <p>First Name</p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">
+                                                                <p>Background</p>
+                                                            </td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                <p>Description</p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">
+                                                                <p>Email ID</p>
+                                                            </td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                <p>Email</p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">
+                                                                <p>Telephone</p>
+                                                            </td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                <p>Telephone</p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">
+                                                                <p>Job title</p>
+                                                            </td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                <p>Job Title</p>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                    <p> </p>
+                                                    <h1>LDAP authentication over SSL (LDAPS) to the Oracle Directory Server</h1>
+                                                    <p><span class="GeneralVariablesCoreName">ASM Core</span> has the ability to communicate to LDAP servers by using the SSL protocol. For this communication to succeed, the following must be taken into account:</p>
+                                                    <ul>
+                                                        <li value="1">Ensure that the keys are certified, properly signed, and stored in the appropriate category within the certificate store of the operating system.</li>
+                                                        <li value="2">Some third-party tools may allow communication through SSL without the following additional configurations. However, <span class="GeneralVariablesCoreName">ASM Core</span>'s reliance on this particular library forces the user to adhere to these steps.</li>
+                                                    </ul>
+                                                    <p class="note">If these conditions are not met, the connection will not be established without any clear indication of reason. The message Server is not operational will be displayed in the Eventlog.</p>
+                                                    <h3>On the Oracle Directory Server</h3>
+                                                    <p><span class="GeneralVariablesCoreName">ASM Core</span> uses a standard library of .NET, System.DirectoryServices. In order to use it, ensure that the correct root certificate is installed in the right place on the Oracle server.</p>
+                                                    <ul>
+                                                        <li value="1">Create and Export the certificate to the servers.</li>
+                                                        <li value="2">
+                                                            <p class="note">When creating the Root Certificate, Oracle administrators should ensure that the value entered in the Common Name field is the fully qualified domain name of the Directory Server.</p>
+                                                        </li>
+                                                        <li value="3">Install the root certificate. </li>
+                                                    </ul>
+                                                    <p class="Appendixtext_2"> </p>
+                                                    <h1>Root Certificate Installation for IIS</h1>
+                                                    <ol start="1">
+                                                        <li value="1">Click <b>Windows Start</b> &gt; <b>Run</b> and type <b>mmc</b>. </li>
+                                                        <li value="2">Click <b>File &gt; Add/Remove Snap-in</b>. </li>
+                                                        <li value="3">In the <b>Add/Remove Snap-in</b> window, click <b>Add</b> <a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="../../resources/images/connectors%20sun%20java%20root%20cert%201.png"><img class="MCPopupThumbnail img imgthumbnail" data-mc-width="414" data-mc-height="467" src="/storage/app/media/Help/images/connectors%20sun%20java%20root%20cert%201_thumb_0_48.png" tabindex=""></a>.</li>
+                                                        <li class="Bulleted_12" value="4">In the <b>Add Standalone Snap-in</b> dialog box, select <b>Certificates</b> from the list of Available Standalone snap-ins and then click <b>Add</b> <a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="../../resources/images/connectors%20sun%20java%20root%20cert%202.png"><img class="MCPopupThumbnail img imgthumbnail" data-mc-width="384" data-mc-height="396" src="/storage/app/media/Help/images/connectors%20sun%20java%20root%20cert%202_thumb_0_48.png" tabindex=""></a>.</li>
+                                                        <li class="Bulleted_12" value="5">In the <b>Certificate Snap-in</b> dialog box, select <b>Computer Account</b> <a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="../../resources/images/connectors%20sun%20java%20root%20cert%203.png"><img class="MCPopupThumbnail img imgthumbnail" data-mc-width="525" data-mc-height="389" src="/storage/app/media/Help/images/connectors%20sun%20java%20root%20cert%203_thumb_0_48.png" tabindex=""></a> and then click  <b>Next</b>. <br>
+</li>
+                                                        <li class="Bulleted_12" value="6">In the <b>Select Computer</b> dialog box, select <b>Local Computer</b> <a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="../../resources/images/connectors%20sun%20java%20root%20cert%204.png"><img class="MCPopupThumbnail img imgthumbnail" data-mc-width="525" data-mc-height="388" src="/storage/app/media/Help/images/connectors%20sun%20java%20root%20cert%204_thumb_0_48.png" tabindex=""></a> and then click <b>Finish</b>.<br>
+</li>
+                                                        <li class="Bulleted_12" value="7">Close the <b>Add Standalone Snap-in</b> dialog box and click <b>OK</b> in the <b>Add/Remove Snap-in</b> dialog box.</li>
+                                                        <li class="Bulleted_12" value="8">Right-click Trusted Root Certification Authorities and select <b>All Tasks &gt; Import</b> <a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="../../resources/images/connectors%20sun%20java%20root%20cert%205.png"><img class="MCPopupThumbnail img imgthumbnail" data-mc-width="484" data-mc-height="382" src="/storage/app/media/Help/images/connectors%20sun%20java%20root%20cert%205_thumb_0_48.png" tabindex=""></a>.<br>
+</li>
+                                                        <li class="Bulleted_12" value="9">In the <b>Certificate Import Wizard</b>, click <b>Next</b> <a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="../../resources/images/connectors%20sun%20java%20root%20cerrt%206.png"><img class="MCPopupThumbnail img imgthumbnail" data-mc-width="506" data-mc-height="389" src="/storage/app/media/Help/images/connectors%20sun%20java%20root%20cerrt%206_thumb_0_48.png" tabindex=""></a>.<br>
+</li>
+                                                        <li class="Bulleted_12" value="10">Browse and select the root certificate that you intend to import <a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="../../resources/images/connectors%20sun%20java%20root%20cert%207.png"><img class="MCPopupThumbnail img imgthumbnail" data-mc-width="503" data-mc-height="385" src="/storage/app/media/Help/images/connectors%20sun%20java%20root%20cert%207_thumb_0_48.png" tabindex=""></a> and then click <b>Next</b>.<br>
+</li>
+                                                        <li class="Bulleted_12" value="11">After the import process is over, click <b>Finish</b>. The root certificate is now installed. Ensure that the root certificate appears under <b>Trusted Root Certification Authorities</b>.</li>
+                                                    </ol>
+                                                    <p class="note">The <b class="crossref">Certificate Installation: Installing your IIS SSL certificate in Microsoft IIS</b> guide provides detail of the certificate installation.</p>
+                                                    <h1>Resource Types</h1>
+                                                    <p>The  Oracle Directory Server Connector allows for exposure and importation of users and their properties as follows:</p>
+                                                    <ul>
+                                                        <li value="1">
+<b>User:</b> The generic information on Oracle Directory Server users is given in the table below.</li>
+                                                        <p>
+                                                            </p>
+<table class="TableStyle-FieldDesc" style="mc-table-style: url('../../resources/tablestyles/fielddesc.css');margin-left: 0;margin-right: auto;" cellspacing="0">
+                                                                <col class="TableStyle-FieldDesc-Column-Column1">
+                                                                <col class="TableStyle-FieldDesc-Column-Column2">
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-" style="font-weight: bold;">
+                                                                        <p class="Strong">Information fields</p>
+                                                                    </td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-" style="font-weight: bold;">
+                                                                        <p class="Strong">Description</p>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">
+                                                                        <p>Mapped to</p>
+                                                                    </td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                        <p>objectClass=user </p>
+                                                                        <p>objectCategory=person</p>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">
+                                                                        <p>Description</p>
+                                                                    </td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                        <p>Represents a user stored within Oracle Directory Server</p>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">
+                                                                        <p>Must be received by Group</p>
+                                                                    </td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                        <p>True</p>
+                                                                    </td>
+                                                                </tr>
+                                                            </table>
+                                                        
+                                                        <li value="2">
+<b>Group types</b>: The Group concept is used to classify the Oracle Directory Server users into different categories. For example, one group for development, another group for documentation and so on. These groups can be of two types: Group and OU (Organizational Unit) as shown in the table below.</li>
+                                                        <li value="3">When importing Oracle users, the particular group from which you intend to import the users must be specified:</li>
+                                                        <p>
+                                                            </p>
+<table class="TableStyle-FieldDesc" style="mc-table-style: url('../../resources/tablestyles/fielddesc.css');margin-left: 0;margin-right: auto;" cellspacing="0">
+                                                                <col class="TableStyle-FieldDesc-Column-Column1">
+                                                                <col class="TableStyle-FieldDesc-Column-Column2">
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">
+                                                                        <p class="Strong">Group type</p>
+                                                                    </td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                        <p class="Strong">Object class</p>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">
+                                                                        <p>Group</p>
+                                                                    </td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                        <p>objectClass=group</p>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">
+                                                                        <p>OU</p>
+                                                                    </td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                        <p>objectClass=organizationalunit</p>
+                                                                    </td>
+                                                                </tr>
+                                                            </table>
+                                                        
+                                                        <li value="4">
+<b>Schema</b>: The schema is the list of attributes that are available for each individual Oracle user. The table below provides the list of schema and its description:</li>
+                                                        <p>
+                                                            </p>
+<table class="TableStyle-Rep_Hdr_Row" style="mc-table-style: url('../../resources/tablestyles/rep hdr row.css');" cellspacing="0">
+                                                                <col class="TableStyle-Rep_Hdr_Row-Column-Column1">
+                                                                <col class="TableStyle-Rep_Hdr_Row-Column-Column2">
+                                                                <col class="TableStyle-Rep_Hdr_Row-Column-Column1">
+                                                                <thead>
+                                                                    <tr class="TableStyle-Rep_Hdr_Row-Head-Header1">
+                                                                        <th class="TableStyle-Rep_Hdr_Row-HeadE-Column1-Header1">
+                                                                            <p class="Strong">Name displayed</p>
+                                                                        </th>
+                                                                        <th class="TableStyle-Rep_Hdr_Row-HeadE-Column2-Header1">
+                                                                            <p class="Strong">Data type</p>
+                                                                        </th>
+                                                                        <th class="TableStyle-Rep_Hdr_Row-HeadD-Column1-Header1">
+                                                                            <p class="Strong">Mapped to Oracle property</p>
+                                                                        </th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                        <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                            <p>Object GUID</p>
+                                                                        </td>
+                                                                        <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                            <p>string</p>
+                                                                        </td>
+                                                                        <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                            <p>GUID</p>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                        <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                            <p>Common Name</p>
+                                                                        </td>
+                                                                        <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                            <p>string</p>
+                                                                        </td>
+                                                                        <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                            <p>cn</p>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                        <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                            <p>Last Modified</p>
+                                                                        </td>
+                                                                        <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                            <p>dateTime</p>
+                                                                        </td>
+                                                                        <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                            <p>modifytimestamp</p>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                        <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                            <p>Surname</p>
+                                                                        </td>
+                                                                        <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                            <p>string</p>
+                                                                        </td>
+                                                                        <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                            <p>sn</p>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                        <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                            <p>First Name</p>
+                                                                        </td>
+                                                                        <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                            <p>string</p>
+                                                                        </td>
+                                                                        <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                            <p>givenName</p>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                        <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                            <p>Description</p>
+                                                                        </td>
+                                                                        <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                            <p>string</p>
+                                                                        </td>
+                                                                        <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                            <p>description</p>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                        <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                            <p>Login ID</p>
+                                                                        </td>
+                                                                        <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                            <p>string</p>
+                                                                        </td>
+                                                                        <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                            <p>uid</p>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                        <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                            <p>User Distinguished Name</p>
+                                                                        </td>
+                                                                        <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                            <p>string</p>
+                                                                        </td>
+                                                                        <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                            <p>dn</p>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                        <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                            <p>Email</p>
+                                                                        </td>
+                                                                        <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                            <p>string</p>
+                                                                        </td>
+                                                                        <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                            <p>mail</p>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                        <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                            <p>Employee No</p>
+                                                                        </td>
+                                                                        <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                            <p>string</p>
+                                                                        </td>
+                                                                        <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                            <p>employeeNumber</p>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                        <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                            <p>Postal Address</p>
+                                                                        </td>
+                                                                        <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                            <p>string</p>
+                                                                        </td>
+                                                                        <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                            <p>sa</p>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                        <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                            <p>Postal Address Line 1</p>
+                                                                        </td>
+                                                                        <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                            <p>string</p>
+                                                                        </td>
+                                                                        <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                            <p>sa1</p>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                        <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                            <p>Postal Address Line 2</p>
+                                                                        </td>
+                                                                        <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                            <p>string</p>
+                                                                        </td>
+                                                                        <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                            <p>sa2</p>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                        <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                            <p>Postal Address Line 3</p>
+                                                                        </td>
+                                                                        <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                            <p>string</p>
+                                                                        </td>
+                                                                        <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                            <p>sa3</p>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                        <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                            <p>Telephone</p>
+                                                                        </td>
+                                                                        <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                            <p>string</p>
+                                                                        </td>
+                                                                        <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                            <p>telephoneNumber</p>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                        <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                            <p>Fax</p>
+                                                                        </td>
+                                                                        <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                            <p>string</p>
+                                                                        </td>
+                                                                        <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                            <p>facsimileTelephoneNumber</p>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                        <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                            <p>State</p>
+                                                                        </td>
+                                                                        <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                            <p>string</p>
+                                                                        </td>
+                                                                        <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                            <p>s</p>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                        <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                            <p>Country</p>
+                                                                        </td>
+                                                                        <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                            <p>string</p>
+                                                                        </td>
+                                                                        <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                            <p>co</p>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                        <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                            <p>Post/Zip Code</p>
+                                                                        </td>
+                                                                        <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                            <p>string</p>
+                                                                        </td>
+                                                                        <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                            <p>postalCode</p>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                        <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                            <p>Job Title</p>
+                                                                        </td>
+                                                                        <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                            <p>string</p>
+                                                                        </td>
+                                                                        <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                            <p>title</p>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                        <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                            <p>Room No</p>
+                                                                        </td>
+                                                                        <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                            <p>string</p>
+                                                                        </td>
+                                                                        <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                            <p>roomNumber</p>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                        <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                            <p>Locality</p>
+                                                                        </td>
+                                                                        <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                            <p>string</p>
+                                                                        </td>
+                                                                        <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                            <p>l</p>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                        <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                            <p>Cell</p>
+                                                                        </td>
+                                                                        <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                            <p>string</p>
+                                                                        </td>
+                                                                        <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                            <p>Mobile</p>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                        <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                            <p>Department No</p>
+                                                                        </td>
+                                                                        <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                            <p>string</p>
+                                                                        </td>
+                                                                        <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                            <p>departmentNumber</p>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                        <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                            <p>Office</p>
+                                                                        </td>
+                                                                        <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                            <p>string</p>
+                                                                        </td>
+                                                                        <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                            <p>physicalDeliveryOfficeName</p>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                        <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                            <p>Organization</p>
+                                                                        </td>
+                                                                        <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                            <p>string</p>
+                                                                        </td>
+                                                                        <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                            <p>o</p>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                        <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                            <p>Organization Unit Name</p>
+                                                                        </td>
+                                                                        <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                            <p>string</p>
+                                                                        </td>
+                                                                        <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                            <p>ou</p>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                        <td class="TableStyle-Rep_Hdr_Row-BodyB-Column1-Body1">
+                                                                            <p>Manager</p>
+                                                                        </td>
+                                                                        <td class="TableStyle-Rep_Hdr_Row-BodyB-Column2-Body1">
+                                                                            <p>entityReference</p>
+                                                                        </td>
+                                                                        <td class="TableStyle-Rep_Hdr_Row-BodyA-Column1-Body1">
+                                                                            <p>manager</p>
+                                                                        </td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        
+                                                    </ul>
+                                                    <h1>Link Types</h1>
+                                                    <p>No link types are defined for the  Oracle Directory Server Connector.</p>
+                                                    <h1>Resolve Functionality: Additional Information</h1>
+                                                    <p>The Resolve functionality allows for a user-defined default value to be used if no matching records are found when trying to resolve a specific person field value. Several reasons can lead to an unsuccessful resolving attempt. Amongst the most common are:</p>
+                                                    <ul>
+                                                        <li value="1">They belong to a different domain and that domain is not configured — Oracle Directory Server integration supports cross-domain references assuming all referenced domains are configured.</li>
+                                                        <li value="2">They do not belong to a mapped group.</li>
+                                                        <li value="3">They are excluded by user-configured mapping.</li>
+                                                        <li value="4">Imports are regulated. So, the corresponding user records are not automatically created until a user intervenes through Federated CMDB Admin.</li>
+                                                    </ul>
+                                                    <h1>
+<a name="_Root_naming_assessment"></a>Root Naming Assessment</h1>
+                                                    <p class="question">Can groups and users who are members of the groups belong to different domains?</p>
+                                                    <p class="answer">Yes. There are several requirements for this to work:</p>
+                                                    <ul class="ul_1">
+                                                        <li class="Bulleted_12" value="1">All domains that the target users and groups belong to must have a corresponding directory server defined in <span class="GeneralVariablesCoreName">ASM Core</span>.</li>
+                                                        <li class="Bulleted_12" value="2">All domains involved are required to be a child domain of a common parent or have a parent-child relationship.</li>
+                                                    </ul>
+                                                    <h3>Example of Root Naming Assessment</h3>
+                                                    <p>Assume that there are three directory servers configured:</p>
+                                                    <ol start="1">
+                                                        <li value="1">LDAP://server1/dc=mydomain,dc=com</li>
+                                                        <li value="2">LDAP://server2/dc=sub1,dc=mydomain,dc=com</li>
+                                                        <li value="3">LDAP://server3/dc=sub2,dc=mydomain,dc=com</li>
+                                                    </ol>
+                                                    <p>Against server 2, the following group is mapped:</p>
+                                                    <p>Group1, DN: cn=Group1,dc=sub1,dc=mydomain,dc=com</p>
+                                                    <p>This group has two members:</p>
+                                                    <ul class="ul_1">
+                                                        <li value="1">User1, DN: cn=User1,dc=sub1,dc=mydomain,dc=com </li>
+                                                        <li value="2">User2, DN: cn=User2,dc=sub2,dc=mydomain,dc=com </li>
+                                                    </ul>
+                                                    <p><span class="GeneralVariablesCoreName">ASM Core</span> associates User1 with server 2 because the server 2 root naming context is the longest naming context contained at the end of User1’s DN. Although the trailing part of server 3’s root naming context also concludes the user’s DN, it is not considered because not <span class="span_2">all</span> of the naming context is included. Although all of server 1’s root naming context is found at the end of the user’s DN, server 2 is given preference because its root naming context is longer.</p>
+                                                    <p>Similarly, User2 is associated with server 3 and not server 2 because there is no match, and not server 1 because server 3’s root naming context is longer.</p>
+                                                

@@ -1,0 +1,805 @@
+[viewBag]
+title = "ASM to ASM Connector"
+url = "/help/topics/connectors/alembatoalembaconnector"
+layout = "help"
+is_hidden = 0
+navigation_hidden = 0
+==
+                                                    <h1>
+<span class="GeneralVariablesProductName">ASM</span> to <span class="GeneralVariablesProductName">ASM</span> Connector</h1>
+                                                    <p>This section of the documentation describes the details of the <span class="GeneralVariablesProductName">ASM</span> connector, including:</p>
+                                                    <ul>
+                                                        <li class="Bulleted_1" value="1">The name of the file used </li>
+                                                        <li class="Bulleted_1" value="2">Connection methodology </li>
+                                                        <li class="Bulleted_1" value="3">Use case scenario</li>
+                                                        <li class="Bulleted_1" value="4">Architectural and functional details that ensure the running of the use case through the Inbound and Outbound action functionality of the Integration Platform</li>
+                                                    </ul>
+                                                    <p class="note">For compatibility and version support details, refer to the <a href="connector%20matrix.htm" class="MCXref xref">ASM Connector Matrix</a>.</p>
+                                                    <p class="note">You should familiarize yourself with the information in <a href="connector%20installation%20guide.htm" class="MCXref xref">Installing Connectors</a> before installing any connectors, and read the <a href="../integration/integrate.htm" class="MCXref xref">Integration</a> topics for more information on how to configure them.</p>
+                                                    <h2>Overview</h2>
+                                                    <p>The <span class="GeneralVariablesProductName">ASM</span> to <span class="GeneralVariablesProductName">ASM</span> interoperability concept basically allows for the creation of calls and requests on one <span class="GeneralVariablesSystemName">ASM System</span> (the Receiver) triggered by actions sent from another <span class="GeneralVariablesSystemName">ASM System</span> (the Creator).</p>
+                                                    <p>The type of actions that are implemented and whether calls or requests are logged in the Receiver system is part of the Integration Platform settings in both systems, while creating adequate transactions, ensuring proper communication and maintaining reconciled information between the two systems are amongst the <span class="GeneralVariablesProductName">ASM</span> to <span class="GeneralVariablesProductName">ASM</span> connector duties.</p>
+                                                    <p>The connector operation is symmetrical. This means that in some instances one of the systems acts as the Creator, creating calls or requests in the other system, and in other instances the same system acts as the Receiver, calls or requests being created internally based on instructions sent by the other system.</p>
+                                                    <h2>Use Case Scenario</h2>
+                                                    <p>The interoperability concept can be broken down into several use cases that are listed in the table below.</p>
+                                                    <table class="TableStyle-Rep_Hdr_Row" style="mc-table-style: url('../../resources/tablestyles/rep hdr row.css');margin-left: auto;margin-right: auto;" cellspacing="0">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column1">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column2">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column1">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column2">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column1">
+                                                        <thead>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Head-Header1">
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column1-Header1" colspan="2">
+                                                                    <p class="Strong">Use case</p>
+                                                                </th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column1-Header1" rowspan="2">
+                                                                    <p class="Strong">Notification/Action</p>
+                                                                </th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column2-Header1" rowspan="2">
+                                                                    <p class="Strong">Action taken by Receiver</p>
+                                                                </th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadD-Column1-Header1" rowspan="2">
+                                                                    <p class="Strong">Role of the connector</p>
+                                                                </th>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Head-Header1">
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column1-Header1">
+                                                                    <p class="Strong">Event</p>
+                                                                </th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column2-Header1">
+                                                                    <p class="Strong">Scenario</p>
+                                                                </th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Create action</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>A call is forwarded externally or an External Supplier Task is sent from the Creator system</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>A Create action is initiated.</p>
+                                                                    <p>A Create message is sent to the Receiver system.</p>
+                                                                    <p class="note">The action is selected by matching the External Supplier and Contract. A note is sent between systems.</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>When the Receiver system receives the Create action, it either logs a call or creates a request, depending on the Creator Outbound action set up</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>The connector ensures that enough details are transmitted to implement the action defined in the Creator Outbound action.</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Call/Request/Task Update</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>A call/request/task is updated in the Creator system or a call/request is updated in the Receiver system</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>An Update message is sent to the other party.</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>Upon receipt of an Update message, the system does one of the following, depending on administrative setup:</p>
+                                                                    <ul>
+                                                                        <li value="1">Updates the call/request/task</li>
+                                                                        <li value="2">Adds a note</li>
+                                                                        <li value="3">Does nothing </li>
+                                                                    </ul>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>The connector ensures that enough data are transmitted by the Update message so that any of the listed actions can be performed.</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Note attachment</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>A note is attached to the call/request/task in the Creator system or a note is attached to the call/request in the Receiver system</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>A Notify message is sent to the other party.</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>Upon receipt of a Notify message, the system does one of the following depending on administrative setup:</p>
+                                                                    <ul class="noindent">
+                                                                        <li value="1">Updates the call/request/task</li>
+                                                                        <li value="2">Adds a note</li>
+                                                                        <li value="3">Does nothing </li>
+                                                                    </ul>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>The connector ensures that enough data is transmitted by the Notify message so that any of the listed actions can be performed.</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Cancel message initiation</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>A call is closed, a request or a task is completed, or a call/task is taken back on the Creator system</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>A Cancel message is initiated.</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>Upon receipt of a Cancel message, the Receiver system does one of the following, depending on the  administrative setup:</p>
+                                                                    <ul class="noindent">
+                                                                        <li class="Bulleted_1" value="1">Updates/closes the call/request</li>
+                                                                        <li class="Bulleted_1" value="2">Adds a note</li>
+                                                                        <li class="Bulleted_1" value="3">Does nothing </li>
+                                                                    </ul>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>The connector ensures that enough data is transmitted by the Cancel message so that any of the listed actions can be performed.</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyB-Column1-Body1">
+                                                                    <p>Complete/Not Complete message creation</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyB-Column2-Body1">
+                                                                    <p>A call is closed or a request is completed in the Receiver system.</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyB-Column1-Body1">
+                                                                    <p>A Complete or Not Complete message is sent from the Receiver system to the Creator system.</p>
+                                                                    <p class="note">The Creator system can be configured for the matching call/task to be closed/updated, for a note to be added, or to do nothing.</p>
+                                                                    <p> </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyB-Column2-Body1">
+                                                                    <p>Receiver system sends a Complete message when any one of the following takes place: </p>
+                                                                    <ul class="noindent">
+                                                                        <li class="Bulleted_1" value="1">The call it logged as a result of a Create action has been closed with the Resolved status.</li>
+                                                                        <li class="Bulleted_1" value="2">The request has been completed with the Implemented status.</li>
+                                                                    </ul>
+                                                                    <p>Receiver system sends a Not Complete message when any of the following take place: </p>
+                                                                    <ul class="noindent">
+                                                                        <li class="Bulleted_1" value="1">The call has been closed with the Unresolved status.</li>
+                                                                        <li class="Bulleted_1" value="2">The request has been completed with the Not Implemented status.</li>
+                                                                    </ul>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyA-Column1-Body1">
+                                                                    <p>The connector ensures that enough data is transmitted by the Cancel message so that any of the listed actions can be performed by the Creator system.</p>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <h2>Connector Description</h2>
+                                                    <p>The table below provides a description of the <span class="GeneralVariablesProductName">ASM</span> to <span class="GeneralVariablesProductName">ASM</span> Connector.</p>
+                                                    <table class="TableStyle-Rep_Hdr_Row" style="mc-table-style: url('../../resources/tablestyles/rep hdr row.css');" cellspacing="0">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column1">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column2">
+                                                        <thead>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Head-Header1">
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column1-Header1">
+                                                                    <p>Information fields</p>
+                                                                </th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadD-Column2-Header1">
+                                                                    <p>Name</p>
+                                                                </th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1" style="font-weight: bold;">
+                                                                    <p>Connector name</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p><span class="GeneralVariablesCoreName">ASM Core</span> &lt;-&gt; <span class="GeneralVariablesCoreName">ASM Core</span> connector</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyB-Column1-Body1" style="font-weight: bold;">
+                                                                    <p>Third-party application</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyA-Column2-Body1">
+                                                                    <p><span class="GeneralVariablesCoreName">ASM Core</span>
+                                                                    </p>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <h2>Connector Operation</h2>
+                                                    <p>The connector operation makes use of Windows Communication Foundation (WCF). WCF allows for the following:</p>
+                                                    <ul>
+                                                        <li class="Bulleted_1" value="1">Services to be defined abstractly and published physically over a wide variety of channels. </li>
+                                                        <li class="Bulleted_1" value="2">Permits extensive tailoring of this behavior by updating the appropriate .NET configuration files.</li>
+                                                    </ul>
+                                                    <p class="warning">Connector parameter values possess default values that are defined in these configuration files and can be modified. However, possessing a strong knowledge of WCF is a prerequisite before attempting to modify the default parameters.</p>
+                                                    <p><span class="span_2">Endpoint Configuration</span> references a <span class="span_2">client</span> endpoint configuration by name.</p>
+                                                    <p>The configuration files also define server endpoints.</p>
+                                                    <p>Note the following:</p>
+                                                    <ul>
+                                                        <li value="1">If no name is provided, <b>BasicHttpBinding_ISM2XService</b> is used. This is the name of the default binding defined in the configuration files shipped in the kit.</li>
+                                                        <li value="2">It defines how the local <span class="GeneralVariablesProductName">ASM</span> instance (client) must communicate with the remote <span class="GeneralVariablesProductName">ASM</span> instance (server), as:<ul>
+<li value="1">A basic HTTP binding</li>
+<li value="2">References the Infra.Connector.Ionix.SM.ISM2XService service contract</li>
+</ul>
+</li>
+                                                    </ul>
+                                                    <p>Any changes to the configuration must be applied to the following two files:</p>
+                                                    <ul>
+                                                        <li value="1">&lt;System&gt;/web.config</li>
+                                                        <li value="2">&lt;Root&gt;/Infra.Services.exe.config</li>
+                                                    </ul>
+                                                    <h2>Connection Parameters</h2>
+                                                    <p>When setting up a <span class="GeneralVariablesProductName">ASM</span> source, the parameters listed below have to be defined.</p>
+                                                    <table class="TableStyle-Rep_Hdr_Row" style="mc-table-style: url('../../resources/tablestyles/rep hdr row.css');width: 100%;margin-left: auto;margin-right: auto;" cellspacing="0">
+                                                        <col style="width: 101pt;" class="TableStyle-Rep_Hdr_Row-Column-Column1">
+                                                        <col style="width: 105pt;" class="TableStyle-Rep_Hdr_Row-Column-Column2">
+                                                        <col style="width: 102pt;" class="TableStyle-Rep_Hdr_Row-Column-Column1">
+                                                        <col style="width: 130pt;" class="TableStyle-Rep_Hdr_Row-Column-Column2">
+                                                        <thead>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Head-Header1">
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column1-Header1">
+                                                                    <p class="Strong">Type of action</p>
+                                                                </th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column2-Header1">
+                                                                    <p class="Strong">Description</p>
+                                                                </th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column1-Header1">
+                                                                    <p class="Strong">Connection parameters</p>
+                                                                </th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadD-Column2-Header1">
+                                                                    <p class="Strong">Description</p>
+                                                                </th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td rowspan="5" class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Outbound actions</p>
+                                                                    <p>Third-party application</p>
+                                                                    <p>Version developed against</p>
+                                                                </td>
+                                                                <td rowspan="5" class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>These settings have to be specified to allow the current system to log calls and/or requests in an external <span class="GeneralVariablesSystemName">ASM System</span>.</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Endpoint configuration</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p>References a “client” endpoint configuration by name </p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Endpoint Address</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p>http: //&lt;Virtual Server&gt;/&lt;System Name&gt;/SM2XService.svc</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>System</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p>The name of the system to connect to. This name is identical to the one specified in the Endpoint Address.</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Login ID</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p>The ID of an existing user in the Receiver system. This user must have sufficient rights to create calls and/or requests.</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Password</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p>The password of the user identified by the Login ID.</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td rowspan="2" class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Inbound actions</p>
+                                                                </td>
+                                                                <td rowspan="2" class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>These settings have to be specified to allow an external <span class="GeneralVariablesSystemName">ASM System</span> to log calls and/or requests in the current system.</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>User</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p>First and last name of an existing person in the current system.</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyB-Column1-Body1">
+                                                                    <p>Organization</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyA-Column2-Body1">
+                                                                    <p>An existing organization to which the User belongs.</p>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <p class="note">In order to successfully connect a system installed on Windows Server 2003 to a system installed on Windows Server 2008, the following steps must be executed on the Windows Server 2008 server:</p>
+                                                    <ol start="1">
+                                                        <li value="1">Run the following in the command prompt:<br><code>"%windir%\Microsoft.NET\Framework\v3.0\Windows Communication Foundation\ServiceModelReg.exe -r -y"</code>
+</li>
+                                                        <li value="2">Enable anonymous authentication for the virtual directory in Internet Information Services (IIS).</li>
+                                                    </ol>
+                                                    <h2>General Technical Considerations</h2>
+                                                    <p><span class="GeneralVariablesProductName">ASM</span> interoperability between two <span class="GeneralVariablesSystemName">ASM System</span>s relies on a specific connector and specific Web Services. Furthermore, the running of the use case scenario requires a specific architecture to be adhered to by the two <span class="GeneralVariablesSystemName">ASM System</span>s, as depicted below.</p>
+                                                    <p>
+                                                        <img src="/storage/app/media/Help/images/connectors%20vfire%20to%20vfire%20cs.png" class="screenshot">
+                                                    </p>
+                                                    <p>
+                                                        </p>
+<h2>Connector Requirements</h2>
+                                                        <p>The connector ensures:</p>
+                                                        <ul>
+                                                            <li value="1">A proper connection with the Outbound and Inbound actions APIs of the system it is installed on</li>
+                                                            <li value="2">A proper connection with the <span class="GeneralVariablesProductName">ASM</span> Services Web of the system it is installed on</li>
+                                                            <li value="3">Transfer of communications between the Inbound actions and the Outbound actions APIs of the connected systems</li>
+                                                        </ul>
+                                                        <p>From a functional standpoint, the connector ensures that the message types described in<a href="#Action"> Action and Communication Protocol</a> are properly handled and transferred.</p>
+                                                        <h2>Web Service Details</h2>
+                                                        <p>The Web Service, although not part of the connector itself, is developed especially to support the communication between the two <span class="GeneralVariablesSystemName">ASM System</span>s through the connector.</p>
+                                                        <h2>Additional Information</h2>
+                                                        <p>This connector does not include any Federated CMDB population functionality.</p>
+                                                        <h2>Connector Diagnostics</h2>
+                                                        <p>The connector has the facility to trace information. The data can be obtained through Polling tracing or Application tracing.</p>
+                                                        <h1>Inbound/Outbound Actions</h1>
+                                                        <p>This section describes Inbound/Outbound actions and communication protocol handled by the <span class="GeneralVariablesProductName">ASM</span> to <span class="GeneralVariablesProductName">ASM</span> connector.</p>
+                                                        <h2 class="Heading2">
+<a name="Action"></a>Action and Communication Protocol</h2>
+                                                        <p><span class="GeneralVariablesProductName">ASM</span> Interoperability allows calls or requests to be created on one <span class="GeneralVariablesSystemName">ASM System</span> based on information sent by another. The creation of calls and requests relies on actions being implemented between the two systems. These actions are supported by a particular communication protocol composed of a set of specific transactions, as illustrated below.</p>
+                                                        <p>
+                                                            <img src="/storage/app/media/Help/images/communication%20protocols%203.png" alt="" title="" class="screenshot">
+                                                        </p>
+                                                        <ul>
+                                                            <li value="1">The Creator sends a Create message to initiate an action for the Receiver to perform.</li>
+                                                            <li value="2">Both the Creator and Receiver can send Update messages to each other when required.</li>
+                                                            <li value="3">Both the Creator and Receiver can send Notify messages to each other when required.</li>
+                                                            <li value="4">The Creator can also send a Cancel message to stop any further processing of the Action by the Receiver.</li>
+                                                            <li value="5">A Complete message is sent by the receiver when the action is successfully performed.</li>
+                                                            <li value="6">A Not Complete message is sent by the Receiver when the action has not been successfully performed. This does not include failures to establish communication connection with the Receiver.</li>
+                                                        </ul>
+                                                        <p class="note">When two <span class="GeneralVariablesSystemName">ASM System</span>s are connected through the <span class="GeneralVariablesProductName">ASM</span> to <span class="GeneralVariablesProductName">ASM</span> connector, either system can act as the Creator or the Receiver.</p>
+                                                        <h1>Interoperability Operation</h1>
+                                                        <p>To make the <span class="GeneralVariablesProductName">ASM</span> to <span class="GeneralVariablesProductName">ASM</span> connector available for use, you must:</p>
+                                                        <ol>
+                                                            <li value="1">Verify the connector service is accessible from each server</li>
+                                                            <li value="2">Configure the system(s) for outbound actions</li>
+                                                            <li value="3">Configure the system(s) for inbound actions</li>
+                                                        </ol>
+                                                        <p class="note">Follow the steps <b>in both systems</b> to configure <span class="GeneralVariablesSystemName">ASM System</span> interoperability. For demonstration purposes, we will refer to the systems as <b>System 1</b> and <b>System 2</b>. If there are specific instructions for systems which are held on different servers, <b>System 1</b> will be held on <b>Server A</b> and <b>System 2</b> on <b>Server B</b>.</p>
+                                                        <h2>
+<a name="Configur2"></a>Verify the Connector Service is Accessible</h2>
+                                                        <p class="note">For demonstration purposes, we will refer to the systems as <b>System 1</b> and <b>System 2</b>. <b>System 1</b> will be held on <b>Server A</b> and <b>System 2</b> on <b>Server B</b>.</p>
+                                                        <p>For each system, place the endpoint address URL of the other system into a browser and make sure a valid page appears as follows. The endpoint address format is <b>http://Server B/System 2/SM2XService.svc</b> (from Server A) and <b>http://Server A/System 1/SM2XService.svc</b> (from Server B).</p>
+                                                        <p class="note">In the example below "localhost" indicates that both systems are on the same server. </p>
+                                                        <p>
+                                                            <img src="/storage/app/media/Help/images/vf%20to%20vf%20web%20config_1012x614.png" class="screenshot" style="width: 1012;height: 614;">
+                                                        </p>
+                                                        <p>If this page is not returned there may be a blocked port on the firewall. Contact your Network Administration team to resolve.</p>
+                                                        <p class="prereq">The <span class="GeneralVariablesProductName">ASM</span> to <span class="GeneralVariablesProductName">ASM</span> connector requires  the configured port to be open on the firewalls between servers, including SOAP/XML messages. The default ports are 80 for http and 443 for https.</p>
+                                                        <h2 class="Heading2">
+<a name="Configur"></a>Configuring the System for Outbound Actions</h2>
+                                                        <p class="note">For demonstration purposes, we will refer to the outbound system as <b>System 1</b>.</p>
+                                                        <h2 class="Prerequisite">Before you start</h2>
+                                                        <p class="prereqtext1">The version of the <span class="GeneralVariablesSystemName">ASM System</span> must be identical on both servers.</p>
+                                                        <p class="prereqtextlast">There must be an <a href="%7B%7B%20'help-managing-people-managing-people#Adding'%7CstaticPage%20%7D%7D#Adding">identical Person record</a> on both servers, with Analyst and User permissions. The two records must have the same <b>login ID</b>, and have <b>IPK Analyst</b> selected in the <a href="../admin%20security%20roles/ipk%20management%20security%20roles%20-%20options%20tab.htm">Options</a> tab of their <b>IPK Management security role</b>.</p>
+                                                        <ol start="1" class="ol_5">
+                                                            <li value="1">Log in to <span class="GeneralVariablesSystemName">ASM System</span> 1.</li>
+                                                            <li value="2">
+                                                                <p>Select <a href="../general%20topics/asmcorewindow.htm"><span style="font-size: 24pt;">≡</span></a> &gt; <b>Admin</b> &gt;  <b>Integration</b>. </p>
+                                                            </li>
+                                                            <li value="3">In the Explorer pane, under <b>Integration</b>, select <b>Integration Platform Settings</b> to view the window.</li>
+                                                            <li value="4">Under <b>Inbound Actions</b>, select the <b>Enabled</b> checkbox, then save the details.</li>
+                                                            <li value="5">In the Explorer pane, under <b>Integration</b>, select <b>Connectors</b>.</li>
+                                                            <li value="6">
+                                                                <p>On the <b>Integration Connectors</b> window, locate the <span class="GeneralVariablesProductName">ASM</span> to <span class="GeneralVariablesProductName">ASM</span> connector, and ensure that the <b>Actions</b> and <b>Visible</b> checkboxes are selected.</p>
+                                                                <p> You can <a href="%7B%7B%20'help-general-topics-working-with-browse-tables#Changing'%7CstaticPage%20%7D%7D#Changing">adjust the column widths</a> if required. </p>
+                                                            </li>
+                                                            <li value="7">Save the changes.</li>
+                                                            <p>
+                                                                </p>
+<p class="note">The connector is visible in the list of available connectors of the Integration Platform.</p>
+                                                            
+                                                        </ol>
+                                                        <ol start="4" class="ol_5">
+                                                            <li value="4">In the Explorer pane, under <b>Integration</b>, select <b>Sources</b>.</li>
+                                                            <li value="5">Select the <img src="/storage/app/media/Help/images/add%20new.png"> button on the toolbar. In the pop up window, select <b><span class="GeneralVariablesProductName">ASM</span> to <span class="GeneralVariablesProductName">ASM</span> Connector</b> from the drop-down list.</li>
+                                                            <li value="6">In the <b>Integration Source Details</b> window, complete the details.</li>
+                                                            <p>
+                                                                </p>
+<table class="TableStyle-FieldDesc" style="mc-table-style: url('../../resources/tablestyles/fielddesc.css');" cellspacing="0">
+                                                                    <col class="TableStyle-FieldDesc-Column-Column1">
+                                                                    <col class="TableStyle-FieldDesc-Column-Column2">
+                                                                    <tbody>
+                                                                        <tr>
+                                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">Name</td>
+                                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">Type the name of the integration source</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">Status</td>
+                                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">This field is prefilled with the Active status</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">Connector</td>
+                                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">This field is prefilled with the Connector type</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">Assembly.TypeName</td>
+                                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">This field is prefilled, based on the selected connector, as defined in the Connector DLL, and is read-only</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td class="TableStyle-FieldDesc-BodyG-Column1-" colspan="2">Endpoint Parameters</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">Endpoint Configuration</td>
+                                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">Type the following endpoint configuration: <b>BasicHttpBinding_ISM2XService</b>
+</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">Endpoint Address</td>
+                                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">Type the endpoint address URL as configured earlier</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td class="TableStyle-FieldDesc-BodyG-Column1-" colspan="2">Person Parameters</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">System</td>
+                                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">Type the name of the target (receiver) <span class="GeneralVariablesSystemName">ASM System</span>
+</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">Login ID</td>
+                                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">Type the Login ID of the person record which is being used for the connector</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td class="TableStyle-FieldDesc-BodyB-Column1-">Password</td>
+                                                                            <td class="TableStyle-FieldDesc-BodyA-Column2-">Type the password of the person record which is being used for the connector</td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            
+                                                            <p class="note">Further fields are displayed on this window, but you do not need to complete them at this stage.</p>
+                                                            <li value="7">If you have already configured the receiving system (System 2), select the <img src="/storage/app/media/Help/images/test%20connector%20btn.png"> button on the toolbar to test the connection.</li>
+                                                            <li value="8">Save the details.</li>
+                                                            <li value="9">Next, you need to configure the receiving system (if you have not already done so), the outbound actions and the inbound actions.</li>
+                                                            <li value="10">
+                                                                <p class="note">The settings of the Inbound actions of one system influences the possible settings of the Outbound actions of the other system. The possible actions listed in the Outbound actions page of the system for a particular source reflects which Inbound actions have been defined in the specific source system.</p>
+                                                            </li>
+                                                        </ol>
+                                                        <p class="note">If you want to enable global connector attachments, you must enable them in the registry, using the IntegrationAttachmentsEnabled setting. <a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="../../resources/images/vf%20to%20vf%20reg%20att.png"><img class="MCPopupThumbnail img imgthumbnail" data-mc-width="1043" data-mc-height="627" src="/storage/app/media/Help/images/vf%20to%20vf%20reg%20att_thumb_0_48.png" tabindex=""></a></p>
+                                                        <h2>Configuring the System for Inbound Actions</h2>
+                                                        <p class="note">For demonstration purposes, we will refer to the receiving system as System 2.</p>
+                                                        <h2 class="Prerequisite">Before you start</h2>
+                                                        <p class="prereqtext">Ensure that the <a href="#Configur2">web configuration file has been configured</a>.</p>
+                                                        <ol start="1" class="ol_5">
+                                                            <li value="1">Log in to <span class="GeneralVariablesSystemName">ASM System</span> 2.</li>
+                                                            <li value="2">Select <span style="font-size: 24pt;">≡</span> and then <b>Admin</b>. From the submenu, select <b>Integration </b>.</li>
+                                                            <li value="3">In the Main Explorer pane under <b>Integration</b>, select <b>Integration Platform Settings</b> to view the settings.</li>
+                                                            <li value="4">In the <b>Outbound Actions</b> section, select the <b>Enabled</b> checkbox, then save the details.</li>
+                                                            <li value="5">In the Main Explorer pane, select <b>Connectors</b> to view the integration connectors.</li>
+                                                            <li value="6">
+                                                                <p>Locate the <span class="GeneralVariablesProductName">ASM</span> to <span class="GeneralVariablesProductName">ASM</span> connector, then ensure that the <b>Actions</b> and <b>Visible</b> checkboxes are selected.</p>
+                                                                <p>Select <img src="/storage/app/media/Help/images/edit%20button.png"> alongside the connector if you need to edit the options. After you have updated the option, select <img src="/storage/app/media/Help/images/editupdatebutton.png"> to commit the changes to the connector.</p>
+                                                                <p>  You can <a href="%7B%7B%20'help-general-topics-working-with-browse-tables#Changing'%7CstaticPage%20%7D%7D#Changing">adjust the column widths</a> if required. </p>
+                                                            </li>
+                                                            <li value="7">Select <img src="/storage/app/media/Help/images/savebutton2.png"> to save the changes.</li>
+                                                            <li value="8">In the Main Explorer pane, select <b>Sources</b>.</li>
+                                                            <li value="9">Select the <img src="/storage/app/media/Help/images/add%20new.png"> button on the toolbar to create a new source. </li>
+                                                            <li value="10">In the pop up dialog box, select <b><span class="GeneralVariablesProductName">ASM</span> to <span class="GeneralVariablesProductName">ASM</span> Connector</b> from the drop-down list, then select <b>OK</b>.</li>
+                                                            <li value="11">In the Integration Source Details window, complete the details.</li>
+                                                            <p>
+                                                                </p>
+<table class="TableStyle-FieldDesc" style="mc-table-style: url('../../resources/tablestyles/fielddesc.css');" cellspacing="0">
+                                                                    <col class="TableStyle-FieldDesc-Column-Column1">
+                                                                    <col class="TableStyle-FieldDesc-Column-Column2">
+                                                                    <tbody>
+                                                                        <tr>
+                                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">Name</td>
+                                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">Type the name of the integration source.</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">Status</td>
+                                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">Populated with the Active status.</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">Connector</td>
+                                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">Populated with the Connector type. Read only.</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">Assembly.TypeName</td>
+                                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">Depends on the selected connector, as defined in the Connector DLL. Read-only.</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td class="TableStyle-FieldDesc-BodyG-Column1-" colspan="2">Endpoint Parameters</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">Endpoint Configuration</td>
+                                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">Type the following endpoint configuration: <b>BasicHttpBinding_ISM2XService</b>.</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">Endpoint Address</td>
+                                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">Type the endpoint address URL, as configured earlier.</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td class="TableStyle-FieldDesc-BodyG-Column1-" colspan="2">Person Parameters</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">System</td>
+                                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">Type the name of the sending (source) <span class="GeneralVariablesSystemName">ASM System</span>.</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">Login ID</td>
+                                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">Type the Login ID of the person record that the connector uses to log into <span class="GeneralVariablesProductName">ASM</span>.</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td class="TableStyle-FieldDesc-BodyB-Column1-">Password</td>
+                                                                            <td class="TableStyle-FieldDesc-BodyA-Column2-">Type the password of the person record that the connector uses to log into <span class="GeneralVariablesProductName">ASM</span>.</td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            
+                                                            <li value="12">If you have already configured the outbound system (System 1), select the <img src="/storage/app/media/Help/images/test%20connector%20btn.png"> button on the toolbar to test the connection.</li>
+                                                            <li value="13">Save the integration source configuration.</li>
+                                                            <li value="14">After IIS reset on both servers, check the source connection on System 1.</li>
+                                                            <li value="15">Next, you need to configure the inbound actions and the outbound actions.</li>
+                                                        </ol>
+                                                        <p class="note">If you want to enable global connector attachments, you must enable them in the registry, using the IntegrationAttachmentsEnabled setting. <a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="../../resources/images/vf%20to%20vf%20reg%20att.png"><img class="MCPopupThumbnail img imgthumbnail" data-mc-width="1043" data-mc-height="627" src="/storage/app/media/Help/images/vf%20to%20vf%20reg%20att_thumb_0_48.png" tabindex=""></a></p>
+                                                        <h2>Configuring the Inbound Actions</h2>
+                                                        <p>You must configure the inbound actions for the connector. The settings of the Inbound actions of one system influences the possible settings of the Outbound actions of the other system. The possible actions listed in the Outbound actions page of the system for a particular source reflects which Inbound actions have been defined in the specific source system.</p>
+                                                        <p class="note">For demonstration purposes, we will refer to the receiving system as System 2.</p>
+                                                        <ol>
+                                                            <li value="1">Log in to <span class="GeneralVariablesSystemName">ASM System</span> 2.</li>
+                                                            <li value="2">
+                                                                <p>Select <a href="../general%20topics/asmcorewindow.htm"><span style="font-size: 24pt;">≡</span></a> &gt; <b>Admin</b> &gt;  <b>Integration</b>. </p>
+                                                            </li>
+                                                            <li value="3">In the Explorer pane under <b>Integration</b>, select <b>Inbound Actions</b> to view the Integration Inbound Actions window.</li>
+                                                            <li value="4">Select the <img src="/storage/app/media/Help/images/add%20new.png"> button on the toolbar. </li>
+                                                            <li value="5">On the <b>Inbound Action Type Details</b> window, complete the details.</li>
+                                                            <p>
+                                                                </p>
+<table class="TableStyle-FieldDesc" style="mc-table-style: url('../../resources/tablestyles/fielddesc.css');" cellspacing="0">
+                                                                    <col class="TableStyle-FieldDesc-Column-Column1">
+                                                                    <col class="TableStyle-FieldDesc-Column-Column2">
+                                                                    <tbody>
+                                                                        <tr>
+                                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">Name</td>
+                                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">Type a name for the inbound action</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">Create</td>
+                                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">Select <b>Call</b> from the drop-down list</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td class="TableStyle-FieldDesc-BodyB-Column1-">Using template</td>
+                                                                            <td class="TableStyle-FieldDesc-BodyA-Column2-">Type the template name to find it..</td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            
+                                                            <li value="6">On the <b>Fields</b> tab,  select <b>Add</b> located at the bottom of the window.</li>
+                                                            <li value="7">In the <b>Inbound Action Fields</b> pop-up window, scroll down the list of fields in the left hand table and select <b>Call ref</b> and then <b>Add</b>. Then select <b>OK</b> to close the window. The details appear in the table. </li>
+                                                            <li value="8">Select <img src="/storage/app/media/Help/images/save%20button.png"> to close the window. Your new inbound action appears in the <b>Integration Inbound Actions</b> window.</li>
+                                                            <li value="9">Next, you need to configure the outbound actions on the sending system (System 1).</li>
+                                                        </ol>
+                                                        <h2>Configuring the Outbound Actions</h2>
+                                                        <p class="note">For demonstration purposes, we will refer to the receiving system as System 1.</p>
+                                                        <ol>
+                                                            <li value="1">Log in to <span class="GeneralVariablesSystemName">ASM System</span> 1.</li>
+                                                            <li value="2">
+                                                                <p>Select <a href="../general%20topics/asmcorewindow.htm"><span style="font-size: 24pt;">≡</span></a> &gt; <b>Admin</b> &gt;  <b>Integration</b>.</p>
+                                                            </li>
+                                                            <li value="3">In the Explorer pane, under <b>Integration</b>, select <b>Outbound Actions</b>.</li>
+                                                            <li value="4">In the <b>Filter by Source</b> field, select the connector source name from the drop-down list, for example <b>System 1</b>. </li>
+                                                            <li value="5">All available outbound actions are listed in the browse table. Select the one you want to work with and then select <img src="/storage/app/media/Help/images/action%20button.png">.</li>
+                                                            <li value="6">The <b>Outbound Action Type [action name]</b> window appears. Select the <img src="/storage/app/media/Help/images/add%20new.png"> button on the toolbar. </li>
+                                                            <li value="7">In the <b>Mapping</b> window, complete the details.</li>
+                                                            <p>
+                                                                </p>
+<table class="TableStyle-FieldDesc" style="mc-table-style: url('../../resources/tablestyles/fielddesc.css');" cellspacing="0">
+                                                                    <col class="TableStyle-FieldDesc-Column-Column1">
+                                                                    <col class="TableStyle-FieldDesc-Column-Column2">
+                                                                    <tbody>
+                                                                        <tr>
+                                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">Name </td>
+                                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">Type a name for the mapping. This name appears in the Mappings table.</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td class="TableStyle-FieldDesc-BodyB-Column1-">Screen Set</td>
+                                                                            <td class="TableStyle-FieldDesc-BodyA-Column2-">
+                                                                                <p>Select a call or External Supplier task screen set from the multi-tiered list. The screen set determines the fields that will be available for this mapping under the Fields – Outgoing and Fields – Incoming tabs.</p>
+                                                                                <table class="TableStyle-FieldDesc_no_indent" style="mc-table-style: url('../../resources/tablestyles/fielddesc no indent.css');" cellspacing="0">
+                                                                                    <col class="TableStyle-FieldDesc_no_indent-Column-Column1">
+                                                                                    <col class="TableStyle-FieldDesc_no_indent-Column-Column2">
+                                                                                    <tbody>
+                                                                                        <tr>
+                                                                                            <td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">Call screen set</td>
+                                                                                            <td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">
+                                                                                                <p>Select  to enable the Outbound Action to trigger when a call is forwarded externally. Call screen sets are defined by your system administrator.</p>
+                                                                                            </td>
+                                                                                        </tr>
+                                                                                        <tr>
+                                                                                            <td class="TableStyle-FieldDesc_no_indent-BodyB-Column1-">External Supplier </td>
+                                                                                            <td class="TableStyle-FieldDesc_no_indent-BodyA-Column2-">Select to enable the Outbound Action to trigger when an External Supplier task is forwarded externally. External Supplier task screen sets are defined by your system administrator.</td>
+                                                                                        </tr>
+                                                                                    </tbody>
+                                                                                </table>
+                                                                            </td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            
+                                                            <p class="warning">If you change the screen set after defining outgoing or incoming field mappings, a warning appears indicating that some field mappings may become invalid.</p>
+                                                            <li value="8">To associate an external supplier and contract with the Outbound Action mapping, select the <b>Suppliers &amp; Contracts</b> tab.</li>
+                                                            <p>
+                                                                </p>
+<table class="TableStyle-FieldDesc_no_indent" style="mc-table-style: url('../../resources/tablestyles/fielddesc no indent.css');" cellspacing="0">
+                                                                    <col class="TableStyle-FieldDesc_no_indent-Column-Column1">
+                                                                    <col class="TableStyle-FieldDesc_no_indent-Column-Column2">
+                                                                    <tbody>
+                                                                        <tr>
+                                                                            <td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">External Supplier</td>
+                                                                            <td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">Select a supplier</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td class="TableStyle-FieldDesc_no_indent-BodyB-Column1-">Contract</td>
+                                                                            <td class="TableStyle-FieldDesc_no_indent-BodyA-Column2-">Select a contract.<p class="note">If you do not specify a contract, the Outbound Action will be matched by the external supplier only.</p>
+</td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            
+                                                            <li value="9">Select <b>Add</b> to add the supplier and/or contract to the browse table. Whenever a call or External Supplier task is forwarded to that external supplier and/or contract, this Outbound Action mapping will be applied.</li>
+                                                            <li value="10">
+                                                                <p class="note">You cannot specify the same supplier and contract (per screen set) for more than one Outbound Action mapping. However, you can link an external supplier to one mapping and the same supplier plus a contract to another mapping. In this case, the most specific mapping will be applied: if the call or task is forwarded to a supplier and contract matching the supplier and contract specified on the second mapping, this mapping will be applied. If not, it will use the default mapping for that supplier.</p>
+                                                            </li>
+                                                            <li value="11">Select the <b>Action</b> tab and ensure that the rules for Incoming and Outgoing Transactions using this mapping are as wanted.</li>
+                                                            <li value="12">Select the <b>Fields - Outgoing</b> tab and select <b>Add</b>. Complete the details. </li>
+                                                            <p>
+                                                                </p>
+<table class="TableStyle-FieldDesc" style="mc-table-style: url('../../resources/tablestyles/fielddesc.css');" cellspacing="0">
+                                                                    <col class="TableStyle-FieldDesc-Column-Column1">
+                                                                    <col class="TableStyle-FieldDesc-Column-Column2">
+                                                                    <tbody>
+                                                                        <tr>
+                                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">Action Field</td>
+                                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">Select <b>Call Ref</b>
+</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td class="TableStyle-FieldDesc-BodyB-Column1-">Internal Field</td>
+                                                                            <td class="TableStyle-FieldDesc-BodyA-Column2-">Select <b>Call Ref</b>
+</td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            
+                                                            <p>Your <b>Fields - Outgoing</b> tab should look like this - <img src="/storage/app/media/Help/images/ip%20outbound%20act%20fields%20out%20tab.png">.</p>
+                                                            <li value="13">Select the <b>Fields – Incoming</b> tab and select <b>Add</b>. Complete the details.</li>
+                                                            <p>
+                                                                </p>
+<table class="TableStyle-FieldDesc" style="mc-table-style: url('../../resources/tablestyles/fielddesc.css');" cellspacing="0">
+                                                                    <col class="TableStyle-FieldDesc-Column-Column1">
+                                                                    <col class="TableStyle-FieldDesc-Column-Column2">
+                                                                    <tbody>
+                                                                        <tr>
+                                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">Internal Field</td>
+                                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">Select <b>Call Ref</b>
+</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">Action Field</td>
+                                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">Select <b>Call Ref</b>
+</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td class="TableStyle-FieldDesc-BodyB-Column1-">Update</td>
+                                                                            <td class="TableStyle-FieldDesc-BodyA-Column2-">Select <b>Always</b>
+</td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            
+                                                            <li value="14"> Your <b>Fields - Incoming</b> tab should look like this - <img src="/storage/app/media/Help/images/ip%20outbound%20act%20fields%20in%20tab.png">.</li>
+                                                            <li value="15">Save the mapping and the outbound action. </li>
+                                                        </ol>
+                                                        <h1>Outbound action field mappings examples</h1>
+                                                        <p>The following examples illustrate some of the more commonly used outbound action field mappings.</p>
+                                                        <h2>Transferring attachments from System 1 to System 2</h2>
+                                                        <ol start="1">
+                                                            <li value="1">Add <b>IntegrationAttachmentsEnabled=1</b> registry value in <span class="GeneralVariablesCoreName">ASM Core</span>/System level for both systems. <a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="../../resources/images/outbound%20action%20field%20mappings/examples%20of%20outbound%20action.png"><img class="MCPopupThumbnail img imgthumbnail" data-mc-width="851" data-mc-height="274" src="/storage/app/media/Help/images/outbound%20action%20field%20mappings/examples%20of%20outbound%20action_thumb_0_48.png" tabindex=""></a>
+</li>
+                                                            <li value="2">Enable attachments in the Outbound Action mapping screen in System 1. <a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="../../resources/images/outbound%20action%20field%20mappings/examples%20of%20outbound%20action_1.png"><img class="MCPopupThumbnail img imgthumbnail" data-mc-width="760" data-mc-height="377" src="/storage/app/media/Help/images/outbound%20action%20field%20mappings/examples%20of%20outbound%20action_1_thumb_0_48.png" tabindex=""></a>
+</li>
+                                                            <li value="3">When user attaches an object to a Call in System 1 this should be transferred to the call logged in System 2.</li>
+                                                        </ol>
+                                                        <p class="note"><b>Max Object size</b> should be considered here in System Settings (Admin). <a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="../../resources/images/outbound%20action%20field%20mappings/examples%20of%20outbound%20action_2.png"><img class="MCPopupThumbnail img imgthumbnail" data-mc-width="1324" data-mc-height="663" src="/storage/app/media/Help/images/outbound%20action%20field%20mappings/examples%20of%20outbound%20action_2_thumb_0_48.png" tabindex=""></a></p>
+                                                        <h2>Profile mapping (dropdown)</h2>
+                                                        <ol start="1">
+                                                            <li value="1">Expose the drop down field in System 2 – Inbound Action mapping screen.<a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="../../resources/images/outbound%20action%20field%20mappings/examples%20of%20outbound%20action_3.png"><img class="MCPopupThumbnail img imgthumbnail" data-mc-width="1414" data-mc-height="620" src="/storage/app/media/Help/images/outbound%20action%20field%20mappings/examples%20of%20outbound%20action_3_thumb_0_48.png" tabindex=""></a>
+</li>
+                                                            <li value="2">Save the Inbound Action.</li>
+                                                            <li value="3">In System 1, open up the Outbound Action mapping page and map in the drop down selected in System 2.<a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="../../resources/images/outbound%20action%20field%20mappings/examples%20of%20outbound%20action_4.png"><img class="MCPopupThumbnail img imgthumbnail" data-mc-width="1396" data-mc-height="599" src="/storage/app/media/Help/images/outbound%20action%20field%20mappings/examples%20of%20outbound%20action_4_thumb_0_48.png" tabindex=""></a>
+</li>
+                                                            <li value="4">Select <b>Profile Mapping</b> from Internal Field option.<a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="../../resources/images/outbound%20action%20field%20mappings/examples%20of%20outbound%20action_5.png"><img class="MCPopupThumbnail img imgthumbnail" data-mc-width="863" data-mc-height="350" src="/storage/app/media/Help/images/outbound%20action%20field%20mappings/examples%20of%20outbound%20action_5_thumb_0_48.png" tabindex=""></a>
+</li>
+                                                            <li value="5">Set up the Profile mapping.<a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="../../resources/images/outbound%20action%20field%20mappings/examples%20of%20outbound%20action_6.png"><img class="MCPopupThumbnail img imgthumbnail" data-mc-width="724" data-mc-height="270" src="/storage/app/media/Help/images/outbound%20action%20field%20mappings/examples%20of%20outbound%20action_6_thumb_0_48.png" tabindex=""></a> <a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="../../resources/images/outbound%20action%20field%20mappings/examples%20of%20outbound%20action_7.png"><img class="MCPopupThumbnail img imgthumbnail" data-mc-width="729" data-mc-height="312" src="/storage/app/media/Help/images/outbound%20action%20field%20mappings/examples%20of%20outbound%20action_7_thumb_0_48.png" tabindex=""></a><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="../../resources/images/outbound%20action%20field%20mappings/examples%20of%20outbound%20action_8.png"><img class="MCPopupThumbnail img imgthumbnail" data-mc-width="728" data-mc-height="318" src="/storage/app/media/Help/images/outbound%20action%20field%20mappings/examples%20of%20outbound%20action_8_thumb_0_48.png" tabindex=""></a>
+</li>
+                                                            <li value="6">Save the Profile mapping</li>
+                                                        </ol>
+                                                        <h2>Transferring single values</h2>
+                                                        <ol start="1">
+                                                            <li value="1">Expose a single field in System 1’s Outbound Action mapping page/Fields – Incoming tab.<a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="../../resources/images/outbound%20action%20field%20mappings/examples%20of%20outbound%20action_9.png"><img class="MCPopupThumbnail img imgthumbnail" data-mc-width="1362" data-mc-height="604" src="/storage/app/media/Help/images/outbound%20action%20field%20mappings/examples%20of%20outbound%20action_9_thumb_0_48.png" tabindex=""></a>
+</li>
+                                                            <li value="2">Set up a <b>Resolution rule</b>. The rule should create an entity (e.g. User) in System 2 when a call is logged and transferred from System 1.<a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="../../resources/images/outbound%20action%20field%20mappings/examples%20of%20outbound%20action_10.png"><img class="MCPopupThumbnail img imgthumbnail" data-mc-width="707" data-mc-height="704" src="/storage/app/media/Help/images/outbound%20action%20field%20mappings/examples%20of%20outbound%20action_10_thumb_0_48.png" tabindex=""></a><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="../../resources/images/outbound%20action%20field%20mappings/examples%20of%20outbound%20action_11.png"><img class="MCPopupThumbnail img imgthumbnail" data-mc-width="708" data-mc-height="710" src="/storage/app/media/Help/images/outbound%20action%20field%20mappings/examples%20of%20outbound%20action_11_thumb_0_48.png" tabindex=""></a><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="../../resources/images/outbound%20action%20field%20mappings/examples%20of%20outbound%20action_12.png"><img class="MCPopupThumbnail img imgthumbnail" data-mc-width="736" data-mc-height="729" src="/storage/app/media/Help/images/outbound%20action%20field%20mappings/examples%20of%20outbound%20action_12_thumb_0_48.png" tabindex=""></a>
+</li>
+                                                        </ol>
+                                                        <h2>Using Transforms</h2>
+                                                        <p>Transforms are used to modify data and populate a field with the modified/converted data, e..g concatenate two field values and populate a field with the results. See screenshots below. </p>
+                                                        <p>
+                                                            <img src="/storage/app/media/Help/images/outbound%20action%20field%20mappings/examples%20of%20outbound%20action_13.png" class="screenshot">
+                                                        </p>
+                                                        <p> </p>
+                                                        <p>
+                                                            <img src="/storage/app/media/Help/images/outbound%20action%20field%20mappings/examples%20of%20outbound%20action_14.png" class="screenshot">
+                                                        </p>
+                                                        <p>
+                                                            <img src="/storage/app/media/Help/images/outbound%20action%20field%20mappings/examples%20of%20outbound%20action_14.png" class="screenshot">
+                                                        </p>
+                                                        <p>
+                                                            <img src="/storage/app/media/Help/images/outbound%20action%20field%20mappings/examples%20of%20outbound%20action_15.png" class="screenshot">
+                                                        </p>
+                                                        <h1>Ongoing Operation</h1>
+                                                        <p>Once the interoperability has been set up, there are two main ways to use this functionality.</p>
+                                                        <h2>Call Transfer</h2>
+                                                        <p>Follow these steps to transfer a call from the Creator system to the Receiver system:</p>
+                                                        <ol start="1">
+                                                            <li value="1">Open the call that is intended to be transferred.</li>
+                                                            <li value="2">Click <b>External</b> to forward the call externally.</li>
+                                                            <li value="3">Specify the <b>External Supplier</b> and the <b>Contract</b> as defined in the Receiver system settings <a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="../../resources/images/connectors%20vfire%20to%20vfire%20call%20transfer.png"><img class="MCPopupThumbnail img imgthumbnail" data-mc-width="930" data-mc-height="583" src="/storage/app/media/Help/images/connectors%20vfire%20to%20vfire%20call%20transfer_thumb_0_48.png" tabindex=""></a>. See<a href="#Configur" class="MCXref xref">Configuring the System for Outbound Actions</a>.<br>
+</li>
+                                                            <li value="4">Click <b>Forward to Supplier</b> to transfer the call to the Receiver system.</li>
+                                                            <li value="5">Once the call has been transferred, a button labeled <b>Take Back</b> is visible on the Call Details page. This button allows for the cancellation of the transfer of the call and disables the reconciliation of call information between the two systems. What happens to the call created on the Receiver system depends on the settings of the Receiver system.</li>
+                                                        </ol>
+                                                        <p class="note">The connector allows for objects attached to calls on the Creator system to be copied over to their related calls created in the Receiver system.</p>
+                                                        <h2>Workflow Tasks</h2>
+                                                        <p>Two workflow tasks can be used to trigger actions in the Receiver system:</p>
+                                                        <table class="TableStyle-FieldDesc" style="mc-table-style: url('../../resources/tablestyles/fielddesc.css');margin-left: 0;margin-right: auto;" cellspacing="0">
+                                                            <col class="TableStyle-FieldDesc-Column-Column1">
+                                                            <col class="TableStyle-FieldDesc-Column-Column2">
+                                                            <tr>
+                                                                <td class="TableStyle-FieldDesc-BodyH-Column1-">
+                                                                    <p>External Supplier task</p>
+                                                                </td>
+                                                                <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                    <p>Specific external supplier and contract pairs have to be detailed before the External Supplier task can be executed. In this case, settings for field mappings defined in the Outbound Actions page of the Integration platform are used when information are transferred to the Receiver system.</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="TableStyle-FieldDesc-BodyH-Column1-">
+                                                                    <p>Outbound Action task</p>
+                                                                </td>
+                                                                <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                    <p>Enables the choice of a source and an action, as well as to define a task-specific mapping to be used by the selected action. The list of possible actions for this task reflects what has been defined as Inbound Actions by the Receiver system.</p>
+                                                                </td>
+                                                            </tr>
+                                                        </table>
+                                                        <h2>Linking an Analyst to a Contract</h2>
+                                                        <p>You may discover that when you forward the call externally and select the External Supplier and contract that no analysts are available to forward the call or task. To resolve this:</p>
+                                                        <ol>
+                                                            <li value="1">
+<a href="%7B%7B%20'help-managing-people-managing-people#Completing_Person_Details'%7CstaticPage%20%7D%7D#Completing_Person_Details">Create an external contact.</a>
+                                                            </li>
+                                                            <li value="2">
+<a href="%7B%7B%20'help-cmdb-managing-contracts#Complete_the_details'%7CstaticPage%20%7D%7D#Complete_the_details">Link the contract</a> to the external contact.</li>
+                                                            <li value="3">
+<a href="../cmdb%20explorer%20options/contracts%20explorer%20option.htm">Link the contract</a> to <b>all</b> analysts who will be externally forwarding  the call.</li>
+                                                        </ol>
+                                                    
+                                                

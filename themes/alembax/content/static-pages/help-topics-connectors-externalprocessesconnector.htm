@@ -1,0 +1,437 @@
+[viewBag]
+title = "External Process Connector"
+url = "/help/topics/connectors/externalprocessesconnector"
+layout = "help"
+is_hidden = 0
+navigation_hidden = 0
+==
+                                                    <h1>External Process Connector</h1>
+                                                    <p>This <conditionaltext data-mc-conditions="Default.ScreenOnly">topic </conditionaltext>provides details of the <span class="GeneralVariablesCompanyName2">Alemba®</span> External Process Connector, including:</p>
+                                                    <ul>
+                                                        <li value="1">The name of the .NET assembly file</li>
+                                                        <li value="2">The connection methodology</li>
+                                                    </ul>
+                                                    <ul>
+                                                        <li class="Bulleted_1" value="1">Use case scenarios</li>
+                                                        <li class="Bulleted_1" value="2">Architectural and functional details that ensure the running of the use case through the Outbound Action task in the Workflow Platform</li>
+                                                    </ul>
+                                                    <p class="note">For compatibility and version support details, refer to the <a href="connector%20matrix.htm" class="MCXref xref">ASM Connector Matrix</a>.</p>
+                                                    <h2>Overview</h2>
+                                                    <p>This connector:</p>
+                                                    <ul>
+                                                        <li value="1"> Sends values from a request, task, or a linked entity, to an external process.</li>
+                                                        <li value="2"> Receives values from the executable and passes them to the request or task.</li>
+                                                    </ul>
+                                                    <p class="note">You should familiarize yourself with the information in <a href="connector%20installation%20guide.htm" class="MCXref xref">Installing Connectors</a> before installing any connectors, and read the <a href="../integration/integrate.htm" class="MCXref xref">Integration</a> topics for more information on how to configure them.</p>
+                                                    <h2>Use Case Scenario</h2>
+                                                    <table class="TableStyle-scenario_table" style="mc-table-style: url('../../resources/tablestyles/scenario table.css');" cellspacing="0">
+                                                        <col class="TableStyle-scenario_table-Column-Column1">
+                                                        <col class="TableStyle-scenario_table-Column-Column2">
+                                                        <tr class="TableStyle-scenario_table-Body-Body1">
+                                                            <td class="TableStyle-scenario_table-BodyE-Column1-Body1">
+                                                                <p class="Strong">Purpose</p>
+                                                            </td>
+                                                            <td class="TableStyle-scenario_table-BodyD-Column2-Body1">
+                                                                <p>External processes are 3rd-party executables such as Powershell and Ping, and perform a functions that cannot performed natively by <span class="GeneralVariablesProductName">ASM</span>.</p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="TableStyle-scenario_table-Body-Body1">
+                                                            <td class="TableStyle-scenario_table-BodyE-Column1-Body1">
+                                                                <p class="Strong">Role</p>
+                                                            </td>
+                                                            <td class="TableStyle-scenario_table-BodyD-Column2-Body1">
+                                                                <p>The role of this connector is to pass parameters from the Outbound Action task to the External Process and receive return parameters.</p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="TableStyle-scenario_table-Body-Body1">
+                                                            <td class="TableStyle-scenario_table-BodyE-Column1-Body1">Example</td>
+                                                            <td class="TableStyle-scenario_table-BodyD-Column2-Body1">As part of a virtual machine creation, ping an IP address entered into the request submission form to confirm the environment is running before continuing with the request. The IP address is passed by the Outbound Action task in the request to the Ping external process, and returns the latency value to the mapped field in the request or task.</td>
+                                                        </tr>
+                                                    </table>
+                                                    <h2>Connector Description</h2>
+                                                    <p>The table below provides a description of the <span class="GeneralVariablesCompanyName2">Alemba®</span>  External Process Connector.</p>
+                                                    <table class="TableStyle-Rep_Hdr_Row" style="mc-table-style: url('../../resources/tablestyles/rep hdr row.css');" cellspacing="0">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column1">
+                                                        
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column2">
+                                                        
+                                                        <thead>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Head-Header1">
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column1-Header1">
+                                                                    <p>Information fields</p>
+                                                                </th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadD-Column2-Header1">
+                                                                    <p>Name</p>
+                                                                </th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1" style="font-weight: bold;">
+                                                                    <p>Connector</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p> External Process &lt;-&gt; <span class="GeneralVariablesCoreName">ASM Core</span> workflow</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1" style="font-weight: bold;">Assembly</td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+<span class="GeneralVariablesCompanyName2">Alemba®</span>.Conenctor.ExternalProcess.dll</td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1" style="font-weight: bold;">Configuration File</td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+<span class="GeneralVariablesCompanyName2">Alemba®</span>.Connector.ExternalProcess.xml (default)</td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1" style="font-weight: bold;">Configuration GUI</td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+<span class="GeneralVariablesCompanyName2">Alemba®</span>.Connector.ExternalProcess.Config.exe</td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyB-Column1-Body1" style="font-weight: bold;">Connection Methodology</td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyA-Column2-Body1">not applicable</td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <h2>Connection Parameters</h2>
+                                                    <p>The connection parameters for this connector are contained within an XML file on the application server where  is installed. This file must be mapped to the connector <b>Source</b>.</p>
+                                                    <table class="TableStyle-Rep_Hdr_Row" style="mc-table-style: url('../../resources/tablestyles/rep hdr row.css');width: 100%;margin-left: auto;margin-right: auto;" cellspacing="0">
+                                                        <col style="width: 20%;" class="TableStyle-Rep_Hdr_Row-Column-Column1">
+                                                        <col style="width: 80%;" class="TableStyle-Rep_Hdr_Row-Column-Column2">
+                                                        <thead>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Head-Header1">
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column1-Header1" style="font-weight: bold;">
+                                                                    <p class="Strong">Connection parameters</p>
+                                                                </th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadD-Column2-Header1">
+                                                                    <p class="Strong">Description</p>
+                                                                </th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyB-Column1-Body1" style="font-weight: bold;">
+                                                                    <p>Configuration File</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyA-Column2-Body1">
+                                                                    <p>The file path and name of the XML file which contains the connection details and parameters for the connector. Required.</p>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <h2>Connector Requirements</h2>
+                                                    <p>Ensure that all security requirements are met for the external process to be run. When executing processes on a server other than the <span class="GeneralVariablesProductName">ASM</span> server, ensure the executable is accessible through the firewall.</p>
+                                                    <h2>Installation</h2>
+                                                    <p>No install is required for this connector. Upon <span class="GeneralVariablesCoreName">ASM Core</span> install, this connector is visible in the Integration module, ready to be configured.</p>
+                                                    <h2 class="Heading2">Diagnostics </h2>
+                                                    <p>Trace data for this connector can be obtained through Polling tracing or Application tracing. </p>
+                                                    <h2>Additional Information</h2>
+                                                    <p>This connector does not include any Federated CMDB population functionality.</p>
+                                                    <h1>Connector Operation</h1>
+                                                    <h2>Overview</h2>
+                                                    <p>To make the <span class="GeneralVariablesCompanyName2">Alemba®</span> External Process Connector work, you must:</p>
+                                                    <ol>
+                                                        <li value="1">Configure the XML file using the configuration GUI on the <span class="GeneralVariablesProductName">ASM</span> server</li>
+                                                        <li value="2">Configure <span class="GeneralVariablesProductName">ASM</span> with a Source for the <span class="GeneralVariablesCompanyName2">Alemba®</span> External Process Connector</li>
+                                                        <li value="3">Configure <span class="GeneralVariablesProductName">ASM</span> Outbound Action tasks</li>
+                                                    </ol>
+                                                    <h2>
+<a name="Configur2"></a>Configure the XML file</h2>
+                                                    <p>An executable has been provided to assist in the configuration of the <span class="GeneralVariablesCompanyName2">Alemba®</span>.Connector.ExternalProcess.xml file, where all the connection parameters, mappable fields, and other details for the external process are defined.</p>
+                                                    <p class="tip">Multiple versions of this XML file can be created by copying the file and giving it a different name. There are no requirements for the file name.</p>
+                                                    <ol>
+                                                        <li value="1">Run the configuration GUI<ul>
+<li value="1">Log onto the <span class="GeneralVariablesProductName">ASM</span> web server, if you're not already logged on</li>
+<li value="2">Navigate to the <span class="GeneralVariablesProductName">ASM</span> root folder</li>
+<p class="exampletext"><code>C:\Program Files\<span class="GeneralVariablesCompanyName3">Alemba</span>\<span class="GeneralVariablesProductName">ASM</span>\</code></p>
+<li value="3">Run <b><span class="GeneralVariablesCompanyName2">Alemba®</span>.Connector.ExternalProcess.Config.exe</b>
+</li>
+<li value="4">The <b><span class="GeneralVariablesCompanyName2">Alemba®</span> External Process Connector Configuration</b> window opens <img src="/storage/app/media/Help/images/externalprocconn_gui_54x40.png" style="width: 54;height: 40;" class="img_no_border">
+</li>
+<li value="5">Toward the top of the window, above the Process field, is shown the XML file which will be affected by any changes that are saved.</li>
+<p class="note">On first-time configuration, the GUI opens with a simple external process (Ping) already configured to provide an example showing how to configure the tool.</p>
+</ul>
+</li>
+                                                        <li value="2">Change to a different XML file if this is not the file you want to modify:<ul>
+<li value="1">To open a different XML file, select <b>Open</b>
+</li>
+<li value="2">To save the current configuration under a different file name, select <img src="/storage/app/media/Help/images/save%20as%20word%20button.png">
+</li>
+<li value="3">To copy from an existing XML file and overwrite the current XML file configurations, select <img src="/storage/app/media/Help/images/copyfrombutton_74x23.png" class="img_no_border" style="width: 74;height: 23;"> </li>
+</ul>
+</li>
+                                                        <li value="3">Once the correct XML file is selected, complete the details:<ol><p class="note">All examples below use the Ping external process.</p></ol>
+</li>
+                                                        <table style="mc-table-style: url('../../resources/tablestyles/fielddesc no indent.css');" class="TableStyle-FieldDesc_no_indent" cellspacing="0">
+                                                            <col class="TableStyle-FieldDesc_no_indent-Column-Column1">
+                                                            <col class="TableStyle-FieldDesc_no_indent-Column-Column2" style="width: 781px;">
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">Process</td>
+                                                                    <td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">The user-defined name of the process. Multiple processes can be configured within a single XML file. Each process appears as a list item in the <b>Action</b> field of the Outbound Action task. </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">Active</td>
+                                                                    <td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">Select the checkbox to make the process selectable in the <b>Action</b> field of the Outbound Action tasks.</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">
+<b>Add</b>
+                                                                    </td>
+                                                                    <td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">Creates a new blank process within the XML file. Presents a popup box to enter the new Process Name.</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">Clone</td>
+                                                                    <td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">Creates a clone of the currently selected process under a new name within the XML file. Presents a popup box to enter the new Process Name.</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">Remove</td>
+                                                                    <td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">Deletes the currently selected process from the XML file.</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">
+<b>Rename</b>
+                                                                    </td>
+                                                                    <td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">Presents a popup box to enter a new name for the currently selected process.</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">Description</td>
+                                                                    <td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">Enter a description to help identify the purpose of the selected process and configuration.</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">File Path</td>
+                                                                    <td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">
+                                                                        <p>The file path of the process to be executed. Processes that can be called from anywhere on the server, such as Ping, do not require the path to be included. Other processes require the full file path.</p>
+                                                                        <p class="exampletext">To execute Ping, enter <code>Ping</code>.</p>
+                                                                        <p class="exampletext">To execute paint.net enter <code>C:\Program Files\paint.net\PaintDotNet.exe</code></p>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">Arguments</td>
+                                                                    <td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">
+                                                                        <p>Define the input parameters for the process. Parameters can be values or fields mapped from the Outbound Action task. Fields must be enclosed by <code>{{</code> <code>}}</code>, must exist as rows in the Input Fields section, and must be mapped to <span class="GeneralVariablesProductName">ASM</span> fields in the Outbound Action task in order for a value to be passed in.</p>
+                                                                        <p class="exampletext">Enter <code>{{IP Address}}</code> to ping the IP address entered into the workflow. </p>
+                                                                        <p class="exampletext">Enter <code>192.168.1.1</code> to always ping 192.168.1.1 whenever the process is executed.</p>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">User Name</td>
+                                                                    <td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">Enter the user name under which to run the process. If this field is blank, the process will run using the service account configured for the <span class="GeneralVariablesProductName">ASM</span> Services.</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">Password</td>
+                                                                    <td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">Enter the password for the supplied user name.</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">Input Fields</td>
+                                                                    <td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">
+                                                                        <p>Create a row for each input field to be mapped to a field in <span class="GeneralVariablesCoreName">ASM Core</span>. Input fields created here appear as selectable <b>Action Fields</b> in the Outgoing tab of the Outbound Action task. These input fields can be used in the Arguments if enclosed by <code>{{</code> <code>}}</code>.</p>
+                                                                        <table style="mc-table-style: url('../../resources/tablestyles/fielddesc.css');width: 90%;" class="TableStyle-FieldDesc" cellspacing="0">
+                                                                            <col class="TableStyle-FieldDesc-Column-Column1">
+                                                                            <col class="TableStyle-FieldDesc-Column-Column2" style="width: 75%;">
+                                                                            <tbody>
+                                                                                <tr>
+                                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Name</td>
+                                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">Enter a name for the field. This name appears in the Outbound Action Task as a selectable Action Field, and is also used in the Arguments when defining variable parameters.</td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Type</td>
+                                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">Use the drop down to select the field type, such as Text, Integer, or Blob.</td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Format</td>
+                                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                                        <p>Enter a format if DateTime was selected as the Type. If blank, will default to the server format.</p>
+                                                                                        <p class="exampletext"><code>dd/MM/yyyy</code>
+                                                                                        </p>
+                                                                                    </td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td class="TableStyle-FieldDesc-BodyB-Column1-">Test Value</td>
+                                                                                    <td class="TableStyle-FieldDesc-BodyA-Column2-">Enter a value to be used when testing the configuration for this process returns the desired results. This value is used only when Test Process is pressed.</td>
+                                                                                </tr>
+                                                                            </tbody>
+                                                                        </table>
+                                                                        <p>An input field configured as shown: <img src="/storage/app/media/Help/images/externalprocconn_inputfield_313x37.png" style="width: 313;height: 37;"> </p>
+                                                                        <ul>
+                                                                            <li value="1">is used in Arguments this way: <img src="/storage/app/media/Help/images/externalprocconn_arguments_220x28.png" style="width: 220;height: 28;">
+</li>
+                                                                            <li value="2">appears in the Outbound Action task here: <img src="/storage/app/media/Help/images/externalprocconn_outboundtask_67x38.png" style="width: 67;height: 38;">
+</li>
+                                                                        </ul>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">Output Pattern</td>
+                                                                    <td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">
+                                                                        <p>Define a formula, based on Regular Expression parsing, to extract the required parameters from the output of the external process and make them available to be mapped to the <span class="GeneralVariablesProductName">ASM</span> workflow. In the formula, replace the output parameter with a field defined in the Output Fields section and enclosed it in <code>&lt; &gt;</code>. </p>
+                                                                        <p class="exampletext1">The output from Ping is: <br><code>Minimum = 288ms, Maximum = 289ms, Average = 288ms</code></p>
+                                                                        <p class="exampletextlast">Therefore the Output Pattern would be defined as: <code><br>Minimum = (?&lt;timeMin&gt;\d+)ms, Maximum = (?&lt;timeMax&gt;\d+)ms, Average = (?&lt;timeAvg&gt;\d+)ms<br></code>... where the Output Fields section contains a row with the Name value of <code>timeMin.</code></p>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">Error Pattern</td>
+                                                                    <td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">Same as for the Output Pattern, but used instead of the Output Pattern when the external process returns an error message. Define a formula, based on Regular Expression parsing, to extract the required parameters from the error output of the external process and make them available to be mapped to the <span class="GeneralVariablesProductName">ASM</span> workflow. In the formula, replace the output parameter with a field defined in the Output Fields section and enclosed it in <code>&lt; &gt;</code>.</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">Failure Codes</td>
+                                                                    <td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">Define the exit codes from the external process to trigger the failure/rejection path in the <span class="GeneralVariablesProductName">ASM</span> workflow. Multiple error codes can be entered, separated by a comma.</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">Time Limit (ms)</td>
+                                                                    <td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">Set a time limit for the process to complete. If a process takes longer to complete than the specified time limit, it fails. </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc_no_indent-BodyB-Column1-">Output Fields</td>
+                                                                    <td class="TableStyle-FieldDesc_no_indent-BodyA-Column2-">
+                                                                        <p>Create a row for each output field to be mapped to a field in <span class="GeneralVariablesCoreName">ASM Core</span>. Output fields created here appear as selectable <b>Action Fields</b> in the Incoming tab of the Outbound Action task. These output fields can be used in the Output Pattern and/or Error Pattern if enclosed by <code>&lt;</code> <code>&gt;</code>.</p>
+                                                                        <table style="mc-table-style: url('../../resources/tablestyles/fielddesc.css');width: 90%;" class="TableStyle-FieldDesc" cellspacing="0">
+                                                                            <col class="TableStyle-FieldDesc-Column-Column1">
+                                                                            <col class="TableStyle-FieldDesc-Column-Column2" style="width: 75%;">
+                                                                            <tbody>
+                                                                                <tr>
+                                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Name</td>
+                                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                                        <p>Enter a name for the field. This name appears in the Outbound Action Task as a selectable Action Field, and is also used in the Output Pattern or Error Pattern when defining parameters.</p>
+                                                                                        <p class="exampletext">An output field defined with the Name <code>timeMin</code> can be used in the Output Pattern as follows:<br><code>Minimum = (?&lt;timeMin&gt;\d+)ms</code></p>
+                                                                                    </td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Type</td>
+                                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">Use the drop down to select the field type, such as Text, Integer, or Blob.</td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td class="TableStyle-FieldDesc-BodyB-Column1-">Format</td>
+                                                                                    <td class="TableStyle-FieldDesc-BodyA-Column2-">
+                                                                                        <p>Enter a format of DateTime was selected as the Type. If blank, will default to the server format. Leave this field blank if Date/Time was not selected as the Type.</p>
+                                                                                        <p class="exampletext"><code>dd/MM/yyyy</code>
+                                                                                        </p>
+                                                                                    </td>
+                                                                                </tr>
+                                                                            </tbody>
+                                                                        </table>
+                                                                        <p>Output fields configured as shown: <img src="/storage/app/media/Help/images/externalprocconn_outputfield_152x50.png" style="width: 152;height: 50;"></p>
+                                                                        <ul>
+                                                                            <li value="1">are used in the Output Pattern this way: <img src="/storage/app/media/Help/images/externalprocconn_outpattern_231x28.png" style="width: 231;height: 28;">
+</li>
+                                                                            <li value="2">appear in the Outbound Action task here: <img src="/storage/app/media/Help/images/externalprocconn_outbndtaskin_106x52.png" style="width: 106;height: 52;">
+</li>
+                                                                        </ul>
+                                                                        <p class="note">Output fields that are not used in either the Output Pattern or Error Pattern will return no values to the <span class="GeneralVariablesProductName">ASM</span> task.</p>
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                        <li value="4">To test the Process has been configured correctly, select <b>Test Process</b>
+</li>
+                                                        <li value="5">To test the Output Pattern has been configured correctly, select <b>Test Pattern</b>
+</li>
+                                                        <li value="6">Save the configuration details by selecting <b>Save</b>
+</li>
+                                                    </ol>
+                                                    <p class="warning"> If the Integration <b>Source</b> is defined, and afterward the configuration in the XML is changed, you must re-save the <b>Source</b> for the connector in the <a href="../integration/configuring%20integ%20source.htm">Integration Platform</a> in order for the changes to appear in Outbound Action tasks.</p>
+                                                    <p> </p>
+                                                    <h2 class="Heading2">
+<a name="Configur"></a>Configuring a Source for External Processes</h2>
+                                                    <ol start="1" class="ol_5">
+                                                        <li value="1">
+                                                            <p>Select <a href="../general%20topics/asmcorewindow.htm"><span style="font-size: 24pt;">≡</span></a> &gt; <b>Admin</b> &gt;  <b>Integration</b>. </p>
+                                                        </li>
+                                                    </ol>
+                                                    <ol start="4" class="ol_5" data-mc-continue="true">
+                                                        <li value="2">In the Explorer pane, under <b>Integration</b>, select <b>Sources</b>.</li>
+                                                        <li value="3">Select the <img src="/storage/app/media/Help/images/add%20new.png"> button on the toolbar. In the pop up window, select <b><span class="GeneralVariablesCompanyName3">Alemba</span> External Process Connector</b> from the drop-down list.</li>
+                                                        <li value="4">In the <b>Integration Source Details</b> window, complete the details.</li>
+                                                        <p>
+                                                            </p>
+<table class="TableStyle-Rep_Hdr_Row" style="mc-table-style: url('../../resources/tablestyles/rep hdr row.css');" cellspacing="0">
+                                                                <col class="TableStyle-Rep_Hdr_Row-Column-Column1" style="width: 15%;">
+                                                                
+                                                                <col class="TableStyle-Rep_Hdr_Row-Column-Column2" style="width: 85%;">
+                                                                
+                                                                <tbody>
+                                                                    <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                        <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1" style="text-align: right;font-weight: normal;">Name</td>
+                                                                        <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">Type a name for the integration source. Required.</td>
+                                                                    </tr>
+                                                                    <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                        <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1" style="text-align: right;font-weight: normal;">Status</td>
+                                                                        <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">This field is pre-filled with the Active status.</td>
+                                                                    </tr>
+                                                                    <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                        <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1" style="text-align: right;font-weight: normal;">Connector</td>
+                                                                        <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">This field is pre-filled with the Connector type.</td>
+                                                                    </tr>
+                                                                    <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                        <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1" style="text-align: right;font-weight: normal;">Assembly.TypeName</td>
+                                                                        <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">This field is pre-filled based on the selected connector as defined in the Connector DLL, and is read-only.</td>
+                                                                    </tr>
+                                                                    <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                        <td class="TableStyle-Rep_Hdr_Row-BodyB-Column1-Body1" style="text-align: right;font-weight: normal;">
+                                                                            <p>Configuration File</p>
+                                                                        </td>
+                                                                        <td class="TableStyle-Rep_Hdr_Row-BodyA-Column2-Body1">
+                                                                            <p>The file path and name of the XML file which contains the connection details and parameters for the connector. Required.</p>
+                                                                        </td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        
+                                                        <li value="5">Save the details.</li>
+                                                    </ol>
+                                                    <h2>
+<a name="Configur3"></a>Configuring Outbound Action Tasks</h2>
+                                                    <p>This connector is designed to be used by Outbound Action tasks in workflows.</p>
+                                                    <p>The information contained below relates directly, and only, to configuring task fields for the External Process Connector, and assumes a basic working knowledge of  tasks in workflow templates.</p>
+                                                    <p class="note">For general information on configuring Outbound Action tasks, refer to <a href="../tasks/creating%20an%20outbound%20action.htm" class="MCXref xref">Creating an Outbound Action Task</a>.</p>
+                                                    <p>In the <b>Mapping Details</b> section of the Outbound Action task, complete the details:</p>
+                                                    <ol>
+                                                        <li value="1">Expand the <b>Mapping Details</b> section, if necessary, and select the Source and Action.</li>
+                                                        <p>
+                                                            </p>
+<table style="width: 100%;mc-table-style: url('../../resources/tablestyles/fielddesc.css');margin-left: 0;margin-right: auto;" class="TableStyle-FieldDesc" cellspacing="0">
+                                                                <col class="TableStyle-FieldDesc-Column-Column1">
+                                                                
+                                                                <col class="TableStyle-FieldDesc-Column-Column2">
+                                                                
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyH-Column1-">Source</td>
+                                                                        <td class="TableStyle-FieldDesc-BodyG-Column2-">Select the <b>Source</b> configured for the External Process connector in the <a href="../integration/configuring%20integ%20source.htm">Integration Platform</a>.</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyB-Column1-">Action</td>
+                                                                        <td class="TableStyle-FieldDesc-BodyA-Column2-">
+                                                                            <p>Select the process to be run by the Outbound Action Task. Processes are defined in the XML file referenced in the Integration <b>Source</b> details.</p>
+                                                                        </td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        
+                                                        <li value="2">Select the <b>Outgoing</b> tab to map the fields for outgoing field values from <span class="GeneralVariablesProductName">ASM</span>. This allows you to specify how field values from the <span class="GeneralVariablesProductName">ASM</span> request or task correlate to the parameters in the external process (defined as Input Fields in the XML file) when this task activates. </li>
+                                                        </ol>
+<ul start="1">
+                                                            <li value="1">Click <b>Add</b>. In the <b>Add Fields</b> window, select the parameters you want to map to fields on the task or parent request. Click <b>OK</b>.</li>
+                                                            <li value="2">On the browse table, click the corresponding cell in the <b>Internal Field</b> column. Then click the field selector button to pick a static value or a field from the task or request. </li>
+                                                            <p class="note">Depending on the field’s data type, additional options can be selected in the field selector, including: field transformations, profile maps, or resolution rules.</p>
+                                                            <li value="3">Add more field mappings if needed.</li>
+                                                            <li value="4">To delete any mapped fields, select the mapping and click <b>Remove</b>. In the warning dialog box, click <b>Yes</b> to remove the field mapping or No to cancel.</li>
+                                                            <p class="note">The <b>Send Notify</b> checkbox does not apply for this connector.</p>
+                                                        </ul>
+                                                        <li value="3">Select the <b>Incoming</b> tab to map the incoming values from the external process. This allows you to specify how the values from the external process (defined as Output Fields in the XML file) correlate to fields in <span class="GeneralVariablesProductName">ASM</span> when a response is received from the external process.</li>
+                                                        <ul start="1">
+                                                            <li value="1">Click <b>Add</b>. In the <b>Add Fields</b> window, select the task or request fields you want to map to parameters in the external process. Click <b>OK</b>.</li>
+                                                            <li value="2">On the browse table, click the corresponding cell in the <b>Action Field</b> column. Then click the field selector button to pick a static value or a parameter from the external process. These fields are defined as Output Patterns in the XML file.</li>
+                                                            <p class="note">Depending on the field’s data type, additional options can be selected in the field selector, including: field transformations, profile maps, or resolution rules. </p>
+                                                            <li value="3">In the <b>Update</b> column, select the conditions for populating the field in <span class="GeneralVariablesProductName">ASM</span>. <b>Always</b> always updates the <span class="GeneralVariablesProductName">ASM</span> field with the value from the stored procedure. <b>Only When Blank</b> only populates the <span class="GeneralVariablesProductName">ASM</span> field with the value of the stored procedure if the field in <span class="GeneralVariablesProductName">ASM</span> is blank. This means that an existing value in <span class="GeneralVariablesProductName">ASM</span> cannot be overridden.</li>
+                                                            <p class="note">
+                        The <b>On Initial Population Only</b> update condition does not apply.</p>
+                                                        </ul>
+                                                    
+                                                    <h3>Field Mappings</h3>
+                                                    <p>Learn more about <a href="../integration/defining%20profile%20maps.htm" class="MCXref xref">Defining Profile Maps</a></p>
+                                                    <p>Learn more about <a href="../integration/defining%20resolution%20rules.htm" class="MCXref xref">Defining Resolution Rules</a></p>
+                                                    <p>Learn more about <a href="../integration/defining%20property%20transforms.htm" class="MCXref xref">Defining Property Transforms</a></p>
+                                                

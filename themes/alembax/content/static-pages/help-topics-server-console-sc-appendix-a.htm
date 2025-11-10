@@ -1,0 +1,22 @@
+[viewBag]
+title = "Server Console: SQL Server and Table Ownership "
+url = "/help/topics/server-console/sc-appendix-a"
+layout = "help"
+is_hidden = 0
+navigation_hidden = 0
+==
+                                                    <h1>
+<a name="top"></a>Server Console: SQL Server and Table Ownership </h1>
+                                                    <p class="pdflink" data-mc-conditions="Default.ScreenOnly">To view a PDF version of the server console documentation, select the following link <a href="%7B%7B%20'help--help-content-Resources-pdfs-vFire_Core_Server_Console_Guide.pdf#C:%5CAlemba%5CReleaseDocs'%7CstaticPage%20%7D%7D#C:%5CAlemba%5CReleaseDocs"><img src="/storage/app/media/Help/images/link%20pdf.png">.</a></p>
+                                                    <p>When using <span class="GeneralVariablesCoreName">ASM Core</span> with SQL Server, it is recommend that <span class="GeneralVariablesCoreName">ASM Core</span> tables are created by a member of the <b>sysadmin fixed server role</b> . This ensures that <span class="GeneralVariablesCoreName">ASM Core</span> tables are owned by <b>dbo</b>. </p>
+                                                    <p>Any member of the sysadmin fixed server role is mapped to a special account inside each database called <b>dbo</b>. Any object created by any member of the sysadmin fixed server role belongs to <b>dbo</b> automatically.  Only objects created by members of the sysadmin fixed server role belong <b>to</b> dbo. The <b>dbo</b> cannot be deleted.</p>
+                                                    <p>The reasons for having <b>dbo</b> as <span class="GeneralVariablesCoreName">ASM Core</span> table owner are: </p>
+                                                    <ul>
+                                                        <li value="1">Any tables owned by <b>dbo</b> can fully support Integrated Security with Microsoft SQL Server 2008 R2, providing index-tuning wizards that offer considerable query performance benefits. However, only tables owned by <b>dbo</b> can take full advantage of the query-tuning wizard. </li>
+                                                        <li value="2">Moving databases between servers is simpler since there is no dependency on entries in sysusers matching syslogins. </li>
+                                                    </ul>
+                                                    <p>You can apply the <span class="GeneralVariablesCoreName">ASM Core</span> schema to a new <span class="GeneralVariablesDatabaseName">ASM database</span> or upgrade existing client databases through the Server Console. </p>
+                                                    <p>The account used when creating a system in the Server Console must be a member of the system administrator’s role. </p>
+                                                    <p>Once the <b>Update</b> script has been run to create the schema, this account can be replaced with a non-system admin account. Equally, integrated security could be used to access the database from <span class="GeneralVariablesCoreName">ASM Core</span>. </p>
+                                                    <p>New <span class="GeneralVariablesCoreName">ASM Core</span> clients are able to create the complete <span class="GeneralVariablesDatabaseName">ASM database</span>, with all the tables owned by <b>dbo</b> as default. </p>
+                                                

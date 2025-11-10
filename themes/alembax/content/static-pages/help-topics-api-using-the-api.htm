@@ -1,0 +1,358 @@
+[viewBag]
+title = "Using the Classic API"
+url = "/help/topics/api/using-the-api"
+layout = "help"
+is_hidden = 0
+navigation_hidden = 0
+==
+                                                    <h1>
+<a name="aanchor73"></a>
+                                                        <concept term="Classic API"></concept>Using the Classic API</h1>
+                                                    <p class="reference"><span class="GeneralVariablesProductName">ASM</span> has two Application Programming Interfaces (or APIs), which enable you to develop programs that automate many common <span class="GeneralVariablesProductName">ASM</span> transactions. This section of the documentation deals with the Classic API. For more information on the RESTful <span class="GeneralVariablesAPIName">Alemba API</span>, see <a href="../alemba%20api/alemba%20api.htm">here</a>.<br><br></p>
+                                                    <p>Transactions are exposed via the web service. To use the Classic API, all transactions must be completed using the web service provided.</p>
+                                                    <p class="note">For information on how to develop code to call a web service, refer to the documentation for your chosen programming language.</p>
+                                                    <h2>Using Classic API Transactions</h2>
+                                                    <p>All transactions must be executed by a full analyst with a valid Session ID. A Session ID is a short alphanumeric string that is generated when an analyst logs into <span class="GeneralVariablesProductName">ASM</span>. The Session ID identifies the analyst as they navigate between pages. The Session ID indicates:</p>
+                                                    <ul>
+                                                        <li value="1">the identity of the analyst </li>
+                                                        <li value="2">the database to which the analyst is logged in</li>
+                                                        <li value="3">the duration for which the analyst has been logged into that database. </li>
+                                                    </ul>
+                                                    <p>The API provides a LogIn transaction to generate a valid Session ID for a given analyst – regular license count, concurrent session and session timeout restrictions all apply to this session. This Session ID is then passed as an argument to all other transactions to authenticate the analyst. A corresponding LogOut transaction is provided to end that session. After LogOut has been called, the given Session ID is no longer valid.</p>
+                                                    <p>Each transaction also has three optional parameters: </p>
+                                                    <ul>
+                                                        <li value="1">UserID</li>
+                                                        <li value="2">Password</li>
+                                                        <li value="3">Database </li>
+                                                    </ul>
+                                                    <p>If these parameters are passed to the transaction, the web service will log the user in, execute the transaction and log the user out after the transaction is executed. In case of an error, the user will be logged out and an error will be returned.</p>
+                                                    <p>For each transaction executed, events are inserted into the <span class="GeneralVariablesProductName">ASM</span> Activity Log detailing the parameters passed to the transaction and the values returned by the transaction.</p>
+                                                    <p>All transactions in the <span class="GeneralVariablesProductName">ASM</span> web service interface require a valid SessionID to execute.  This can either be generated using the LogIn transaction or by passing in the Login details to the specific transaction.</p>
+                                                    <p>The <span class="GeneralVariablesProductName">ASM</span> web service is installed by default for each system you create and can be found at the following URL:</p>
+                                                    <p style="font-weight: bold;">http://&lt;machinename&gt;/&lt;VirtualDirectory&gt;/ServiceManager.svc</p>
+                                                    <p>All examples in this documentation have been written using VB.NET. The following sections describe the API: how the input and output parameters are declared, parameter types and return values.</p>
+                                                    <h2>Authentication</h2>
+                                                    <p>The <span class="GeneralVariablesProductName">ASM</span> web service uses the Login ID/Password and Session ID for authenticating logins. As it is a generic web service, it does not use the Microsoft Integrated Windows authentication mechanism, and is thus not targeted for use from only other Windows systems. Anonymous access must be used for the web services API.</p>
+                                                    <p>If the API needs to be used with Integrated Security enabled, you must:</p>
+                                                    <ul>
+                                                        <li value="1">create a new system that points to the same <span class="GeneralVariablesDatabaseName">ASM database</span>
+</li>
+                                                        <li value="2">set up a password for an API analyst to enable them to log on</li>
+                                                        <li value="3">set the <span class="GeneralVariablesSystemName">ASM System</span> virtual directory to use anonymous access for IIS directory security.</li>
+                                                    </ul>
+                                                    <p>Person records flagged as only Users cannot be used for logging on to the <span class="GeneralVariablesProductName">ASM</span> web service. A person record flagged as Analyst in <span class="GeneralVariablesCoreName">ASM Core</span> must be used to log on to the API.</p>
+                                                    <p>The <span class="GeneralVariablesProductName">ASM</span> Web Service has not been designed to allow the use of NT authentication.</p>
+                                                    <h2>Input and Output Paramaters</h2>
+                                                    <p><a name="kanchor34"></a>The input and output parameters for all Classic API transactions are defined as classes.  A list of all available classes is provided in Appendix H: Classes. In addition to this, a detailed explanation of the input parameters for each transaction including mandatory and default values are provided.</p>
+                                                    <p>Each class conforms to a naming convention. All classes are named as follows:  </p>
+                                                    <table style="margin-left: 0;margin-right: auto;mc-table-style: url('../../resources/tablestyles/scenario table.css');" class="TableStyle-scenario_table" cellspacing="0">
+                                                        <col class="TableStyle-scenario_table-Column-Column1">
+                                                        <col class="TableStyle-scenario_table-Column-Column2">
+                                                        <tr class="TableStyle-scenario_table-Body-Body1">
+                                                            <td class="TableStyle-scenario_table-BodyE-Column1-Body1">
+                                                                <p><a name="kanchor35"></a>Input Classes:</p>
+                                                            </td>
+                                                            <td class="TableStyle-scenario_table-BodyD-Column2-Body1">
+                                                                <p>XXXRequest</p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="TableStyle-scenario_table-Body-Body1">
+                                                            <td class="TableStyle-scenario_table-BodyE-Column1-Body1">
+                                                                <p>Output Classes:</p>
+                                                            </td>
+                                                            <td class="TableStyle-scenario_table-BodyD-Column2-Body1">
+                                                                <p>XXXResponse</p>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                    <h2>Input Classes</h2>
+                                                    <p>Every input class contains certain common fields:</p>
+                                                    <ul>
+                                                        <li value="1">Session Information: sID, sUserID, sPassword, sDatabase. See the Transaction Login section for more information.</li>
+                                                        <li value="2">
+<a name="kanchor36"></a>Custom parameter placeholders. See the section Define Custom Parameters for more information.</li>
+                                                    </ul>
+                                                    <p>Not all fields in the input class are mandatory. The fields that are mandatory are specified for each transaction throughout this document.  </p>
+                                                    <p>If a mandatory field is not passed to an API transaction, the transaction will return an error.</p>
+                                                    <h2>
+<a name="Paramete"></a>Parameter Types</h2>
+                                                    <p>All fields in Request and Response classes are prefixed with a character indicating the type of that field.</p>
+                                                    <p>Exceptions include the “Ret” field for response classes.</p>
+                                                    <table style="margin-left: 0;margin-right: auto;mc-table-style: url('../../resources/tablestyles/rep hdr row.css');" class="TableStyle-Rep_Hdr_Row" cellspacing="0">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column1">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column2">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column1">
+                                                        <thead>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Head-Header1">
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column1-Header1">
+                                                                    <p>Prefix</p>
+                                                                </th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column2-Header1">
+                                                                    <p>Type</p>
+                                                                </th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadD-Column1-Header1">
+                                                                    <p>Additional Information</p>
+                                                                </th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>N</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>Integer</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p> </p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>S</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>String</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p> </p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>A</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>Array</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>Array with each element corresponding to a parameter and value. These are only used to define Custom Parameters. </p>
+                                                                    <p>See Define Custom Parameters for more information.</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>l</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>Lookup Field</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>Lookup fields are used by the API to find an existing entity in <span class="GeneralVariablesProductName">ASM</span>.  For example, lCustomer could be used to lookup the User for a new call.  </p>
+                                                                    <p>Every lookup field can be used to search by name or ref. If the input value begins with a tilde (~), the search will be performed by ref. Otherwise, the search will be performed by name.</p>
+                                                                    <p>See Appendix G: API Lookups for more information.</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>b</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>Boolean</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p> </p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>y</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>Yes/No</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>Yes/No fields are passed as strings and can contain any of the following “Y”,  “N”, ”T”, ”F”, ”1”, or ”0”.</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>d</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>Date/Time</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>Date fields are passed as strings with the format “YYYY-MM-DD HH:MM:SS” in 24-hour time format.</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyB-Column1-Body1">
+                                                                    <p>x</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyB-Column2-Body1">
+                                                                    <p>Byte()</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyA-Column1-Body1">
+                                                                    <p>Byte array, only used in ObjectAttach Transaction.</p>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <h2>Output Classes</h2>
+                                                    <p>Like the input values, all return values are contained in classes.</p>
+                                                    <p>Each output class may return:</p>
+                                                    <ul>
+                                                        <li value="1">Entity reference number</li>
+                                                        <li value="2">Message</li>
+                                                        <li value="3">API return value (warnings, errors)</li>
+                                                        <li value="4">Possibly result set</li>
+                                                    </ul>
+                                                    <h3>Entity Reference Number</h3>
+                                                    <p>Some output classes may return the reference number of an entity for certain transactions, such as create, update, etc. For example, a call number is returned in the case of the CallCreate Transaction.</p>
+                                                    <h3>
+<a name="kanchor37"></a>Error/Warning Messages</h3>
+                                                    <p><a name="kanchor38"></a>Each return class contains a message field sMessage. The sMessage field contains any error or warning message returned from the API Transaction.</p>
+                                                    <h3>
+<a name="kanchor39"></a>Transaction Status Codes</h3>
+                                                    <p><a name="kanchor40"></a>Each return class contains a response code field Ret. The Ret field has the type of APIReturn indicating the status of the transaction. The following status codes can be returned:</p>
+                                                    <table style="margin-left: 0;margin-right: auto;mc-table-style: url('../../resources/tablestyles/rep hdr row.css');" class="TableStyle-Rep_Hdr_Row" cellspacing="0">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column1">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column2">
+                                                        <thead>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Head-Header1">
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column1-Header1"> </th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadD-Column2-Header1"> </th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Status Code</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p>What it means</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Zero</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p>Transaction has been executed successfully</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>&gt;=1000</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p>An error occurred and the transaction could not be executed</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>1-999 inclusive</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p>Indicate a warning, which is a non-critical step in the transaction failed. However, the transaction was completed.</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyB-Column1-Body1">
+                                                                    <p> </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyA-Column2-Body1">
+                                                                    <p> </p>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <p class="note">A complete reference of status codes is provided in <a href="return%20values.htm">Return Values</a>.</p>
+                                                    <h3>ResultSet</h3>
+                                                    <p><a name="kanchor41"></a>Some API transactions return results in a ResultSet object.  This is a DataSet that contains rows of data.</p>
+                                                    <p>An example of iterating through a ResultSet in VB.NET (localhost is the name of the web reference added to the project) is as follows. This assumes that there is a ResultSet returned following a CallRetrieve Transaction.</p>
+                                                    <p>
+                                                        <img src="/storage/app/media/Help/images/using%20the%20api_626x284.png" style="width: 626;height: 284;" class="screenshot">
+                                                    </p>
+                                                    <h2>
+<a name="Transact"></a>Transaction Login</h2>
+                                                    <p>Each transaction takes certain session information as part of its input.</p>
+                                                    <p>There is the option to Login using the LogIn transaction to generate a session ID. This session ID is then passed to each transaction, and after the required API Transactions have been executed, you can call the LogOut transaction to log the analyst out of the system.</p>
+                                                    <p>Each transaction also has three optional parameters: </p>
+                                                    <ul>
+                                                        <li value="1">UserID</li>
+                                                        <li value="2">Password</li>
+                                                        <li value="3">Database</li>
+                                                    </ul>
+                                                    <p>Each transaction must be provided with either the session ID (sID) or all three of sLoginUserID, sLoginPassword and sDatabase. If these parameters are passed to the transaction, the web service will log the user in, execute the transaction and log the user out again.</p>
+                                                    <h2>Lookup Arguments</h2>
+                                                    <p>In instances where entities are linked to other entities (for example, calls to CMDB items, requests to request risk), these links are populated via a Lookup argument. Rather than pass the unique identifier of the linked entity, the transaction receives the name (or equivalent) or Ref of that entity. When the transaction is executed, the code looks up the entity by its name or Ref, and retrieves the unique identifier for that entity.</p>
+                                                    <p>The name of an entity is ambiguous. In some cases the name does not exist, so all Lookups are performed on the unique identifier instead. These include calls, requests, and tasks.</p>
+                                                    <h3>
+<a name="kanchor42"></a>Multi-tiered Entities</h3>
+                                                    <p>For multi-tiered entities, such as call issue Types and Request Types, Lookups are only performed against the name of the first tier entity.</p>
+                                                    <p>Attributes enable you to specify three tiers of Type (using three separate parameters), while Knowledge transactions let you specify the knowledge type through to lower tiers.</p>
+                                                    <p>CMDB Items transactions enable you to select CMDB Item Types down to lower tiers.</p>
+                                                    <p class="note">For more information about Attribute transactions, see <a href="attribute%20transactions.htm">Attribute Transactions</a>.<br>For more information about Knowledge transactions, see <a href="knowledge%20transactions.htm">Knowledge Transactions.</a><br></p>
+                                                    <h3>
+<a name="kanchor43"></a>Entities Representing Person Records</h3>
+                                                    <p>For entities representing people, all person records are looked up using their email address.</p>
+                                                    <p>When more than one matching entity is found in the Lookup, the first entity found is used.</p>
+                                                    <h3>
+<a name="kanchor44"></a>Lookup Errors</h3>
+                                                    <p>If a Lookup fails, an error or warning is generated depending on the nature of the linked entity. A failed lookup-up on a major entity generates an error. Major entities include:</p>
+                                                    <ul>
+                                                        <li value="1">Calls</li>
+                                                        <li value="2">Requests</li>
+                                                        <li value="3">Tasks</li>
+                                                        <li value="4">CMDB items</li>
+                                                        <li value="5">Users</li>
+                                                        <li value="6">Organizations</li>
+                                                        <li value="7">Locations</li>
+                                                        <li value="8">Contracts</li>
+                                                        <li value="9">External Suppliers</li>
+                                                        <li value="10">Analysts</li>
+                                                        <li value="11">IPK/Workflow Groups</li>
+                                                        <li value="12">Workflow Templates</li>
+                                                        <li value="13">Bulletin board entries</li>
+                                                        <li value="14">Knowledge entries</li>
+                                                        <li value="15">Knowledge Types</li>
+                                                        <li value="16">Attributes</li>
+                                                        <li value="17">Security Profiles</li>
+                                                        <li value="18">Stakeholders</li>
+                                                    </ul>
+                                                    <p>All other entities are treated as warnings, and an appropriate default value is substituted.</p>
+                                                    <p>It is possible to customize the means by which an entity is looked up by customizing the underlying query that performs the Lookup. Please contact your <span class="GeneralVariablesCompanyName2">Alemba®</span> Account Manager for information on how to achieve this.</p>
+                                                    <h2>
+<a name="Defining"></a>Defining Custom Parameters</h2>
+                                                    <p>The API enables you to specify an unlimited number of custom parameters that are optional. These parameters allow transactions to update fields other than the standard fields defined in the transaction.</p>
+                                                    <p>The API transactions use the same processes used within <span class="GeneralVariablesProductName">ASM</span> to achieve certain results, for example, the API and the full application both use the query Insert Asset to create a config item.</p>
+                                                    <p>All custom parameters to use in a transaction are stored in a Byte Array field. The naming convention for each entry in the array is CustomParamName=CustomParamValue. In other words, each entry in the array should consist of the field name to update, followed by an equals ‘=’ character, and then followed by the value of the specified field. </p>
+                                                    <p class="exampletext">A client wants to update <span class="GeneralVariablesSelfServicePortalName">Self Service Portal</span> Display Category and Service Portfolio Status on a Service to ‘Communications’ (reference number 3) and ‘<span class="GeneralVariablesServiceRequestCatalog">Service Request Catalog</span>’ (reference number 1) using the Classic API. This can be achieved by adding “PORTAL_CATEGORY=3” and “PORTFOLIO_STATUS=1” as entries into the aCustomParameters field of the input class of the CMDBItemUpdate transaction.</p>
+                                                    <p>The same can be applied to transactions involving a client-defined custom field on a given entity as long as the client has defined that column in the entity’s standard Insert, Update and Get queries.</p>
+                                                    <h3>Using soapUI</h3>
+                                                    <p>The type of the value needs to be specified for it to work when using soapUI. Custom parameters need to be entered as below:</p>
+                                                    <p class="exampletext">&lt;soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:emc.com:Ionix:ServiceManager:API:v9.0"&gt;<br> &lt;soapenv:Header/&gt;<br> &lt;soapenv:Body&gt;<br> &lt;urn:CallCreateRequest&gt;<br> &lt;!--Optional:--&gt;<br> &lt;urn:sLoginUserID&gt;aa&lt;/urn:sLoginUserID&gt;<br> &lt;!--Optional:--&gt;<br> &lt;urn:sLoginPassword&gt;aa&lt;/urn:sLoginPassword&gt;<br> &lt;!--Optional:--&gt;<br> &lt;urn:sDatabase&gt;SQL&lt;/urn:sDatabase&gt;<br> &lt;urn:sProblemDescription&gt;Test&lt;/urn:sProblemDescription&gt;<br> <b>&lt;urn:aCustomParameters&gt;</b><br style="font-weight: bold;"> <b>&lt;urn:CustomParamData xmlns:i="http://www.w3.org/2001/XMLSchema-instance"&gt;</b><br style="font-weight: bold;"> <b>&lt;urn:Key&gt;EXTFLDV_500001&lt;/urn:Key&gt;</b><br style="font-weight: bold;"> <b>&lt;urn:Value i:type="a:string" xmlns:a="http://www.w3.org/2001/XMLSchema"&gt;test&lt;/urn:Value&gt;</b><br style="font-weight: bold;"> <b>&lt;/urn:CustomParamData&gt;</b><br style="font-weight: bold;"> <b>&lt;/urn:aCustomParameters&gt;</b><br> &lt;/urn:CallCreateRequest&gt;<br> &lt;/soapenv:Body&gt;<br>&lt;/soapenv:Envelope&gt;</p>
+                                                    <h3>Using C# or vb</h3>
+                                                    <p>In these cases you need to create an array of CustomParamData and add Key Value pairs. </p>
+                                                    <p>Here is an example of C#:</p>
+                                                    <p class="exampletext">private static Infra.API.ServiceContracts.ExecuteQueryTableResponse ExecuteQuery(Infra.API.ServiceImplementation.ServiceManager InfraAPI, String APISessionID, string queryName, List&lt;KeyValuePair&lt;string, string&gt;&gt; parameters)<br>{<br>if (queryName == "") return null;<br>Infra.API.ServiceContracts.ExecuteQueryRequest APIExecuteQueryRequest = new Infra.API.ServiceContracts.ExecuteQueryRequest();<br>APIExecuteQueryRequest.sID = APISessionID;<br>APIExecuteQueryRequest.sQueryName = queryName;<br>//Add custom parameters<br><b>Infra.API.DataContracts.CustomParamData[] CustomParams = new Infra.API.DataContracts.CustomParamData[parameters.Count];</b><br style="font-weight: bold;"><b>for (int i = 0; i &lt; parameters.Count; i++)</b><br style="font-weight: bold;"><b>{</b><br style="font-weight: bold;"><b>CustomParams[i] = new Infra.API.DataContracts.CustomParamData();</b><br style="font-weight: bold;"><b>CustomParams[i].Key = parameters[i].Key;</b><br style="font-weight: bold;"><b>CustomParams[i].Value = parameters[i].Value;</b><br style="font-weight: bold;"><b>}</b><br style="font-weight: bold;"><b>APIExecuteQueryRequest.aCustomParameters = CustomParams;</b><br><br>return InfraAPI.ExecuteQuery(APIExecuteQueryRequest);<br>}</p>
+                                                    <h3>Updating Extension Fields</h3>
+                                                    <p>You can use the CustomParameters array to update extension fields that have been added to a call, request, task or CMDB item screen set. To do this, find the FIELD_REF of the required extension field using the SU_FIELD table (in other words, do not use the NAME). The custom parameter name then becomes ‘EXTFLDV_&lt;field_ref&gt;’.</p>
+                                                    <p>For example, a client has created an extension field Website Ref (name WEBSITE_REF) to store the website reference and wants to use the CMDBItemUpdate transaction to update this extension field on a CMDB item. This can be achieved by searching for FIELD_REF from the SU_FIELD table, where NAME=WEBSITE_REF. If the FIELD_REF returns a value ‘500061’, the client can enter “EXTFLDV_500061=www.alemba.com” as an entry into the aCustomParameters array of the input class of the CMDBItemUpdate transaction.</p>
+                                                    <h2>Patterns</h2>
+                                                    <p>Most entities follow a general pattern. For each entity, the following transactions can be defined:</p>
+                                                    <ul style="list-style-type: disc;margin-left: 72pt;">
+                                                        <p style="list-style-type: disc;">Create</p>
+                                                        <p style="list-style-type: disc;">Update</p>
+                                                        <p style="list-style-type: disc;">Delete</p>
+                                                        <p style="list-style-type: disc;">Retrieve</p>
+                                                    </ul>
+                                                    <p>The output classes of the Create transaction comprises a field that returns the unique identifier of the created entity, which can be passed to the Update, Delete and Retrieve transactions. The Retrieve transactions have a Details out argument, which is a Recordset object containing the entity’s properties.</p>
+                                                    <p>Create, Update, Retrieve, and Delete transactions are limited by the following rules:</p>
+                                                    <ul>
+                                                        <li value="1">Requests can only be created from workflow templates.</li>
+                                                        <li value="2">Tasks cannot be created individually, but are generated when requests are created.</li>
+                                                        <li value="3">Calls, requests, and tasks support a Forward transaction as an alternative update transaction.</li>
+                                                        <li value="4">Calls, Tasks and Requests cannot be deleted as such and include a Close transaction instead</li>
+                                                        <li value="5">Entities with a distinguishable name, such as Bulletin Entries, Knowledge Entries, all CMDB items, can be retrieved using that name or the unique identifier.</li>
+                                                        <li value="6">Person transactions are limited to User records only.</li>
+                                                    </ul>
+                                                    <p> </p>
+                                                    <h2>History Records</h2>
+                                                    <p>Some API transactions such as call forward and timesheet transactions allow history records to be entered.  </p>
+                                                    <p>This follows the same transactions as the main application.  The start and end dates represent the start and end times of the action.  There is also an option to use security profiles if this is enabled on your system.</p>
+                                                    <h2>Auditing</h2>
+                                                    <p>All the transactions that make changes to entities in the database (create, delete, update) have a Reason parameter. If the Audit Trail is enabled, this parameter takes a string that is saved to the Audit Trail for that particular item (call, request, task, CMDB item) as the reason for the change.  The API will always update the last update date and last updated by fields even when the audit trail is not enabled.</p>
+                                                

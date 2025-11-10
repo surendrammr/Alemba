@@ -1,0 +1,202 @@
+[viewBag]
+title = "Request Completion Statuses"
+url = "/help/topics/admin-workflow-mgt/request-completion-statuses"
+layout = "help"
+is_hidden = 0
+navigation_hidden = 0
+==
+                                                    <h1>
+<a name="top"></a>Request Completion Statuses</h1>
+                                                    <p class="intro">You can define a selection of statuses that can be specified on a request when it is closed, such as Request Successfully Completed, or Request Pending Later Review. You can also use this window to identify which statuses are amendable in the request.<br></p>
+                                                    <p> </p>
+                                                    <p>The status can be set automatically by setting it as a closure status, or the request manager can change it manually on the <b class="Bold">Request Completion</b> window. </p>
+                                                    <p class="note">Request completion statuses can also be set at the level of a task when the task is completed, using <b class="Bold">Set Request Completion Status on Task Closure</b> on the <a href="workflow%20management%20settings.htm">Workflow Management Settings</a> window. The status to which the request is to be set is configured when a <b class="Xref_outstanding">workflow template</b> is created.</p>
+                                                    <h2>Defining a Request Completion Status</h2>
+                                                    <h2 class="Prerequisite">Before you start</h2>
+                                                    <p class="prereqtext">You must have <b>Workflow Management Set Up</b> enabled within your <a href="../admin%20security%20roles/general%20access%20security%20role.htm">General Access Security Role</a> to work with request completion statuses.</p>
+                                                    <ol start="1">
+                                                        <li value="1">Select <a href="../general%20topics/asmcorewindow.htm"><span style="font-size: 24pt;">≡</span></a> &gt; <b>Admin</b> &gt;  <b>System Administration</b>.   The System Administration window appears. In the Explorer pane, expand  <b>Workflow Management</b>.</li>
+                                                        <li value="2">Select the <b class="Bold">Request Completion Statuses</b> option. The <b class="Bold">Request Completion Statuses</b> window appears.  You can <a href="%7B%7B%20'help-general-topics-working-with-browse-tables#Changing'%7CstaticPage%20%7D%7D#Changing">adjust the column widths</a> if required.</li>
+                                                        <li value="3">Select <img src="/storage/app/media/Help/images/add%20new.png">. A blank row is inserted in the browse table.</li>
+                                                        <li value="4">Type the name for the completion status in the <b class="Bold">Name</b> field. </li>
+                                                        <li value="5">Define settings for the request status:</li>
+                                                        <p>
+                                                            </p>
+<table class="TableStyle-FieldDesc_no_indent" style="mc-table-style: url('../../resources/tablestyles/fielddesc no indent.css');" cellspacing="0">
+                                                                <col class="TableStyle-FieldDesc_no_indent-Column-Column1">
+                                                                <col class="TableStyle-FieldDesc_no_indent-Column-Column2">
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">Closure</td>
+                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">
+                                                                            <p>Default status to display on the Request Completion window in Core.</p>
+                                                                            <p class="warning">Only one status can be set as a closure status.</p>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">Amendable</td>
+                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">
+                                                                            <p>Select this setting to allow changes to the service actions and other request details when the request is at this status. All checkboxes are unticked by default so that the request is not amendable at any stage.</p>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr data-mc-conditions="">
+                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyG-Column1-" style="text-align: right;" colspan="2">
+                                                                            <p colspan="2" class="nano">All settings below this point apply only to <span class="GeneralVariablesProduct2Name">Nano</span>. </p>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr data-mc-conditions="">
+                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">Parent Status</td>
+                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">
+                                                                            <p colspan="2" class="pnano">This setting applies only to <span class="GeneralVariablesProduct2Name">Nano</span>. </p>
+                                                                            <p>Select to designate a status as the parent of the statuses beneath it.  Multiple parent statuses can be defined, turning each status between them into 'child' statuses of the parent above. Only statuses defined as Parents appear as columns in the Kanban layout in <span class="GeneralVariablesProduct2Name">Nano</span>, and each request appears within its parent status column. <br></p>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">Close</td>
+                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">
+                                                                            <p colspan="2" class="pnano">This setting applies only to <span class="GeneralVariablesProduct2Name">Nano</span>. </p>
+                                                                            <p></p>
+                                                                            <p>When a status with this setting is assigned to a request in <span class="GeneralVariablesProduct2Name">Nano</span>, that request is closed. Closed requests can be reopened in <span class="GeneralVariablesProduct2Name">Nano</span> using the Re-Open button; changing the status will not automatically re-open it.                        
+                            </p>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">Clock Stop</td>
+                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">
+                                                                            <p colspan="2" class="pnano">This setting applies only to <span class="GeneralVariablesProduct2Name">Nano</span>. </p>
+                                                                            <p>
+                        Selecting this status for a request in <span class="GeneralVariablesProduct2Name">Nano</span> will stop the SLA clock. Statuses without this setting will start the SLA clock.
+                        
+                                                    
+                            </p>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">Resume Service</td>
+                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">
+                                                                            <p colspan="2" class="pnano">This setting applies only to <span class="GeneralVariablesProduct2Name">Nano</span>. </p>
+                                                                            <p>Selecting this status on a request in <span class="GeneralVariablesProduct2Name">Nano</span> resumes service. SLA events will be closed; changing the status will not re-start the clock.<br></p>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">Image</td>
+                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">
+                                                                            <p colspan="2" class="pnano">This setting applies only to <span class="GeneralVariablesProduct2Name">Nano</span>. </p>
+                                                                            <p>Select an image from the list to indicate to users in <span class="GeneralVariablesProduct2Name">Nano</span> what function or action will be performed on the work item when it is saved with that status. Any image can be assigned to any status. Select <b>None</b> to display no image.</p>
+                                                                            <p>This table shows the corresponding image that appears in <span class="GeneralVariablesProduct2Name">Nano</span> per image name.</p>
+                                                                            <p class="exampletext"> A status configured to close the request should be assigned the <b>Close</b> image.</p>
+                                                                            <table style="mc-table-style: url('../../resources/tablestyles/fielddesc no indent.css');" class="TableStyle-FieldDesc_no_indent" cellspacing="0">
+                                                                                <col class="TableStyle-FieldDesc_no_indent-Column-Column1">
+                                                                                <col class="TableStyle-FieldDesc_no_indent-Column-Column2">
+                                                                                <tbody>
+                                                                                    <tr>
+                                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">Approve</td>
+                                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">
+                                                                                            <img src="/storage/app/media/Help/images/approved.png">
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                    <tr>
+                                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">Authorize</td>
+                                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">
+                                                                                            <img src="/storage/app/media/Help/images/nanoauth.png">
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                    <tr>
+                                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">Close</td>
+                                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">
+                                                                                            <img src="/storage/app/media/Help/images/close%20x%20button.png">
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                    <tr>
+                                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">None</td>
+                                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">no image</td>
+                                                                                    </tr>
+                                                                                    <tr>
+                                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">Reject</td>
+                                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">
+                                                                                            <img src="/storage/app/media/Help/images/nanorejected.png">
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                    <tr>
+                                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">Service Resume</td>
+                                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">
+                                                                                            <img src="/storage/app/media/Help/images/nanoresumeservice.png">
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                    <tr>
+                                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">Stop Clock</td>
+                                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">
+                                                                                            <img src="/storage/app/media/Help/images/stop%20sla%20clock.png">
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                    <tr>
+                                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">Unauthorize</td>
+                                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">
+                                                                                            <img src="/storage/app/media/Help/images/nanounauth.png">
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                    <tr>
+                                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">Update</td>
+                                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">
+                                                                                            <img src="/storage/app/media/Help/images/nanoupdateicon.png">
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                    <tr>
+                                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyB-Column1-">User</td>
+                                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyA-Column2-">
+                                                                                            <img src="/storage/app/media/Help/images/nanousericon.png">
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                </tbody>
+                                                                            </table>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr data-mc-conditions="">
+                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyB-Column1-">Phase</td>
+                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyA-Column2-">
+                                                                            <p colspan="2" class="pnano">This setting applies only to <span class="GeneralVariablesProduct2Name">Nano</span>. </p>
+                                                                            <p>Select the request phase to highlight when a request with that status is viewed in <span class="GeneralVariablesProduct2Name">Nano</span>. Select <b>Unspecified</b> to hide the request phase image when a request with that status is viewed in <span class="GeneralVariablesProduct2Name">Nano</span>. Request Phases are defined in <a href="request%20phases.htm" class="MCXref xref">Request Phases</a> in System Administration. <br></p>
+                                                                        </td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        
+                                                        <li value="6">Select <img src="/storage/app/media/Help/images/save%20button.png">  to save the changes. Provide the <a href="../general%20topics/change%20reasons.htm">Change Reasons</a> if prompted to do so.</li>
+                                                    </ol>
+                                                    <h2>Updating a Request Completion Status</h2>
+                                                    <h2 class="Prerequisite">Before you start</h2>
+                                                    <p class="prereqtext">You must have <b>Workflow Management Set Up</b> enabled within your <a href="../admin%20security%20roles/general%20access%20security%20role.htm">General Access Security Role</a> to work with request completion statuses.</p>
+                                                    <p class="warning">You should not rename the <b class="Bold">Unspecified</b> value.</p>
+                                                    <ol start="1" class="ol_1">
+                                                        <li value="1">Select <a href="../general%20topics/asmcorewindow.htm"><span style="font-size: 24pt;">≡</span></a> &gt; <b>Admin</b> &gt;  <b>System Administration</b>.   The System Administration window appears. In the Explorer pane, expand  <b>Workflow Management</b>.</li>
+                                                        <li value="2">Select the <b class="Bold">Request Completion Statuses</b> option. The <b class="Bold">Request Completion Statuses</b> window appears <a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="../../resources/images/request%20completion%20statuses%20window.png"><img class="MCPopupThumbnail img imgthumbnail" data-mc-width="265" data-mc-height="121" src="/storage/app/media/Help/images/request%20completion%20statuses%20window_thumb_0_48.png" tabindex=""></a>.</li>
+                                                        <li class="li_1" value="3">Select the status you want to update. You can rename it by overwriting the <b class="Bold">Name</b> with a new one, select/deselect the setting checkboxes, or change the order in which the statuses are listed  on the defer, forward, or completion windows using the <img src="/storage/app/media/Help/images/move%20up.png"> and <img src="/storage/app/media/Help/images/move%20down.png"> buttons..  You can <a href="%7B%7B%20'help-general-topics-working-with-browse-tables#Changing'%7CstaticPage%20%7D%7D#Changing">adjust the column widths</a> if required.</li>
+                                                    </ol>
+                                                    <ul>
+                                                        <li value="1">
+                                                            <p class="warning">You should not rename the <b>Unspecified</b> status, and only one status can be set as a closure status.</p>
+                                                        </li>
+                                                    </ul>
+                                                    <ol start="4" class="ol_1">
+                                                        <li class="li_1" value="4">Select <img src="/storage/app/media/Help/images/save%20button.png">  to save the changes. Provide the <a href="../general%20topics/change%20reasons.htm">Change Reasons</a> if prompted to do so.</li>
+                                                    </ol>
+                                                    <h2>Changing the Order of Request Completion Statuses</h2>
+                                                    <h2 class="Prerequisite">Before you start</h2>
+                                                    <p class="prereqtext">You must have <b>Workflow Management Set Up</b> enabled within your <a href="../admin%20security%20roles/general%20access%20security%20role.htm">General Access Security Role</a> to work with request completion statuses.</p>
+                                                    <ol start="1" class="ol_1">
+                                                        <li value="1">Select <a href="../general%20topics/asmcorewindow.htm"><span style="font-size: 24pt;">≡</span></a> &gt; <b>Admin</b> &gt;  <b>System Administration</b>.   The System Administration window appears. In the Explorer pane, expand  <b>Workflow Management</b>.</li>
+                                                        <li value="2">Select the <b class="Bold">Request Completion Statuses</b> option. The <b class="Bold">Request Completion Statuses</b> window appears <a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="../../resources/images/request%20completion%20statuses%20window.png"><img class="MCPopupThumbnail img imgthumbnail" data-mc-width="265" data-mc-height="121" src="/storage/app/media/Help/images/request%20completion%20statuses%20window_thumb_0_48.png" tabindex=""></a> displays all of the existing completion statuses.</li>
+                                                        <li value="3">Adjust the order of the statuses in the table by using the <img src="/storage/app/media/Help/images/move%20up.png"> and <img src="/storage/app/media/Help/images/move%20down.png"> buttons. The highest status, usually “completion”, should be at the top of the table, followed by the second highest, and so on.</li>
+                                                        <li value="4">Select <img src="/storage/app/media/Help/images/save%20button.png">  to save the changes. Provide the <a href="../general%20topics/change%20reasons.htm">Change Reasons</a> if prompted to do so.</li>
+                                                    </ol>
+                                                    <h2>Deleting a Request Completion Status</h2>
+                                                    <h2 class="Prerequisite">Before you start</h2>
+                                                    <p class="prereqtext">You must have <b>Workflow Management Set Up</b> enabled within your <a href="../admin%20security%20roles/general%20access%20security%20role.htm">General Access Security Role</a> to work with request completion statuses.</p>
+                                                    <p class="warning">If you delete a completion status, you cannot reverse this procedure and will have to re-create it if needed.</p>
+                                                    <ol start="1" class="ol_1">
+                                                        <li value="1">Select <a href="../general%20topics/asmcorewindow.htm"><span style="font-size: 24pt;">≡</span></a> &gt; <b>Admin</b> &gt;  <b>System Administration</b>.   The System Administration window appears. In the Explorer pane, expand  <b>Workflow Management</b>.</li>
+                                                        <li value="2">Select the <b class="Bold">Request Completion Statuses</b> option. The <b class="Bold">Request Completion Statuses</b> window appears <a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="../../resources/images/request%20completion%20statuses%20window.png"><img class="MCPopupThumbnail img imgthumbnail" data-mc-width="265" data-mc-height="121" src="/storage/app/media/Help/images/request%20completion%20statuses%20window_thumb_0_48.png" tabindex=""></a> displays all of the existing completion statuses.</li>
+                                                        <li value="3">Select the one you want to delete. Select <img src="/storage/app/media/Help/images/delete%20button.png">. If you attempt to delete the system default, you will receive a warning message.</li>
+                                                        <li value="4">Select <img src="/storage/app/media/Help/images/save%20button.png">  to save the changes. Provide the <a href="../general%20topics/change%20reasons.htm">Change Reasons</a> if prompted to do so.</li>
+                                                    </ol>
+                                                

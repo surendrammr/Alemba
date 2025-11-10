@@ -1,0 +1,148 @@
+title = "White Paper"
+url = "/itsm-resources/white-papers/:slug"
+layout = "home"
+description = "White Paper detail page"
+is_hidden = 0
+robot_index = "index"
+robot_follow = "follow"
+seoOptionsEnabledInSitemap = 0
+seoOptionsUseUpdatedAt = 1
+seoOptionsRobotIndex = "index"
+seoOptionsRobotFollow = "follow"
+seoOptionsChangefreq = "daily"
+seoOptionsPriority = 0.5
+
+[viewBag]
+seo_title = "White Paper"
+seo_description = "White Paper"
+robot_index = "index"
+robot_follow = "follow"
+==
+<?php
+use Alemba\Alemba\Models\WhitePapers;
+
+function onStart()
+{
+
+	// Get all Success Stories
+
+	$this['page'] = WhitePapers::where('slug', $this->param('slug'))->first();
+
+	if($this['page']) {
+
+		$this->page->title = "White Paper - ".$this['page']->title;
+        $this['page_title'] = $this['page']->title;
+		$this['intro'] = $this['page']->intro;
+		$this['text'] = $this['page']->text;
+		$this['download'] = $this['page']->download;
+
+	} else {
+
+		$this->page->title = "Error!";
+		$this['page_title'] = "Error!";
+		$this['intro'] = 'Go back to the <a href="/itsm-resources/white-papers">White Papers</a> page to see other great White Papers.';
+		$this['text'] = "";
+
+	}
+
+}
+?>
+==
+<!-- banner -->
+
+{% if page.banner_image %}
+
+	<div class="jumbotron jumbotron-fluid banner pageBanner" style="background-image:url('{{ page.banner_image|media }}')">
+        <div class="container-fluid h-100">
+            <div class="row h-100">
+                <div class="col offset-sm-6 offset-4 my-auto">
+                    
+                </div>
+            </div>
+        </div>
+
+	</div>
+	
+{% else %}
+
+<div class="jumbotron jumbotron-fluid banner dark pageBanner" style="background-image:url('{{ 'assets/img/banners/banner-office@0.5x.jpg'|theme }}')">
+
+	<div class="container">
+	</div>
+
+</div>
+
+{% endif %}
+
+<!-- /banner -->
+
+{% partial 'demo-button' %}
+
+<!-- copy -->
+
+<div class="container copy">
+
+	<header class="col-md-12 copy-heading">
+
+
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb justify-content-center">
+                <li class="breadcrumb-item">ITSM Resources</li>
+                <li class="breadcrumb-item"><a href="{{ 'white-papers'|page }}">White Papers</a></li>
+                <li class="breadcrumb-item active">White Paper - {{ page_title }}</li>
+            </ol>
+        </nav>
+	
+		<h1>{{ page_title }}</h1>
+		<h2></h2>
+
+	</header>
+
+	<div class="row justify-content-center">
+
+		<div class="col-md-10 copy-main">
+            <h2>Introduction</h2>
+			<p class="lead">{% if page %} {{ intro }} {% else %} {{ intro|raw }} {% endif %}</p>
+
+			{{ page ? text|md : text|raw }}
+
+		</div>
+
+	</div>
+
+	{% if page %}
+
+		<!-- /success-story-table -->
+
+		{% if page.download %}
+
+			<div class="row">
+
+				<div class="col-md-12 copy-links text-center">
+
+					<a href="{{ page.download|media }}" class="button-link btn btn-primary">Download White Paper (PDF)</a>
+
+				</div>
+
+			</div>
+
+		{% endif %}
+
+
+	{% endif %}
+
+</div>
+
+<!-- /copy -->
+
+{% if page %}
+
+	<!-- copy-links -->
+
+    {% partial 'banners/banner-demo' %}
+
+	<!-- /copy-links -->
+
+{% endif %}
+
+{% partial 'pagelinks-success-stories' %}

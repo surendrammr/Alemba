@@ -1,0 +1,223 @@
+[viewBag]
+title = "Creating a new system "
+url = "/help/topics/server-console/sc-creating-a-system"
+layout = "help"
+is_hidden = 0
+navigation_hidden = 0
+==
+                                                    <h1>
+<a name="top"></a>Creating a new system </h1>
+                                                    <p>You can create and configure a new <span class="GeneralVariablesSystemName">ASM System</span> using the <b>New System Wizard</b>. </p>
+                                                    <h2 class="Prerequisite">Before you start</h2>
+                                                    <ul class="prereq">
+                                                        <li value="1">Ensure your <span class="GeneralVariablesSystemName">ASM System</span> environment meets the minimum technical requirements and is configured correctly. <conditionaltext data-mc-conditions="Default.ScreenOnly">For more information, see <a href="../prerequisites/prereq%20checklist.htm" class="MCXref xref">Prerequisites checklist</a>.</conditionaltext>
+</li>
+                                                        <li value="2">Ensure you have correctly installed and configured <span class="GeneralVariablesProductNameFull">Alemba Service Manager™</span>. <conditionaltext data-mc-conditions="Default.ScreenOnly">For more information, see <a href="../installation%20and%20upgrade/install/install%20installing.htm" class="MCXref xref">Installing Alemba Service Manager™</a>. </conditionaltext>
+</li>
+                                                        <li value="3">
+                                                            <p>Using a database management tool such as MS SQL Server Management Studio, your database administrator must: </p>
+                                                            <ul>
+                                                                <li value="1">Set up a new SQL Server database</li>
+                                                                <li value="2">Make the database user the owner of the dbo database schema, with a sysadmin server-level role<p>If you cannot use sysadmin, you must use the following database-level roles instead:</p>
+<ul>
+<li value="1">db_owner</li>
+<li value="2">db_datawriter</li>
+<li value="3">db_datareader</li>
+</ul>
+</li>
+                                                            </ul>
+                                                        </li>
+                                                        <li value="4">
+                                                            <p>Obtain the database credentials (either the Login ID and password, or Windows Authentication) from your database administrator.</p>
+                                                            <p> We highly recommend that before you use Windows authentication, you review the implications with <span class="GeneralVariablesCompanyName3">Alemba</span> Support.</p>
+                                                        </li>
+                                                    </ul>
+                                                    <p class="warning"><span class="GeneralVariablesCompanyName2">Alemba®</span> does not support Oracle databases for <span class="GeneralVariablesProductName">ASM</span>.</p>
+                                                    <p class="note">If you are configuring an existing system, see <a href="sc%20configuring%20your%20system.htm" class="MCXref xref">Configuring an existing system</a>.</p>
+                                                    <p>To create a new system:</p>
+                                                    <ol class="multilist">
+                                                        <li value="1">
+                                                            <p>Using Server Console, in the left pane, under <b>Console Root</b>, right-click <b><span class="GeneralVariablesProductNameFull">Alemba Service Manager™</span></b>, then select <b>New System</b> on the shortcut menu.</p>
+                                                            <p>The New System Wizard appears. </p>
+                                                        </li>
+                                                        <li value="2">
+                                                            <p>Supply the following information:</p>
+                                                            <table class="TableStyle-FieldDesc_no_indent" style="mc-table-style: url('../../resources/tablestyles/fielddesc no indent.css');margin-left: 0;margin-right: auto;" cellspacing="0">
+                                                                <col class="TableStyle-FieldDesc_no_indent-Column-Column1">
+                                                                <col class="TableStyle-FieldDesc_no_indent-Column-Column2">
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">System Name</td>
+                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">Type a name for the system. Each system name must begin with an alphabetic letter. By default, the first system name is System1. <p class="tip">You can use the following in the system name: alphanumeric characters, spaces, commas, semi-colons and apostrophes. You cannot use double quotes.</p>
+</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">System Path</td>
+                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">Browse to  where you want to store the system and its sub-folders.  By default, the system directory name is the same as the system name. If required, you can edit it. Use ASCII characters for the system directory name.<p class="note">You can specify a path that does not yet exist. </p>
+</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyB-Column1-">Default <span class="GeneralVariablesSelfServicePortalName">Self Service Portal</span>
+</td>
+                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyA-Column2-">Select the checkbox to set this system as the default on the server. <span class="GeneralVariablesSelfServicePortalName">Self Service Portal</span> will access the default system.</td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        </li>
+                                                        <li value="3">
+                                                            <p>Select <b>Next</b>. </p>
+                                                            <p>If you specified a System Path that does not yet exist, the Server Console prompts you to confirm that you want to create this system, otherwise continue to configuring the database (step 5).</p>
+                                                        </li>
+                                                        <li value="4">
+                                                            <p>Select <b>Yes</b> to proceed with creating the system.</p>
+                                                            <p>Selecting <b>No</b> will cancel this operation. </p>
+                                                            <p>The <b>SQL Server DB Details</b> window appears. </p>
+                                                        </li>
+                                                        <li value="5">
+                                                            <p><a name="step"></a>Configure the <span class="GeneralVariablesDatabaseName">ASM database</span> using the following information:</p>
+                                                            <table class="TableStyle-FieldDesc_no_indent" style="margin-left: 0;margin-right: auto;mc-table-style: url('../../resources/tablestyles/fielddesc no indent.css');" cellspacing="0">
+                                                                <col class="TableStyle-FieldDesc_no_indent-Column-Column1">
+                                                                <col class="TableStyle-FieldDesc_no_indent-Column-Column2">
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">DB Server</td>
+                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">Type the name of the SQL server that contains the database.</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">DB Name</td>
+                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">Type the database name.</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">DB Login ID</td>
+                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-"> If you are <b>not</b> using Windows Authentication, type the database Login ID. The default  Login ID is <b>sa</b>.<p class="note">This is the login for the database, not for <span class="GeneralVariablesProductNameFull">Alemba Service Manager™</span>. </p>
+</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">DB Password</td>
+                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">If you are <b>not</b> using Windows Authentication, type the database password. </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">DB NT Auth</td>
+                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">
+                                                                            <p>Select  the checkbox to authenticate the database login against the user's network login. Administrators logging into the database must use Windows Authentication details (i.e. the network login and password).</p>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">DB SSL</td>
+                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">
+                                                                            <p>Select  the checkbox to enable SSL encrypted communication between the <span class="GeneralVariablesSystemName">ASM System</span> and the database. Ensure that SSL is configured on the selected SQL Server.</p>
+                                                                            <p class="warning">We highly recommend that you discuss enabling SSL with your Account Manager before using this option. </p>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyB-Column1-">Encrypt in Registry</td>
+                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyA-Column2-">This checkbox is selected by default. It offers additional database security by encrypting the database login ID, password and connection string when these are stored in the registry.<p class="note">This option encrypts the database password only, not the password for any <span class="GeneralVariablesProductNameFull">Alemba Service Manager™</span> person record login IDs. </p>
+</td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        </li>
+                                                        <li value="6">
+                                                            <p>Select <b>Advanced</b> to set the following advanced options:</p>
+                                                            <table class="TableStyle-FieldDesc" style="margin-left: 0;margin-right: auto;width: 100%;mc-table-style: url('../../resources/tablestyles/fielddesc.css');" cellspacing="0">
+                                                                <col class="TableStyle-FieldDesc-Column-Column1">
+                                                                <col class="TableStyle-FieldDesc-Column-Column2">
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyH-Column1-">Set Concat NULL Yields NULL OFF on every connection</td>
+                                                                        <td class="TableStyle-FieldDesc-BodyG-Column2-">Select the checkbox to allow SQL statements to return data. You can configure this option at the session-level or the database-level. Because the default configuration at the database-level is ON, you must select this box to override the database-level configuration where SQL statements are to return data. Clear the checkbox if the Concat NULL Yields  is set to OFF at the database-level (for example, to improve performance).</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyH-Column1-">Maximum Connection Pool Size</td>
+                                                                        <td class="TableStyle-FieldDesc-BodyG-Column2-">If required, type the size of the client connection pool. The default number of connections is 100, represented by the value <b>0</b>.<p class="note">If this limit is exceeded, errors will occur. Errors are recorded in the event log.</p>
+</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyB-Column1-">Additional Connection String Properties</td>
+                                                                        <td class="TableStyle-FieldDesc-BodyA-Column2-">If required, you can modify the behavior of the <span class="GeneralVariablesProductNameFull">Alemba Service Manager™</span> connection to the database server for more complex SQL Server connections. For example if you have connection pooling, you may need to specify extra information. Type the relevant connection string. </td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        </li>
+                                                        <li value="7">
+                                                            <p>Select <b>OK</b> to apply the advanced options.</p>
+                                                            <p> Selecting Cancel will close the dialog box without saving your changes.</p>
+                                                        </li>
+                                                        <li value="8">
+                                                            <p>Select <b>Test Connect</b> to test that the information you entered enables you to connect to the server and database. </p>
+                                                            <p>A message appears to verify if the connection is successful or has failed. If it fails, you can use the detailed error message to diagnose any problems.</p>
+                                                            <p>If you are using an existing database, the database schema is detailed, but if you are using a blank database, the database schema is not defined.</p>
+                                                        </li>
+                                                        <li value="9">Select <b>Next</b>. </li>
+                                                        <li value="10">
+                                                            <p>In the <b>Enter New Licence Key</b> field, specify the licence key.</p>
+                                                            <p>If required, you can load the licence key from a Server Manager License File (*.lic). Select <b>Load From File</b> to browse to the file and <b>Open</b> it.</p>
+                                                        </li>
+                                                        <li value="11">
+                                                            <p>Select <b>Decode</b> to see the licence details.</p>
+                                                        </li>
+                                                        <p class="note">Licences control the number of analysts that can access the system. Contact your <span class="GeneralVariablesCompanyName2">Alemba®</span> Account Manager to increase the number of analysts on your licence.</p>
+                                                        <li value="12">
+                                                            <p>Select <b>Next</b>. </p>
+                                                            <p>If you support customers using multiple languages, you can set up one or more <span class="GeneralVariablesSystemName">ASM System</span>s to point at a single Unicode database, and if required, choose a different default language for each <span class="GeneralVariablesSystemName">ASM System</span>. </p>
+                                                            <p>Unicode databases can use a greatly extended character set and can display multiple languages on the same window. However, you must properly configure the databases to take advantage of the Unicode features.</p>
+                                                            <p class="warning">Ideally, you should set up the Unicode database when the database is empty. <b>Do not</b> select the <span style="color: #000000; font-weight: bold;">Create as a Unicode Schema</span> without consulting <span class="GeneralVariablesCompanyName2">Alemba®</span> Professional Services. <span class="GeneralVariablesCompanyName2">Alemba®</span> can upgrade existing non-Unicode databases to support Unicode, but this is a complex process that requires specialist consulting work.</p>
+                                                        </li>
+                                                        <li value="13">If required and after you have received consultation, select the <b>Create as a Unicode Schema</b> check box.</li>
+                                                        <li value="14">
+                                                            <p>Select <b>Next</b> to create the <span class="GeneralVariablesDatabaseName">ASM database</span> using the settings you specified.</p>
+                                                            <p>This may take several minutes.</p>
+                                                        </li>
+                                                        <li value="15">
+                                                            <p>On the <b>Website</b> window, select an existing IIS <b>Website</b> from the dropdown list.</p>
+                                                            <p>The default selection is Default Web Site.</p>
+                                                        </li>
+                                                        <li value="16">
+                                                            <p>Select the <b>Virtual Directory</b> that points to the physical location of the <span class="GeneralVariablesSystemName">ASM System</span> files.</p>
+                                                            <p>You may need to create a new virtual directory. For more information, see <a href="#Creating" class="MCXref xref">Creating a new virtual directory</a>.</p>
+                                                        </li>
+                                                        <p class="warning">If you do not specify a virtual directory, you can continue to create your system, but you will need to add a website before completing the configuration in order to avoid errors.</p>
+                                                        <p class="warning">Ensure that your virtual directory is configured correctly, otherwise you will have difficulties running and upgrading your system, and using Chat. This is particularly important if you have multiple systems.</p>
+                                                        <li value="17">
+                                                            <p>If required, change the default Mail Message Access <b>MMA URL</b> to a different virtual directory, or a different URL on another server, or to a load balancer. </p>
+                                                            <p>By default, the MMA URL points to the current server, using the following format: http://machinename/Virtual Directory/Core.aspx.</p>
+                                                        </li>
+                                                        <p class="note">If you are using a qualified domain name for the <span class="GeneralVariablesSelfServicePortalName">Self Service Portal</span>, specify the  qualified domain name in the <b>MMA URL</b> field. This way, all the pages on the <span class="GeneralVariablesSelfServicePortalName">Self Service Portal</span> will use the qualified domain name, rather than the name of the server/virtual directory.</p>
+                                                        <li value="18">
+                                                            <p>If required, change the <b>Chat Virtual Directory</b>.</p>
+                                                            <p class="warning">When  you create a new virtual directory, the <b>Chat Virtual Directory</b> field automatically populates with a path that exists within the selected virtual directory. We highly recommend that you use this default setting.</p>
+                                                        </li>
+                                                        <li value="19">
+                                                            <p>Select <b>Next</b>. </p>
+                                                            <p>Currently, English is the only available language. This is automatically selected.</p>
+                                                        </li>
+                                                        <li value="20">
+                                                            <p>Select <b>Next</b> to update the database.</p>
+                                                            <p>After all the files are copied and your system is configured, the process completes.</p>
+                                                        </li>
+                                                        <p class="note">You can make changes to the system properties and configure it further, changing general settings such as the default date format and currency, setting up diagnostics and enabling a virus check. For more information, see <a href="sc%20configuring%20your%20system.htm" class="MCXref xref">Configuring an existing system</a>.</p>
+                                                    </ol>
+                                                    <h2>
+<a name="Creating"></a>Creating a new virtual directory</h2>
+                                                    <p>Using the Server Console <b>New System</b> wizard, when you specify the <b>Website</b> properties for your system, you may need to create a new virtual directory.</p>
+                                                    <p>To create a new virtual directory:</p>
+                                                    <ol>
+                                                        <li value="1">
+                                                            <p>On the <b>Website</b> page, select <b>Create</b>.</p>
+                                                            <p>The New Virtual Directory dialog box appears.</p>
+                                                        </li>
+                                                        <li value="2">Type a name for the new virtual directory.</li>
+                                                        <li value="3">
+                                                            <p>If you want to use SSL encryption between the client and the server, select the <b>Use SSL</b> check box.</p>
+                                                            <p class="note">
+                                                                <n>The term SSL refers to encryption protocols supported by IIS. This security is configured in IIS. <span class="GeneralVariablesProductNameFull">Alemba Service Manager™</span> will work with any protocol supported by the client and/or server.</n>
+                                                            </p>
+                                                            <p class="warning">If your virtual directory uses SSL, start the address with <b>https</b> when logging in.<br></p>
+                                                        </li>
+                                                        <li value="4">
+                                                            <p>Select <b>OK</b> to create the virtual directory.</p>
+                                                            <p>The MMA URL and Chat Virtual Directory automatically populate.</p>
+                                                        </li>
+                                                    </ol>
+                                                    <p class="note">When you create a new virtual directory, <span class="GeneralVariablesProductNameFull">Alemba Service Manager™</span> will also create a new application pool in IIS.</p>
+                                                

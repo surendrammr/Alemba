@@ -1,0 +1,408 @@
+.main-nav {
+    display: none;
+    position: fixed;
+    top: 8.5rem;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow-y: auto;
+    z-index: 1000;
+    background-color: white;
+    @include vendor-prefixes(box-shadow, 0 3px 4px rgba(0,0,0,0.15));
+    
+    ul.nav {
+        display: block;
+    }
+    
+    li.nav-item {
+        display: block;
+        border-bottom: 1px solid $midgrey;
+        position: relative;
+        
+        &.home {
+            display: none;
+        }
+        .dropdown-toggle::after {
+            display:none;
+        }
+        
+        > a {
+            
+        }
+        
+        > a, .dropdown-item a {
+            display: block;
+            padding: 1rem;
+            width: 100%;
+            color: $midgrey;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            &:hover {
+                text-decoration: none;
+            }
+            &:focus, &:active {
+                outline: none;
+                @include vendor-prefixes(box-shadow, none);
+            }
+            p.description {
+                text-transform: none;
+                letter-spacing: 0;
+                font-size: 12px;
+                color: $midgrey;
+                margin-bottom: 0;
+                margin-top: 0.5rem;
+                white-space: initial;
+            }
+        }
+        
+        p.menu-heading {
+            color: $alembablue;
+            display: block;
+            padding: 1rem;
+            width: 100%;
+            color: $midgrey;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            pointer-events: none;
+            margin-bottom: 0;
+        }
+        
+        ul.dropdown-menu {
+            padding: 0;
+            border: 0;
+            background-color: $offwhite;
+            border-top: 1px solid darken($midgrey, 2%);
+            @include vendor-prefixes(border-radius, 0);
+            
+            &[style*="display: block;"] {
+                display: flex !important;
+                flex-direction: column;
+            }
+        }
+        
+        li.dropdown-item {
+            font-size: 12px;
+            padding: 0;
+            border-bottom: 1px solid darken($midgrey, 2%);
+            
+            > a {
+                padding-left: 28px;
+                @include vendor-prefixes(transition-property, none);
+                overflow: hidden;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+                &.indent {
+                    padding-left: 56px;
+                    color: lighten($midgrey, 15%);
+                }
+            }
+            
+            &:hover a {
+                border-left: 3px solid $alembablue;
+                padding-left: 25px;
+                
+                &.indent {
+                    padding-left: 53px;
+                }
+            }
+            
+            &:hover p.menu-heading {
+                background-color: $offwhite;
+            }
+            
+            &:active {
+                background-color: $offwhite;
+            }
+        }
+        
+        hr {
+            display: none;
+            border: 0;
+            outline: none;
+            height: 1px;
+            background-color: $midgrey;
+            margin-left: 1rem;
+            margin-right: 1rem;
+        }
+        
+        .card {
+            border: 0;
+            width: 100%;
+            padding-top: 1rem;
+            margin: auto 0 0 0;
+            img {
+                max-width: 100%;
+                height: auto;
+                margin: 0 auto;
+            }
+        }
+        
+        .dropdown-item:hover i {
+            opacity: 1;
+        }
+    }
+}
+
+//Nav Advert Cards 
+#MAIN_NAV .card {
+    padding: 1rem;
+    position: relative;
+    text-transform: none;
+    letter-spacing: normal;
+    align-self: flex-end;
+    
+    &.dark {
+        h1, h2, h3, h4, h5, h6, p, ul, ol {
+            color: white;
+        }
+    }
+    > a {
+        display: block;
+        position: absolute;
+        z-index: 9999;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        &:hover + .card-body .btn.btn-primary {
+            background-color: $alembablue;
+            color: white;
+        }
+    }
+    .card-body {
+        width: 100%;
+        min-height: 250px;
+        padding: 2rem;
+        display: block;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+        
+        .content-wrapper {
+            flex-grow: 1;
+            h2 {
+                font-size: 32px;
+            }
+            img + h2 {
+                margin-top: 2rem;
+            }
+        }
+        
+        .btn {
+            margin-bottom: 0;
+        }
+        
+        .graphic-right {
+            max-width: 70%;
+            margin: 0 auto;
+        }
+        
+        i.fa.fa-map-marker {
+            display: inline;
+            float: none;
+            margin-right: 0;
+            opacity: 1;
+        }
+    }
+    
+}
+
+@include media-breakpoint-up(sm) {
+    #MAIN_NAV .card {
+        .card-body {
+            .graphic-right {
+                max-width: 40%;
+                float: right;
+                margin-left: 2rem;
+            }
+        }
+    }
+}
+
+// Style when dropdown menu item selected
+.dropdown-toggle {
+    &:not(.collapsed) {
+        color: $alembablue;
+        @extend strong;
+    }
+}
+
+#nav-demo-link {
+    @extend strong;
+    margin-left: 2rem;
+
+    @include media-breakpoint-down(md) {
+        margin-left: 0;
+    }
+}
+
+.nav-heading {
+    color: $alembablue;
+    letter-spacing: 3px;
+    font-size: 0.8rem;
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
+}
+
+.nav-dropdown-panel {
+    background-color: white;
+    color: $grey;
+    border-bottom: 1px solid white;
+
+    .nav-dropdown-panel-list {
+        list-style: none;
+        margin-bottom: 2rem;
+        padding-left: 0;
+
+        li {
+            margin-bottom: 1rem;
+        }
+
+        a {
+            text-decoration: none;
+
+            &:hover {
+                .nav-icon {
+                    color: $alembablue;
+                }
+            }
+        }
+
+        .nav-dropdown-panel-list-submenu {
+            list-style: none;
+            margin-top: 0.3rem;
+            margin-bottom: 1rem;
+
+            @media screen and (min-width: 768px) and (max-width: 1200px) {
+                padding-left: 0;
+            }
+
+            li {
+                font-size: 0.9rem;
+                margin-bottom: 0.3rem;
+            }
+
+            a {
+                color: $grey;
+
+                &:hover {
+                    color: $alembablue;
+                }
+            }
+        }
+
+        .nav-icon {
+            margin-right: 0.5rem;
+            color: $grey;
+        }
+    }
+}
+
+#nav-top {
+
+    .nav-item {
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        color: white;
+
+        a {
+            text-decoration: none;
+
+            &:hover {
+                color: $alembablue;
+            }
+        }
+    }
+
+}
+
+.support-number {
+    margin-bottom: 1.5rem;
+}
+
+.support-flag {
+    margin-right: 1rem;
+    width: 40px;
+}
+
+.navbar {
+    box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    background-color: $darkgrey;
+    padding: 1.2rem;
+
+    .navbar-logo {
+        height: 2rem;
+    }
+
+    li {
+
+        a {
+            color: white;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-left: 2rem;
+            font-size: 0.7rem;
+            cursor: pointer;
+
+            @include media-breakpoint-down(md) {
+                margin-left: 0;
+            }
+
+            &:hover {
+                color: $alembablue;
+            }
+        }
+
+    }
+
+}
+
+
+// Footer
+
+footer {
+    background-color: $darkgrey;
+    color: white;
+    padding-bottom: 4rem;
+
+    a {
+        color: $alembapink;
+        text-decoration: none;
+    }
+
+    .nav-heading {
+        color: white;
+    }
+
+    .navbar-nav {
+        margin-bottom: 3rem;
+    }
+}
+
+#footer-logo img {
+    height: 2.5rem;
+}
+
+#newsletter {
+
+    .form-group {
+        margin-bottom: 1rem;
+    }
+
+}
+
+#footer-socials {
+    li {
+        margin-right: 1rem;
+    }
+
+    a {
+        color: white;
+        font-size: 1.7rem;
+
+        &:hover {
+            color: $alembapink;
+        }
+    }
+}

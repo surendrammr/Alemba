@@ -1,0 +1,486 @@
+[viewBag]
+title = "Email Event Connector"
+url = "/help/topics/connectors/emaileventconnector"
+layout = "help"
+is_hidden = 0
+navigation_hidden = 0
+==
+                                                    <h1>
+<a name="top"></a>Email Event Connector</h1>
+                                                    <p>The <b><span class="GeneralVariablesCompanyName2">Alemba®</span> Email Event Connector</b>   is implemented to generate calls or requests in <span class="GeneralVariablesProductNameFull">Alemba Service Manager™</span> from 3rd party event tools that send event notifications by email. Fields in the generated calls and requests are populated with data from the emails. A configuration XML file defines field mappings between the template and the contents of event emails. New calls or requests are created from emails with unique Subjects. Existing event calls or requests are updated from emails with Subjects matching previously received emails.</p>
+                                                    <p>This section of the documentation describes the details of the connector and how to configure it to extract data from incoming emails, including: </p>
+                                                    <ul class="ul_11">
+                                                        <li class="li_2" value="1">The name of the .NET assembly file </li>
+                                                        <li class="li_2" value="2">Connection methodology</li>
+                                                        <li class="li_4" value="3">The requirements involved in the handling of Event Management between <span class="GeneralVariablesCoreName">ASM Core</span> and the incoming emails. </li>
+                                                    </ul>
+                                                    <p class="note">For compatibility and version support details, refer to the <a href="connector%20matrix.htm" class="MCXref xref">ASM Connector Matrix</a>.</p>
+                                                    <h2>Use Case Scenario </h2>
+                                                    <table class="TableStyle-scenario_table" style="mc-table-style: url('../../resources/tablestyles/scenario table.css');margin-left: 0;margin-right: auto;" cellspacing="0">
+                                                        <col class="TableStyle-scenario_table-Column-Column1">
+                                                        <col class="TableStyle-scenario_table-Column-Column2">
+                                                        <tr class="TableStyle-scenario_table-Body-Body1">
+                                                            <td class="TableStyle-scenario_table-BodyE-Column1-Body1">
+                                                                <p class="Strong">Purpose</p>
+                                                            </td>
+                                                            <td class="TableStyle-scenario_table-BodyD-Column2-Body1">
+                                                                <p>An organization receives emails from a 3rd party application to notify them of an event. </p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="TableStyle-scenario_table-Body-Body1">
+                                                            <td class="TableStyle-scenario_table-BodyE-Column1-Body1">
+                                                                <p class="Strong">Role</p>
+                                                            </td>
+                                                            <td class="TableStyle-scenario_table-BodyD-Column2-Body1">
+                                                                <p>The role of this connector is to pass parameters from the email into calls or requests in <span class="GeneralVariablesProductName">ASM</span>.</p>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                    <h2>Connector Description </h2>
+                                                    <p>The table below provides a description of the connector. </p>
+                                                    <table class="TableStyle-Rep_Hdr_Row" style="mc-table-style: url('../../resources/tablestyles/rep hdr row.css');" cellspacing="0">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column1">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column2">
+                                                        <thead>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Head-Header1">
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column1-Header1" style="font-weight: bold;">
+                                                                    <p class="Strong">Information fields </p>
+                                                                </th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadD-Column2-Header1">Name</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1" style="font-weight: bold;">
+                                                                    <p>Connector </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p>Emails -&gt; <span class="GeneralVariablesCoreName">ASM Core</span> Connector </p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1" style="font-weight: bold;">
+                                                                    <p>Third-party application </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p>any supported email applications</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1" style="font-weight: bold;">
+                                                                    <p>Assembly </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p><span class="GeneralVariablesCompanyName2">Alemba®</span>.Connector.Email.dll </p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1" style="font-weight: bold;">
+                                                                    <p>Configuration file </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p><span class="GeneralVariablesCompanyName2">Alemba®</span>.Connector.Email.xml</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1" style="font-weight: bold;">Configuration GUI</td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+<span class="GeneralVariablesCompanyName2">Alemba®</span>.Connector.Email.Config.exe</td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyB-Column1-Body1" style="font-weight: bold;">
+                                                                    <p>Connection methodology </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyA-Column2-Body1">
+                                                                    <p>not applicable</p>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <h2 class="Heading2">Connection Parameters </h2>
+                                                    <p>The connection parameters for this connector are contained within an XML file on the application server where <span class="GeneralVariablesProductName">ASM</span> is installed. This file must be mapped to the connector <b>Source</b>.</p>
+                                                    <table class="TableStyle-Rep_Hdr_Row" style="mc-table-style: url('../../resources/tablestyles/rep hdr row.css');width: 100%;margin-left: auto;margin-right: auto;" cellspacing="0">
+                                                        <col style="width: 20%;" class="TableStyle-Rep_Hdr_Row-Column-Column1">
+                                                        <col style="width: 80%;" class="TableStyle-Rep_Hdr_Row-Column-Column2">
+                                                        <thead>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Head-Header1">
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column1-Header1" style="font-weight: bold;">
+                                                                    <p class="Strong">Connection parameters</p>
+                                                                </th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadD-Column2-Header1">
+                                                                    <p class="Strong">Description</p>
+                                                                </th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1" style="font-weight: bold;">Incoming Email Source</td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">The incoming email server source configured in System Admin, to be used by the connector.</td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyB-Column1-Body1" style="font-weight: bold;">
+                                                                    <p>Configuration File</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyA-Column2-Body1">
+                                                                    <p>The file path and name of the XML file which contains the connection details and parameters for the connector. Required.</p>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <h2>Installation</h2>
+                                                    <p>No install is required for this connector. Upon <span class="GeneralVariablesCoreName">ASM Core</span> install, this connector is visible in the Integration module, ready to be configured.</p>
+                                                    <h2 class="Heading2">User Diagnostics </h2>
+                                                    <p>The connector has the facility to trace information. The data can be obtained through Polling tracing or Application tracing. </p>
+                                                    <h2>Additional Information</h2>
+                                                    <p>This connector does not include any Federated CMDB population functionality.</p>
+                                                    <h1>Connector Operation</h1>
+                                                    <h2>Overview</h2>
+                                                    <p>To make the <span class="GeneralVariablesCompanyName2">Alemba®</span> Email Event Connector work, you must:</p>
+                                                    <ol>
+                                                        <li value="1">
+<a href="#Set" class="MCXref xref">Set up an Incoming Email Server in ASM Core</a>
+                                                        </li>
+                                                        <li value="2">
+<a href="#Configur" class="MCXref xref">Configure an Integration Source for the Email Event Connector</a>
+                                                        </li>
+                                                        <li value="3">
+<a href="#Configur2" class="MCXref xref">Configure the XML file</a>
+                                                        </li>
+                                                        <li value="4">
+<a href="#Create" class="MCXref xref">Create an Integration Event Mapping</a>
+                                                        </li>
+                                                    </ol>
+                                                    <p> </p>
+                                                    <h2 class="Heading2">
+<a name="Set"></a>Set up an Incoming Email Server in <span class="GeneralVariablesCoreName">ASM Core</span>
+</h2>
+                                                    <ol>
+                                                        <li value="1">Follow the steps detailed in the <a href="../admin%20system/email%20settings.htm" class="MCXref xref">Email Settings</a> topic to create an incoming email server in <span class="GeneralVariablesCoreName">ASM Core</span> that will be used by the Email Connector to retrieve emails and create calls or requests.</li>
+                                                        <li value="2">Enter the details of the server and email account that will receive event emails from the third party application.</li>
+                                                        <p class="note">The Call Template field in the Email Settings is ignored by the connector, which instead uses the <b>Using template</b> field in the <b>Event Type Mapping Details</b> window.</p>
+                                                        <li value="3">In the settings for the incoming email server in <span class="GeneralVariablesCoreName">ASM Core</span>, the <b>Active</b> checkbox must be <u style="font-weight: bold;">unselected</u>.</li>
+                                                        <p class="warning">Conflicts will occur if the mail server is not set to be inactive in the Email Settings.</p>
+                                                        <li value="4">Continue completing the settings for the incoming email server in <span class="GeneralVariablesCoreName">ASM Core</span>, as instructed in the <a href="../admin%20system/email%20settings.htm" class="MCXref xref">Email Settings</a> topic.</li>
+                                                        <li value="5">Select <img src="/storage/app/media/Help/images/save%20button.png">  to save the changes.</li>
+                                                    </ol>
+                                                    <h2 class="Heading2">
+<a name="Configur"></a>Configure an Integration Source for the Email Event Connector</h2>
+                                                    <ol start="1" class="ol_5">
+                                                        <li value="1">
+                                                            <p>Select <a href="../general%20topics/asmcorewindow.htm"><span style="font-size: 24pt;">≡</span></a> &gt; <b>Admin</b> &gt;  <b>Integration</b>. </p>
+                                                        </li>
+                                                        <li value="2">In the Explorer pane, under <b>Integration</b>, select <b>Sources</b>.</li>
+                                                        <li value="3">Select the <img src="/storage/app/media/Help/images/add%20new.png"> button on the toolbar. In the pop up window, select <b><span class="GeneralVariablesCompanyName2">Alemba®</span> Email Event Connector</b> from the drop-down list.</li>
+                                                        <li value="4">In the <b>Integration Source Details</b> window, complete the details.</li>
+                                                        <table class="TableStyle-FieldDesc_no_indent" style="mc-table-style: url('../../resources/tablestyles/fielddesc no indent.css');" cellspacing="0">
+                                                            <col class="TableStyle-FieldDesc_no_indent-Column-Column1">
+                                                            <col class="TableStyle-FieldDesc_no_indent-Column-Column2">
+                                                            <tbody>
+                                                                <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                    <td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">Name</td>
+                                                                    <td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">Type a name for the integration source. Required.</td>
+                                                                </tr>
+                                                                <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                    <td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">Status</td>
+                                                                    <td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">This field is pre-filled with the Active status.</td>
+                                                                </tr>
+                                                                <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                    <td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">Connector</td>
+                                                                    <td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">This field is pre-filled with the Connector type.</td>
+                                                                </tr>
+                                                                <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                    <td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">Assembly.TypeName</td>
+                                                                    <td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">This field is pre-filled based on the selected connector as defined in the Connector DLL. Read-only.</td>
+                                                                </tr>
+                                                                <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                    <td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">Incoming Email Source</td>
+                                                                    <td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">
+                                                                        <p>Use the drop down to select  the Incoming Email Server, configured in <a href="../admin%20system/email%20settings.htm" class="MCXref xref">Email Settings</a> in System Admin, that will receive the event emails. The connector will regularly check the inbox of that mail account.</p>
+                                                                        <p class="warning">The account configured in <a href="../admin%20system/email%20settings.htm" class="MCXref xref">Email Settings</a> must be set to Inactive.</p>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                    <td class="TableStyle-FieldDesc_no_indent-BodyB-Column1-">
+                                                                        <p>Configuration File</p>
+                                                                    </td>
+                                                                    <td class="TableStyle-FieldDesc_no_indent-BodyA-Column2-">
+                                                                        <p>The file path and name of the XML file which contains the field mappings for the connector. Required.</p>
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                        <li value="5">Select <img src="/storage/app/media/Help/images/save%20button.png">  to save the changes.</li>
+                                                    </ol>
+                                                    <h2>
+<a name="Configur2"></a>Configure the XML file</h2>
+                                                    <p>An executable has been provided to assist in the configuration of the <span class="GeneralVariablesCompanyName2">Alemba®</span>.Connector.Email.xml file, where the field mappings are defined.</p>
+                                                    <ol>
+                                                        <li value="1">Run the configuration GUI
+				<ul class="ul_11">
+<li class="li_2" value="1"> Log onto the <span class="GeneralVariablesProductName">ASM</span> web server, if you're not already logged on</li>
+<li class="li_2" value="2"> Navigate to the <span class="GeneralVariablesProductName">ASM</span> root folder and run <b><span class="GeneralVariablesCompanyName2">Alemba®</span>.Connector.Email.Config.exe</b>
+</li>
+<p class="exampletext"><code>C:\Program Files\<span class="GeneralVariablesCompanyName3">Alemba</span>\<span class="GeneralVariablesProductName">ASM</span>\<span class="GeneralVariablesCompanyName2">Alemba®</span>.Connector.Email.Config.exe</code></p>
+<li class="li_2" value="3">The <b><span class="GeneralVariablesProductName">ASM</span> Email Event Connector Config</b> window opens <a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="../../resources/images/emailconnectorgui.png"><img class="MCPopupThumbnail img imgthumbnail" data-mc-width="963" data-mc-height="813" src="/storage/app/media/Help/images/emailconnectorgui_thumb_0_48.png" style="width: 125px;height: 105px;" tabindex=""></a>
+</li>
+<p class="note">On first-time configuration, the GUI opens with a simple email example to demonstrate how the configuration tool works. The XML file is pre-configured with field mappings for the example email. To see the example field mappings, select <b>Open</b> and select the file <b><span class="GeneralVariablesCompanyName2">Alemba®</span>.Connector.Email.xml</b>.</p>
+</ul>
+</li>
+                                                        <li value="2">Configure the settings:</li>
+                                                    </ol>
+                                                    <table style="mc-table-style: url('../../resources/tablestyles/fielddesc.css');" class="TableStyle-FieldDesc" cellspacing="0">
+                                                        <col class="TableStyle-FieldDesc-Column-Column1">
+                                                        <col class="TableStyle-FieldDesc-Column-Column2" style="width: 85%;">
+                                                        <tbody>
+                                                            <tr>
+                                                                <td class="TableStyle-FieldDesc-BodyH-Column1-">System</td>
+                                                                <td class="TableStyle-FieldDesc-BodyG-Column2-">Select the system configured with the Email Connector <b>Source</b>. The default system is selected by default.</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="TableStyle-FieldDesc-BodyH-Column1-">Incoming Email</td>
+                                                                <td class="TableStyle-FieldDesc-BodyG-Column2-">Select the incoming mail account configured in the <a href="../admin%20system/email%20settings.htm" class="MCXref xref">Email Settings</a> window in System Admin, that will receive the event emails.<p class="warning">The selected mail account must be set to <b>Inactive</b> in the <a href="../admin%20system/email%20settings.htm" class="MCXref xref">Email Settings</a>.</p>
+</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="TableStyle-FieldDesc-BodyH-Column1-">
+                                                                    <img src="/storage/app/media/Help/images/connect%20word%20button.png">
+                                                                </td>
+                                                                <td class="TableStyle-FieldDesc-BodyG-Column2-">After selecting the System and Incoming Email, select <img src="/storage/app/media/Help/images/connect%20word%20button.png">
+</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="TableStyle-FieldDesc-BodyH-Column1-">
+                                                                    <img src="/storage/app/media/Help/images/get%20email%20button.png">
+                                                                </td>
+                                                                <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                    <p>select <img src="/storage/app/media/Help/images/get%20email%20button.png"> to display the contents of the first email in the inbox. </p>
+                                                                    <p class="exampletext"><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="../../resources/images/emailconnectorgetemail.png"><img class="MCPopupThumbnail img imgthumbnail" data-mc-width="963" data-mc-height="334" src="/storage/app/media/Help/images/emailconnectorgetemail_thumb_0_48.png" style="width: 572px;height: 198px;" tabindex=""></a>
+                                                                    </p>
+                                                                    <table style="width: 100%;mc-table-style: url('../../resources/tablestyles/fielddesc no indent.css');" class="TableStyle-FieldDesc_no_indent" cellspacing="0">
+                                                                        <col class="TableStyle-FieldDesc_no_indent-Column-Column1">
+                                                                        <col class="TableStyle-FieldDesc_no_indent-Column-Column2">
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">From</td>
+                                                                                <td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">The from address of the email</td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">Subject</td>
+                                                                                <td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">The subject of the email</td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">Body</td>
+                                                                                <td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">The body of the email</td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td class="TableStyle-FieldDesc_no_indent-BodyB-Column1-">Headers</td>
+                                                                                <td class="TableStyle-FieldDesc_no_indent-BodyA-Column2-">The header information contained in the email</td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                    <p class="note">If no email contents are displayed, the settings may be incorrect, or there is no email in the inbox. </p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="TableStyle-FieldDesc-BodyH-Column1-">
+                                                                    <img src="/storage/app/media/Help/images/save%20data%20button.png">
+                                                                </td>
+                                                                <td class="TableStyle-FieldDesc-BodyG-Column2-">Save the configured System and Incoming Email settings.</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="TableStyle-FieldDesc-BodyH-Column1-">Configs</td>
+                                                                <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                    <p>Use the <b>Configs</b> table to create fields for each unit of data you want imported into <span class="GeneralVariablesProductName">ASM</span> from the emails. Fields created here appear as selectable <b>Event Fields</b> in the Incoming tab of the Event Type Mappings Details screen. Create a row for each field to be mapped to a field in a <span class="GeneralVariablesProductName">ASM</span> call or request, configuring the columns as follows:</p>
+                                                                    <table style="mc-table-style: url('../../resources/tablestyles/fielddesc no indent.css');" class="TableStyle-FieldDesc_no_indent" cellspacing="0">
+                                                                        <col class="TableStyle-FieldDesc_no_indent-Column-Column1">
+                                                                        <col class="TableStyle-FieldDesc_no_indent-Column-Column2" style="width: 85%;">
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">Field</td>
+                                                                                <td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">The name of the field to display in the Event Fields column  in the Incoming tab of the Event Type Mappings Details screen in <span class="GeneralVariablesProductName">ASM</span>. </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">Type</td>
+                                                                                <td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">Select the type of field from the list.</td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">Source</td>
+                                                                                <td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">Select the source from the list.</td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">Header</td>
+                                                                                <td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">Enter the <b>Name</b> of the record in the <b>Headers</b> section to extract data from, if applicable.</td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">Expression</td>
+                                                                                <td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">
+                                                                                    <p>Define a formula, based on Regular Expression parsing, to extract the required parameters from the email. </p>
+                                                                                    <p class="exampletext1">The email contains <code style="font-weight: bold;">UserID: 123</code></p>
+                                                                                    <p class="exampletextlast">Therefore the expression would be defined as  <code><b>UserID: (?&lt;value&gt;.+)</b><br></code><br>And the extracted value is <code style="font-weight: bold;">123</code></p>
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">Date Format</td>
+                                                                                <td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">
+                                                                                    <p>Enter a format if <b>DateTime</b> was selected as the <b>Type</b>. If blank, will default to the server format. Leave this field blank if Date/Time was not selected as the Type.</p>
+                                                                                    <p class="exampletext"><code>dd/MM/yyyy</code>
+                                                                                    </p>
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">Default</td>
+                                                                                <td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">Enter a value to use as default if none can be extracted from the email.</td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td class="TableStyle-FieldDesc_no_indent-BodyB-Column1-">Test</td>
+                                                                                <td class="TableStyle-FieldDesc_no_indent-BodyA-Column2-">This column displays the value that will be extracted from the email using the configured settings. To run the test, select <img src="/storage/app/media/Help/images/test%20word%20button.png">.</td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="TableStyle-FieldDesc-BodyB-Column1-">
+                                                                    <img src="/storage/app/media/Help/images/test%20word%20button.png">
+                                                                </td>
+                                                                <td class="TableStyle-FieldDesc-BodyA-Column2-">
+                                                                    <p>select <img src="/storage/app/media/Help/images/test%20word%20button.png"> to test the field mapping configuration. The outcome for each configured field (row) appears in the <b>Test</b> column.</p>
+                                                                    <p class="exampletext"><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="../../resources/images/emailconnectorgui1.png"><img class="MCPopupThumbnail img imgthumbnail" data-mc-width="963" data-mc-height="548" src="/storage/app/media/Help/images/emailconnectorgui1_thumb_0_48.png" style="width: 93px;height: 53px;" tabindex=""></a>
+                                                                    </p>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <ol data-mc-continue="true">
+                                                        <li value="3">select <b>Save</b> to save the field mapping settings to the XML file.</li>
+                                                        <p class="note">Ensure you have the correct account permissions required to modify the XML file.</p>
+                                                    </ol>
+                                                    <h2>
+<a name="Create"></a>Create an Integration Event Mapping</h2>
+                                                    <h2 class="Prerequisite">Before you start</h2>
+                                                    <p class="prereqtext1">If the <b>Event Management</b> checkbox in the Integration Platform administration screen is selected, the Event Management functionality starts running as soon as a proper Event Mapping is  saved. When starting, the connector checks the configured database table and logs a call or request for every item that is present and fulfills the criteria that are implemented in the Event mapping. This could lead to a large number of calls/requests being created when activating the Event Management functionality. </p>
+                                                    <p class="prereqtextlast">One solution to avoid this behavior is to include in the Event criteria setting an item based on a date attribute. For example, you could plan to <span class="span_2">“go live”</span> with Event management on a precise date and, as a consequence, specify that the value of date field in the external table has to be after this date before any action can be triggered in <span class="GeneralVariablesCoreName">ASM Core</span>. </p>
+                                                    <ol>
+                                                        <li value="1">Follow the steps detailed in the <a href="../integration/managing%20event%20type%20mappings.htm" class="MCXref xref">Managing Event Type Mappings</a> topic, up to the section that describes the <b>Actions</b> tab.</li>
+                                                        <li value="2">In the <b>Actions</b> tab, it is recommended to select <b>Update</b> as the action for "When <b>Deleted</b> externally". For more information refer below - <a href="#Configur3" class="MCXref xref">Configuring the Actions Tab</a>.</li>
+                                                    </ol>
+                                                    <ol data-mc-continue="true">
+                                                        <li value="3">After the Actions tab is configured, continue completing the settings for the Event Mapping as instructed in the <a href="../integration/managing%20event%20type%20mappings.htm" class="MCXref xref">Managing Event Type Mappings</a> topic.</li>
+                                                        <li value="4">Select <img src="/storage/app/media/Help/images/save%20button.png">  to save the changes.</li>
+                                                    </ol>
+                                                    <h3>
+<a name="Configur3"></a>Configuring the Actions Tab</h3>
+                                                    <p>Settings defined in the <b>Actions</b> tab of the Event Type Mappings will have a significant impact on calls and requests created by the connector.</p>
+                                                    <p>New calls or requests are created when the connector finds an email with a unique Subject.</p>
+                                                    <p>Existing calls or requests created from event emails, are updated when the connector finds an email with a Subject that was previously processed.</p>
+                                                    <table style="width: 100%;mc-table-style: url('../../resources/tablestyles/table_with_borders.css');" class="TableStyle-Table_with_borders" cellspacing="0">
+                                                        <col class="TableStyle-Table_with_borders-Column-Column1">
+                                                        <col class="TableStyle-Table_with_borders-Column-Column1">
+                                                        <tbody>
+                                                            <tr class="TableStyle-Table_with_borders-Body-Body1">
+                                                                <td class="TableStyle-Table_with_borders-BodyE-Column1-Body1">When <b>Updated</b> externally</td>
+                                                                <td class="TableStyle-Table_with_borders-BodyD-Column1-Body1">
+                                                                    <p>This transaction is used when an email is received that has the same <b>subject</b> as a previous email that already generated a call or request through the connector. The action that is selected from the dropdown list determines what happens to the existing call or request.</p>
+                                                                    <table style="mc-table-style: url('../../resources/tablestyles/fielddesc no indent.css');" class="TableStyle-FieldDesc_no_indent" cellspacing="0">
+                                                                        <col class="TableStyle-FieldDesc_no_indent-Column-Column1">
+                                                                        <col class="TableStyle-FieldDesc_no_indent-Column-Column2">
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">Close</td>
+                                                                                <td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">This action has no effect on the existing call or request.</td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">Update</td>
+                                                                                <td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">Updates the existing call or request, updating mapped field values (if needed) and writes an 'update' entry into the call or request history.</td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">Add Note</td>
+                                                                                <td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">Adds a note to the existing call or request's history. Mapped fields are not updated.</td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td class="TableStyle-FieldDesc_no_indent-BodyB-Column1-">Take no action</td>
+                                                                                <td class="TableStyle-FieldDesc_no_indent-BodyA-Column2-">This action has no effect on the existing call or request.</td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Table_with_borders-Body-Body1">
+                                                                <td class="TableStyle-Table_with_borders-BodyE-Column1-Body1">When <b>Updated</b> externally and Call or Request is closed</td>
+                                                                <td class="TableStyle-Table_with_borders-BodyD-Column1-Body1">
+                                                                    <p>This transaction is used when an email is received that has the same <b>subject</b> as a previous email that already generated a call or request through the connector, and that call or request is closed. The action that is selected from the dropdown list determines what happens to the existing call or request.</p>
+                                                                    <table style="mc-table-style: url('../../resources/tablestyles/fielddesc no indent.css');" class="TableStyle-FieldDesc_no_indent" cellspacing="0">
+                                                                        <col class="TableStyle-FieldDesc_no_indent-Column-Column1">
+                                                                        <col class="TableStyle-FieldDesc_no_indent-Column-Column2">
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">Re-open</td>
+                                                                                <td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">Reopens the closed call or request, updates mapped field values (if needed) and writes an 'update' entry into the call or request history.</td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">Log new and link existing</td>
+                                                                                <td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">Logs a new call or request and links it to the closed call.</td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">Add Note</td>
+                                                                                <td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">Adds a note to the closed call or request's history. Mapped fields are not updated.</td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td class="TableStyle-FieldDesc_no_indent-BodyB-Column1-">Take no action</td>
+                                                                                <td class="TableStyle-FieldDesc_no_indent-BodyA-Column2-">This action has no effect on the existing call or request.</td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Table_with_borders-Body-Body1">
+                                                                <td class="TableStyle-Table_with_borders-BodyE-Column1-Body1">When <b>Notified</b> externally</td>
+                                                                <td class="TableStyle-Table_with_borders-BodyD-Column1-Body1">This transaction is not used by this connector and can be ignored.</td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Table_with_borders-Body-Body1">
+                                                                <td class="TableStyle-Table_with_borders-BodyE-Column1-Body1">When <b>Notified</b> externally and Call or Request is closed</td>
+                                                                <td class="TableStyle-Table_with_borders-BodyD-Column1-Body1">This transaction is not used by this connector and can be ignored.</td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Table_with_borders-Body-Body1">
+                                                                <td class="TableStyle-Table_with_borders-BodyE-Column1-Body1">When <b>Resolved</b> externally</td>
+                                                                <td class="TableStyle-Table_with_borders-BodyD-Column1-Body1">This transaction is not used by this connector and can be ignored.</td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Table_with_borders-Body-Body1">
+                                                                <td class="TableStyle-Table_with_borders-BodyE-Column1-Body1">When <b>Resolved</b> externally and Call or Request is closed</td>
+                                                                <td class="TableStyle-Table_with_borders-BodyD-Column1-Body1">This transaction is not used by this connector and can be ignored.</td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Table_with_borders-Body-Body1">
+                                                                <td class="TableStyle-Table_with_borders-BodyE-Column1-Body1">When <b>Deleted</b> externally</td>
+                                                                <td class="TableStyle-Table_with_borders-BodyD-Column1-Body1">
+                                                                    <p>This transaction is used when a new email is found in the inbox, and a call or request is generated by the Event Emails Connector. The action that is selected from the dropdown list determines what happens to the call or request at the time it is created.</p>
+                                                                    <table style="mc-table-style: url('../../resources/tablestyles/fielddesc no indent.css');" class="TableStyle-FieldDesc_no_indent" cellspacing="0">
+                                                                        <col class="TableStyle-FieldDesc_no_indent-Column-Column1">
+                                                                        <col class="TableStyle-FieldDesc_no_indent-Column-Column2">
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">Close</td>
+                                                                                <td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">Logs the call or request and then immediately closes it</td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">Update</td>
+                                                                                <td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">Logs the call or request and then adds a note to the history</td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">Add Note</td>
+                                                                                <td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">Logs the call or request and then adds a note to the history</td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td class="TableStyle-FieldDesc_no_indent-BodyB-Column1-">Take no action</td>
+                                                                                <td class="TableStyle-FieldDesc_no_indent-BodyA-Column2-">No call or request is logged</td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Table_with_borders-Body-Body1">
+                                                                <td class="TableStyle-Table_with_borders-BodyB-Column1-Body1">When <b>Deleted</b> externally and Call or Request is closed</td>
+                                                                <td class="TableStyle-Table_with_borders-BodyA-Column1-Body1">This transaction is not used by this connector and can be ignored.</td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                

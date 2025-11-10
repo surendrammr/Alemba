@@ -1,0 +1,145 @@
+[viewBag]
+title = "Allocating Tasks in Resource Manager"
+url = "/help/topics/resource-manager/rm-allocating-tasks"
+layout = "help"
+is_hidden = 0
+navigation_hidden = 0
+==
+                                                    <h1>Allocating Tasks in Resource Manager</h1>
+                                                    <p class="intro">You can use Resource Manager to allocate standard tasks and approvals to analysts.</p>
+                                                    <h2 class="Prerequisite">Before you start</h2>
+                                                    <p class="prereqtext1">You must have <b>View Resource Manager</b> selected in the <a href="../admin%20security%20roles/workflow%20mgt%20sec%20role%20-%20shared%20tab.htm" class="MCXref xref">Workflow Management Security Role: Shared Tab</a> of your <b>Workflow Management security role</b>.</p>
+                                                    <p class="prereqtext1">You must be a <a href="%7B%7B%20'help-admin-security-workflow-management-groups#Allocati'%7CstaticPage%20%7D%7D#Allocati" class="MCXref xref">Allocating Resource Managers</a> for the relevant workflow group(s) in the <a href="../admin%20security/workflow%20management%20groups.htm" class="MCXref xref">Workflow Management Groups</a> window.</p>
+                                                    <p class="prereqtext1">The tasks that require analyst allocation must be flagged  as <b>Resource Managed</b>. This can be set on the relevant workflow template, or within individual requests.</p>
+                                                    <p class="prereqtextlast">If you wish to use the <b>Skill Filter</b> to allocate tasks, the analysts' skills must be identified in the Skills Explorer Option of their <b>Person Details</b>, using the <b>Type</b> radio button. For more information, see <a href="../cmdb%20explorer%20options/skills%20explorer%20option.htm" class="MCXref xref">Skills Explorer Option</a>.</p>
+                                                    <ol>
+                                                        <li value="1">Select <img src="/storage/app/media/Help/images/menu%20button.png"> and then <b>View</b>. From the submenu, select <b>Resource Manager</b>, scrolling down if necessary.</li>
+                                                        <li value="2">The <b>Resource Manager</b> window is displayed. You will see the analysts in your team(s) in the top <b>Resource Allocations</b> pane, with a calendar display showing all of their currently allocated tasks. In the <b>Unallocated Tasks</b> pane beneath, you will see a list of tasks that have been allocated to your workflow group(s) but have yet to be assigned.</li>
+                                                        <p class="reference">See <a href="using%20resource%20manager.htm" class="MCXref xref">Using Resource Manager</a> to find out more about the <b>Resource Manager</b> window.</p>
+                                                        <li value="3">You can now allocate one or more tasks provisionally, moving and reallocating them as you see fit until you are happy with the allocations. They are not committed until you save the details.</li>
+                                                        <p class="warning">You may see tasks in the <b>Resource Allocations</b> pane that have been allocated to analysts by other resource managers. This occurs if the same analyst is a member of multiple resource managed workflow groups. You should ensure that you are <i>only</i> working on tasks that are assigned to your workflow group(s). </p>
+                                                        <p class="note">In this version of Resource Manager, time is based on elapsed hours. It does not use working calendars. Saturdays and Sundays are indicated by a shaded background, but you can still allocate tasks during these times.</p>
+                                                        <li value="4">Hover over one of the tasks in the <b>Unallocated Tasks</b> pane to see the details. A pop up box lists the task number and title, request ID and title, the planned start and target dates for the task, and any required skills.</li>
+                                                        <li value="5">Click on the task you wish to allocate. The details are displayed in the <b>Task Details Pane</b>. You can use this pane to view details surrounding the task, and edit its duration.</li>
+                                                        <p class="tip">Your allocations are not saved until you press the <b>Save</b> button. You can experiment with different task allocations and reset at any time without committing the task allocations.</p>
+                                                        <li value="6">Decide which analyst you would like to complete the task, and when in their calendar you want the task to be completed. You can hover  over an analyst name to display their skills, or click to display the analyst's <b>Person Details</b> in a new tab.</li>
+                                                        <p class="note">Analysts can be allocated more than one task at the same time.</p>
+                                                        <p class="note">If you have selected a standard task, and want to limit potential analysts to those with the appropriate skills, select the <b>Skill Filter</b> checkbox at the top of the <b>Resource Allocation</b> pane. <b>Filter by Skills</b> will have no impact if the selected task is an Approval.</p>
+                                                        <li value="7">You may decide that you only want to allocate tasks to analysts who have the correct skill set to complete the task. If so, select the <b>Skill Filter</b> checkbox in the toolbar. Diagonal gray lines appear in the calendars of analysts who do not have the necessary skills. You can only allocate the task to analysts with the required skills when the <b>Skill Filter</b> checkbox is selected. See <a href="#Allocati" class="MCXref xref">Allocating Tasks According to Skills</a> for more details.</li>
+                                                        <li value="8">Now drag the task towards the <b>Resource Allocations</b> pane. You will immediately see a timeframe within the pane highlighted in green to indicate the completion window for the task. If there is a task prior to this one, its timeframe will show in yellow; any following task's timeframe will show in blue. This highlighting is for information only; you do not have to allocate your task in this timeframe. If there is an OLA for the task or an SLA for the request, its breach time will be indicated by a red line.</li>
+                                                        <li value="9">When you have positioned the task on the row for the analyst, in the date range in which it is to be completed, release the mouse. One of several things happen:<ul>
+<li value="1">If you select a time within the task completion window, the task appears in the calendar, and is removed from the Unallocated Tasks pane</li>
+<li value="2">If you have the Skill Filter checkbox selected, and select an analyst who does not have the necessary skill set, as soon as you release the mouse, the task will return to the Unallocated Tasks pane</li>
+<li value="3">If you select a time that is outside the task's window, has a start date before the current date, or causes conflicts with OLAs, SLAs or other tasks, a warning dialog box appears, informing you of the potential issue, and gives you the option to:</li>
+<p></p>
+<table style="width: 100%;mc-table-style: url('../../resources/tablestyles/fielddesc.css');margin-left: 0;margin-right: auto;" class="TableStyle-FieldDesc" cellspacing="0">
+<col class="TableStyle-FieldDesc-Column-Column1">
+<col class="TableStyle-FieldDesc-Column-Column2">
+<tbody>
+<tr>
+<td class="TableStyle-FieldDesc-BodyH-Column1-">Cancel</td>
+<td class="TableStyle-FieldDesc-BodyG-Column2-">Select to abandon the task allocation</td>
+</tr>
+<tr>
+<td class="TableStyle-FieldDesc-BodyH-Column1-">Auto-allocate</td>
+<td class="TableStyle-FieldDesc-BodyG-Column2-">Select to instruct the system to allocate the task within the task window, as identified in the <a href="%7B%7B%20'help-tasks-task-details-explorer-options#RM_Task'%7CstaticPage%20%7D%7D#RM_Task" class="MCXref xref">Task Details Explorer Options</a>
+</td>
+</tr>
+<tr>
+<td class="TableStyle-FieldDesc-BodyB-Column1-">Proceed</td>
+<td class="TableStyle-FieldDesc-BodyA-Column2-">Select to allocate the task in the chosen position</td>
+</tr>
+</tbody>
+</table>
+</ul>
+</li>
+                                                        <li value="10">When the task is provisionally allocated (remember, it is not actually allocated until it is saved), it is represented by a colored bar in the analyst's calendar row. You may observe some background patterning of cells, indicating one or more of the following:</li>
+                                                        <p>
+                                                            </p>
+<table style="width: 100%;margin-left: 0;margin-right: auto;mc-table-style: url('../../resources/tablestyles/fielddesc.css');" class="TableStyle-FieldDesc" cellspacing="0">
+                                                                <col class="TableStyle-FieldDesc-Column-Column1">
+                                                                <col class="TableStyle-FieldDesc-Column-Column2">
+                                                                <tbody>
+                                                                    <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                        <td class="TableStyle-FieldDesc-BodyH-Column1-">
+<a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="../../resources/images/rm%20over%20alloc.png"><img class="MCPopupThumbnail img imgthumbnail" data-mc-width="25" data-mc-height="25" src="/storage/app/media/Help/images/rm%20over%20alloc_thumb_0_48.png" tabindex=""></a>
+                                                                        </td>
+                                                                        <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                            <p>
+										The chosen analyst is over allocated
+									</p>
+                                                                            <p class="note">This is represented by diagonal yellow lines, slanting down from left to right</p>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                        <td class="TableStyle-FieldDesc-BodyH-Column1-">
+<a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="../../resources/images/rm%20missing%20skill.png"><img class="MCPopupThumbnail img imgthumbnail" data-mc-width="26" data-mc-height="26" src="/storage/app/media/Help/images/rm%20missing%20skill_thumb_0_48.png" tabindex=""></a>
+                                                                        </td>
+                                                                        <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                            <p>Tasks are allocated to an analyst without the required skill</p>
+                                                                            <p class="note">This is represented by diagonal gray lines, slanting up from left to right</p>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                        <td class="TableStyle-FieldDesc-BodyH-Column1-">
+<a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="../../resources/images/rm%20out%20of%20sync.png"><img class="MCPopupThumbnail img imgthumbnail" data-mc-width="26" data-mc-height="28" src="/storage/app/media/Help/images/rm%20out%20of%20sync_thumb_0_48.png" tabindex=""></a>
+                                                                        </td>
+                                                                        <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                            <p>Tasks are out of sync</p>
+                                                                            <p class="note">This is represented by horizontal bright blue lines</p>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                        <td class="TableStyle-FieldDesc-BodyH-Column1-">
+<a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="../../resources/images/rm%20outside%20win.png"><img class="MCPopupThumbnail img imgthumbnail" data-mc-width="27" data-mc-height="28" src="/storage/app/media/Help/images/rm%20outside%20win_thumb_0_48.png" tabindex=""></a>
+                                                                        </td>
+                                                                        <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                            <p>Tasks are outside the “task window”</p>
+                                                                            <p class="note">This is represented by vertical dark blue lines</p>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                        <td class="TableStyle-FieldDesc-BodyB-Column1-">
+<a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="../../resources/images/rm%20breach%20overlap.png"><img class="MCPopupThumbnail img imgthumbnail" data-mc-width="24" data-mc-height="25" src="/storage/app/media/Help/images/rm%20breach%20overlap_thumb_0_48.png" tabindex=""></a>
+                                                                        </td>
+                                                                        <td class="TableStyle-FieldDesc-BodyA-Column2-">
+                                                                            <p>Tasks overlap OLA/SLA breach time</p>
+                                                                            <p class="note">This is represented by a grid of orange dots</p>
+                                                                        </td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        
+                                                        <p class="tip">Hover over the <img src="/storage/app/media/Help/images/rm%20info%20icon.png">  icon to see a key to the different shading styles used in the calendar. </p>
+                                                        <li value="11">You can continue to drag the task to different dates or analysts, or adjust the duration of the task by clicking and dragging either end of the bar.</li>
+                                                        <p class="note">Changing the duration of the task will not affect the task window, that is, the timeframe in which the task must be completed. It will only change the length of time that is allocated for the work to be done. This allows for tasks that have been allocated a timeframe in excess of the amount of time needed to complete the work.</p>
+                                                        <li value="12">You can also do the following in the <b>Task Details</b> pane:<ul>
+<li value="1">Change the <b>Work Start</b> date, by either keying in a new date and time; selecting the <img src="/storage/app/media/Help/images/rm%20calendar%20btn.png"> button to change the date; or selecting the <img src="/storage/app/media/Help/images/rm%20time%20btn.png"> button to change the time.</li>
+<li value="2">Change the <b>Duration</b> by keying in the length of time you want to allocate to the task.</li>
+<p class="note">This should be <i>the amount of time you predict that the task will take to complete</i>, rather than the size of the task window.</p>
+<li value="3">Reset the task details, abandoning any changes to the work start date or duration, and returning it to the <b>Unallocated Tasks</b> pane.</li>
+<p class="tip">Clicking the <b>Reset</b> button in the <b>Task Details</b> pane will reset the selected task's details. Clicking the <b>Refresh</b> button in the top left hand corner of the Resource manager window will return all of the unsaved allocations to the Unallocated Tasks pane, resetting all of their details.</p>
+</ul>
+</li>
+                                                        <li value="13">If you wish, you can return the task to the <b>Unallocated Tasks</b> pane by hovering over it in the <b>Resource Allocations</b> pane and clicking on the small <b>x</b> in the corner of the bar. This will reset any changes to the work start</li>
+                                                        <li value="14">Repeat for all of the tasks you wish to allocate, remembering that none of them are actually allocated until you save the changes. </li>
+                                                        <p class="tip">If you are working with a large number of tasks, you may wish to save intermittently.</p>
+                                                        <li value="15">You can reset all of the tasks that you have provisionally allocated by selecting the <b>Refresh</b> button at the top of the <b>Allocated Resources</b> pane. As this will return <i>all</i> of the unsaved allocations to the Unallocated Tasks pane, you are asked to confirm the refresh.</li>
+                                                        <li value="16">To commit your allocations, select the <b>Save</b> button. The tasks are now allocated to the assigned analysts, and will appear in their Outstanding Workload windows. For more information, see <a href="../general%20topics/viewing%20your%20workload.htm" class="MCXref xref">Viewing the Workload </a>
+</li>
+                                                    </ol>
+                                                    <p> </p>
+                                                    <h3>
+<a name="Allocati"></a>Allocating Tasks According to Skills</h3>
+                                                    <p>You may decide that you only want to allocate a task to an analyst with the correct skills to complete it.</p>
+                                                    <p class="prereq">This can only be applied to Standard Task types.<br><br>The analysts' skills must first be identified in the <a href="../cmdb%20explorer%20options/skills%20explorer%20option.htm" class="MCXref xref">Skills Explorer Option</a> of their <b>Person Details</b>, using the <b>Type</b> radio button.<br><br>The required skills for the task must be identified in the <b>Skills</b> field in the <b>Task Details window</b>. </p>
+                                                    <ol>
+                                                        <li value="1">First, select the  <b>Skill Filter</b> checkbox in the toolbar. </li>
+                                                        <p class="note">Selecting this filter will only affect tasks that are allocated while the filter is selected. It will not affect any tasks that have already been allocated.</p>
+                                                        <li value="2">Diagonal gray lines appear in the calendars of analysts who do not have the necessary skills. You can now <b>only</b> allocate the task to analysts with the required skills. </li>
+                                                        <li value="3">You can hover  over an analyst name to display their skills, or click to display the analyst's <b>Person Details</b> in a new tab.</li>
+                                                        <li value="4">Click and drag the task to the required point in the analyst's row in the calendar.</li>
+                                                        <li value="5">If you decide that you want to allocate the task to someone without the identified task skills, you must deselect the Skill Filter checkbox. You can then allocate the task to whoever is listed in the <b>Resource Allocations</b> pane, as normal. When you drop the task, it will show gray diagonal lines in the background of the task if the skills do not match.</li>
+                                                    </ol>
+                                                    <p> </p>
+                                                

@@ -1,0 +1,66 @@
+[viewBag]
+title = "About the Service Window"
+url = "/help/topics/calls/calls-service-window"
+layout = "help"
+is_hidden = 0
+navigation_hidden = 0
+==
+                                                    <h1>About the Service Window</h1>
+                                                    <p>The lower half of the Call Details Explorer contains additional windows with important call information: </p>
+                                                    <ul>
+                                                        <li value="1">Service Window (Service Level Management information)</li>
+                                                        <li value="2">
+<a href="#Viewing">Related Calls</a> (call alert matrix of similar calls) </li>
+                                                        <li value="3">
+<a href="#Viewing2">Related Knowledge</a> (information about related knowledge bank entries)</li>
+                                                    </ul>
+                                                    <h2>Viewing the SLM Display</h2>
+                                                    <p>The Service Window displays SLAs, First Call Back (FCB), Response, OLAs, and UCs for the current call. </p>
+                                                    <p class="note">You can also view linked agreements through the SLM option on the Call Details Explorer.</p>
+                                                    <p>If there are no agreements applied to the call, the <b>Service Window</b> displays a message to this effect. </p>
+                                                    <p>If there are agreements applied to the call, each agreement appears in a separate SLM bar. The name of the SLM bar matches the type of agreement. If there are active/closed SLA events on the call, the SLA bar appears. If there are active/closed OLA events on the call, the OLA bar appears. If there are active/closed UC events on the call, the UC bar appears.</p>
+                                                    <p>To view the name of the linked agreement, hover your cursor over the name of the agreement type displayed in the SLM bar.</p>
+                                                    <p>To show or hide events for the linked agreement, click the SLM bar. Both active and inactive events configured for the agreement appear. </p>
+                                                    <p>Once an event is closed, it no longer appears, except if an SLA is closed, in which case the <b>Resolve</b> row will remain visible in the <b>SLA</b> pane. The escalation states for the linked agreement are color-coded to indicate the level of escalation or breach. Escalation states also appear in the <b>Calls Outstanding</b> window and <b>Workload</b> window.</p>
+                                                    <div class="MCDropDown MCDropDown_Closed dropDown">
+<span class="MCDropDownHead dropDownHead"><a href="#" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCHotSpotImage" aria-expanded="false"><img class="MCDropDown_Image_Icon" src="/storage/app/media/Help/images/transparent.gif" height="11" width="16" alt="Closed" data-mc-alt2="Open">Stopping and Restarting the SLA Clock</a></span>
+                                                        <div class="MCDropDownBody dropDownBody">
+                                                            <p>Once an agreement is attached to a call, it begins running against a ‘clock’. <span class="GeneralVariablesProductName">ASM</span> continually monitors the amount of time the agreement has been in effect and checks if any events are scheduled to occur. An agreement may trigger a number of events such as different types and levels of escalations, and breach. If you have sufficient permissions, you can stop and restart the clock on a particular agreement. This may be required, for instance, if you are waiting on further information from a user and cannot proceed with solving the problem until you get this information. </p>
+                                                            <ol>
+                                                                <li value="1">To stop or start the clock on an agreement, click the <b>Stop Clock</b> icon <img src="/storage/app/media/Help/images/stop%20sla%20clock.png">.</li>
+                                                                <li value="2">If the <b>Change Reasons</b> dialog box prompts you to specify the reasons for stopping the clock, do so by typing the reasons into the text area. This is so administrators can analyze clock stops to make sure there was sufficient reason for the clock on the agreement to be stopped. Click <b>OK</b>. This dialog box will be displayed only if your administrator has enabled reasons in system administration. </li>
+                                                                <li value="3">When you stop the clock on an agreement, the list of events is replaced by a message “Clock Stopped”.</li>
+                                                                <p>While the clock is stopped, no time will accumulate on the agreement and no escalation or agreement breach events will occur.</p>
+                                                                <li value="4">To restart agreement events, click the <b>Start Clock</b> icon <img src="/storage/app/media/Help/images/start%20clock.png">. </li>
+                                                            </ol>
+                                                        </div>
+                                                    </div>
+                                                    <p>To close an FCB or Response event configured for an SLA linked to the call, click <b>Close FCB</b> or <b>Close Resp.</b> to close all open FCB or Response events. The event is closed immediately. If you click <b>Close FCB</b>, then the <b>Close Resp.</b> link becomes active.</p>
+                                                    <p>These options also appear on the Add Note window enabling you to close the relevant event when adding a note to a call.</p>
+                                                    <p>To stop events on agreements, click <b>Service Resumed</b> to immediately close all events on all agreements. </p>
+                                                    <p><a name="aanchor36"></a>
+                                                        <concept term="IPK"></concept>This is useful if the immediate issue has been resolved, but you wish to keep the call open, or the call is awaiting comments from a particular closure group. Agreement events are closed off when a call is closed or resolved (a call may have a status of Open-Resolved if it has been forwarded to a closure group, for example, if closure rules are configured or through an IPK workflow rule). The Service Resumed button only appears if there is an open agreement on the call. Once clicked, it is removed until a new agreement is applied to the call.</p>
+                                                    <p>Agreement events are closed when the call is closed.</p>
+                                                    <h2>
+<a name="Viewing"></a>Viewing Call Alerts</h2>
+                                                    <p>The <b>Related Calls</b> panel contains the call alert matrix and appears below the Service window. The call alert matrix shows the number of open calls in the system that match the current call’s details based on the following <b>CI</b>, <b>CI Type</b>, <b>Location</b>, <b>Organization</b>, <b>Service</b> and <b>User</b> fields. These fields are the standard fields and any fields you add in <span class="GeneralVariablesDesignerName">ASM Designer</span> will not apply here.</p>
+                                                    <p>The number of calls in the matrix is updated for each IPK status defined in your system as these details are specified. For example, if you select a CI or CI Type on the <b>Call Details</b> window, the call alert matrix will show the number of calls that have the same CI or CI Type selected. </p>
+                                                    <p>By default, the <b>Related Calls</b> window will show the number of open calls that match the above options. However, by selecting the <b>Include Closed</b> checkbox, the <b>Related Calls</b> window will also display all the closed calls in real time. This setting is remembered by the system, and applied to all call windows you open.</p>
+                                                    <p>Double-click on an alert option to automatically perform a search on all open calls and display a list of matching calls. </p>
+                                                    <p>This search uses only active field values, not deleted ones. So, if you selected a CI Type on a call and subsequently deleted it, the call alert matrix will not include the deleted value in the search, and the number of calls in the search results may be different from the number shown in the matrix.</p>
+                                                    <p class="exampletext">If you double-click on the <b>CI</b> option (and the configuration item has been defined as ‘Printer0123’ in the call), the search results will display a list of open calls that have ‘Printer0123’ defined as the configuration item.</p>
+                                                    <p>Selecting more than one alert option will display the number of related calls for that combination of options in a new row titled Combination. Double-clicking in the combination row will display all the matching calls. </p>
+                                                    <p class="exampletext">If you select Organization (defined as ‘Synergy’) and User (defined as ‘ABC’), the number of related calls for the organization Synergy and user ABC will be displayed. If you double-click a number in the Combination row, the Call Search window appears with a list of the calls.</p>
+                                                    <h2>
+<a name="Viewing2"></a>Viewing the Knowledge Display</h2>
+                                                    <p>The fields below appear in the <b>Knowledge</b> area in the Service Window and indicate knowledge bank articles relating to the current issue.</p>
+                                                    <ul>
+                                                        <li style="list-style-type: disc;" value="1">
+<b>Articles by Type</b> displays the number of Knowledge Articles which match the Call Type. </li>
+                                                        <li style="list-style-type: disc;" value="2">
+<b>Articles by Service</b> displays the number of Knowledge Articles which match the service that the call is linked to. </li>
+                                                        <li style="list-style-type: disc;" value="3">
+<b>Articles by Type/Service</b> displays the number of articles which match both the Call Type and Service.</li>
+                                                    </ul>
+                                                    <p>Clicking on a number displays the relevant knowledge entries as search results, from which you can link an entry to the call.</p>
+                                                

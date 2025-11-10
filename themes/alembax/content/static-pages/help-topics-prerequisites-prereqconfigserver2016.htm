@@ -1,0 +1,111 @@
+[viewBag]
+title = "Configuring Windows Server 2016 for Alemba Service Manager™"
+url = "/help/topics/prerequisites/prereqconfigserver2016"
+layout = "help"
+is_hidden = 0
+navigation_hidden = 0
+==
+                                                    <h1>Configuring Windows Server 2016 for <span class="GeneralVariablesProductNameFull">Alemba Service Manager™</span>
+</h1>
+                                                    <h2 class="Prerequisite">Before you start</h2>
+                                                    <p class="prereqtextlast">Ensure that your server and client machines meet the prerequisites. For more information, see <a href="prereq%20checklist.htm" class="MCXref xref">Prerequisites checklist</a>.</p>
+                                                    <p class="note">If you are using   Server 2012, see <a href="prereqconfigserver2012.htm" class="MCXref xref">Configuring Windows Server 2012 R2 for Alemba Service Manager™</a>.</p>
+                                                    <p class="warning"><span class="GeneralVariablesCompanyName2">Alemba®</span> does not support Oracle databases for <span class="GeneralVariablesProductName">ASM</span> <span class="GeneralVariablesProductVersion">10.1</span>.</p>
+                                                    <p>To configure Windows Server  2016 for <span class="GeneralVariablesCoreName">ASM Core</span>:</p>
+                                                    <ol>
+                                                        <li value="1">Using <b>Server Manager</b>, select <b>Dashboard</b>, then select <b>Add roles and features</b> to start the <b>Add Roles and Features Wizard</b>.<br>
+</li>
+                                                        <li style="widows: 5;orphans: 5;" value="2">On the <b>Before you begin</b> page, ensure that you have completed the listed tasks. </li>
+                                                        <li value="3">Select <b>Next</b>.</li>
+                                                        <li value="4">On the <b>Select installation type</b> window, select <b>Role-based or feature-based installation</b>, then select <b>Next</b>.<br>
+</li>
+                                                        <li value="5">On the <b>Select destination server</b> window, select the server that you are using, then select <b>Next</b>.<br>
+</li>
+                                                        <li value="6">On the <b>Select server roles</b> window, select <b>Web Server (IIS)</b> to display a popup requesting to add required features for Web Server (IIS).<br>
+</li>
+                                                        <li value="7">Select <b>Add Features</b> to add IIS Management Console to the server and return to the <b>Select server roles</b> window.</li>
+                                                        <li value="8">  Select <b>Next</b> to continue.</li>
+                                                        <li value="9">
+                                                            <p>In the <b>Select Features</b> window, ensure all the following options are selected:</p>
+                                                            <ul>
+                                                                <li value="1"> .NET Framework 4.5 (or higher)<ul>
+<li value="1">.NET Framework 4.5 (or higher)</li>
+<li value="2">ASP.NET 4.5 (or higher)</li>
+<li value="3">WCF Services<ul>
+<li value="1">HTTP Activation</li>
+<li value="2">TCP Activation</li>
+<li value="3">TCP Port Sharing</li>
+</ul>
+</li>
+</ul>
+</li>
+                                                            </ul>
+                                                        </li>
+                                                        <p class="note">You are notified if any additional features are required for <b>HTTP Activation</b>. Click <b>Add Features</b> to add the features and return to the <b>Select Features</b> window.</p>
+                                                        <li value="10">Select <b>Next</b> to view the Web Server Role (IIS) window, which contains information about the web server.</li>
+                                                        <li value="11">Select <b>Next</b> to continue.</li>
+                                                        <li value="12">
+                                                            <p>On the <b>Select role services</b> window, ensure that all the following options are selected:</p>
+                                                            <ul>
+                                                                <li value="1">Web Server<ul>
+<li value="1">Common HTTP Features<ul>
+<li value="1">Default Document</li>
+<li value="2">Directory Browsing</li>
+<li value="3">HTTP Errors</li>
+<li value="4">Static Content</li>
+<li value="5">HTTP Redirection</li>
+</ul>
+</li>
+<li value="2">Health and Diagnostics<ul>
+<li value="1">HTTP Logging</li>
+<li value="2">Logging Tools</li>
+<li value="3">Request Monitor</li>
+</ul>
+</li>
+<li value="3">Performance<ul><li value="1">Static Content Compression</li></ul>
+</li>
+<li value="4">Security<ul>
+<li value="1">Request Filtering</li>
+<li value="2">Basic Authentication</li>
+<li value="3">Client Certificate Mapping Authentication</li>
+<li value="4">Digest Authentication</li>
+<li value="5">IIS Client Certificate Mapping Authentication</li>
+<li value="6">IP and Domain Restrictions</li>
+<li value="7">URL Authorization</li>
+<li value="8">Windows Authentication</li>
+</ul>
+</li>
+<li value="5">Application Development<ul>
+<li value="1">.NET Extensibility 3.5</li>
+<li value="2">.NET Extensibility 4.5 (or higher)</li>
+<li value="3">Application Initialization</li>
+<li value="4">ASP</li>
+<li value="5">ASP.NET 3.5</li>
+<li value="6">ASP.NET 4.5 (or higher)</li>
+<li value="7">ISAPI Extensions</li>
+<li value="8">ISAPI Filters</li>
+<li value="9">WebSocket Protocol</li>
+</ul>
+</li>
+<li value="6">Management Tools<ul>
+<li value="1">IIS Management Console</li>
+<li value="2">IIS Management Scripts and Tools</li>
+</ul>
+</li>
+</ul>
+</li>
+                                                            </ul>
+                                                        </li>
+                                                        <p class="note"><span class="GeneralVariablesProductNameFull">Alemba Service Manager™</span> provides its own <b>Dynamic Content Compression</b>, which performs slightly better than IIS Dynamic Content Compression. You can choose to disable IIS Dynamic Content Compression. <br>If you disable IIS Dynamic Content Compression, the Web Server (IIS) Support Role is also disabled. We therefore recommend that you review the Role Services enabled by the Web Server (IIS) Support Role and manually re-enable those required for your environment.</p>
+                                                        <li value="13">Select <b>Next</b> to continue.</li>
+                                                        <li value="14">
+                                                            <p>On the <b>Confirm installation selections</b> window, confirm your choices.</p>
+                                                        </li>
+                                                        <li value="15">Select <b>Install</b>.<br>
+</li>
+                                                        <li value="16">When installation completes, select <b>Close</b> to close the wizard. </li>
+                                                    </ol>
+                                                    <h2>What's Next</h2>
+                                                    <p><b>Full-Text and Semantic Extractions for Search</b> is required for the <b>Suggested Knowledge</b> and <b>Matching Panel</b> features. To install this on the SQL Server Database platform, you need access to the SQL Server Installer MSI.  For more information about enabling <b>Full-Text and Semantic Extractions</b>, see <a href="%7B%7B%20'help-prereq-checklist#Database'%7CstaticPage%20%7D%7D#Database" class="MCXref xref">Database Server</a>.</p>
+                                                    <p class="note">You can find <b>Full-Text and Semantic Extractions for Search</b> installation instructions on the Microsoft TechNet website.</p>
+                                                

@@ -1,0 +1,126 @@
+url = "/blog/:category/:slug"
+layout = "home"
+title = "Blog Entry"
+description = "Blog Entry page"
+is_hidden = 0
+meta_title = "ITSM News and Insights | ITSM Blog - Alemba"
+meta_description = "Follow the Alemba blog for the latest news and insights into IT Service Management industry hot topics"
+robot_index = "index"
+canonical_url = "https://alemba.com/blog"
+robot_follow = "follow"
+seoOptionsEnabledInSitemap = 1
+seoOptionsUseUpdatedAt = 1
+seoOptionsRobotIndex = "index"
+seoOptionsRobotFollow = "follow"
+seoOptionsChangefreq = "daily"
+seoOptionsPriority = 0.5
+seoOptionsModelClass = "RainLab\Blog\Models\Post"
+seoOptionsModelParams = "category:categories.slug|slug:slug"
+
+[searchMeta]
+==
+<?php
+use RainLab\Blog\Models\Post;
+
+function onStart()
+{
+	// Get selected blog entry
+
+	$this['blog_category'] = $this->param('category');
+
+	$this['page'] = Post::where('slug', $this->param('slug'))->first();
+
+	$this['breadcrumb'] = "Article";
+
+	if($this['page']) {
+
+		$this->page->title = $this['page']->title;
+
+		$this['breadcrumb'] = $this['page']->title_short;
+		$this['heading'] = $this['page']->title;
+		$this['subheading'] = $this['page']->published_at ? $this['page']->author.' &bull; '.$this['page']->published_at->format('d M Y') : $this['page']->author;
+
+	} else {
+
+		$this['heading'] = "Oops!";
+		$this['subheading'] = "No article here!";
+
+	}
+
+}
+?>
+==
+<!-- banner -->
+
+{% if page.banner %}
+
+	<div class="jumbotron jumbotron-fluid banner pageBanner" style="background-image:url('{{ page.banner|media }}')">
+        <div class="container"></div>
+	</div>
+
+{% endif %}
+
+<!-- /banner -->
+
+{% partial 'demo-button' %}
+
+<!-- copy -->
+
+<div class="container-fluid bkg-dark">
+
+	<div class="container copy">
+
+		<div class="row">
+
+			<header class="col copy-heading">
+
+				<nav aria-label="breadcrumb">
+		            <ol class="breadcrumb">
+		                <li class="breadcrumb-item"><a href="{{ 'blog'|page }}">Blog</a></li>
+		                <li class="breadcrumb-item active">{{ breadcrumb }}</li>
+		            </ol>
+		        </nav>
+			
+				<h1>{{ heading }}</h1>
+				<h5>{{ subheading|raw }}</h5>
+
+			</header>
+
+		</div>
+
+		<div class="row">
+
+			<div class="col-12 col-md-10 col-xl-7 copy-main">
+
+				{% if page %}
+
+					{{ page.content|md|content }}
+
+					{% for image in page.featured_images %}
+
+						<div class="image">
+
+							<img src="{{ image.path }}" alt="{{ image.title }}" />
+							<p class="caption"><strong>{{ image.title }}</strong>{{ image.description ? '<br />' ~ image.description : '' }}</p>
+
+						</div>
+
+			        {% endfor %}
+
+			    {% else %}
+
+			    	<p class="lead">Sorry – this page doesn't exist!</p>
+
+			    {% endif %}
+
+			    <a class="btn btn-lg btn-outline mt-5 mb-5" href="{{ 'blog'|page }}" role="button">Back to Blog</a>
+
+			</div>
+
+		</div>
+
+	</div>
+
+</div>
+
+<!-- /copy -->

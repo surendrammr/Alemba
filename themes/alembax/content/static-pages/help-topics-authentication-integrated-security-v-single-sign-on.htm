@@ -1,0 +1,92 @@
+[viewBag]
+title = "Integrated Security v Single Sign On"
+url = "/help/topics/authentication/integrated-security-v-single-sign-on"
+layout = "help"
+is_hidden = 0
+navigation_hidden = 0
+==
+                                                    <h1>Integrated Security v Single Sign On</h1>
+                                                    <p>There are two separate URLs for SSO configuration. There are two main reasons for this design.</p>
+                                                    <ul>
+                                                        <li value="1">The SAML protocol is based on redirection between static services. We must redirect the user so they can log in and the SAML Identity Provider (eg ADFS) will then return the user to a pre-configured address.</li>
+                                                        <li value="2">We support variable SSO for Portal and Core use. Portal users may log in using one SSO provider and Core users may log in with another. We also support variable SSO configuration per partition in the portal</li>
+                                                    </ul>
+                                                    <p>Because the SAML protocol is designed around static urls, we also support variable configuration per hostname. This allows for SSO to be configured successfully for users in different locations with varying DNS identifiers.</p>
+                                                    <p>This topic looks at the difference between Windows based integrated security and SAML based single sign on and what to expect regarding the user experience.
+
+</p>
+                                                    <h2>On Premise Web App, On Premise Authentication, Windows based integrated security
+</h2>
+                                                    <p>In traditional “single sign on”, Windows based integrated security is used. 
+
+</p>
+                                                    <p>The Web application server is installed on a Windows Server which is a member of the Active Directory Domain
+The user logs in to their Windows computer which is also a member of the Active Directory Domain and the browser, the operating system (OS) and the web server (IIS) share Kerberos or NTLM based authorization tokens which are used to authenticate the user.
+</p>
+                                                    <p>
+In this scenario, users on Windows PCs do not have to enter their credentials to use the Web application because of the services provided by OS, browser and IIS.
+The connections marked in green support simple windows integrated security and therefore support single sign on. Users on all other clients must enter their credentials.
+
+</p>
+                                                    <p>Even offsite Windows users can leverage this form of single sign on, but only by use of a VPN.</p>
+                                                    <p>
+                                                        <img src="/storage/app/media/Help/images/sso%20vpn.png" class="screenshot">
+                                                    </p>
+                                                    <h2> 
+
+ 
+
+
+Cloud Based Web App, On Premise SAML based Authentication
+</h2>
+                                                    <p>SAML based authentication is designed to allow a user to access multiple unrelated web services using a centralized Identity Provider.
+</p>
+                                                    <p>Single sign on in this sense means having only one username and password for every service.
+
+</p>
+                                                    <p>In this case the Web Application (SAML Service Provider) is installed on a web server somewhere that is accessible to the user. This might be on premise or in the cloud.
+</p>
+                                                    <p>When users attempt to access the web application, they are redirected to the SAML based Identity Provider for authentication.
+The SAML Identity Provider may also be on premise or may be in the cloud.
+</p>
+                                                    <p>The SAML Identity Provider identifies the user, and once they are authenticated, the user is redirected to the original Service Provider – the web application. The redirect contains a security assertion which the application server does trust and can verify.
+</p>
+                                                    <p>The SAML Identity Provider may identify the user using a username and password, windows authentication (subject to the topological restrictions above) or some other means (client certificates, multi factor, etc). The SAML Identity Provider may also set an authentication cookie which it will use to “remember” the user.
+
+</p>
+                                                    <p>In this scenario, the means of authentication is entirely delegated to the SAML Identity Provider.
+Users may be expected to log in using a username and password, but this depends upon the configuration of the Identity Provider.
+</p>
+                                                    <p>Users may be able to use Windows integrated security, but this depends upon their device, network topology and Identity Provider configuration.
+</p>
+                                                    <p>Users may be expected to log in every time, or may be able to log in once per hour/day/week/month, also depending upon the configuration of the Identity Provider.
+</p>
+                                                    <p>
+For example, the default configuration for ADFS is to authenticate the user using their Windows username and password in a form. A cookie is used to remember this login for a period of time.
+</p>
+                                                    <p>Using PowerShell, ADFS can be configured to use Windows based integrated security.
+</p>
+                                                    <p>Other SAML Identity Providers may also support this configuration..
+ 
+
+
+
+</p>
+                                                    <p>
+                                                        <img src="/storage/app/media/Help/images/saml%20based%20authentication.png" class="screenshot">
+                                                    </p>
+                                                    <p> </p>
+                                                    <p>There are many variants of the above configurations, but the basic principle is that if you are not using Windows, you will probably have to log in using a username and password at some point.
+</p>
+                                                    <h2>Frequently Asked Questions</h2>
+                                                    <p class="question">We can support different providers for Core and Portal, does that mean that we have to have separate configurations setup?</p>
+                                                    <p class="answer">With the current design you must configure Core and Portal separately.
+</p>
+                                                    <p class="question">What happens with Office 365?
+</p>
+                                                    <p class="answer">This depends on how it is being used.
+It is possible to use Office 365 as a standalone service using Hotmail/Microsoft/Windows Live credentials.
+It is possible to use Office 365 with Azure Active Directory. This is subject to similar topological and client considerations as on premise AD.
+No doubt it is possible to configure Office 365 to use another (perhaps On Premise) Identity Provider, in which case the experience will be as described above.
+</p>
+                                                

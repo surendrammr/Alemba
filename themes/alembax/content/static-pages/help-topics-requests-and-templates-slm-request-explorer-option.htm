@@ -1,0 +1,74 @@
+[viewBag]
+title = "SLM Request Explorer Option"
+url = "/help/topics/requests-and-templates/slm-request-explorer-option"
+layout = "help"
+is_hidden = 0
+navigation_hidden = 0
+==
+                                                    <h1>
+<a name="top"></a>SLM Request Explorer Option</h1>
+                                                    <p>The <b>Request Service Level Management</b> window shows any agreements that are currently in effect against the request. </p>
+                                                    <p>Only SLAs (Service Level Agreements) can be linked to requests. The appropriate SLA is identified in the following way:</p>
+                                                    <ol>
+                                                        <li value="1">The system looks for an SLA assigned to the workflow template on which a request is based. If one is found, it is applied.</li>
+                                                        <li value="2">If no SLA has been defined in the workflow template, the first time a request is authorized <span class="GeneralVariablesProductName">ASM</span> tries to find an SLA to apply. It checks the fields defined for the request, in a specific order defined for each field, to see if the particular entity defined is matched to an SLA as a <b>Workflow Selection Criterion</b>. If so, the agreement is applied. </li>
+                                                        <li value="3">If no matches are found for any of the fields, <span class="GeneralVariablesProductName">ASM</span> checks for a default agreement; if one is found, it is applied. </li>
+                                                        <li value="4">Otherwise, no SLA is applied to the request.</li>
+                                                    </ol>
+                                                    <p class="prereq">SLAs cannot be linked to component workflows.</p>
+                                                    <h2>Viewing and updating SLM Details on a Request</h2>
+                                                    <ol>
+                                                        <li value="1">Select the <b>SLM</b> explorer option from the <b>Request Details</b> window.</li>
+                                                        <p class="note">Whenever an SLA  is applied to a request, the SLM option displays an orange square.</p>
+                                                        <li value="2">This window displays the following fields:</li>
+                                                        <p>
+                                                            </p>
+<table style="width: 100%;mc-table-style: url('../../resources/tablestyles/fielddesc.css');margin-left: 0;margin-right: auto;" class="TableStyle-FieldDesc" cellspacing="0">
+                                                                <col class="TableStyle-FieldDesc-Column-Column1">
+                                                                <col class="TableStyle-FieldDesc-Column-Column2">
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyH-Column1-">SLA</td>
+                                                                        <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                            <p>The name of the Service Level Agreement that is applied to the current request</p>
+                                                                            <p>To view the details of a linked agreement, click the  button next to the agreement you wish to view. This opens the <b>Agreement Details</b> window.</p>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyB-Column1-">Events </td>
+                                                                        <td class="TableStyle-FieldDesc-BodyA-Column2-">
+                                                                            <p>A browse table that displays SLM events for the current request</p>
+                                                                            <p class="note">Select <b>Include Closed Events</b> to display all SLM events (both active and inactive) for the current request. Select <b>Task Events</b> to display SLM events related to the tasks linked to the current request.</p>
+                                                                            <p>If <b>SLM Request Exclusions</b> is selected in the <a href="../admin%20security%20roles/workflow%20mgt%20sec%20role%20-%20requests%20tab.htm">Requests</a> tab of your <b>Workflow Management security role</b>, an additional column, <b>Exclude</b>, appears in the browse table. This enables you to hide selected SLM events from appearing in SLM reports. If exclusion reasons are configured in the SLM Settings, you will also be prompted to choose a reason for excluding the event.</p>
+                                                                        </td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        
+                                                        <li value="3">An agreement is normally applied automatically to a request based on the workflow selection criteria specified at the level of each agreement. To apply an agreement manually (or change the automatically assigned agreement), select an agreement in the SLA field.</li>
+                                                        <p class="note">Manually assigned agreements can only be changed manually. When a new agreement is applied to a request, keep in mind that the target times for all events will be based on the original time the request was either authorized or created (depending on the SLA Immediate setting), not the time you changed the agreement over. For example, you authorized the request and Agreement A is applied to the automatically. According to its matrix, it will breach the agreement in one hour. Half an hour later, you change over to agreement B, which also has a time of 45 minutes until breach. However, changing the agreement has not “reset the clock”; you now only have 15 minutes before the agreement is breached, even though it has just come into effect on the agreement.</p>
+                                                        <li value="4">If request values are changed after an SLA has been linked, the <b>Lock Workflow SLA</b> option on the agreement linked to the request determines what happens to the agreement:<ul>
+<li value="1">If <b>Lock Workflow SLA</b> is selected for this agreement, the original agreement applied to the request remains the same, regardless of any changes made to the fields of the request, even if those details were used to automatically select the agreement in the first place. </li>
+<p class="note">In this case, only an analyst with the appropriate security rights can override the agreement manually on the Request Service Level Management window Note that if an agreement is replaced manually, it can only ever be replaced manually (even if the Lock Workflow SLA option is not selected).</p>
+<li value="2">If <b>Lock Workflow SLA</b> is not selected and the original agreement assigned by the system still applies (that is, it has not been manually reassigned), the agreement selection criteria are reassessed each time the request is updated and saved.<ul>
+<li value="1">If another agreement is found, then the current agreement is automatically closed (as well as all its linked SLM events) and the new agreement is applied. The new agreement’s SLM events are then back dated to the start time of the request.</li>
+<li value="2">If no new matching agreement is found and the original agreement is still applicable, then no changes are made.</li>
+<li value="3">If no new matching agreement is found and the original agreement is no longer applicable, then the original agreement is closed (as well as all its linked SLM events) and no agreement is applied to the request.</li>
+<li value="4">If the request has no agreement assigned to it and a matching agreement is found, then this agreement is applied and the agreement’s events are back dated to the start time of the request.</li>
+</ul>
+</li>
+</ul>
+</li>
+                                                        <p>
+                                                            </p>
+<p>The <b>Request Service Level Management</b> window also displays the following options if you are editing a workflow template:</p>
+                                                        
+                                                        </ol>
+<ul>
+                                                            <li style="list-style-type: disc;" value="1">
+<b>SLA Immediate</b> – Select this option to configure the SLA clock to start as soon as the request is created, which means that request events that occur before the request is authorized will be tracked. Clear the option to configure the SLA clock to start as soon as the request is authorized.</li>
+                                                            <li style="list-style-type: disc;" value="2">
+<b>SLM Task</b> – Select this option to use the SLM Start Task and SLM Stop Task in your request workflow. These tasks enable the SLA linked to the request to begin at a designated point in the workflow, rather than at request authorization. <span class="GeneralVariablesCoreName">ASM Core</span> will start and/or stop the clock on any SLA linked to the current request using the SLM Start Task and/or SLM Stop Task defined in the workflow. If you clear this option, any SLM Start Clock and SLM Stop Clock tasks will be ignored when the workflow is in progress.</li>
+                                                        </ul>
+                                                    
+                                                

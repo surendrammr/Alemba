@@ -1,0 +1,225 @@
+[viewBag]
+title = "SSO Troubleshooting"
+url = "/help/topics/sso-technical-reference-guide/sso-troubleshooting"
+layout = "help"
+is_hidden = 0
+navigation_hidden = 0
+==
+                                                    <h1>SSO Troubleshooting</h1>
+                                                    <table style="margin-left: 0;margin-right: auto;width: 100%;mc-table-style: url('../../resources/tablestyles/scenario table.css');" class="TableStyle-scenario_table" cellspacing="0">
+                                                        <col class="TableStyle-scenario_table-Column-Column1">
+                                                        <col class="TableStyle-scenario_table-Column-Column2">
+                                                        <tr class="TableStyle-scenario_table-Body-Body1">
+                                                            <td class="TableStyle-scenario_table-BodyE-Column1-Body1">
+                                                                <p>Issue:</p>
+                                                            </td>
+                                                            <td class="TableStyle-scenario_table-BodyD-Column2-Body1">
+                                                                <p>Page cannot be displayed on Sso.aspx</p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="TableStyle-scenario_table-Body-Body1">
+                                                            <td class="TableStyle-scenario_table-BodyE-Column1-Body1">
+                                                                <p>Resolution</p>
+                                                            </td>
+                                                            <td class="TableStyle-scenario_table-BodyD-Column2-Body1">
+                                                                <p>Make sure there is an SSL binding for the website. SSL is required.</p>
+                                                                <p>Check that there is an spid in the query string</p>
+                                                                <p>404 indicates non spid or an invalid spid. This must be the Service Provider Identifier and can be Url encoded.</p>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                    <p> </p>
+                                                    <table style="margin-left: 0;margin-right: auto;width: 100%;mc-table-style: url('../../resources/tablestyles/scenario table.css');" class="TableStyle-scenario_table" cellspacing="0">
+                                                        <col class="TableStyle-scenario_table-Column-Column1">
+                                                        <col class="TableStyle-scenario_table-Column-Column2">
+                                                        <tr class="TableStyle-scenario_table-Body-Body1">
+                                                            <td class="TableStyle-scenario_table-BodyE-Column1-Body1">
+                                                                <p>Issue:</p>
+                                                            </td>
+                                                            <td class="TableStyle-scenario_table-BodyD-Column2-Body1">
+                                                                <p>Error processing login request. Invalid Login ID or Password Please Verify and re-enter your login information</p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="TableStyle-scenario_table-Body-Body1">
+                                                            <td class="TableStyle-scenario_table-BodyE-Column1-Body1">
+                                                                <p>Resolution</p>
+                                                            </td>
+                                                            <td class="TableStyle-scenario_table-BodyD-Column2-Body1">
+                                                                <p>Using the recommended configuration, where SAML Name ID is mapped to User Principal Name by the IdP, the user name will be compared to User Qualified Name (USER_QUALIFIED) and NT Account Name (USER_SAM). Both must equal the User Principal Name, which should be in the form name@domain</p>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                    <p> </p>
+                                                    <table style="margin-left: 0;margin-right: auto;width: 100%;mc-table-style: url('../../resources/tablestyles/scenario table.css');" class="TableStyle-scenario_table" cellspacing="0">
+                                                        <col class="TableStyle-scenario_table-Column-Column1">
+                                                        <col class="TableStyle-scenario_table-Column-Column2">
+                                                        <tr class="TableStyle-scenario_table-Body-Body1">
+                                                            <td class="TableStyle-scenario_table-BodyE-Column1-Body1">
+                                                                <p>Issue:</p>
+                                                            </td>
+                                                            <td class="TableStyle-scenario_table-BodyD-Column2-Body1">
+                                                                <p>User Import doesn’t seem to work</p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="TableStyle-scenario_table-Body-Body1">
+                                                            <td class="TableStyle-scenario_table-BodyE-Column1-Body1">
+                                                                <p>Resolution</p>
+                                                            </td>
+                                                            <td class="TableStyle-scenario_table-BodyD-Column2-Body1">
+                                                                <p>User import may fail if the update would result in a duplicate Login ID (USER_ID), User Qualified Name or NT Account Name/Domain</p>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                    <p> </p>
+                                                    <table style="margin-left: 0;margin-right: auto;width: 100%;mc-table-style: url('../../resources/tablestyles/scenario table.css');" class="TableStyle-scenario_table" cellspacing="0">
+                                                        <col class="TableStyle-scenario_table-Column-Column1">
+                                                        <col class="TableStyle-scenario_table-Column-Column2">
+                                                        <tr class="TableStyle-scenario_table-Body-Body1">
+                                                            <td class="TableStyle-scenario_table-BodyE-Column1-Body1">
+                                                                <p>Issue:</p>
+                                                            </td>
+                                                            <td class="TableStyle-scenario_table-BodyD-Column2-Body1">
+                                                                <p>Could not load file or assembly 'Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed' or one of its dependencies</p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="TableStyle-scenario_table-Body-Body1">
+                                                            <td class="TableStyle-scenario_table-BodyE-Column1-Body1">
+                                                                <p>Resolution</p>
+                                                            </td>
+                                                            <td class="TableStyle-scenario_table-BodyD-Column2-Body1">
+                                                                <p>Add the following to the configuration section of the web.config</p>
+                                                                <p>  &lt;runtime&gt;</p>
+                                                                <p>    &lt;assemblyBinding xmlns="urn:schemas-microsoft-com:asm.v1"&gt;</p>
+                                                                <p>      &lt;dependentAssembly&gt;</p>
+                                                                <p>        &lt;assemblyIdentity name="Newtonsoft.Json"</p>
+                                                                <p>            publicKeyToken="30ad4fe6b2a6aeed" culture="neutral"/&gt;</p>
+                                                                <p>        &lt;bindingRedirect oldVersion="0.0.0.0-8.0.0.0" newVersion="8.0.0.0"/&gt;</p>
+                                                                <p>      &lt;/dependentAssembly&gt;</p>
+                                                                <p>    &lt;/assemblyBinding&gt;</p>
+                                                                <p>  &lt;/runtime&gt;</p>
+                                                                <p> </p>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                    <p> </p>
+                                                    <table style="margin-left: 0;margin-right: auto;width: 100%;mc-table-style: url('../../resources/tablestyles/scenario table.css');" class="TableStyle-scenario_table" cellspacing="0">
+                                                        <col class="TableStyle-scenario_table-Column-Column1">
+                                                        <col class="TableStyle-scenario_table-Column-Column2">
+                                                        <tr class="TableStyle-scenario_table-Body-Body1">
+                                                            <td class="TableStyle-scenario_table-BodyE-Column1-Body1">
+                                                                <p>Issue:</p>
+                                                            </td>
+                                                            <td class="TableStyle-scenario_table-BodyD-Column2-Body1">
+                                                                <p>SignatureDescription could not be created for the signature algorithm supplied.</p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="TableStyle-scenario_table-Body-Body1">
+                                                            <td class="TableStyle-scenario_table-BodyE-Column1-Body1">
+                                                                <p>Resolution</p>
+                                                            </td>
+                                                            <td class="TableStyle-scenario_table-BodyD-Column2-Body1">
+                                                                <p>The secure hash algorithm used for the Relying Party trust is not set to SHA1. ADFS defaults to SHA256, but this is not supported.</p>
+                                                                <p>Change the hash algorithm to SHA1 on the advanced tab of the Relying Party Trust</p>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                    <p> </p>
+                                                    <table style="margin-left: 0;margin-right: auto;width: 100%;mc-table-style: url('../../resources/tablestyles/scenario table.css');" class="TableStyle-scenario_table" cellspacing="0">
+                                                        <col class="TableStyle-scenario_table-Column-Column1">
+                                                        <col class="TableStyle-scenario_table-Column-Column2">
+                                                        <tr class="TableStyle-scenario_table-Body-Body1">
+                                                            <td class="TableStyle-scenario_table-BodyE-Column1-Body1">
+                                                                <p>Issue:</p>
+                                                            </td>
+                                                            <td class="TableStyle-scenario_table-BodyD-Column2-Body1">
+                                                                <p>Assertion Subject does not define a NameID </p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="TableStyle-scenario_table-Body-Body1">
+                                                            <td class="TableStyle-scenario_table-BodyE-Column1-Body1">
+                                                                <p>Resolution</p>
+                                                            </td>
+                                                            <td class="TableStyle-scenario_table-BodyD-Column2-Body1">
+                                                                <p>User Principal Name should be mapped to Name ID in the IdP claims configuration</p>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                    <p> </p>
+                                                    <table style="margin-left: 0;margin-right: auto;width: 100%;mc-table-style: url('../../resources/tablestyles/scenario table.css');" class="TableStyle-scenario_table" cellspacing="0">
+                                                        <col class="TableStyle-scenario_table-Column-Column1">
+                                                        <col class="TableStyle-scenario_table-Column-Column2">
+                                                        <tr class="TableStyle-scenario_table-Body-Body1">
+                                                            <td class="TableStyle-scenario_table-BodyE-Column1-Body1">
+                                                                <p>Issue:</p>
+                                                            </td>
+                                                            <td class="TableStyle-scenario_table-BodyD-Column2-Body1">
+                                                                <p>I can’t see my signing certificate</p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="TableStyle-scenario_table-Body-Body1">
+                                                            <td class="TableStyle-scenario_table-BodyE-Column1-Body1">
+                                                                <p>Resolution</p>
+                                                            </td>
+                                                            <td class="TableStyle-scenario_table-BodyD-Column2-Body1">
+                                                                <p>Digital certificates must </p>
+                                                                <ul style="list-style-type: disc;margin-left: 36pt;">
+                                                                    <li style="list-style-type: disc;" value="1">have a private key</li>
+                                                                    <li style="list-style-type: disc;" value="2">must be installed in the local machine certificate store</li>
+                                                                    <li style="list-style-type: disc;" value="3">be accessible to the account running the app pool</li>
+                                                                </ul>
+                                                                <p>Core runs under Network Service by default</p>
+                                                                <p>The app pool must have full control of the certificate</p>
+                                                                <p>The friendly name of the certificate should be set to make management easier.</p>
+                                                                <p> </p>
+                                                                <p> </p>
+                                                                <p>SAML connector should now appear in the list of integration connectors:</p>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                    <p> </p>
+                                                    <table style="margin-left: 0;margin-right: auto;mc-table-style: url('../../resources/tablestyles/scenario table.css');" class="TableStyle-scenario_table" cellspacing="0">
+                                                        <col class="TableStyle-scenario_table-Column-Column1">
+                                                        <col class="TableStyle-scenario_table-Column-Column2">
+                                                        <tr class="TableStyle-scenario_table-Body-Body1">
+                                                            <td class="TableStyle-scenario_table-BodyE-Column1-Body1">
+                                                                <p>Issue:</p>
+                                                            </td>
+                                                            <td class="TableStyle-scenario_table-BodyD-Column2-Body1">
+                                                                <p>Page Cannot Be Displayed Error after logging into authentication server:</p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="TableStyle-scenario_table-Body-Body1">
+                                                            <td class="TableStyle-scenario_table-BodyE-Column1-Body1">
+                                                                <p>Resolution</p>
+                                                            </td>
+                                                            <td class="TableStyle-scenario_table-BodyD-Column2-Body1">
+                                                                <p><b>Solution 1: </b>
+                                                                </p>
+                                                                <p>Check that service provider ID in Core matches the SPID in the endpoint url configured in the relying party on the ADFS server</p>
+                                                                <p>This:</p>
+                                                                <p>
+                                                                    <img src="/storage/app/media/Help/images/sso%20technical%20reference%20guide/chapter%203%20troubleshooting.png" style="visibility: visible;mso-wrap-style: square;width: 427px;height: 477px;">
+                                                                </p>
+                                                                <p> </p>
+                                                                <p>Should match this:</p>
+                                                                <p>
+                                                                    <img src="/storage/app/media/Help/images/sso%20technical%20reference%20guide/chapter%203%20troubleshooting_1.png" style="visibility: visible;mso-wrap-style: square;width: 382px;height: 227px;">
+                                                                </p>
+                                                                <p> </p>
+                                                                <p><b>Solution 2:</b>
+                                                                </p>
+                                                                <p>If you have created a new self-signed certificate, make sure that the Relying Party properties have been updated by importing the new certificate (and removing the old one).</p>
+                                                                <p>Export the current certificate:</p>
+                                                                <p>
+                                                                    <img src="/storage/app/media/Help/images/sso%20technical%20reference%20guide/chapter%203%20troubleshooting_2.png" style="width: 486px;height: 474px;" class="screenshot">
+                                                                </p>
+                                                                <p> </p>
+                                                                <p>Import new certificate to the relying party and remove the old one:</p>
+                                                                <p>
+                                                                    <img src="/storage/app/media/Help/images/sso%20technical%20reference%20guide/chapter%203%20troubleshooting_3_461x493.png" style="width: 461;height: 493;" class="screenshot">
+                                                                </p>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                    <p> </p>
+                                                

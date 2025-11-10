@@ -1,0 +1,184 @@
+url = "/releases/:slug"
+layout = "home"
+title = "Release notes"
+description = "Release notes"
+is_hidden = 0
+meta_title = "ASMX Latest Release Notes | Alemba Service Manager ITSM Features"
+meta_description = "The latest features and updates in Alemba Service Manager"
+robot_index = "index"
+canonical_url = "https://alemba.com/releases"
+og_title = "What's new in Alemba Service Manager"
+og_description = "The release notes for Alemba Service Manager"
+og_image = "/Social/social-graph-image.png"
+robot_follow = "follow"
+seoOptionsEnabledInSitemap = 0
+seoOptionsUseUpdatedAt = 1
+seoOptionsRobotIndex = "index"
+seoOptionsRobotFollow = "follow"
+seoOptionsChangefreq = "daily"
+seoOptionsPriority = 0.5
+
+[viewBag]
+seo_title = "ASMX Latest Release Notes | Alemba Service Manager ITSM Features"
+seo_description = "The latest features and updates in Alemba Service Manager"
+robot_index = "index"
+robot_follow = "follow"
+==
+<?php
+use Alemba\Alemba\Models\Release;
+use Alemba\Alemba\Models\ReleaseSection;
+
+function onStart()
+{
+	// Get list of releases
+
+	$this['release'] = Release::with('info')->where('slug', $this->param('slug'))->first();
+	$release_info = $this['release']->info;
+
+	$sections = ReleaseSection::orderBy('sort_order', 'asc')->get();
+
+	// Create an array of sections and the release info
+
+	$this['release_notes'] = collect();
+
+	foreach ($sections as $section) {
+
+		$section_release_info = $release_info->where('section_id', $section->id)->sortBy('sort_order')->all();
+
+		if($section_release_info) {
+
+			$array = [
+				'section' => $section->name,
+				'info' => collect()
+			];
+
+			$array['info'] = $array['info']->merge($section_release_info);
+
+			$this['release_notes'][] = $array;
+
+		}
+
+	}
+
+	$this->page->title = "Alemba Service Manager ".$this['release']->name;
+
+	$title = $this->page->og_title.' '.$this['release']->name;
+	$description = $this->page->og_description.' '.$this['release']->name;
+
+	$this->page->og_title = $title;
+	$this->page->og_description = $description;
+	$this->page->meta_title = $title;
+	$this->page->meta_description = $description;
+
+}
+?>
+==
+<!-- banner -->
+
+<div class="Jumbotron jumbotron-fluid banner pageBanner" style="background-image:url('{{ 'Banners/banner-x-logomark-3d@0.5x.jpg'|media }}')">
+	<div class="container"></div>
+</div>
+
+<!-- /banner -->
+
+{% partial 'demo-button' %}
+
+<!-- copy -->
+
+<div class="container copy">
+
+	<header class="col-md-12 copy-heading">
+        
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb justify-content-center">
+                <li class="breadcrumb-item"><a href="{{ 'releases'|page }}">Releases</a></li>
+                <li class="breadcrumb-item active">{{ release.name }}</li>
+            </ol>
+        </nav>
+	
+		<h1>{{ this.page.title }}</h1>
+		<h2>Release notes</h2>
+
+	</header>	
+
+	<div class="row">
+
+		<div class="col-md-3">
+
+			<p>In this release:</p>
+
+				{% for section in release_notes %}
+
+					<h6>{{ section.section }}</h6>
+
+					<ul class="unstyled">
+
+						{% for note in section.info %}
+
+							<li><a href="#{{ note.slug }}">{{ note.name }}</a></li>
+
+						{% endfor %}
+
+					</ul>
+
+				{% endfor %}
+
+			</ul>
+
+		</div>
+
+		<div class="col-md-9">
+
+			{% for section in release_notes %}
+
+				<div class="row justify-content-center">
+
+					<div class="col-md-10 release-section-row">
+                        {% if section.section != "Introduction" %}
+						<h3 class="release-section-name">{{ section.section }}</h3>
+                        {% endif %}
+
+						{% for note in section.info %}
+
+							<div class="release-section-notes mb-4" id="{{ note.slug }}">
+                                {% if note.name != "Introduction" %}
+        						    {% if note.name %}
+                                {% endif %}
+
+									<h4 class="release-note-name"><img class="release-note-name-bullet mr-4" src="{{ 'Alemba logos/alemba-x-logomark-150w.png'|media }}" srcset="{{ 'Alemba logos/alemba-x-logomark-150w.png'|media }} x2" alt="X"> {{ note.name }}</h4>
+
+								{% endif %}
+
+								<div class="release-note-content">
+
+									{{ note.content|md }}
+
+								</div>
+
+							</div>
+
+						{% endfor %}
+
+					</div>
+
+				</div>
+
+			{% endfor %}
+
+		</div>
+
+	</div>
+
+</div>
+
+<!-- /copy -->
+
+<!-- copy-links -->
+
+<div class="container copy-links">
+
+	
+
+</div>
+
+<!-- /copy-links -->

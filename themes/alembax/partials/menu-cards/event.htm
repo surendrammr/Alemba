@@ -1,0 +1,44 @@
+==
+<?php
+use Alemba\Alemba\Models\Event;
+
+function onStart()
+{
+ 
+ 	// Get the latest event marked as 'featured'
+
+	$this['featured_event'] = Event::where('featured',1)->whereDate('finishdate', '>', date('Y-m-d') )->orderBy('startdate')->first();
+    
+}
+?>
+==
+<li class="card dark" role="presentation">
+    <div class="card-body text-left d-flex flex-column lazyload" data-bg="{{ 'assets/img/banners/menu-card-bg-event.jpg'|theme }}?v2">
+    
+        {% if featured_event %}
+        
+        <div class="content-wrapper">
+            <h4 class="subheading-sm" style="color:#9B9B9B">Upcoming Event</h4>
+            <div style="margin-top: 3rem;">
+                <h2>{{ featured_event.name }}</h2>
+                <h3>{{ featured_event.full_dates }}</h3>
+                <h4>&nbsp;&nbsp;{{ featured_event.location }}</h4>
+            </div>
+            <p>&nbsp;</p>
+        </div>
+        
+        <div class="link-wrapper">
+            <a href="{{ 'event-detail'|page({ slug: featured_event.slug }) }}" class="btn btn-primary align-bottom">Find out more</a>
+        </div>
+        
+        {% else %}
+        
+        <div class="content-wrapper">
+            <h4 class="subheading-sm" style="color:#9B9B9B">Upcoming Event</h4>
+            <h2 class="text-center"><br />We're busy planning more events. Please check back later.</h2>
+        </div>
+        
+        {% endif %}
+        
+    </div> 
+</li>

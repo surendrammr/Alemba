@@ -1,0 +1,17 @@
+<div class="jumbotron jumbotron-fluid customers mt-5 py-5">
+    <div class="container">
+        <div class="row justify-content-center">
+
+            {% for customer in customers %}
+
+                <div class="col-6 col-sm-4 col-md-3 my-auto">
+                    {% if customer.success_story %} <a href="{{ 'success-story'|page({ slug:customer.success_story.slug }) }}"> {% endif %}
+                        <img data-src="{{ customer.logo|media }}" alt="{{ customer.name }}" class="img-fluid d-block mx-auto lazyload">
+                    {% if customer.success_story %} </a> {% endif %}
+                </div>
+
+            {% endfor %}
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,112 @@
+[viewBag]
+title = "Using Events"
+url = "/help/topics/integration/using-events"
+layout = "help"
+is_hidden = 0
+navigation_hidden = 0
+==
+                                                    <h1>Using Events</h1>
+                                                    <h2>Incoming Transactions</h2>
+                                                    <p>This section describes what happens when an event transaction is received by <span class="GeneralVariablesProductName">ASM</span>.</p>
+                                                    <h3>Receive Transaction</h3>
+                                                    <p>When receiving a receive event transaction, <span class="GeneralVariablesProductName">ASM</span>:</p>
+                                                    <ol style="list-style-type: decimal;margin-left: 40pt;" start="1" class="multilist">
+                                                        <li value="1">Runs through the groups specified on the event type, in the specified order.</li>
+                                                        <li value="2">For each group, it runs through the mappings in the specified order and evaluates the criteria specified in each mapping to determine whether to apply this mapping. </li>
+                                                        <li value="3">Applies the first applicable mapping in the configured order. A mapping is applicable to an event if the configured criteria are satisfied, or the mapping is marked as being the default mapping.</li>
+                                                        <p class="note">It is possible that some events do not get matched. Any non-default mappings ranked after a default mapping will never be applied. It is therefore important to position non-default mappings above the default mapping for an event type.</p>
+                                                        <li value="4">Undertakes the action specified in the When Received field on the Event Type Mapping Details window. If No action is selected, the event is ignored but it is still recorded in the Activity log. If Log Call or Log Request is selected, the following happens:<ul style="list-style-type: decimal;" start="1">
+<li style="list-style-type: disc;" value="1">A call or request is logged within <span class="GeneralVariablesProductName">ASM</span> using the call or workflow template specified in the Event Type Mapping Details window. </li>
+<li style="list-style-type: disc;" value="2">The logging analyst of the call or request is set to the analyst specified on the Event Type Mapping Details window. </li>
+<li style="list-style-type: disc;" value="3">If a User and organization are specified on the Fields - Incoming tab of the Event Type Mapping Details window, they are used to populate the corresponding fields on the call or request, even if there is already a User and organization specified on the call or workflow template.</li>
+<li style="list-style-type: disc;" value="4">An acknowledge transaction is sent following the rules specified on the Action tab of the Event Type Mapping Details window.</li>
+<li style="list-style-type: disc;" value="5">An outage is automatically created on the CMDB item(s) linked to the call or request according to the rules specified on the Outages tab of the Event Type Mapping Details window.</li>
+<li style="list-style-type: disc;" value="6">The call or request is forwarded to the analyst and group defined on the call or workflow template. If the template does not have a pre-assigned analyst or group, the call or request is forwarded to the logging analyst specified on the Event Type Mapping Details window. If the logging analyst specified on the Event Type Mapping Details window does not have call or request ownership rights (as part of the analyst’s security roles), then the call or request is sent to the creator of the call or workflow template.</li>
+</ul>
+</li>
+                                                        <p class="note">If the receive transaction contains a <span class="GeneralVariablesProductName">ASM</span> call or request reference that corresponds to an existing call or request in <span class="GeneralVariablesProductName">ASM</span>, this transaction is handled as an update transaction (see below).</p>
+                                                    </ol>
+                                                    <h3>Update Transaction</h3>
+                                                    <p>When receiving an update event transaction, <span class="GeneralVariablesProductName">ASM</span>:</p>
+                                                    <ol style="list-style-type: decimal;margin-left: 40pt;" start="1">
+                                                        <li value="1">Undertakes the action specified in the When Updated externally fields on the Event Type Mapping Details window.</li>
+                                                        <li value="2">Updates any fields specified on the Fields - Incoming mapping to update Always.</li>
+                                                        <li value="3">Updates the Events browse table on the call or request with the details of the transaction.</li>
+                                                        <p class="note">If the update transaction states that the event has been closed in the external system, <span class="GeneralVariablesProductName">ASM</span> handles this event transaction according to the rules specified in the <b>When Deleted externally</b> fields on the <a href="%7B%7B%20'help-managing-event-type-mappings#Viewing'%7CstaticPage%20%7D%7D#Viewing">Event Type Mapping Details</a> window.</p>
+                                                        <p class="note">If this transaction has an event reference or a call or request reference that is not recognized by <span class="GeneralVariablesProductName">ASM</span>, the rules specified for receive transactions are applied.</p>
+                                                    </ol>
+                                                    <h3>Notify Transaction</h3>
+                                                    <p>When receiving a notify event transaction, <span class="GeneralVariablesProductName">ASM</span>:</p>
+                                                    <ol style="list-style-type: decimal;margin-left: 40pt;" start="1">
+                                                        <li value="1">Undertakes the action specified in the When Notified externally fields on the Event Type Mapping Details window.</li>
+                                                        <li value="2">Updates any fields specified on the Fields - Incoming mapping to update Always.</li>
+                                                        <li value="3">Updates the Events browse table on the call or request (see <a href="%7B%7B%20'help-calls-viewing-event-txns#Viewing_event_txns'%7CstaticPage%20%7D%7D#Viewing_event_txns" class="MCXref xref">Viewing Event Transactions from a Call or Request</a>) with the details of the transaction.</li>
+                                                        <p class="note">If this transaction has an event reference or a call or request reference that is not recognized by <span class="GeneralVariablesProductName">ASM</span>, no action is taken on the event.</p>
+                                                    </ol>
+                                                    <h3>Resolve Transaction</h3>
+                                                    <p>When receiving a resolve event transaction, <span class="GeneralVariablesProductName">ASM</span>:</p>
+                                                    <ol style="list-style-type: decimal;margin-left: 40pt;" start="1">
+                                                        <li value="1">Undertakes the action specified in the When Resolved externally fields on the Event Type Mapping Details window.</li>
+                                                        <li value="2">Updates any fields specified on the Fields - Incoming mapping to update Always.</li>
+                                                        <li value="3">Updates the Events browse table on the call or request (see <a href="%7B%7B%20'help-calls-viewing-event-txns#Viewing_event_txns'%7CstaticPage%20%7D%7D#Viewing_event_txns" class="MCXref xref">Viewing Event Transactions from a Call or Request</a>) with the details of the transaction.</li>
+                                                        <li value="4">Closes any outage created on the CMDB item(s) linked to the call or request according to the rules specified on the Outages tab of the Event Type Mapping Details window.</li>
+                                                        <li value="5">
+                                                            <p class="note">If this transaction has an event reference or a call or request reference that is not recognized by <span class="GeneralVariablesProductName">ASM</span>, no action is taken on the event.</p>
+                                                        </li>
+                                                    </ol>
+                                                    <h3>Delete Transaction</h3>
+                                                    <p>When receiving a delete event transaction, <span class="GeneralVariablesProductName">ASM</span>:</p>
+                                                    <ol style="list-style-type: decimal;margin-left: 40pt;" start="1">
+                                                        <li value="1">Undertakes the action specified in the When Deleted externally fields on the Event Type Mapping Details window.</li>
+                                                        <li value="2">Updates any fields specified on the Fields - Incoming mapping to update Always.</li>
+                                                        <li value="3">Updates the <b>Events</b> browse table on the call or request (see <a href="%7B%7B%20'help-calls-viewing-event-txns#Viewing_event_txns'%7CstaticPage%20%7D%7D#Viewing_event_txns" class="MCXref xref">Viewing Event Transactions from a Call or Request</a>) with the details of the transaction.</li>
+                                                        <li value="4">Closes any outage created on the CMDB item(s) linked to the call or request according to the rules specified on the Outages tab of the Event Type Mapping Details window.</li>
+                                                        <li value="5">
+                                                            <p class="note">If this transaction has an event reference or a call or request reference that is not recognized by <span class="GeneralVariablesProductName">ASM</span>, no action is taken on the event.</p>
+                                                        </li>
+                                                    </ol>
+                                                    <h2>Outgoing Transactions</h2>
+                                                    <p>This section describes what happens when an event transaction is sent by <span class="GeneralVariablesProductName">ASM</span>.</p>
+                                                    <h3>Update Transaction</h3>
+                                                    <p>When an analyst updates a call or request logged as a result of an event (that is, saves, defers and forwards the call or request), <span class="GeneralVariablesProductName">ASM</span>:</p>
+                                                    <ol style="list-style-type: decimal;margin-left: 40pt;" start="1">
+                                                        <li value="1">Sends an update transaction to the external system if the rule specified in the Action tab on the Event Type Mapping Details window says to send an update transaction on call or request update.</li>
+                                                        <li value="2">Attaches the contents of the Actions &amp; Solutions field on the call or request to the update transaction sent to the external system.</li>
+                                                        <li value="3">Updates any fields specified on the Fields - Outgoing mapping.</li>
+                                                    </ol>
+                                                    <h3>Notify Transaction</h3>
+                                                    <p>When an analyst <b>adds a note</b> to a call or request logged as a result of an event, <span class="GeneralVariablesProductName">ASM</span>:</p>
+                                                    <ol style="list-style-type: decimal;margin-left: 40pt;" start="1">
+                                                        <li value="1">Sends a notify transaction to the external system if the rule specified in the Action tab on the Event Type Mapping Details window says to send a notify transaction when a note is added to the call or request.</li>
+                                                        <li value="2">Attaches the contents of the note to the notify transaction sent to the external system.</li>
+                                                    </ol>
+                                                    <p>When <span class="GeneralVariablesProductName">ASM</span> <b>adds a history entry</b> (for example, an agreement escalation) to a call or request logged as a result of an event, <span class="GeneralVariablesProductName">ASM</span>:</p>
+                                                    <ol style="list-style-type: decimal;margin-left: 40pt;" start="1">
+                                                        <li value="1">Sends a notify transaction to the external system if the rule specified in the Action tab on the Event Type Mapping Details window says to send a notify transaction when a system-generated entry is added to the history of a call or request.</li>
+                                                        <li value="2">Attaches the contents of the history entry to the notify transaction sent to the external system.</li>
+                                                        <p class="note">Notify transactions are never sent for audit-related history entries, such as objects uploaded, items linked to the call or request, analysts taking action on the call, etc.</p>
+                                                    </ol>
+                                                    <h3>Clear Transaction</h3>
+                                                    <p>When an analyst closes a call or request logged as a result of an event, <span class="GeneralVariablesProductName">ASM</span>:</p>
+                                                    <ol style="list-style-type: decimal;margin-left: 40pt;" start="1">
+                                                        <li value="1">Sends a clear transaction to the external system if the rule specified in the <a href="%7B%7B%20'help-managing-event-type-mappings#action_tab'%7CstaticPage%20%7D%7D#action_tab">Action</a> tab on the <b>Event Type Mapping</b> Details window requires it.</li>
+                                                        <li value="2">Attaches the contents of the <b>Actions &amp; Solutions</b> field to the clear transaction sent to the external system.</li>
+                                                        <li value="3">Updates any fields specified on the <b>Fields - Outgoing mapping</b>.</li>
+                                                        <p class="note">
+                                                            </p>
+<p>Objects attached to an incoming event are ignored. Objects attached to a <span class="GeneralVariablesProductName">ASM</span> call or request are not sent with any acknowledge, update, notify or clear transactions.</p>
+                                                        
+                                                    </ol>
+                                                    <h2>Acknowledging an Event</h2>
+                                                    <h2 class="Prerequisite">Before you start</h2>
+                                                    <p class="prereqtext1">The <b>Acknowledge Event</b> option must be selected on the <a href="../admin%20security%20roles/ipk%20management%20security%20roles%20-%20options%20tab.htm">IPK</a> or <a href="../admin%20security%20roles/workflow%20mgt%20sec%20role.htm">Workflow Management security role</a> of the analyst viewing the call or request.</p>
+                                                    <p class="prereqtext1">The call or request must be in <b>Action</b> mode (not in Review mode).</p>
+                                                    <p class="prereqtextlast">The system administrator must have <a href="%7B%7B%20'help-configuring-inbound-and-outbound#top'%7CstaticPage%20%7D%7D#top">configured Event Management</a> so that acknowledgment of an event is done manually for a particular event mapping.</p>
+                                                    <p>A message appears on the <b>Details</b> window of the call or request logged as a result of the event <a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="../../resources/images/event%20msg.png"><img class="MCPopupThumbnail img imgthumbnail" data-mc-width="622" data-mc-height="228" src="/storage/app/media/Help/images/event%20msg_thumb_0_48.png" tabindex=""></a>indicating  that an event has been received by <span class="GeneralVariablesProductName">ASM</span> and resulted in a call or request being logged, but that no acknowledge transaction has yet been sent to the external system.</p>
+                                                    <p>This message is only displayed if:</p>
+                                                    <ul>
+                                                        <li value="1">The mapping applied to the event for which this call or request was created has the <b>Send Acknowledge</b> field set to Manually, AND</li>
+                                                        <li value="2">An acknowledge transaction has not yet been sent to the external system for this event.</li>
+                                                    </ul>
+                                                    <p>To send an acknowledge transaction to the external source for this event, select the <b>Acknowledge Event</b> button.</p>
+                                                

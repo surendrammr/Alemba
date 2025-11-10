@@ -1,0 +1,71 @@
+url = "/events/uk-user-conference-2019/register"
+layout = "home"
+title = "Register for UK User Conference 2019"
+is_hidden = 0
+meta_title = "Register for UK User Conference 2019"
+meta_description = "Register for UK User Conference 2019"
+canonical_url = "https://alemba.com/events/uk-user-conference-2019/register"
+robot_index = "index"
+robot_follow = "follow"
+seoOptionsEnabledInSitemap = 0
+seoOptionsUseUpdatedAt = 1
+seoOptionsRobotIndex = "index"
+seoOptionsRobotFollow = "follow"
+seoOptionsChangefreq = "daily"
+seoOptionsPriority = 0.5
+
+[renderForm renderEventForm]
+formCode = "uk-user-conference-2018-event"
+==
+<?php
+use Alemba\Alemba\Models\Event;
+
+function onStart()
+{
+	// Get selected event
+
+	$this['event'] = Event::where('slug', 'uk-user-conference-2019')->first();
+
+	$this->page->title = "Register for ".$this['event']->name;
+
+}
+?>
+==
+{% if event.banner_image %}
+
+	<!-- banner -->
+
+	<div class="container-fluid banner jumbotron jumbotron-fluid pageBanner" style="background-image:url('{{ event.banner_image|media }}')">
+	</div>
+
+{% endif %}
+
+<!-- /banner -->
+
+<!-- copy -->
+
+<div class="container copy">
+
+	<header class="col-md-12 copy-heading">
+	
+		<h1>{{ this.page.title }}</h1>
+		<h2><i class="fa fa-map-marker"></i>&nbsp;&nbsp;{{ event.location }}&nbsp;&nbsp;&nbsp;&bull;&nbsp;&nbsp;&nbsp;{{ event.full_dates }}</h2>
+
+	</header>
+
+	<div class="row">
+
+		<div class="col-md-10 col-md-offset-1 copy-main">
+
+			<p class="lead">We'd love to see you at the <a href="{{ 'event-detail'|page({ slug: this.param.slug }) }}">{{ event.name }}</a> at {{ event.location }}.</p>
+
+            {% component 'renderEventForm' %}
+
+		</div>
+
+	</div>
+
+</div>
+
+<!-- Load Font Awesome -->
+{% partial "font-awesome" %}

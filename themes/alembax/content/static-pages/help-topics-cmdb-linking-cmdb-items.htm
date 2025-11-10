@@ -1,0 +1,227 @@
+[viewBag]
+title = "Linking CMDB Items"
+url = "/help/topics/cmdb/linking-cmdb-items"
+layout = "help"
+is_hidden = 0
+navigation_hidden = 0
+==
+                                                    <h1>
+<a name="aanchor122"></a>
+                                                        <concept term="CMDB"></concept><a name="top"></a>Linking CMDB Items</h1>
+                                                    <p class="intro">As part of the process for specifying the details of a CMDB item, you may need to link the record to other CMDB items to which it is related. For example, you can link a service such as email to a configuration item such as a mail server. Or you can link an organization to a series of cost centers. This enables you to identify the impact a problem or outage will have on a CMDB item and the items that are linked to it. The links can be viewed graphically on the <a href="cmdb%20linking%20diagram.htm">CMDB Linking Diagram</a>. </p>
+                                                    <p class="intro"> </p>
+                                                    <p class="intro">You may also want to <a href="#Viewing">view these details</a> to ensure that link mapping has been performed successfully as part of scheduled integration, as well as viewing links that you have manually created.</p>
+                                                    <p>First, your system administrator creates <a href="../admin%20cmdb/cmdb%20link%20types.htm">link types</a>, specifying which CMDB item types may be linked, as well as the type of relationship the two items can have. You can also set the impact relationship for the link type.</p>
+                                                    <p>Then you create the links within the CMDB Item Details window. </p>
+                                                    <p class="note">Only the CMDB items linked through the <a href="#Adding">Linked Items</a> tab in the CMDB Item Details window appear on the linking diagram. Items linked through an extension field that has been added to the CMDB Item Details window in <span class="GeneralVariablesDesignerName">ASM Designer</span> will not appear.</p>
+                                                    <p>There is no limit to the number of links you can create between CMDB items, but certain relationships may require several links. For example, if you have software that is being used across a network, it may have a lot of people ("Users") using it, but you would not be able to link the same software to lots of individual Users. Instead, you would have to link the software to different hardware items, such as workstations in the network, and link the workstations to the Users.</p>
+                                                    <p>Most CMDB Details windows display a linking panel with tabs for each of the entities that can be linked to the current entity type. For example, the Configuration Items Details window has tabs that enable you to link:</p>
+                                                    <ul>
+                                                        <li value="1">CMDB items (service entities as well as other CIs)</li>
+                                                        <li value="2">Stakeholders</li>
+                                                        <li value="3">Contracts</li>
+                                                        <li value="4">Cost Centers</li>
+                                                    </ul>
+                                                    <h2>
+<a name="Adding"></a>Adding a Link</h2>
+                                                    <h2 class="Prerequisite">Before you start</h2>
+                                                    <p class="prereqtext1"><b>CMDB Item Link Update</b> must be selected in the <a href="../admin%20security%20roles/config%20mgt%20sec%20role%20-%20cmdb.htm">CMDB Items</a> tab of your <b>Configuration Management security role</b>. </p>
+                                                    <p class="prereqtext1"><b>CMDB Item Override Link Impact</b> must be selected in the same tab if you want to override the impact relationship on the link type. <b>Impact Can be Overridden Manually</b> must also be selected for the link type in the <a href="%7B%7B%20'help-admin-cmdb-cmdb-link-types#Specifyi'%7CstaticPage%20%7D%7D#Specifyi">CMDB Link Type Details</a> window.</p>
+                                                    <p class="prereqtext">You can link a non-frozen CMDB item to a <a href="freezing%20cmdb%20items.htm">frozen item</a>. However, if two linked CMDB items are frozen, you will not be able to modify the link between them. If only one item is frozen, the link can be modified from the CMDB item that is not frozen. </p>
+                                                    <p class="note">Depending on the type of CMDB item you are working with, you can link <a href="%7B%7B%20'help-managing-stakeholders#Linking'%7CstaticPage%20%7D%7D#Linking">stakeholders</a>, contracts, cost centers, subscribers, service actions, service bundles, agreements and locations.</p>
+                                                    <ol>
+                                                        <li value="1">Display the <b>&lt;Entity&gt; Details</b> window, if it is not already on screen, by searching for the item type and selecting it from the search results browse table.</li>
+                                                        <li value="2">If you are not in edit mode, select <img src="/storage/app/media/Help/images/edit%20button.png"> on the toolbar.</li>
+                                                        <li value="3">Scroll down to the bottom of the window. </li>
+                                                        <li value="4">From the <b>Linking Panel</b>, select the tab denoting the type of item you want to link, such as <b>Service Actions</b>, <b>Service Bundles</b> or <b>Linked Items</b> tab. (The tabs and the order in which they are displayed will vary depending on Details window you are in.)</li>
+                                                        <p class="note">To link stakeholders to a person, select the <a href="../cmdb%20explorer%20options/stakeholders%20explorer%20option.htm">Stakeholders explorer option</a> on the <a href="../managing%20people/managing%20people.htm">Person Details window</a>.</p>
+                                                        <li value="5">All existing linked items are displayed in the browse table. To create another link, select <b>Add</b> from beneath the table. </li>
+                                                        <p class="note">If you are linking a stakeholder, select the type of stakeholder you want to link - person, organization, IPK group or workflow group.</p>
+                                                        <li value="6">In the <b>&lt;Entity&gt; Search</b> window, <a href="%7B%7B%20'help-managing-cmdb-items#Searchin'%7CstaticPage%20%7D%7D#Searchin">search for the CMDB item</a> you wish to link to the current item.</li>
+                                                        <li value="7">From the search results, select the item, and then select <img src="/storage/app/media/Help/images/link%20button.png" alt="" title="">. </li>
+                                                        <li value="8">If you are linking a stakeholder, and <a href="../admin%20cmdb/cmdb%20stakeholder%20roles.htm">stakeholder roles are defined</a>, select a suitable role, such as business owner or group owner.</li>
+                                                        <p>If you are linking another CMDB item, choose a <a href="../admin%20cmdb/cmdb%20link%20types.htm"><b>CMDB Link Type</b></a> from the drop-down list to represent the relationship between the current CMDB item and the item you wish to link to it. </p>
+                                                        <p class="note">The items linked through the relationship will each fill a particular role. For a Parent-Child link type, this will either be the Parent role or the Child role. Link types are displayed as [Link Type Name] – [Role]. In the Parent-Child example, you would choose “CMDB Link – Child” to link the item as the child participant in the relationship, or “CMDB Link – Parent’ to link the item as the parent. This means you can link the same CMDB items more than once, provided you select a different combination of Link Type and Role. </p>
+                                                        <p class="note">When linking service actions to service bundles, you can select <b>Service Bundle to Service Action (Optional)</b> to give Users the option of ordering this linked service action, or <b>Service Bundle to Service Action</b> to make it mandatory for Users to order this linked service action. If you link a service action to a service through the <b>Linked Items</b> tab, this is a standard link. <b class="Xref_outstanding">To link a service action as a core component of a service</b>, use the <b>Service Actions</b> tab.</p>
+                                                        <li value="9">Select <b>OK</b> to close the dialog box. If the CMDB items are already linked for the selected link type, a message appears. Select <b>OK</b> to close the message.</li>
+                                                        <p class="note">The <b>Linking</b> explorer option will appear orange, with a small dot, indicating that there are links present for the item.</p>
+                                                    </ol>
+                                                    <h2>
+<a name="Viewing"></a>Viewing Linked Items</h2>
+                                                    <p class="note">If items are linked to the CMDB item on screen, the <b>Linking</b> explorer option will appear orange, with a small dot. This is a useful indication of links if, say, you have mapped links as part of scheduled integration.</p>
+                                                    <h2 class="Prerequisite">Before you start</h2>
+                                                    <p class="prereqtext"><b>CMDB Item Link Update</b> must be selected in the <a href="../admin%20security%20roles/config%20mgt%20sec%20role%20-%20cmdb.htm">CMDB Items</a> tab of your <b>Configuration Management security role</b>.</p>
+                                                    <ol>
+                                                        <li value="1">Display the <b>CMDB Item Details</b> window, if it is not already on screen, by searching for the item type and selecting it from the search results browse table.</li>
+                                                        <li value="2">Scroll down to the bottom of the window. </li>
+                                                        <li value="3">From the Linking Panel, select the tab denoting the type of item you want to view, such as <b>Service Actions</b>, <b>Service Bundles</b> or <b>Linked Items</b> tab. (The order in which the tabs are displayed will vary depending on Details window you are in.)</li>
+                                                        <li value="4">To filter the linked items shown by link type, make a selection from the <b>Display for Link Type</b> drop down list.</li>
+                                                        <li value="5">To include linked items which have been deleted, select <b>Include Deleted</b>.</li>
+                                                        <li value="6">Select the linked item and select <b>Link Details</b>. The <b>Link Details</b> window appears.</li>
+                                                        <p class="note">You can also access this window from the linking diagram.  </p>
+                                                        <p>
+                                                            </p>
+<table class="TableStyle-FieldDesc" style="mc-table-style: url('../../resources/tablestyles/fielddesc.css');margin-left: 0;margin-right: auto;" cellspacing="0">
+                                                                <col class="TableStyle-FieldDesc-Column-Column1">
+                                                                <col class="TableStyle-FieldDesc-Column-Column2">
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyH-Column1-">Link Type</td>
+                                                                        <td class="TableStyle-FieldDesc-BodyG-Column2-">Select the link type from the drop-down list. These are defined in the <a href="#">CMDB Link Types</a> window.</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyH-Column1-">Parent</td>
+                                                                        <td class="TableStyle-FieldDesc-BodyG-Column2-">The item that is parent in the relationship.  You can select the link to view the details.</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyH-Column1-">Parent Impacts Child</td>
+                                                                        <td class="TableStyle-FieldDesc-BodyG-Column2-">This field indicates whether the parent impacts the child in the selected link type.<p class="prereq">You must have <b>CMDB Item Link Update</b> selected in the <a href="../admin%20security%20roles/config%20mgt%20sec%20role%20-%20cmdb.htm">CMDB Items</a> tab in your <b>Configuration Management security role</b>.</p>
+</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyH-Column1-">Child</td>
+                                                                        <td class="TableStyle-FieldDesc-BodyG-Column2-">The item that is child in the relationship. You can select the link to view the details.</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyH-Column1-">Child Impacts Parent</td>
+                                                                        <td class="TableStyle-FieldDesc-BodyG-Column2-">This field indicates whether the child impacts the parent in the selected link type.<p class="prereq">You must have <b>CMDB Item Link Update</b> selected in the <a href="../admin%20security%20roles/config%20mgt%20sec%20role%20-%20cmdb.htm">CMDB Items</a> tab in your <b>Configuration Management security role</b>.</p>
+</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyH-Column1-">Override Impact Relationship</td>
+                                                                        <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                            <p class="prereq">You must have <b>CMDB Item Override Link Update</b> selected in the <a href="../admin%20security%20roles/config%20mgt%20sec%20role%20-%20cmdb.htm">CMDB Items</a> tab in your <b>Configuration Management security role</b>.</p>
+                                                                            <p class="note">You can only override the impact relationship if <b>Impact Can Be Overridden Manually</b> must be selected in the <a href="../admin%20cmdb/cmdb%20link%20types.htm">CMDB Link Type Details</a> window.</p>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyH-Column1-">Link status</td>
+                                                                        <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                            <p>The combination of values in the <b>Discovery Status</b>, <b>Authorize Status</b> and <b>Last Used</b> fields will populate this field based on the <a href="#CMDB">matrix</a> below.</p>
+                                                                            <p>Use the drop down list to change the link status.</p>
+                                                                            <p class="note">If the <b>Discovery Status</b> and <b>Authorize Status</b>fields contain values other than those defined in the matrix, the <b>Link Status</b> field is not changed.</p>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyH-Column1-">Discovery Status</td>
+                                                                        <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                            <p>This field is read-only and its value can only be defined   in either the <b>Integration</b> resource settings, or the <b>Manage CMDB</b> tasks of workflow templates. <img src="/storage/app/media/Help/images/mapping%20table%20link%20status%20ref%20fields.png" class="screenshot"></p>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyH-Column1-">Authorize Status</td>
+                                                                        <td class="TableStyle-FieldDesc-BodyG-Column2-">This field is read-only and its value can only be defined  through the <b>Integration</b> and <b>Workflow</b> modules.</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyB-Column1-">Last Used</td>
+                                                                        <td class="TableStyle-FieldDesc-BodyA-Column2-">This field is read-only and its value can only be defined  through the <b>Integration</b> and <b>Workflow</b> modules.</td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        
+                                                    </ol>
+                                                    <h3>
+<a name="CMDB"></a>CMDB Link Status Matrix</h3>
+                                                    <p>This matrix outlines the values that automatically populate the <b>Link Status</b> field based on the combination of values in the <b>Discovery Status</b> and <b>Authorize Status</b> fields. </p>
+                                                    <table style="mc-table-style: url('../../resources/tablestyles/rep hdr row.css');margin-left: 0;margin-right: auto;width: 100%;" class="TableStyle-Rep_Hdr_Row" cellspacing="0">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column1">
+                                                        
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column2">
+                                                        
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column1">
+                                                        
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column2">
+                                                        
+                                                        <thead>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Head-Header1">
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column1-Header1">Discovery Status</th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column2-Header1">Authorize Status</th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column1-Header1">Last Used</th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadD-Column2-Header1">Link Status</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td style="text-align: center;" class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">Discovered</td>
+                                                                <td style="text-align: center;" class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">Authorized</td>
+                                                                <td style="text-align: center;" class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">(blank)</td>
+                                                                <td style="text-align: center;" class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">Confirmed</td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td style="text-align: center;" class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">Discovered</td>
+                                                                <td style="text-align: center;" class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">Authorized</td>
+                                                                <td style="text-align: center;" class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">(older than 90 days)</td>
+                                                                <td style="text-align: center;" class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">Stale</td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td style="text-align: center;" class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">Discovered</td>
+                                                                <td style="text-align: center;" class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">(blank)</td>
+                                                                <td style="text-align: center;" class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">n/a</td>
+                                                                <td style="text-align: center;" class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">Not Authorized</td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td style="text-align: center;" class="TableStyle-Rep_Hdr_Row-BodyB-Column1-Body1">(blank)</td>
+                                                                <td style="text-align: center;" class="TableStyle-Rep_Hdr_Row-BodyB-Column2-Body1">Authorized</td>
+                                                                <td style="text-align: center;" class="TableStyle-Rep_Hdr_Row-BodyB-Column1-Body1">n/a</td>
+                                                                <td style="text-align: center;" class="TableStyle-Rep_Hdr_Row-BodyA-Column2-Body1">Not Discovered</td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <p class="note">The value of <b>90 days</b>, that is used to determine a stale link, is not modifiable.</p>
+                                                    <h2>Updating the Link Details</h2>
+                                                    <h2 class="Prerequisite">Before you start</h2>
+                                                    <p class="prereqtext1"><b>CMDB Item Link Update</b> must be selected in the <a href="../admin%20security%20roles/config%20mgt%20sec%20role%20-%20cmdb.htm">CMDB Items</a> tab of your <b>Configuration Management security role</b>. </p>
+                                                    <p class="prereqtext1"><b>CMDB Item Override Link Impact</b> must be selected in the same tab if you want to override the impact relationship on the link type. <b>Impact Can be Overridden Manually</b> must also be selected for the link type in the <a href="%7B%7B%20'help-admin-cmdb-cmdb-link-types#Specifyi'%7CstaticPage%20%7D%7D#Specifyi">CMDB Link Type Details</a> window.</p>
+                                                    <p class="prereqtext">If two linked CMDB items are <a href="freezing%20cmdb%20items.htm">frozen</a>, you will not be able to modify the link between them. If only one item is frozen, the link can be modified from the CMDB item that is not frozen. </p>
+                                                    <ol>
+                                                        <li value="1">Display the <b>CMDB Item Details</b> window, if it is not already on screen, by searching for the item type and selecting it from the search results browse table.</li>
+                                                        <li value="2">If you are not in edit mode, select <img src="/storage/app/media/Help/images/edit%20button.png"> on the toolbar.</li>
+                                                        <li value="3">Scroll down to the bottom of the window. </li>
+                                                        <li value="4">From the Linking Panel, select the tab denoting the type of item you want to update, such as <b>Service Actions</b>, <b>Service Bundles</b> or <b>Linked Items</b> tab. (The order in which the tabs are displayed will vary depending on Details window you are in.)</li>
+                                                        <li value="5">Select the linked item and select <b>Link Details</b>. </li>
+                                                        <li value="6">In the <b>Linked Details</b> window, select <img src="/storage/app/media/Help/images/edit%20button.png">.</li>
+                                                        <li value="7">Edit the details as required:</li>
+                                                        <table class="TableStyle-FieldDesc" style="mc-table-style: url('../../resources/tablestyles/fielddesc.css');margin-left: 0;margin-right: auto;" cellspacing="0">
+                                                            <col class="TableStyle-FieldDesc-Column-Column1">
+                                                            <col class="TableStyle-FieldDesc-Column-Column2">
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Link Type</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">Use the drop down list to select an alternative <a href="../admin%20cmdb/cmdb%20link%20types.htm">link type</a> from the drop down list</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Parent</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">Search for and select an alternative parent</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Child</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">Search for and select an alternative child</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Link Status</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">Use the drop down list to change the link status</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Child Impacts Parent</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">This field indicates whether the child impacts the parent in the selected link type</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyB-Column1-">Override Impact Relationship</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyA-Column2-">You can only override the impact relationship if this has been enabled when configuring the link type.</td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                        <li value="8">Select  <img src="/storage/app/media/Help/images/save%20and%20close%20button.png" alt="" title=""> to save the changes and close the window. Provide the <a href="../general%20topics/change%20reasons.htm">change reasons </a>if prompted to do so.</li>
+                                                    </ol>
+                                                    <h2>Removing a link</h2>
+                                                    <h2 class="Prerequisite">Before you start</h2>
+                                                    <p class="prereqtext"><b>CMDB Item Link Update</b> must be selected in the <a href="../admin%20security%20roles/config%20mgt%20sec%20role%20-%20cmdb.htm">CMDB Items</a> tab of your <b>Configuration Management security role</b>.</p>
+                                                    <ol>
+                                                        <li value="1">Display the <b>CMDB Item Details</b> window, if it is not already on screen, by searching for the item type and selecting it from the search results browse table.</li>
+                                                        <li value="2">If you are not in edit mode, select <img src="/storage/app/media/Help/images/edit%20button.png"> on the toolbar.</li>
+                                                        <li value="3">Scroll down to the bottom of the window. </li>
+                                                        <li value="4">From the Linking Panel, select the tab denoting the type of item you want to remove, such as <b>Service Actions</b>, <b>Service Bundles</b> or <b>Linked Items</b> tab. (The order in which the tabs are displayed will vary depending on Details window you are in.)</li>
+                                                        <li value="5">Select the linked item in the <b>Linked Items</b> table.</li>
+                                                        <li value="6">Select <b>Remove</b>. </li>
+                                                    </ol>
+                                                

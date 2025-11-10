@@ -1,0 +1,89 @@
+<div class="tag-filter">
+    <h5>Filter by:</h5>
+    <div class="tag-buttons">
+        <a href="#" class="mb-3 badge rounded-pill text-bg-primary filter-tag magenta" data-tag="all">All articles</a>
+        {% for category in categories %}
+            <div class="tag-category mb-3">
+                <h6>{{ category.name }}</h6>
+                {% for tag in category.tags %}
+                    <a href="#{{ tag.slug }}" class="badge rounded-pill text-bg-primary filter-tag" data-tag="{{ tag.slug }}">{{ tag.name }}</a>
+                {% endfor %}
+            </div>
+        {% endfor %}
+    </div>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        let filterLinks = document.querySelectorAll(".filter-tag");
+        let posts = document.querySelectorAll(".tagged-item");
+        let selectedTags = new Set();
+
+        function updatePostsVisibility() {
+            if (selectedTags.size === 0 || selectedTags.has("all")) {
+                posts.forEach(post => {
+                    post.classList.remove("display-none", "tagged-item-hidden");
+                });
+            } else {
+                posts.forEach(post => {
+                    let hasMatchingTag = [...selectedTags].some(tag => post.classList.contains("tag-" + tag));
+                    if (hasMatchingTag) {
+                        post.classList.remove("display-none");
+                        post.classList.remove("tagged-item-hidden");
+                    } else {
+                        post.classList.add("display-none", "tagged-item-hidden");
+                    }
+                });
+            }
+
+            // Update the URL hash with selected tags
+            let newUrl = selectedTags.size === 0 || selectedTags.has("all") ? "#all" : `#${[...selectedTags].join(",")}`;
+            history.pushState(null, "", newUrl);
+        }
+
+        filterLinks.forEach(link => {
+            link.addEventListener("click", function(event) {
+                event.preventDefault();
+                let tag = this.getAttribute("data-tag");
+
+                if (tag === "all") {
+                    selectedTags.clear();
+                    selectedTags.add("all");
+                } else {
+                    if (selectedTags.has(tag)) {
+                        selectedTags.delete(tag);
+                    } else {
+                        selectedTags.delete("all");
+                        selectedTags.add(tag);
+                    }
+                }
+
+                // Highlight selected tags
+                filterLinks.forEach(link => link.classList.remove("magenta"));
+                selectedTags.forEach(tag => {
+                    let tagLink = document.querySelector(`.filter-tag[data-tag="${tag}"]`);
+                    if (tagLink) {
+                        tagLink.classList.add("magenta");
+                    }
+                });
+
+                updatePostsVisibility();
+            });
+        });
+
+        // On page load, check URL for selected tags
+        if (window.location.hash) {
+            let tagsFromUrl = window.location.hash.substring(1).split(",");
+            selectedTags = new Set(tagsFromUrl);
+            updatePostsVisibility();
+
+            // Highlight pre-selected tags
+            selectedTags.forEach(tag => {
+                let tagLink = document.querySelector(`.filter-tag[data-tag="${tag}"]`);
+                if (tagLink) {
+                    tagLink.classList.add("magenta");
+                }
+            });
+        }
+    });
+</script>

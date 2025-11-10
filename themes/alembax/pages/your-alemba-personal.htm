@@ -1,0 +1,288 @@
+url = "/your-alemba/:slug"
+layout = "home"
+title = "Your Alemba"
+description = "Your Alemba - Personalised Page"
+is_hidden = 0
+meta_title = "Your Alemba"
+meta_description = "Your Alemba"
+robot_index = "noindex"
+robot_follow = "nofollow"
+
+[viewBag]
+seo_title = "Your Alemba"
+seo_description = "Your Alemba"
+robot_index = "index"
+robot_follow = "follow"
+seoOptionsEnabledInSitemap = 0
+seoOptionsUseUpdatedAt = 1
+seoOptionsRobotIndex = "noindex"
+seoOptionsRobotFollow = "nofollow"
+seoOptionsChangefreq = "daily"
+seoOptionsPriority = 0.5
+==
+<?php
+use Alemba\Alemba\Models\Team;
+use Alemba\Alemba\Models\Event;
+use Carbon\Carbon;
+
+function onStart()
+{
+
+	// Get selected team member
+
+	$this['person'] = Team::where('unique_number', $this->param('slug'))->first();
+
+	// Get the first upcoming event for the user's region
+
+	if($this['person']->region){
+
+		$event = Event::whereHas('region', function ($query) {
+	    	$query->where('code', $this['person']->region);
+		})->whereNotNull('banner_image_email')
+		->where('startdate', '>', Carbon::now())
+		->orderBy('startdate', 'asc')
+		->first();
+
+		$this['event'] = $event ? $event : false;
+
+	}
+
+	// Get office numbers
+	
+	$this['tel'] = '';
+	$this['fax'] = '';
+
+	if($this['person']->office_id) {
+
+		$this['office'] = $this['person']->office;
+
+		if($this['office']) {
+
+			$this['tel'] = $this['office']->telephone;
+			$this['fax'] = $this['office']->fax;
+
+		}
+
+	}
+
+	if($this['person']->tel) { $this['tel'] = $this['person']->tel; }
+	if($this['person']->fax) { $this['fax'] = $this['person']->fax; }
+
+	// Get person's first name
+
+	$this['firstname'] = strtok($this['person']->name, " ");
+
+	// Change page title
+
+	$this->page->title = $this['person']->name."'s Alemba";
+
+}
+?>
+==
+<!-- banner -->
+
+<div class="jumbotron jumbotron-fluid banner dark pageBanner" style="background-image:url('{{ 'assets/img/banners/banner-itsm@0.5x.jpg'|theme }}')">
+    
+    <div class="container-fluid h-100">
+    
+        <div class="row h-100">
+            <div class="col my-auto">
+        		<h1 class="text-center">Welcome, {{ firstname }}</h1>
+    		</div>
+		</div>
+    
+	</div>
+
+</div>
+
+<!-- /banner -->
+
+<!-- copy -->
+
+<div class="container copy">
+
+	<div class="row justify-content-center">
+
+		<div class="col-md-10 copy-main">
+
+			<p class="lead">Welcome to your little space on the Alemba website! Here you can find your email signature and download brand guidelines & document templates.</p>
+
+		</div>
+
+	</div>
+
+</div>
+
+<!-- /copy -->
+
+<!-- copy-links -->
+
+<div class="container">
+
+	<div class="featured-links row justify-content-center">
+
+            
+			<div class="col-6 text-center mb-3">
+				<div class="circle-link-with-text" onclick="window.location='{{ 'Downloads/Alemba Master PowerPoint Presentation 2019-Final.pptx'|media }}'">
+					<div class="circle-link-image" style="background-image: url('{{ 'assets/img/thumbnail-default.png'|theme }}')"></div>
+
+					<a href="{{ 'Downloads/Alemba Master PowerPoint Presentation 2019-Final.pptx'|media }}" download="{{ 'Downloads/Alemba Master PowerPoint Presentation 2019-Final.pptx'|media }}" class="button-link btn btn-primary">Powerpoint Template</a>
+					<h2 class="subheading">PPTX</h2>
+				</div>
+			</div>
+
+			<div class="col-6 text-center mb-3">
+				<div class="circle-link-with-text" onclick="window.location='{{ 'Downloads/Alemba Word template 2019.dotx'|media }}'">
+					<div class="circle-link-image" style="background-image: url('{{ 'assets/img/thumbnail-default.png'|theme }}')"></div>
+
+					<a href="{{ 'Downloads/Alemba Word template 2019.dotx'|media }}" download="{{ 'Downloads/Alemba Word template 2019.dotx'|media }}" class="button-link btn btn-primary">Word Template</a>
+					<h2 class="subheading">DOTX</h2>
+				</div>
+			</div>
+			
+			<div class="col-6 col-sm-3 text-center">
+				<div class="circle-link-with-text" onclick="window.location='{{ 'Downloads/alemba-letterhead-template-uk-oct-2019.docx'|media }}'">
+					<div class="circle-link-image" style="background-image: url('{{ 'assets/img/thumbnail-default.png'|theme }}')"></div>
+
+					<a href="{{ 'Downloads/alemba-letterhead-template-uk-oct-2019.docx'|media }}" download="{{ 'Downloads/alemba-letterhead-template-uk-oct-2019.docx'|media }}" class="button-link btn btn-primary">Word Letterhead Template - UK</a>
+					<h2 class="subheading">DOCX</h2>
+				</div>
+			</div>
+			
+			<div class="col-6 col-sm-3 text-center">
+				<div class="circle-link-with-text" onclick="window.location='{{ 'Downloads/alemba-letterhead-template-usa-jul-2022.docx'|media }}'">
+					<div class="circle-link-image" style="background-image: url('{{ 'assets/img/thumbnail-default.png'|theme }}')"></div>
+
+					<a href="{{ 'Downloads/alemba-letterhead-template-usa-jul-2022.docx'|media }}" download="{{ 'Downloads/alemba-letterhead-template-usa-jul-2022.docx'|media }}" class="button-link btn btn-primary">Word Letterhead Template - USA</a>
+					<h2 class="subheading">DOCX</h2>
+				</div>
+			</div>
+			
+			<div class="col-6 col-sm-3 text-center">
+				<div class="circle-link-with-text" onclick="window.location='{{ 'Downloads/alemba-letterhead-template-apj-mar-2019.docx'|media }}'">
+					<div class="circle-link-image" style="background-image: url('{{ 'assets/img/thumbnail-default.png'|theme }}')"></div>
+
+					<a href="{{ 'Downloads/alemba-letterhead-template-apj-mar-2019.docx'|media }}" download="{{ 'Downloads/alemba-letterhead-template-usa-apj-2019.docx'|media }}" class="button-link btn btn-primary">Word Letterhead Template - APJ</a>
+					<h2 class="subheading">DOCX</h2>
+				</div>
+			</div>
+			
+			<div class="col-6 col-sm-3 text-center">
+				<div class="circle-link-with-text" onclick="window.location='{{ 'Downloads/alemba-letterhead-template-nz-mar-2019.docx'|media }}'">
+					<div class="circle-link-image" style="background-image: url('{{ 'assets/img/thumbnail-default.png'|theme }}')"></div>
+
+					<a href="{{ 'Downloads/alemba-letterhead-template-nz-mar-2019.docx'|media }}" download="{{ 'Downloads/alemba-letterhead-template-usa-nz-2019.docx'|media }}" class="button-link btn btn-primary">Word Letterhead Template - NZ</a>
+					<h2 class="subheading">DOCX</h2>
+				</div>
+			</div>
+
+	</div>
+
+</div>
+
+<div class="email-signature container copy">
+
+	<header>
+
+		<h3>Your e-mail signature</h3>
+		<p class="lead">Copy and paste the following into your e-mail program's signature settings (beta!)</p>
+
+	</header>
+	
+	<hr>
+
+	<div class="row">
+
+		<div class="col-md-8 col-md-offset-2">
+
+			<table cellpadding="0" cellspacing="0" style="width:100%">
+
+				<tr><td width="70" style="padding-top:20px;">&nbsp;</td><td></td></tr> {# Intentionally blank #}
+				<tr><td colspan="2" style="color:rgb(103,103,103); font-family:Arial,Helvetica,sans-serif; font-size:15px; font-weight:bold;">{{ person.name }}</td></tr>
+				<tr><td colspan="2" style="color:rgb(0,150,220); font-family:Arial,Helvetica,sans-serif; font-size:13px; padding-bottom:15px;">{{ person.title }}</td></tr>
+
+				{% if tel %}
+					<tr>
+						<td style="color:rgb(0,150,220); font-family:Arial,Helvetica,sans-serif; font-size:13px; font-weight:bold;">{{ person.region == 'US' ? 'direct' : 'tel' }}</td><td style="color:rgb(103,103,103); font-family:Arial,Helvetica,sans-serif; font-size:13px; font-weight:bold;">{{ tel }}</td>
+					</tr>
+				{% endif %}
+
+				{% if fax %}
+					<tr>
+						<td style="color:rgb(0,150,220); font-family:Arial,Helvetica,sans-serif; font-size:13px; font-weight:bold;">fax</td><td style="color:rgb(103,103,103); font-family:Arial,Helvetica,sans-serif; font-size:13px; font-weight:bold;">{{ fax }}</td>
+					</tr>
+				{% endif %}
+
+				{% if person.mobile %}
+					<tr>
+						<td style="color:rgb(0,150,220); font-family:Arial,Helvetica,sans-serif; font-size:13px; font-weight:bold;">{{ person.region == 'US' ? 'cellular' : 'mobile' }}</td><td style="color:rgb(103,103,103); font-family:Arial,Helvetica,sans-serif; font-size:13px; font-weight:bold;">{{ person.mobile }}</td>
+					</tr>
+				{% endif %}
+
+				{% if person.skype %}
+					<tr>
+						<td style="color:rgb(0,150,220); font-family:Arial,Helvetica,sans-serif; font-size:13px; font-weight:bold;">skype</td><td style="color:rgb(103,103,103); font-family:Arial,Helvetica,sans-serif; font-size:13px; font-weight:bold;">{{ person.skype }}</td>
+					</tr>
+				{% endif %}
+
+				<tr><td colspan="2" style="padding-top:20px; padding-bottom:20px;"><img src="{{ 'assets/img/alemba-service-manager-logo-210w.png'|theme }}" alt="Alemba" style="width: 210px; height: 60px;" /></td></tr>
+				<tr>
+					<td colspan="2" style="color:rgb(103,103,103); font-family:Arial,Helvetica,sans-serif; font-size:12px;">
+
+						{# Remove new lines from address and replace with commas #}
+
+						{{ person.address ? person.address : person.office.address|replace({"\n":'', "\r":', '}) }}
+
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2" style="padding-top:15px;">
+						<a href="https://alemba.com" style="font-family:Arial,Helvetica,sans-serif; font-weight:bold; font-size:12px; color:rgb(0,150,220);">alemba.com</a>&nbsp;&nbsp;&nbsp;
+						<a href="https://www.facebook.com/alembagroup" style="font-family:Arial,Helvetica,sans-serif; font-weight:bold; font-size:12px; color:#4BBEF4;">Facebook</a>&nbsp;&nbsp;&nbsp;
+						<a href="https://youtube.com/@AlembaITSM" style="font-family:Arial,Helvetica,sans-serif; font-weight:bold; font-size:12px; color:#4BBEF4;">YouTube</a>&nbsp;&nbsp;&nbsp;
+						<a href="https://www.linkedin.com/company/alemba" style="font-family:Arial,Helvetica,sans-serif; font-weight:bold; font-size:12px; color:#4BBEF4;">LinkedIn</a>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2" style="padding-top:25px;">
+					    {# <a href="https://www.pinkelephant.com/en-us/PinkVERIFY/PinkVERIFY-ITIL-4-Toolsets"><img src="{{ 'assets/img/partner-logos/logo-pinkverify15p-itil4-50h.png'|theme }}" alt="PinkVERIFY ITIL 4 - 15 Practices" width="110" height="40" /></a> #}
+						<img style="margin-left:10px;" src="{{ 'assets/img/partner-logos/logo-pinkverify-certified-18p.png'|theme }}" alt="PinkVERIFY" width="108" height="40" />
+
+						<img style="margin-left:15px;" src="{{ 'assets/img/partner-logos/logo-microsoft-silver-partner-40h.png'|theme }}" alt="Microsoft Silver Partner" />
+					</td>
+				</tr>
+
+
+				{% if event and event.banner_image_email %}
+					<tr>
+						<td colspan="2" style="padding-top:10px;">
+							<a href="{{ 'event-detail'|page({ slug: event.slug }) }}"><img src="{{ event.banner_image_email|media }}" alt="{{ event.name }}" /></a>
+						</td>
+					</tr>
+				{% endif %}
+                <tr>
+					<td colspan="2" style="padding-top:10px;">
+						<a href="https://www.linkedin.com/groups/13002769/"><img src="{{ "Emails/email-signature-linkedin-alemba-hub.png"|media }}" alt="Alemba Hub LinkedIn Group" /></a>
+					</td>
+				</tr>
+
+				{#<tr>
+					<td colspan="2" style="padding-top:10px;">
+						<a href="https://alemba.com/blog/news/gigaom-outperformer-alemba-radar-report-it-service-management-itsm-2023"><img src="{{ "Events/GigaOm-2023-email-badge.jpg"|media }}" alt="Alemba named a market leader in GigaOm radar report for ITSM" /></a>
+					</td>
+				</tr>#}
+
+			</table>
+            
+            <hr>
+            
+		</div>
+
+
+
+	</div>
+
+</div>
+
+
+<!-- /copy-links -->

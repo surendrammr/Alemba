@@ -1,0 +1,131 @@
+[viewBag]
+title = "Managing Inbound and Outbound Actions"
+url = "/help/topics/integration/managing-actions"
+layout = "help"
+is_hidden = 0
+navigation_hidden = 0
+==
+                                                    <h1>Managing Inbound and Outbound Actions</h1>
+                                                    <p>The Integration Platform enables you to perform actions, such as exchanging information, between your <span class="GeneralVariablesSystemName">ASM System</span>s and:</p>
+                                                    <ul>
+                                                        <li value="1">
+<b>Non Service Desk systems</b>, such as procurement, asset management, software license management and infrastructure management systems. This communication with non Service Desk systems enables <span class="GeneralVariablesProductName">ASM</span> to perform an orchestration function, where requests for task fulfillment are passed on to the appropriate system(s) to complete.</li>
+                                                        <li value="2">
+<b>Other <span class="GeneralVariablesSystemName">ASM System</span>s</b>. This means that several <span class="GeneralVariablesSystemName">ASM System</span>s can be installed and data passed from one another only when required.</li>
+                                                    </ul>
+                                                    <p>The integration of inbound and outbound actions is similar to <a href="%7B%7B%20'help-managing-events#top'%7CstaticPage%20%7D%7D#top">Event Management</a> but is not limited to the handling of event alerts. Furthermore, actions can be initiated both by <span class="GeneralVariablesProductName">ASM</span> and the external application.</p>
+                                                    <h2>
+<a name="The"></a>The Lifecycle of an Action</h2>
+                                                    <p>When <span class="GeneralVariablesProductName">ASM</span> and an external system communicate using Inbound or Outbound Actions, they exchange messages to keep each other updated throughout the lifecycle of the Action. These messages can be of the following types:</p>
+                                                    <p>
+                                                        <img src="/storage/app/media/Help/images/action%20lifecycle.png" class="img_noborder" style="border-left-style: none;border-left-width: 0px;border-left-color: #808080;border-right-style: none;border-right-width: 0px;border-right-color: #808080;border-top-style: none;border-top-width: 0px;border-top-color: #808080;border-bottom-style: none;border-bottom-width: 0px;border-bottom-color: #808080;">
+                                                    </p>
+                                                    <div class="MCDropDown MCDropDown_Closed dropDown">
+<span class="MCDropDownHead dropDownHead"><a href="#" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCHotSpotImage" aria-expanded="false"><img class="MCDropDown_Image_Icon" src="/storage/app/media/Help/images/transparent.gif" height="11" width="16" alt="Closed" data-mc-alt2="Open">CREATE messages</a></span>
+                                                        <div class="MCDropDownBody dropDownBody">
+                                                            <p>A CREATE message is sent by the creator to initiate an Action for the receiver to perform.</p>
+                                                            <p>When <span class="GeneralVariablesProductName">ASM</span> is the <b>creator</b> of an Action (case of an Outbound Action), it sends this message when </p>
+                                                            <ul>
+                                                                <li value="1">a call is forwarded to an external supplier linked to the Outbound Action</li>
+                                                                <li value="2">an External Supplier Task is forwarded as part of a workflow to an external supplier linked to the Outbound Action, or </li>
+                                                                <li value="3">an Outbound Action Task is activated as part of a workflow. </li>
+                                                            </ul>
+                                                            <p>Actions in the external system as a result of this message are configured at the level of that system.</p>
+                                                            <p>When <span class="GeneralVariablesProductName">ASM</span> is the <b>receiver</b> of an Action (case of an Inbound Action), it logs a call or a request. The trigger for the CREATE message in the external system is configured at the level of that system.</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="MCDropDown MCDropDown_Closed dropDown">
+<span class="MCDropDownHead dropDownHead"><a href="#" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCHotSpotImage" aria-expanded="false"><img class="MCDropDown_Image_Icon" src="/storage/app/media/Help/images/transparent.gif" height="11" width="16" alt="Closed" data-mc-alt2="Open">UPDATE messages</a></span>
+                                                        <div class="MCDropDownBody dropDownBody">
+                                                            <p>Both the creator and receiver can send UPDATE messages.</p>
+                                                            <p>When <span class="GeneralVariablesProductName">ASM</span> is the <b>creator</b> of the Action (in the case of an Outbound Action), this message is triggered when field values on the call, task or request that initiated the Outbound Action are updated. </p>
+                                                            <p>Actions in the external system as a result of this message are configured at the level of that system.</p>
+                                                            <p>When <span class="GeneralVariablesProductName">ASM</span> is the <b>receiver</b> (in the case of an Inbound Action), <span class="GeneralVariablesProductName">ASM</span> can be configured to update the call or request with data from the message, add a note to the call or request, or do nothing. </p>
+                                                            <p>The trigger for the UPDATE message in the external system is configured at the level of that system.</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="MCDropDown MCDropDown_Closed dropDown">
+<span class="MCDropDownHead dropDownHead"><a href="#" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCHotSpotImage" aria-expanded="false"><img class="MCDropDown_Image_Icon" src="/storage/app/media/Help/images/transparent.gif" height="11" width="16" alt="Closed" data-mc-alt2="Open">NOTIFY messages</a></span>
+                                                        <div class="MCDropDownBody dropDownBody">
+                                                            <p>Both the creator and receiver can send NOTIFY message to each other.</p>
+                                                            <p>When <span class="GeneralVariablesProductName">ASM</span> is the <b>creator</b> of the Action (in the case of an Outbound Action), this message is triggered when a note is added to the call, task or request that initiated the Outbound Action. </p>
+                                                            <p>Actions in the external system as a result of this message are configured at the level of that system.</p>
+                                                            <p>When <span class="GeneralVariablesProductName">ASM</span> is the <b>receiver</b> (in the case of an Inbound Action), <span class="GeneralVariablesProductName">ASM</span> can be configured to add a note to the call or request or do nothing. </p>
+                                                            <p>The trigger for the NOTIFY message in the external system is configured at the level of that system.</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="MCDropDown MCDropDown_Closed dropDown">
+<span class="MCDropDownHead dropDownHead"><a href="#" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCHotSpotImage" aria-expanded="false"><img class="MCDropDown_Image_Icon" src="/storage/app/media/Help/images/transparent.gif" height="11" width="16" alt="Closed" data-mc-alt2="Open">CANCEL messages</a></span>
+                                                        <div class="MCDropDownBody dropDownBody">
+                                                            <p>The creator sends a CANCEL message to stop any further processing of the action by the receiver.</p>
+                                                            <p>When <span class="GeneralVariablesProductName">ASM</span> is the <b>creator</b> of the Action (in the case of an Outbound Action), this message is triggered when the call or the task that initiated the Outbound Action is closed (or completed) or taken back. Actions in the external system as a result of this message is configured at the level of that system.</p>
+                                                            <p>When <span class="GeneralVariablesProductName">ASM</span> is the <b>receiver</b> (in the case of an Inbound Action), <span class="GeneralVariablesProductName">ASM</span> can be configured to close the call or request, update it with data from the message, add a note to it, or do nothing. The trigger for the CANCEL message in the external system is configured at the level of that system.</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="MCDropDown MCDropDown_Closed dropDown">
+<span class="MCDropDownHead dropDownHead"><a href="#" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCHotSpotImage" aria-expanded="false"><img class="MCDropDown_Image_Icon" src="/storage/app/media/Help/images/transparent.gif" height="11" width="16" alt="Closed" data-mc-alt2="Open">COMPLETE messages</a></span>
+                                                        <div class="MCDropDownBody dropDownBody">
+                                                            <p>A COMPLETE message is sent by the receiver when the Action was successfully performed.</p>
+                                                            <p>When <span class="GeneralVariablesProductName">ASM</span> is the <b>creator</b> of the Action (in the case of an Outbound Action), and it receives a COMPLETE message from the external system, it can be configured to close the call or complete the task that initiated the Outbound Action, update it, add a note to it, or do nothing. The trigger for the COMPLETE message in the external system is configured at the level of that system.</p>
+                                                            <p>When <span class="GeneralVariablesProductName">ASM</span> is the <b>receiver</b> (in the case of an Inbound Action), <span class="GeneralVariablesProductName">ASM</span> sends this message when:</p>
+                                                            <ul>
+                                                                <li value="1"> the call it logged as a result of the Inbound Action has been closed with a Resolve status, or </li>
+                                                                <li value="2">when the request it logged as a result of the Inbound Action has been completed with an implementation state flagged as an Implemented state. </li>
+                                                            </ul>
+                                                            <p>Actions in the external system as a result of this message are configured at the level of that system.</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="MCDropDown MCDropDown_Closed dropDown">
+<span class="MCDropDownHead dropDownHead"><a href="#" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCHotSpotImage" aria-expanded="false"><img class="MCDropDown_Image_Icon" src="/storage/app/media/Help/images/transparent.gif" height="11" width="16" alt="Closed" data-mc-alt2="Open">NOT COMPLETE messages</a></span>
+                                                        <div class="MCDropDownBody dropDownBody">
+                                                            <p>A NOT COMPLETE message is sent by the receiver when the Action failed.</p>
+                                                            <p class="note">This does not apply to failures to establish communication connection with the receiver.</p>
+                                                            <p>When <span class="GeneralVariablesProductName">ASM</span> is the <b>creator</b> of the Action (in the case of an Outbound Action), and it receives a NOT COMPLETE message from the external system, it can be configured to close the call or complete the task that initiated the Outbound Action, update it, add a note to it, or do nothing. </p>
+                                                            <p>The trigger for the NOT COMPLETE message in the external system is configured at the level of that system.</p>
+                                                            <p>When <span class="GeneralVariablesProductName">ASM</span> is the <b>receiver</b> (in the case of an Inbound Action), <span class="GeneralVariablesProductName">ASM</span> sends this message when the call it logged as a result of the Inbound Action has been closed with a status not flagged as a Resolve status or when the request it logged as a result of the Inbound Action has been completed with an implementation state not flagged as an Implemented state. </p>
+                                                            <p>Actions in the external system as a result of this message are configured at the level of that system.</p>
+                                                        </div>
+                                                    </div>
+                                                    <h2>Using Outbound Actions</h2>
+                                                    <p class="reference">You can find out more about using outbound actions <a href="using%20outbound%20actions.htm">here</a>.</p>
+                                                    <p>Once configured in the Integration Platform, Outbound Actions can be triggered in the following ways:</p>
+                                                    <ul>
+                                                        <li value="1">when an Outbound Action Task is activated in a workflow</li>
+                                                        <li value="2">when an External Supplier Task is activated or forwarded externally in a workflow to a supplier and/or contract matching a defined Outbound Action</li>
+                                                        <li value="3">when a call is forwarded externally to a supplier and/or contract matching a defined Outbound Action</li>
+                                                    </ul>
+                                                    <h2>Triggers for Outbound Actions</h2>
+                                                    <p>The following diagram illustrates the triggers and actions within <span class="GeneralVariablesProductName">ASM</span> for Outbound actions.</p>
+                                                    <p>
+                                                        <img src="/storage/app/media/Help/images/out%20action%20triggers.png" class="screenshot">
+                                                    </p>
+                                                    <h2>Outbound Actions and Tasks</h2>
+                                                    <p>When the <b>External Supplier Task</b> or <b>Outbound Action Task</b> is activated in the workflow and meets the conditions of an <b>Outbound Action</b> (that is, the external supplier and/or contract defined in the Outbound Action), <span class="GeneralVariablesCoreName">ASM Core</span> sends a CREATE message to the external system.</p>
+                                                    <p>When an analyst:</p>
+                                                    <ul>
+                                                        <li value="1"> takes action on the task in <span class="GeneralVariablesCoreName">ASM Core</span>, this sends an UPDATE message.</li>
+                                                        <li value="2">takes back the task, this sends a CANCEL message.</li>
+                                                        <li value="3">completes the task, it sends a COMPLETE message.</li>
+                                                        <li value="4">does not complete the task (click Not Complete), this sends a NOT COMPLETE message.</li>
+                                                    </ul>
+                                                    <p>For an External Supplier task viewed on the <span class="GeneralVariablesSelfServicePortalName">Self Service Portal</span>, when the supplier or external contact:</p>
+                                                    <ul>
+                                                        <li value="1"> defers the task, this sends a NOTIFY message</li>
+                                                        <li value="2">completes the task, this sends a COMPLETE message</li>
+                                                        <li value="3">does not complete the task (clicks Not Complete), this sends a NOT COMPLETE message (which will be acknowledged by <span class="GeneralVariablesCoreName">ASM Core</span>). </li>
+                                                    </ul>
+                                                    <p>What <span class="GeneralVariablesCoreName">ASM Core</span> does to these incoming messages received is configured on the Outbound Action.</p>
+                                                    <h2>Outbound Actions and Calls</h2>
+                                                    <p>If an Outbound Action is triggered by forwarding a call to an external supplier, and/or contract, defined in an Outbound Action, a CREATE message is sent to the external system. The action taken by the external system (for example, another Help Desk environment) is configured in that system. The call also appears on the <span class="GeneralVariablesSelfServicePortalName">Self Service Portal</span> for the external supplier to action.</p>
+                                                    <p>The external source can send UPDATE, NOTIFY, COMPLETE, or NOT COMPLETE messages to <span class="GeneralVariablesCoreName">ASM Core</span> relating to the Outbound Action.</p>
+                                                    <p>If an analyst closes or takes back the call in <span class="GeneralVariablesCoreName">ASM Core</span>, this sends a CANCEL message to the external system and removes the call from the portal. Taking back the call enables the analyst to forward it to take action on the call as needed.</p>
+                                                    <p>For a call viewed on the portal, if the external contact defers the call, this sends a NOTIFY message, if they complete the call, this sends a COMPLETE message, if they do not complete the call (click Not Complete) this sends a NOT COMPLETE message. What <span class="GeneralVariablesCoreName">ASM Core</span> does to these incoming messages received is configured on the Outbound Action.</p>
+                                                    <h2>Viewing Outbound Action messages from a Call or Task</h2>
+                                                    <p>When an Outbound Action is triggered by forwarding a call or external supplier task externally, or by an outbound action task, all messages exchanged between <span class="GeneralVariablesCoreName">ASM Core</span> and the external system relating to the Outbound Action can be viewed by selecting the <b>Outbound Actions</b> explorer option on the <b>Call Details</b> or <b>Task Details</b> window for the relevant call or task.</p>
+                                                    <h2>Triggers and Actions for Inbound Actions</h2>
+                                                    <p>The following diagram illustrates the triggers and actions within <span class="GeneralVariablesProductName">ASM</span> for Inbound actions.</p>
+                                                    <p><a href="../../resources/images/in%20action%20triggers.png"><img src="/storage/app/media/Help/images/in%20action%20triggers_735x421.png" class="screenshot" style="width: 735;height: 421;"></a>
+                                                    </p>
+                                                    <h2>Viewing Inbound Action messages from a Call, Request or Task</h2>
+                                                    <p>When an Inbound Action triggers a call or request, all messages exchanged between <span class="GeneralVariablesCoreName">ASM Core</span> and the external system relating to the Inbound Action can be viewed by selecting the <b>Inbound Actions</b> explorer option on the <b>Call Details</b> or <b>Request Details</b> window. This option also appears on the explorer pane of the <b>Task Details</b> window, allowing analysts to view inbound actions at the level of the task.</p>
+                                                

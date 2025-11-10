@@ -1,0 +1,18 @@
+[viewBag]
+title = "Storing Time Zone Information"
+url = "/help/topics/admin-system/storing-time-zone-information"
+layout = "help"
+is_hidden = 0
+navigation_hidden = 0
+==
+                                                    <h1>Storing Time Zone Information</h1>
+                                                    <p>On Windows machines, information about time zones, such as offset from GMT, daylight saving specific offsets, and dates for start and end of daylight saving, worldwide, are stored in the registry under the following key:
+</p>
+                                                    <p><code>HKEY_LOCAL_MACHINE/Software/Microsoft/Windows NT/CurrentVersion/Time Zones</code>
+                                                    </p>
+                                                    <p>This information is stored under the binary value labeled TZI <a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="../../resources/images/time%20zone%20info.png"><img class="MCPopupThumbnail img imgthumbnail" data-mc-width="424" data-mc-height="466" src="/storage/app/media/Help/images/time%20zone%20info_thumb_0_48.png" tabindex=""></a>. </p>
+                                                    <p><span class="GeneralVariablesCoreName">ASM Core</span> references this information when calculating time zone offsets from the <span class="GeneralVariablesCoreName">ASM Core</span> server. The TZI value stores a binary representation of the time zone offset to GMT, daylight saving offset, start and end dates for daylight saving.
+</p>
+                                                    <p class="warning">Alemba strongly recommends that you do NOT modify any part of the Time Zone keys.
+</p>
+                                                

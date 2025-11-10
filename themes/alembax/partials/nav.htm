@@ -1,0 +1,227 @@
+description = "The main menu"
+==
+<?php
+use Alemba\Alemba\Models\ITIL;
+use Alemba\Alemba\Models\SuccessStory;
+use Alemba\Alemba\Models\Release;
+
+function onStart()
+{
+	// Get ITIL processes
+
+	$this['itil'] = ITIL::orderBy('sort_order')->get();
+	
+	// Get all success stories
+	
+	$this['success_stories'] = SuccessStory::get();
+	
+	// Get list of releases
+
+    $this['latest_release'] = Release::where('live', 1)->orderBy('date', 'desc')->first();
+
+}
+?>
+==
+<nav class="main-nav" id="MAIN_NAV">
+    <ul class="nav nav-list" role="menu">
+        <!--
+        <li role="presentation" class="home nav-item">
+            <a href="/"><i class="fa fa-home" aria-hidden="true"></i></a>
+        </li>
+        -->
+
+        <!-- FEATURES DROPDOWN -->
+        
+        <li role="menuitem" class="dropdown nav-item">
+            <a class="dropdown-toggle" data-toggle="dropdown" data-target="#" href="#" role="button" aria-haspopup="true" aria-controls="featuresMenu" aria-expanded="false">Features<span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu" role="menu" id="featuresMenu">
+                <li role="menuitem" class="dropdown-item"><a href="{{ 'data-secure-itsm'|page }}"><span>Data Secure ITSM</span></a></li>
+                <li role="menuitem" class="dropdown-item"><a href="{{ 'self-service-portal'|page }}"><span>Self Service Portal</span></a></li>
+                    <li role="menuitem" class="dropdown-item"><a href="{{ 'multi-language'|page }}" class="indent">Multi Language</a></li>
+                <li role="menuitem" class="dropdown-item"><a href="{{ 'multi-tenancy'|page }}"><span>Multi-tenancy</span></a></li>
+                <li role="menuitem" class="dropdown-item"><a href="{{ 'graphical-form-designer'|page }}"><span>Graphical Form Designer</span></a></li>
+                <li role="menuitem" class="dropdown-item"><a href="{{ 'graphical-workflow'|page }}"><span>Graphical Workflow</span></a></li>
+                <li role="menuitem" class="dropdown-item"><a href="{{ 'integration-platform'|page }}"><span>Integration Platform</span></a></li>
+                    <li role="menuitem" class="dropdown-item"><a href="{{ 'connectors-store'|page }}" class="indent">Connectors Store</a></li>
+                    <li role="menuitem" class="dropdown-item"><a href="{{ 'microsoft-teams'|page }}" class="indent">Microsoft Teams integration</a></li>
+                    <li role="menuitem" class="dropdown-item"><a href="{{ 'asm-connector-builder'|page }}" class="indent">CMDB Connector Builder</a></li>
+                <li role="menuitem" class="dropdown-item"><a href="{{ 'reporting'|page }}"><span>Reporting</span></a></li>
+                <li role="menuitem" class="dropdown-item"><a href="{{ 'system-human-orchestration'|page }}"><span>System and Human Orchestration</span></a></li>
+                <li role="menuitem" class="dropdown-item"><a href="{{ 'interfaces'|page }}"><span>Interfaces</span></a></li>
+                <li role="menuitem" class="dropdown-item"><a href="{{ 'alemba-chatbot-10'|page }}"><span>Alemba Chatbot 1.0</span></a></li>
+                <li role="menuitem" class="dropdown-item"><a href="{{ 'releases'|page }}"><span>What's New?</span></a></li>
+                <li role="menuitem" class="dropdown-item"><a href="{{ 'virtual-exhibition'|page }}"><span>Virtual Exhibition</span></a></li>
+                <li role="menuitem" class="dropdown-item"><a href="{{ 'product-roadmap'|page }}">Product Roadmap
+                <p class="description">Find out about the exciting new features planned for future release.</p>
+                </a></li>
+                {% partial 'menu-cards/asm' %}
+            </ul>
+        </li>
+        
+        <!-- END FEATURES DROPDOWN -->
+        
+        
+        <!-- USES DROPDOWN -->
+
+        <li role="menuitem" class="dropdown nav-item">
+            <a class="dropdown-toggle" data-toggle="dropdown" data-target="#" href="#" role="button" aria-haspopup="true" aria-controls="usesMenu" aria-expanded="false">Uses<span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu" role="menu" id="usesMenu">
+                <li role="menuitem" class="dropdown-item"><a href="{{ 'it-service-management'|page }}">IT Service Management</a></li>
+                <li role="menuitem" class="dropdown-item"><a href="{{ 'esm'|page }}">Enterprise Service Management</a></li>
+                <li role="menuitem" class="dropdown-item"><a href="{{ 'digital-transformation'|page }}">Digital Transformation</a></li>
+                <li role="menuitem" class="dropdown-item"><a href="{{ 'request-fulfilment'|page }}">Service Request Fulfilment</a></li>
+                    <li role="menuitem" class="dropdown-item"><a href="{{ 'hr-service-management'|page }}" class="indent">HR Service Request Management</a></li>
+                    <li role="menuitem" class="dropdown-item"><a href="{{ 'facilities-management'|page }}" class="indent">Facilities Service Request Management</a></li>
+                    <li role="menuitem" class="dropdown-item"><a href="{{ 'virtual-environment-provisioning'|page }}" class="indent">Virtual Environment Provisioning</a></li>
+                <li role="menuitem" class="dropdown-item"><a href="{{ 'case-management'|page }}">Case Management</a></li>
+                <li role="menuitem" class="dropdown-item"><a href="{{ 'business-process-management'|page }}">Business Process Management and Automation</a></li>
+                <hr>
+                <li role="menuitem" class="dropdown-item"><a href="{{ 'healthcare'|page }}">Healthcare</a></li>
+                <li role="menuitem" class="dropdown-item"><a href="{{ 'finance'|page }}">Finance</a></li>
+                <li role="menuitem" class="dropdown-item"><a href="{{ 'local-government'|page }}">Local & State Government</a></li>
+                <li role="menuitem" class="dropdown-item"><a href="{{ 'utilities'|page }}">Utilities</a></li>
+                {#
+                <li role="menuitem" class="dropdown-item"><a href="{{ 'higher-education'|page }}">Higher Education</a></li>
+                <li role="menuitem" class="dropdown-item"><a href="{{ 'retail'|page }}">Retail</a></li>
+                <li role="menuitem" class="dropdown-item"><a href="{{ 'local-authorities'|page }}">Local Authorities</a></li>
+                <li role="menuitem" class="dropdown-item"><a href="{{ 'managed-service-providers'|page }}">Managed Service Providers</a></li>
+                #}
+                {% partial 'menu-cards/kroger' %}
+            </ul>
+        </li>
+        
+        <!-- END USES DROPDOWN -->
+        
+        {#
+        <!-- BENEFITS DROPDOWN -->
+
+        <li role="menuitem" class="dropdown nav-item">
+            <a class="dropdown-toggle" data-toggle="dropdown" data-target="#" href="#" role="button" aria-haspopup="true" aria-expanded="false">Benefits<span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+                <li role="presentation" class="dropdown-item"><a href="{{ 'benefits-liverpool-city-council'|page }}">Reduce calls to the service desk by 30% in 3 months
+                <p class="description">Alemba Service Manager provided one central system to provide the business with a service catalogue and a method of logging business changes into the ICT department.</p></a></li>
+                <li role="presentation" class="dropdown-item"><a href="{{ 'benefits-kroger'|page }}">Reduce time to VE provisioning from days to minutes
+                <p class="description">Find out how Kroger automated business critical processes to reduce manual workload.</p></a></li>
+                {% partial 'menu-cards/liverpool' %}
+            </ul>
+        </li>
+        #}
+        
+        <!-- END BENEFITS DROPDOWN -->
+        
+        
+        <!-- SERVICES DROPDOWN -->
+
+        <li role="menuitem" class="dropdown nav-item">
+            <a class="dropdown-toggle" data-toggle="dropdown" data-target="#" href="#" role="button" aria-haspopup="true" aria-controls="servicesMenu" aria-expanded="false">Services<span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu" role="menu" id="servicesMenu">
+                <li role="menuitem" class="dropdown-item"><a href="{{ 'professional-services'|page }}">Professional Services
+                <p class="description">Alemba’s highly experienced Professional Services team enables us to deliver a comprehensive set of services to you.</p></a></li>
+                <li role="menuitem" class="dropdown-item"><a href="{{ 'service-desk'|page }}">Service Desk
+                <p class="description">Alemba’s service desk provides local time zone support for all of its customers and has a 24 hour support option.</p></a></li>
+                <li role="menuitem" class="dropdown-item"><a href="{{ 'cloud'|page }}">Cloud Services
+                <p class="description">The Alemba Cloud is a fast, secure and scalable-hosted service offering, designed to provide you ease of use and peace of mind.</p></a></li>
+                <li role="menuitem" class="dropdown-item"><a href="{{ 'rapid-start'|page }}">Alemba Service Manager Rapid Start
+                <p class="description">Alemba’s delivery methodology is based on Agile software development practices, and takes an iterative approach to solution configuration by using regular feedback intervals.</p></a></li>
+                {% partial 'menu-cards/data-secure-itsm' %}
+            </ul>
+        </li>
+        
+        <!-- END SERVICES DROPDOWN -->
+        
+        
+        
+        <!-- WHY ALEMBA DROPDOWN -->
+
+        <li role="menuitem" class="dropdown nav-item">
+            <a class="dropdown-toggle" data-toggle="dropdown" data-target="#" href="#" role="button" aria-haspopup="true" aria-controls="alembaMenu" aria-expanded="false">Why Alemba<span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu" role="menu" id="alembaMenu">
+                <li role="menuitem" class="dropdown-item"><a href="{{ 'why-alemba'|page }}">Why Alemba?</a></li>
+                <li role="menuitem" class="dropdown-item"><a href="{{ 'virtual-exhibition'|page }}"><span>Virtual Exhibition</span></a></li>
+                <li role="menuitem" class="dropdown-item"><a href="{{ 'customers'|page }}">Customers
+                <p class="description">Alemba serves a community of enthusiastic customers from around the world. Our rapidly-growing customer base operates across a wide range of sectors.</p></a></li>
+                <hr>
+                <li role="presentation" class="dropdown-item"><p class="menu-heading">About Us</p></li>
+                <li role="menuitem" class="dropdown-item"><a href="{{ 'team'|page }}" class="indent">Meet the Team</a></li>
+                <li role="menuitem" class="dropdown-item"><a href="{{ 'vacancies'|page }}" class="indent">Join Us</a></li>
+                <li role="menuitem" class="dropdown-item"><a href="{{ 'partners'|page }}" class="indent">Partners</a></li>
+                {#
+                <li role="menuitem" class="dropdown-item"><a href="" class="menu-heading">Case Studies</a></li>
+                
+                {% for success_story in success_stories %}
+                    <li role="menuitem" class="dropdown-item"><a href="{{ 'success-story'|page({ slug: success_story.slug }) }}" class="indent">{{ success_story.customer.name }}</a></li>
+                {% endfor %}
+                #}
+                
+                {% partial 'menu-cards/barts' %}
+            </ul>
+        </li>
+        
+        <!-- END WHY ALEMBA DROPDOWN -->
+        
+        
+        <!-- NEWS DROPDOWN -->
+
+        <li role="menuitem" class="dropdown nav-item">
+            <a class="dropdown-toggle" data-toggle="dropdown" data-target="#" href="#" role="button" aria-haspopup="true" aria-controls="newsMenu" aria-expanded="false">News<span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu" role="menu" id="newsMenu">
+                <li role="menuitem" class="dropdown-item"><a href="{{ 'blog'|page({ category: 'news' }) }}">News</a></li>
+                <li role="menuitem" class="dropdown-item"><a href="{{ 'blog'|page({ category: 'thoughts' }) }}">Blog</a></li>
+                <li role="menuitem" class="dropdown-item"><a href="{{ 'events'|page }}">Events</a></li>
+                <li role="menuitem" class="dropdown-item"><a href="{{ 'releases'|page }}"><span>What's New in Alemba Service Manager Version {{ latest_release.name }}?</span></a></li>
+                <li role="menuitem" class="dropdown-item"><a href="{{ 'ie-support'|page }}">Internet Explorer Support Ending as of v10.4</a></li>
+                <li role="presentation" style="height: 50px"><p>&nbsp;</p></li>
+                {% partial 'menu-cards/event' %}
+            </ul>
+        </li>
+        
+        <!-- END NEWS DROPDOWN -->
+        
+        <!-- RESOURCES DROPDOWN -->
+        {#
+        <li role="menuitem" class="dropdown nav-item">
+            <a class="dropdown-toggle" data-toggle="dropdown" data-target="#" href="#" role="button" aria-haspopup="true" aria-expanded="false">Resources<span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+                <li role="presentation" class="dropdown-item"><a href="{{ 'itsm101'|page }}">ITSM 101</a></li>
+                <li role="presentation" class="dropdown-item"><a href="{{ 'white-papers'|page }}">White Papers</a></li>
+                <li role="presentation" class="dropdown-item"><a href="{{ 'case-studies'|page }}">Case Studies</a></li>
+                <li role="presentation" class="dropdown-item"><a href="{{ 'blog'|page({ category: 'thoughts' }) }}">Blog</a></li>
+                <li style="height: 50px"><p>&nbsp;</p></li>
+                {% partial 'menu-cards/liverpool' %}
+            </ul>
+        </li>
+        #}
+        <!-- END RESOURCES DROPDOWN -->
+        
+        
+        <!-- SUPPORT DROPDOWN -->
+
+        <li role="menuitem" class="dropdown nav-item">
+            <a class="dropdown-toggle" data-toggle="dropdown" data-target="#" href="#" role="button" aria-haspopup="true" aria-controls="supportMenu" aria-expanded="false">Support<span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu" role="menu" id="supportMenu">
+                <li role="menuitem" class="dropdown-item"><a href="https://Alemba.help/production/core.aspx?lite">Support Portal
+                <p class="description">Log into the support portal to log calls and service requests, access the Alemba Forum, suggest new features and more.</p></a></li>
+                <li role="menuitem" class="dropdown-item"><a href="https://alemba.help/production/Portal.aspx">Product Documentation
+                <p class="description">Search Alemba product documentation for information on Alemba Service Manager functionality, new features and much more. Select "product documentation" once logged into the support portal.</p></a></li>
+                <li role="menuitem" class="dropdown-item"><a href="{{ 'support'|page }}">Customer Support
+                <p class="description">Fox existing customers, Alemba’s service desk provides local time zone support for all of its customers and has a 24 hour support option.</p>
+                </a></li>
+                <li role="menuitem" class="dropdown-item"><a href="{{ 'contact'|page }}">Contact Us</a></li>
+                <li role="menuitem" class="dropdown-item"><a href="{{ 'demo'|page }}">Request a Demo</a></li>
+                {% partial 'menu-cards/asm' %}
+            </ul>
+        </li>
+        
+        <!-- END SUPPORT DROPDOWN -->
+
+
+    </ul>
+</nav>

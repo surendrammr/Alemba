@@ -1,0 +1,35 @@
+[viewBag]
+title = "Using AI Ops"
+url = "/help/topics/ai-ops/using-ai-ops"
+layout = "help"
+is_hidden = 0
+navigation_hidden = 0
+==
+                                                    <h1>
+<a name="top"></a>Using AI Ops</h1>
+                                                    <p>Problem management is a key process of IT service management. It consists in preventing problems and resulting incidents from happening. Ideally, a good problem management strategy should aim to solve problems before incidents occur.</p>
+                                                    <p>There are two approaches to problem management:</p>
+                                                    <ul>
+                                                        <li value="1">
+<b>Reactive problem management</b>, through the logging of <a href="../calls/logging%20a%20call.htm">calls</a> and <a href="../requests%20and%20templates/create%20a%20request.htm">requests</a>
+</li>
+                                                        <li value="2">
+<b>Proactive problem management</b>, through <ul>
+<li value="1">trend analysis of call and request data (for example by performing simple searches</li>
+<li value="2">the integration of <a href="../integration/managing%20events.htm">event management tools</a> that enable you to identify events (defined as any deviation from normal or expected operation of a piece of infrastructure) before incidents are logged</li>
+<li value="3">the automated logging of calls and requests based on a set of user-defined criteria. This is supported by the <b>AI Ops</b> functionality, as described           below</li>
+</ul>
+</li>
+                                                    </ul>
+                                                    <p>AI Ops enhances your Problem Management process by allowing you to set up rules to automatically log calls or requests based on events in your call and request activity. In this way, problems may be identified before Incidents occur. </p>
+                                                    <p>You can schedule “AI Ops rules” which will run and analyze your Call and Request activity. Each rule has a “threshold” that is, a particular number of events within a running period, and a set of conditions which, when met, will automatically trigger a new call/request in <span class="GeneralVariablesProductName">ASM</span>. </p>
+                                                    <div class="MCDropDown MCDropDown_Closed dropDown">
+<span class="MCDropDownHead dropDownHead"><a href="#" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCHotSpotImage" aria-expanded="false"><img class="MCDropDown_Image_Icon" src="/storage/app/media/Help/images/transparent.gif" height="11" width="16" alt="Closed" data-mc-alt2="Open">Some scenarios for using AI Ops</a></span>
+                                                        <div class="MCDropDownBody dropDownBody">
+                                                            <p class="exampletext" style="font-weight: normal;">A Problem Manager suspects instability in the network environment. She can configure an automated AI Ops rule to log a Problem call whenever more than 5 high priority outage calls are logged against critical servers. She can configure the rule to exclude any servers that have a Physical Status of “In Test” or “Training Dedicated”. Finally, she can link a Call Template to the rule to direct the call to the Problem Management team when it is logged by the system. When this AI Ops runs and reaches the threshold of 5 high priority outage calls against the critical server, a new call is automatically logged by the system and forwarded to the Problem Management team. </p>
+                                                            <p class="exampletext">The Problem Manager is concerned that a high level of redundancy in the network is making it difficult to identify unreliable hardware. She is most concerned when outages occur in multiple redundant items supporting a parent hardware item. She configures an automated AI Ops rule to log a call whenever there are more than 5 occurrences in a 3-month period where more than 60% of the redundant items linked to the parent CMDB item are out at the same time.</p>
+                                                        </div>
+                                                    </div>
+                                                    <p>You can use the <a href="../calls/using%20the%20ipk%20rules%20builder.htm">IPK Workflow Rules Builder</a> to automate the routing of calls and call notifications through IPK Rules.</p>
+                                                    <p class="note">an AI Ops rule will consider open calls or requests for analysis, including a call has been created but not yet forwarded to anyone.</p>
+                                                

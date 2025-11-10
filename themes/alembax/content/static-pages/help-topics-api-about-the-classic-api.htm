@@ -1,0 +1,42 @@
+[viewBag]
+title = "Classic API"
+url = "/help/topics/api/about-the-classic-api"
+layout = "help"
+is_hidden = 0
+navigation_hidden = 0
+==
+                                                    <h1>
+<a name="aanchor321"></a>
+                                                        <concept term="Classic API"></concept>Classic API</h1>
+                                                    <p class="reference"><span class="GeneralVariablesProductName">ASM</span> has two Application Programming Interfaces (or APIs), which enable you to develop programs that automate many common <span class="GeneralVariablesProductName">ASM</span> transactions. This section of the documentation deals with the Classic API. For more information on the RESTful <span class="GeneralVariablesAPIName">Alemba API</span>, see <a href="../alemba%20api/alemba%20api.htm">here</a>.<br><br></p>
+                                                    <p>The Classic API is WCF-based (Windows Communication Foundation). It is procedural – it exposes a defined set of operations (the <a href="api%20transactions.htm" class="MCXref xref">API Transactions</a>) that manipulate a limited set of entities.</p>
+                                                    <p>Typical API transactions include:</p>
+                                                    <ul>
+                                                        <li value="1">creating, updating, deleting and retrieving major <span class="GeneralVariablesProductName">ASM</span> entities such as calls, requests, tasks, CMDB items, etc</li>
+                                                        <li value="2">sending messages to Users and analysts</li>
+                                                        <li value="3">additional transactions to execute queries are provided to enable clients to automate their custom transactions.</li>
+                                                    </ul>
+                                                    <p>The <a href="api%20transactions.htm" class="MCXref xref">API Transactions</a> are exposed via a Web Service Interface, enabling them to be called from any platform and environment supporting web services (e.g. Java running on Linux).</p>
+                                                    <p class="note">Only documented entry points for controls and the API should be used. Any undocumented functionality is reserved for internal use only and is subject to change without notice.</p>
+                                                    <h2>API Architecture</h2>
+                                                    <p>The API is based on Windows Communication Foundation (WCF). <span class="GeneralVariablesProductName">ASM</span> provides a WCF service and exposes an end point which can be accessed by third party applications to call standard <span class="GeneralVariablesProductName">ASM</span> transactions. </p>
+                                                    <p>This end point is in the location <b>http://&lt;machinename&gt;/&lt;VirtualDirectory&gt;/ServiceManager.svc</b></p>
+                                                    <p>To access this end point, you must create a WCF client (for example, using svcutil.exe) and add it to your third party application. An overview on how to generate a WCF client to connect to the Classic API is provided in Create WCF Client.</p>
+                                                    <p class="note">More information about WCF is provided on the Microsoft Website: http://msdn.microsoft.com/en-us/library/dd943056.aspx</p>
+                                                    <p>
+                                                        <img src="/storage/app/media/Help/images/about%20the%20api.png" class="screenshot">
+                                                    </p>
+                                                    <h2>Licensing and Permissions</h2>
+                                                    <p>You can develop programs to perform transactions on any part of the <span class="GeneralVariablesAppName">ASM app</span>. </p>
+                                                    <p>Named Analyst licensing is enforced in the Service Desk and Workflow Management transactions. Service Desk transactions can only be performed by an analyst with a Service Desk enabled role. Similarly, Workflow Management transactions can only be performed by an analyst with Workflow Management enabled role. This check is performed even when the database uses Concurrent Analyst licensing.</p>
+                                                    <h3>
+<a name="kanchor144"></a>Analyst Permissions</h3>
+                                                    <p>The API enforces an analyst’s permissions by restricting what transactions they are able to execute. If an analyst does not have adequate permissions to execute a particular transaction, no actions will be taken and the NOPERMISSION error code and an appropriate error message will result. A few examples include:</p>
+                                                    <ul>
+                                                        <li value="1">An analyst without Log Calls enabled will not be able to call the CallCreate transaction</li>
+                                                        <li value="2">An analyst who is not a Request Manager cannot call WorkflowAuthorize</li>
+                                                        <li value="3">An analyst who is not an Approver cannot call TaskComplete for an approval</li>
+                                                        <li value="4">An analyst cannot call ObjectAttach for a User unless they are configured for Person Object Update.</li>
+                                                    </ul>
+                                                    <p class="note">These restrictions do not extend to checking ownership of an entity such as taking action on a call owned by another analyst when the logged in analyst does not have Call Take Over rights. In these instances the internal <span class="GeneralVariablesProductName">ASM</span> logic may or may not execute the requested action successfully and the API will not be able to report an error.</p>
+                                                

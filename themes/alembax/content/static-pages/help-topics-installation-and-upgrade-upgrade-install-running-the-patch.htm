@@ -1,0 +1,85 @@
+[viewBag]
+title = "Running the ASM Patch Tool"
+url = "/help/topics/installation-and-upgrade/upgrade/install-running-the-patch"
+layout = "help"
+is_hidden = 0
+navigation_hidden = 0
+==
+                                                    <h1>
+<a name="top"></a>Running the <span class="GeneralVariablesProductName">ASM</span> Patch Tool</h1>
+                                                    <p>Once you have installed the <span class="GeneralVariablesProductName">ASM</span> Patch file, you can run the <span class="GeneralVariablesProductName">ASM</span> Patch Tool to upgrade your system. </p>
+                                                    <h2 class="Prerequisite">
+<a name="Before_you_start"></a>Before you start</h2>
+                                                    <p class="prereqtext1">Ensure you have created a backup or snapshot, as described <conditionaltext data-mc-conditions="Default.ScreenOnly">in </conditionaltext><a href="%7B%7B%20'help-install-upgrading#Creating'%7CstaticPage%20%7D%7D#Creating" class="MCXref xref">Creating a Backup</a>. The Patch Tool <b>will not</b> backup your database, system files, or registry keys. </p>
+                                                    <p class="prereqtext1">Close the <span class="GeneralVariablesCoreName">ASM Core</span> Server Console and any other windows on the server, before running the upgrade otherwise errors may occur.</p>
+                                                    <p class="prereqtext1">Ensure that your system meets the <a href="../../prerequisites/prereq%20checklist.htm">prerequisites</a> outlined in the <b>Installation Guide</b>.</p>
+                                                    <p class="prereqtext1">Familiarize yourself with the information in the <b>Installing or Patching</b> section, <conditionaltext data-mc-conditions="Default.ScreenOnly">in </conditionaltext><a href="%7B%7B%20'help-install-and-upgrade-install-install-v-patch#top'%7CstaticPage%20%7D%7D#top" class="MCXref xref">About Installing or Patching to ASM 10.1</a>.</p>
+                                                    <p class="prereqtext1">Familiarize yourself with the <b>Screen Pre-upgrade</b> feature, as described <conditionaltext data-mc-conditions="Default.ScreenOnly">in </conditionaltext><a href="%7B%7B%20'help-install-screens-pre-upgrade#top'%7CstaticPage%20%7D%7D#top" class="MCXref xref">Screens Pre-Upgrade</a>.</p>
+                                                    <p class="prereqtextlast">If you are upgrading from a version lower than 9.2.0, it will invalidate your existing license key. You must have an updated license key to run <span class="GeneralVariablesCoreName">ASM Core</span>. Contact your Account Manager for more details if necessary.</p>
+                                                    <p class="warning">Oracle databases are not supported. Attempting to patch an Oracle database system to <span class="GeneralVariablesProductName">ASM</span> will error and fail.</p>
+                                                    <ol>
+                                                        <li value="1">
+<b>Install the <span class="GeneralVariablesProductName">ASM</span> Patch tool</b> (<a href="%7B%7B%20'help-install-install-patch-tool#top'%7CstaticPage%20%7D%7D#top" class="MCXref xref">Installing the Patch Tool</a>). If you have already installed it, simply run through the wizard again.</li>
+                                                        <li value="2">The<b> Patch Tool</b> window appears.<br>
+</li>
+                                                        <li value="3">Complete the details.</li>
+                                                        <p>
+                                                            </p>
+<table style="width: 100%;margin-left: 0;margin-right: auto;mc-table-style: url('../../../resources/tablestyles/fielddesc.css');" class="TableStyle-FieldDesc" cellspacing="0">
+                                                                <col class="TableStyle-FieldDesc-Column-Column1">
+                                                                <col class="TableStyle-FieldDesc-Column-Column2">
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyH-Column1-">Screens pre-upgrade only</td>
+                                                                        <td class="TableStyle-FieldDesc-BodyG-Column2-">Select this checkbox if you want to pre-upgrade your screens in preparation for an upgrade at a later time. If you have already run the screen pre-upgrade, or do not need one, make sure that this box is unchecked.<p class="warning">When the <b>Screens pre-upgrade</b> checkbox is selected, your system is not upgraded. You can find out more about screens pre-upgrade <conditionaltext data-mc-conditions="Default.ScreenOnly">in</conditionaltext> <a href="%7B%7B%20'help-install-screens-pre-upgrade#top'%7CstaticPage%20%7D%7D#top" class="MCXref xref">Screens Pre-Upgrade</a>.</p>
+</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyH-Column1-">Stop services and upgrade database without prompting</td>
+                                                                        <td class="TableStyle-FieldDesc-BodyG-Column2-">If you want to run the patch tool in silent mode, meaning you will not be prompted for input while the patch tool runs, select this and the following checkboxes. If not selected, the upgrade will pause and present a prompt requesting permission to stop the <b>IISAdmin</b> service and <b><span class="GeneralVariablesProductName">ASM</span> services</b>, and later on another prompt asking if you want to upgrade the database. If selected, Yes is automatically selected at both prompts.</td>
+                                                                    </tr>
+                                                                    <tr data-mc-conditions="">
+                                                                        <td class="TableStyle-FieldDesc-BodyB-Column1-">Overwrite locally customized system files</td>
+                                                                        <td class="TableStyle-FieldDesc-BodyA-Column2-">
+                                                                            <p>If you have customized files, select this option to move the customized files into a <b>System/Customizations</b> folder as part of the upgrade, and upgrade all of the files in the system to the latest version. You can then re-apply the customizations to the upgraded version of the files. </p>
+                                                                            <p> If you have customized files, we  strongly recommend  selecting this check box and re-applying customizations, where necessary, when the upgrade is complete.</p>
+                                                                            <p>If the upgrade detects that a file in the System folder has been changed/customized, the file will be moved into the Customizations folder. It will not move folders, or files that do not require replacement or updating. Any htm\javascript files copied from the maintenance package will be treated as a customization if it is not also copied into the original folder. Any unknown files will be ignored. Blank custom files are unaffected.</p>
+                                                                            <p class="tip">If you run several upgrades, selecting this option each time, customized files found in each of the upgrades will be added to the same Customizations folder. For this reason, it is a good idea to archive the contents of this folder after each upgrade/before the next, to declutter the folder.</p>
+                                                                        </td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        
+                                                        <li value="4">Select <b>Start</b> to commence the upgrade.</li>
+                                                        <li value="5">If you did not select <b>Stop services and upgrade database without prompting</b>, or if you have not already stopped services, you will be prompted to stop <b>IISAdmin</b> and <b><span class="GeneralVariablesProductName">ASM</span> services</b>. Select <b>Yes</b>.  </li>
+                                                        <p>
+                                                            <img src="/storage/app/media/Help/images/patchupgradewarning_313x147.bmp" alt="" title="" style="width: 313;height: 147;">
+                                                        </p>
+                                                        <li value="6">If you did not close the Server Console (as mentioned <conditionaltext data-mc-conditions="Default.ScreenOnly">in</conditionaltext> <a href="#Before_you_start" class="MCXref xref">Before you start</a>), you will see the following warning message, or similar.</li>
+                                                        <p>
+                                                            <img src="/storage/app/media/Help/images/warning1_370x206.jpg" class="screenshot" style="width: 370;height: 206;">
+                                                            
+                                                        </p>
+                                                        <p>You need to make sure that the Server Console is not in use on that web server (by the current windows login or another).</p>
+                                                        <li value="7">The patch tool will:<ul>
+<li value="1">Upgrade the system files.</li>
+<li value="2">Upgrade the database. A confirmation dialog box appears if you did not select <b>Stop services and upgrade database without prompting</b>. Select <b>Yes</b> to upgrade the databases. Selecting <b>No</b> will cancel the installation process, as the database upgrade is an essential step in the upgrade installation. If you select <b>No</b>, you will need to run the process again. </li>
+</ul>
+</li>
+                                                        <li value="8">When the upgrade has completed, the progress bar shows "Complete".  <br>
+</li>
+                                                        <li value="9">Select <b>Close</b> to exit the wizard.</li>
+                                                    </ol>
+                                                    <h2 class="newpage">
+<a name="Applying"></a>Applying the License Key</h2>
+                                                    <p>If you are applying a patch to a system version lower than 9.2.0, you will need a new license key, which will be provided by <span class="GeneralVariablesCompanyName2">Alemba®</span> Support or your Account Manager. </p>
+                                                    <ol style="orphans: 0;widows: 0;">
+                                                        <li value="1">After the patch is complete, open the <span class="GeneralVariablesProductName">ASM</span> Server Console. <br><img src="/storage/app/media/Help/images/license1_539x398.bmp" style="width: 539;height: 398;"><br>
+</li>
+                                                        <li value="2">Select your system from the list on the left, and then select <b>Properties</b> from the <b>Actions</b> column on the right.</li>
+                                                        <li value="3">The <b>System Properties</b> window is displayed. Select the <b>Licence</b>  tab.<br><img src="/storage/app/media/Help/images/license2_354x334.bmp" alt="" title="" class="screenshot" style="width: 354;height: 334;">
+</li>
+                                                        <li value="4"> Paste the new license into the Enter New License Key area, and then select <b>Decode</b>. Check that the license information is correct, and then select <b>OK</b>.</li>
+                                                    </ol>
+                                                    <p class="prereq">Should the need arise, roll back the upgrade as described <conditionaltext data-mc-conditions="Default.ScreenOnly">in </conditionaltext><a href="#Rolling" class="MCXref xref">Running the ASM Patch Tool</a></p>
+                                                

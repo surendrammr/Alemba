@@ -1,0 +1,45 @@
+fields:
+    name:
+        label: Name
+        span: auto
+        default: ''
+        required: 1
+        type: text
+        comment: 'Code name and version number, e.g Hermes 10.6'
+    slug:
+        label: Slug
+        span: auto
+        required: 1
+        preset:
+            field: name
+            type: slug
+        type: text
+        comment: 'Prefix with asmx-'
+    date:
+        label: Date
+        mode: date
+        span: auto
+        type: datepicker
+    version_number:
+        label: 'Version number'
+        span: auto
+        type: text
+        comment: 'Just the number, no code name (eg. 10.6)'
+    live:
+        label: Live
+        span: auto
+        type: checkbox
+    info_section:
+        label: Info
+        span: full
+        context:
+            - update
+            - preview
+        type: section
+    release_info:
+        span: full
+        path: $/alemba/alemba/controllers/releases/_info.htm
+        context:
+            - update
+            - preview
+        type: partial

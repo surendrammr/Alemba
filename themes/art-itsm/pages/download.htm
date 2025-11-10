@@ -1,0 +1,149 @@
+url = "/downloads/:slug?"
+layout = "home"
+title = "Download"
+description = "Downloads page"
+is_hidden = 0
+meta_title = "Download"
+meta_description = "Download"
+robot_index = "index"
+robot_follow = "follow"
+seoOptionsEnabledInSitemap = 0
+seoOptionsUseUpdatedAt = 1
+seoOptionsRobotIndex = "index"
+seoOptionsRobotFollow = "follow"
+seoOptionsChangefreq = "daily"
+seoOptionsPriority = 0.5
+==
+<?php
+use Alemba\Alemba\Models\Download;
+
+function onStart()
+{
+	// Get selected Download
+
+	$this['download'] = Download::where('slug', $this->param('slug'))->first();
+
+	// Redirect to homepage if slug isn't present or no download corresponds
+	
+	if(!$this->param('slug') || !$this['download']) {
+		return redirect()->to($this->controller->pageUrl('home'));
+	}
+
+	// Page title and subheading
+
+	$this->page->title = $this['download']->name;
+	$this['subheading'] = $this['download']->type ? "Download the ".$this['download']->type : "Download";
+
+
+	// Get the file extension
+
+	$extension = pathinfo($this['download']->download, PATHINFO_EXTENSION);
+	$this['extension'] = strtoupper($extension);
+
+
+}
+?>
+==
+<script type="text/javascript">
+    $(document).ready(function() {
+        var selected = '{{ this.page.title }}';
+        $('#asset-field').val(selected);
+    });
+</script>
+
+{% if download.banner_pic %}
+
+	<!-- banner -->
+
+	<div class="jumbotron jumbotron-fluid banner dark pageBanner" style="background-image:url('{{ download.banner_pic|media }}')">
+	
+        <div class="container h-100">
+        
+            
+    	    <div class="row h-100">
+        	    <div class="col my-auto">
+        	    {% if download.banner_title %}
+        		    <h1 class="text-center">{{ download.banner_title }}</h1>
+    		    {% endif %}
+    		    </div>
+    		</div>
+    		
+    		
+    	</div>
+
+	</div>
+
+	<!-- /banner -->
+
+{% else %}
+
+<div class="jumbotron jumbotron-fluid banner dark" style="background-image: url({{ 'Banners/banner-download.jpg'|media }})">
+    <div class="container h-100">
+        
+	    <div class="row h-100">
+    	    <div class="col my-auto">
+    	        {% if download.banner_title %}
+    		    <h2 class="text-center">{{ download.banner_title }}</h2>
+    		    {% endif %}
+		    </div>
+		</div>
+		
+    </div>
+</div>
+	
+
+{% endif %}
+
+{% partial 'demo-button' %}
+
+<!-- copy -->
+<div class="container-fluid bkg-dark">
+	<div class="container copy">
+
+		<header class="col-10 offset-1 copy-heading">
+		
+			<h1>{{ this.page.title }}</h1>
+			<h5>{{ subheading }}</h5>
+
+		</header>
+
+		
+
+		<div class="row">
+		    <div class="col-md-6 offset-1 copy-main">
+	            {% if download.intro %}
+	                
+					<p class="lead">{{ download.intro }}</p>
+	    
+	    			
+	            {% endif %}
+	            
+	            {% if download.thumbnail %}
+				<img src="{{ download.thumbnail|media }}" alt="Alemba Service Manager v10.1.20 release notes cover" class="float-left img-fluid d-block" style="border: 1px solid #ECECEC;">
+				{% endif %}
+				
+	            
+	            {% if download.text %}
+
+					{{ download.text|md }}
+
+	    	    {% endif %}
+	    	    
+	    	    <p class="small">By downloading any free resource available on this website, you accept and agree to our <a href="{{ 'privacy-policy'|page }}">terms and conditions</a>.</p>
+		    
+		    </div>
+		    
+		    <div class="col-md-4">
+				<h5>Download it now</h5>
+							
+				<a href="{{ download.download|media }}" class="button-link btn btn-outline pink" onclick="ga('send', 'event', '{{ extension }}', 'download', '{{ download.name }}');">{{ download.name }} ({{ extension }})</a>
+			</div>
+	        
+		</div>
+
+	</div>
+</div>
+
+<!-- /copy -->
+
+{% partial 'pagelinks-recent' %}

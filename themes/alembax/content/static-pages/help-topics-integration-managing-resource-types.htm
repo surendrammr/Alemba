@@ -1,0 +1,480 @@
+[viewBag]
+title = "Managing Resource Types"
+url = "/help/topics/integration/managing-resource-types"
+layout = "help"
+is_hidden = 0
+navigation_hidden = 0
+==
+                                                    <h1>Managing Resource Types</h1>
+                                                    <p class="intro">The Integration Resources window displays all the resource types discovered on the selected source. This window allows you to select a resource type in order to set up the mapping between the resource type and CMDB Types and data fields in <span class="GeneralVariablesCoreName">ASM Core</span>. </p>
+                                                    <h2>
+<a name="Viewing2"></a>Viewing Resource Types</h2>
+                                                    <h2 class="Prerequisite">Before you start</h2>
+                                                    <p class="prereqtextlast">You must have <b>Integration Setup</b> selected in the <a href="../admin%20security%20roles/general%20access%20security%20role%20-%20admin%20tab.htm">Admin</a> tab of your <b>General Access Security Role</b>. </p>
+                                                    <ol>
+                                                        <li value="1">Select <a href="../general%20topics/asmcorewindow.htm"><span style="font-size: 24pt;">≡</span></a> &gt; <b>Admin</b> &gt;  <b>Integration</b>.  The <b>Integration Platform Settings</b> window appears.</li>
+                                                        <li value="2">In the Explorer pane, under <b>Integration</b>, select <b>Resources</b>.</li>
+                                                        <li value="3">Complete the details.</li>
+                                                        <p>
+                                                            </p>
+<table class="TableStyle-FieldDesc" style="mc-table-style: url('../../resources/tablestyles/fielddesc.css');" cellspacing="0">
+                                                                <col class="TableStyle-FieldDesc-Column-Column1">
+                                                                <col class="TableStyle-FieldDesc-Column-Column2">
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyH-Column1-">Filter by Source</td>
+                                                                        <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                            <p>Select a source from the  drop-down list.</p>
+                                                                            <p class="note">Only sources that correspond to connectors with Federated CMDB capability and which are set to be visible are available in this list.</p>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyH-Column1-">Mapped</td>
+                                                                        <td class="TableStyle-FieldDesc-BodyG-Column2-">Select this option to view resource types for which mappings have been defined or which have inherited mappings from their ancestors.</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyB-Column1-">Not mapped</td>
+                                                                        <td class="TableStyle-FieldDesc-BodyA-Column2-">Select this option to view resource types that do not have any mappings defined or any inherited mappings.</td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        
+                                                        <li value="4">The resource types are listed below the search parameters. </li>
+                                                    </ol>
+                                                    <h2>
+<a name="Viewing"></a>Viewing Resource Type Mappings</h2>
+                                                    <h2 class="Prerequisite">Before you start</h2>
+                                                    <p class="prereqtextlast">You must have <b>Integration Setup</b> selected in the <a href="../admin%20security%20roles/general%20access%20security%20role%20-%20admin%20tab.htm">Admin</a> tab of your <b>General Access Security Role</b>. </p>
+                                                    <ol>
+                                                        <li value="1">
+<a href="#Viewing">View the Resource Types</a>.</li>
+                                                        <li value="2">Double-click the resource type. The <b>Resource Type [Name of the resource type</b>] window appears. It lists the existing mappings for the selected resource type and enables you to create new mappings, as well as edit, delete and reorder existing mappings.</li>
+                                                        <p class="note">Resource mappings apply to a selected source and connector, and resource type. If you define more than one instance of the same source and connector, resource mappings will only apply to the particular instance of the source and connector for which they were defined. They will not apply globally to all instances of the same source and connector.</p>
+                                                        <li value="3">The following information appears in the <b>Resource Type Mappings</b> window:</li>
+                                                        <p>
+                                                            </p>
+<table style="mc-table-style: url('../../resources/tablestyles/fielddesc.css');" class="TableStyle-FieldDesc" cellspacing="0">
+                                                                <col class="TableStyle-FieldDesc-Column-Column1">
+                                                                <col class="TableStyle-FieldDesc-Column-Column2">
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">
+                                                                        <p>Source</p>
+                                                                    </td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                        <p>The name of the selected source from which the resource type is derived</p>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">
+                                                                        <p>Resource Type</p>
+                                                                    </td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                        <p>The name of the resource type</p>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">
+                                                                        <p>Map Resources by Group</p>
+                                                                    </td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                        <p class="prereq">This option only displays if you are viewing the resource type mappings for an LDAP-compliant Directory Server connector source. </p>
+                                                                        <p>In Active Directory, users are organized into groups or Organizational Units (OUs) on the directory server. When the Map Resources by Group option is selected, a Groups browse table is also displayed on this window where you must select a group in order to apply mappings to the resource type group rather than the resource type itself.  </p>
+                                                                        <p class="note">You can only set up one mapping per group.</p>
+                                                                    </td>
+                                                                </tr>
+                                                            </table>
+                                                        
+                                                        <li value="4">Beneath these fields, the <b>Mappings</b> browse table displays the following details about a mapping:</li>
+                                                        <p>
+                                                            </p>
+<table style="mc-table-style: url('../../resources/tablestyles/fielddesc.css');" class="TableStyle-FieldDesc" cellspacing="0">
+                                                                <col class="TableStyle-FieldDesc-Column-Column1">
+                                                                <col class="TableStyle-FieldDesc-Column-Column2">
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">
+                                                                        <p>Mapping</p>
+                                                                    </td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                        <p>the name of the mapping specified when defining the mapping details</p>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">
+                                                                        <p>Import</p>
+                                                                    </td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                        <p>if the checkbox is selected, then particular import rules have been specified in the mapping details</p>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">
+                                                                        <p>Default</p>
+                                                                    </td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                        <p>if the checkbox is selected, then this mapping has been configured as the default mapping. If you define a default mapping, then external resources that do not meet the criteria defined in any mappings can still be imported. If no default mapping is set, then some resources may be overlooked by a scheduled scan and not be imported into the CMDB.</p>
+                                                                    </td>
+                                                                </tr>
+                                                            </table>
+                                                        
+                                                        <p>The <b>Groups</b> table displays the following information about a group.</p>
+                                                        <li value="5">
+                                                            <p class="note">This table only appears on this window for an LDAP-compliant integration source and connector. For example, on an Active Directory, users are organized into groups (OUs). Resource type groups are defined on the source. </p>
+                                                        </li>
+                                                        <p>
+                                                            </p>
+<table style="mc-table-style: url('../../resources/tablestyles/fielddesc.css');" class="TableStyle-FieldDesc" cellspacing="0">
+                                                                <col class="TableStyle-FieldDesc-Column-Column1">
+                                                                <col class="TableStyle-FieldDesc-Column-Column2">
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">
+                                                                        <p>Type</p>
+                                                                    </td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                        <p>displays the name of the group type (defined on the source)</p>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">
+                                                                        <p>Group</p>
+                                                                    </td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                        <p>displays the name of the group (defined on the source)</p>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">
+                                                                        <p>Total</p>
+                                                                    </td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                        <p>displays the number of mappings that have been defined for the group</p>
+                                                                    </td>
+                                                                </tr>
+                                                            </table>
+                                                        
+                                                    </ol>
+                                                    <h2>Adding a resource type mapping</h2>
+                                                    <p>You can add as many mappings as you need, except in the case of an LDAP-compliant directory server source, for which you can only add one mapping. You can also set one of the mappings as the default for this resource type so that resources that do not meet the criteria for any defined mappings in this window will still be discovered in a scheduled scan, and imported or updated.</p>
+                                                    <h2 class="Prerequisite">Before you start</h2>
+                                                    <p class="prereqtextlast">You must have <b>Integration Setup</b> selected in the <a href="../admin%20security%20roles/general%20access%20security%20role%20-%20admin%20tab.htm">Admin</a> tab of your <b>General Access Security Role</b>. </p>
+                                                    <ol>
+                                                        <li value="1">
+<a href="#Viewing">View the Resource Types</a>.</li>
+                                                        <li value="2">Double-click the resource type. The <b>Resource Type [Name of the resource type</b>] window appears.</li>
+                                                        <li value="3">Select <b>New</b> from beneath the Mappings table.</li>
+                                                        <li value="4">You can also clone an existing mapping.</li>
+                                                        <li value="5">
+<a href="#Specifyi">Specify the mapping details</a>.</li>
+                                                        <li value="6">Select <img src="/storage/app/media/Help/images/save%20button.png">  to save the changes.</li>
+                                                    </ol>
+                                                    <h2>Updating a resource type mapping</h2>
+                                                    <h2 class="Prerequisite">Before you start</h2>
+                                                    <p class="prereqtextlast">You must have <b>Integration Setup</b> selected in the <a href="../admin%20security%20roles/general%20access%20security%20role%20-%20admin%20tab.htm">Admin</a> tab of your <b>General Access Security Role</b>. </p>
+                                                    <ol>
+                                                        <li value="1">
+<a href="#Viewing">View the Resource Types</a>.</li>
+                                                        <li value="2">Double-click the resource type. The <b>Resource Type [Name of the resource type</b>] window appears.</li>
+                                                        <li value="3">Select the mapping you want to update from the browse table and then select <b>Open</b>.</li>
+                                                        <li value="4">
+<a href="#Specifyi">Update the details</a> as necessary.</li>
+                                                        <li value="5">Select <img src="/storage/app/media/Help/images/save%20button.png">  to save the changes.</li>
+                                                    </ol>
+                                                    <h2>Deleting a resource type mapping</h2>
+                                                    <h2 class="Prerequisite">Before you start</h2>
+                                                    <p class="prereqtextlast">You must have <b>Integration Setup</b> selected in the <a href="../admin%20security%20roles/general%20access%20security%20role%20-%20admin%20tab.htm">Admin</a> tab of your <b>General Access Security Role</b>. </p>
+                                                    <ol>
+                                                        <li value="1">
+<a href="#Viewing">View the Resource Types</a>.</li>
+                                                        <li value="2">Double-click the resource type. The <b>Resource Type [Name of the resource type</b>] window appears.</li>
+                                                        <li value="3">Select the mapping you want to delete from the browse table and then select <b>Delete</b>.</li>
+                                                        <li value="4">Confirm the deletion.</li>
+                                                    </ol>
+                                                    <h2>Changing the priority of resource type mappings</h2>
+                                                    <p><span class="GeneralVariablesCoreName">ASM Core</span> will apply the mapping and match the external resource to the internal resource in the order in which the mappings appear in the Mappings (and Groups if relevant) browse table. If more than one mapping applies to an external resource, then the mapping that is higher in the list will be applied first, then the second one in the list, and so on.</p>
+                                                    <h2 class="Prerequisite">Before you start</h2>
+                                                    <p class="prereqtextlast">You must have <b>Integration Setup</b> selected in the <a href="../admin%20security%20roles/general%20access%20security%20role%20-%20admin%20tab.htm">Admin</a> tab of your <b>General Access Security Role</b>. </p>
+                                                    <ol>
+                                                        <li value="1">
+<a href="#Viewing">View the Resource Types</a>.</li>
+                                                        <li value="2">Double-click the resource type. The <b>Resource Type [Name of the resource type</b>] window appears.</li>
+                                                        <li value="3">Select a mapping you want to move, and use the <b>Move up</b> and<b>Move Down</b> buttons to reassign the priority. Repeat for all mappings you want to reorder.</li>
+                                                        <li value="4">Select <img src="/storage/app/media/Help/images/save%20button.png">  to save the changes.</li>
+                                                    </ol>
+                                                    <h2>Adding a resource type mapping for a Directory Server group</h2>
+                                                    <h2 class="Prerequisite">Before you start</h2>
+                                                    <p class="prereqtext1">You can only add one mapping per group.</p>
+                                                    <p class="prereqtextlast">You must have <b>Integration Setup</b> selected in the <a href="../admin%20security%20roles/general%20access%20security%20role%20-%20admin%20tab.htm">Admin</a> tab of your <b>General Access Security Role</b>. </p>
+                                                    <ol>
+                                                        <li value="1">
+<a href="#Viewing">View the Resource Types</a>.</li>
+                                                        <li value="2">Double-click the resource type. The <b>Resource Type [Name of the resource type</b>] window appears.</li>
+                                                        <li value="3">In the <b>Groups</b> table, select the group for which you want to define a mapping.</li>
+                                                        <li value="4">To search for a group, click <b>Add</b>. </li>
+                                                        <li value="5">To delete a group and any mappings defined for it, select the group in the table and click <b>Delete</b>. In the confirmation message dialog box, click Yes to confirm the deletion or No to cancel.</li>
+                                                        <li value="6">Once you’ve selected a group for which you want to define a mapping, click <b>New</b> in the Mappings browse table.</li>
+                                                        <li value="7">
+<a href="#Specifyi">Specify the mapping details</a>.</li>
+                                                        <li value="8">Select <img src="/storage/app/media/Help/images/save%20button.png">  to save the changes.</li>
+                                                    </ol>
+                                                    <h2>Changing the priority of groups</h2>
+                                                    <p><span class="GeneralVariablesCoreName">ASM Core</span> will apply the mapping and match the external resource to the internal resource in the order in which the mappings appear in the Groups browse table. If more than one matching mapping applies to an external resource, then the mapping that is higher in the list is used.</p>
+                                                    <h2 class="Prerequisite">Before you start</h2>
+                                                    <p class="prereqtextlast">You must have <b>Integration Setup</b> selected in the <a href="../admin%20security%20roles/general%20access%20security%20role%20-%20admin%20tab.htm">Admin</a> tab of your <b>General Access Security Role</b>. </p>
+                                                    <ol>
+                                                        <li value="1">
+<a href="#Viewing">View the Resource Types</a>.</li>
+                                                        <li value="2">Double-click the resource type. The <b>Resource Type [Name of the resource type</b>] window appears.</li>
+                                                        <li value="3">In the <b>Groups</b> table, select a group you want to move, and use the <b>Move up</b> and<b>Move Down</b> buttons to reassign the priority. Repeat for all mappings you want to reorder.</li>
+                                                        <li value="4">Select <img src="/storage/app/media/Help/images/save%20button.png">  to save the changes.</li>
+                                                    </ol>
+                                                    <h2>
+<a name="Specifyi"></a>Specifying Resource Type Mapping Details</h2>
+                                                    <p>You can define a mapping between external resources and <span class="GeneralVariablesCoreName">ASM Core</span> CMDB fields. External resources can be network discovery resources or users imported from a directory server.</p>
+                                                    <p class="note"> 
+The <b>Source</b> and <b>Resource Type</b> fields on the <b>Mapping for Resource Type</b> window are automatically populated based on the source and resource type selected to access this mapping. The source is the application or directory server whose resources you want to configure the mapping for. The resource type is the category of the resource you are mapping. 
+</p>
+                                                    <p>To define a resource type mapping:
+</p>
+                                                    <ol>
+                                                        <li value="1">
+<a href="#Viewing2">Display the <b>Mapping for Resource Type [Resource Type Name]</b> window if necessary</a>.</li>
+                                                        <li value="2">Select <b>New</b> to create a new resource type mapping, or double click on an existing mapping to update the details.</li>
+                                                        <li value="3">In the <b>Name</b> field, type a name for the mapping. This name will appear in the Mappings table on the Resource Type window.</li>
+                                                        <li value="4">Select the <b>Criteria</b> tab if necessary.</li>
+                                                        <p>
+                                                            </p>
+<table class="TableStyle-FieldDesc" style="mc-table-style: url('../../resources/tablestyles/fielddesc.css');" cellspacing="0">
+                                                                <col class="TableStyle-FieldDesc-Column-Column1">
+                                                                <col class="TableStyle-FieldDesc-Column-Column2">
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyB-Column1-">Default Mapping</td>
+                                                                        <td class="TableStyle-FieldDesc-BodyA-Column2-">Leave the  option selected to flag this mapping as the default, . The mapping will be applied whenever no other mapping is applicable.
+It is useful to define a default mapping so that resources that do not meet the criteria specified in any of the other mappings for that resource type can still be discovered and imported. If no default mapping is set, then some resources may be overlooked by a scheduled scan and not be imported into the CMDB.<p>Deselect to specify the conditions for applying this mapping to an external resource and build the conditions using the Rules Builder panel. 
+These conditions are set through defining a rule. </p>
+<p class="exampletext">For example, to only import resources of the Computer resource type that are manufactured by Dell, build the following rule: {Resource:Manufacturer}=“Dell”. This mapping will be used for all resources of the Computer resource type and manufactured by Dell.</p>
+<p>The fields available in the left-hand side of each clause of the rule correspond to the fields associated with the external resource type. They are defined at the level of the connector and cannot be modified. The values available in the right-hand side of the clause are values corresponding to the field selected on the left. 
+	You can only select fields or attributes from the external resource type as the criteria in your rule, since there are the criteria <span class="GeneralVariablesCoreName">ASM Core</span> will use to select external resources for importing. 
+</p>
+</td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        
+                                                        <li value="5">Select the <b>Action</b> tab to define the import rules used when this mapping is applied.</li>
+                                                        <p>
+                                                            </p>
+<table class="TableStyle-FieldDesc" style="mc-table-style: url('../../resources/tablestyles/fielddesc.css');" cellspacing="0">
+                                                                <col class="TableStyle-FieldDesc-Column-Column1">
+                                                                <col class="TableStyle-FieldDesc-Column-Column2">
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyH-Column1-">Import</td>
+                                                                        <td class="TableStyle-FieldDesc-BodyG-Column2-">Leave this  option selected to enable the fields on this tab. If you clear this option, external resources will not be imported or updated for this mapping when a scheduled scan runs on the source.</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyH-Column1-">Import As</td>
+                                                                        <td class="TableStyle-FieldDesc-BodyG-Column2-">Use the  drop-down list to select the type of CMDB entity type that the external resource will be imported as. 
+By default, Person is selected if the source is a directory server and CMDB Item if the source is a network discovery source. However, you can modify the default selection.</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyH-Column1-">Using template/Clone from</td>
+                                                                        <td class="TableStyle-FieldDesc-BodyG-Column2-">Use this  field to select the template to apply to the CMDB records created after the source is scanned for resources. Only the templates for the CMDB entity type selected in the Import As field are available for selection. <p class="note">To create a new template from this window, open the Using template menu and select <b>New</b>.</p>
+</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyH-Column1-">Apply template to CMDB Item or Person</td>
+                                                                        <td class="TableStyle-FieldDesc-BodyG-Column2-">Use the  drop-down list to select when the selected template must be applied to the imported resource:<table class="TableStyle-FieldDesc_no_indent" style="mc-table-style: url('../../resources/tablestyles/fielddesc no indent.css');" cellspacing="0">
+<col class="TableStyle-FieldDesc_no_indent-Column-Column1">
+<col class="TableStyle-FieldDesc_no_indent-Column-Column2">
+<tbody>
+<tr>
+<td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">On creation</td>
+<td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">Select  only to apply the template to the imported resource only when the CMDB record is created, that is, only if the resource does not match an existing CMDB item or person record.
+</td>
+</tr>
+<tr>
+<td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-"> On creation or update</td>
+<td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">	Select to apply the template to the imported resource when the <span class="GeneralVariablesCoreName">ASM Core</span> record is created or when an existing linked CMDB record is updated.</td>
+</tr>
+<tr>
+<td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">When template is different to last applied</td>
+<td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">
+<p>Select  to apply either (a) the current template that is different from the one last applied to the matching CMDB record, or (b) a modified version of the template last used for the imported resource. </p>
+<p class="exampletext">For a directory server source, users may need to be imported under another Person template if their status has changed on the directory server.</p>
+</td>
+</tr>
+<tr>
+<td class="TableStyle-FieldDesc_no_indent-BodyB-Column1-">When mapping is different to last applied</td>
+<td class="TableStyle-FieldDesc_no_indent-BodyA-Column2-">Select  to apply the template to the imported resource when the field mapping last used is different from this mapping.</td>
+</tr>
+</tbody>
+</table>
+</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyH-Column1-">When a resource is discovered</td>
+                                                                        <td class="TableStyle-FieldDesc-BodyG-Column2-">Use the  drop-down list to select the action to be taken on the CMDB if a new resource or user is discovered on the source:<table class="TableStyle-FieldDesc_no_indent" style="mc-table-style: url('../../resources/tablestyles/fielddesc no indent.css');" cellspacing="0">
+<col class="TableStyle-FieldDesc_no_indent-Column-Column1">
+<col class="TableStyle-FieldDesc_no_indent-Column-Column2">
+<tbody>
+<tr>
+<td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">Create linked CMDB Item or Person automatically</td>
+<td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">Select  to instruct the polling service to discover any new resources on the source. When a new resource is found, <span class="GeneralVariablesCoreName">ASM Core</span> automatically creates a new CMDB record and then links this CMDB record and the record that is created in the Federated CMDB.</td>
+</tr>
+<tr>
+<td class="TableStyle-FieldDesc_no_indent-BodyB-Column1-">Add to the Pending Imports list</td>
+<td class="TableStyle-FieldDesc_no_indent-BodyA-Column2-">Select  to instruct the polling service to take no immediate action on the CMDB. Instead, it will record the detected definitive resource record as a “pending import”, which you can later review in the <b>Pending Imports</b> View on the <b>Federated CMDB Administration</b> window.</td>
+</tr>
+</tbody>
+</table>
+</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyH-Column1-">When a resource is deleted</td>
+                                                                        <td class="TableStyle-FieldDesc-BodyG-Column2-">Use the  drop-down list to select the action to be taken on the CMDB if a resource or user is deleted on the source:<table class="TableStyle-FieldDesc_no_indent" style="mc-table-style: url('../../resources/tablestyles/fielddesc no indent.css');" cellspacing="0">
+<col class="TableStyle-FieldDesc_no_indent-Column-Column1">
+<col class="TableStyle-FieldDesc_no_indent-Column-Column2">
+<tbody>
+<tr>
+<td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">Delete linked CMDB Item or Person automatically</td>
+<td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">Select  to instruct the polling service to discover any deleted resources on the source and delete the linked CMDB items or people immediately.</td>
+</tr>
+<tr>
+<td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">Add to the De-activated Resources list</td>
+<td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">Select  to instruct the polling service to take no immediate action on the CMDB. Instead, it will record the detected differences for each definitive resource record as a “deactivated resource”, which you can later review  in the Deactivated Resources view on the Federated CMDB Administration window. </td>
+</tr>
+<tr>
+<td class="TableStyle-FieldDesc_no_indent-BodyB-Column1-">Take no action</td>
+<td class="TableStyle-FieldDesc_no_indent-BodyA-Column2-">Select  to instruct the polling service to make no changes to the CMDB.</td>
+</tr>
+</tbody>
+</table>
+</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyB-Column1-">When a resource is restored</td>
+                                                                        <td class="TableStyle-FieldDesc-BodyA-Column2-">Use the  drop-down list to select the action to be taken on the CMDB if a resource or user is restored on the source:
+<table class="TableStyle-FieldDesc_no_indent" style="mc-table-style: url('../../resources/tablestyles/fielddesc no indent.css');" cellspacing="0">
+<col class="TableStyle-FieldDesc_no_indent-Column-Column1">
+<col class="TableStyle-FieldDesc_no_indent-Column-Column2">
+<tbody>
+<tr>
+<td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">Restore linked CMDB Item or Person automatically</td>
+<td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">	Select  to instruct the polling service to discover any restored resources on the source and apply that information directly to the linked CMDB items or people. The CMDB items or people will be restored immediately.</td>
+</tr>
+<tr>
+<td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">Add to the Activated Resources list</td>
+<td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">Select  to instruct the polling service to take no immediate action on the CMDB. Instead, it will record the detected differences for each definitive resource record as an “activated resource”, which you can later review  in the Activated Resources view on the Federated CMDB Administration window. </td>
+</tr>
+<tr>
+<td class="TableStyle-FieldDesc_no_indent-BodyB-Column1-">Take no action</td>
+<td class="TableStyle-FieldDesc_no_indent-BodyA-Column2-">Select  to instruct the polling service to make no changes to the CMDB.</td>
+</tr>
+</tbody>
+</table>
+</td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        
+                                                        <li value="6">Select the <b>Fields</b> tab to map the fields from the imported external resource with fields from the <span class="GeneralVariablesCoreName">ASM Core</span> CMDB item or person record. </li>
+                                                        <p class="note">
+You can only map fields once you have selected a CMDB item or Person template under the <b>Actions</b> tab.
+</p>
+                                                        <li value="7">To add a field for mapping, click <b>Add</b>. 
+The <b>Add Fields</b> window displays all the fields from the template selected under the <b>Actions</b> tab.
+</li>
+                                                        <li value="8">Select the <span class="GeneralVariablesCoreName">ASM Core</span> CMDB field you wish to map and click OK to add the field to the Fields table.
+</li>
+                                                        <li value="9">To set a value for this field or select a matching field, click the corresponding cell in the <b>Resource Field</b> column and select <img src="/storage/app/media/Help/images/expandtiersbutton.png">. The options available depend on the type of  field (string, date and time, profile list, etc.). You must select a resource field or value for each field selected in the Fields table; otherwise, you will receive a warning message when you save the mapping details.
+</li>
+                                                        <li value="10">To set the condition for updating the field, select one of the options in the <b>Update</b> column:</li>
+                                                        <p>
+                                                            </p>
+<table class="TableStyle-FieldDesc" style="mc-table-style: url('../../resources/tablestyles/fielddesc.css');" cellspacing="0">
+                                                                <col class="TableStyle-FieldDesc-Column-Column1">
+                                                                <col class="TableStyle-FieldDesc-Column-Column2">
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyH-Column1-">Always </td>
+                                                                        <td class="TableStyle-FieldDesc-BodyG-Column2-">populates the field automatically whenever this field mapping is applied during a scheduled scan. This option is useful if the external source is the definitive place where this information resides.</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyH-Column1-">On Initial Population Only</td>
+                                                                        <td class="TableStyle-FieldDesc-BodyG-Column2-">populates the field only when a CMDB item or person is created in <span class="GeneralVariablesCoreName">ASM Core</span> during a scheduled scan. This option is useful if this CMDB record may be updated from integrations with various external sources.</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyH-Column1-">Only When Blank</td>
+                                                                        <td class="TableStyle-FieldDesc-BodyG-Column2-">populates the field only if it is blank. This is useful if the field on the external source is not the definitive place where this information resides and should not have the ability to overwrite the template field value.</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyB-Column1-">Create Discrepancy Report</td>
+                                                                        <td class="TableStyle-FieldDesc-BodyA-Column2-">does not populate the field automatically when the field mapping is applied during a scheduled scan. Rather, an entry is added to the Discrepancy Report view in the Federated CMDB Administration window, allowing you to decide whether the field can be updated or not. This is useful to detect unauthorized changes or errors on the source.</td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        
+                                                        <li value="11">Select the <b>Matching</b> tab to set the criteria <span class="GeneralVariablesCoreName">ASM Core</span> will use to match a discovered external resource to an existing CMDB record (rather than create a new one).</li>
+                                                        <p class="note">This step allows you to configure rules for importing and updating resources. This includes defining how users are imported through a directory integration source or other resources through a network discovery connector. For example, by defining a rule using fields from the person details, you can match a new user discovered on a directory server to an existing analyst or User in <span class="GeneralVariablesCoreName">ASM Core</span>.
+</p>
+                                                        <li value="12">Select <b>On discovery match resource to existing CMDB Item or Person</b> to enable the matching of a discovered resource to an existing  CMDB record based on a set of criteria.
+If you leave this option unselected, a new CMDB record will be created for each imported resource rather than a link with an existing CMDB record.
+</li>
+                                                        <li value="13">Use the <b>Rules Builder</b> to specify the criteria that will be used to match a discovered resource or user to an existing CMDB record: <ol>
+<li value="1">Start a statement by clicking the question mark (<b>?</b>).</li>
+<li value="2">Click <img src="/storage/app/media/Help/images/expandtiersbutton.png"> to select a field. You can choose either a field from <span class="GeneralVariablesCoreName">ASM Core</span> (<b>select CMDB Item</b>) or a field from the external resource (<b>select Resource</b>). Based on your selection, the next tier opens, enabling you to drill down and select the relevant field.</li>
+<li value="3">Select an <b>operator</b> for the rule, such as equal to (=).
+</li>
+<li value="4">Select the final part of the statement by selecting <img src="/storage/app/media/Help/images/expandtiersbutton.png">.
+</li>
+<li value="5">Set a value for the field or select a matching field. 
+The options available for selection in the multi-tier field selector pop-up depend on the field type you selected in the first part of the rule. </li>
+</ol>
+</li>
+                                                        <li value="14">Select what you want <span class="GeneralVariablesCoreName">ASM Core</span> to do if a matching CMDB record is found:</li>
+                                                        <p>
+                                                            </p>
+<table class="TableStyle-FieldDesc" style="mc-table-style: url('../../resources/tablestyles/fielddesc.css');" cellspacing="0">
+                                                                <col class="TableStyle-FieldDesc-Column-Column1">
+                                                                <col class="TableStyle-FieldDesc-Column-Column2">
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyH-Column1-">&gt; 1 matching records are identified</td>
+                                                                        <td class="TableStyle-FieldDesc-BodyG-Column2-">Select  to add the discovered resource to the <b>Pending Imports</b> list if more than one record in the <span class="GeneralVariablesCoreName">ASM Core</span> CMDB has been found to match the resource based on the criteria specified above. This option enables you to manually match the resource to one of the matching CMDB records.</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyH-Column1-">NO matching records are identified</td>
+                                                                        <td class="TableStyle-FieldDesc-BodyG-Column2-">Select  to add the discovered resource to the <b>Pending Imports</b> list if no record in the <span class="GeneralVariablesCoreName">ASM Core</span> CMDB is found</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyA-Column1-" colspan="2" style="font-weight: normal;">Leave both checkboxes unselected to import the resource directly and automatically link the resource to a matching CMDB record.	If more than one CMDB record matches the resource based on the set of criteria you specified and both checkboxes are left unselected, <span class="GeneralVariablesCoreName">ASM Core</span> automatically selects one of the CMDB records to link it to the resource.
+</td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        
+                                                        <li value="15">Select <img src="/storage/app/media/Help/images/save%20button.png">  to save the changes.You are returned to the Resource Type window, where you can add more mappings for the same resource type if needed.
+</li>
+                                                    </ol>
+                                                    <p>Mappings are applied only when a resource is imported or updated. Changing the resource mappings will not update existing CMDB records. Updates are made only when <span class="GeneralVariablesCoreName">ASM Core</span> detects changes to a resource.
+</p>
+                                                    <p>Disabling scans for a connector or a specific resource type after a scan has been run will not delete CMDB records linked to the external resources for that connector. However, viewing any of these external resources (which may be linked to CMDB records) will display them as being inactive. </p>
+                                                    <p>Resources are imported automatically during a Federated CMDB scan, and these resources are checked for any links that correspond to the mapped resource link types. This relationship information is automatically discovered by the scan; it cannot be regulated. However, you can choose not to import the relationship information as links into the CMDB when you import resources with links to other resources.</p>
+                                                    <h2>Field Mappings for Directory Servers</h2>
+                                                    <p>The fields available for mapping a directory server user to a Person entity in <span class="GeneralVariablesCoreName">ASM Core</span> include the following:</p>
+                                                    <table style="mc-table-style: url('../../resources/tablestyles/fielddesc.css');" class="TableStyle-FieldDesc" cellspacing="0">
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">Login ID</td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">allows you to link a user from a directory server to a person record in <span class="GeneralVariablesCoreName">ASM Core</span> using the Login ID details.<p class="note">When a person record is deleted from <span class="GeneralVariablesCoreName">ASM Core</span> based on a disabled Active Directory record, their Login ID and Password is deleted within <span class="GeneralVariablesCoreName">ASM Core</span> and is available for reuse. </p>
+</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">Email</td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">allows you to link a user from a directory server to a person record in <span class="GeneralVariablesCoreName">ASM Core</span> using the email details.</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">First Name and Surname</td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">allows you to link a user from a directory server to a person record in <span class="GeneralVariablesCoreName">ASM Core</span> using the First Name and Surname</td>
+                                                        </tr>
+                                                    </table>
+                                                

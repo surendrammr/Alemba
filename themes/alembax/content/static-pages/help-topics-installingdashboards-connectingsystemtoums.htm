@@ -1,0 +1,57 @@
+[viewBag]
+title = "Connecting Alemba Service Manager™ to the User Management Server"
+url = "/help/topics/installingdashboards/connectingsystemtoums"
+layout = "help"
+is_hidden = 0
+navigation_hidden = 0
+==
+                                                    <h1>Connecting <span class="GeneralVariablesProductNameFull">Alemba Service Manager™</span> to the <span class="GeneralVariablesUserManagementServer">User Management Server</span>
+</h1>
+                                                    <p>When you connect <span class="GeneralVariablesProductNameFull">Alemba Service Manager™</span> to the <span class="GeneralVariablesUserManagementServer">User Management Server</span>, all the <span class="GeneralVariablesProductNameFull">Alemba Service Manager™</span> users, groups and categories are imported into the Dashboard database that you configured. These Dashboard database tables have a prefix that you assigned when you installed the Dashboard platform. For more information about the database, see <a href="configuringdashboardserver.htm" class="MCXref xref">Configuring the Dashboard Server</a>.</p>
+                                                    <p class="warning">If you want to use Active Directory authentication for your users and passwords, you must first synchronize the <span class="GeneralVariablesUserManagementServer">User Management Server</span> with Active Directory before you connect <span class="GeneralVariablesProductName">ASM</span> to the <span class="GeneralVariablesUserManagementServer">User Management Server</span>. For more information, see <a href="adauthentication.htm" class="MCXref xref">Enabling User Management Server for Active Directory authentication</a>.</p>
+                                                    <p>To connect <span class="GeneralVariablesProductName">ASM</span> to the <span class="GeneralVariablesUserManagementServer">User Management Server</span>:</p>
+                                                    <ol>
+                                                        <li value="1">
+                                                            <p>Using <span class="GeneralVariablesCoreName">ASM Core</span>, select <span style="font-size: 24pt;">≡</span> &gt; <b>Admin</b> &gt;  <b>System Administration</b>. </p>
+                                                            <p>The System Administration window appears. </p>
+                                                        </li>
+                                                        <li value="2">
+                                                            <p>In the Explorer pane, expand <b>Dashboards</b>, then select <b>User Management Server Settings</b>. </p>
+                                                            <p>The User Management Server Settings window appears.</p>
+                                                        </li>
+                                                        <li value="3"> Select <b>Enabled</b> to enable the Reporting Service.</li>
+                                                        <li value="4">
+                                                            <p>If required, use the <b>Service Poll Interval</b> to adjust how often the Reporting Service polls the <span class="GeneralVariablesUserManagementServer">User Management Server</span>.</p>
+                                                        </li>
+                                                        <li value="5">
+                                                            <p>In <b>Application URL</b>, type the <span class="GeneralVariablesUserManagementServer">User Management Server</span> URL in the following format: http://<i>ServerName</i>/AlembaUMS/, where <i>ServerName</i> is the server name or IP address.</p>
+                                                            <p>For example, http://localhost/AlembaUMS/</p>
+                                                        </li>
+                                                        <li value="6">
+                                                            <p>In <b>User ID</b>, type the Dashboard system administrator you set up.</p>
+                                                            <p>For example, AlembaAdmin.</p>
+                                                            <p>For more information, see <a href="configuringdashboardserver.htm" class="MCXref xref">Configuring the Dashboard Server</a>.</p>
+                                                        </li>
+                                                        <li value="7">In <b>User Password</b>, type the Dashboard system administrator password.</li>
+                                                        <li value="8">
+                                                            <p>In <b>Client Id</b>, paste the <span class="GeneralVariablesUserManagementServer">User Management Server</span> client ID.</p>
+                                                            <p>For more information about sourcing the client ID, see <a href="viewingumsclientid.htm" class="MCXref xref">Accessing the User Management Server client ID</a>. </p>
+                                                            <p>
+                                                                <img src="/storage/app/media/Help/images/installingdashboards/reportingsettings.png">
+                                                            </p>
+                                                        </li>
+                                                        <li value="9">Select <b>Run</b> to ensure the connection works and the user import succeeds.</li>
+                                                        <li value="10">Select <img src="/storage/app/media/Help/images/installingdashboards/save_ic.png"> to save your changes.</li>
+                                                        <li value="11">Close, then reopen <b>System Administration</b> to refresh the menu.</li>
+                                                        <li value="12">
+                                                            <p>Using the command prompt, perform an iisreset to restart IIS.</p>
+                                                        </li>
+                                                        <li value="13">
+                                                            <p>Use Windows Services to start the <span class="GeneralVariablesProductNameFull">Alemba Service Manager™</span> Reporting Service.</p>
+                                                        </li>
+                                                        <li value="14">If you want to manually import the users, groups, and categories, on the <b>User Management Server Settings</b> window, select <b>Run</b>.</li>
+                                                    </ol>
+                                                    <h2 data-mc-conditions="Default.ScreenOnly">What's next?</h2>
+                                                    <p data-mc-conditions="Default.ScreenOnly"><a href="connectingsystemtods.htm" class="MCXref xref">Connecting Alemba Service Manager™ to the Dashboard Server</a>
+                                                    </p>
+                                                

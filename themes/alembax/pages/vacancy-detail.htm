@@ -1,0 +1,144 @@
+title = "Work for Alemba!"
+url = "/our-company/join-the-team/:slug"
+layout = "home"
+description = "Vacancy detail page"
+is_hidden = 0
+meta_title = "Work for Alemba!"
+meta_description = "Work for Alemba!"
+robot_index = "index"
+robot_follow = "follow"
+seoOptionsEnabledInSitemap = 0
+seoOptionsUseUpdatedAt = 1
+seoOptionsRobotIndex = "index"
+seoOptionsRobotFollow = "follow"
+seoOptionsChangefreq = "daily"
+seoOptionsPriority = 0.5
+==
+<?php
+use Alemba\Alemba\Models\Vacancy;
+
+function onStart()
+{
+	// Get all team members
+
+	$this['vacancy'] = Vacancy::where('slug', $this->param('slug'))->first();
+
+	$this['heading'] = "Sorry!";
+	$this['subheading'] = "This vacancy is no longer available.";
+
+	if($this['vacancy']) {
+
+		$this['heading'] = $this['vacancy']->name;
+		$this['subheading'] = $this['vacancy']->type.' &bull; '.$this['vacancy']->location;
+
+		$this->page->title = "Work for Alemba - ".$this['vacancy']->name;
+
+		// Generate array of structured data (for Google)
+
+		$structured_data = [
+
+			"@context" => "http://schema.org",
+			"@type" => "JobPosting",
+			"hiringOrganization" => "Alemba Ltd",
+		    "title" => $this['vacancy']->name,
+		    "description" => $this['vacancy']->intro,
+		    "employmentType" => $this['vacancy']->type,
+		    "jobLocation" => [
+		    	"address" => $this['vacancy']->office ? $this['vacancy']->office->address : '',
+		    	"telephone" => $this['vacancy']->office->telephone
+		    ],
+		    "datePosted" => $this['vacancy']->created_at->format('Y-m-d'),
+		    "url" => "https://alemba.com/our-company/join-the-team/".$this['vacancy']->slug
+
+		];
+
+		$this['structured_data'] = $structured_data;
+
+	}
+
+}
+?>
+==
+<!-- Structured data -->
+
+<script type="application/ld+json">
+
+	{{ structured_data|json_encode(constant('JSON_PRETTY_PRINT'))|raw }}
+
+</script>
+
+<!-- banner -->
+
+<div class="jumbotron jumbotron-fluid banner dark pageBanner" style="background-image:url('{{ 'assets/img/banners/banner-office@0.5x.jpg'|theme }}')">
+
+	<div class="container">
+	</div>
+
+</div>
+
+<!-- /banner -->
+
+{% partial 'demo-button' %}
+
+<!-- copy -->
+
+<div class="container copy">
+
+	<header class="col-md-12 copy-heading">
+
+
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb justify-content-center">
+                <li class="breadcrumb-item"><a href="{{ 'Vacancies'|page }}">Join the Team</a></li>
+                <li class="breadcrumb-item active">Vacancy</li>
+            </ol>
+        </nav>
+	
+		<h1>{{ heading }}</h1>
+		<h2>{{ subheading|raw }}</h2>
+
+	</header>
+
+	<div class="row justify-content-center">
+
+		<div class="col-md-10 copy-main">
+
+			{% if vacancy %}
+
+				<p class="lead">{{ vacancy.intro }}</p>
+
+				{{ vacancy.text|md }}
+
+				<h4>Please contact <a href="mailto: {{ html_email(vacancy.contact.email)|raw }}">{{ vacancy.contact.name }}</a> ({{ vacancy.contact.title }}) for more details{% if vacancy.application_url %} or <a href="{{ vacancy.application_url }}" target="_blank">apply here</a>{% endif %}.</h4>
+
+			{% else %}
+
+				<p class="lead">Thank you for your interest. Please check back again soon as we often have exciting positions available worldwide.</p>
+
+			{% endif %}
+
+		</div>
+
+	</div>
+
+</div>
+
+<!-- /copy -->
+
+<!-- copy-links -->
+
+<div class="container-fluid copy-links">
+
+	<div class="row">
+
+		<div class="col-sm-12 text-center">
+
+			<a href="{{ 'vacancies'|page }}" class="btn btn-primary">Back to Join our Team</a>
+
+		</div>
+
+	</div>
+
+</div>
+
+<!-- /copy-links -->

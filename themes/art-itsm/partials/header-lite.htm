@@ -1,0 +1,111 @@
+description = "Header without Nav, and non indexed"
+
+[seoTags]
+==
+<?php
+use Jenssegers\Agent\Agent;
+
+function onStart()
+{
+
+	// Check for user agent
+
+	$agent = new Agent();
+
+	$this['ismobile'] = FALSE;
+
+	if( $agent->isMobile() || $agent->isTablet() ) {
+		
+		$this['ismobile'] = TRUE;
+
+	}
+
+	$this['countrycode'] = isset($_SERVER["HTTP_CF_IPCOUNTRY"]) ? $_SERVER["HTTP_CF_IPCOUNTRY"] : '';
+
+}
+?>
+==
+<!DOCTYPE html>
+<html lang="en" {% if htmlClass %}class="{{ htmlClass }}"{% endif %}>
+<head>
+<meta charset="utf-8">
+
+{% if this.environment == 'production' %}
+
+    {% partial 'analytics-etc' %}
+
+{% endif %}
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="google-site-verification" content="cgpiWrzV47MUzoeYn2LTd0rApPYN5vBzYaocEWQZbVo" />
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<!-- NO INDEX -->
+<meta name="robots" content="noindex" />
+<meta name=”robots” content=”nofollow” />
+<meta name="googlebot" content="noindex" />
+<meta name="googlebot-news" content="nosnippet" />
+
+{% partial 'head-scripts-styles' %}
+
+{% partial 'favicons' %}
+
+{% if this.page.meta_title %}
+
+    {% component 'seoTags' %}
+
+{% else %}
+
+    <title>Alemba - {{ this.page.title }}</title>
+    
+{% endif %}
+
+</head>
+
+{% put scripts %}
+
+    <script>
+
+        $(document).ready(function(){
+
+            $('body form').on('submit', function() {
+
+                var email = $('.validateEmail input[name=email]').val();
+
+                // If free e-mail clients have been used, alert and return to the form
+
+                var check_email = '[a-zA-Z0-9]{0,}([.]?[a-zA-Z0-9]{1,})[@](gmail.com|hotmail.com|yahoo.com|gmail.co.uk|googlemail.com|hotmail.co.uk|yahoo.co.uk)';
+                var patt = new RegExp(check_email);
+                var result = patt.test(email);
+
+                if (result === true) {
+
+                    alert("Sorry, you can't use that e-mail. Please use another.");
+                    return false;
+
+                }
+
+            });
+
+        });
+
+    </script>
+
+{% endput %}
+
+<body class="page-{{ this.page.id }}">
+
+    {% if this.environment == 'production' %}
+
+        {% partial 'google-tag-manager-noscript' %}
+
+    {% endif %}
+
+<nav class="navbar navbar-expand-md navbar-dark px-5 d-felx align-items-center justify-content-between sticky-top">
+	<img class="navbar-logo" src="{{ 'assets/images/logo-alemba-white.svg'|theme }}" alt="Alemba" />
+    <a href="#" class="btn th-cta-re  fw-semibold px-4 py-2">Request a Demo</a>
+	
+	
+</nav>
+
+    <div class="clearfix"></div>

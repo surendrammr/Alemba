@@ -1,0 +1,68 @@
+ul.partners {
+    
+    margin-bottom: 3rem;
+    margin-left: 0;
+    display: flex;
+    flex-wrap: wrap;
+    
+    a {
+        display: block;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+    }
+    
+    li {
+        padding: 2rem;
+        border: 1px solid lighten($midgrey, 25%);
+        background-color: white;
+        @include vendor-prefixes(border-radius, 5px);
+        margin: 0.5rem;
+        flex-basis: auto;
+        width: calc(50% - 1rem);
+        overflow: auto;
+        position: relative;
+        @include vendor-prefixes(transition, all 0.5s ease);
+        
+        &:hover {
+            @include vendor-prefixes(box-shadow, 0 1px 7px rgba(0,0,0,0.1));
+            
+            .partner-logo img {
+                @include vendor-prefixes(filter, grayscale(0%));
+                opacity: 1;
+            }
+        }
+        
+        a {
+            display: block;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+        }
+    }
+    
+    .partner-logo {
+        float: right;
+        width: 130px;
+        text-align: right;
+        img {
+            @include vendor-prefixes(transition, all .2s ease);
+            @include vendor-prefixes(filter, grayscale(100%));
+            opacity: 0.7;
+        }
+    }
+
+    h2 {
+        color: $alembablue;
+        font-size: 24px;
+        margin-top: 0;
+    }
+    p {
+        margin-bottom: 0.5rem;
+        font-size: 12px;
+    }
+}

@@ -1,0 +1,156 @@
+url = "/contact"
+layout = "home"
+title = "Contact"
+description = "Contact page"
+is_hidden = 0
+meta_title = "Contact Alemba | ITSM Software Inquiries & Support"
+meta_description = "Get in touch with the Alemba team for ITSM software inquiries, demos, or support with your IT service management needs."
+robot_index = "index"
+robot_follow = "follow"
+seoOptionsEnabledInSitemap = 1
+seoOptionsUseUpdatedAt = 1
+seoOptionsRobotIndex = "index"
+seoOptionsRobotFollow = "follow"
+seoOptionsChangefreq = "daily"
+seoOptionsPriority = 0.5
+canonical_url = "https://alemba.com/contact"
+seo_title = "Contact Us - Alemba"
+seo_description = "Get in touch with the Alemba team for more information about the market-leading Alemba Service Manager ITSM software solution."
+
+[renderForm]
+formCode = "contact"
+
+[siteSearchInclude]
+==
+<?php
+use Alemba\Alemba\Models\Office;
+
+function onStart()
+{
+	// Get all team members
+
+	$this['offices'] = Office::orderBy('sort_order')->get();
+
+}
+?>
+==
+<!-- banner -->
+
+<div class="jumbotron jumbotron-fluid banner dark pageBanner" style="background-image:url('{{ 'Banners/banner-office@0.5x.jpg'|media }}')">
+
+	<div class="container h-100">
+	    <div class="row h-100">
+    	    <div class="col my-auto">
+    		    <h1 class="text-center xl-header">{{ this.page.title }}</h1>
+		    </div>
+		</div>
+	</div>
+
+</div>
+
+<!-- /banner -->
+
+{% partial 'demo-button' %}
+
+<!-- copy -->
+
+<div class="container-fluid bkg-dark">
+
+	<div class="container copy pb-0 justify-content-center">
+
+		<header class="col-10 offset-1 copy-heading">
+		
+			<h2>Get in touch with us. We’d love to hear from you!</h2>
+
+		</header>
+
+		<div class="row pb-0">
+
+			<div class="col-10 offset-1">
+
+				<script src=https://js-eu1.hsforms.net/forms/embed/143827418.js defer></script>
+				<div class="hs-form-frame" data-region="eu1" data-form-id="ba2f4a5e-612a-4cc2-b2da-f151959dfecb" data-portal-id="143827418"></div>
+
+			</div>
+
+		</div>
+
+	</div>
+
+	<div class="container copy offices article-cards mb-5">
+
+	    <div class="row justify-content-center pt-0">
+	        
+	    	{% for office in offices %}
+	    
+	    		<div class="col-sm-6 col-md-6 col-lg-3 pt-3 pb-3">
+	    		
+	    		    <div class="contact-office card mx-auto">
+	    
+	        			<div class="contact-office-pic">
+	        
+	        				{% if office.image %}
+	        				
+	        				    <div class="card-img-top d-block" style="background-image:url('{{ office.image|media }}')"></div>
+	        				    
+	        				    {% else %}
+	        
+	        					<div class="card-img-top" style="background-image:url('{{ 'assets/images/thumbnail-default.png'|theme }}')"></div>
+	        
+	        				{% endif %}
+	        
+	        			</div>
+	        
+	        			<div class="contact-office-text card-body">
+	        
+	        				<header>
+	        					<h3>{% if 'USA' in office.name %}
+	        						<a href="{{ 'office-us'|page }}">{{ office.name }}</a>
+	        						{% else %}
+	        							{{ office.name }}
+	        						{% endif %}
+	        					</h3>
+	        					<h5><span class="tel"><a href="tel:{{ office.telephone }}">{{ office.telephone }}</a></span></h5>
+	        				</header>
+	        
+	        				<address>{{ office.address|nl2br }}</address>
+	        				
+	        				{% if office.google %}
+	        
+	            				<div class="contact-office-location">
+	            
+	            					<a href="{{ office.google }}" class="button-link"><i class="fa fa-map-marker"></i> Google Maps</a>
+	            
+	            				</div>
+	        
+	        			    {% endif %}
+	        
+	        			</div>
+	    			
+	    			</div>
+	    
+	    		</div>
+	    
+	    	{% endfor %}
+	    	
+		</div>
+
+		<div class="row">
+
+			<div class="col-12 col-md-4 offset-md-4 mt-5 contact-email">
+
+				<a href="mailto: {{ html_email('info@alemba.com')|raw }}" class="button-link btn btn-outline pink">info@alemba.com</a>
+
+			</div>
+
+		</div>
+
+		<div>
+            <script src="https://widget.trustmary.com/5gBu_ZMA1"></script>
+        </div>
+
+	</div>
+
+</div>
+
+<!-- /copy -->

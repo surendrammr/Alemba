@@ -1,0 +1,173 @@
+[viewBag]
+title = "Agreement Matrices"
+url = "/help/topics/admin-slm/agreement-matrices"
+layout = "help"
+is_hidden = 0
+navigation_hidden = 0
+==
+                                                    <h1>Agreement Matrices</h1>
+                                                    <p class="intro">An agreement matrix contains a set of rules for calculating at what point a call or a request will be escalated, or an agreement breached. Matrices are an essential part of Service Level Management in <span class="GeneralVariablesCoreName">ASM Core</span>. They provide a lot of flexibility in configuring how different calls, requests and tasks are escalated and operate according to agreements. </p>
+                                                    <p>Escalation and agreement breach times can be set specifically for every result in a matrix and you can create and assign as many matrices as you like, so there is virtually unlimited flexibility in configuring your system for escalation and agreements. </p>
+                                                    <p class="exampletext">If you create a matrix with the dimensions <b>Priority</b> and <b>Config Item Type</b>, it means that any call connected to an agreement using that matrix will have its escalation and breach times based on the values entered into the matrix for the matching Priority and Config Item of the call. </p>
+                                                    <p>Matrices can be based on calls, requests or tasks/approvals. They are composed of three dimensions, much like the axes of a graph. Defining a matrix involves setting its dimensions. The matrix can then be linked to an agreement on the IPK and Workflow Threshold window.<conditionaltext data-mc-conditions="Default.Pink"> The result can be a notification (hierarchical escalation) or reassignment (functional escalation).</conditionaltext></p>
+                                                    <p data-mc-conditions="Default.For next release">Escalation and agreement times may be further classified by Service. You can select a matrix to link to an agreement on the IPK and Workflow Threshold windows. If a config item type is set to escalate faster than others (such as, Servers), a high priority call involving that config item type will be escalated faster than a high priority call involving other config item types. </p>
+                                                    <p>
+Matrices can have up to three dimensions. Typically, matrices derive escalation times based on a combination of priority and either configuration item type or call (or request) type. They may also use service as a third dimension.
+</p>
+                                                    <p>Each agreement has a particular matrix that is applied when the agreement is invoked for a call. The agreement also contains rules about how the times in the matrix are used to specify escalation and agreement breach times.</p>
+                                                    <p>Generally, calls invoke several escalation events before eventually triggering an agreement breach event. At this point, the agreement has been broken, and penalties may apply. Escalations are designed to prevent agreement breaches from occurring.
+</p>
+                                                    <p class="note">These rules apply to requests and tasks as well.
+</p>
+                                                    <h2>Agreement Matrices and Escalation Matrices</h2>
+                                                    <p>The different matrices you need to create are related to the type of escalation you have on your system. If you have First Call Back and Response escalation, you will need a First Call Back and a Response matrix. Remember, escalations are internal alerts used to prevent agreement breaches. </p>
+                                                    <p>You do not have to create a different escalation matrix in addition to the agreement matrix. When creating an agreement, <span class="GeneralVariablesCoreName">ASM Core</span> enables you to use an existing agreement matrix as an escalation matrix, but applied at a certain factor or multiple in the matrix. Each time the escalation matrix is figured out by multiplying the corresponding time by the factor you choose (usually a number between 0 and 1). That allows time between an escalation and when the agreement will be breached.</p>
+                                                    <p class="exampletext">For a service agreement with a company to fix software and hardware problems, all software issues must be resolved within 120 minutes. Hardware issues must be resolved within 90 minutes unless they are server issues, in which case the time is only 60 minutes. High priority calls must be fixed within half those times.</p>
+                                                    <p class="exampletext">The agreement times can be factored into a Priority by Config Item Type matrix. However, the escalation times must always be smaller than the agreement times (say, half), otherwise by the time a call escalates the agreement times have already been breached. To account for this, after creating the Resolve Agreement Matrix, also create a Resolve Escalation matrix, based on the Resolve Agreement Matrix but at a Factor of 0.5, that is, one half. </p>
+                                                    <p class="exampletext">The two tables below show how these matrices work. The third dimension, Service, is not being used in this example.</p>
+                                                    <p class="exampletextlast">
+                                                        </p>
+<table style="border-collapse: collapse;mc-table-style: url('../../resources/tablestyles/rep hdr row.css');border-top-left-radius: 0px;border-top-right-radius: 0px;border-bottom-right-radius: 0px;border-bottom-left-radius: 0px;border-left-style: solid;border-left-width: 1px;border-left-color: #0096dc;border-right-style: solid;border-right-width: 1px;border-right-color: #0096dc;border-top-style: solid;border-top-width: 1px;border-top-color: #0096dc;border-bottom-style: solid;border-bottom-width: 1px;border-bottom-color: #0096dc;margin-left: 0;margin-right: auto;width: 100%;" class="TableStyle-Table_with_Repeating_Header_Row TableStyle-Rep_Hdr_Row" cellspacing="0">
+                                                            <col class="TableStyle-Rep_Hdr_Row-Column-Column1">
+                                                            
+                                                            <col class="TableStyle-Rep_Hdr_Row-Column-Column2">
+                                                            
+                                                            <col class="TableStyle-Rep_Hdr_Row-Column-Column1">
+                                                            
+                                                            <thead>
+                                                                <tr class="TableStyle-Rep_Hdr_Row-Head-Header1">
+                                                                    <th class="TableStyle-Rep_Hdr_Row-HeadE-Column1-Header1" data-mc-conditions="Default.For next release">Agreement Matrix</th>
+                                                                    <th class="TableStyle-Rep_Hdr_Row-HeadE-Column2-Header1" data-mc-conditions="Default.For next release">Normal Priority</th>
+                                                                    <th class="TableStyle-Rep_Hdr_Row-HeadD-Column1-Header1" data-mc-conditions="Default.For next release">High Priority</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr style="height: 18pt;" class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                    <td style="background-color: #auto;border-left-style: solid;border-left-width: 1pt;border-left-color: #0096DC;border-right-style: solid;border-right-width: 1pt;border-right-color: #0096DC;border-bottom-style: solid;border-bottom-width: 1pt;border-bottom-color: #0096DC;" class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1" data-mc-conditions="Default.For next release">Software</td>
+                                                                    <td style="background-color: #auto;border-right-style: solid;border-right-width: 1pt;border-right-color: #0096DC;border-bottom-style: solid;border-bottom-width: 1pt;border-bottom-color: #0096DC;" class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1" data-mc-conditions="Default.For next release">120</td>
+                                                                    <td style="background-color: #auto;border-right-style: solid;border-right-width: 1pt;border-right-color: #0096DC;border-bottom-style: solid;border-bottom-width: 1pt;border-bottom-color: #0096DC;" class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1" data-mc-conditions="Default.For next release">60</td>
+                                                                </tr>
+                                                                <tr style="height: 18pt;" class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                    <td style="background-color: #auto;border-left-style: solid;border-left-width: 1pt;border-left-color: #0096DC;border-right-style: solid;border-right-width: 1pt;border-right-color: #0096DC;border-bottom-style: solid;border-bottom-width: 1pt;border-bottom-color: #0096DC;" class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1" data-mc-conditions="Default.For next release">Hardware</td>
+                                                                    <td style="background-color: #auto;border-right-style: solid;border-right-width: 1pt;border-right-color: #0096DC;border-bottom-style: solid;border-bottom-width: 1pt;border-bottom-color: #0096DC;" class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1" data-mc-conditions="Default.For next release">90</td>
+                                                                    <td style="background-color: #auto;border-right-style: solid;border-right-width: 1pt;border-right-color: #0096DC;border-bottom-style: solid;border-bottom-width: 1pt;border-bottom-color: #0096DC;" class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1" data-mc-conditions="Default.For next release">45</td>
+                                                                </tr>
+                                                                <tr style="height: 18pt;" class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                    <td style="background-color: #auto;border-left-style: solid;border-left-width: 1pt;border-left-color: #0096DC;border-right-style: solid;border-right-width: 1pt;border-right-color: #0096DC;border-bottom-style: solid;border-bottom-width: 1pt;border-bottom-color: #0096DC;" class="TableStyle-Rep_Hdr_Row-BodyB-Column1-Body1" data-mc-conditions="Default.For next release">Hardware - Server</td>
+                                                                    <td style="background-color: #auto;border-right-style: solid;border-right-width: 1pt;border-right-color: #0096DC;border-bottom-style: solid;border-bottom-width: 1pt;border-bottom-color: #0096DC;" class="TableStyle-Rep_Hdr_Row-BodyB-Column2-Body1" data-mc-conditions="Default.For next release">60</td>
+                                                                    <td style="background-color: #auto;border-right-style: solid;border-right-width: 1pt;border-right-color: #0096DC;border-bottom-style: solid;border-bottom-width: 1pt;border-bottom-color: #0096DC;" class="TableStyle-Rep_Hdr_Row-BodyA-Column1-Body1" data-mc-conditions="Default.For next release">30</td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                        <table style="border-collapse: collapse;mc-table-style: url('../../resources/tablestyles/rep hdr row.css');margin-left: 0;margin-right: auto;width: 100%;" class="TableStyle-Table_with_Repeating_Header_Row TableStyle-Rep_Hdr_Row" cellspacing="0">
+                                                            <col class="TableStyle-Rep_Hdr_Row-Column-Column1">
+                                                            
+                                                            <col class="TableStyle-Rep_Hdr_Row-Column-Column2">
+                                                            
+                                                            <col class="TableStyle-Rep_Hdr_Row-Column-Column1">
+                                                            
+                                                            <thead>
+                                                                <tr class="TableStyle-Rep_Hdr_Row-Head-Header1">
+                                                                    <th class="TableStyle-Rep_Hdr_Row-HeadE-Column1-Header1" data-mc-conditions="Default.For next release">Escalation Matrix</th>
+                                                                    <th class="TableStyle-Rep_Hdr_Row-HeadE-Column2-Header1" data-mc-conditions="Default.For next release">Normal Priority</th>
+                                                                    <th class="TableStyle-Rep_Hdr_Row-HeadD-Column1-Header1" data-mc-conditions="Default.For next release">High Priority</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr style="height: 18pt;" class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                    <td style="background-color: #auto;border-left-style: solid;border-left-width: 1pt;border-left-color: #0096DC;border-right-style: solid;border-right-width: 1pt;border-right-color: #0096DC;border-bottom-style: solid;border-bottom-width: 1pt;border-bottom-color: #0096DC;" class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1" data-mc-conditions="Default.For next release">Software</td>
+                                                                    <td style="background-color: #auto;border-right-style: solid;border-right-width: 1pt;border-right-color: #0096DC;border-bottom-style: solid;border-bottom-width: 1pt;border-bottom-color: #0096DC;" class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1" data-mc-conditions="Default.For next release">60</td>
+                                                                    <td style="background-color: #auto;border-right-style: solid;border-right-width: 1pt;border-right-color: #0096DC;border-bottom-style: solid;border-bottom-width: 1pt;border-bottom-color: #0096DC;" class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1" data-mc-conditions="Default.For next release">30</td>
+                                                                </tr>
+                                                                <tr style="height: 18pt;" class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                    <td style="background-color: #auto;border-left-style: solid;border-left-width: 1pt;border-left-color: #0096DC;border-right-style: solid;border-right-width: 1pt;border-right-color: #0096DC;border-bottom-style: solid;border-bottom-width: 1pt;border-bottom-color: #0096DC;" class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1" data-mc-conditions="Default.For next release">Hardware</td>
+                                                                    <td style="background-color: #auto;border-right-style: solid;border-right-width: 1pt;border-right-color: #0096DC;border-bottom-style: solid;border-bottom-width: 1pt;border-bottom-color: #0096DC;" class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1" data-mc-conditions="Default.For next release">45</td>
+                                                                    <td style="background-color: #auto;border-right-style: solid;border-right-width: 1pt;border-right-color: #0096DC;border-bottom-style: solid;border-bottom-width: 1pt;border-bottom-color: #0096DC;" class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1" data-mc-conditions="Default.For next release">22.5</td>
+                                                                </tr>
+                                                                <tr style="height: 18pt;" class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                    <td style="background-color: #auto;border-left-style: solid;border-left-width: 1pt;border-left-color: #0096DC;border-right-style: solid;border-right-width: 1pt;border-right-color: #0096DC;border-bottom-style: solid;border-bottom-width: 1pt;border-bottom-color: #0096DC;" class="TableStyle-Rep_Hdr_Row-BodyB-Column1-Body1" data-mc-conditions="Default.For next release">Hardware - Server</td>
+                                                                    <td style="background-color: #auto;border-right-style: solid;border-right-width: 1pt;border-right-color: #0096DC;border-bottom-style: solid;border-bottom-width: 1pt;border-bottom-color: #0096DC;" class="TableStyle-Rep_Hdr_Row-BodyB-Column2-Body1" data-mc-conditions="Default.For next release">30</td>
+                                                                    <td style="background-color: #auto;border-right-style: solid;border-right-width: 1pt;border-right-color: #0096DC;border-bottom-style: solid;border-bottom-width: 1pt;border-bottom-color: #0096DC;" class="TableStyle-Rep_Hdr_Row-BodyA-Column1-Body1" data-mc-conditions="Default.For next release">15</td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    
+                                                    <h2>Creating an Agreement Matrix</h2>
+                                                    <p>The <span style="font-weight: bold;">Matrix Definition</span> window enables you to create an agreement matrix. </p>
+                                                    <h2 class="Prerequisite">Before you start</h2>
+                                                    <p class="prereqtext1">Before you set up matrices, you need to determine which parameters you want to use.</p>
+                                                    <p class="prereqtextlast">You must have <b>SLM Setup</b> enabled within your <a href="../admin%20security%20roles/general%20access%20security%20role%20-%20admin%20tab.htm">General Access Security Role</a> in order to configure any SLM administration settings.</p>
+                                                    <ol>
+                                                        <li value="1">
+                                                            <p>Select the <a href="../general%20topics/asmcorewindow.htm" style="font-weight: bold;">Menu</a> button <img src="/storage/app/media/Help/images/menu%20button.png">, then <b>Admin</b>, and then select <b>System Administration</b>. The System Administration window is displayed, with a menu of options available <a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="../../resources/images/sys%20admin%20menu.png"><img class="MCPopupThumbnail img imgthumbnail" data-mc-width="780" data-mc-height="488" src="/storage/app/media/Help/images/sys%20admin%20menu_thumb_0_48.png" tabindex=""></a>. In the Explorer pane, select <b>Service Level Management</b>.</p>
+                                                        </li>
+                                                        <li value="2">Select <b>Matrix Definition</b> to open the window.</li>
+                                                    </ol>
+                                                    <ol start="3">
+                                                        <li value="3">Select <img src="/storage/app/media/Help/images/add%20new.png"> . A pop-up window <b>New Matrix Type</b> appears.</li>
+                                                        <li value="4">In the <span style="font-weight: bold;">New Matrix Type</span> window, select the entity (Calls, Requests, Tasks/Approvals) for which you want to create the agreement matrix <a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="../../resources/images/slm%20-%20new%20matrix%20type.png"><img class="MCPopupThumbnail img imgthumbnail" data-mc-width="350" data-mc-height="259" src="/storage/app/media/Help/images/slm%20-%20new%20matrix%20type_thumb_0_48.png" tabindex=""></a>. Call matrices can be used to set IPK thresholds whereas Request and Task/Approval matrices can be used to set workflow thresholds. </li>
+                                                        <li value="5">Select <b>Ok</b>. A new row is added to the browse table on the <span style="font-weight: bold;">Matrix Definition</span> window with the <span style="font-weight: bold;">Matrix Type</span> field set to your selection.</li>
+                                                        <li value="6">In the <span style="font-weight: bold;">Name</span> field, type a name for the matrix you want to create.</li>
+                                                        <p class="note">Ensure all matrices have meaningful names such as ‘Response Escalation for Software Support’ so the correct matrices can be chosen when applying them to a contract.</p>
+                                                        <li value="7">At <span style="font-weight: bold;">X Dimension</span>, select a matrix criterion from the drop-down list.  You can <a href="%7B%7B%20'help-general-topics-working-with-browse-tables#Changing'%7CstaticPage%20%7D%7D#Changing">adjust the column widths</a> if required.</li>
+                                                        <p class="note">The choices for Dimension X are <b>Priority</b> and <b>Unspecified</b>. Generally, you organize matrices by Priority. However, if you only want to base the matrix on a Y Dimension criterion, select <span style="font-weight: bold;">Unspecified</span>. </p>
+                                                        <li value="8">At <span style="font-weight: bold;">Y Dimension</span>, select your matrix criteria from the drop-down list. This is optional, and the fields displayed depend on the matrix type. </li>
+                                                        <p>
+                                                            </p>
+<table style="mc-table-style: url('../../resources/tablestyles/fielddesc no indent.css');" class="TableStyle-FieldDesc_no_indent" cellspacing="0">
+                                                                <col class="TableStyle-FieldDesc_no_indent-Column-Column1" style="width: 117px;">
+                                                                <col class="TableStyle-FieldDesc_no_indent-Column-Column2">
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">Calls</td>
+                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">Unspecified, By Type, By Top Level Type</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">Requests</td>
+                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">Unspecified, By Request Type, By Workflow Template</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyB-Column1-">Tasks or approvals</td>
+                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyA-Column2-">Unspecified, By Task Type</td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        
+                                                        <li value="9">At <span style="font-weight: bold;">Z Dimension</span>, select your matrix criteria. If you do not want to use dimension Z, set it to <b>Unspecified</b>. Otherwise, select <b>Service</b> and then select a specific service in <b>Filter by</b>which is in the section below the definition area. After timings are entered into the matrix for the first service, select the next service for which timings need to be set.</li>
+                                                        <li value="10">The matrix appears below the definition area, based on the dimensions you selected. The columns will be <span style="font-weight: bold;">Priority</span> (or <span style="font-weight: bold;">Default</span> if you chose X Dimension to be <span style="font-weight: bold;">Unspecified</span>), and the rows will be labeled based on your Y Dimension criterion. If you selected Workflow Template as the Y Dimension criterion, the rows will list each workflow template.</li>
+                                                        <li value="11">For each cell in the table, specify the length of time when the escalations and breach occur for a particular agreement, in the format “h:mm”, where h represents the hours and mm represents the minutes of the agreement. To set a time of two hours and fifteen minutes, type 2:15 into the cell.</li>
+                                                        <p class="note">To use the same times for several rows, type the time in one of the rows and then use the <img src="/storage/app/media/Help/images/copy%20current%20row%20button.png"> and <img src="/storage/app/media/Help/images/paste%20onto%20current%20row%20button.png"> buttons to copy and paste the times. You can use the CTRL and Shift keys to copy onto multiple rows.</p>
+                                                        <li value="12">Select <img src="/storage/app/media/Help/images/save%20button.png">  to save the changes. Provide the <a href="../general%20topics/change%20reasons.htm">Change Reasons</a> if prompted to do so.</li>
+                                                    </ol>
+                                                    <h2>Renaming an Agreement Matrix</h2>
+                                                    <h2 class="Prerequisite">Before you start</h2>
+                                                    <p class="prereqtextlast">You must have <b>SLM Setup</b> enabled within your <a href="../admin%20security%20roles/general%20access%20security%20role%20-%20admin%20tab.htm">General Access Security Role</a> in order to configure any SLM administration settings.</p>
+                                                    <p>Verify that you have already defined options for Workflow Management and the CMDB, especially priorities, types, service levels, service types and CMDB item types.
+</p>
+                                                    <ol>
+                                                        <li value="1">
+                                                            <p>Select the <a href="../general%20topics/asmcorewindow.htm" style="font-weight: bold;">Menu</a> button <img src="/storage/app/media/Help/images/menu%20button.png">, then <b>Admin</b>, and then select <b>System Administration</b>. The System Administration window is displayed, with a menu of options available <a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="../../resources/images/sys%20admin%20menu.png"><img class="MCPopupThumbnail img imgthumbnail" data-mc-width="780" data-mc-height="488" src="/storage/app/media/Help/images/sys%20admin%20menu_thumb_0_48.png" tabindex=""></a>. In the Explorer pane, select <b>Service Level Management</b>.</p>
+                                                        </li>
+                                                        <li value="2">Select <b>Matrix Definition</b> to open the window.</li>
+                                                    </ol>
+                                                    <ol start="3">
+                                                        <li value="3">Select the required <span style="font-weight: bold;">Event Type</span> by selecting on the <span style="font-weight: bold;">Name</span> field.</li>
+                                                        <li value="4">Type over the name with the new name. </li>
+                                                        <li value="5">Select <img src="/storage/app/media/Help/images/save%20button.png">  to save the changes. Provide the <a href="../general%20topics/change%20reasons.htm">Change Reasons</a> if prompted to do so.</li>
+                                                    </ol>
+                                                    <h2>Deleting an Agreement Matrix</h2>
+                                                    <h2 class="Prerequisite">Before you start</h2>
+                                                    <p class="prereqtextlast">You must have <b>SLM Setup</b> enabled within your <a href="../admin%20security%20roles/general%20access%20security%20role%20-%20admin%20tab.htm">General Access Security Role</a> in order to configure any SLM administration settings.</p>
+                                                    <p>Verify that you have already defined options for Workflow Management and the CMDB, especially priorities, types, service levels, service types and CMDB item types.
+</p>
+                                                    <ol>
+                                                        <li value="1">
+                                                            <p>Select the <a href="../general%20topics/asmcorewindow.htm" style="font-weight: bold;">Menu</a> button <img src="/storage/app/media/Help/images/menu%20button.png">, then <b>Admin</b>, and then select <b>System Administration</b>. The System Administration window is displayed, with a menu of options available <a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="../../resources/images/sys%20admin%20menu.png"><img class="MCPopupThumbnail img imgthumbnail" data-mc-width="780" data-mc-height="488" src="/storage/app/media/Help/images/sys%20admin%20menu_thumb_0_48.png" tabindex=""></a>. In the Explorer pane, select <b>Service Level Management</b>.</p>
+                                                        </li>
+                                                        <li value="2">Select <b>Matrix Definition</b> to open the window.</li>
+                                                    </ol>
+                                                    <ol start="3">
+                                                        <li value="3">Select the required row and select <img src="/storage/app/media/Help/images/delete%20button.png">. </li>
+                                                        <li value="4">Select <img src="/storage/app/media/Help/images/save%20button.png">  to save the changes. Provide the <a href="../general%20topics/change%20reasons.htm">Change Reasons</a> if prompted to do so.</li>
+                                                    </ol>
+                                                

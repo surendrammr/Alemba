@@ -1,0 +1,789 @@
+url = "/home2"
+layout = "home"
+title = "home2"
+description = "The home page"
+is_hidden = 0
+meta_title = "ITSM Tool for Smart IT Service Management | Alemba"
+meta_description = "Alemba Service Manager is an ITIL-aligned ITSM tool that automates workflows and elevates IT service delivery across your organization."
+class = "bkg-dark"
+robot_index = "index"
+robot_follow = "follow"
+seoOptionsEnabledInSitemap = 1
+seoOptionsUseUpdatedAt = 1
+seoOptionsRobotIndex = "index"
+seoOptionsRobotFollow = "follow"
+seoOptionsChangefreq = "daily"
+seoOptionsPriority = 0.5
+canonical_url = "https://alemba.com/home2"
+seoOptionsCanonicalUrl = "https://alemba.com/home2 "
+seoOptionsOgCard = "summary_large_image"
+==
+<?php
+use Alemba\Alemba\Models\Release;
+
+function onStart()
+{
+    // Get latest release (as an array to avoid it overriding the homepage SEO tags)
+
+    $this['latest_release'] = Release::where('live', 1)->orderBy('date', 'desc')->first()->toArray();
+
+}
+?>
+==
+<script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "url": "https://alemba.com",
+      "logo": "{{ 'assets/images/alemba-logo.svg'|theme }}"
+    }
+</script>
+
+
+{#
+    <div class="jumbotron jumbotron-fluid homepage-banner-strip py-2">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col homepage-banner-strip-content">
+                    <img class="img-fluid" src="{{ 'Misc/logo-govuk.png'|media }}" alt="gov.uk">
+                    <h5><a style="text-decoration:none" href="{{ 'blog-entry'|page({ category: 'news', slug: 'alemba-service-manager-g-cloud-14-framework-appointment' }) }}">Now available on G-Cloud 14</a></h5>
+                </div>
+            </div>
+        </div>
+    </div>
+    #}
+    
+    <div class="jumbotron jumbotron-fluid homepage-banner-strip py-2">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col homepage-banner-strip-content">
+                    <h5><a style="text-decoration:none" href="{{ 'blog-entry'|page({ category: 'news', slug: 'alemba-service-manager-certified-22-pinkverify-processes' }) }}">ASM is now PinkVERIFY&reg; Certified for 22 Processes - #1 Certified Vendor in the world</a></h5>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    {#
+    <div class="jumbotron jumbotron-fluid homepage-banner-strip py-2">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col homepage-banner-strip-content">
+                    <i class="fa fa-calendar me-2"></i>
+                    <h5><a style="text-decoration:none" href="https://alemba.com/events/alemba-customer-lunch-learn-sessions-uk-ireland-2025">Join our free customer Lunch & Learn sessions across the UK & Ireland – Sign up today <svg width="22" height="16" viewBox="0 0 22 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M21.6334 6.86518L21.6322 6.864L15.1007 0.363996C14.6114 -0.122942 13.82 -0.12113 13.3329 0.368246C12.8459 0.857558 12.8478 1.649 13.3371 2.136L17.7224 6.5H1.25C0.559625 6.5 0 7.05962 0 7.75C0 8.44037 0.559625 9 1.25 9H17.7223L13.3372 13.364C12.8479 13.851 12.846 14.6424 13.333 15.1317C13.8201 15.6212 14.6116 15.6229 15.1008 15.136L21.6323 8.636L21.6334 8.63481C22.123 8.14618 22.1214 7.35218 21.6334 6.86518Z" fill="#0096DC"/>
+</svg>
+</a></h5>
+                </div>
+            </div>
+        </div>
+    </div>
+    #}
+    
+    <main class="container-fluid" id="homepage-container">
+
+
+      <section class="hero-section">
+        <div class="hero-container container">
+            <div class="hero-content">
+                <h1>The Art of ITSM: Powerful,<br> Not Wasteful.</h1>
+                <p class="subtitle">Modern, ITIL-Aligned ITSM<br> Software for Enterprise Teams</p>
+                <p class="description">
+                    Alemba Service Manager automates IT workflows, improves SLA compliance,
+                    operational governance, and empowers users with license-free self-service.
+                </p>
+                <div class="hero-buttons">
+                    <a href="#" class="btn btn-pink">Request a Demo</a>
+                    <a href="#" class="btn btn-yellow">Watch a 2-Min Demo</a>
+                </div>
+            </div>
+    
+            <div class="hero-image">
+    <img class="imac-mask lazyload" data-src="{{ 'Misc/pic-imac-asm-core-calls.jpg'|media }}" data-srcset="{{ 'Misc/pic-imac-asm-core-calls@2x.jpg'|media }} 2x" alt="ASM Core" />
+            </div>
+        </div>
+    </section>
+  
+
+      {# PinkVerify banner #}
+
+      <!-- features section code started from here -->
+    
+      <div class="row banner-magenta d-flex align-items-center" id="homepage-pinkverify-banner">
+    
+        <div class="col-4 offset-1 col-sm-3 col-md-2 mb-3 mb-sm-0 col-lg-2">
+            <img class="d-inline-block img-fluid lazyload" data-src="{{ 'Badges/badge_pinkverify_certified_22p.png'|media }}" data-srcset="{{ 'Badges/badge_pinkverify_certified_22p@2x.png'|media }} 2x" alt="PinkVERIFY Certified 22 processes" />
+        </div>
+        <div class="col-7 offset-sm-0 col-sm-5 col-md-6 mb-3 mb-sm-0 col-lg-6">
+            <h4 class="h5 d-inline-block mb-0">Now certified for 22 processes. &nbsp;&nbsp;<i class="orange fa-solid fa-award"></i> <strong>#1 certified vendor in the world</strong></h4>
+        </div>
+        <div class="col-7 offset-5 offset-sm-0 col-sm-3 col-md-3 mb-sm-0 col-lg-3">
+          <a class="btn btn-lg btn-bright" href="{{ 'pinkverify'|page }}" role="button">Find out more</a>
+        </div>
+    
+      </div>
+    
+      <div id="homepage-middle" class="row bkg-light pt-5">
+        <h2 id="trust-title" class="trust-title">Trust Banner Section</h2>
+        <div class="row">
+            <div class="mb-5 col-3 col-xxl-auto offset-xxl-2 d-flex justify-content-center align-items-center"><img class="lazyload" style="max-width:110px; max-height:60px;" data-src="{{ 'Customers/Barts Health NHS Trust logo.svg'|media }}" alt="Barts Health NHS Trust" /></div>
+            <div class="mb-5 col-3 col-xxl-1 d-flex justify-content-center align-items-center"><img class="lazyload" style="max-width:110px; max-height:60px;" data-src="{{ 'Customers/logo-ppg.svg'|media }}" alt="PPG" /></div>
+            <div class="mb-5 col-3 col-xxl-1 d-flex justify-content-center align-items-center"><img class="lazyload" style="max-width:110px; max-height:60px;" data-src="{{ 'Customers/aps-bank-logo.png'|media }}" alt="APS Bank" /></div>
+            <div class="mb-5 col-3 col-xxl-1 d-flex justify-content-center align-items-center"><img class="lazyload" style="max-width:110px; max-height:60px;" data-src="{{ 'Customers/customer-liverpool.png'|media }}" alt="Liverpool City Council" /></div>
+            <div class="mb-5 col-3 col-xxl-1 d-flex justify-content-center align-items-center"><img class="lazyload" style="max-width:110px; max-height:60px;" data-src="{{ 'Customers/Kroger-200w.png'|media }}" alt="Kroger" /></div>
+            <div class="mb-5 col-3 col-xxl-1 d-flex justify-content-center align-items-center"><img class="lazyload" style="max-width:110px; max-height:60px;" data-src="{{ 'Customers/customer-wilfred-laurier.png'|media }}" alt="Wilfred Laurier" /></div>
+            <div class="mb-5 col-3 col-xxl-1 d-flex justify-content-center align-items-center"><img class="lazyload" style="max-width:110px; max-height:60px;" data-src="{{ 'Customers/North Yorkshire Police logo.svg'|media }}" alt="North Yorkshire Police" /></div>
+            <div class="mb-5 col-3 col-xxl-1 d-flex justify-content-center align-items-center"><img class="lazyload" style="max-width:110px; max-height:60px;" data-src="{{ 'Customers/Idaho Power logo.svg'|media }}" alt="Idaho Power" /></div>
+        </div>
+    
+      </div>
+    
+      <div class="homepage-below-banner ">
+
+        <section class="py-5 py-md-6 bg-dark text-light">
+          <div class="container text-center">
+            <h2 class="fw-semibold mb-3 fs-1 lh-sm">
+              Struggling with manual IT workflows, ticket <br class="d-none d-md-block">
+              overload, or SLA breaches?
+            </h2>
+        
+            <p class="text-secondary mb-5 mx-auto" style="max-width: 880px;">
+              Alemba Service Manager addresses core operational challenges faced by enterprise IT teams through automation,
+              no-code configuration, and license-free Self Service Portal access for users. Here’s how it solves the most common issues:
+            </p>
+        
+            <div class="row gy-5 gx-lg-4">
+              <!-- Feature 1 -->
+              <div class="col-12 col-md-6 col-lg-3 text-md-start text-center">
+                <div class="mb-3">
+                  <img src="/storage/app/media/Icons/New-pages-icons/iteration 1.svg" alt="Iteration icon"
+                       class="img-fluid" style="max-width: 60px;">
+                </div>
+                <h3 class="fw-semibold mb-2" style="color: #e61b7a; font-size: 1.1rem;">
+                  Manual Processes<br>Delay Resolution
+                </h3>
+                <p class="small text-light opacity-75 mb-0">
+                  Alemba replaces repetitive tasks with no-code automation. Set up workflows to route,
+                  approve, and resolve tickets fast and without scripting.
+                </p>
+              </div>
+        
+              <!-- Feature 2 -->
+              <div class="col-12 col-md-6 col-lg-3 text-md-start text-center">
+                <div class="mb-3">
+                  <img src="/storage/app/media/Icons/New-pages-icons/ticket 1.svg" alt="Ticket icon"
+                       class="img-fluid" style="max-width: 60px;">
+                </div>
+                <h3 class="fw-semibold mb-2" style="color: #e61b7a; font-size: 1.1rem;">
+                  Too Many Tickets,<br>Not Enough Time
+                </h3>
+                <p class="small text-light opacity-75 mb-0">
+                  AI Ops spots repeat incidents and turns them into problem records. That means fewer tickets,
+                  faster fixes, and less drain on your service desk.
+                </p>
+              </div>
+        
+              <!-- Feature 3 -->
+              <div class="col-12 col-md-6 col-lg-3 text-md-start text-center">
+                <div class="mb-3">
+                  <img src="/storage/app/media/Icons/New-pages-icons/breach 1.svg" alt="Breach icon"
+                       class="img-fluid" style="max-width: 60px;">
+                </div>
+                <h3 class="fw-semibold mb-2" style="color: #e61b7a; font-size: 1.1rem;">
+                  SLA Breaches Hurt<br>Reliability and Trust
+                </h3>
+                <p class="small text-light opacity-75 mb-0">
+                  Track every SLA in real time. Built-in alerts and automated escalations help you stay ahead
+                  of deadlines and keep performance on target.
+                </p>
+              </div>
+        
+              <!-- Feature 4 -->
+              <div class="col-12 col-md-6 col-lg-3 text-md-start text-center">
+                <div class="mb-3">
+                  <img src="/storage/app/media/Icons/New-pages-icons/money 1.svg" alt="Money icon"
+                       class="img-fluid" style="max-width: 60px;">
+                </div>
+                <h3 class="fw-semibold mb-2" style="color: #e61b7a; font-size: 1.1rem;">
+                  Per-User Fees<br>Hold You Back
+                </h3>
+                <p class="small text-light opacity-75 mb-0">
+                  Give everyone access, without worrying about license limits. Alemba’s self-service portal
+                  is 100% license-free, helping users solve issues without contacting IT.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+        
+        
+       <!-- Alemba services section code start from here -->
+
+       <section class="services-features py-5">
+        <div class="container">
+      
+          <!-- Main heading -->
+          <header class="text-center mb-5">
+            <h2 class="h1 fw-bold mb-2">What Alemba Service Manager Delivers</h2>
+            <p class="small text-muted mb-3">
+              Grouped by how your teams work. Built to improve IT performance across every layer of service management.
+            </p>
+          </header>
+      
+          <!-- Group: Service Operations -->
+          <div class="group mb-5">
+            <h3 class="h4 text-center text-pink mb-1">Service Operations</h3>
+            <p class="text-center text-muted small mb-4">
+              Designed to keep core IT services running smoothly and aligned with business goals.
+            </p>
+      
+            <div class="row gx-3 gy-4">
+              <!-- Card 1 -->
+              <div class="col-12 col-md-6 col-lg-3">
+                <div class="card h-100 shadow-sm border-light rounded-3">
+                  <div class="card-body d-flex flex-column">
+                    <div class="icon mb-3">
+                      <img src="/storage/app/media/Icons/New-pages-icons/compliance 1.svg" alt="Incident" class="img-fluid icon-img">
+                    </div>
+                    <h4 class="card-title h5 text-pink fw-semibold">Incident Management</h4>
+                    <p class="card-text text-muted small mb-3">
+                      Log, categorize, assign, and resolve incidents efficiently. Prioritize based on impact and urgency while keeping users informed throughout the resolution process.
+                    </p>
+                    <div class="mt-auto">
+                      <a href="#" class="link-primary fw-semibold fs-6 text-decoration-none">Learn more <span class="link-arrow"><svg width="18" height="16" viewBox="0 0 22 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M21.6334 6.86518L21.6322 6.864L15.1007 0.363996C14.6114 -0.122942 13.82 -0.12113 13.3329 0.368246C12.8459 0.857558 12.8478 1.649 13.3371 2.136L17.7224 6.5H1.25C0.559625 6.5 0 7.05962 0 7.75C0 8.44037 0.559625 9 1.25 9H17.7223L13.3372 13.364C12.8479 13.851 12.846 14.6424 13.333 15.1317C13.8201 15.6212 14.6116 15.6229 15.1008 15.136L21.6323 8.636L21.6334 8.63481C22.123 8.14618 22.1214 7.35218 21.6334 6.86518Z" fill="#0096DC"/>
+</svg>
+</span></a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+      
+              <!-- Card 2 -->
+              <div class="col-12 col-md-6 col-lg-3">
+                <div class="card h-100 shadow-sm border-light rounded-3">
+                  <div class="card-body d-flex flex-column">
+                    <div class="icon mb-3">
+                      <img src="/storage/app/media/Icons/New-pages-icons/conflict-resolution 1.svg "  alt="Problem" class="img-fluid icon-img">
+                    </div>
+                    <h4 class="card-title h5 text-pink fw-semibold">Problem Management</h4>
+                    <p class="card-text text-muted small mb-3">
+                      Identify root causes and eliminate recurring issues using proactive trend analysis and AI Ops insights. Automatically generate problem records from linked incidents.
+                    </p>
+                    <div class="mt-auto">
+                      <a href="#" class="link-primary fw-semibold fs-6 text-decoration-none">Learn more <span class="link-arrow"><svg width="18" height="16" viewBox="0 0 22 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M21.6334 6.86518L21.6322 6.864L15.1007 0.363996C14.6114 -0.122942 13.82 -0.12113 13.3329 0.368246C12.8459 0.857558 12.8478 1.649 13.3371 2.136L17.7224 6.5H1.25C0.559625 6.5 0 7.05962 0 7.75C0 8.44037 0.559625 9 1.25 9H17.7223L13.3372 13.364C12.8479 13.851 12.846 14.6424 13.333 15.1317C13.8201 15.6212 14.6116 15.6229 15.1008 15.136L21.6323 8.636L21.6334 8.63481C22.123 8.14618 22.1214 7.35218 21.6334 6.86518Z" fill="#0096DC"/>
+</svg>
+</span></a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+      
+              <!-- Card 3 -->
+              <div class="col-12 col-md-6 col-lg-3">
+                <div class="card h-100 shadow-sm border-light rounded-3">
+                  <div class="card-body d-flex flex-column">
+                    <div class="icon mb-3">
+                      <img src="/storage/app/media/Icons/New-pages-icons/rpa 1.svg"  alt="SLM" class="img-fluid icon-img">
+                    </div>
+                    <h4 class="card-title h5 text-pink fw-semibold">Service Level Management (SLM)</h4>
+                    <p class="card-text text-muted small mb-3">
+                      Track SLAs in real time. Set response and resolution targets by priority, monitor performance against thresholds, and prevent breaches with built-in alerts.
+                    </p>
+                    <div class="mt-auto">
+                      <a href="#" class="link-primary fw-semibold fs-6 text-decoration-none">Learn more <span class="link-arrow"><svg width="18" height="16" viewBox="0 0 22 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M21.6334 6.86518L21.6322 6.864L15.1007 0.363996C14.6114 -0.122942 13.82 -0.12113 13.3329 0.368246C12.8459 0.857558 12.8478 1.649 13.3371 2.136L17.7224 6.5H1.25C0.559625 6.5 0 7.05962 0 7.75C0 8.44037 0.559625 9 1.25 9H17.7223L13.3372 13.364C12.8479 13.851 12.846 14.6424 13.333 15.1317C13.8201 15.6212 14.6116 15.6229 15.1008 15.136L21.6323 8.636L21.6334 8.63481C22.123 8.14618 22.1214 7.35218 21.6334 6.86518Z" fill="#0096DC"/>
+</svg>
+</span></a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+      
+              <!-- Card 4 -->
+              <div class="col-12 col-md-6 col-lg-3">
+                <div class="card h-100 shadow-sm border-light rounded-3">
+                  <div class="card-body d-flex flex-column">
+                    <div class="icon mb-3">
+                      <img src="/storage/app/media/Icons/New-pages-icons/creative 1.svg"  alt="Knowledge" class="img-fluid icon-img">
+                    </div>
+                    <h4 class="card-title h5 text-pink fw-semibold">Knowledge Management</h4>
+                    <p class="card-text text-muted small mb-3">
+                      Build and maintain a searchable knowledge base. Allow support teams and end users to access step-by-step solutions, reducing ticket volume and resolution times.
+                    </p>
+                    <div class="mt-auto">
+                      <a href="#" class="link-primary fw-semibold fs-6 text-decoration-none">Learn more <span class="link-arrow"><svg width="18" height="16" viewBox="0 0 22 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M21.6334 6.86518L21.6322 6.864L15.1007 0.363996C14.6114 -0.122942 13.82 -0.12113 13.3329 0.368246C12.8459 0.857558 12.8478 1.649 13.3371 2.136L17.7224 6.5H1.25C0.559625 6.5 0 7.05962 0 7.75C0 8.44037 0.559625 9 1.25 9H17.7223L13.3372 13.364C12.8479 13.851 12.846 14.6424 13.333 15.1317C13.8201 15.6212 14.6116 15.6229 15.1008 15.136L21.6323 8.636L21.6334 8.63481C22.123 8.14618 22.1214 7.35218 21.6334 6.86518Z" fill="#0096DC"/>
+</svg>
+</span></a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+      
+          <!-- Group: User Empowerment -->
+          <div class="group mb-5">
+            <h3 class="h4 text-center text-pink mb-1">User Empowerment</h3>
+            <p class="text-center text-muted small mb-4">
+              Tools that put control in the hands of your users, not behind a license wall.
+            </p>
+      
+            <div class="row gx-3 gy-4">
+              <!-- Card A -->
+              <div class="col-12 col-md-6 col-lg-4">
+                <div class="card h-100 shadow-sm border-light rounded-3">
+                  <div class="card-body d-flex flex-column">
+                    <div class="icon mb-3">
+                      <img src="/storage/app/media/Icons/New-pages-icons/Group (1).svg" alt="Portal" class="img-fluid icon-img">
+                    </div>
+                    <h4 class="card-title h5 text-pink fw-semibold">Self-Service Portal</h4>
+                    <p class="card-text text-muted small mb-3">
+                      Give every employee access to log requests, track progress, and resolve issues on their own, with no license limits.
+                    </p>
+                    <div class="mt-auto">
+                      <a href="#" class="link-primary fw-semibold fs-6 text-decoration-none">Learn more <span class="link-arrow"><svg width="18" height="16" viewBox="0 0 22 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M21.6334 6.86518L21.6322 6.864L15.1007 0.363996C14.6114 -0.122942 13.82 -0.12113 13.3329 0.368246C12.8459 0.857558 12.8478 1.649 13.3371 2.136L17.7224 6.5H1.25C0.559625 6.5 0 7.05962 0 7.75C0 8.44037 0.559625 9 1.25 9H17.7223L13.3372 13.364C12.8479 13.851 12.846 14.6424 13.333 15.1317C13.8201 15.6212 14.6116 15.6229 15.1008 15.136L21.6323 8.636L21.6334 8.63481C22.123 8.14618 22.1214 7.35218 21.6334 6.86518Z" fill="#0096DC"/>
+</svg>
+</span></a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+      
+              <!-- Card B -->
+              <div class="col-12 col-md-6 col-lg-4">
+                <div class="card h-100 shadow-sm border-light rounded-3">
+                  <div class="card-body d-flex flex-column">
+                    <div class="icon mb-3">
+                      <img src="/storage/app/media/Icons/New-pages-icons/robotics 1.svg" alt="Portal" class="img-fluid icon-img">
+
+                    </div>
+                    <h4 class="card-title h5 text-pink fw-semibold">Chatbot</h4>
+                    <p class="card-text text-muted small mb-3">
+                      Offer 24/7 support with a virtual agent that integrates directly with the Alemba platform, guiding users to the right solutions faster.
+                    </p>
+                    <div class="mt-auto">
+                      <a href="#" class="link-primary fw-semibold fs-6 text-decoration-none">Learn more <span class="link-arrow"><svg width="18" height="16" viewBox="0 0 22 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M21.6334 6.86518L21.6322 6.864L15.1007 0.363996C14.6114 -0.122942 13.82 -0.12113 13.3329 0.368246C12.8459 0.857558 12.8478 1.649 13.3371 2.136L17.7224 6.5H1.25C0.559625 6.5 0 7.05962 0 7.75C0 8.44037 0.559625 9 1.25 9H17.7223L13.3372 13.364C12.8479 13.851 12.846 14.6424 13.333 15.1317C13.8201 15.6212 14.6116 15.6229 15.1008 15.136L21.6323 8.636L21.6334 8.63481C22.123 8.14618 22.1214 7.35218 21.6334 6.86518Z" fill="#0096DC"/>
+</svg>
+</span></a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+      
+              <!-- Card C -->
+              <div class="col-12 col-md-6 col-lg-4">
+                <div class="card h-100 shadow-sm border-light rounded-3">
+                  <div class="card-body d-flex flex-column">
+                    <div class="icon mb-3">
+                      <img src="/storage/app/media/Icons/New-pages-icons/satisfaction 1.svg" alt="Portal" class="img-fluid icon-img">
+                    </div>
+                    <h4 class="card-title h5 text-pink fw-semibold">Request Fulfilment</h4>
+                    <p class="card-text text-muted small mb-3">
+                      Standardize and automate service requests — configure forms, approvals, and tasks with no-code tools.
+                    </p>
+                    <div class="mt-auto">
+                      <a href="#" class="link-primary fw-semibold fs-6 text-decoration-none">Learn more <span class="link-arrow"><svg width="18" height="16" viewBox="0 0 22 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M21.6334 6.86518L21.6322 6.864L15.1007 0.363996C14.6114 -0.122942 13.82 -0.12113 13.3329 0.368246C12.8459 0.857558 12.8478 1.649 13.3371 2.136L17.7224 6.5H1.25C0.559625 6.5 0 7.05962 0 7.75C0 8.44037 0.559625 9 1.25 9H17.7223L13.3372 13.364C12.8479 13.851 12.846 14.6424 13.333 15.1317C13.8201 15.6212 14.6116 15.6229 15.1008 15.136L21.6323 8.636L21.6334 8.63481C22.123 8.14618 22.1214 7.35218 21.6334 6.86518Z" fill="#0096DC"/>
+</svg>
+</span></a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+      
+          <!-- Group: Governance & Integration -->
+          <div class="group mb-2">
+            <h3 class="h4 text-center text-pink mb-1">Governance &amp; Integration</h3>
+            <p class="text-center text-muted small mb-4">
+              Support compliance, reduce risk, and unify IT assets and changes in one system.
+            </p>
+      
+            <div class="row gx-3 gy-4">
+              <div class="col-12 col-md-6 col-lg-3">
+                <div class="card h-100 shadow-sm border-light rounded-3">
+                  <div class="card-body d-flex flex-column">
+                    <div class="icon mb-3">
+                      <img src="/storage/app/media/Icons/New-pages-icons/interaction 1.svg" alt="Portal" class="img-fluid icon-img">
+
+                    </div>
+                    <h4 class="card-title h5 text-pink fw-semibold">Change Management</h4>
+                    <p class="card-text text-muted small mb-3">
+                      Plan, assess, and deploy changes with full traceability to minimise risk and downtime.
+                    </p>
+                    <div class="mt-auto">
+                      <a href="#" class="link-primary fw-semibold fs-6 text-decoration-none">Learn more <span class="link-arrow"><svg width="18" height="16" viewBox="0 0 22 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M21.6334 6.86518L21.6322 6.864L15.1007 0.363996C14.6114 -0.122942 13.82 -0.12113 13.3329 0.368246C12.8459 0.857558 12.8478 1.649 13.3371 2.136L17.7224 6.5H1.25C0.559625 6.5 0 7.05962 0 7.75C0 8.44037 0.559625 9 1.25 9H17.7223L13.3372 13.364C12.8479 13.851 12.846 14.6424 13.333 15.1317C13.8201 15.6212 14.6116 15.6229 15.1008 15.136L21.6323 8.636L21.6334 8.63481C22.123 8.14618 22.1214 7.35218 21.6334 6.86518Z" fill="#0096DC"/>
+</svg>
+</span></a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+      
+              <div class="col-12 col-md-6 col-lg-3">
+                <div class="card h-100 shadow-sm border-light rounded-3">
+                  <div class="card-body d-flex flex-column">
+                    <div class="icon mb-3">
+                      <img src="/storage/app/media/Icons/New-pages-icons/building 1.svg" alt="Portal" class="img-fluid icon-img">
+                    </div>
+                    <h4 class="card-title h5 text-pink fw-semibold">Federated CMDB</h4>
+                    <p class="card-text text-muted small mb-3">
+                      Consolidate asset data from multiple sources and visualise dependencies and configuration changes.
+                    </p>
+                    <div class="mt-auto">
+                      <a href="#" class="link-primary fw-semibold fs-6 text-decoration-none">Learn more <span class="link-arrow"><svg width="18" height="16" viewBox="0 0 22 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M21.6334 6.86518L21.6322 6.864L15.1007 0.363996C14.6114 -0.122942 13.82 -0.12113 13.3329 0.368246C12.8459 0.857558 12.8478 1.649 13.3371 2.136L17.7224 6.5H1.25C0.559625 6.5 0 7.05962 0 7.75C0 8.44037 0.559625 9 1.25 9H17.7223L13.3372 13.364C12.8479 13.851 12.846 14.6424 13.333 15.1317C13.8201 15.6212 14.6116 15.6229 15.1008 15.136L21.6323 8.636L21.6334 8.63481C22.123 8.14618 22.1214 7.35218 21.6334 6.86518Z" fill="#0096DC"/>
+</svg>
+</span></a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+      
+              <div class="col-12 col-md-6 col-lg-3">
+                <div class="card h-100 shadow-sm border-light rounded-3">
+                  <div class="card-body d-flex flex-column">
+                    <div class="icon mb-3">
+                      <img src="/storage/app/media/Icons/New-pages-icons/assets 1.svg" alt="Portal" class="img-fluid icon-img">
+                    </div>
+                    <h4 class="card-title h5 text-pink fw-semibold">Asset Management</h4>
+                    <p class="card-text text-muted small mb-3">
+                      Track physical and digital assets across their lifecycle, from procurement to retirement.
+                    </p>
+                    <div class="mt-auto">
+                      <a href="#" class="link-primary fw-semibold fs-6 text-decoration-none">Learn more <span class="link-arrow"><svg width="18" height="16" viewBox="0 0 22 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M21.6334 6.86518L21.6322 6.864L15.1007 0.363996C14.6114 -0.122942 13.82 -0.12113 13.3329 0.368246C12.8459 0.857558 12.8478 1.649 13.3371 2.136L17.7224 6.5H1.25C0.559625 6.5 0 7.05962 0 7.75C0 8.44037 0.559625 9 1.25 9H17.7223L13.3372 13.364C12.8479 13.851 12.846 14.6424 13.333 15.1317C13.8201 15.6212 14.6116 15.6229 15.1008 15.136L21.6323 8.636L21.6334 8.63481C22.123 8.14618 22.1214 7.35218 21.6334 6.86518Z" fill="#0096DC"/>
+</svg>
+</span></a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+      
+              <div class="col-12 col-md-6 col-lg-3">
+                <div class="card h-100 shadow-sm border-light rounded-3">
+                  <div class="card-body d-flex flex-column">
+                    <div class="icon mb-3">
+                      <img src="/storage/app/media/Icons/New-pages-icons/teamwork 1.svg" alt="Portal" class="img-fluid icon-img">
+
+                    </div>
+                    <h4 class="card-title h4 text-pink fw-semibold">Resource Management</h4>
+                    <p class="card-text text-muted small mb-3">
+                      Assign the right people to the right tasks. Schedule technicians to balance workload and skills for better outcomes.
+                    </p>
+                    <div class="mt-auto">
+                      <a href="#" class="link-primary fw-semibold fs-6 text-decoration-none">Learn more <span class="link-arrow"><svg width="18" height="16" viewBox="0 0 22 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M21.6334 6.86518L21.6322 6.864L15.1007 0.363996C14.6114 -0.122942 13.82 -0.12113 13.3329 0.368246C12.8459 0.857558 12.8478 1.649 13.3371 2.136L17.7224 6.5H1.25C0.559625 6.5 0 7.05962 0 7.75C0 8.44037 0.559625 9 1.25 9H17.7223L13.3372 13.364C12.8479 13.851 12.846 14.6424 13.333 15.1317C13.8201 15.6212 14.6116 15.6229 15.1008 15.136L21.6323 8.636L21.6334 8.63481C22.123 8.14618 22.1214 7.35218 21.6334 6.86518Z" fill="#0096DC"/>
+                        </svg>
+                        </span></a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+      
+        </div>
+      </section>
+      
+
+      <!-- Alemba industries we serve section  -->
+
+      <section class="industry-section py-5">
+        <div class="container">
+      
+          <!-- Section heading (do not use H1 here) -->
+          <header class="text-center mb-4">
+            <h2 class="h3 fw-bold text-white mb-2">Industry Solutions for Complex Environments</h2>
+            <p class="small text-muted mx-auto" style="max-width:880px;">
+              Alemba Service Manager is trusted by critical infrastructure providers, public institutions, and large-scale enterprises where IT resilience,
+              governance, and efficiency are essential. Explore how we support your sector with secure, configurable, ITIL-aligned workflows.
+            </p>
+          </header>
+      
+          <!-- Industry cards -->
+          <div class="row gy-4 gx-4 mb-5">
+            <!-- Card 1 -->
+            <div class="col-12 col-md-6 col-lg-3">
+              <div class="industry-card card h-100 border-0 bg-transparent">
+                <div class="card-img-top position-relative overflow-hidden rounded-3">
+                  <img src="/storage/app/media/Misc/sector-healthcare.jpg" alt="Healthcare" class="w-100 d-block industry-thumb">
+                  <div class="industry-label px-3 py-3 text-white">Healthcare</div>
+                </div>
+                <div class="card-body px-0 pt-3">
+                  <p class="text-muted small mb-3">
+                    Ensure continuity of care with reliable IT support systems. Alemba helps hospitals and health systems manage high volumes of requests while meeting strict compliance requirements like HIPAA and NHS governance.
+                  </p>
+                  <a href="#" class="card-link-lg">Explore Healthcare <span class="link-arrow">→</span></a>
+                </div>
+              </div>
+            </div>
+      
+            <!-- Card 2 -->
+            <div class="col-12 col-md-6 col-lg-3">
+              <div class="industry-card card h-100 border-0 bg-transparent">
+                <div class="card-img-top position-relative overflow-hidden rounded-3">
+                  <img src="/storage/app/media/Misc/sector-local-authorities.jpg" alt="Government" class="w-100 d-block industry-thumb">
+                  <div class="industry-label px-3 py-3 text-white">Government</div>
+                </div>
+                <div class="card-body px-0 pt-3">
+                  <p class="text-muted small mb-3">
+                    Public sector organizations need secure, auditable, and budget-conscious ITSM. Alemba powers government departments with tools that reduce overhead while maintaining compliance.
+                  </p>
+                  <a href="#" class="card-link-lg">Explore Government <span class="link-arrow">→</span></a>
+                </div>
+              </div>
+            </div>
+      
+            <!-- Card 3 -->
+            <div class="col-12 col-md-6 col-lg-3">
+              <div class="industry-card card h-100 border-0 bg-transparent">
+                <div class="card-img-top position-relative overflow-hidden rounded-3">
+                  <img src="/storage/app/media/Misc/sector-finance.jpg" alt="Finance" class="w-100 d-block industry-thumb">
+                  <div class="industry-label px-3 py-3 text-white">Finance</div>
+                </div>
+                <div class="card-body px-0 pt-3">
+                  <p class="text-muted small mb-3">
+                    Alemba supports financial institutions where security, speed, and control are non-negotiable. Automate complex workflows without compromising auditability.
+                  </p>
+                  <a href="#" class="card-link-lg">Explore Finance <span class="link-arrow">→</span></a>
+                </div>
+              </div>
+            </div>
+      
+            <!-- Card 4 -->
+            <div class="col-12 col-md-6 col-lg-3">
+              <div class="industry-card card h-100 border-0 bg-transparent">
+                <div class="card-img-top position-relative overflow-hidden rounded-3">
+                  <img src="/storage/app/media/Misc/sector-utilities.jpg" alt="Utilities" class="w-100 d-block industry-thumb">
+                  <div class="industry-label px-3 py-3 text-white">Utilities</div>
+                </div>
+                <div class="card-body px-0 pt-3">
+                  <p class="text-muted small mb-3">
+                    Power, water, and telecom operators depend on stable IT operations. Alemba helps utility providers modernize support processes while integrating with legacy systems.
+                  </p>
+                  <a href="#" class="card-link-lg">Explore Utilities <span class="link-arrow">→</span></a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- /Industry cards -->
+      
+          <!-- Reviews heading + placeholder for external snippet -->
+          <div class="reviews-area mb-5 text-center">
+            <h3 class="h4 fw-semibold text-white mb-3">Here is what our customers say…</h3>
+            <p class="small text-muted mb-3">Read verified customer reviews and ratings from across the industry.</p>
+      
+            <!-- IMPORTANT: Placeholder for your review snippet widget.
+                 Replace the DIV below with your snippet HTML/JS (e.g. trustmary widget).
+                 The element has a fixed height on desktop that will hold the carousel. -->
+            <div id="reviews-snippet-wrapper" class="mx-auto" style="max-width:1200px;">
+              <!-- Insert your snippet here (do not remove the wrapper) -->
+              <div id="reviews-snippet" class="reviews-snippet-placeholder">
+                
+              </div>
+            </div>
+          </div>
+      
+          <!-- Video / CTA heading + placeholder -->
+          <div class="video-section text-center py-4">
+            <h3 class="h4 fw-semibold text-white mb-3">Why CIOs Love Alemba: Modern ITSM Without User-Based Fees</h3>
+      
+            <div class="mx-auto" style="max-width:880px;">
+              <!-- Video embed placeholder (insert your iframe or YouTube embed here) -->
+              <div class="video-embed-placeholder ratio ratio-16x9 bg-dark rounded-3" role="region" aria-label="Product video">
+                <div class="row mb-5">
+                  <div class="col-10 offset-1 text-center">
+          
+                      <div class="embed-responsive embed-responsive-16by9">
+                          <iframe width="674" height="381" src="https://www.youtube.com/embed/22dM2nPSy_o?si=weXsDbkkAFdM6o6F" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                      </div>
+                  </div>
+              </div>
+          
+              </div>
+            </div>
+          </div>
+      
+        </div>
+      </section>
+
+
+      <!-- testimonial highligted section  -->
+      
+      <section class="testimonial-highlight py-5" aria-labelledby="testimonial-title">
+        <div class="container text-center">
+      
+          <!-- Heading (do not use h1) -->
+          <h2 id="testimonial-title" class="th-title mb-2">Trusted by Teams Who Can’t Afford Downtime</h2>
+      
+          <!-- Intro paragraph -->
+          <p class="th-intro mx-auto mb-4" style="max-width:900px;">
+            From retail to healthcare and government, mission-critical operations run on Alemba. Our platform supports some of the world’s most complex IT environments — securely, reliably, and at scale.
+          </p>
+      
+          <!-- Partner logo -->
+          <div class="th-logo-wrap mb-4" aria-hidden="true">
+            <!-- Replace src with your logo path (prefer SVG or high-res PNG) -->
+            <img src="/storage/app/media/Customers/Kroger-200w.png" alt="Kroger" class="th-logo img-fluid">
+          </div>
+      
+          <!-- Big quote -->
+          <blockquote class="th-quote mx-auto mb-3" cite="#">
+            <p>"It is all done automatically with no need for human interaction, and it all happens very quickly."</p>
+          </blockquote>
+      
+          <!-- Attribution -->
+          <div class="th-author mb-4">- Kroger Technology Team</div>
+      
+          <!-- CTA -->
+          <div>
+            <a href="#" class="btn th-cta">Read More</a>
+          </div>
+      
+        </div>
+      </section>
+
+
+      
+    <!-- enterprise and roadmap section  -->
+{# enterprise-and-roadmap.htm (updated) #}
+<section class="enterprise-features py-5">
+  <div class="container">
+
+    <!-- Section Heading -->
+    <div class="text-center mb-5">
+      <h2 class="fw-bold mb-0" style="font-size:32px; color:#1a1a1a;">Built for Real Enterprise Needs</h2>
+    </div>
+
+    <!-- Feature Row -->
+    <div class="row text-start gy-4">
+      <!-- Feature 1 -->
+      <div class="col-12 col-md-4">
+        <div class="px-3">
+          <div class="d-inline-flex align-items-center justify-content-center rounded-circle border border-2 mb-3" 
+               style="width:60px; height:60px; border-color:#f2b42a; color:#f2b42a; font-weight:700; font-size:18px;">1</div>
+          <h3 class="fw-semibold" style="color:#e61b7a; font-size:18px; line-height:1.3;">
+            ITSM + Automation in One Platform
+          </h3>
+          <p class="mb-3" style="color:#333; font-size:15px; line-height:1.7;">
+            Run all core IT processes with automation built in.
+          </p>
+          <a href="#" style="font-weight:700; font-size:15px; color:#0077c8; text-decoration:none;">
+            See It in Action →
+          </a>
+        </div>
+      </div>
+
+      <!-- Feature 2 -->
+      <div class="col-12 col-md-4">
+        <div class="px-3">
+          <div class="d-inline-flex align-items-center justify-content-center rounded-circle border border-2 mb-3" 
+               style="width:60px; height:60px; border-color:#f2b42a; color:#f2b42a; font-weight:700; font-size:18px;">2</div>
+          <h3 class="fw-semibold" style="color:#e61b7a; font-size:18px; line-height:1.3;">
+            No-Code Workflow Builder
+          </h3>
+          <p class="mb-3" style="color:#333; font-size:15px; line-height:1.7;">
+            Design workflows quickly without writing code.
+          </p>
+          <a href="#" style="font-weight:700; font-size:15px; color:#0077c8; text-decoration:none;">
+            Explore Workflow Builder →
+          </a>
+        </div>
+      </div>
+
+      <!-- Feature 3 -->
+      <div class="col-12 col-md-4">
+        <div class="px-3">
+          <div class="d-inline-flex align-items-center justify-content-center rounded-circle border border-2 mb-3" 
+               style="width:60px; height:60px; border-color:#f2b42a; color:#f2b42a; font-weight:700; font-size:18px;">3</div>
+          <h3 class="fw-semibold" style="color:#e61b7a; font-size:18px; line-height:1.3;">
+            License-Free End-User Access
+          </h3>
+          <p class="mb-3" style="color:#333; font-size:15px; line-height:1.7;">
+            Give every employee portal access at no extra cost.
+          </p>
+          <a href="#" style="font-weight:700; font-size:15px; color:#0077c8; text-decoration:none;">
+            Learn How It Works →
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Product Roadmap Banner -->
+    <div class="rounded-3 my-5 overflow-hidden position-relative" 
+         style="background:url('/storage/app/media/Banners/banner-product-roadmap.jpg') center/cover no-repeat; min-height:260px;">
+      <div class="position-absolute top-0 start-0 w-100 h-100" style="background:rgba(10,10,20,0.55);"></div>
+      <div class="text-center text-white position-relative py-5 px-3">
+        <h3 class="fw-semibold mb-2" style="font-size:28px;">Product Roadmap Teaser</h3>
+        <p class="mb-4" style="max-width:720px; margin:auto; font-size:15px; line-height:1.7; color:#f2f2f2;">
+          Find out about the exciting upcoming features we have planned for future releases.
+        </p>
+        <a href="#" class="btn" 
+           style="background:#f2b42a; color:#111; font-weight:700; border:none; border-radius:6px; padding:10px 22px;">
+           Explore the Roadmap
+        </a>
+      </div>
+    </div>
+
+    <!-- Lead Magnet Section -->
+    <div class="text-center py-4">
+      <h3 class="fw-bold mb-4" style="font-size:28px; color:#1a1a1a; line-height:1.2;">
+        Sign up and get our free guide:<br>
+        How to Cut ITSM Ticket Volume by 30% Using Automation
+      </h3>
+      <a href="#" class="btn" 
+         style="background:#e61b7a; color:#fff; font-weight:700; border:none; border-radius:6px; padding:12px 26px;">
+         Claim Your Free Guide
+      </a>
+    </div>
+
+  </div>
+</section>
+
+
+
+        {# Processes #}
+    
+        {% partial 'processes' %}
+    
+        <div>
+            <script src="https://widget.trustmary.com/5gBu_ZMA1"></script>
+        </div>
+    
+        <div class="row mb-5">
+            <div class="col-10 offset-1 text-center">
+    
+                <div class="embed-responsive embed-responsive-16by9">
+                    <iframe width="840" height="473" src="https://www.youtube.com/embed/22dM2nPSy_o?si=weXsDbkkAFdM6o6F" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                </div>
+            </div>
+        </div>
+    
+        {# Sectors #}
+    
+        {% partial 'sectors' %}
+    
+        {# Featured links #}
+    
+        {% partial 'featured' %}
+    
+        {# Lower section, with a white background #}
+    
+        <div id="homepage-lower" class="row bkg-light">
+    
+            {% partial 'customers' %}
+    
+            {% partial 'roadmap' %}
+    
+        </div>
+    
+      </div>
+    
+    </main>

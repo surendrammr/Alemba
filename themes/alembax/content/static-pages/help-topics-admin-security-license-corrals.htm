@@ -1,0 +1,96 @@
+[viewBag]
+title = "License Corrals"
+url = "/help/topics/admin-security/license-corrals"
+layout = "help"
+is_hidden = 0
+navigation_hidden = 0
+==
+                                                    <h1>License Corrals</h1>
+                                                    <p class="intro">Corralling allows you to reserve a subgroup of licenses for specific group members, to ensure that they can log in, even if all of the other available licenses are in use.</p>
+                                                    <p>When all the unrestricted licenses have been used, the corralled licenses will be reserved for the specified subgroup of Analysts.</p>
+                                                    <p>Say, for example, your organization has many analysts using <span class="GeneralVariablesCoreName">ASM Core</span> but you have a service desk in which at least two Analysts must always have access. With corralled licenses it is possible to reserve two licenses to be shared amongst the service desk only. </p>
+                                                    <p>Corralled licenses do not restrict Analysts named in that corral when there are other licenses still available. They are only reserved when the remaining general licenses have been used. </p>
+                                                    <h2>Defining License Corrals</h2>
+                                                    <h2 class="Prerequisite">Before you start</h2>
+                                                    <p class="prereqtext1">You must have <b>System Set Up</b> selected in the <a href="../admin%20security%20roles/general%20access%20security%20role%20-%20admin%20tab.htm">Admin</a> tab of your <b>General Access security role</b>.</p>
+                                                    <p class="prereqtextlast">Your system must have either a concurrent Analyst license, or a named Analyst license with a number of additional Analysts defined as concurrent Analysts to enable the <b class="Bold">License Corrals</b> option.</p>
+                                                    <ol start="1">
+                                                        <li value="1">Select <a href="../general%20topics/asmcorewindow.htm"><span style="font-size: 24pt;">≡</span></a> &gt; <b>Admin</b> &gt;  <b>System Administration</b>.   The System Administration window is displayed. In the Explorer pane, expand <b>Security</b>.</li>
+                                                        <li value="2">Select the <b class="Bold">License Corrals</b> option from the Explorer pane. The <b>License Corrals</b> window appears. The top part of the window shows the concurrent licenses available:</li>
+                                                        <p>
+                                                            </p>
+<table class="TableStyle-FieldDesc" style="mc-table-style: url('../../resources/tablestyles/fielddesc.css');margin-left: 0;margin-right: auto;" cellspacing="0">
+                                                                <col class="TableStyle-FieldDesc-Column-Column1">
+                                                                <col class="TableStyle-FieldDesc-Column-Column2">
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Maximum Concurrent Licenses</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">The total number of concurrent licenses available for your system. This is a read only field</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Default</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">The current number of licenses assigned to the default corral. This is a read only field and the value will dynamically increase and decrease depending on the number of licenses allocated to non-default corrals.<p>When the sum of the licenses assigned to all Analyst-defined corrals matches the maximum number of concurrent licenses available for the system, the following warning message appears on this window:</p>
+<p><img src="/storage/app/media/Help/images/security%20-%20warning%20licenses.png"></p>
+<p>This means, any Analysts that belong to the <b class="Bold">Default</b> corral will be unable to login to the system. </p>
+<p class="ListParagraph">The number displayed will be based on your system’s configuration.</p>
+</td>
+                                                                </tr>
+                                                            </table>
+                                                        
+                                                    </ol>
+                                                    <p> </p>
+                                                    <p>Beneath this there is a browse table listing the existing corrals.</p>
+                                                    <ol start="3">
+                                                        <li value="3">Select  <img src="/storage/app/media/Help/images/add%20new.png">.</li>
+                                                        <li value="4">Complete the details: </li>
+                                                        <p>
+                                                            </p>
+<table class="TableStyle-FieldDesc" style="mc-table-style: url('../../resources/tablestyles/fielddesc.css');margin-left: 0;margin-right: auto;" cellspacing="0">
+                                                                <col class="TableStyle-FieldDesc-Column-Column1">
+                                                                <col class="TableStyle-FieldDesc-Column-Column2">
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Corral</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">The name or description of the new license corral you want to define. This will appear in the License Corral drop down in the <a href="%7B%7B%20'help-managing-people-managing-people#Completing_Person_Details'%7CstaticPage%20%7D%7D#Completing_Person_Details">Person Details</a>.</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Allocated</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">The number of licenses you want to assign to the defined license corral</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Corral Timeout</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">Select to specify a period after which inactive sessions within the corral will be timed out.<p class="note">If you do not specify a corral timeout, the default session timeout defined in the Server Console will be used.</p>
+</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Timeout Period (hh:mm)</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">The timeout period in hours and minutes</td>
+                                                                </tr>
+                                                            </table>
+                                                        
+                                                        <li value="5">Repeat for each license corral you want to create. </li>
+                                                        <li value="6">Select <img src="/storage/app/media/Help/images/save%20button.png">  to save the changes. Provide the <a href="../general%20topics/change%20reasons.htm">Change Reasons</a> if prompted to do so.. The <b class="Bold">Default</b> field is automatically updated to display the number of licenses remaining.</li>
+                                                        <li value="7">Now you can assign Analysts to the relevant corrals in their <a href="%7B%7B%20'help-managing-people-managing-people#Completing_Person_Details'%7CstaticPage%20%7D%7D#Completing_Person_Details">Person Details</a>
+</li>
+                                                    </ol>
+                                                    <h2>Modifying Details of a License Corral</h2>
+                                                    <p>You can rename corrals, reallocate license numbers and alter or remove the timeout period.</p>
+                                                    <h2 class="Prerequisite">Before you start</h2>
+                                                    <p class="prereqtext">You must have <b>System Set Up</b> selected in the <a href="../admin%20security%20roles/general%20access%20security%20role%20-%20admin%20tab.htm">Admin</a> tab of your <b>General Access security role</b>.</p>
+                                                    <ol start="1">
+                                                        <li value="1">Select <a href="../general%20topics/asmcorewindow.htm"><span style="font-size: 24pt;">≡</span></a> &gt; <b>Admin</b> &gt;  <b>System Administration</b>.   The System Administration window is displayed. In the Explorer pane, expand <b>Security</b>.</li>
+                                                        <li value="2">Select the <b class="Bold">License Corrals</b> option from the Explorer pane. The <b>License Corrals</b> window appears. The top part of the window shows the concurrent licenses available. Below this is a browse table listing all of the current corrals.</li>
+                                                        <li value="3">Highlight the information in the corral you wish to update.</li>
+                                                        <li value="4">Update the details by overwriting with new information.</li>
+                                                        <li value="5">Select <img src="/storage/app/media/Help/images/save%20button.png">  to save the changes. Provide the <a href="../general%20topics/change%20reasons.htm">Change Reasons</a> if prompted to do so.If you have amended the number of allocated licenses for a corral, the <b class="Bold">Default</b> field is automatically updated to display the number of licenses remaining. </li>
+                                                    </ol>
+                                                    <h2>Deleting a License Corral</h2>
+                                                    <h2 class="Prerequisite">Before you start</h2>
+                                                    <p class="prereqtext1">You must have <b>System Set Up</b> selected in the <a href="../admin%20security%20roles/general%20access%20security%20role%20-%20admin%20tab.htm">Admin</a> tab of your <b>General Access security role</b>.</p>
+                                                    <p class="prereqtext">You should remove the Analysts from the corral in their <a href="%7B%7B%20'help-managing-people-managing-people#Completing_Person_Details'%7CstaticPage%20%7D%7D#Completing_Person_Details">Person Details</a>, reassigning them as needed.</p>
+                                                    <p class="warning">You cannot restore a corral once you have deleted it. You must recreate it if necessary. Deleted corrals will appear in linked analyst details with an asterisk beside the name.</p>
+                                                    <ol start="1">
+                                                        <li value="1">Select <a href="../general%20topics/asmcorewindow.htm"><span style="font-size: 24pt;">≡</span></a> &gt; <b>Admin</b> &gt;  <b>System Administration</b>.   The System Administration window is displayed. In the Explorer pane, expand <b>Security</b>.</li>
+                                                        <li value="2">Select the <b class="Bold">License Corrals</b> option from the Explorer pane. The <b>License Corrals</b> window appears. The top part of the window shows the concurrent licenses available. Beneath this is a list of existing corrals.</li>
+                                                        <li value="3">Highlight the corral you wish to delete.</li>
+                                                        <li value="4">Select  <img src="/storage/app/media/Help/images/delete%20button.png"> in the toolbar. The entry is deleted. The <b class="Bold">Default</b> field is automatically updated to display the number of licenses remaining.</li>
+                                                    </ol>
+                                                

@@ -1,0 +1,351 @@
+[viewBag]
+title = " LANDESK Connector"
+url = "/help/topics/connectors/landeskconnector"
+layout = "help"
+is_hidden = 0
+navigation_hidden = 0
+==
+                                                    <h1> LANDESK Connector</h1>
+                                                    <p class="p_37">This section of the documentation contains technical specifications about the connector that is implemented to link <span class="GeneralVariablesCoreName">ASM Core</span> and LANDESK version 8.x, 9.0, and 9.5 systems. It describes the details of the third-party application, that is, LANDESK, including: </p>
+                                                    <ul class="ul_15">
+                                                        <li value="1">The version for which the connector has been developed </li>
+                                                        <li value="2">The name of the .NET assembly file </li>
+                                                        <li value="3">Connection methodology </li>
+                                                        <li value="4">The resource and link types that can be discovered on the application </li>
+                                                        <li class="li_10" value="5">The attributes of each resource and link types that can be imported into the <span class="GeneralVariablesCoreName">ASM Core</span> Configuration Management Database (CMDB) </li>
+                                                    </ul>
+                                                    <p class="note">You should familiarize yourself with the information in <a href="connector%20installation%20guide.htm" class="MCXref xref">Installing Connectors</a> before installing any connectors, and read the <a href="../integration/integrate.htm" class="MCXref xref">Integration</a> topics for more information on how to configure them.</p>
+                                                    <h2>Use Case Scenario</h2>
+                                                    <table class="TableStyle-scenario_table" style="margin-left: 0;margin-right: auto;mc-table-style: url('../../resources/tablestyles/scenario table.css');" cellspacing="0">
+                                                        <col style="width: 59pt;" class="TableStyle-scenario_table-Column-Column1">
+                                                        <col style="width: 409pt;" class="TableStyle-scenario_table-Column-Column2">
+                                                        <tr class="TableStyle-scenario_table-Body-Body1">
+                                                            <td class="TableStyle-scenario_table-BodyE-Column1-Body1">
+                                                                <p class="Strong">Purpose</p>
+                                                            </td>
+                                                            <td class="TableStyle-scenario_table-BodyD-Column2-Body1">
+                                                                <p>An organization uses LANDESK version 8.x, 9.0, and 9.5 to discover and maintain resources present in its organization networks.</p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="TableStyle-scenario_table-Body-Body1">
+                                                            <td class="TableStyle-scenario_table-BodyE-Column1-Body1">
+                                                                <p class="Strong">Role</p>
+                                                            </td>
+                                                            <td class="TableStyle-scenario_table-BodyD-Column2-Body1">
+                                                                <p>The role of this connector is to expose the resources and their relationships in order to allow for population and ongoing consistency checks of the <span class="GeneralVariablesCoreName">ASM Core</span> CMDB.</p>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                    <h2>Connector Description </h2>
+                                                    <p class="p_38">The table below provides a description of the LANDESK connector. </p>
+                                                    <table class="TableStyle-Rep_Hdr_Row" style="mc-table-style: url('../../resources/tablestyles/rep hdr row.css');" cellspacing="0">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column1">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column2">
+                                                        <thead>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Head-Header1">
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column1-Header1">
+                                                                    <p>Information fields </p>
+                                                                </th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadD-Column2-Header1">
+                                                                    <p>Names </p>
+                                                                </th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr style="height: 15pt;" class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Connector  </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p>LANDESK v8.x/9.0/9.5  &lt;-&gt; <span class="GeneralVariablesCoreName">ASM Core</span></p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr style="height: 14pt;" class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Third-party application </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p>LANDESK </p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr style="height: 15pt;" class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Assembly </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p>Infra.Connector.LANDesk.dll </p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr style="height: 15pt;" class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Connector class </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p>Infra.Connector.LANDesk.LANDeskConnector </p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr style="height: 15pt;" class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Configuration file </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p>Infra.Connector.LANDesk.icnf </p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr style="height: 27pt;" class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyB-Column1-Body1">
+                                                                    <p>Connection methodology </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyA-Column2-Body1">
+                                                                    <p>ODBC connection to a SQL database </p>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <h2>Connection Parameters </h2>
+                                                    <p class="p_39">The table below provides a description of the LANDESK connection parameters. </p>
+                                                    <table class="TableStyle-FieldDesc" style="mc-table-style: url('../../resources/tablestyles/fielddesc.css');" cellspacing="0">
+                                                        <col style="width: 105pt;" class="TableStyle-FieldDesc-Column-Column1">
+                                                        <col style="width: 318pt;" class="TableStyle-FieldDesc-Column-Column2">
+                                                        <tr style="height: 19pt;">
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-" style="font-weight: bold;">
+                                                                <p class="p_40">Parameters </p>
+                                                            </td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-" style="font-weight: bold;">
+                                                                <p class="p_40">Description </p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr style="height: 19pt;">
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">
+                                                                <p class="p_41">DB connection </p>
+                                                            </td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                <p class="p_41">Database connection string or system DSN to the LANDesk SQL database. </p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr style="height: 15pt;">
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">
+                                                                <p class="p_41">DB Login ID  </p>
+                                                            </td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                <p class="p_41">Database Login ID. </p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr style="height: 15pt;">
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">
+                                                                <p class="p_41">DB password </p>
+                                                            </td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                <p class="p_41">Database password. </p>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                    <h2>Customization </h2>
+                                                    <p>This connector permits extensions to the schema through customization of the configuration file. </p>
+                                                    <p>The possible customizations are listed below. However, the customizations are not limited to these: </p>
+                                                    <ul>
+                                                        <li value="1">New resource types </li>
+                                                        <li value="2">New resource properties </li>
+                                                        <li class="li_11" value="3">New link types </li>
+                                                    </ul>
+                                                    <h2>Connector Diagnostics </h2>
+                                                    <p>The connector has the facility to trace information. The data can be obtained through Polling tracing or Application tracing. </p>
+                                                    <h1>Resource Types </h1>
+                                                    <p class="p_37">This section lists the resource types and their properties that the connector has to discover on LANDESK 8.x, 9.0, and 9.5 systems. The connector later imports the resource types it has discovered into the <span class="GeneralVariablesCoreName">ASM Core</span> CMDB. </p>
+                                                    <h2>Resource types for LANDESK 8.5 </h2>
+                                                    <p class="p_37">This section lists the resource types and their properties that the connector has to discover on LANDESK v8.5 system. The connector later imports the resource types it has discovered into the <span class="GeneralVariablesCoreName">ASM Core</span> CMDB. </p>
+                                                    <h3>(Unmanaged) category </h3>
+                                                    <p class="p_37">The resource types that belong to the (Unmanaged) category are: </p>
+                                                    <ul>
+                                                        <li value="1">Unmanaged </li>
+                                                        <li value="2">Unmanaged Computers </li>
+                                                        <li value="3">Unmanaged Infrastructure </li>
+                                                        <li value="4">Unmanaged Other </li>
+                                                        <li value="5">Unmanaged Printers </li>
+                                                    </ul>
+                                                    <p class="p_37">All resource types above will have the following properties: </p>
+                                                    <ul class="ul_16">
+                                                        <li value="1">ID </li>
+                                                        <li value="2">Name </li>
+                                                        <li value="3">IP Address </li>
+                                                        <li value="4">Subnet Mask </li>
+                                                        <li value="5">Physical Address </li>
+                                                        <li value="6">OS </li>
+                                                        <li value="7">Work Group </li>
+                                                        <li value="8">First Scanned </li>
+                                                        <li value="9">Last scanned </li>
+                                                        <li value="10">Device Group </li>
+                                                        <li class="li_12" value="11">Device Group Comment </li>
+                                                    </ul>
+                                                    <h3>Device </h3>
+                                                    <p>This resource type will allow for the following attributes to be exposed and imported: </p>
+                                                    <ul class="ul_17">
+                                                        <li value="1">ID </li>
+                                                        <li value="2">Type </li>
+                                                        <li value="3">Device Name </li>
+                                                        <li value="4">Display Name </li>
+                                                        <li value="5">Description </li>
+                                                        <li value="6">NT Domain Controller </li>
+                                                        <li value="7">Last Login ID </li>
+                                                        <li value="8">Last Login Name </li>
+                                                        <li value="9">Primary owner </li>
+                                                        <li value="10">Domain </li>
+                                                        <li value="11">Work Group </li>
+                                                        <li value="12">Manufacturer </li>
+                                                        <li value="13">Model </li>
+                                                        <li value="14">RAM Cache </li>
+                                                        <li value="15">Netware Address </li>
+                                                        <li value="16">Directory Address </li>
+                                                        <li value="17">Owner Phone </li>
+                                                        <li value="18">Owner Email </li>
+                                                        <li value="19">Company </li>
+                                                        <li value="20">Server Type </li>
+                                                        <li value="21">Asset Tag </li>
+                                                        <li value="22">Service Tag </li>
+                                                        <li value="23">Serial No </li>
+                                                        <li value="24">Chassis Type </li>
+                                                        <li value="25">System Version </li>
+                                                        <li value="26">Has Battery </li>
+                                                        <li value="27">IP Address  </li>
+                                                        <li value="28">Subnet Mask </li>
+                                                        <li value="29">Host </li>
+                                                        <li value="30">Default Gateway Address </li>
+                                                    </ul>
+                                                    <h2>Resource types for LANDESK 8.7 </h2>
+                                                    <p class="p_42">This section lists the resource types and their properties that the connector has to discover on LANDESK v8.7 system. The connector later imports the resource types it has discovered into the <span class="GeneralVariablesCoreName">ASM Core</span> CMDB. </p>
+                                                    <h3>(Unmanaged) Category </h3>
+                                                    <p class="p_42">The resource types that belong to the (Unmanaged) category are: </p>
+                                                    <ul class="ul_18">
+                                                        <li value="1">Unmanaged </li>
+                                                        <li value="2">Unmanaged Chassis </li>
+                                                        <li value="3">Unmanaged Computers </li>
+                                                        <li value="4">Unmanaged Infrastructure </li>
+                                                        <li value="5">Unmanaged Intel AMT </li>
+                                                        <li value="6">Unmanaged IPMI </li>
+                                                        <li value="7">Unmanaged Other </li>
+                                                        <li value="8">Unmanaged Printers </li>
+                                                    </ul>
+                                                    <p class="p_42">All resource types above will have the following properties: </p>
+                                                    <ul class="ul_18">
+                                                        <li value="1">ID </li>
+                                                        <li value="2">Name </li>
+                                                        <li value="3">IP Address </li>
+                                                        <li value="4">Subnet Mask </li>
+                                                        <li value="5">Physical Address </li>
+                                                        <li value="6">OS </li>
+                                                        <li value="7">Work Group </li>
+                                                        <li value="8">First Scanned </li>
+                                                        <li value="9">Last scanned </li>
+                                                        <li value="10">Device Group </li>
+                                                        <li value="11">Device Group Comment </li>
+                                                    </ul>
+                                                    <h3>Device</h3>
+                                                    <p class="p_46">This resource type will allow for the following attributes to be exposed and imported: </p>
+                                                    <ul class="ul_17">
+                                                        <li value="1">ID </li>
+                                                        <li value="2">Type </li>
+                                                        <li value="3">Device Name </li>
+                                                        <li value="4">Display Name </li>
+                                                        <li value="5">Description </li>
+                                                        <li value="6">NT Domain Controller </li>
+                                                        <li value="7">Last Login ID </li>
+                                                        <li value="8">Last Login Name </li>
+                                                        <li value="9">Primary owner </li>
+                                                        <li value="10">Domain </li>
+                                                        <li value="11">Work Group </li>
+                                                        <li value="12">Manufacturer </li>
+                                                        <li value="13">Model </li>
+                                                        <li value="14">RAM Cache </li>
+                                                        <li value="15">Netware Address </li>
+                                                        <li value="16">Directory Address </li>
+                                                        <li value="17">Owner Phone </li>
+                                                        <li value="18">Owner Email </li>
+                                                        <li value="19">Company </li>
+                                                        <li value="20">Server Type </li>
+                                                        <li value="21">Asset Tag </li>
+                                                        <li value="22">Service Tag </li>
+                                                        <li value="23">Serial No </li>
+                                                        <li value="24">Chassis Type </li>
+                                                        <li value="25">System Version </li>
+                                                        <li value="26">Has Battery </li>
+                                                        <li value="27">IP Address  </li>
+                                                        <li value="28">Subnet Mask </li>
+                                                        <li value="29">Host </li>
+                                                        <li value="30">Default Gateway Address </li>
+                                                        <li value="31">Mother Board OEM </li>
+                                                        <li value="32">System OEM </li>
+                                                        <li value="33">Express Service Code </li>
+                                                        <li value="34">Chassis Name </li>
+                                                    </ul>
+                                                    <h2>Resource types for LANDESK 9.0 </h2>
+                                                    <p class="p_42"> This section lists the resource types and their properties that the connector has to discover on LANDESK v9.0 and 9.5 systems. The connector later imports the resource types it has discovered into the <span class="GeneralVariablesCoreName">ASM Core</span> CMDB. </p>
+                                                    <h3>(Unmanaged) Category</h3>
+                                                    <p class="p_42">The resource types that belong to the (Unmanaged) category are: </p>
+                                                    <ul class="ul_18">
+                                                        <li value="1">Unmanaged </li>
+                                                        <li value="2">Unmanaged Chassis </li>
+                                                        <li value="3">Unmanaged Computers </li>
+                                                        <li value="4">Unmanaged Connector Client </li>
+                                                        <li value="5">Unmanaged Infrastructure </li>
+                                                        <li value="6">Unmanaged Intel vPro </li>
+                                                        <li value="7">Unmanaged IPMI </li>
+                                                        <li value="8">Unmanaged Other </li>
+                                                        <li value="9">Unmanaged Printers </li>
+                                                        <li value="10">Unmanaged Virtual Hosts </li>
+                                                        <li value="11">Unmanaged Wireless Access Points </li>
+                                                    </ul>
+                                                    <p class="p_42">All resource types above will have the following properties: </p>
+                                                    <ul class="ul_18">
+                                                        <li value="1">ID </li>
+                                                        <li value="2">Name </li>
+                                                        <li value="3">IP Address </li>
+                                                        <li value="4">Subnet Mask </li>
+                                                        <li value="5">Physical Address </li>
+                                                        <li value="6">OS </li>
+                                                        <li value="7">Work Group </li>
+                                                        <li value="8">First Scanned </li>
+                                                        <li value="9">Last scanned </li>
+                                                        <li value="10">Device Group </li>
+                                                        <li value="11">Device Group Comment </li>
+                                                    </ul>
+                                                    <h3>Resource Type: Device </h3>
+                                                    <p> This resource type will allow for the following attributes to be exposed and imported: </p>
+                                                    <ul class="ul_17">
+                                                        <li value="1">ID </li>
+                                                        <li value="2">Type </li>
+                                                        <li value="3">Device Name </li>
+                                                        <li value="4">Display Name </li>
+                                                        <li value="5">Description </li>
+                                                        <li value="6">NT Domain Controller </li>
+                                                        <li value="7">Last Login ID </li>
+                                                        <li value="8">Last Login Name </li>
+                                                        <li value="9">Primary owner </li>
+                                                        <li value="10">Domain </li>
+                                                        <li value="11">Work Group </li>
+                                                        <li value="12">Manufacturer </li>
+                                                        <li value="13">Model </li>
+                                                        <li value="14">RAM Cache </li>
+                                                        <li value="15">Netware Address </li>
+                                                        <li value="16">Directory Address </li>
+                                                        <li value="17">Owner Phone </li>
+                                                        <li value="18">Owner Email </li>
+                                                        <li value="19">Company </li>
+                                                        <li value="20">Server Type </li>
+                                                        <li value="21">Asset Tag </li>
+                                                        <li value="22">Service Tag </li>
+                                                        <li value="23">Serial No </li>
+                                                        <li value="24">Chassis Type </li>
+                                                        <li value="25">System Version </li>
+                                                        <li value="26">Has Battery </li>
+                                                        <li value="27">IP Address  </li>
+                                                        <li value="28">Subnet Mask </li>
+                                                        <li value="29">Host </li>
+                                                        <li value="30">Default Gateway Address </li>
+                                                        <li value="31">Mother Board OEM </li>
+                                                        <li value="32">System OEM </li>
+                                                        <li value="33">Express Service Code </li>
+                                                        <li value="34">Chassis Name </li>
+                                                    </ul>
+                                                    <h1>Link Types </h1>
+                                                    <p class="p_47">No link types are defined for this connector. </p>
+                                                

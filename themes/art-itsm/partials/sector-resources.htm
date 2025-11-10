@@ -1,0 +1,38 @@
+==
+<?php
+use Alemba\Alemba\Models\SuccessStory;
+use RainLab\Blog\Models\Post;
+
+function onStart() {
+
+    $tag = $this['tag'];
+
+    if (!$tag) {
+        \Log::error('No tag parameter provided.');
+        return;
+    }
+
+    // Get Blog and Success Story articles for the given tag
+
+    $successStories = SuccessStory::whereHas('tags', function($query) use ($tag) {
+        $query->where('slug', $tag);
+    })->get();
+
+    $blogPosts = Post::whereHas('tags', function($query) use ($tag) {
+        $query->where('slug', $tag);
+    })->get();
+
+    $this['resources'] = $successStories;
+    $this['resources'] = $this['resources']->merge($blogPosts);
+
+    // Order by date
+    $this['resources'] = $this['resources']->sortByDesc('published_at');
+
+}
+?>
+==
+<div class="row justify-content-center article-cards">
+    {% for card in resources %}
+        {% partial 'sector-resource-card' resource=card.resource %}
+    {% endfor %}
+</div>

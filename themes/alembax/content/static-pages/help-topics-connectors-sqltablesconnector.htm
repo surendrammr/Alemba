@@ -1,0 +1,400 @@
+[viewBag]
+title = "Connector Suite for MS SQL Server Tables"
+url = "/help/topics/connectors/sqltablesconnector"
+layout = "help"
+is_hidden = 0
+navigation_hidden = 0
+==
+                                                    <h1>
+<a name="top"></a>Connector Suite for MS SQL Server Tables</h1>
+                                                    <p>The connectors for SQL Server tables are implemented to link <span class="GeneralVariablesCoreName">ASM Core</span> and third-party SQL Server database tables. There are four SQL Server Table Connectors, each performing a distinct function which is described in more detail below. Each connector can be configured to connect to a table in a MS SQL Server database.</p>
+                                                    <p>This <conditionaltext data-mc-conditions="Default.ScreenOnly">topic </conditionaltext>provides details of the SQL Connectors, including: </p>
+                                                    <ul>
+                                                        <li value="1">The types of functions each connector can perform</li>
+                                                        <li value="2">Use case examples</li>
+                                                        <li class="li_2" value="3">Connection methodology </li>
+                                                        <li class="li_4" value="4">The requirements involved in the handling of Event Management between <span class="GeneralVariablesCoreName">ASM Core</span> and the third-party database table </li>
+                                                    </ul>
+                                                    <p class="note">For compatibility and version support details, refer to the <a href="connector%20matrix.htm" class="MCXref xref">ASM Connector Matrix</a>.</p>
+                                                    <p class="note">You should familiarize yourself with the information in <a href="connector%20installation%20guide.htm" class="MCXref xref">Installing Connectors</a> before installing any connectors, and read the <a href="../integration/integrate.htm" class="MCXref xref">Integration</a> topics for more information on how to configure them.</p>
+                                                    <h2>Connector Description </h2>
+                                                    <p>The Connector Suite for MS SQL Server Tables is comprised of four distinct connectors, each performing a specific function:</p>
+                                                    <table class="TableStyle-Rep_Hdr_Row" style="mc-table-style: url('../../resources/tablestyles/rep hdr row.css');" cellspacing="0">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column1">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column2">
+                                                        <thead>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Head-Header1">
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column1-Header1">
+                                                                    <p class="Strong">Connector</p>
+                                                                </th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadD-Column2-Header1">Function</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>MS SQL Table Resources Connector</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p>Import resources and their relationships from external data tables, and maintain them in <span class="GeneralVariablesCoreName">ASM Core</span></p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>MS SQL Table Events Connector  </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p>Create and update Calls or Requests in <span class="GeneralVariablesCoreName">ASM Core</span> from records in an external SQL Server table</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>MS SQL Table Lookup Connector</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p>Query records in an external SQL Server table using Outbound Action Tasks</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyB-Column1-Body1">
+                                                                    <p>MS SQL Table Outbound Action Connector </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyA-Column2-Body1">
+                                                                    <p>Insert records into an external SQL Server table using Outbound Actions on calls or Outbound Action Tasks</p>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <h2>Use Case Scenarios</h2>
+                                                    <p>Example use case scenarios for each connector are described below.</p>
+                                                    <h3>MS SQL Table Resources Connector</h3>
+                                                    <table class="TableStyle-scenario_table" style="mc-table-style: url('../../resources/tablestyles/scenario table.css');margin-left: 0;margin-right: auto;" cellspacing="0">
+                                                        <col class="TableStyle-scenario_table-Column-Column1">
+                                                        <col class="TableStyle-scenario_table-Column-Column2">
+                                                        <tr class="TableStyle-scenario_table-Body-Body1">
+                                                            <td class="TableStyle-scenario_table-BodyE-Column1-Body1">
+                                                                <p class="Strong">Purpose</p>
+                                                            </td>
+                                                            <td class="TableStyle-scenario_table-BodyD-Column2-Body1">
+                                                                <p>An organization uses a third-party application to create and store   Knowledge Articles from a specialized division within their organization. These knowledge articles and their links to each other need to be imported into <span class="GeneralVariablesCoreName">ASM Core</span> so the rest of the organization can access them.</p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="TableStyle-scenario_table-Body-Body1">
+                                                            <td class="TableStyle-scenario_table-BodyE-Column1-Body1">
+                                                                <p class="Strong">Role</p>
+                                                            </td>
+                                                            <td class="TableStyle-scenario_table-BodyD-Column2-Body1">
+                                                                <p>The role of this connector is to expose the resources and their relationships in the third-party database in order to allow for population and ongoing consistency checks of those records in <span class="GeneralVariablesCoreName">ASM Core</span>.</p>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                    <h3>MS SQL Table Events Connector</h3>
+                                                    <table class="TableStyle-scenario_table" style="mc-table-style: url('../../resources/tablestyles/scenario table.css');margin-left: 0;margin-right: auto;" cellspacing="0">
+                                                        <col class="TableStyle-scenario_table-Column-Column1">
+                                                        <col class="TableStyle-scenario_table-Column-Column2">
+                                                        <tr class="TableStyle-scenario_table-Body-Body1">
+                                                            <td class="TableStyle-scenario_table-BodyE-Column1-Body1">
+                                                                <p class="Strong">Purpose</p>
+                                                            </td>
+                                                            <td class="TableStyle-scenario_table-BodyD-Column2-Body1">
+                                                                <p>An  organization uses a network security application to generate alerts if it detects unusual behavior. For each alert generated, the organization requires a call/request to be created in <span class="GeneralVariablesCoreName">ASM Core</span> so the appropriate action can be taken.</p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="TableStyle-scenario_table-Body-Body1">
+                                                            <td class="TableStyle-scenario_table-BodyE-Column1-Body1">
+                                                                <p class="Strong">Role</p>
+                                                            </td>
+                                                            <td class="TableStyle-scenario_table-BodyD-Column2-Body1">
+                                                                <p>The role of this connector is to generate calls or requests in <span class="GeneralVariablesCoreName">ASM Core</span> from records it detects in the third-party database table.</p>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                    <h3>MS SQL Table Lookup Connector</h3>
+                                                    <table class="TableStyle-scenario_table" style="mc-table-style: url('../../resources/tablestyles/scenario table.css');margin-left: 0;margin-right: auto;" cellspacing="0">
+                                                        <col class="TableStyle-scenario_table-Column-Column1">
+                                                        <col class="TableStyle-scenario_table-Column-Column2">
+                                                        <tr class="TableStyle-scenario_table-Body-Body1">
+                                                            <td class="TableStyle-scenario_table-BodyE-Column1-Body1">
+                                                                <p class="Strong">Purpose</p>
+                                                            </td>
+                                                            <td class="TableStyle-scenario_table-BodyD-Column2-Body1">
+                                                                <p>An organization uses a third-party Human Resources application to track employee annual leave accrual. Employees request leave by submitting a Leave Request form in <span class="GeneralVariablesCoreName">ASM Core</span> which triggers a request workflow. An outbound action task in this workflow performs a lookup in the HR application database table, based on information entered into the request, to validate the employee has sufficient leave available. </p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="TableStyle-scenario_table-Body-Body1">
+                                                            <td class="TableStyle-scenario_table-BodyE-Column1-Body1">
+                                                                <p class="Strong">Role</p>
+                                                            </td>
+                                                            <td class="TableStyle-scenario_table-BodyD-Column2-Body1">
+                                                                <p>The role of this connector is to query an external database and retrieve a value which is then typically used to determine the progression of the request workflow, or to update a record in <span class="GeneralVariablesCoreName">ASM Core</span>.</p>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                    <h3>MS SQL Table Outbound Action Connector </h3>
+                                                    <table class="TableStyle-scenario_table" style="mc-table-style: url('../../resources/tablestyles/scenario table.css');margin-left: 0;margin-right: auto;" cellspacing="0">
+                                                        <col class="TableStyle-scenario_table-Column-Column1">
+                                                        <col class="TableStyle-scenario_table-Column-Column2">
+                                                        <tr class="TableStyle-scenario_table-Body-Body1">
+                                                            <td class="TableStyle-scenario_table-BodyE-Column1-Body1">
+                                                                <p class="Strong">Purpose</p>
+                                                            </td>
+                                                            <td class="TableStyle-scenario_table-BodyD-Column2-Body1">
+                                                                <p>An organization uses a third-party Human Resources application to track employee annual leave usage. Employees request leave by entering leave dates into a Leave Request form in <span class="GeneralVariablesCoreName">ASM Core</span>, which managers approve or reject. If approved, the leave dates need to be transferred to the HR application.</p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="TableStyle-scenario_table-Body-Body1">
+                                                            <td class="TableStyle-scenario_table-BodyE-Column1-Body1">
+                                                                <p class="Strong">Role</p>
+                                                            </td>
+                                                            <td class="TableStyle-scenario_table-BodyD-Column2-Body1">
+                                                                <p>The role of this connector is to write data to an external database.</p>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                    <h2>Connector Components</h2>
+                                                    <p>The table below lists the connector class for each SQL Table Connector. In all cases the connection methodology is SQL.</p>
+                                                    <p>Unlike other connectors, these connectors do not use .ICNF files.</p>
+                                                    <table class="TableStyle-Rep_Hdr_Row" style="mc-table-style: url('../../resources/tablestyles/rep hdr row.css');" cellspacing="0">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column1">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column2">
+                                                        <thead>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Head-Header1">
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column1-Header1">
+                                                                    <p class="Strong">Connector Name</p>
+                                                                </th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadD-Column2-Header1">Connector Class</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>MS SQL Table Resources Connector</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p><span class="GeneralVariablesCompanyName2">Alemba®</span>.Connector.SQLTable.CMDB.Connector</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>MS SQL Table Events Connector </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+<span class="GeneralVariablesCompanyName2">Alemba®</span>.Connector.SQLTable.Events.Connector</td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">MS SQL Table Lookup Connector</td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p><span class="GeneralVariablesCompanyName2">Alemba®</span>.Connector.SQLTable.LookupAction.Connector</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyB-Column1-Body1">MS SQL Table Outbound Action Connector</td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyA-Column2-Body1">
+                                                                    <p><span class="GeneralVariablesCompanyName2">Alemba®</span>.Connector.SQLTable.OutAction.Connector</p>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <h2 class="Heading2">Connection Parameters </h2>
+                                                    <p>The table below provides a description of the connection parameters. These are configured on the <a href="../integration/configuring%20integ%20source.htm">Integration Source</a> window.</p>
+                                                    <p>The login account used to access the database must have permissions to read and write to the specified table(s).</p>
+                                                    <p style="font-weight: bold;">If using Windows Authentication  to log into the database</p>
+                                                    <ul>
+                                                        <li value="1">the Windows User configured for the <span class="GeneralVariablesProductName">ASM</span> Connector Service, and the IIS User account for the Web UI, must both have read and write permissions to the database</li>
+                                                        <li value="2">append <b>;Integrated Security=SSPI</b> to the connection string</li>
+                                                        <li value="3">leave blank the Login ID and Password fields in the connection parameters </li>
+                                                    </ul>
+                                                    <table class="TableStyle-Rep_Hdr_Row" style="mc-table-style: url('../../resources/tablestyles/rep hdr row.css');" cellspacing="0">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column1">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column2">
+                                                        <thead>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Head-Header1">
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column1-Header1">
+                                                                    <p class="Strong">Parameters</p>
+                                                                </th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadD-Column2-Header1">Description</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Connection String </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p>Database server connection string. Formats:</p>Server=&lt;DatabaseServer&gt;;Database=&lt;DatabaseName&gt;<p>Server=&lt;DatabaseServer&gt;;Database=&lt;DatabaseName&gt;;Integrated Security=SSPI</p>
+<p class="exampletext">Server=localhost;Database=vFireCore </p>
+<p class="exampletext"> Server=localhost;Database=vFireCore;Integrated Security=SSPI </p>
+</td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Login ID </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p>Login ID for the third-party database</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyB-Column1-Body1">
+                                                                    <p>Password </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyA-Column2-Body1">
+                                                                    <p>Password for the third-party database</p>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <h2>Table Parameters</h2>
+                                                    <p>This section provides a description of the database table information required for each of the MS SQL Table connectors, in order for them to read from and write to external tables. These are configured on the <a href="../integration/configuring%20integ%20source.htm">Integration Source</a> window below the connection parameters. </p>
+                                                    <p class="note">These connectors write to the external table defined in the parameters.  If this is a table in a third-party application, it may be preferable to create a new column in the external table for this purpose, or to create a temporary table.</p>
+                                                    <p class="warning">Table and column names containing spaces cause the connector to fail and should not be used in the Integration Source configuration or the field mappings within the Resource settings.</p>
+                                                    <p class="exampletext">A column name of <b>ITEM REF</b> will cause the connector to fail. A column name of <b>ITEM_REF</b> or <b>ItemRef</b> will not.</p>
+                                                    <h3>MS SQL Table Resources Connector</h3>
+                                                    <p>This connector imports resources from a data table. A secondary table allows the creation of links between the imported resources.</p>
+                                                    <table class="TableStyle-Rep_Hdr_Row" style="mc-table-style: url('../../resources/tablestyles/rep hdr row.css');margin-left: 0;margin-right: auto;" cellspacing="0">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column1">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column2">
+                                                        <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                            <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1" style="font-weight: bold;">
+                                                                <p class="Strong">Parameters </p>
+                                                            </td>
+                                                            <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1" style="font-weight: bold;">
+                                                                <p class="Strong">Description </p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                            <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                <p>Table Name </p>
+                                                            </td>
+                                                            <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                <p> The name of the table containing resources to be imported into <span class="GeneralVariablesCoreName">ASM Core</span>. Required.</p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr style="height: 15pt;" class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                            <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">Unique Ref Column</td>
+                                                            <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">The column in the external table which contains the unique identifier of the items to be imported. Required.</td>
+                                                        </tr>
+                                                        <tr style="height: 15pt;" class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                            <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">Display Name Column</td>
+                                                            <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">The column in the external table which contains the name of the item to be imported. Required.</td>
+                                                        </tr>
+                                                        <tr style="height: 15pt;" class="TableStyle-Rep_Hdr_Row-Body-Body1" data-mc-conditions="">
+                                                            <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">Import Status Column</td>
+                                                            <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                <p>If populated, this is the column in the external table which:</p>
+                                                                <ul>
+                                                                    <li value="1"> Identifies the records to import.  Records are imported if:<ul>
+<li value="1"> the column selected in <b>Import Status Column</b> contains text matching the text in the field <b>Import when text in Import Status Column is:</b> ; or</li>
+<li value="2">this field is left blank, in which case all records in the external table are imported</li>
+</ul>
+</li>
+                                                                    <li value="2">After the record is imported, the cell in the external table is updated  with the import status Processed+Date+Time  (e.g.: Processed2017-03-27 01:59:59Z). The import status is only written to this column if the record was processed. </li>
+                                                                </ul>
+                                                                <p class="note">Write access is required for this column if the import status is to be written to it.</p>
+                                                                <p class="warning">If this field is blank all items in the table are imported and the column in the external table is not updated with the import status.</p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr style="height: 15pt;" class="TableStyle-Rep_Hdr_Row-Body-Body1" data-mc-conditions="">
+                                                            <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">Import when text in Import Status Column is:</td>
+                                                            <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                <p>Change the default text as needed. Default is "ready for pickup". The connector looks in the column defined in <b>Import Status Column</b> for matching text and, if found, the record is imported. After the record is processed, the text in that column is changed to Processed+Date+Time (e.g.: Processed2017-03-27 01:59:59Z)</p>
+                                                                <p class="note">If this field is blank "ready for pickup" is used as default.</p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr style="height: 15pt;" class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                            <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">Resource Type Column</td>
+                                                            <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                <p>A column in the external table representing the resource type. The value of this column is used to generate the list of available resource types on the Integration Resources window for this connector source. Required.</p>
+                                                                <p class="exampletext">An Integration Source is configured to import from a Configuration Item table. In this table column <span style="font-family: 'Courier New';">CI_Type</span> contains values 'PC' and 'Keyboard'. Enter  <span style="font-family: 'Courier New';">CI_Type</span>  into the <b>Resource Type Column</b> field to expose <b>PC</b> and <b>Keyboard</b> on the Integration Resource window when this source is selected .</p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr style="height: 15pt;" class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                            <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">Linking Table</td>
+                                                            <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">A table in the external database linking items in the resource table (<b>Table Name</b> field). This function looks at the first two columns in the linking table, and links the item in the first column to the item in the second column. Items being linked must be of different resources types. Optional.</td>
+                                                        </tr>
+                                                    </table>
+                                                    <h3>MS SQL Table Events Connector</h3>
+                                                    <p>If the <b>Event Management</b> checkbox in the Integration Platform administration screen is selected, the Event Management functionality starts running as soon as a proper Event mapping is completed and saved. When starting, the connector checks the configured database table and logs a call or request for every item that is present and fulfills the criteria that are implemented in the Event mapping. This could lead to a large number of calls/requests being created when activating the Event Management functionality. </p>
+                                                    <p>One solution to avoid this behavior is to include in the Event criteria setting an item based on a date attribute. For example, you could plan to <span class="span_2">“go live”</span> with Event management on a precise date and, as a consequence, specify that the value of date field in the external table has to be after this date before any action can be triggered in <span class="GeneralVariablesCoreName">ASM Core</span>. </p>
+                                                    <table class="TableStyle-Rep_Hdr_Row" style="margin-left: 0;margin-right: auto;mc-table-style: url('../../resources/tablestyles/rep hdr row.css');" cellspacing="0">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column1">
+                                                        
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column2">
+                                                        
+                                                        <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                            <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1" style="font-weight: bold;">
+                                                                <p class="Strong">Parameters </p>
+                                                            </td>
+                                                            <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1" style="font-weight: bold;">
+                                                                <p class="Strong">Description </p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                            <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">Table Name</td>
+                                                            <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">The name of the table containing records to be imported into <span class="GeneralVariablesCoreName">ASM Core</span> as calls or requests. Required.</td>
+                                                        </tr>
+                                                        <tr style="height: 15pt;" class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                            <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">Unique Ref Column</td>
+                                                            <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">The column in the external table which contains the unique identifier of the records to be imported into <span class="GeneralVariablesCoreName">ASM Core</span> as calls or requests. Required.</td>
+                                                        </tr>
+                                                        <tr style="height: 15pt;" class="TableStyle-Rep_Hdr_Row-Body-Body1" data-mc-conditions="">
+                                                            <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">Import Status Column</td>
+                                                            <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                <p>A column in the external table to which the import status is written. Required. The column is updated with 'Process'+Date+Time after the item is imported
+(e.g.: Processed2017-03-27 01:59:59Z). Records are imported if the column in the external table contains text matching the text in the <b>Import when text in Import Status Column is:</b> field. If the text does not match, the record is not imported, and the cell in the external table is not updated.</p>
+                                                                <p class="warning">Write access is required for this column.</p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr style="height: 15pt;" class="TableStyle-Rep_Hdr_Row-Body-Body1" data-mc-conditions="">
+                                                            <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">Import when text in Import Status Column is:</td>
+                                                            <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                <p>Change the default text as needed. Default is "ready for pickup". The connector looks in the column defined in <b>Import Status Column</b> for matching text and, if found, the record is imported.</p>
+                                                                <p class="note">If this field is blank "ready for pickup" is used as default.</p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr style="height: 15pt;" class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                            <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">Internal Item No. Column</td>
+                                                            <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">A column in the external table to which the corresponding <span class="GeneralVariablesCoreName">ASM Core</span> call or request number is written when it is created from that external event record. Required.</td>
+                                                        </tr>
+                                                        <tr style="height: 15pt;" class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                            <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">Last Modified Date Column</td>
+                                                            <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">A column in the external table to which the last modified date is written. The last modified date is updated when a  call or request in <span class="GeneralVariablesCoreName">ASM Core</span> is created, updated, or closed as a result of the matching record in the external database. Required.</td>
+                                                        </tr>
+                                                    </table>
+                                                    <h3>MS SQL Table Lookup Connector</h3>
+                                                    <p>The MS SQL Server Lookup Connector requires only database connection details on the Integration Source window. All table lookup information is entered into Outbound and Inbound Actions in the Integration module, or Outbound Action Tasks.</p>
+                                                    <p class="note">This connector does not write to external tables.</p>
+                                                    <h3>MS SQL Table Outbound Action Connector</h3>
+                                                    <table class="TableStyle-Rep_Hdr_Row" style="margin-left: 0;margin-right: auto;mc-table-style: url('../../resources/tablestyles/rep hdr row.css');" cellspacing="0">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column1">
+                                                        
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column2">
+                                                        
+                                                        <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                            <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1" style="font-weight: bold;">
+                                                                <p class="Strong">Parameters </p>
+                                                            </td>
+                                                            <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1" style="font-weight: bold;">
+                                                                <p class="Strong">Description </p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                            <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">Table Name</td>
+                                                            <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">The name of the external table to be updated with data from <span class="GeneralVariablesCoreName">ASM Core</span>. Required.</td>
+                                                        </tr>
+                                                        <tr style="height: 15pt;" class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                            <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">Internal Item No. Column</td>
+                                                            <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">A column in the external table to which the <span class="GeneralVariablesCoreName">ASM Core</span> call or task number, which triggered the outbound action, is written. Required.</td>
+                                                        </tr>
+                                                        <tr style="height: 15pt;" class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                            <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">Action Date Column</td>
+                                                            <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">A column in the external table to which the date of the action is written.  Required.</td>
+                                                        </tr>
+                                                    </table>
+                                                    <h2 class="Heading2">User Diagnostics </h2>
+                                                    <p>The connector has the facility to trace information. The data can be obtained through Polling tracing or Application tracing. </p>
+                                                    <h2>Installation</h2>
+                                                    <p>No install is required for these connectors. Upon <span class="GeneralVariablesCoreName">ASM Core</span> install, these connectors are visible in the Integration module, ready to be configured.</p>
+                                                    <h2>Firewall Settings </h2>
+                                                    <p>In certain cases, it is possible that a firewall is present between the external database and the <span class="GeneralVariablesSystemName">ASM System</span>. In such cases, the firewall needs to be set up so that it allows bi-directional TCP transactions between the <span class="GeneralVariablesSystemName">ASM System</span> on one side, and the external database on the other side. </p>
+                                                

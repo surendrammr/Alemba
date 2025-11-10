@@ -1,0 +1,63 @@
+[viewBag]
+title = "Defining Property Transforms"
+url = "/help/topics/integration/defining-property-transforms"
+layout = "help"
+is_hidden = 0
+navigation_hidden = 0
+==
+                                                    <h1>Defining Property Transforms</h1>
+                                                    <p>Property transforms are macros that you can define using the VB.NET programming language to manipulate data from received resource properties. This may be a CMDB field for a Federated CMDB resource field mapping, or a Call or Request field for an Event Management field mapping, depending on the area of integration in which you are mapping fields. These macros are stored in the database and mapped against resource property to CMDB field mappings. The data is transformed when it is stored or compared against CMDB fields. However, when viewing resources through the resource viewer (on the External Resource Search screen, Linked Resources CMDB screen or the Federated CMDB Admin screen), the resource property values are displayed in their original data type. </p>
+                                                    <p>A property transform can be defined for the following field types: String, text, float, decimal, integer, date-time, and Boolean number.</p>
+                                                    <p>You can specify code to:</p>
+                                                    <ul style="list-style-type: disc;margin-left: 36pt;">
+                                                        <li style="list-style-type: disc;" value="1">convert units: for example bytes to kilobytes or megabytes</li>
+                                                        <li style="list-style-type: disc;" value="2">round off decimals: for example 1.66666 GHz to 1.7 GHz</li>
+                                                        <li style="list-style-type: disc;" value="3">summarize data: for example, interpreting “Microsoft Windows 10” as just “Windows”.</li>
+                                                    </ul>
+                                                    <h2 class="Prerequisite">Before you start</h2>
+                                                    <p class="prereqtextlast">You must have <b>Integration Setup</b> selected in the <a href="../admin%20security%20roles/general%20access%20security%20role%20-%20admin%20tab.htm">Admin</a> tab of your <b>General Access Security Role</b>. </p>
+                                                    <ol class="multilist">
+                                                        <li value="1">Select <a href="../general%20topics/asmcorewindow.htm"><span style="font-size: 24pt;">≡</span></a> &gt; <b>Admin</b> &gt; <b>Integration</b>.</li>
+                                                        <li value="2">In the Explorer pane, under <b>Integration</b>, select <b>Resources</b>.</li>
+                                                        <li value="3">Select a source in the drop-down list to populate the resource type list.</li>
+                                                        <li value="4">Double-click a resource type. </li>
+                                                        <li value="5">In the mapping window, select a mapping and then select <b>Transform</b>. The <b>Transform</b> window lists all existing property transforms. You can add new transforms, and delete or modify existing ones. </li>
+                                                        <li value="6">Select the <b>Details</b> tab and add the name and, optionally, a description of the property transform.</li>
+                                                        <li value="7">Select the <b>Implementation</b> tab and define the arguments and the code that will be used to transform the field data. <ul>
+<li value="1">To add an external field as an argument, click <b>Add</b> in the <b>Arguments</b> section. In the <b>Add Argument</b> window, select the field and click <b>OK</b>. To edit the name of an argument, double-click the argument or select it and click <b>Edit</b>. </li>
+<li value="2">To change the data type that identifies how the data from the source should be interpreted, double-click the argument. At <b>Data Type</b>, select another data type, such as: String, Integer, Float, Boolean, or Date/Time.</li>
+<p class="note">You cannot edit the arguments once the property transform is saved.</p>
+<li value="3">At <b>Return Type</b>, select the data type to be returned by the transform.</li>
+<li value="4">In the <b>Code</b> area, type the code that will perform the property transform. </li>
+<p class="note">The code should use VB.NET syntax, but should not contain any Function, Class, Sub, Structure, Property, and Imports or public/private/protected member declarations. It should be assumed that the code is the body of a static function with a single parameter called InputValue of the type defined by Data Type and must include a Return statement that returns a value that is the transformed value to be stored against the CMDB Item</p>
+</ul>
+</li>
+                                                        <li value="8">To see whether your code works correctly, click <b>Test</b>. A dialog box displays prompting you to specify an input value. Type the input value. The system will convert the value and display a message that the test has been successful. If the code is incorrect, the system will display a message that the transform failed. </li>
+                                                        <li value="9">To enable the transform to be used for other internal or external fields, select the Binding tab. For the relevant argument, click in the <b>Value</b> column and click <img src="/storage/app/media/Help/images/expandtiersbutton.png">  to select a field or specify a value.</li>
+                                                        <li value="10">Click OK to save your changes. <span class="GeneralVariablesCoreName">ASM Core</span> will compile the code and display a dialog box if the compilation fails, and will not close the Transform window. Click Cancel to close the window without saving your changes.</li>
+                                                    </ol>
+                                                    <h2>Updating a Transform</h2>
+                                                    <h2 class="Prerequisite">Before you start</h2>
+                                                    <p class="prereqtextlast">You must have <b>Integration Setup</b> selected in the <a href="../admin%20security%20roles/general%20access%20security%20role%20-%20admin%20tab.htm">Admin</a> tab of your <b>General Access Security Role</b>. </p>
+                                                    <ol class="multilist">
+                                                        <li value="1">Select <a href="../general%20topics/asmcorewindow.htm"><span style="font-size: 24pt;">≡</span></a> &gt; <b>Admin</b> &gt; <b>Integration</b>.</li>
+                                                        <li value="2">In the Explorer pane, under <b>Integration</b>, select <b>Resources</b>.</li>
+                                                        <li value="3">Select a source in the drop-down list to populate the resource type list.</li>
+                                                        <li value="4">Double-click a resource type. </li>
+                                                        <li value="5">In the mapping window, select a mapping and then select <b>Transform</b>. The <b>Transform</b> window lists all existing property transforms.</li>
+                                                        <li value="6">Select <img src="/storage/app/media/Help/images/type%20tiers%20button.png" alt="" title=""> and select the transform you want to edit.</li>
+                                                        <li value="7">Click <b>Edit</b> and make the necessary changes.</li>
+                                                    </ol>
+                                                    <h2>Deleting a Transform</h2>
+                                                    <h2 class="Prerequisite">Before you start</h2>
+                                                    <p class="prereqtextlast">You must have <b>Integration Setup</b> selected in the <a href="../admin%20security%20roles/general%20access%20security%20role%20-%20admin%20tab.htm">Admin</a> tab of your <b>General Access Security Role</b>. </p>
+                                                    <ol class="multilist">
+                                                        <li value="1">Select <a href="../general%20topics/asmcorewindow.htm"><span style="font-size: 24pt;">≡</span></a> &gt; <b>Admin</b> &gt; <b>Integration</b>.</li>
+                                                        <li value="2">In the Explorer pane, under <b>Integration</b>, select <b>Resources</b>.</li>
+                                                        <li value="3">Select a source in the drop-down list to populate the resource type list.</li>
+                                                        <li value="4">Double-click a resource type. </li>
+                                                        <li value="5">In the mapping window, select a mapping and then select <b>Transform</b>. The <b>Transform</b> window lists all existing property transforms.</li>
+                                                        <li value="6">Select <img src="/storage/app/media/Help/images/type%20tiers%20button.png" alt="" title=""> and select the transform you want to delete.</li>
+                                                        <li value="7">Click <b>Delete</b>. </li>
+                                                    </ol>
+                                                

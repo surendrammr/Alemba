@@ -1,0 +1,68 @@
+[viewBag]
+title = "Enabling Partitioning"
+url = "/help/topics/admin-system/enabling-partitioning"
+layout = "help"
+is_hidden = 0
+navigation_hidden = 0
+==
+                                                    <h1>
+<a name="top"></a>Enabling Partitioning</h1>
+                                                    <ol start="1">
+                                                        <li value="1">Select <a href="../general%20topics/asmcorewindow.htm"><span style="font-size: 24pt;">≡</span></a> &gt; <b>Admin</b> &gt;  <b>System Administration</b>.   The System Administration window appears.</li>
+                                                        <li value="2">In the Explorer pane, expand <b>System</b>, then select <b>Partition Settings</b>.</li>
+                                                        <li value="3">In the <b>Partition Settings</b> window, select <b class="Bold">Enable Partitioning</b> <a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="../../resources/images/enable%20partitioning.png"><img class="MCPopupThumbnail img imgthumbnail" data-mc-width="565" data-mc-height="141" src="/storage/app/media/Help/images/enable%20partitioning_thumb_0_48.png" tabindex=""></a>.</li>
+                                                        <li value="4">Select whether you want to partition the system by <b>Analyst</b> or by <span class="crossref" style="font-weight: bold;">Screen Set</span>:</li>
+                                                    </ol>
+                                                    <table class="TableStyle-FieldDesc" style="mc-table-style: url('../../resources/tablestyles/fielddesc.css');" cellspacing="0">
+                                                        <col class="TableStyle-FieldDesc-Column-Column1">
+                                                        <col class="TableStyle-FieldDesc-Column-Column2">
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">
+                                                                <p><a href="#Partitioning_by_Officer">Partition by Analyst</a>
+                                                                </p>
+                                                            </td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                <p>Adds new calls, requests, tasks, and agreements to the partition of the Analyst who creates them. Only Analysts with access to that partition will be able to view and edit items in the partition.</p>
+                                                                <p>Analysts can be given access to several partitions. They are assigned to partitions on the <a href="%7B%7B%20'help-managing-people-managing-people#Completing_Person_Details'%7CstaticPage%20%7D%7D#Completing_Person_Details">Person Details</a> window. </p>
+                                                                <p><b>Partition by Analyst</b> is the default selection and the most commonly used option.</p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">
+                                                                <p><a href="#Partitioning_by_Screen_Set">Partition by Screen Set</a>
+                                                                </p>
+                                                            </td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                <p>Adds new calls, requests, tasks and so on to the partition linked to the screen set selected. This only applies if you are using windows configured in <span class="GeneralVariablesDesignerName">ASM Designer</span>. If an Analyst changes the screen set, the partition to which an entity has been assigned may also change.</p>
+                                                                <p class="warning">If you select the Partition by Screen Set option, you cannot partition your database by Call Details, Call Screen Set, Call Templates, Requests, Request Screen Sets, Workflow Templates, Tasks, Task Screen Sets, Agreements, and Agreement Matrix.</p>
+                                                                <p class="warning">If you are using IPK tiers, you should seriously consider the implications of partitioning your system by screen sets. Discuss this with your <span class="GeneralVariablesCompanyName2">Alemba®</span> Account Manager to ensure you fully understand how this method of partitioning will affect the running of your system.</p>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                    <ol start="1" data-mc-continue="true">
+                                                        <li value="5">Use the options to select which parts of the application you wish to partition.</li>
+                                                        <li value="6">Select <img src="/storage/app/media/Help/images/save%20button.png">  to save the changes. Provide the <a href="../general%20topics/change%20reasons.htm">Change Reasons</a> if prompted to do so.</li>
+                                                    </ol>
+                                                    <h2>
+<a name="Partitio"></a>Partitioning by Analyst or Screen Set</h2>
+                                                    <p>You can partition your system in two ways: </p>
+                                                    <ul class="ul_3">
+                                                        <li class="ListParagraph_2" value="1">By Analyst </li>
+                                                        <li class="ListParagraph_2" value="2">By Screen Set</li>
+                                                    </ul>
+                                                    <h3>
+<a name="Partitioning_by_Officer"></a>Partitioning by Analyst </h3>
+                                                    <p>This is the most common type of partitioning. Each Analyst is allocated access to one or more partitions. They can only see items in their partition(s), if that type of item has been partitioned. </p>
+                                                    <p>For example, a business might decide to have partitions for its different locations, New York and San Francisco, with partitioning enabled for <b>Call Details</b> and <b>configuration items</b>. Analysts who only have access to the New York partition would only be able to see and log calls and create configuration items in the New York partition. Analysts who only have access to the San Francisco partition will only be able to work with calls and configuration items in that partition. Analysts who have access to both partitions will be able to access all of the items.</p>
+                                                    <h3>
+<a name="Partitioning_by_Screen_Set"></a>Partitioning by Screen Set</h3>
+                                                    <p>In this method, partitioning is based on the screen used. Analysts are still allocated partitions, but when logging a Call, Request or Task they can choose what screen to use, and the partition of the item is based on that screen.</p>
+                                                    <p>For example, a business could set up two screen types, <b>Accounting</b> and <b>Payroll</b>, to reflect two different departments, and partition by screen set. If an Analyst is allocated the Accounting partition and they create a User from the menu, the User will be in the Accounting partition. However, the Analyst can choose to log a call in the Accounting partition or the Payroll partition by selecting the appropriate screen set. If the Analyst logs a call in the Payroll partition, and then creates a User linked to that call, that User will also be in the Payroll partition.</p>
+                                                    <p>Partitioning by Screen thus functions similarly to Partitioning by Analyst, but with the important distinction that any actions taken on or from a partitioned screen are based in the partition of the screen, not the Analyst taking those actions. </p>
+                                                    <h2>How the initial partition of a call is allocated</h2>
+                                                    <p>The following applies when partitioning has been enabled:</p>
+                                                    <ul>
+                                                        <li value="1">For calls logged through the <span class="GeneralVariablesSelfServicePortalName">Self Service Portal</span> or a WSRP Portal, the initial partition to which a call will be allocated is determined by the <b><span class="GeneralVariablesSelfServicePortalName">Self Service Portal</span></b> options in the <a href="%7B%7B%20'help-partition-settings#Partitio'%7CstaticPage%20%7D%7D#Partitio">Partition Settings</a>.</li>
+                                                        <li value="2">For calls logged through Incoming Email, the initial partition to which a call will be allocated is determined by the email settings of the account used for <a href="email%20settings.htm">Incoming Email</a>.</li>
+                                                    </ul>
+                                                

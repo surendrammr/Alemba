@@ -1,0 +1,68 @@
+[viewBag]
+title = "Creating a Conditional Branching Task"
+url = "/help/topics/tasks/creating-a-conditional-branching"
+layout = "help"
+is_hidden = 0
+navigation_hidden = 0
+==
+                                                    <h1>Creating a Conditional Branching Task</h1>
+                                                    <p> <a href="conditional%20branching%20tasks.htm">Conditional Branching tasks</a> can be used to define conditional rules for tasks that can test certain conditions and perform actions based on whether or which conditions are met. </p>
+                                                    <h2 class="Prerequisite">Before you start</h2>
+                                                    <p class="prereqtext1">You can only create tasks within a workflow template, or a request. You cannot create a task independent of a request or workflow.</p>
+                                                    <p class="prereqtext1">You must have <b>Create Request</b> selected in the <a href="../admin%20security%20roles/workflow%20mgt%20sec%20role%20-%20requests%20tab.htm">Requests</a> tab of your <b>Workflow Management</b> security role.</p>
+                                                    <p class="prereqtext">The <span class="GeneralVariablesProductName">ASM</span> Workflow Polling Service must be running on the <span class="GeneralVariablesProductName">ASM</span> server to execute any workflow-related activations. </p>
+                                                    <p> </p>
+                                                    <ol>
+                                                        <li value="1">
+<a href="%7B%7B%20'help-requests-and-templates-searching-for-requests#top'%7CstaticPage%20%7D%7D#top">Search for </a>the <b>Request Details</b> window, if it is not already on screen.</li>
+                                                        <li value="2">Select the <b>Update Dependencies</b> explorer option on the <b>Request Details</b> window, or the <img src="/storage/app/media/Help/images/dependencies%20button.png"> button from the toolbar. The <b>Task Dependencies</b> window appears with icons for task entity types displayed below the toolbar. </li>
+                                                        <p>
+                                                            </p>
+<p class="note">If the workflow template you have used to create the request already has tasks defined in it, you will see these tasks here. You can open them and change their details such as dates, assignment, or expenses. You can add new tasks or delete them from the current request without affecting the template.</p>
+                                                        
+                                                        <li value="3">To add a new conditional branching task, choose the <b>Conditional Branching task</b> icon <a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="../../resources/images/conditional%20branching%20task%20icon.png"><img class="MCPopupThumbnail img imgthumbnail" data-mc-width="36" data-mc-height="35" src="/storage/app/media/Help/images/conditional%20branching%20task%20icon_thumb_0_48.png" style="width: 0px;height: 0px;" tabindex=""></a>from the <a href="../requests%20and%20templates/task%20palette.htm">palette</a>, and drag it to the window. Alternatively, right-click in the window, and from the menu that appears, select <b>New</b> and then the Conditional Branching task entity type. </li>
+                                                        <li value="4">
+<a href="%7B%7B%20'help-requests-and-templates-dependency-diagrams#Linking'%7CstaticPage%20%7D%7D#Linking">Link the task</a> to the previous task in the workflow.</li>
+                                                        <li value="5">To open a task and add or update the details, double-click on the  icon in the diagram. The <b>Task Details</b> window appears.</li>
+                                                        <li value="6">If needed, take action on the task in order to edit the details.</li>
+                                                        <li value="7">Expand the <b>Task Information</b> section to <a href="%7B%7B%20'help-creating-a-task#Complete_the_common_task_fields'%7CstaticPage%20%7D%7D#Complete_the_common_task_fields">complete the common task fields</a>. </li>
+                                                        <li value="8">Expand the <b>Rules</b> section. All the rules that have been added to the current task are displayed on the <b>Rules List</b> browse table. The currently selected rule is shown in a preview pane (<b>Current Rule</b>). Click on one of the rules to see a summary of the rule in the <b>Rule Setup</b> section below the rules list. This section displays the parent task(s), conditions, actions and tasks associated with the current rule.</li>
+                                                        <li value="9">Click <b>New Rule</b> to add a rule. Complete the details in the <b>Rule Setup</b> section.</li>
+                                                        <p>
+                                                            </p>
+<table style="width: 100%;mc-table-style: url('../../resources/tablestyles/fielddesc.css');margin-left: 0;margin-right: auto;" class="TableStyle-FieldDesc" cellspacing="0">
+                                                                <col class="TableStyle-FieldDesc-Column-Column1">
+                                                                <col class="TableStyle-FieldDesc-Column-Column2">
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyH-Column1-">From Task</td>
+                                                                        <td class="TableStyle-FieldDesc-BodyG-Column2-">This panel displays the parent task(s) for the current task. If there is more than one, select one containing the fields you wish to use as conditions for the rule. If the conditional branching task has only one parent, it is selected by default.</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyH-Column1-">If Available Conditions</td>
+                                                                        <td class="TableStyle-FieldDesc-BodyG-Column2-">This panel lists all of the current conditions. As you are creating a task, click <b>Create Condition</b>. In the <b>Task/Approval Available Conditions</b> window, <a href="defining%20a%20dependency%20rule.htm">define your dependency rules</a>. </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyH-Column1-">Then Available Actions</td>
+                                                                        <td class="TableStyle-FieldDesc-BodyG-Column2-">This panel displays the actions that will be taken if the conditions are met. To define an action for a rule, in the  panel click <b>Create Activation</b>. In the <b>Task/Approval Available Actions</b> window, <a href="defining%20dependency%20actions.htm">define your actions</a>.</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyB-Column1-">On Task</td>
+                                                                        <td class="TableStyle-FieldDesc-BodyA-Column2-">
+                                                                            <p>This panel displays a list of tasks that are dependent on the current task. For each rule-action combination, select the task to be executed.</p>
+<ol start="1">
+<li value="1">Click in the relevant row of the <b>If Available Conditions</b> panel to select the required condition.</li>
+<li value="2">Click in the relevant row of the <b>Then Available Actions</b> panel to select the required action.</li>
+<li value="3">Click in the relevant row of the <b>On Tasks</b> panel to select the task to execute when a condition or several conditions are met.</li>
+<li value="4"><p class="note">If the conditional branching task has no dependent task, no actions will be processed.</p></li>
+</ol>
+                                                                        </td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        
+                                                        <li value="10">Click <b>Add Rule.</b> The rule appears in the <b>Rules List</b> browse table. </li>
+                                                        <li value="11">The rules are shown in the order of priority. The first (topmost) rule will be tested, and then the second, and so on. You can change the order of the rules by selecting a rule and clicking the <b>Move Up</b> and <b>Move Down</b> buttons.</li>
+                                                        <li value="12">Click <b>Save</b> when done.</li>
+                                                    </ol>
+                                                

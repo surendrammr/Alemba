@@ -1,0 +1,241 @@
+[viewBag]
+title = "IPK Settings (Partitioned)"
+url = "/help/topics/admin-ipk-management/ipk-settings-(partitioned)"
+layout = "help"
+is_hidden = 0
+navigation_hidden = 0
+==
+                                                    <h1>
+<a name="aanchor212"></a>
+                                                        <concept term="IPK"></concept><a name="top"></a>IPK Settings (Partitioned)</h1>
+                                                    <p class="intro">You can configure IPK settings for each partition defined in your system. </p>
+                                                    <h2>Configuring Settings for a Specific Partition</h2>
+                                                    <h2 class="Prerequisite">Before you start</h2>
+                                                    <p class="prereqtext1">You do not need to enable partitions in order to configure these settings. If partitioning is not enabled, settings configured here will apply to the entire system. If partitioning is enabled you can configure these settings differently for each partition. For more information on how partitioning works, see <a href="../admin%20system/partitioning.htm">Partitioning</a>.</p>
+                                                    <p class="prereqtext1"><a href="%7B%7B%20'help-general-topics-changing-your-partition#Selectin'%7CstaticPage%20%7D%7D#Selectin">Ensure you are in the correct partition</a> before applying the settings as these settings will apply to that partition.</p>
+                                                    <p class="prereqtextlast">You must have <b>IPK Set Up</b> enabled within your <a href="../admin%20security%20roles/general%20access%20security%20role.htm">General Access Security Role</a> to configure the IPK management settings.</p>
+                                                    <ol>
+                                                        <li value="1">
+                                                            <p>Select <a href="../general%20topics/asmcorewindow.htm"><span style="font-size: 24pt;">≡</span></a> &gt; <b>Admin</b> &gt;  <b>System Administration</b>.   </p>
+                                                            <p>The System Administration window appears. </p>
+                                                            <p>In the Explorer pane, expand <b>IPK Management</b>.</p>
+                                                        </li>
+                                                        <li value="2">Select <b>IPK Settings (Partitioned)</b> to open the window <a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="../../resources/images/ipk%20-%20settings%20for%20partitions.png"><img class="MCPopupThumbnail img imgthumbnail" data-mc-width="469" data-mc-height="528" src="/storage/app/media/Help/images/ipk%20-%20settings%20for%20partitions_thumb_0_48.png" style="width: 121px;height: 135px;" tabindex=""></a>.</li>
+                                                        <li value="3">Select the options that you require for your partition.<br>
+</li>
+                                                        <p>
+                                                            </p>
+<table style="mc-table-style: url('../../resources/tablestyles/fielddesc.css');border-left-style: none;border-left-width: 1px;border-left-color: #000000;border-right-style: none;border-right-width: 1px;border-right-color: #000000;border-top-style: none;border-top-width: 1px;border-top-color: #000000;border-bottom-style: none;border-bottom-width: 1px;border-bottom-color: #000000;margin-left: 0;margin-right: auto;" class="TableStyle-FieldDesc" cellspacing="0">
+                                                                <col class="TableStyle-FieldDesc-Column-Column1">
+                                                                <col class="TableStyle-FieldDesc-Column-Column2">
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyG-Column1-" colspan="2">
+                                                                            <p style="font-weight: normal;">Use the options under the <span style="font-weight: bold;">Closure Method</span> heading to indicate the procedures to be followed when calls are closed. </p>
+                                                                            <p style="font-weight: normal;">Analysts are given authority to close calls as part of <a href="../admin%20security%20roles/ipk%20management%20security%20roles%20-%20options%20tab.htm">IPK Management security role</a>, or by being added to a defined <a href="../admin%20security%20roles/ipk%20management%20security%20roles%20-%20groups%20tab.htm">closure group</a>. </p>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyH-Column1-">Comments</td>
+                                                                        <td class="TableStyle-FieldDesc-BodyG-Column2-">Select to force the Analyst who resolves a call (fixing the issue) to forward the call to an available closing analyst (who has <b>Closure Comments</b> selected in their <a href="../admin%20security%20roles/ipk%20management%20security%20roles%20-%20options%20tab.htm">IPK Management security role</a>). <p class="note">The closing analyst adds comments on closure in the <b>Comments</b> field which are displayed in the call history. Call statuses relating to this option on the <b class="Xref_outstanding">Calls Outstanding</b> window are <b>Forward for Closure</b> and <b>Forward to You for Close</b>.</p>
+</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyH-Column1-">Rules</td>
+                                                                        <td class="TableStyle-FieldDesc-BodyG-Column2-">Select to enable the <b>Closure Rules</b> options below.</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyH-Column1-">Immediate</td>
+                                                                        <td class="TableStyle-FieldDesc-BodyG-Column2-">Select to close calls immediately when the Analyst selects the Close button on a call. The call will be automatically assigned <a href="call%20states.htm">a <b>resolved</b> state</a>. This is the simplest option available and uses the minimum number of windows to close a call.</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyH-Column1-">
+<a name="Closure"></a>Closure Rules</td>
+                                                                        <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                            <p style="font-weight: normal;">You can select different rules for call closure. These rules automatically forward the call to an analyst or group when the call is resolved at the Close Call window. There are three Closure Rules options: Logged by, Log Group, and Closure Group.</p>
+                                                                            <p style="font-weight: normal;">However, in the following circumstances, the call will instead be closed immediately: </p>
+                                                                            <ul>
+                                                                                <li style="font-weight: normal;" value="1">the logging analyst is flagged as Unavailable, deleted, not an Analyst, not flagged as a call recipient, or is not an IPK Analyst.</li>
+                                                                                <li style="font-weight: normal;" value="2">the Log Group or Closure Group is deleted.</li>
+                                                                            </ul>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyH-Column1-">Logged By</td>
+                                                                        <td class="TableStyle-FieldDesc-BodyG-Column2-">Select to enable the Analyst who logged the call to close the call. If the call is forwarded to another Analyst who resolves it, the system automatically forwards the call to the original Analyst to review and close. If the call is opened and resolved by the same Analyst, the call is closed immediately. <p>Call statuses related to this rule on the <b class="Xref_outstanding">Calls Outstanding</b> window are <b>Forward for Closure</b> and <b>Forward to You for Close.</b></p>
+<p class="prereq">This option is only available if <b>Rules</b> has been selected under <b>Closure Method.</b></p>
+</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyH-Column1-">Log Group</td>
+                                                                        <td class="TableStyle-FieldDesc-BodyG-Column2-">Select to enable a member of the group that logged the call to close the call. If the call is forwarded to an Analyst in another group who resolves it, the system automatically forwards the call to the original group (that is, to all members of that group) to review and close.<p class="prereq">This option is only available if <b>Rules</b> has been selected under <b>Closure Method.</b></p>
+</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyH-Column1-">Closure Group</td>
+                                                                        <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                            <p>Select to <a href="%7B%7B%20'help-admin-security-ipk-groups#Completing_IPK_Group_Details'%7CstaticPage%20%7D%7D#Completing_IPK_Group_Details">nominate a group responsible for closing all calls</a>. This forces all resolved calls to be forwarded to the specified closure group for review and closing by an analyst in that group. </p>
+                                                                            <p class="note">Any IPK group can be <a href="%7B%7B%20'help-admin-security-ipk-groups#Completing_IPK_Group_Details'%7CstaticPage%20%7D%7D#Completing_IPK_Group_Details">designated as a closure group</a>. The name of the closing Analyst is added to the call history. </p>
+                                                                            <p class="note">If <span style="font-weight: bold;">Closure Group</span> is selected, an Analyst belonging to the closure group will see only options to <span style="font-weight: bold;">Close</span>, <span style="font-weight: bold;">Close New</span>, <span style="font-weight: bold;">Reopen</span>, and <span style="font-weight: bold;">Cancel</span> in resolved calls. If the call is not ready to be closed, the Analyst could reopen the call and then forward it to a group or analyst.</p>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyH-Column1-">Cascade Closure Status to Child Calls</td>
+                                                                        <td class="TableStyle-FieldDesc-BodyG-Column2-">Select  to ensure the status of any linked child calls is consistent with the status of the parent call when Analysts close parent calls manually, or a parent call is resolved when an IPK Workflow Rule triggers an Assignment Workflow on Call Resolve. If any linked child calls are already closed, they will remain closed. <p>Deselect to allow the closure status of linked child calls to be determined only by the <b>Closure Method</b> and/or <b>Closure Rules</b>. </p>
+<p>If your Closure Method is <span style="font-weight: bold;">Immediate/Comments/Rules</span>, and a call is closed, the call changes from Open to Closed. Linked child calls that are Open/Open-Resolved will change to Closed. Those that are Closed will stay Closed. </p>
+<p>If your Closure Method is <span style="font-weight: bold;">Comments/Rules</span>, and the call is forwarded to an analyst/group for comments/closure, the call changes from Open to Open-Resolved. Any linked child calls that are Open will change to Open-Resolved; those that are Open-Resolved stay Open-Resolved; those that are Closed stay Closed. </p>
+<p>If your Closure Method is <span style="font-weight: bold;">Comments/Rules</span>, and the call is closed by the Analyst/group required to do so, the call changes from Open/Open-Resolved to Closed. Any linked child calls that are Open/Open-Resolved will change to Closed; those that are already Closed will stay Closed. </p>
+<p>If an IPK Workflow Rule triggers an <b>Assignment Workflow on Call Resolve</b> and forwards the call as Open-Resolved to an Analyst/group to close,  any linked child calls that are Open are changed to Open-Resolved; those that are already closed stay closed. </p>
+<p class="exampletext">A Closure Rule is in place to forward calls to the Problem Management Group to close and the <span style="font-weight: bold;">Cascade Closure Status to Child Calls</span> option is selected. An Analyst in the User Service Group closes a call. The call is then assigned to the Problem Management Group as Open-Resolved. This call also has three child calls, which are Closed, Open, and Open-Resolved. When the User Service Analyst selects <span style="font-weight: bold;">Yes</span> in the popup to also resolve the linked child calls, the Closed child call stays Closed, the Open child call changes to Open-Resolved, and the Open-Resolved child call stays Open-Resolved. This ensures that the child calls reflect the closure status of the parent call. </p>
+<p class="exampletextlast">An analyst in the Problem Management Group now closes the parent call and selects <span style="font-weight: bold;">Yes</span> in the popup to resolve all the linked child calls. The parent call changes to Closed, and the Open-Resolved child calls are also Closed. </p>
+</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyH-Column1-">Closure Reason Linking</td>
+                                                                        <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                            <p>Select from the options to specify whether/how the call closure reasons are to be linked.</p>
+                                                                            <p class="note">If your system is partitioned on types or screen sets, the visible list will be based on the active partition.</p>
+                                                                            <table class="TableStyle-FieldDesc_no_indent" style="mc-table-style: url('../../resources/tablestyles/fielddesc no indent.css');margin-left: 0;margin-right: auto;" cellspacing="0">
+                                                                                <col class="TableStyle-FieldDesc_no_indent-Column-Column1">
+                                                                                <col class="TableStyle-FieldDesc_no_indent-Column-Column2">
+                                                                                <tbody>
+                                                                                    <tr>
+                                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">None</td>
+                                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">Select if you do not wish to link the closure reasons. All available <a href="reasons.htm">reasons</a> will appear in the <b>Reasons</b> list on the call closure window.</td>
+                                                                                    </tr>
+                                                                                    <tr>
+                                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">Reason to Type</td>
+                                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">
+                                                                                            <p>Select to link the closure reasons to call type, as set in the <a href="%7B%7B%20'help-type-tiers#top'%7CstaticPage%20%7D%7D#top">Type Tiers</a> window. </p>
+                                                                                            <p>Having selected this option, you must then <a href="link%20type%20to%20reason.htm">link the types to the reasons</a>. When an Analyst selects a <a href="type%20tiers.htm">Type</a> on the <b class="Xref_outstanding">Call Details</b> window, only the reasons which have been linked to it will be displayed in the <a href="reasons.htm">Reasons</a> list when closing the call.</p>
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                    <tr>
+                                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyB-Column1-">Reason to Screen Set</td>
+                                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyA-Column2-">
+                                                                                            <p>Select to link the closure reasons to screen set. </p>
+                                                                                            <p>Having selected this option, you must then <a href="%7B%7B%20'help-link-screen-set-to-reason#Configur'%7CstaticPage%20%7D%7D#Configur">link the reasons to the screen sets</a>. Only the reasons associated with a particular screen set are available from the <b>Reasons</b> list on the call closure window.</p>
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                </tbody>
+                                                                            </table>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyG-Column1-" colspan="2" style="font-weight: bold;">
+                                                                            <p style="font-weight: normal;">The <span style="font-weight: bold;">Support Skills</span> options determine how Analysts are profiled; by type, by CMDB type or both.</p>
+                                                                            <p style="font-weight: normal;">Selecting one or both the options enables Analysts to be linked to <a href="type%20tiers.htm">issue types</a> and/or <a href="../admin%20cmdb/cmdb%20item%20types.htm">CMDB item types</a> as a means of identifying their skills and experience. </p>
+                                                                            <p style="font-weight: normal;">When an Analyst is forwarding a call , they can select the <span style="font-weight: bold;">Support Skills</span> explorer option on the <b class="Xref_outstanding">Call Details</b> window to see which Analysts have experience dealing with the CMDB item type or issue type they have selected. </p>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyH-Column1-">Type</td>
+                                                                        <td class="TableStyle-FieldDesc-BodyG-Column2-">Select to enable Analysts to be profiled by <a href="type%20tiers.htm">issue type</a>
+</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyH-Column1-">CMDB Type</td>
+                                                                        <td class="TableStyle-FieldDesc-BodyG-Column2-">Select to enable Analysts to be profiled by <a href="../admin%20cmdb/cmdb%20item%20types.htm">CMDB item type</a>
+</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyG-Column1-" colspan="2">
+                                                                            <p colspan="2" style="font-weight: normal;">The <span style="font-weight: bold;">Support Groups</span> options allow you to indicate the default view for choosing recipients when forwarding a call through the service desk. When an Analyst goes to the <b class="Xref_outstanding">Forward Internally</b> window, the Analyst/group options will be selected based on the option selected here.</p>
+                                                                            <p colspan="2" style="font-weight: normal;">Analysts can select a different option on the <b>Forward Internally</b> window if they wish.</p>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyH-Column1-">Analysts Default</td>
+                                                                        <td class="TableStyle-FieldDesc-BodyG-Column2-">Select to display all Analysts to whom the call can be forwarded</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyH-Column1-">Groups Default</td>
+                                                                        <td class="TableStyle-FieldDesc-BodyG-Column2-">Select to display all IPK groups  to whom the call can be forwarded</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyH-Column1-">Analyst by Group Default</td>
+                                                                        <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                Select to display all the IPK groups  to whom the call can be forwarded, and the analysts in each group.
+                            </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyG-Column1-" colspan="2">
+                                                                            <p colspan="2" style="font-weight: normal;">The Quick Solutions options allow you to enable Analysts to use quick solutions. </p>
+                                                                            <p colspan="2" class="note"><span style="font-weight: normal;"> Quick solutions are macros that automatically input details into the </span>Call Details<span style="font-weight: normal;"> window and are especially useful for recurring issues. </span></p>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyH-Column1-">Configured</td>
+                                                                        <td class="TableStyle-FieldDesc-BodyG-Column2-">Select to enable quick solutions to be defined in the system. <p class="note">This activates the <a href="quick%20solutions.htm">Quick Solutions</a> option, where quick solutions are defined. </p>
+</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyH-Column1-">Disable Checks
+                    </td>
+                                                                        <td class="TableStyle-FieldDesc-BodyG-Column2-">Select to enable a call to which a quick solution has been applied to be closed immediately, bypassing the validation checks, such as <span style="font-weight: bold;">User Required</span>, <span style="font-weight: bold;">CI Required</span>, <span style="font-weight: bold;">Service Required</span> and <span style="font-weight: bold;">Type Required</span>. This means that even if mandatory fields are left incomplete, the call can still be closed.</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyG-Column1-" colspan="2" style="font-weight: normal;">The remaining <span style="font-weight: bold;">Options</span> the <a href="#" class="selected">IPK Settings (Partitioned)</a> window are described below.</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyH-Column1-">Experience Base Default</td>
+                                                                        <td class="TableStyle-FieldDesc-BodyG-Column2-">Select to add calls to the <b class="Xref_outstanding">Experience Base</b> on closure unless the Analyst specifically clears the selection before closing the call. </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyH-Column1-">User Required</td>
+                                                                        <td class="TableStyle-FieldDesc-BodyG-Column2-">Select to make the User field mandatory when<b class="Xref_outstanding"> logging a call</b>
+</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyH-Column1-">CI Required</td>
+                                                                        <td class="TableStyle-FieldDesc-BodyG-Column2-">Select to make the Configuration Item field mandatory when<b class="Xref_outstanding"> logging a call.</b>
+</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyH-Column1-">Service Required</td>
+                                                                        <td class="TableStyle-FieldDesc-BodyG-Column2-">Select to make the Service field  mandatory when <b class="Xref_outstanding">logging a call.</b>
+</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyH-Column1-">Type Required</td>
+                                                                        <td class="TableStyle-FieldDesc-BodyG-Column2-"> Select to make the Type field mandatory when<b class="Xref_outstanding"> logging a call. </b>
+</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyH-Column1-">Call Linking</td>
+                                                                        <td class="TableStyle-FieldDesc-BodyG-Column2-">Select to enable the <b class="Xref_outstanding">Linking </b>explorer option on the <b class="Xref_outstanding">Call Details window</b>, used for linking related calls to one another. </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyH-Column1-">History Private</td>
+                                                                        <td class="TableStyle-FieldDesc-BodyG-Column2-">Select to clear the <b>Visible in Self Service Portal</b> checkbox on the<b class="Xref_outstanding"> Call Details</b> window by default, making  call histories unavailable on the <b class="Xref_outstanding"><span class="GeneralVariablesSelfServicePortalName">Self Service Portal</span></b>. Analysts can still select the checkbox on the Call Details window if they wish to make a particular call’s <b class="Xref_outstanding">history details</b> visible on the <span class="GeneralVariablesSelfServicePortalName">Self Service Portal</span>. </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyH-Column1-">Call Ref</td>
+                                                                        <td class="TableStyle-FieldDesc-BodyG-Column2-">Select to automatically allocate a <b class="Xref_outstanding">reference number</b> to a call, in addition to the automatically assigned, unique call number. Analysts can overwrite the <span style="font-weight: bold;">Ref</span> field if they wish, unless it is made read only in the <a href="../designer/configuring%20fields.htm"><span class="GeneralVariablesDesignerName">ASM Designer</span></a> by editing the <span style="font-weight: bold;">Call Details</span> screen. <p>Deselect to leave the field blank. The Analyst can still manually enter a value if they wish. This is useful, for example, if a reference number is allocated by an external supplier, or provided by the caller if the help desk is supporting external clients. The same reference may also be used for calls that relate to a specific issue.</p>
+</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyH-Column1-">Reason Forced</td>
+                                                                        <td class="TableStyle-FieldDesc-BodyG-Column2-">Select to make it mandatory for Analysts to select a <a href="reasons.htm">Reason </a>when closing a call. Usually, this is the reason for closing the call. If a reason is not selected, a warning message appears.</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyH-Column1-">Reason to Type</td>
+                                                                        <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                            <p>Select to enable <a href="link%20type%20to%20reason.htm">reasons to be linked to issue types</a>. In this case, when an Analyst selects an <a href="type%20tiers.htm">Issue Type</a>, only those reasons associated with that issue are available from the <a href="reasons.htm">Reasons</a> list. </p>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyH-Column1-">Call Notes</td>
+                                                                        <td class="TableStyle-FieldDesc-BodyG-Column2-"> Select to enable Analysts to add notes to calls, including calls owned by other Analysts. When selected, the<b class="Xref_outstanding"> Add Note </b>explorer option appears on the<b class="Xref_outstanding"> Call Details</b> window, and the <b>Add Note</b> button is enabled on the Analyst’s Outstanding windows.</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyB-Column1-">Action with Note</td>
+                                                                        <td class="TableStyle-FieldDesc-BodyA-Column2-">Select to automatically update the <b>Time Last Action</b> value whenever a note is added to a call.<p class="note">You can view the <span style="font-weight: bold;">Time Last Action</span> for a call on the <b class="Xref_outstanding">Information Panel</b>.</p>
+</td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        
+                                                        <li value="4">Select <img src="/storage/app/media/Help/images/save%20button.png">  to save the changes. Provide the <a href="../general%20topics/change%20reasons.htm">Change Reasons</a> if prompted to do so.</li>
+                                                    </ol>
+                                                

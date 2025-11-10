@@ -1,0 +1,199 @@
+title = "Our Partners"
+url = "/partners"
+layout = "home"
+description = "Partners page"
+meta_title = "Our Partners | About Us - Alemba"
+meta_description = "Learn more about the Alemba partnership program and the valued partners that help us deliver best in class ITSM software solutions."
+is_hidden = 0
+robot_index = "index"
+robot_follow = "follow"
+seoOptionsEnabledInSitemap = 0
+seoOptionsUseUpdatedAt = 1
+seoOptionsRobotIndex = "index"
+seoOptionsRobotFollow = "follow"
+seoOptionsChangefreq = "daily"
+seoOptionsPriority = 0.5
+canonical_url = "https://alemba.com/partners"
+seo_title = "Our Partners | About Us - Alemba"
+seo_description = "Learn more about the Alemba partnership program and the valued partners that help us deliver best in class ITSM software solutions."
+
+[viewBag]
+seo_title = "Our Partners | About Us - Alemba"
+seo_description = "Learn more about the Alemba partnership program and the valued partners that help us deliver best in class ITSM software solutions."
+robot_index = "index"
+robot_follow = "follow"
+==
+<?php
+use Alemba\Alemba\Models\Partner;
+
+function onStart()
+{
+	// Get all partners
+
+	$this['partners'] = Partner::orderBy('region')->orderBy('name')->get();
+
+
+}
+?>
+==
+<!-- banner -->
+
+<div class="jumbotron jumbotron-fluid banner dark pageBanner" style="background-image:url('{{ 'assets/img/banners/banner-facilities@0.5x.jpg'|theme }}')">
+
+    <div class="container h-100">
+        <div class="row h-100">
+            <div class="col my-auto">
+                <h2 class="xl-header text-center">Win: win.</h2>
+            </div>
+        </div>
+    </div>
+    
+</div>
+
+<!-- /banner -->
+
+{% partial 'demo-button' %}
+
+<!-- copy -->
+
+<div class="container copy">
+
+	<header class="col-md-12 copy-heading">
+		
+		<nav aria-label="breadcrumb">
+            <ol class="breadcrumb justify-content-center">
+                <li class="breadcrumb-item"><a href="{{ 'our-company'|page }}">Our Company</a></li>
+                <li class="breadcrumb-item active">Partners</li>
+            </ol>
+        </nav>
+	
+		<h1>{{ this.page.title }}</h1>
+		<h2>Alemba + You</h2>
+
+	</header>
+
+	<div class="row justify-content-center">
+
+		<div class="col-md-10">
+
+			<p class="lead">At Alemba, we view building a strong partnership program as an essential part of our go-to-market strategy.  We work with a large network of partners to deliver business-critical service desk and ITSM solutions to customers around the globe.</p>
+
+			<p>We are looking for partners to assist customers with the procurement, sales, integration and implementation of solutions that extend the capabilities of our platform.</p>
+
+		</div>
+
+	</div>
+
+	<div class="row">
+
+		<div class="col text-center">
+
+			<a href="{{ 'partners-join'|page }}" class="button-link btn btn-primary">Become a Partner</a>
+
+		</div>
+
+	</div>
+
+    <div class="row justify-content-center pb-0">
+
+		<div class="col-md-5 copy-main">
+
+			<h3 class="mt-0">Become a Value Added Reseller</h3>
+
+			<div class="partner-feature">
+
+				<h4>Keeping it local</h4>
+				<hr class="mt-0 mb-3">
+				<p>Many customers who are looking for help with the procurement of an ITSM solution wish to transact with a local representative with whom they already have a procurement relationship.</p>
+
+			</div>
+
+			<div class="partner-feature">
+
+				<h4>Referrals</h4>
+				<hr class="mt-0 mb-3">
+				<p>Use your business connections to create a new revenue stream by referring ITSM solutions opportunities to Alemba and we’ll reward you with commission. You can feel safe in the knowledge that your clients are being referred to a provider who puts customers first.</p>
+
+			</div>
+
+			<div class="partner-feature">
+
+				<h4>Reselling</h4>
+				<hr class="mt-0 mb-3">
+				<p>Does your company specialize in IT Service Management? Choose Alemba’s Service Management solution to resell to your clients.</p>
+
+				<p>Alemba Service Manager is trusted by a large number of organizations across the globe to manage their IT estates.</p>
+
+			</div>
+
+			
+
+		</div>
+
+		<div class="col-md-5">
+
+            <h3 class="mt-0">Training and Support</h3>
+            
+            <hr class="mt-0 mb-3">
+
+			<p class="lead">Our partner network is important to us. Alemba will work with new partners to transfer the knowledge they need to sell and optimize Alemba Service Manager for their customers – but the relationship doesn’t end there. We continue to work closely with members of our partner network to ensure they have the latest information and updates on the product and marketing collateral.</p>
+
+			<p>Whether you are a managed service provider, a system integrator or a consulting firm, we’ll put together a custom training and support plan to ensure you get the most out of our partnership.</p>			
+
+		</div>
+
+	</div>
+
+	<div class="row justify-content-center pt-0">
+
+		<div class="col copy-main">
+
+			<h4 class="subheading">Partners</h4>
+			
+
+			<ul class="partners list-unstyled">
+
+				{% for partner in partners %}
+                
+	                <li>
+	                    {% if partner.url %}
+					    <a href="{{ partner.url }}" target="_blank"></a>
+					    {% endif %}
+						<div class="partner-logo">
+							<img src="{{ partner.logo|media }}" alt="{{ partner.name }}" />
+						</div>
+						<div class="partner-text with-logo">
+							<h2>{{ partner.name }}</h2>
+							<p>{{ partner.description }}</p>
+						</div>
+					</li>
+
+				{% endfor %}
+
+			</ul>
+
+		</div>
+
+	</div>
+
+</div>
+
+<!-- /copy -->
+
+<!-- copy-links -->
+
+<div class="jumbotron jumbotron-fluid grey dark" style="background-image:url('{{ 'assets/img/banners/banner-facilities.jpg'|theme }}');">
+    <div class="container">
+        <div class="row">
+            <div class="col text-center">
+                <h2 class="text-center">We'd love to work with you!</h2>
+                <p>&nbsp;</p>
+                <a href="{{ 'partners-join'|page }}" class="button-link btn btn-white">Become a Partner</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% partial 'pagelinks-recent' %}
+
+<!-- /copy-links -->

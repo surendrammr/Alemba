@@ -1,0 +1,102 @@
+[viewBag]
+title = "About Chat"
+url = "/help/topics/chat"
+layout = "help"
+is_hidden = 0
+navigation_hidden = 0
+==
+                                                    <h1>About Chat</h1>
+                                                    <p>Chat allows users to carry out a real time "chat" online with analysts. Calls are automatically logged when a Chat request is submitted and analysts can link chats to several calls.</p>
+                                                    <p class="video" data-mc-conditions="Default.ScreenOnly">You can find out more about Chat by viewing the video <a href="https://vimeo.com/185618099/5f76695919">here</a>.</p>
+                                                    <p class="prereq">Chat is only available for SQL installations. It is not available for systems using Oracle.</p>
+                                                    <h2>Setting Up Chat</h2>
+                                                    <p>To set up your system for Chat, carry out the following steps:</p>
+                                                    <ul>
+                                                        <li value="1">Ensure that your system meets the necessary prerequisites and has all of the required settings as part of the installation/upgrade.</li>
+                                                        <li value="2">For each partition, in the <a href="adminselfserviceportal/cp%20settings%20partitioned.htm"><span class="GeneralVariablesSelfServicePortalName">Self Service Portal</span> Settings (Partitioned)</a> window:<ul>
+<li value="1">
+<b>Enable Chat</b>.</li>
+<li value="2">
+<b>Link a call template</b> to the chat.</li>
+<li value="3">
+<b>Assign analysts</b> to chat.</li>
+</ul>
+</li>
+                                                        <li value="3">Give analysts "Chat Analyst" permissions in their <a href="admin%20security%20roles/ipk%20management%20security%20roles%20-%20options%20tab.htm">IPK Management security role</a>.</li>
+                                                        <li value="4">Give users "Chat User" permissions in their <a href="adminselfserviceportal/cp%20role%20-%20options%20tab.htm">Self Service security role</a>.</li>
+                                                        <li value="5">Give managers "Chat Manager" permissions in their <a href="admin%20security%20roles/ipk%20management%20security%20roles%20-%20options%20tab.htm">IPK Management security role</a>.</li>
+                                                        <li value="6">Assign a chat name and image to the analyst and user in their <a href="%7B%7B%20'help-managing-people-managing-people#Adding'%7CstaticPage%20%7D%7D#Adding">Person Details</a> if you wish.</li>
+                                                    </ul>
+                                                    <p class="note1">If you are setting up Chat to work between multiple web servers, you need to edit the Chat web.config. <a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="../resources/images/chat%20webconfig.png"><img class="MCPopupThumbnail img imgthumbnail" data-mc-width="561" data-mc-height="202" src="/storage/app/media/Help/images/chat%20webconfig_thumb_0_48.png" tabindex=""></a>There are currently two methods of scaling out, or spreading the chat across multiple servers:</p>
+                                                    <ul class="prereq">
+                                                        <li value="1">If you have a Microsoft Azure subscription, you can use Azure, inserting the values provided by Microsoft into the Service bus scale out support lines of code - <img src="/storage/app/media/Help/images/chat%20webconfig%20azure.png">
+</li>
+                                                        <li value="2">Alternatively, you can use SQL Server to scale out, using the following key:</li>
+                                                        <p class="codefont">&lt;add key="chat:scaleOutSqlServer" value="TRUE" /&gt;</p>
+                                                    </ul>
+                                                    <p class="video" data-mc-conditions="Default.ScreenOnly">You can find out more about setting up Chat by viewing the video <a href="https://vimeo.com/185618097">here</a>.</p>
+                                                    <h2>Chat for Users</h2>
+                                                    <p class="prereq">Users must have <b>Chat User</b> selected in the <a href="adminselfserviceportal/cp%20role%20-%20options%20tab.htm">Options tab</a> of their <b><span class="GeneralVariablesSelfServicePortalName">Self Service Portal</span> role</b>.</p>
+                                                    <ol>
+                                                        <li value="1">Once users have chat user permissions, they can see the <b>Chat</b> option in their Self Service <a href="adminselfserviceportal/cp%20my%20options.htm">My Options</a> menu. If there is an analyst available, the item will appear as simply Chat - <a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="../resources/images/chat%20online%20user.png"><img class="MCPopupThumbnail img imgthumbnail" data-mc-width="278" data-mc-height="388" src="/storage/app/media/Help/images/chat%20online%20user_thumb_0_48.png" tabindex=""></a>. If there are no analysts available, either because they are offline or dealing with other users, the option title will reflect the status - <a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="../resources/images/chat%20offline%20user.png"><img class="MCPopupThumbnail img imgthumbnail" data-mc-width="268" data-mc-height="356" src="/storage/app/media/Help/images/chat%20offline%20user_thumb_0_48.png" tabindex=""></a>.</li>
+                                                        <li value="2">When the user selects the option, the <b>Chat Request</b> window appears. <a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="../resources/images/chat%20request%20window.png"><img class="MCPopupThumbnail img imgthumbnail" data-mc-width="1071" data-mc-height="784" src="/storage/app/media/Help/images/chat%20request%20window_thumb_0_48.png" tabindex=""></a> (If it selected when there are no analysts available, the <b>Description</b> field is grayed out.)</li>
+                                                        <li value="3">The user completes the description and selects <img src="/storage/app/media/Help/images/chat%20request%20button.png">. </li>
+                                                        <li value="4">This logs a call, which appears on the user's screen, and opens a Chat window showing the status of the chat, the number of available analysts and the user's place in any queue. This is updated as the status changes.</li>
+                                                        <li value="5">When the chat session is accepted by an analyst, the chat begins. Users and analysts can typeto a chat box at the bottom of the chat window, sending it by either pressing Enter or selecting <img src="/storage/app/media/Help/images/chat%20send%20button.png">.</li>
+                                                        <li value="6">The icons at the top of the chat window indicate the status of the chat. Typically, there will be a green dot, a minimize and a close icon. <img src="/storage/app/media/Help/images/chat%20request%20icon.png"> When the analyst is typing, the green dot icon will display a small speech bubble - <img src="/storage/app/media/Help/images/chat%20request%20icon%20typing.png">. </li>
+                                                        <li value="7">Users can end the chat by closing the window. The details of the call logged as a result of the chat appears on the screen, and when the user selects the Chat option again, they can see the call in the list of <b>Recently Logged Calls</b>.<a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="../resources/images/chat%20recently%20logged%20calls.png"><img class="MCPopupThumbnail img imgthumbnail" data-mc-width="981" data-mc-height="687" src="/storage/app/media/Help/images/chat%20recently%20logged%20calls_thumb_0_48.png" tabindex=""></a>
+</li>
+                                                    </ol>
+                                                    <h2>Chat for Analysts</h2>
+                                                    <h2 class="Prerequisite">Before you start</h2>
+                                                    <p class="prereqtext1">Analysts must:</p>
+                                                    <ul class="prereq">
+                                                        <li value="1"> have <b>Chat Analyst</b> permission selected in the <a href="admin%20security%20roles/ipk%20management%20security%20roles%20-%20options%20tab.htm">Options</a> tab of their <b>IPK Management security role</b>
+</li>
+                                                        <li value="2">be listed as a <b>Chat Analyst</b> for the partition in the <a href="adminselfserviceportal/cp%20settings%20partitioned.htm"><span class="GeneralVariablesSelfServicePortalName">Self Service Portal</span> Settings (Partitioned)</a> window</li>
+                                                        <li value="3">have the <a href="%7B%7B%20'help-general-topics-personal-settings#Promptin'%7CstaticPage%20%7D%7D#Promptin">option</a> to <b>Prompt to Save on Close</b> selected</li>
+                                                    </ul>
+                                                    <ol>
+                                                        <li value="1">When you have Chat permissions, you see a drop down availability box in your banner. <a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="../resources/images/chat%20availability.png"><img class="MCPopupThumbnail img imgthumbnail" data-mc-width="286" data-mc-height="98" src="/storage/app/media/Help/images/chat%20availability_thumb_0_48.png" tabindex=""></a> You can choose to make yourself <b>Online - Available</b>, at which point the <b>Chat Queue</b> window appears. <a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="../resources/images/chat%20queue.png"><img class="MCPopupThumbnail img imgthumbnail" data-mc-width="1047" data-mc-height="220" src="/storage/app/media/Help/images/chat%20queue_thumb_0_48.png" tabindex=""></a>
+</li>
+                                                        <li value="2">Then you can view all waiting, unanswered and answered chats before selecting a "waiting" one to answer. </li>
+                                                        <p class="note">Selecting an "answered" or "unanswered" chat will display the associated call details.</p>
+                                                        <li value="3">Once you accept the chat, the <b>Chat</b> window opens on screen, and you can chat in real time with the user. </li>
+                                                        <p class="warning">Once you pick up a call and the call details window appears, close the first call back to ensure that the SLA records the contact with the user. </p>
+                                                        <li value="4">You can also use a pop up menu to search for other calls logged by the user, link calls, view linked calls, and log further calls against the chat if several issues emerge. <a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="../resources/images/chat%20analyst%20options.png"><img class="MCPopupThumbnail img imgthumbnail" data-mc-width="189" data-mc-height="139" src="/storage/app/media/Help/images/chat%20analyst%20options_thumb_0_48.png" tabindex=""></a>
+</li>
+                                                        <li value="5">You can end the chat by closing the window or selecting <b>Close Chat</b> from the pop up menu.</li>
+                                                        <li value="6">Make yourself <b>Online - Available</b> when you are ready to take your next call.</li>
+                                                    </ol>
+                                                    <p>The chat is recorded in the call’s history. This includes the chat start and end times, the contents of the chat, and a link in <span class="GeneralVariablesCoreName">ASM Core</span> that reopens the chat in the Chat window. The call source is stated as 'Chat'.</p>
+                                                    <h2>Chat for Managers</h2>
+                                                    <h2 class="Prerequisite">Before you start</h2>
+                                                    <p class="prereqtext1">Analysts who are chat managers must:</p>
+                                                    <ul class="prereq">
+                                                        <li value="1"> have <b>Chat Manager </b>permission selected in the <a href="admin%20security%20roles/ipk%20management%20security%20roles%20-%20options%20tab.htm">Options</a> tab of their <b>IPK Management security role</b>
+</li>
+                                                        <li value="2">be listed as a <b>Chat Analyst</b> for the partition they manage in the <a href="adminselfserviceportal/cp%20settings%20partitioned.htm"><span class="GeneralVariablesSelfServicePortalName">Self Service Portal</span> Settings (Partitioned)</a> window</li>
+                                                    </ul>
+                                                    <ol>
+                                                        <li value="1">
+                                                            <p>Select <a href="general%20topics/asmcorewindow.htm"><span style="font-size: 24pt;">≡</span></a> &gt; <b>Chat Queue</b>.</p>
+                                                            <p>The Chat Queue window appears.</p>
+                                                        </li>
+                                                        <p class="note">Alternatively, if you are also a Chat Analyst, use the chat availability drop down on the toolbar by changing your status to <b>Online - Available</b> to open the Chat queue window.</p>
+                                                        <li value="2">Select the <b>Chat Manager</b> option on the left, if it is not already selected. The Chat Manager screen lists the manager's Chat Queues and the Chat Analysts who are assigned to those queues.</li>
+                                                        <li value="3">In the <b>Chat Queue</b> you can: </li>
+                                                    </ol>
+                                                    <ul>
+                                                        <p><b>Select a queue</b>. Analysts displayed in the Chat Analyst table are updated to reflect the selected queue.</p>
+                                                        <p><b>Change the status of queues</b>. Select the <b>Enabled</b> checkbox to set the status to "Online", or deselect to set the status to "Offline". </p>
+                                                        <p class="note">A message appears to analysts in an online queue that is changed to offline.</p>
+                                                    </ul>
+                                                    <ol start="6">
+                                                        <li value="6">In the <b>Chat Analyst</b> table you can:</li>
+                                                    </ol>
+                                                    <ul>
+                                                        <p><b>See the chat User</b>. When analysts are in an active chat session, the User's name appears in the table.</p>
+                                                        <p><b>Change the status of analysts</b>. Select the current status of the analyst to see a list of other available statuses. If required, select a different status. </p>
+                                                        <p class="note">A message appears to analysts when their status is changed.</p>
+                                                    </ul>
+                                                

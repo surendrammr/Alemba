@@ -1,0 +1,156 @@
+url = "/contact"
+layout = "home"
+title = "Contact"
+description = "Contact page"
+is_hidden = 0
+meta_title = "Contact Us - Alemba"
+meta_description = "Get in touch with the Alemba team for more information about the market-leading Alemba Service Manager ITSM software solution."
+robot_index = "index"
+robot_follow = "follow"
+seoOptionsEnabledInSitemap = 0
+seoOptionsUseUpdatedAt = 1
+seoOptionsRobotIndex = "index"
+seoOptionsRobotFollow = "follow"
+seoOptionsChangefreq = "daily"
+seoOptionsPriority = 0.5
+canonical_url = "https://alemba.com/contact"
+seo_title = "Contact Us - Alemba"
+seo_description = "Get in touch with the Alemba team for more information about the market-leading Alemba Service Manager ITSM software solution."
+
+[renderForm]
+formCode = "contact"
+
+[viewBag]
+seo_title = "Contact Us - Alemba"
+seo_description = "Get in touch with the Alemba team for more information about the market-leading Alemba Service Manager ITSM software solution."
+robot_index = "index"
+robot_follow = "follow"
+==
+<?php
+use Alemba\Alemba\Models\Office;
+
+function onStart()
+{
+	// Get all team members
+
+	$this['offices'] = Office::orderBy('sort_order')->get();
+
+}
+?>
+==
+<!-- banner -->
+
+<div class="jumbotron jumbotron-fluid banner dark pageBanner" style="background-image:url('{{ 'assets/img/banners/banner-office@0.5x.jpg'|theme }}')">
+
+	<div class="container h-100">
+	    <div class="row h-100">
+    	    <div class="col my-auto">
+    		    <h1 class="text-center xl-header">{{ this.page.title }}</h1>
+		    </div>
+		</div>
+	</div>
+
+</div>
+
+<!-- /banner -->
+
+{% partial 'demo-button' %}
+
+<!-- copy -->
+
+<div class="container copy pb-0">
+
+	<header class="col-md-12 copy-heading text-centers">
+	
+		<h2>Get in touch with us. We’d love to hear from you!</h2>
+
+	</header>
+
+	<div class="row pb-0">
+
+		<div class="col-sm-12 contact-email text-center">
+
+			<a href="mailto: {{ html_email('info@alemba.com')|raw }}" class="button-link btn btn-primary">info@alemba.com</a>
+
+		</div>
+
+	</div>
+
+</div>
+
+<div class="container copy offices article-cards">
+
+    <div class="row justify-content-center pt-0">
+        
+    	{% for office in offices %}
+    
+    		<div class="col-sm-6 col-md-6 col-lg-3 pt-3 pb-3">
+    		
+    		    <div class="contact-office card mx-auto">
+    
+        			<div class="contact-office-pic">
+        
+        				{% if office.image %}
+        				
+        				    <div class="card-img-top d-block" style="background-image:url('{{ office.image|media }}')"></div>
+        				    
+        				    {% else %}
+        
+        					<div class="card-img-top" style="background-image:url('{{ 'assets/img/thumbnail-default.png'|theme }}')"></div>
+        
+        				{% endif %}
+        
+        			</div>
+        
+        			<div class="contact-office-text card-body">
+        
+        				<header>
+        					<h3>{% if 'USA' in office.name %}
+        						<a href="{{ 'office-us'|page }}">{{ office.name }}</a>
+        						{% else %}
+        							{{ office.name }}
+        						{% endif %}
+        					</h3>
+        					<h5><span class="tel"><a href="tel:{{ office.telephone }}">{{ office.telephone }}</a></span></h5>
+        				</header>
+        
+        				<address>{{ office.address|nl2br }}</address>
+        				
+        				{% if office.google %}
+        
+            				<div class="contact-office-location">
+            
+            					<a href="{{ office.google }}" class="button-link"><i class="fa fa-map-marker"></i> Google Maps</a>
+            
+            				</div>
+        
+        			    {% endif %}
+        
+        			</div>
+    			
+    			</div>
+    
+    		</div>
+    
+    	{% endfor %}
+    	
+	</div>
+	
+	<div class="row justify-content-center mt-3">
+	    <div class="col-md-6">
+    	    <p class="lead text-center">If you have an enquiry please fill out the form below and we'll get back to you as soon as possible.</p>
+    	    {% component 'renderForm' %}
+	    </div>
+	</div>
+
+</div>
+
+<!-- /copy -->
+
+<!-- copy-links -->
+
+
+<!-- /copy-links -->
+
+<!-- Load Font Awesome -->
+{% partial "font-awesome" %}

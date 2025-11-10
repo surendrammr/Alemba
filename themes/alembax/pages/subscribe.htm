@@ -1,0 +1,328 @@
+title = "Subscribe"
+url = "/subscribe"
+layout = "home"
+description = "Newsletter subscription page"
+is_hidden = 0
+canonical_url = "https://alemba.com/subscribe"
+meta_title = "Subscribe"
+meta_description = "Subscribe"
+robot_index = "index"
+robot_follow = "follow"
+seoOptionsEnabledInSitemap = 0
+seoOptionsUseUpdatedAt = 1
+seoOptionsRobotIndex = "index"
+seoOptionsRobotFollow = "follow"
+seoOptionsChangefreq = "daily"
+seoOptionsPriority = 0.5
+seo_title = "Subscribe"
+seo_description = "Subscribe"
+
+[viewBag]
+seo_title = "Subscribe"
+seo_description = "Subscribe"
+robot_index = "index"
+robot_follow = "follow"
+==
+<?php
+use Alemba\Alemba\Models\NewsletterList;
+use Alemba\Alemba\Models\Subscriber;
+use Alemba\Alemba\Models\ListSubscriber;
+use Alemba\Alemba\Models\Region;
+
+function onStart()
+{
+
+	$this['lists'] = NewsletterList::orderBy('name')->get();
+
+	$this['regions'] = Region::orderBy('name')->get();
+
+	// Populate the form if the e-mail has been supplied
+	
+	$this['email'] = \Input::has('e') ? \Input::get('e') : false;
+
+	$this['intro'] = 'Subscribe for product and event news, exclusive tips and tricks and more.';
+	$this['button_name'] = 'Subscribe';
+
+	if($this['email']) {
+
+		$this->page->title = 'Your Subscription';
+		$this['intro'] = 'Have we got your details correct?';
+		$this['button_name'] = 'Save Changes';
+
+		$this['subscriber'] = Subscriber::where('email', $this['email'])->first();
+
+		if($this['subscriber']) {
+
+			$this['id'] = $this['subscriber']->id;
+			$this['name'] = $this['subscriber']->name;
+			$this['company'] = $this['subscriber']->company;
+			$this['region_id'] = $this['subscriber']->region_id;
+			$this['region_name'] = $this['subscriber']->region_name;
+
+			// Get lists subscriber has subscribed to
+			
+			$this['subscribed_lists'] = ListSubscriber::where('subscriber_id', $this['subscriber']->id)->get();
+			$this['subscribed_lists'] = $this['subscribed_lists']->pluck('newsletter_list_id');
+
+		}
+
+	} else {
+
+		// Get the form variables from the URL, if supplied
+		
+		$this['name'] = \Input::has('n') ? \Input::get('n') : false;
+		$this['company'] = \Input::has('c') ? \Input::get('c') : false;
+
+	}
+	
+}
+
+function onUpdateSubscription()
+{
+    
+    $id = post('subscriber_id');
+    $name = post('subscriber_name');
+    $company = post('subscriber_company');
+    $email = post('subscriber_email');
+    $region_id = post('subscriber_region_id');
+    $region_name = post('subscriber_region_name');
+    $lists = post('subscriber_lists');
+
+    // Check if the user exists by e-mail address (including those deleted)
+
+    $subscriber_exists = Subscriber::withTrashed()->where('email', $email)->first();
+
+    // Undelete the subscriber, if deleted
+
+    if($subscriber_exists) {
+
+    	$subscriber_exists->restore();
+
+    }
+
+    // If an ID doesn't exist and there's no row currently matched by e-mail, insert a new row
+
+    if(!$id && !$subscriber_exists) {
+
+    	$update = Subscriber::create(
+	    	['name' => $name, 'email' => $email, 'company' => $company, 'region_id' => $region_id, 'region_name' => $region_name]
+	    );
+
+	    // Get the ID and then insert the lists
+
+	    $id = $update->id;
+
+	    // Insert or update? (Used to determine the flash message)
+
+	    $type = 'insert';
+
+    } else {
+
+    	if($subscriber_exists) {
+
+	    	// If the subscriber can be matched by e-mail
+
+    		$update = $subscriber_exists;
+
+    	} else {
+
+    		// If an ID has been supplied, use that to find the existing record to update
+
+    		$update = Subscriber::find($id);
+
+    	}
+
+	    $id = $update->id;
+	    $type = 'update';
+	    
+	    // Update the record
+	    $update = $update->update(
+	    	['name' => $name, 'email' => $email, 'company' => $company, 'region_id' => $region_id, 'region_name' => $region_name]
+	    );
+
+
+    }
+
+    // First delete any lists previously attributed to the subscriber
+    
+    ListSubscriber::where('subscriber_id', $id)->delete();
+
+    // Check if any lists have been selected
+    
+    if($lists) {
+
+	    // Loop through the selected lists and add rows for each
+	    
+	    foreach ($lists as $list) {
+
+	    	ListSubscriber::create(['newsletter_list_id' => $list, 'subscriber_id' => $id]);
+	    	
+	    }
+
+	}
+
+    if($type == 'update'){
+
+    	Flash::success('<div class="alert alert-success" role="alert">Your subscription has been updated. Thank you!</div>');
+
+    } elseif($type == 'insert') { 
+
+    	Flash::success('<div class="alert alert-success" role="alert">You\'re subscribed! We\'re happy to have you with us!</div>');
+
+    } else {
+
+    	Flash::error('<div class="alert alert-danger" role="alert">Something\'s gone wrong. Please try again.</div>');
+
+    }
+
+    // Redirect to same page but insert e-mail address
+
+    return \Redirect::to($this->currentPageUrl().'?e='.$email);
+
+}
+?>
+==
+<script>
+
+	
+	
+	document.addEventListener("DOMContentLoaded", function(){
+	    function checkIfOtherRegionSelected()
+    	{
+    
+    		if($('#subscriber_region_id').children('option:selected').data('code') == 'other') {
+    			$('#region_name_block').fadeIn();
+    		} else {
+    			$('#region_name_block').fadeOut();
+    
+    			// Clear the 'other' field
+    			$('#subscriber_region_name').val('');
+    		}
+    
+    	}
+	    // Check if the other region has been selected when first loading
+	    
+	    checkIfOtherRegionSelected();
+
+		var id = '{{ id }}';
+		var name = '{{ name }}';
+		var email = '{{ email }}';
+		var company = '{{ company }}';
+		
+		$('#subscribeForm [name="subscriber_id"]').val(id);
+		$('#subscribeForm [name="subscriber_name"]').val(name);
+		$('#subscribeForm [name="subscriber_email"]').val(email);
+		$('#subscribeForm [name="subscriber_company"]').val(company);
+
+		$('#formSubmit').click(function(){
+			$('#subscribeForm').submit();
+		})
+
+		$('#subscriber_region_id').change(function(){
+
+			checkIfOtherRegionSelected();
+
+		});
+		
+    });
+
+	
+</script>
+
+<!-- banner -->
+
+<div class="jumbotron jumbotron-fluid banner dark pageBanner" style="background-image: url({{ 'assets/img/banners/banner-download@0.5x.jpg'|theme }})">
+    <div class="container h-100">
+	    <div class="row h-100">
+		</div>
+    </div>
+</div>
+
+<!-- end banner -->
+
+
+{% partial 'demo-button' %}
+
+<!-- copy -->
+
+<div class="container copy">
+
+	<header class="col-md-12 copy-heading">
+	
+		<h1>{{ this.page.title }}</h1>
+		<h2>Keep in the loop</h2>
+
+	</header>
+
+	<div class="row justify-content-center">
+
+		<div class="col-sm-10 col-sm-offset-1 col-md-6 col-md-offset-3 copy-main">
+
+			<p class="lead">{{ intro }}</p>
+
+			{% flash %}
+				{{ message|raw }}
+			{% endflash %}
+
+			{{ form_open({ model: subscriber, request: 'onUpdateSubscription', id: 'subscribeForm' }) }}
+
+				<div class="form-group required">
+					<label for="subscriber_name">Name (required)</label>
+					<input type="text" class="form-control" id="subscriber_name" name="subscriber_name" required />
+				</div>
+				<div class="form-group required">
+					<label for="subscriber_email">Email address (required)</label>
+					<input type="email" class="form-control" id="subscriber_email" name="subscriber_email" required />
+				</div>
+				<div class="form-group">
+					<label for="subscriber_company">Company</label>
+					<input type="text" class="form-control" id="subscriber_company" name="subscriber_company" />
+				</div>
+				<div class="form-group">
+					<label for="subscriber_region_id">Region</label>
+					<select class="form-control" id="subscriber_region_id" name="subscriber_region_id">
+						<option value="0">Select one...</option>
+						{% for region in regions %}
+							<option value="{{ region.id }}" data-code="{{ region.code }}" {% if region_id == region.id %} selected="selected" {% endif %}>{{ region.name }}</option>
+						{% endfor %}
+					</select>
+					<small>We use this to make sure our e-mails are more relevant to you.</small>
+				</div>
+				<div class="form-group" id="region_name_block" style="display:none;">
+					<label for="subscriber_region_name">Region name</label>
+					<input type="text" class="form-control" id="subscriber_region_name" name="subscriber_region_name" value="{{ region_name }}" />
+				</div>
+				<div class="form-group required">
+					<label for="subscriberPreferences">Your preferences (required)</label>
+
+					{% for list in lists %}
+
+						<div class="checkbox">
+						  <label><input type="checkbox" value="{{ list.id }}" id="subscriber_lists[]" name="subscriber_lists[]" {% if list.id in subscribed_lists %} checked="checked" {% endif %}/>{{ list.name }}</label><br />
+						  <small>{{ list.description }}</small>
+						</div>
+
+					{% endfor %}
+
+				</div>
+				<div class="form-group">
+					<a class="button-link btn btn-primary" id="formSubmit">{{ button_name }}</a>
+				</div>
+
+				<input type="hidden" name="subscriber_id" id="subscriber_id" />
+			
+			{{ form_close }}
+
+			<script>
+				$("#subscribeForm").validate();
+			</script>
+
+			<p><small>It should go without saying but we value your privacy and will never give your details to any other company. You're also free to unsubscribe at any time (obviously).</small></p>
+
+		</div>
+
+	</div>
+
+</div>
+
+<!-- /copy -->

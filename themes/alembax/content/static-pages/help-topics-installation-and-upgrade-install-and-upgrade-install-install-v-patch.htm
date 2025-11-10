@@ -1,0 +1,82 @@
+[viewBag]
+title = "About Installing or Patching to ASM 10.1"
+url = "/help/topics/installation-and-upgrade/install-and-upgrade/install-install-v-patch"
+layout = "help"
+is_hidden = 0
+navigation_hidden = 0
+==
+                                                    <h1>
+<a name="top"></a>About Installing or Patching to <span class="GeneralVariablesProductName">ASM</span> <span class="GeneralVariablesProductVersion">10.1</span>
+</h1>
+                                                    <p>
+
+You may need to install any of the following:</p>
+                                                    <ul>
+                                                        <li value="1">
+                                                            <p><b>Alemba Service Manager </b><i style="color: #0000ff;font-weight: bold;">x</i><b> Setup.msi</b>   – for installing new systems. <br>For more information, see <a href="../install/install%20installing.htm" class="MCXref xref">Installing Alemba Service Manager™</a>.</p>
+                                                        </li>
+                                                        <li value="2">
+                                                            <p><b>Alemba Service Manager </b><i style="color: #0000ff;font-weight: bold;">x</i><b> Patch.msi</b>
+– for upgrading systems. <br>For more information, see <a href="../upgrade/install%20upgrading.htm" class="MCXref xref">Upgrading your system</a>.</p>
+                                                            <p class="note">Where <i style="color: #0000ff;">x</i> is the <span class="GeneralVariablesProductName">ASM</span> version number.</p>
+                                                        </li>
+                                                    </ul>
+                                                    <p>Depending on your circumstances, you may need to do the following:
+
+
+</p>
+                                                    <table class="TableStyle-Rep_Hdr_Row" style="mc-table-style: url('../../../resources/tablestyles/rep hdr row.css');margin-left: 0;margin-right: auto;" cellspacing="0">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column1">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column2">
+                                                        <thead>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Head-Header1">
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column1-Header1">What I want to achieve</th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadD-Column2-Header1">	What I need to do</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">	I want to create a brand new vanilla System</td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">Install the latest <span class="GeneralVariablesProductName">ASM</span> <b>Setup</b> file, and then use the Server Console system creation wizard.</td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">I want to upgrade my existing v9.x system on the same server</td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p class="prereq">Always take a backup of your system and database before performing an upgrade.</p>
+                                                                    <p>		Install the latest <span class="GeneralVariablesProductName">ASM</span> <b>Patch</b> file on the same server as your existing system.</p>
+                                                                    <p>The <span class="GeneralVariablesProductNameFull">Alemba Service Manager™</span> Patch Tool will upgrade the system files and database.</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">	I want to upgrade my existing v9.x system, and move it to a new server at the same time</td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p class="prereq">Always take a backup of your system and database before performing an upgrade.</p>
+                                                                    <ol>
+                                                                        <li value="1">	Install the latest <span class="GeneralVariablesProductName">ASM</span> <b>Patch</b> file on the old server and upgrade the database.</li>
+                                                                        <li value="2">Decommission the old server – turn off the  Services and IIS Admin Service, and set their Startup Type setting to <b>Manual</b>.</li>
+                                                                        <li value="3">Install the latest <span class="GeneralVariablesProductName">ASM</span> <b>Setup</b> file on the new server.</li>
+                                                                        <li value="4">On the new server, create a new system using the Server Console system creation wizard.</li>
+                                                                        <li value="5">During system creation, point to the existing database, and when asked if you wish to upgrade the database, select <b>No</b>.</li>
+                                                                    </ol>
+                                                                    <p class="warning">If upgrading a system on v9.2 or below, please follow the instructions in <a href="install%20appendixc-upgrade%20from%2092.htm" class="nolink MCXref xref xrefnolink"><b>Upgrading from vFire 9.2 or Below</b></a>.</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+<a name="I"></a>I want to upgrade between minor point releases.</td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p class="prereq">Always take a backup of your system and database before performing an upgrade.</p>
+                                                                    <p>You can upgrade between minor point releases (e.g. v10.5.2 to v10.5.4) by applying the <b>Patch</b> file.</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyB-Column1-Body1">	I have a v8 System I want to upgrade</td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyA-Column2-Body1">
+                                                                    <p class="prereq">The minimum version from which you can upgrade from v8 to v9 is v8RP40. If you have a version earlier than this, you must upgrade to v8RP40 before attempting to upgrade to v9. After you have upgraded to v9, you can upgrade to <span class="GeneralVariablesProductVersion">10.1</span>.</p>
+                                                                    <p class="prereq">Always take a backup of your system and database before performing an upgrade.</p>
+                                                                    <p>Follow the instructions in <a href="install%20appendixc-upgrade%20from%2092.htm" class="nolink MCXref xref xrefnolink"><b>Upgrading from vFire 9.2 or Below</b></a>.</p>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                

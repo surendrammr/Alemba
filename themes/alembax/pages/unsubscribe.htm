@@ -1,0 +1,161 @@
+title = "Unsubscribe"
+url = "/unsubscribe"
+layout = "home"
+description = "Newsletter unsubscription page"
+is_hidden = 0
+robot_index = "noindex"
+canonical_url = "https://alemba.com/unsubscribe"
+meta_title = "Unsubscribe"
+meta_description = "Unsubscribe"
+robot_follow = "follow"
+seoOptionsEnabledInSitemap = 0
+seoOptionsUseUpdatedAt = 1
+seoOptionsRobotIndex = "noindex"
+seoOptionsRobotFollow = "nofollow"
+seoOptionsChangefreq = "daily"
+seoOptionsPriority = 0.5
+
+[viewBag]
+seo_title = "Unsubscribe"
+seo_description = "Unsubscribe"
+robot_index = "index"
+robot_follow = "follow"
+==
+<?php
+use Alemba\Alemba\Models\Subscriber;
+use Alemba\Alemba\Models\ListSubscriber;
+
+function onStart()
+{
+
+	// Populate the form if the e-mail has been supplied
+	
+	$this['email'] = \Input::has('e') ? \Input::get('e') : false;
+
+	if($this['email']) {
+
+		$this['subscriber'] = Subscriber::where('email', $this['email'])->first();
+
+	}
+	
+}
+
+function onUpdateSubscription()
+{
+    
+    $email = post('subscriber_email');
+
+    // Get the subscriber based on the given e-mail address
+    
+    $subscriber = Subscriber::where('email', $email)->first();
+
+    if($subscriber){
+
+    	// If at least one record can be found, remove the subscriber from the system (there could be multiple records of the same e-mail address - delete them all)
+    	
+	    $update = Subscriber::where('email', $email)->delete();
+
+	    // Delete their linked newsletter subscriptions (important, in case they subscribe again in the future)
+
+        $delete_lists = ListSubscriber::where('subscriber_id', $subscriber->id)->delete();
+
+	    if($update){
+
+	    	Flash::success('<div class="alert alert-success" role="alert">You\'re now unsubscribed.</div>');
+
+	    	// E-mail Alemba
+
+	    	$vars = ['optin' => 'NO', 'email' => $email];
+
+	    	Mail::send('optin-email', $vars, function($message) {
+
+	    		$message->to('anthony.wallbank@alemba.com', 'Anthony Wallbank');
+    			$message->cc('claire.meyrick@alemba.com', 'Claire Meyrick');
+    			$message->subject('User has unsubscribed/opted-out');
+
+			});
+
+	    } else {
+
+	    	Flash::error('<div class="alert alert-danger" role="alert">Something\'s gone wrong. Please try again.</div>');
+
+	    }
+
+	} else {
+
+		Flash::error('<div class="alert alert-danger" role="alert">The e-mail address has not been found on our database.</div>');
+
+	}
+
+}
+?>
+==
+<script>
+
+	document.addEventListener("DOMContentLoaded", function(){
+	    var email = '{{ email }}';
+		
+		$('#subscribeForm [name="subscriber_email"]').val(email);
+
+		$('#formSubmit').click(function(){
+			$('#subscribeForm').submit();
+		})
+    });
+	
+</script>
+
+<!-- banner -->
+
+<div class="jumbotron jumbotron-fluid banner dark pageBanner" style="background-image:url('{{ 'assets/img/banners/banner-download@0.5x.jpg'|theme }}')">
+
+	<div class="container">
+	</div>
+
+</div>
+
+<!-- /banner -->
+
+{% partial 'demo-button' %}
+
+<!-- copy -->
+
+<div class="container copy">
+
+	<header class="col-md-12 copy-heading">
+	
+		<h1>{{ this.page.title }}</h1>
+		<h2>Sorry to see you go!</h2>
+
+	</header>
+
+	<div class="row justify-content-center">
+
+		<div class="col-sm-10 col-md-6 copy-main">
+
+			{% flash %}
+				{{ message|raw }}
+			{% endflash %}
+
+			{{ form_open({ model: subscriber, request: 'onUpdateSubscription', id: 'subscribeForm' }) }}
+
+				<div class="form-group required">
+					<label for="subscriber_email">Email address (required)</label>
+					<input type="email" class="form-control" id="subscriber_email" name="subscriber_email" required />
+				</div>
+				<div class="form-group">
+					<a class="button-link btn btn-primary" id="formSubmit">Unsubscribe</a>
+				</div>
+			
+			{{ form_close }}
+
+			<script>
+				$("#subscribeForm").validate();
+			</script>
+
+		</div>
+
+	</div>
+
+</div>
+
+<!-- /copy -->

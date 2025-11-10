@@ -1,0 +1,81 @@
+title = "Partner account details"
+url = "/partner-zone/account"
+layout = "home"
+description = "Partner account details"
+is_hidden = 0
+canonical_url = "https://alemba.com/partner-zone/account"
+meta_title = "Partner Account Details | Alemba ITSM Partner Portal"
+meta_description = "Log in to the Alemba Partner Portal to view or update your account details. Contact us if you have any access issues."
+robot_index = "index"
+robot_follow = "follow"
+seoOptionsEnabledInSitemap = 1
+seoOptionsUseUpdatedAt = 1
+seoOptionsRobotIndex = "index"
+seoOptionsRobotFollow = "follow"
+seoOptionsChangefreq = "daily"
+seoOptionsPriority = 0.5
+
+[session]
+security = "partner"
+
+[account]
+paramCode = "code"
+forceSecure = 0
+requirePassword = 0
+
+[viewBag]
+seo_title = "Partner account details"
+seo_description = "Partner account details"
+==
+<!-- banner -->
+
+<div class="jumbotron jumbotron-fluid banner dark pageBanner" style="background-image:url('{{ 'Banners/banner-esm@0.5x.jpg'|media }}')">
+
+	<div class="container h-100">
+	    <div class="row h-100">
+    	    <div class="col my-auto">
+    		    <h1 class="text-center xl-header">{{ this.page.title }}</h1>
+    		    {% if user %}
+
+					<h2 class="text-center">Welcome, {{ user.name }}!</h2>
+
+					<ul class="mt-3 text-center list-inline">
+						<li class="list-inline-item"><small><a href="{{ 'partners-area'|page }}">Resources</a></small></li>
+						<li class="list-inline-item active"><small>Your details</small></li>
+						<li class="list-inline-item"><small><a data-request="onLogout">Sign out</a></small></li>
+					</ul>
+
+    		    {% endif %}
+		    </div>
+		</div>
+	</div>
+
+</div>
+
+<!-- copy -->
+
+<div class="container-fluid bkg-dark">
+
+	<div class="container copy">
+
+		<div class="row">
+
+			<div class="col-10 offset-1 copy-main pb-0">
+	            {% if user %}
+	                <img src="{{ user.partner.logo|media }}" alt="{{ user.partner.name }}" class="partner-logo d-block mx-auto mb-5">
+	            {% endif %}
+				<p class="mb-5 lead">If you have any problems accessing this website, please contact the <a href="mailto:marketing@alemba.com">Marketing Team</a>.</p>
+
+				{% if user %}
+
+					{% component 'account' %}
+
+				{% endif %}
+
+			</div>
+			
+		</div>
+		
+	</div>
+
+</div>

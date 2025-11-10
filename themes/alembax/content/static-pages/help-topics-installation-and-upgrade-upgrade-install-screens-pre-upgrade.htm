@@ -1,0 +1,44 @@
+[viewBag]
+title = "Screens Pre-Upgrade"
+url = "/help/topics/installation-and-upgrade/upgrade/install-screens-pre-upgrade"
+layout = "help"
+is_hidden = 0
+navigation_hidden = 0
+==
+                                                    <h1>
+<a name="top"></a>Screens Pre-Upgrade</h1>
+                                                    <p>You can run a pre-upgrade process that performs part of the upgrade process in advance, making the actual upgrade much faster.</p>
+                                                    <p>The upgrade process run by the <span class="GeneralVariablesProductName">ASM</span> Patch Tool performs several tasks, covering file replacement and database updates, including on occasion screen design updates. When these apply to multiple screens, and those screens have been modified using the <span class="GeneralVariablesDesignerName">ASM Designer</span>, the upgrade can take a long time. This is due to the complexity of in-place modification of a screen design that is held in a single database field, and the often large number of screens to process. The result may be an extended period of system unavailability while the upgrade is under way.</p>
+                                                    <p>By performing those screen updates in advance, you can reduce the upgrade time significantly, minimizing down time. The upgraded versions do not override the current screen design, but are stored in a location that is not used by the live system. Analysts and Users can therefore continue to work while the pre-upgrade is performed. All that the full upgrade has to do is swap the old and new screen designs, which is a simple and speedy process.</p>
+                                                    <h2>FAQ</h2>
+                                                    <p class="question">From what version can I use the pre-upgrade feature?</p>
+                                                    <p class="answer">This feature was introduced in 9.2.1, and can only be used when upgrading from that version upwards. If you try to run it on a version prior to 9.2.1, you will receive an error. For any upgrades from versions prior to that, you should run the full upgrade.</p>
+                                                    <p class="question">How do I run the pre-upgrade?</p>
+                                                    <p class="answer1">When you run the <span class="GeneralVariablesProductName">ASM</span> Patch Tool, you will see a checkbox labeled “Screens pre-upgrade only”. If you check this, the only thing that the upgrade will do is take any modified screens and store an upgraded version of them in a place that does not affect the live system.</p>
+                                                    <p class="answerlast">If you run the upgrade without this checked, the full upgrade will run, and any pre-upgraded screens will become the active versions of those screens.</p>
+                                                    <p class="question">Can I run the pre-upgrade more than once?</p>
+                                                    <p class="answer">You can run the pre-upgrade as many times as you like before running the full upgrade, which is useful if you change the design of a screen after running the pre-upgrade. In this circumstance if you do not re-run the pre-upgrade, the screen will be upgraded during the full upgrade which may increase upgrade time. To bring up the Screens Pre-Upgrade option simply double click on the downloaded patch msi file, when prompted select to Modify the install, and run through the wizard until the Patch Tool window appears.</p>
+                                                    <p class="question">Why can't I see the pre-upgrade option?</p>
+                                                    <p class="answer">Once you have fully upgraded the system, the pre-upgrade option will not be available, as by that point it would have nothing useful to do.</p>
+                                                    <p class="question">Can I run the pre-upgrade on my live system?</p>
+                                                    <p class="answer">Yes. That is exactly what it has been designed for. All installed files remain unchanged by this process, as do all database tables other than those in which the screen designs are stored. Anyone using the screens being upgraded will not be impacted, as the design in use is not changed by the process. An upgraded copy of that design is simply stored in an unused location in that table.</p>
+                                                    <p class="question">Can I continue to run the old version of the system after a pre-upgrade has been run?</p>
+                                                    <p class="answer">Yes. The system will continue to behave as before, as the system does not use the location in which the upgraded versions of the screens are stored.</p>
+                                                    <p class="question">Can I still run the upgrade without using the new pre-upgrade option?</p>
+                                                    <p class="answer">Yes. The upgrade will run exactly as before. You can do this if you don’t mind how long the upgrade takes, or if you only have a few screens that have been modified. Otherwise, you are best advised to run the pre-upgrade first.</p>
+                                                    <p class="question">Can I make changes to my screens via <span class="GeneralVariablesDesignerName">ASM Designer</span> once I have run the pre-upgrade?</p>
+                                                    <p class="answer">Yes. You may make changes to your screens via <span class="GeneralVariablesDesignerName">ASM Designer</span> once the pre-upgrade has been run. However, you should  run the pre-upgrade again in order to save time during the full upgrade.</p>
+                                                    <h2 class="Prerequisite">Before you start</h2>
+                                                    <p class="prereqtext1">Ensure that your system meets the prerequisites outlined in the <b>Prerequisites Guide</b>.</p>
+                                                    <p class="prereqtextlast">Familiarize yourself with the information in the <b>Installing or Patching</b> section, <conditionaltext data-mc-conditions="Default.ScreenOnly">in</conditionaltext> <a href="%7B%7B%20'help-install-and-upgrade-install-install-v-patch#top'%7CstaticPage%20%7D%7D#top" class="MCXref xref">About Installing or Patching to ASM 10.1</a>.</p>
+                                                    <ol>
+                                                        <li value="1">
+<b>Install the <span class="GeneralVariablesProductName">ASM</span> Patch Tool</b> (<a href="%7B%7B%20'help-install-install-patch-tool#top'%7CstaticPage%20%7D%7D#top" class="MCXref xref">Installing the Patch Tool</a>). If you have already installed it, simply run through the wizard again.</li>
+                                                        <li value="2">The <b>Patch Too</b>l  window appears.<br>
+</li>
+                                                        <li value="3">Select the <b>Screens pre-upgrade</b> check box and press <b>Start</b> to run a screen pre-upgrade. </li>
+                                                        <li value="4">When the screen pre-upgrade is complete, the progress bar shows "Complete".<br>
+</li>
+                                                        <li value="5">Now you can either upgrade the system by running the upgrade as described on <a href="install%20running%20the%20patch.htm" class="MCXref xref">Running the ASM Patch Tool</a>, or press Close to close the window.</li>
+                                                    </ol>
+                                                

@@ -1,0 +1,87 @@
+title = "Support Announcement – Out of Memory Errors – Chromium Based Browsers"
+url = "/support-announcement/memory-errors-chromium-browsers"
+layout = "home"
+is_hidden = 0
+robot_index = "noindex"
+robot_follow = "nofollow"
+
+[viewBag]
+seo_title = "Support Announcement – Out of Memory Errors – Chromium Based Browsers"
+seo_description = "Support Announcement – Out of Memory Errors – Chromium Based Browsers"
+robot_index = "index"
+robot_follow = "follow"
+==
+<!-- banner -->
+
+<div class="jumbotron jumbotron-fluid banner dark pageBanner" style="background-image:url('{{ 'Emails/support-announcement/banner-sd-update-sept2022@0.5x.jpg'|media }}')">
+
+	<div class="container-fluid h-100">
+	    <div class="row h-100">
+    	    <div class="col my-auto text-center">
+		    </div>
+		</div>
+	</div>
+
+</div>
+
+<!-- /banner -->
+
+{% partial 'demo-button' %}
+
+<div class="container copy">
+
+    <header class="col-md-12 copy-heading">
+	
+		<h1>{{ this.page.title }}</h1>
+		<h2>(e.g. Google Chrome and Microsoft Edge)</h2>
+
+	</header>
+	    
+    <div class="row justify-content-center copy-main">
+    
+        <div class="col-md-10">
+        
+            <p class="lead">We have received increased reports from Customers of the browser tab crashing when Analysts are performing actions in Alemba Service Manager Core Interface.</p>
+            
+            <p>Following our initial investigations, we believe this is being caused by a recent change to the underlying Chromium Browser Engine that is used by Google Chrome and Microsoft Edge. <br><br>
+                A change was introduced in version v104 and is present in v105 to restrict the amount of memory the browser tabs use on the Analysts Client Device.<br><br>
+                Details of the change can be found in the <a href="https://bugs.chromium.org/p/chromium/issues/detail?id=1352649">Chromium Bug Report</a>.<br><br>
+                We are awaiting the M106 Stable Release of Chromium Browsers where this issue should now be resolved. The current release date for this is the 27th September 2022. <br><br>
+                We will continue to monitor this situation with this Browser release.</p>
+                    
+            <h3>How does this affect Alemba Customers?</h3>
+            <p>Some Customer’s Analysts who may be heavy users of ASM such as performing multiple large searches or opening multiple ASM Tabs will randomly see the following Browser Error during their day to day operation of Alemba Service Manager:</p>
+            <img src={{"Emails/support-announcement/chrome-memory-screen-1.png"|media}} alt="Screenshot: Out of memory error code" class="d-block mx-auto shadow">
+            <p>The error code may also reference “Error code: 5”</p>
+            
+            <h3>What version of my Browser am I using?</h3>
+            <p>On Google Chrome Browser:<br><br>
+            Instructions on finding the Browser Version you are using in Google Chrome can be found <a href="https://www.google.com/intl/en_uk/chrome/update/">here</a>.</p>
+            <img src={{"Emails/support-announcement/chrome-memory-screen-2.png"|media}} alt="Screenshot: Google Chrome version number" class="d-block mx-auto shadow">
+            <p>On Microsoft Edge Browser:<br><br>
+            Instructions on finding the Browser Version you are using in Microsoft Edge can be found <a href="https://support.microsoft.com/en-us/microsoft-edge/find-out-which-version-of-microsoft-edge-you-have-c726bee8-c42e-e472-e954-4cf5123497eb">here</a>.</p>
+            <img src={{"Emails/support-announcement/chrome-memory-screen-3.png"|media}} alt="Screenshot: Microsoft Edge version number" class="d-block mx-auto shadow">
+            
+            <!-- blue header -->
+            <h3>Alemba’s Ongoing Support</h3>
+            <p>Alemba will continue to support customers and will provide the help and assistance. We recommend that affected Analysts can mitigate the effect of this Browser Issue by:</p>
+            <!-- unordered list -->
+            <ul>
+                <li>Close ASM Tabs when not in use.</li>
+                <li>Avoid performing very large searches.</li>
+                <li>Avoid Bulk operations such as Bulk Call Forward, Bulk Call Close or Bulk Actioning/Viewing or Opening Calls.</li>
+                <li>Try using Firefox to access ASM Core.</li>
+                <li>Use ASM Nano Interface for Analysts.</li>
+                <li>Regularly Save any updates made to items.</li>
+                <li>Regularly logging out of ASM and closing the ASM Browser Tab.</li>
+                <li>Restarting their Browser at regular intervals.</li>
+                <li>Remove/Disable any Browser Extensions.</li>
+            </ul>
+            <p>You are also able to test the latest <a href="https://www.google.com/chrome/beta/">Google Chrome Beta</a> or <a href="https://www.microsoftedgeinsider.com/en-us/download/beta">Microsoft Edge Beta</a>.</p>
+        </div>
+        
+    </div>
+
+</div>
+
+{% partial 'pagelinks-recent' %}

@@ -1,0 +1,31 @@
+description = "Exit intent Popup"
+==
+<div class="modal-screen-overlay" id="MODAL" style="display: none;">
+
+    <div class="row h-100">
+        <div class="modal-center my-auto mx-auto lazyload" data-bg="{{ 'assets/img/pattern-modal-background.jpg'|theme }}">
+            
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm text-center">
+                        <h2>Before you go, have a free eBook on us!</h2>
+                        <p>&nbsp;</p>
+                        <img data-src="{{ '/Downloads/ai-ebook-cover.jpg'|media }}" alt="Stephen Mann e-book cover" class="img-fluid d-block mx-auto lazyload">
+                        <p>&nbsp;</p>
+                        <h4>"A Service Desk Manager's Quick Guide to the Opportunities of AI" by Stephen Mann</h4>
+                        <p>Download the free eBook.</p>
+                    </div>
+                    <div class="col-sm">
+                        <button type="button" class="close" aria-label="Close" id="popup-close" onClick="removeModal('#MODAL');setExitCookie()">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <p>&nbsp;</p>
+                        {% component 'renderExitForm' %}
+                    </div>
+                </div>
+            </div>
+                
+                
+        </div>
+    </div>
+</div>

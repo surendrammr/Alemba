@@ -1,0 +1,165 @@
+[viewBag]
+title = "Installing Connectors"
+url = "/help/topics/connectors/connector-installation-guide"
+layout = "help"
+is_hidden = 0
+navigation_hidden = 0
+==
+                                                    <h1>Installing Connectors</h1>
+                                                    <p class="warning">Before reading this document, it is important to understand how the Integration Platform module is configured and define the future use of the information imported from third-party applications. <a href="../integration/setting%20up%20the%20integration.htm" class="MCXref xref">Setting Up the Integration Platform</a> provides more information.</p>
+                                                    <h2>The Integration Platform</h2>
+                                                    <p>The <span class="GeneralVariablesCoreName">ASM Core</span> Integration Platform encompasses three capabilities that require specific connectors to act as an interface between the Integration Platform and the third-party vendor application:</p>
+                                                    <ul class="ul_7">
+                                                        <li class="Bulleted_1" value="1">The <b>Federated Configuration Management Database (CMDB)</b> enables integration with third-party applications that discover and manage wide range of resources or persons, and then imports those resources into the CMDB.</li>
+                                                        <li class="Bulleted_1" value="2">The <b>Event Management platform</b> allows <span class="GeneralVariablesCoreName">ASM Core</span> to capture events produced by network monitoring tools and then log calls or create requests in relation with these events.</li>
+                                                        <li class="Bulleted_1" value="3">The <b>Inbound/Outbound Actions capability</b> enables third-party applications and <span class="GeneralVariablesCoreName">ASM Core</span> to trigger predefined actions into the opposite system. </li>
+                                                    </ul>
+                                                    <h2>Connectors</h2>
+                                                    <p>Each connector is a .NET assembly that is developed to support a specific version of the third-party application for which the connector provides an interface. Typically, each application requires its own connector to provide the common interface. However, these connectors are also designed to be highly customizable.</p>
+                                                    <p>The <span class="GeneralVariablesCoreName">ASM Core</span> connectors can be classified in two broad categories:</p>
+                                                    <ul class="ul_6">
+                                                        <li class="Bulleted_1" value="1">Connectors that ensure communication to third-party resources and persons discovery and management application. These connectors plug into the Federated CMDB component of the Integration Platform.</li>
+                                                        <li class="Bulleted_1" value="2">Connectors that allow third-party tools to perform actions inside <span class="GeneralVariablesCoreName">ASM Core</span> or that enable <span class="GeneralVariablesCoreName">ASM Core</span> to trigger actions in third-party application.</li>
+                                                    </ul>
+                                                    <h3>Federated CMDB Connectors</h3>
+                                                    <p>Several third-party applications are used within organizations to discover, catalog and manage a wide range of physical and virtual resources and persons. <span class="GeneralVariablesCoreName">ASM Core</span> sites that run these applications often need to represent these resources and persons as CMDB items and persons within their <span class="GeneralVariablesSystemName">ASM System</span>. The Federated CMDB provides some periodic retrieval and synchronization capabilities designed for resources and persons imported from third-party applications. </p>
+                                                    <p>A Federated CMDB connector:</p>
+                                                    <ul>
+                                                        <li value="1">Establishes a connection with the third-party application.</li>
+                                                        <li value="2">Declares available resource and link types, as well as their properties.</li>
+                                                        <li value="3">Retrieves resources or persons and their properties, as well as the linkage information between resources.</li>
+                                                    </ul>
+                                                    <p>A Federated CMDB connector <b>only</b> provides data to the Federated CMDB, after which the <span class="GeneralVariablesCoreName">ASM Core</span> code analyzes and imports data into the CMDB. It <b>does not</b> create, update, or delete CMDB items, create discrepancy reports, process <span class="GeneralVariablesCoreName">ASM Core</span> screens or use <span class="GeneralVariablesCoreName">ASM Core</span> SQL queries or HTML templates.</p>
+                                                    <p>The Federated CMDB connector is a read-only interface to the third-party application data. Therefore, the connector is not required to:</p>
+                                                    <ul class="ul_7">
+                                                        <li class="Bulleted_1" value="1">Perform actions on external sources or resources</li>
+                                                        <li class="Bulleted_1" value="2">Update external resources so that they are synchronized with the <span class="GeneralVariablesCoreName">ASM Core</span> CMDB</li>
+                                                    </ul>
+                                                    <p>The Federated CMDB can use any number of connectors, which users are free to develop. Each third-party application requires a specific connector because the way in which data is stored and exposed is different for each application. Therefore, the connectors vary for each application and each connector uses a different technology. Some of the technologies that have been used include:</p>
+                                                    <ul>
+                                                        <li value="1">SQL</li>
+                                                        <li value="2">LDAP</li>
+                                                        <li value="3">SOAP/HTTP/Web Services</li>
+                                                    </ul>
+                                                    <p>A particular connector has also been created to read source exported data from comma separated value (.CSV) files. </p>
+                                                    <p>The methodology for accessing data exposed by an application is the methodology that the tool vendor recommends.</p>
+                                                    <h3>Event Management and Inbound/Outbound Actions Connectors</h3>
+                                                    <p>Event Management connectors or Inbound/Outbound Actions connectors present characteristics and settings that are very specific to the function they perform. This is particularly obvious for the Inbound/Outbound Actions connectors, whose functionalities strongly rely on the third-party capabilities.</p>
+                                                    <p>From a technical point of view, these connectors are more likely to use API and Web Services to communicate. The definition of operation period also follows a different approach. For Federated CMDB connectors, operation schedules need to be set up by an administrator. These schedules have to specify a precise running time and a possible recurring pattern. For an Event Management or Inbound/Outbound Actions connector, these timing and recurring notions are irrelevant: the connector is either continuously running, or is switched off by an analyst (provided the analyst has appropriate credentials). They cannot be activated according to a predefined schedule.</p>
+                                                    <p>Event Management requires a constant monitoring of the third-party events in order to log calls or create requests in a timely manner. As for Inbound/Outbound Actions connectors, the actions they handle can be triggered by appropriately designed workflows, which can be created at any time. This makes it impossible to forecast when the connector will be called into action. Hence, the continual background operation of these two types of connectors is required.</p>
+                                                    <h3>Difference between the Use of Event Management and Inbound/Outbound Actions Connectors</h3>
+                                                    <p>An Event Management connector only allows a third-party network monitoring tool to create calls and/or log requests in <span class="GeneralVariablesCoreName">ASM Core</span>. This behavior does not require a lot of settings as it is quite rigid in the proposed outcomes, that is, calls and requests creation.</p>
+                                                    <p>An Inbound/Outbound Actions connector allows the third-party application or <span class="GeneralVariablesCoreName">ASM Core</span> to perform diverse actions on one another. In this sense, it is more bidirectional and generic. These actions have to be predefined in both systems before any work can begin. This flexibility in defining actions on both sides results in a higher number of settings.</p>
+                                                    <p>Both Event Management and Inbound/Outbound Actions capabilities adhere to special communication protocols composed of precise transactions in order to ensure efficient communication throughout the lifecycle of an event or an action. These two protocols are illustrated below.</p>
+                                                    <p>
+                                                        <img src="/storage/app/media/Help/images/communication%20protocols.png" class="screenshot">
+                                                    </p>
+                                                    <p>
+                                                        <img src="/storage/app/media/Help/images/communication%20protocols%202.png" class="screenshot">
+                                                    </p>
+                                                    <p class="note"> The <b class="crossref">Integration Platform Guide</b> contains more information about these protocols.</p>
+                                                    <h3>Authentication and Login Credentials</h3>
+                                                    <p>Some connectors allow actions to take place in the third-party application or in <span class="GeneralVariablesCoreName">ASM Core</span>. For these actions to take place successfully, the connector ensures that the rights of the person specified in the connector source details are sufficient to perform the requested action. For example, triggering a job in Network Configuration Manager requires the login ID and password of a Network Configuration Manager user who possesses the proper rights to trigger a job. Similarly, one <span class="GeneralVariablesSystemName">ASM System</span> can create calls or requests in a second <span class="GeneralVariablesSystemName">ASM System</span> only if the rights of the person entered in the connector source details are appropriate (in this case, IPK and Change Management rights, respectively).</p>
+                                                    <h2>Version of Third-party Applications</h2>
+                                                    <p>Connectors are standard components of <span class="GeneralVariablesCoreName">ASM Core</span> and some of them require a particular license key to be specified in the server console. Moreover, each of these connectors has been developed against one or several specific versions and configurations of a particular third-party application. This information is documented for each connector.</p>
+                                                    <p>Many applications rarely alter their data schemas drastically between releases. In most cases, a connector will be compatible with obsolete and future versions of a particular application. However, it is necessary to test the connector against the particular version. In instances where inconsistencies between versions exist, variations can often be accommodated by modifying the connector configuration file.</p>
+                                                    <p>Similarly, larger applications are often divided into various suites and editions that include different subsets of the application components. A site may be running one or more of these variants depending on their business needs. Often these variants share a common data schema or at the very least share the same means to access that data. So, a single connector can often be used across multiple variants with only minor changes to the configuration file.</p>
+                                                    <h2>Installing Connectors</h2>
+                                                    <p>The following connectors are already installed with <span class="GeneralVariablesCoreName">ASM Core</span>, so the installation instructions are not relevant:</p>
+                                                    <ul class="ul_7">
+                                                        <li class="Bulleted_1" value="1">Microsoft Active Directory Connector</li>
+                                                        <li class="Bulleted_1" value="2">Novell eDirectory Connector</li>
+                                                        <li class="Bulleted_1" value="3">
+<span class="GeneralVariablesProductName">ASM</span> to <span class="GeneralVariablesProductName">ASM</span> Connector</li>
+                                                        <li value="4">
+                                                            <p>Generic Database Resources Connector</p>
+                                                        </li>
+                                                        <li value="5">
+                                                            <p>MS SQL Table Entity Connector</p>
+                                                        </li>
+                                                        <li value="6">
+                                                            <p>MS SQL Table Event Connector</p>
+                                                        </li>
+                                                        <li value="7">
+                                                            <p>MS SQL Table Lookup Connector</p>
+                                                        </li>
+                                                        <li value="8">
+                                                            <p>MS SQL Table Outbound Action Connector</p>
+                                                        </li>
+                                                        <li value="9">Atlassian JIRA Connector</li>
+                                                        <li value="10">
+<span class="GeneralVariablesCompanyName2">Alemba®</span> External Process Connector</li>
+                                                        <li value="11">
+<span class="GeneralVariablesCompanyName2">Alemba®</span> Stored Procedure Connector</li>
+                                                        <li value="12">CSV Connector</li>
+                                                    </ul>
+                                                    <p class="note">The EMC Smarts Service Assurance Manager (SAM) connector installation process differs from all the other connectors. See <a href="%7B%7B%20'help-samconnector#top'%7CstaticPage%20%7D%7D#top" class="MCXref xref">Service Assurance Manager Connector</a> for more information.</p>
+                                                    <p class="note">All files for the connectors come standard with <span class="GeneralVariablesCoreName">ASM Core</span>. However they will not appear in the Integration module until the steps below are followed. The except are the connectors listed above.</p>
+                                                    <p>Take the following steps to install all other connectors.</p>
+                                                    <p class="tip">You may need to run an IIS reset to stop unnecessary processes that will prevent the installation from running. Go to <b>Start</b> &gt; <b>Run</b>, and type <code>iisreset</code>. Be aware of other users before doing an IIS reset.</p>
+                                                    <ol start="1">
+                                                        <li class="Bulleted" value="1">Open the <b><span class="GeneralVariablesCoreName">ASM Core</span></b> <b>Server Console</b> <a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="../../resources/images/serverconsole.jpg"><img class="MCPopupThumbnail img imgthumbnail" data-mc-width="959" data-mc-height="709" src="/storage/app/media/Help/images/serverconsole_thumb_0_48.jpg" tabindex=""></a>. <br><br><br>
+</li>
+                                                        <li class="Bulleted" value="2">For each system, right-click the system name. From the menu that appears, select <b>Database Tasks</b> &gt; <b>Run Custom SQL Script </b><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="../../resources/images/connector%20guide%20image.png"><img class="MCPopupThumbnail img imgthumbnail" data-mc-width="959" data-mc-height="711" src="/storage/app/media/Help/images/connector%20guide%20image_thumb_0_48.png" tabindex=""></a>. </li>
+                                                        <li class="Bulleted" value="3">In the <b>Run Custom SQL Script</b> dialog box, navigate to the <b>Config</b> folder in your system directory</li>
+                                                        <li class="Bulleted" value="4">Select the appropriate <b>SQL installation script</b>. For example, to install the CSV Connector select Infra.Connector.CSV.Install.scp </li>
+                                                        <li class="Bulleted" value="5">Open the file to run the script.</li>
+                                                        <li class="Bulleted" value="6">Select <b>No</b> when prompted if other any other scripts need to be executed. The Server Console then parses the query files. When completed, close the Server Console.</li>
+                                                        <li class="Bulleted" value="7">Go to <b>Start</b> &gt; <b>Run</b>, and type <code>iisreset</code>.</li>
+                                                        <li class="Bulleted" value="8">Select <b>OK</b>. This completes the installation of the connector that is now ready for use within <span class="GeneralVariablesCoreName">ASM Core</span>.</li>
+                                                    </ol>
+                                                    <h2>Specifying Connection Parameters</h2>
+                                                    <p class="prereq">The Connector service must be running so that the connector operates properly.</p>
+                                                    <h3>Connecting with a SQL Database Connector</h3>
+                                                    <p>Most applications store their data in a relational database. These databases are also called SQL databases because they can be queried by using the Structured Query Language (SQL). Other examples of SQL databases include Oracle, Access, MySQL, DB2, and Sybase. Connectors that interface with a third-party application’s SQL database typically use ODBC.</p>
+                                                    <p class="note">SQL databases are not to be confused with Microsoft SQL Server, which is a specific example of a relational database.</p>
+                                                    <p>To establish a connection between <span class="GeneralVariablesCoreName">ASM Core</span> and a third-party application, three common connection parameters are required. They are:</p>
+                                                    <table class="TableStyle-FieldDesc" style="mc-table-style: url('../../resources/tablestyles/fielddesc.css');" cellspacing="0">
+                                                        <col style="width: 85pt;" class="TableStyle-FieldDesc-Column-Column1">
+                                                        <col style="width: 385pt;" class="TableStyle-FieldDesc-Column-Column2">
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">
+                                                                <p>DB Connection</p>
+                                                            </td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                <p>The connection string that specifies the database server</p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">
+                                                                <p>DB Login ID</p>
+                                                            </td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                <p>This and the password are credentials that authenticate the connector against the database</p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">
+                                                                <p>DB Password</p>
+                                                            </td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                <p>This and the Login ID are credentials that authenticate the connector against the database</p>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                    <p>Some connectors require an additional connection parameter <b>DB Type</b>. This is required in those cases where a connector is expected to interface with more than one kind of relational database. For example, LANDESK can use either an Oracle or an SQL Server database. Although most SQL databases are very similar, each one can support different variants of SQL syntax and require different logic to perform operations. Specifying a DB Type instructs the connector to use a particular SQL syntax and logic to communicate with the application.</p>
+                                                    <p>When configuring a source by using an SQL Database Connector, consult the administrator of the third-party application or the Database Administrator or both to determine the server location, catalog, credentials, and any other relevant database parameters to access the data source.</p>
+                                                    <p class="note">Some applications use an embedded database — that is a database that is stored locally among the application files and managed by the application itself. This approach can be limited because the connector has to access the embedded database files directly by presenting some network and security hurdles to be cleared. Such applications frequently offer a data export utility, whereby data can be periodically exported to a more accessible data source such as an SQL Server or Oracle, which can make the data more accessible.</p>
+                                                    <p>Note the following when attaching the connector to an exported data source:</p>
+                                                    <ul>
+                                                        <li class="Bulleted_1" value="1">The data will be as up-to-date as the most recent data export.</li>
+                                                        <li class="Bulleted_1" value="2">If more frequent scans than the scheduled data exports are scheduled, they would perform redundant work.</li>
+                                                    </ul>
+                                                    <h3>Specifying a Connection String</h3>
+                                                    <p>The syntax of a database connection string varies in relation to the data source.</p>
+                                                    <p>Here is an example of SQL Server connection string by using SQL Server authentication that uses Login ID and Password provided in the appropriate fields:</p>
+                                                    <p class="codefont"><code>Server=Server;Database=Catalog;Persist Security Info=True</code>
+                                                    </p>
+                                                    <p>Here is the same string when Integrated Security is activated:</p>
+                                                    <p class="PlainText"><code>Server=Server;Database=Catalog;IntegratedSecurity=SSPI; Persist Security Info=True</code>
+                                                    </p>
+                                                    <p>Here is an example of Oracle connection string by using Login ID and Password provided in appropriate fields:</p>
+                                                    <p class="PlainText"><code>Persist Security Info=True;DataSource=Server TNS Entry;Extended Properties="PLSQLRSet=1"</code>
+                                                    </p>
+                                                    <p>DB Login ID and DB Password can also be incorporated into the connection string. However, it is recommended that the password is stored in the dedicated DB Password field where it can be stored in an encrypted format.</p>
+                                                

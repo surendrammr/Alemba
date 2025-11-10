@@ -1,0 +1,74 @@
+description = "The header code for Help pages"
+==
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="google-site-verification" content="cgpiWrzV47MUzoeYn2LTd0rApPYN5vBzYaocEWQZbVo" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	{% partial 'head-scripts-styles' %}
+
+	<link rel="stylesheet" type="text/css" media="print" href="{{ 'assets/css/help-homepage.css'|theme }}?v={{ date().timestamp }}" />
+
+	{% component 'seoTags' %}
+
+	<!-- Favicons -->
+
+	{% partial 'favicons' %}
+
+	{% if this.environment == 'production' and allow_cookies() %}
+
+		{% partial 'analytics-etc' %}
+
+	{% endif %}
+
+	<title>Alemba Help - {{ this.page.title }}</title>
+
+</head>
+
+<body class="page-{{ this.page.id }}">
+
+	<header id="header" class="site-header" role="banner">
+
+		<noscript>
+			<div class="alert alert-info" role="alert">
+				For full functionality of this site it is necessary to enable JavaScript. Here are the <a href="http://www.enable-javascript.com/" target="_blank">instructions how to enable JavaScript in your web browser</a>.
+			</div>
+		</noscript>
+
+		<div class="container-fluid site-header-container">
+
+			<div class="header-logo">
+
+				<a href="{{ 'help'|page }}"><img src="{{ 'assets/img/logo-alemba-help.png'|theme }}" srcset="{{ 'assets/img/logo-alemba-help@2x.png'|theme }} 2x" alt="Alemba Help" /></a>
+
+			</div><!-- /header-logo -->
+
+			<p id="back-to-main-site"><a href="{{ 'home'|page }}">Back to alemba.com</a></p>
+
+			<div class="form-group has-search" style="display:none;">
+				<span class="fa fa-search form-control-feedback"></span>
+				<input type="text" class="form-control" placeholder="">
+			</div>
+
+			<div class="mobile-menu-button navbar-toggler">
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+			</div>
+
+			<div class="navbar navbar-nav navbar-expand-sm justify-content-end">
+
+				{% partial 'nav-help' %}
+
+			</div> <!-- /nav-container -->
+
+		</div> <!-- /container -->
+
+	</header>
+
+<!-- Load Font Awesome -->
+{% partial "font-awesome" %}

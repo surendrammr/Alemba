@@ -1,0 +1,23 @@
+[viewBag]
+title = "Sharing Parent Request Items with Child Requests"
+url = "/help/topics/requests-and-templates/sharing-parent-requests"
+layout = "help"
+is_hidden = 0
+navigation_hidden = 0
+==
+                                                    <h1>
+<a name="Sharing"></a>Sharing Parent Request Items with Child Requests</h1>
+                                                    <p>There are several steps involved in sharing parent request items with the child request:</p>
+                                                    <ol>
+                                                        <li value="1">If necessary, <a href="../admin%20workflow%20mgt/screen%20sets%20for%20requests%20tasks.htm">create screen sets</a> for your parent request and child request. Then create the necessary screens - Request Submission in <span class="GeneralVariablesSelfServicePortalName">Self Service Portal</span>; and Request Details.</li>
+                                                        <li value="2">In <b><span class="GeneralVariablesDesignerName">ASM Designer</span></b>, open the parent workflow screen, and add the <b>Result CMDB Items</b> field to the screen. This will be used to create the link with the child requests.</li>
+                                                        <li value="3">Still in <b><span class="GeneralVariablesDesignerName">ASM Designer</span></b>, open the child workflow screen, and add the <b>Parent Result CMDB Items</b> field. (You will find it in <b>Other Screen Sets</b>.) This will capture the outcome of the parent workflow.</li>
+                                                        <li value="4">Create or open the parent workflow's <b>Manage CMDB Item</b> task. In the <b>Create Item Details</b> section, ensure that <b>Add to Request Field</b> is ticked. Select <img src="/storage/app/media/Help/images/expandtiersbutton.png">, then select <b>Result CMDB Items</b>.</li>
+                                                        <li value="5">Open the child workflow dependency diagram. Ensure that a delay task is placed before the Manage CMDB task. </li>
+                                                        <li value="6">Open the Delay task, and set the <b>Delay</b> trigger is to <b>Parent Request Closed</b>. This will allow time for the creation of the parent CI before the child CIs.</li>
+                                                        <p class="note">When the request is submitted, the child request will wait until the parent request is completed. When the parent request closes it will populate the <b>Parent Result CMDB Items</b> field on the child requests with whatever values are entered on the <b>Result CMDB Items</b> field on the parent. This field can then be used to create links in the child request <b>Manage CMDB Item</b> task.</p>
+                                                        <li value="7">Open the <b>Manage CMDB Item</b> task on the child. Add a <b>Create Item</b> transaction. <a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="../../resources/images/manage%20cmdb%20ct.png"><img class="MCPopupThumbnail img imgthumbnail" data-mc-width="598" data-mc-height="297" src="/storage/app/media/Help/images/manage%20cmdb%20ct_thumb_0_48.png" tabindex=""></a> This will create the child CI.</li>
+                                                        <li value="8">Then add a <b>Create Link</b> transaction, adding  the <b>Parent Result CMDB Items</b> field as Participant A. Add the result of the <b>Create Item</b> transaction as <b>Participant B</b>. <a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="../../resources/images/manage%20cmdb%20ct2.png"><img class="MCPopupThumbnail img imgthumbnail" data-mc-width="664" data-mc-height="688" src="/storage/app/media/Help/images/manage%20cmdb%20ct2_thumb_0_48.png" tabindex=""></a> This will link the child and the parent.</li>
+                                                        <p>When this task runs, it will create a new CMDB item and link it to the CMDB items listed in the <b>Parent Result CMDB Items</b> field.</p>
+                                                    </ol>
+                                                

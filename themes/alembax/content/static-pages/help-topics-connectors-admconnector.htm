@@ -1,0 +1,751 @@
+[viewBag]
+title = "Application Discovery Manager Connector"
+url = "/help/topics/connectors/admconnector"
+layout = "help"
+is_hidden = 0
+navigation_hidden = 0
+==
+                                                    <h1>Application Discovery Manager Connector</h1>
+                                                    <p>This section of the documentation describes the details of the third-party application, that is, VMware ADM including:</p>
+                                                    <ul>
+                                                        <li value="1">The name of the .NET assembly file</li>
+                                                        <li value="2">Connection methodology</li>
+                                                        <li value="3">The resource and link types that can be discovered on the application</li>
+                                                        <li value="4">The attributes of each resource and link types that can be imported into the <span class="GeneralVariablesCoreName">ASM Core</span> Configuration Management Database (CMDB)</li>
+                                                    </ul>
+                                                    <p class="note">For compatibility and version support details, refer to the <a href="connector%20matrix.htm" class="MCXref xref">ASM Connector Matrix</a>.</p>
+                                                    <p class="note">You should familiarize yourself with the information in <a href="connector%20installation%20guide.htm" class="MCXref xref">Installing Connectors</a> before installing any connectors, and read the <a href="../integration/integrate.htm" class="MCXref xref">Integration</a> topics for more information on how to configure them.</p>
+                                                    <h2>Use Case scenario</h2>
+                                                    <p>An organization uses ADM to discover and maintain resources present in its organization networks. The role of the connector is to expose these resources and their relationships to allow for population and ongoing consistency checks of the <span class="GeneralVariablesCoreName">ASM Core</span> CMDB. </p>
+                                                    <h2>Architecture</h2>
+                                                    <p>The  Application Discovery Manager Connector requires the ADM reporting database provided by ADM for reporting purposes, as illustrated below.</p>
+                                                    <p>
+                                                        <img src="/storage/app/media/Help/images/connector%20adm%20architecture.png" class="screenshot">
+                                                    </p>
+                                                    <h2>Prerequisites</h2>
+                                                    <p>The Application Discovery Manager Connector requires the ADM reporting database for it to work. ADM provides an external reporting database which is designed for reporting purposes. This reporting database can be created for SQL Server or Oracle. The connection parameters are the login ID and other settings needed to connect <span class="GeneralVariablesCoreName">ASM Core</span> to the external database or reporting database. </p>
+                                                    <p>For information on how to set up the external report database, including how to synchronize it regularly with the live ADM repository, read the <b class="crossref">ADM documentation</b>.</p>
+                                                    <h2>Connector Description</h2>
+                                                    <p>The table below provides a description of the Application Discovery Manager Connector.</p>
+                                                    <table class="TableStyle-Rep_Hdr_Row" style="mc-table-style: url('../../resources/tablestyles/rep hdr row.css');" cellspacing="0">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column1">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column2">
+                                                        <thead>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Head-Header1">
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column1-Header1">
+                                                                    <p>Information Fields</p>
+                                                                </th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadD-Column2-Header1">
+                                                                    <p>Name</p>
+                                                                </th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">Connector name</td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">VMware ADM  &lt;-&gt; <span class="GeneralVariablesCoreName">ASM Core</span> </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">Third-party application</td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">VMware ADM</td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">Assembly</td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">Infra.Connector.VMware.ADM.dll</td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">Connector class</td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">Infra.Connector.VMware.ADM.ADMConnector</td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">Configuration file</td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">Infra.Connector.VMware.ADM.icnf</td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyB-Column1-Body1">Connection methodology</td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyA-Column2-Body1">Database</td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <h2>Connection Parameters</h2>
+                                                    <p>The table below provides the list of connection parameters of the  Application Discovery Manager Connector.</p>
+                                                    <table class="TableStyle-Rep_Hdr_Row" style="mc-table-style: url('../../resources/tablestyles/rep hdr row.css');" cellspacing="0">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column1">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column2">
+                                                        <thead>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Head-Header1">
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column1-Header1">
+                                                                    <p>Fields</p>
+                                                                </th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadD-Column2-Header1">
+                                                                    <p>Description</p>
+                                                                </th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Database connection </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p>Connection String</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Database login ID</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p>Login ID</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Database password</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p>Password</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyB-Column1-Body1">
+                                                                    <p>Database type</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyA-Column2-Body1">
+                                                                    <p>SQL Server, Oracle</p>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <h2>Additional Information</h2>
+                                                    <p>The connection parameters for this connector must grant the source access to the ADM External Reporting Database. </p>
+                                                    <p>For information on how to set up the external reporting database, including how to synchronize it regularly with the live ADM repository, read the <b class="crossref">ADM documentation</b>.</p>
+                                                    <h3>SQL Server</h3>
+                                                    <p>If the external reporting database is hosted by the SQL Server, the account used by the connector to connect to that database must be configured with the OLAP schema as its default schema. </p>
+                                                    <p>Run the following SQL statements against the database to pre-configure the account:</p>
+                                                    <p class="PlainText"><tt>USE &lt;DATABASE_NAME&gt;</tt>
+                                                    </p>
+                                                    <p class="PlainText"><tt>EXEC sp_addrolemember N'db_owner', N'&lt;CONNECTOR_USER&gt;'</tt>
+                                                    </p>
+                                                    <p class="PlainText"><tt>ALTER USER &lt;CONNECTOR_USER&gt; WITH DEFAULT_SCHEMA=olap</tt>
+                                                    </p>
+                                                    <p class="PlainText"><tt>GO</tt>
+                                                    </p>
+                                                    <p>where <span class="Style1_1">&lt;DATABASE_NAME&gt;</span> is the name of the ADM external reporting database and <span class="Style1_1">&lt;CONNECTOR_USER&gt;</span> is the login name of the account to be used by the connector.</p>
+                                                    <p class="note">See <a href="#Setting" class="MCXref xref">Setting SQL User Account to Use OLAP as Default Schema</a> for more details on how to configure the account in SQL Server 2005. <span class="GeneralVariablesCompanyName2">Alemba®</span> recommends that you review this with the Database Administrator.</p>
+                                                    <h3>Oracle</h3>
+                                                    <p>If you are connecting  to Oracle, note that only Oracle drivers should be used to access it.</p>
+                                                    <h3>Customization</h3>
+                                                    <p>The Application Discovery Manager Connector permits extensions to the schema through customization of the configuration file. The possible customizations are:</p>
+                                                    <ul>
+                                                        <li class="Bulleted_1" value="1">New Resource Types</li>
+                                                        <li class="Bulleted_1" value="2">New Resource Properties</li>
+                                                        <li class="Bulleted_1" value="3">New Link Types</li>
+                                                    </ul>
+                                                    <p class="note">The customizations are not limited to the ones listed above.</p>
+                                                    <h2>Connector Diagnostics</h2>
+                                                    <p>The connector has the facility to trace information. The data can be obtained through Polling tracing or Application tracing.</p>
+                                                    <h2>Resolve functionality</h2>
+                                                    <p>The Resolve functionality can be accessed through the Federated CMDB Integration Platform when setting up mappings between third-party resource fields and <span class="GeneralVariablesCoreName">ASM Core</span> fields.</p>
+                                                    <p>Active Directory allows specifying a manager value for every user. </p>
+                                                    <p>This is how the Resolve functionality handles this particular Active Directory <b>Manager</b> field:</p>
+                                                    <table class="TableStyle-scenario_table" style="mc-table-style: url('../../resources/tablestyles/scenario table.css');" cellspacing="0">
+                                                        <col style="width: 71pt;" class="TableStyle-scenario_table-Column-Column1">
+                                                        <col style="width: 399pt;" class="TableStyle-scenario_table-Column-Column2">
+                                                        <tr class="TableStyle-scenario_table-Body-Body1">
+                                                            <td class="TableStyle-scenario_table-BodyE-Column1-Body1">Background</td>
+                                                            <td class="TableStyle-scenario_table-BodyD-Column2-Body1">
+                                                                <p>One Active Directory user possesses one Active Directory Manager</p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="TableStyle-scenario_table-Body-Body1">
+                                                            <td class="TableStyle-scenario_table-BodyE-Column1-Body1">
+                                                                <p class="Strong">Expected operation</p>
+                                                            </td>
+                                                            <td class="TableStyle-scenario_table-BodyD-Column2-Body1">
+                                                                <p>In the context of the Microsoft Active Directory Server Connector, the Resolve capability allows the importation of both user and its manager, and also the creation of a link between them. If the manager cannot be found or imported, or if it is not mapped, the Resolve functionality would resort to a default user-defined value for the <b>Manager</b> field in the <span class="GeneralVariablesCoreName">ASM Core</span> <a href="%7B%7B%20'help-managing-people-managing-people#Completing_Person_Details'%7CstaticPage%20%7D%7D#Completing_Person_Details">person details</a>.</p>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                    <p class="note"> The default Active Directory schema is a maximum of one manager user.</p>
+                                                    <h1>Resource Types</h1>
+                                                    <h2>Resource types for ADM 5.3</h2>
+                                                    <p>The following table lists the resource types for different version of VMware ADM.</p>
+                                                    <table class="TableStyle-Rep_Hdr_Row" style="mc-table-style: url('../../resources/tablestyles/rep hdr row.css');margin-left: 0;margin-right: auto;" cellspacing="0">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column1">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column2">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column1">
+                                                        <thead>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Head-Header1">
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column1-Header1">Resource Type</th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column2-Header1">Properties in ADM 5.3</th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadD-Column1-Header1">Properties in ADM 6.0/6.2/6.2.2</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">Database<p>Database server and instance information. Several instances may exist for each server. </p>
+</td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>Vendor – Vendor of the database</p>
+                                                                    <p>Server Name – Database Server Name</p>
+                                                                    <p>Database Instance – Database Instance</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>Vendor — Vendor of the database</p>
+                                                                    <p>Server Name — Database Server Name</p>
+                                                                    <p>Database Instance — Database Instance</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Group (View)</p>
+                                                                    <p>(A built-in or user-defined grouping of related elements within ADM)</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>Name</p>
+                                                                    <p>Description</p>
+                                                                    <p>Time Created</p>
+                                                                    <p>Creator</p>
+                                                                    <p>Time of Modification</p>
+                                                                    <p>Modified By</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p class="note">In ADM 6.0/6.2/6.2.2, Group has dynamically generated sub-types in the same way that Service does. The ADM 5.3 "Group (View)" is just a singular resource type like the others.</p>
+                                                                    <p>Group Type</p>
+                                                                    <p>Name</p>
+                                                                    <p>Description</p>
+                                                                    <p>Time Created</p>
+                                                                    <p>Creator</p>
+                                                                    <p>Time of Modification</p>
+                                                                    <p>Modified By</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Group (system view)</p>
+                                                                    <p>(A built-in or user-defined grouping of related elements within ADM)</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>Name</p>
+                                                                    <p>Description</p>
+                                                                    <p>Time Created</p>
+                                                                    <p>Creator</p>
+                                                                    <p>Time of Modification</p>
+                                                                    <p>Modified By</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>Name</p>
+                                                                    <p>Description</p>
+                                                                    <p>Time Created</p>
+                                                                    <p>Creator</p>
+                                                                    <p>Time of Modification</p>
+                                                                    <p>Modified By</p>
+                                                                    <p>Group Type</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Java EE Application</p>
+                                                                    <p>(Java Enterprise Edition Application: Application Server, JEE Application, and modules such as jar, war, ear, and so on)</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>Server Name — Application Server</p>
+                                                                    <p>Server Config Path — Application Server Configuration Path</p>
+                                                                    <p>Application Name — JEE Application</p>
+                                                                    <p>Application Description</p>
+                                                                    <p>Application Path</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>Server Name — Application Server</p>
+                                                                    <p>Server Config Path — Application Server Configuration Path</p>
+                                                                    <p>Application Name — JEE Application</p>
+                                                                    <p>Application Description</p>
+                                                                    <p>Application Path</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">Network Element</td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>primary Hostname </p>
+                                                                    <p class="Bulleted_1">primary IP </p>
+                                                                    <p class="Bulleted_1">Vendor </p>
+                                                                    <p class="Bulleted_1">Description </p>
+                                                                    <p class="Bulleted_1">OS Name </p>
+                                                                    <p class="Bulleted_1">OS Family </p>
+                                                                    <p class="Bulleted_1">OS Type</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>Element ID</p>
+                                                                    <p>primary Hostname </p>
+                                                                    <p>primary IP </p>
+                                                                    <p>Vendor </p>
+                                                                    <p>Description </p>
+                                                                    <p>OS Name </p>
+                                                                    <p>OS Family </p>
+                                                                    <p>OS Type</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">Router</td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>Element ID</p>
+                                                                    <p>primary Hostname </p>
+                                                                    <p>primary IP </p>
+                                                                    <p>Vendor </p>
+                                                                    <p>Description </p>
+                                                                    <p>OS Name </p>
+                                                                    <p>OS Family </p>
+                                                                    <p>OS Type</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>Element ID</p>
+                                                                    <p>primary Hostname </p>
+                                                                    <p>primary IP </p>
+                                                                    <p>Vendor </p>
+                                                                    <p>Description </p>
+                                                                    <p>OS Name </p>
+                                                                    <p>OS Family </p>
+                                                                    <p>OS Type</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">Switch</td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>Element ID</p>
+                                                                    <p>primary Hostname </p>
+                                                                    <p>primary IP </p>
+                                                                    <p>Vendor </p>
+                                                                    <p>Description </p>
+                                                                    <p>OS Name </p>
+                                                                    <p>OS Family </p>
+                                                                    <p>OS Type</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>Element ID</p>
+                                                                    <p>primary Hostname </p>
+                                                                    <p>primary IP </p>
+                                                                    <p>Vendor </p>
+                                                                    <p>Description </p>
+                                                                    <p>OS Name </p>
+                                                                    <p>OS Family </p>
+                                                                    <p>OS Type</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">Physical Host</td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>Element ID</p>
+                                                                    <p>primary Hostname </p>
+                                                                    <p>primary IP </p>
+                                                                    <p>Vendor </p>
+                                                                    <p>Description </p>
+                                                                    <p>OS Name </p>
+                                                                    <p>OS Family </p>
+                                                                    <p>OS Type</p>
+                                                                    <p>OS Build</p>
+                                                                    <p>OS Build Type</p>
+                                                                    <p>OS Service Pack</p>
+                                                                    <p>OS Language</p>
+                                                                    <p>OS Kernel Version</p>
+                                                                    <p>OS Kernel Release</p>
+                                                                    <p>OS Swap Memory</p>
+                                                                    <p>OS Physical Memory</p>
+                                                                    <p>CPU Model</p>
+                                                                    <p>CPU Vendor</p>
+                                                                    <p>CPU Family</p>
+                                                                    <p>CPU Clock Speed</p>
+                                                                    <p>CPU Cache Size</p>
+                                                                    <p>CPU Stepping</p>
+                                                                    <p>CPU Description</p>
+                                                                    <p>CPU Count</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>Element ID</p>
+                                                                    <p>primary Hostname </p>
+                                                                    <p>primary IP </p>
+                                                                    <p>Vendor </p>
+                                                                    <p>Description </p>
+                                                                    <p>OS Name </p>
+                                                                    <p>OS Family </p>
+                                                                    <p>OS Type</p>
+                                                                    <p>OS Build</p>
+                                                                    <p>OS Build Type</p>
+                                                                    <p>OS Service Pack</p>
+                                                                    <p>OS Language</p>
+                                                                    <p>OS Kernel Version</p>
+                                                                    <p>OS Kernel Release</p>
+                                                                    <p>OS Swap Memory</p>
+                                                                    <p>OS Physical Memory</p>
+                                                                    <p>CPU Model</p>
+                                                                    <p>CPU Vendor</p>
+                                                                    <p>CPU Family</p>
+                                                                    <p>CPU Clock Speed</p>
+                                                                    <p>CPU Cache Size</p>
+                                                                    <p>CPU Stepping</p>
+                                                                    <p>CPU Description</p>
+                                                                    <p>CPU Count</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Service</p>
+                                                                    <p>A software service running on the network element usually exposed through a network port.</p>
+                                                                    <p class="note">Resource types are dynamically created for each service category such as Application Server, Web Server, and so on.</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>Name</p>
+                                                                    <p>Vendor</p>
+                                                                    <p>Version</p>
+                                                                    <p>Category</p>
+                                                                    <p>Tier</p>
+                                                                    <p>Install Path</p>
+                                                                    <p>Shared Install Path</p>
+                                                                    <p>Unidentified Service</p>
+                                                                    <p>Client Service</p>
+                                                                    <p>Knowledge Level – Indicates the level of knowledge of the service. Value of zero indicates speculative information only and is used mostly to filter speculative information.</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>Name</p>
+                                                                    <p>Vendor</p>
+                                                                    <p>Version</p>
+                                                                    <p>Category</p>
+                                                                    <p>Tier</p>
+                                                                    <p>Install Path</p>
+                                                                    <p>Shared Install Path</p>
+                                                                    <p>Unidentified Service</p>
+                                                                    <p>Client Service</p>
+                                                                    <p>Knowledge Level – Indicates the level of knowledge of the service. Value of zero indicates speculative information only and is used mostly to filter speculative information.</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Virtual Container</p>
+                                                                    <p>(a physical machine that virtualizes one or more virtual machines)</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1"> </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>Element ID</p>
+                                                                    <p>primary Hostname </p>
+                                                                    <p>primary IP </p>
+                                                                    <p>Vendor </p>
+                                                                    <p>Description </p>
+                                                                    <p>OS Name </p>
+                                                                    <p>OS Family </p>
+                                                                    <p>OS Type</p>
+                                                                    <p>OS Build</p>
+                                                                    <p>OS Build Type</p>
+                                                                    <p>OS Service Pack</p>
+                                                                    <p>OS Language</p>
+                                                                    <p>OS Kernel Version</p>
+                                                                    <p>OS Kernel Release</p>
+                                                                    <p>OS Swap Memory</p>
+                                                                    <p>OS Physical Memory</p>
+                                                                    <p>CPU Model</p>
+                                                                    <p>CPU Vendor</p>
+                                                                    <p>CPU Family</p>
+                                                                    <p>CPU Clock Speed</p>
+                                                                    <p>CPU Cache Size</p>
+                                                                    <p>CPU Stepping</p>
+                                                                    <p>CPU Description</p>
+                                                                    <p>CPU Count</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyB-Column1-Body1">
+                                                                    <p>Virtual Host</p>
+                                                                    <p>(a physical machine that virtualizes one or more virtual machines)</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyB-Column2-Body1"> </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyA-Column1-Body1">
+                                                                    <p>Element ID</p>
+                                                                    <p>primary Hostname </p>
+                                                                    <p>primary IP </p>
+                                                                    <p>Vendor </p>
+                                                                    <p>Description </p>
+                                                                    <p>OS Name </p>
+                                                                    <p>OS Family </p>
+                                                                    <p>OS Type</p>
+                                                                    <p>OS Build</p>
+                                                                    <p>OS Build Type</p>
+                                                                    <p>OS Service Pack</p>
+                                                                    <p>OS Language</p>
+                                                                    <p>OS Kernel Version</p>
+                                                                    <p>OS Kernel Release</p>
+                                                                    <p>OS Swap Memory</p>
+                                                                    <p>OS Physical Memory</p>
+                                                                    <p>CPU Model</p>
+                                                                    <p>CPU Vendor</p>
+                                                                    <p>CPU Family</p>
+                                                                    <p>CPU Clock Speed</p>
+                                                                    <p>CPU Cache Size</p>
+                                                                    <p>CPU Stepping</p>
+                                                                    <p>CPU Description</p>
+                                                                    <p>CPU Count</p>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <h1 class="Heading1">Link Types</h1>
+                                                    <p>This section lists the link types that the connector discovers on ADM v5.3 and v6.0/6.2/6.2.2 systems. The connector then imports the link types discovered in ADM into the <span class="GeneralVariablesCoreName">ASM Core</span> CMDB.</p>
+                                                    <h2>Link Types for </h2>
+                                                    <p>The table below lists the link types for Application Discovery Manager v5.3.</p>
+                                                    <table class="TableStyle-Rep_Hdr_Row" style="mc-table-style: url('../../resources/tablestyles/rep hdr row.css');" cellspacing="0">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column1">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column2">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column1">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column2" style="width: 13px;">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column1">
+                                                        <thead>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Head-Header1">
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column1-Header1"> </th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column2-Header1" colspan="2">ADM 5.3</th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadD-Column2-Header1" colspan="2">ADM 6.0/6.2/6.2.2</th>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Head-Header1">
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column1-Header1">Name</th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column2-Header1">Higher resource types</th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column1-Header1">Lower resource types</th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column2-Header1">
+                                                                    <p>Higher resource types</p>
+                                                                </th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadD-Column1-Header1">
+                                                                    <p>Lower resource types</p>
+                                                                </th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Database connected to</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>Database</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Service</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>Database</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>Service</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Group to Network Element</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>Group (view)</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Network Element</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>Group</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>Network Element</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Group to Service</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>Group (view)</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Service</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>Group</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>Service</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Group System to Network Element</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>Group (System view)</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Network Element</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>Group (System view)</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>Network Element</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Group System to Service</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>Group (System view)</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Service</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>Group (system view)</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>Service</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Application Run On</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>Java EE Application</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Service</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>Java EE Application</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>Service</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Documented Dependency (Network Element)</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>Network Element</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Service</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>Network Element</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>Service</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Network Connection</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>Network Element</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Service</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>Network Element</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>Service</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Documented Dependency (Service)</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>Service</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Service</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>Service</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>Service</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Service Network Connection</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>Service</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Service</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>Service</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>Service</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Service Hosted Link</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>Service</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Network Element</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>Service</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>Network Element</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyB-Column1-Body1">
+                                                                    <p>Host Virtualized On</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyB-Column2-Body1"> </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyB-Column1-Body1"> </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyB-Column2-Body1">
+                                                                    <p>Virtual Host</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyA-Column1-Body1">
+                                                                    <p>Virtual Container</p>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <p> </p>
+                                                    <h1>
+<a name="Setting"></a>Setting SQL User Account to Use OLAP as Default Schema</h1>
+                                                    <p>When using a SQL Server connection to connect to the ADM External Reporting Database, the SQL account must be set to use the OLAP schema by default. </p>
+                                                    <p>The following instructions can be used to achieve this in SQL Server 2005.</p>
+                                                    <p class="warning">It is recommended to consult the Database Administrator for the complete instructions on how to do this.</p>
+                                                    <ol start="1" class="ol_1">
+                                                        <li class="Bulleted_2" value="1">Open <b>SQL Server 2005 Management Studio</b>. Drill-down in the tree-view on the left-hand side to Security\Logins:<ul start="1">
+<li class="Bulleted_2" value="1">Security</li>
+<li class="ListBullet5_1" value="2">Logins</li>
+</ul>
+</li>
+                                                        <li class="Bulleted_2" value="2">Right-click on <b>Login</b>s and select <b>New Login...</b>
+</li>
+                                                        <li class="Bulleted_2" value="3">Enter a <b>Login Name</b>, select <b>SQL Server authentication</b> and enter the password.</li>
+                                                        <li class="Bulleted_2" value="4">If desired, deselect the <b>Enforce password policy</b> and the <b>Enforce password expiration</b> options.<ul start="1"><li class="note" value="1"><p class="note">If deselected, the user must change the password at next login.</p></li></ul>
+</li>
+                                                        <li class="Bulleted_2" value="5">Set the <b>Default Database</b> to ADM database.</li>
+                                                        <li class="Bulleted_2" value="6">In the <b>User Mapping</b> option, select <b>Map to ADM database</b>.</li>
+                                                        <li class="Bulleted_2" value="7">In the tree-view on the left-hand side, drill-down to Databases\ADM database\Security\Users<ul start="1">
+<li class="ListBullet5_1" value="1">Databases</li>
+<li class="ListBullet5_1" value="2">ADM database</li>
+<li class="ListBullet5_1" value="3">Security</li>
+<li class="ListBullet5_1" value="4">Users</li>
+</ul>
+</li>
+                                                        <li class="Bulleted_2" value="8">Double-click on the new user which has the same name as the Login created above.</li>
+                                                        <li class="Bulleted_2" value="9">Change the Default schema to <span class="span_2">olap</span>.</li>
+                                                        <li class="Bulleted_2" value="10">Under schemas owned by this user, select <span class="span_2">olap</span>. This completes the configuration of the SQL user in SQL Server 2005 to use the OLAP schema by default.</li>
+                                                    </ol>
+                                                    <p class="note">For Database login, ensure that under Server Roles, no checkboxes are selected and under User Mapping, only <b>Public</b> is selected.</p>
+                                                

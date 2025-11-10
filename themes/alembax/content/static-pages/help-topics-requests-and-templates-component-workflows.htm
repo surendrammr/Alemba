@@ -1,0 +1,75 @@
+[viewBag]
+title = "Component Workflows"
+url = "/help/topics/requests-and-templates/component-workflows"
+layout = "help"
+is_hidden = 0
+navigation_hidden = 0
+==
+                                                    <h1>
+<a name="Componen"></a>Component Workflows</h1>
+                                                    <p>There are processes within your organization that need to be performed on a regular basis, or are fairly generic and can be used organization-wide. These ‘sub-processes’ are often included within other processes, such as purchase order requests, training requests, and updates to a human resource system.</p>
+                                                    <p><b>Component Workflows</b> are re-usable templates that can be used for these sub-processes. It is then a simple matter to drag and drop the component into the workflow template.</p>
+                                                    <p>Using Component Workflows offers considerable time savings, specifically:</p>
+                                                    <ul>
+                                                        <li value="1">no need to re-create the sub-process for each workflow template that uses it</li>
+                                                        <li value="2">updating the component also updates all the templates in which it exists.</li>
+                                                    </ul>
+                                                    <p class="note">Workflow components can be inserted into templates or into other components, but not directly in a request. The tasks in a component are automatically expanded in the request dependency diagram. </p>
+                                                    <h2>Creating a Component Workflow</h2>
+                                                    <h2 class="Prerequisite">Before you start</h2>
+                                                    <p class="prereqtext">You must have <b>Template Admin</b> selected in the <a href="../admin%20security%20roles/workflow%20mgt%20sec%20role%20-%20requests%20tab.htm">Requests</a> tab of your <b>Workflow Management security role</b>.</p>
+                                                    <ol style="list-style-type: decimal;" start="1">
+                                                        <li value="1">
+                                                            <p>Select <a href="../general%20topics/asmcorewindow.htm"><span style="font-size: 24pt;">≡</span></a> &gt; <b>Admin</b> &gt; <b>Workflow Template</b>.</p>
+                                                            <p>The <b>Workflow Template Administration</b> window appears. </p>
+                                                        </li>
+                                                        <p>
+                                                            </p>
+<table style="mc-table-style: url('../../resources/tablestyles/fielddesc.css');" class="TableStyle-FieldDesc" cellspacing="0">
+                                                                <col class="TableStyle-FieldDesc-Column-Column1">
+                                                                <col class="TableStyle-FieldDesc-Column-Column2">
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyH-Column1-">Select Workflow Process</td>
+                                                                        <td class="TableStyle-FieldDesc-BodyG-Column2-">If you have several workflow processes, use the drop-down list to select the one in which you wish to create the template.</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyH-Column1-">Show in List</td>
+                                                                        <td class="TableStyle-FieldDesc-BodyG-Column2-">Select <b>Active Templates</b>.<p class="note">You cannot create requests from deleted templates.</p>
+</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyB-Column1-">Show List by</td>
+                                                                        <td class="TableStyle-FieldDesc-BodyA-Column2-">Select  <b>Component Workflow</b> to create a <a href="#Componen">Component Workflow template</a>. </td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        
+                                                        <li value="2">Select <b>New</b>. The <b>Workflow Components</b> dialog box appears.</li>
+                                                        <li value="3">Type a relevant name for the workflow component in the <b>Workflow Template Name</b> field.</li>
+                                                        <li value="4">Select <b>OK</b>. The <b>Workflow Template &lt;name&gt; Details</b> window appears. This window is similar to the <b>Request Details</b> window.</li>
+                                                        <li value="5">
+<a name="Complete-the-details"></a>You can now specify information on all fields as you would in a request, such as link CMDB items, create tasks, set action dates for the tasks, create task dependencies, specify task assignment, set agreements for the requests and tasks created from this template, and finally specify request assignment. Your workflow template can be as detailed or as generic as you want it to be. You can even create a blank template for a workflow process. When you open a task in the dependency diagram on a template or a workflow component, the task opens in Review mode.</li>
+                                                        <p class="note">
+                                                            </p>
+<p>Any tasks you create for a workflow template will have an additional field on the<a href="../tasks/creating%20a%20task.htm"><b>Task Details</b> window</a>: <b>Request Status on Completion</b>, where you can update the request with the specified status once the current task is closed.</p>
+                                                        
+                                                        <p class="note">Some fields and features are not available from the workflow template details, such as the ability to perform asset management transactions.</p>
+                                                        <li value="6">Insert any further workflow components that you want to be part of this workflow component.</li>
+                                                        <p>
+                                                            </p>
+<p class="note">Although you can select extension fields defined through <span class="GeneralVariablesDesignerName">ASM Designer</span> as an item for which to create a Condition or Action for a Conditional Branching Task within a Workflow Template, extension fields are not available for Conditional Branching Tasks within a Component Workflow because Component Workflows are not exclusively related to a given Workflow Template and its forms.</p>
+                                                        
+                                                        <li value="7">Save the component workflow. </li>
+                                                        <li value="8">Insert the component workflow into the workflow template(s) as required.</li>
+                                                    </ol>
+                                                    <h2>Inserting a Component Workflow into a Workflow Template</h2>
+                                                    <p>Workflow Components can be inserted into templates or into other components, but not directly in a request. The tasks in a component are automatically expanded when a request is created from the template.</p>
+                                                    <p>Components can include any type of task from the palette, and can even include other components.</p>
+                                                    <p>While a component does not have a <b>Start Task</b> like a request workflow, it does have in and out connectors. These connectors are linked into the workflow. There can be multiple connectors in and out of a workflow to accommodate multiple workflow branches, as demonstrated in the diagram below. Connectors are represented by a circle.</p>
+                                                    <p style="text-align: center;">
+                                                        <img src="/storage/app/media/Help/images/component%20wkflw.png" class="screenshot">
+                                                    </p>
+                                                    <p>The contents of a component are only visible when editing the component directly, or once a request has been generated from a template in which it is contained. When viewing a component in a workflow template, it will be represented by a single icon with connectors.</p>
+                                                    <p class="warning">Care should be taken when using Component Workflows as it is possible to create an infinite loop. For example, you cannot insert Component Workflow A into Component Workflow A (A into A); however, it is possible to insert A into B, and then insert B into A, thus creating a loop.</p>
+                                                

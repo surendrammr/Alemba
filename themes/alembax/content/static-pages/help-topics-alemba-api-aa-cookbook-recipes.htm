@@ -1,0 +1,437 @@
+[viewBag]
+title = "Alemba API Cookbook - Recipes"
+url = "/help/topics/alemba-api/aa-cookbook-recipes"
+layout = "help"
+is_hidden = 0
+navigation_hidden = 0
+==
+                                                    <h1>
+<span class="GeneralVariablesAPIName">Alemba API</span> Cookbook - Recipes</h1>
+                                                    <h2>Creating Calls</h2>
+                                                    <p>To create a call, you must choose a Call type, determine the url for the Call Create action, create a properly formatted Call object, serialize the object in JSON format and submit the object using HTTP POST.​</p>
+                                                    <p>Finally, the created Call may need to be submitted before it becomes visible to other system users.</p>
+                                                    <h3>Choosing a Call type</h3>
+                                                    <p>Each Call Type may be associated with its own extension fields.</p>
+                                                    <p>These extension fields may not all be visible on all call types., so the recommended approach to choosing a call type is to derive this from ITIL IPK Tiers or Call Templates - if these are enabled.​</p>
+                                                    <h3>IPK Statuses and Streams</h3>
+                                                    <p>In the Core application, users choose a type of call to log by choosing a screen set. This is often determined by selecting an IPK Status and then an IPK Stream, which in turn are mapped to a Screen Set. It is also possible to link Screen Set to a combination of IPK Status, IPK Stream add Call Problem Type . </p>
+                                                    <p>These Call Type mappings are accessible through either api:v1/ipk-status-stream-to-type or api:v1/ipk-status-stream-type-to-type. Only one of these endpoints will be enabled. The enabled one will allow searching ,and the other will respond with HTTP Status code 404. To programmatically determine which to use, each endpoint can be queried using $options on the end of the query string.</p>
+                                                    <p>Search the enabled call type mapping entity and choose one according to IPK Status, Stream and/or Call Problem Type.</p>
+                                                    <p>The seach results from each include the usual hypermedia links, and also include "_actions". </p>
+                                                    <p>For example</p>
+                                                    <div class="code">{<p class="codeindent">"IpkStatus": {</p>
+<p class="codeindent1">"Name": "Incident",</p>
+<p class="codeindent1">"_context": "api:v1/ipk-status/$metadata",</p>
+<p class="codeindent1">"_self": "api:v1/ipk-status/1"</p>
+<p class="codeindent">},</p>
+<p class="codeindent">"IpkStream": {</p>
+<p class="codeindent1">"Name": "Standard",</p>
+<p class="codeindent1">"_context": "api:v1/ipk-stream/$metadata",</p>
+<p class="codeindent1">"_self": "api:v1/ipk-stream/0"</p>
+<p class="codeindent">},</p>
+<p class="codeindent">"_context": "api:v1/ipk-status-stream-to-type/$metadata",</p>
+<p class="codeindent">"_self": "api:v1/ipk-status-stream-to-type?$select=IpkStatus,IpkStream&amp;$filter=(IpkStatus%3d%3d1%26%26IpkStream%3d%3d0%26%26InfraEntityType%3d%3d7)",</p>
+<p class="codeindent">"_actions": {</p>
+<p class="codeindent1">"Create": [</p>
+<p class="codeindent2">{</p>
+<p class="codeindent3">"_self": "api:v1/incident/$Create",</p>
+<p class="codeindent3">"href": "api:v1/incident",</p>
+<p class="codeindent3">"description": "The resource that should be used to create a call of this type. IpkStatus and IpkStream from this result should be set in the new call."</p>
+<p class="codeindent2">}</p>
+<p class="codeindent">]</p>
+<p class="codeindent">}</p>
+<p class="codefont">}</p>
+</div>
+                                                    <p>Note that "<b>_actions</b>" contains a reference to a Create action. The Create action includes a hypermedia link to itself and a "href".​ This "href" is the link to use if you want to Create a Call of this type.</p>
+                                                    <p>Note also the additional information in "description".</p>
+                                                    <p>In this example, we would choose to create a call using <code>api:v1/incident</code>.</p>
+                                                    <p>​</p>
+                                                    <h2>Call Templates</h2>
+                                                    <p>In the <span class="GeneralVariablesSelfServicePortalName">Self Service Portal</span>, users choose a call template, which in turn is associated with a type of call. Call Templates can be searched using the api:v1/call-template resource and the results will contain references to the appropriate Create action in the hypermedia links for each search result.</p>
+                                                    <div class="code">
+                                                        <p>{</p>
+                                                        <p class="codeindent">"Ref": 96,</p>
+                                                        <p class="codeindent">"Name": "Default",</p>
+                                                        <p class="codeindent">"_context": "api:v1/call-template/$metadata",</p>
+                                                        <p class="codeindent">"_self": "api:v1/call-template/96",</p>
+                                                        <p class="codeindent">"_actions": {</p>
+                                                        <p class="codeindent1">"Create": [</p>
+                                                        <p class="codeindent2">{</p>
+                                                        <p class="codeindent3">"_self": "api:v1/call/$Create",</p>
+                                                        <p class="codeindent3">"href": "api:v1/call",</p>
+                                                        <p class="codeindent3">"description": "The resource that should be used to create a call of this type. The Template property in the new call should be set to the Ref of this result."</p>
+                                                        <p class="codeindent2">}</p>
+                                                        <p class="codeindent1">]</p>
+                                                        <p class="codeindent">}</p>
+                                                        <p>}</p>
+                                                    </div>
+                                                    <p>In this example, we would choose to create a call using <code>api:v1/call</code>.</p>
+                                                    <p> </p>
+                                                    <p>When choosing a Call type using the API, either of these approaches can be used for any type of user, or you can define your own mechanism. For example, your user could choose from a list of Call types directly (instead of templates or IPK Tiers).</p>
+                                                    <h3>Creating a Call Object</h3>
+                                                    <p>Developers may choose to take a trial and error approach to call creation.​</p>
+                                                    <p>For example, submitting an empty Object will likely result in a validation error like the following:</p>
+                                                    <div class="code">
+                                                        <p>{</p>
+                                                        <p class="codeindent">"Message": "The request is invalid",</p>
+                                                        <p class="codeindent">"Type": "FieldValidationException",</p>
+                                                        <p class="codeindent">"Errors": {</p>
+                                                        <p class="codeindent1">"IpkStatus": [</p>
+                                                        <p class="codeindent2">"Required: IpkStatus must be set when Template is null"</p>
+                                                        <p class="codeindent1">],</p>
+                                                        <p class="codeindent1">"IpkStream": [</p>
+                                                        <p class="codeindent2">"Required: IpkStream must be set when Template is null"</p>
+                                                        <p class="codeindent1">],</p>
+                                                        <p class="codeindent1">"Partition": [</p>
+                                                        <p class="codeindent2">"Required"</p>
+                                                        <p class="codeindent1">]</p>
+                                                        <p class="codeindent">}</p>
+                                                        <p>}​</p>
+                                                    </div>
+                                                    <p>The exact error is entirely dependent upon the configuration of the system.​</p>
+                                                    <h3>Call Create Metadata​</h3>
+                                                    <p>The metadata for the Call entity describes all of the actions that are available and all of the properties of that entity. Each action may also contain a description of the allowed inputs for that action.</p>
+                                                    <p>The Call Create action is no exception and does define applicable inputs and the associated validation rules.</p>
+                                                    <p>​Some fields may be required or readonly depending upon the system configuration. This configuration is described in the action metadata and is validated by the server.</p>
+                                                    <p>For example</p>
+                                                    <div class="code">
+                                                        <p>{</p>
+                                                        <p class="codeindent">"_context": "api:v1/call/$metadata",</p>
+                                                        <p class="codeindent">"_self": "api:v1/call/$Create",</p>
+                                                        <p class="codeindent">"href": "api:v1/call",</p>
+                                                        <p class="codeindent">"methods": [</p>
+                                                        <p class="codeindent1">"POST"</p>
+                                                        <p class="codeindent">],</p>
+                                                        <p class="codeindent">"inputs": [</p>
+                                                        <p class="codeindent1">{</p>
+                                                        <p class="codeindent2">"property": "ConfigurationItem"</p>
+                                                        <p class="codeindent1">},</p>
+                                                        <p class="codeindent1">{</p>
+                                                        <p class="codeindent2">"property": "User"</p>
+                                                        <p class="codeindent1">},</p>
+                                                        <p class="codeindent1">{</p>
+                                                        <p class="codeindent2">"property": "Priority",</p>
+                                                        <p class="codeindent2">"readonly": true</p>
+                                                        <p class="codeindent1">},</p>
+                                                        <p class="codeindent1">{</p>
+                                                        <p class="codeindent2">"property": "Description",</p>
+                                                        <p class="codeindent2">"relations": [</p>
+                                                        <p class="codeindent3">{</p>
+                                                        <p class="codeindent4">"behaviors": [</p>
+                                                        <p class="codeindent5">{</p>
+                                                        <p class="codeindent5">"type": 11,</p>
+                                                        <p class="codeindent5">"scope": 1</p>
+                                                        <p class="codeindent5">}</p>
+                                                        <p class="codeindent4">],</p>
+                                                        <p class="codeindent4">"source": "Description",</p>
+                                                        <p class="codeindent4">"target": "DescriptionHtml"</p>
+                                                        <p class="codeindent3">}</p>
+                                                        <p class="codeindent2">]</p>
+                                                        <p class="codeindent1">},</p>
+                                                        <p class="codeindent1">{</p>
+                                                        <p class="codeindent2">"property": "DescriptionHtml",</p>
+                                                        <p class="codeindent2">"relations": [</p>
+                                                        <p class="codeindent3">{</p>
+                                                        <p class="codeindent4">"behaviors": [</p>
+                                                        <p class="codeindent5">{</p>
+                                                        <p class="codeindent5">"type": 14,</p>
+                                                        <p class="codeindent5">"scope": 1</p>
+                                                        <p class="codeindent5">}</p>
+                                                        <p class="codeindent4">],</p>
+                                                        <p class="codeindent4">"source": "DescriptionHtml",</p>
+                                                        <p class="codeindent4">"target": "Description"</p>
+                                                        <p class="codeindent3">}</p>
+                                                        <p class="codeindent2">]</p>
+                                                        <p class="codeindent1">},</p>
+                                                        <p class="codeindent">{</p>
+                                                        <p class="codeindent1">"property": "Type"</p>
+                                                        <p class="codeindent">},</p>
+                                                        <p class="codeindent">{</p>
+                                                        <p class="codeindent1">"property": "Organization"</p>
+                                                        <p class="codeindent">},</p>
+                                                        <p class="codeindent">{</p>
+                                                        <p class="codeindent1">"property": "Template",</p>
+                                                        <p class="codeindent1">"relations": [</p>
+                                                        <p class="codeindent2">{</p>
+                                                        <p class="codeindent3">"behaviors": [</p>
+                                                        <p class="codeindent4">{</p>
+                                                        <p class="codeindent5">"type": 16,</p>
+                                                        <p class="codeindent5">"scope": 2</p>
+                                                        <p class="codeindent4">},</p>
+                                                        <p class="codeinden4t">{</p>
+                                                        <p class="codeindent5">"type": 17,</p>
+                                                        <p class="codeindent5">"scope": 2</p>
+                                                        <p class="codeindent4">}</p>
+                                                        <p class="codeindent3">],</p>
+                                                        <p class="codeindent3">"source": "Template",</p>
+                                                        <p class="codeindent3">"target": "IpkStatus"</p>
+                                                        <p class="codeindent2">},</p>
+                                                        <p class="codeindent2">{</p>
+                                                        <p class="codeindent3">"behaviors": [</p>
+                                                        <p class="codeindent4">{</p>
+                                                        <p class="codeindent5">"type": 16,</p>
+                                                        <p class="codeindent5">"scope": 2</p>
+                                                        <p class="codeindent4">},</p>
+                                                        <p class="codeindent4">{</p>
+                                                        <p class="codeindent5">"type": 17,</p>
+                                                        <p class="codeindent5">"scope": 2</p>
+                                                        <p class="codeindent4">}</p>
+                                                        <p class="codeindent3">],</p>
+                                                        <p class="codeindent3">"source": "Template",</p>
+                                                        <p class="codeindent3">"target": "IpkStream"</p>
+                                                        <p class="codeindent2">},</p>
+                                                        <p class="codeindent2">{</p>
+                                                        <p class="codeindent3">"behaviors": [</p>
+                                                        <p class="codeindent4">{</p>
+                                                        <p class="codeindent5">"type": 16,</p>
+                                                        <p class="codeindent5">"scope": 2</p>
+                                                        <p class="codeindent4">}</p>
+                                                        <p class="codeindent4">],</p>
+                                                        <p class="codeindent4">"source": "Template",</p>
+                                                        <p class="codeindent4">"target": "Name"</p>
+                                                        <p class="codeindent3">}</p>
+                                                        <p class="codeindent2">]</p>
+                                                        <p class="codeindent">},</p>
+                                                        <p class="codeindent">{</p>
+                                                        <p class="codeindent1">"property": "IpkStatus",</p>
+                                                        <p class="codeindent1">"relations": [</p>
+                                                        <p class="codeindent2">{</p>
+                                                        <p class="codeindent3">"behaviors": [</p>
+                                                        <p class="codeindent4">{</p>
+                                                        <p class="codeindent5">"type": 14,</p>
+                                                        <p class="codeindent5">"scope": 2</p>
+                                                        <p class="codeindent4">}</p>
+                                                        <p class="codeindent3">],</p>
+                                                        <p class="codeindent3">"source": "IpkStatus",</p>
+                                                        <p class="codeindent3">"target": "IpkStream"</p>
+                                                        <p class="codeindent2">}</p>
+                                                        <p class="codeindent1">]</p>
+                                                        <p class="codeindent">},</p>
+                                                        <p class="codeindent">{</p>
+                                                        <p class="codeindent1">"property": "IpkStream",</p>
+                                                        <p class="codeindent2">"relations": [</p>
+                                                        <p class="codeindent2">{</p>
+                                                        <p class="codeindent3">"behaviors": [</p>
+                                                        <p class="codeindent4">{</p>
+                                                        <p class="codeindent5">"type": 14,</p>
+                                                        <p class="codeindent5">"scope": 2</p>
+                                                        <p class="codeindent4">}</p>
+                                                        <p class="codeindent3">],</p>
+                                                        <p class="codeindent3">"source": "IpkStream",</p>
+                                                        <p class="codeindent3">"target": "IpkStatus"</p>
+                                                        <p class="codeindent2">}</p>
+                                                        <p class="codeindent1">]</p>
+                                                        <p class="codeindent">},</p>
+                                                        <p class="codeindent">{</p>
+                                                        <p class="codeindent1">"property": "Partition",</p>
+                                                        <p class="codeindent1">"required": true,</p>
+                                                        <p class="codeindent1">"relations": [</p>
+                                                        <p class="codeindent2">{</p>
+                                                        <p class="codeindent3">"behaviors": [</p>
+                                                        <p class="codeindent4">{</p>
+                                                        <p class="codeindent5">"type": 15</p>
+                                                        <p class="codeindent4">}</p>
+                                                        <p class="codeindent3">],</p>
+                                                        <p class="codeindent3">"source": "Partition",</p>
+                                                        <p class="codeindent3">"target": "ConfigurationItem"</p>
+                                                        <p class="codeindent2">},</p>
+                                                        <p class="codeindent2">{</p>
+                                                        <p class="codeindent3">"behaviors": [</p>
+                                                        <p class="codeindent4">{</p>
+                                                        <p class="codeindent5">"type": 15</p>
+                                                        <p class="codeindent4">}</p>
+                                                        <p class="codeindent3">],</p>
+                                                        <p class="codeindent3">"source": "Partition",</p>
+                                                        <p class="codeindent3">"target": "User"</p>
+                                                        <p class="codeindent2">},</p>
+                                                        <p class="codeindent2">{</p>
+                                                        <p class="codeindent3">"behaviors": [</p>
+                                                        <p class="codeindent4">{</p>
+                                                        <p class="codeindent5">"type": 15</p>
+                                                        <p class="codeindent4">}</p>
+                                                        <p class="codeindent3">],</p>
+                                                        <p class="codeindent3">"source": "Partition",</p>
+                                                        <p class="codeindent3">"target": "Priority"</p>
+                                                        <p class="codeindent2">},</p>
+                                                        <p class="codeindent1"> </p>
+                                                        <p class="codeindent1">]</p>
+                                                        <p class="codeindent">}</p>
+                                                        <p class="codeindent">],</p>
+                                                        <p class="codefont">"description": "Create a new record of this type",</p>
+                                                        <p class="codefont">"status": "GA"</p>}​</div>
+                                                    <p>The metadata for each action may include "_context", "_self", "href", "description" and "status"</p>
+                                                    <p>It may also include "methods", which defines the HTTP Methods/Verbs that can be used for the action.</p>
+                                                    <p>The action metadata may also define and array of "inputs"</p>
+                                                    <p>Each input may include the following properties:</p>
+                                                    <table style="width: 100%;mc-table-style: url('../../resources/tablestyles/rep hdr row no break.css');margin-left: 0;margin-right: auto;" class="TableStyle-Rep_Hdr_Row_no_break" cellspacing="0">
+                                                        <col class="TableStyle-Rep_Hdr_Row_no_break-Column-Column1">
+                                                        <col class="TableStyle-Rep_Hdr_Row_no_break-Column-Column1">
+                                                        <tbody>
+                                                            <tr class="TableStyle-Rep_Hdr_Row_no_break-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row_no_break-BodyE-Column1-Body1">property</td>
+                                                                <td class="TableStyle-Rep_Hdr_Row_no_break-BodyD-Column1-Body1">
+                                                                    <p>The path of the input value. This may be a reference to the name of a property for the current entity "_context" (see [[API Metadata]] or may be a dot separated path</p>
+                                                                    <p>This defines the structure of the object that must be sent in the request body when the action is invoked.</p>
+                                                                    <p>e.g $action.CallActionType describes the following JSON structure</p>
+                                                                    <p>{ "$action": { "CallActionType": value } }</p>
+                                                                    <p> </p>
+                                                                    <p>When the "property" path does not refer to an entity property name, all other relevant property values will also be defined e.g. "type", "displayType", etc.</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row_no_break-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row_no_break-BodyE-Column1-Body1">required</td>
+                                                                <td class="TableStyle-Rep_Hdr_Row_no_break-BodyD-Column1-Body1">A boolean value indicating that the input is required. Omitted unless it is true</td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row_no_break-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row_no_break-BodyE-Column1-Body1">readonly</td>
+                                                                <td class="TableStyle-Rep_Hdr_Row_no_break-BodyD-Column1-Body1">A boolean value indicating that the input is readonly. Omitted unless it is true</td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row_no_break-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row_no_break-BodyB-Column1-Body1">relations</td>
+                                                                <td class="TableStyle-Rep_Hdr_Row_no_break-BodyA-Column1-Body1">An array of relationships between input fields<p>Each relation includes "source" and "target" which reference "property" paths within the "inputs" array.</p>
+<p>Each relation will also include an array of "behaviours". These define validation level rules.</p>
+<p>The behaviors are used in server side validation and transformation rules and are provided so that the client can understand</p>
+<p>input requirements without needing to rely upon server side validation.</p>
+</td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <p>Behaviours may include the following properties</p>
+                                                    <table style="width: 100%;mc-table-style: url('../../resources/tablestyles/rep hdr row no break.css');margin-left: 0;margin-right: auto;" class="TableStyle-Rep_Hdr_Row_no_break" cellspacing="0">
+                                                        <col class="TableStyle-Rep_Hdr_Row_no_break-Column-Column1">
+                                                        <col class="TableStyle-Rep_Hdr_Row_no_break-Column-Column1">
+                                                        <tbody>
+                                                            <tr class="TableStyle-Rep_Hdr_Row_no_break-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row_no_break-BodyE-Column1-Body1">phase</td>
+                                                                <td class="TableStyle-Rep_Hdr_Row_no_break-BodyD-Column1-Body1">
+                                                                    <p>This indicates when the behavior will be applied.</p>
+                                                                    <p>1 indicates that the behavior will be applied after the record has been updated (but before it is committed to the database)</p>
+                                                                    <p>0 indicates that the behavior will be applied before, and therefore will apply to the input only.</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row_no_break-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row_no_break-BodyE-Column1-Body1">
+                                                                    <p>type</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row_no_break-BodyD-Column1-Body1">
+                                                                    <p>This indicates the type of relation and may be one of the following</p>
+                                                                    <p>11 (CalculateHtmlTextIfNull): Indicates that the HTML text value of the target input should be set. When processed on the server.</p>
+                                                                    <p>12 (RequiredIfTrue): Indicates that the target input is required when the source input is true</p>
+                                                                    <p>13 (ZeroIfNotNull): Indicates that the target input must be set to zero when the source input has a value</p>
+                                                                    <p>14 (RequiredIfNotNull): Indicates that the target input is required when the source input has a value</p>
+                                                                    <p>15 (Dependency​): Indicates that the target input is dependent upon the value of the source input. This typically applies to partitioned inputs.</p>
+                                                                    <p>16 (ReadonlyIfNotNull​): Indicates that the target input is readonly when the source input has a value</p>
+                                                                    <p>17 (RequiredIfNull): Indicates that the target input is required when the source input does not have a value</p>
+                                                                    <p>18 (ReadonlyIfNull): Indicates that the target input is readonly when the source input does not have a value</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row_no_break-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row_no_break-BodyB-Column1-Body1">scope</td>
+                                                                <td class="TableStyle-Rep_Hdr_Row_no_break-BodyA-Column1-Body1">
+                                                                    <p>This indicates where the behavior should be interpreted.</p>
+                                                                    <p>0 indicates that the behavior should be implemented by the client and will be ignored by the server</p>
+                                                                    <p>1 indicates that the behavior can be implemented by the client and will be implemented by the server</p>
+                                                                    <p>2 indicates that the behavior should be implemented by the client and will be implemented by the server​</p>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <p>Using the Call Create action metadata, we can easily determine which fields are required, and analyse the more complex relationships between fields.</p>
+                                                    <p>For the example of creating a Call from a Template, the following ajax call could succeed</p>
+                                                    <div class="code">var create = $.ajax({<p class="codeindent">url: metadata.href.replace(/^api:/, "alemba.api/api"),</p>
+<p class="codeindent">data: {</p>
+<p class="codeindent">Template: 96</p>
+<p class="codeindent">},</p>
+<p class="codeindent">method: metadata.methods[0],</p>
+<p class="codeindent">contentType: 'application/json',</p>
+<p class="codeindent">headers: {</p>
+<p class="codeindent">'Authorization': "Bearer " + access_token</p>
+<p class="codeindent">}</p>});</div>
+                                                    <p> </p>
+                                                    <h3>Call Create Response</h3>
+                                                    <p>When successful, the Call Create action will respond with HTTP Status Code 201.</p>
+                                                    <p>The response body will include the actual changes to the Call record and hypermedia links to the currently applicable actions.</p>
+                                                    <p>For example</p>
+                                                    <div class="code">{<p class="codeindent">"ActualLogDate": "2017-01-23T12:12:41.0000000Z",</p>
+<p class="codeindent">"Template": 96,</p>
+<p class="codeindent">"Ref": 10056,</p>
+<p class="codeindent">"_context": "api:v1/call/$metadata",</p>
+<p class="codeindent">"_self": "api:v1/call/10056",</p>
+<p class="codeindent">"_actions": {</p>
+<p class="codeindent1">"Submit": [</p>
+<p class="codeindent2">{</p>
+<p class="codeindent3">"_self": "api:v1/call/$Submit",</p>
+<p class="codeindent3">"href": "api:v1/call/10056/submit"</p>
+<p class="codeindent2">}</p>
+<p class="codeindent1">],</p>
+<p class="codeindent1">"Update": [</p>
+<p class="codeindent2">{</p>
+<p class="codeindent3">"_self": "api:v1/call/$Update",</p>
+<p class="codeindent3">"href": "api:v1/call/10056"</p>
+<p class="codeindent2">}</p>
+<p class="codeindent1">]</p>
+<p class="codeindent">}</p>}</div>
+                                                    <p>The "_actions" property in the response indicates the actions which are applicable to the created Call <i>in its current state</i>. A Call will only be visible to the creator until it has been submitted, therefore if the "Submit" action is listed in the Create response, this action should be invoked before relinquishing responsibility for the Call.</p>
+                                                    <p> </p>
+                                                    <h2>Replicating behavior of Self Service</h2>
+                                                    <p>If a call is logged in Self Service, fixed rules are applied after saving, to populate certain fields. This has not been replicated in the API, as we will be making such rules configurable in the future. If you wish to replicate the current logic, you need to programmatically do so, following the rules below:</p>
+                                                    <ul>
+                                                        <li value="1">        If Location is not set, Location is set to the current User’s Location Ref (if they have one)</li>
+                                                        <li value="2">        If Organization is not set, Organization is set to the current User’s Organzation Ref (if they have one)</li>
+                                                        <li value="3">        If the Location is still not set, this is set to the first valid Location of: the selected User or Service or CI or Organization of the call.</li>
+                                                        <li value="4">        If the Organzation is still not set, this is set to the first valid Organzation from: the selected User or Service or CI of the call.</li>
+                                                    </ul>
+                                                    <h2>Impact of data on post-creation rules</h2>
+                                                    <p>Almost any property of a call may be used by IPK Workflow Rules, and each may have a different impact, according how the rules are set up in your system. The API user should be fully conversant with how these rules are configured, so as to achieve the desired assignment, notification and workflow creation.</p>
+                                                    <h2>Call creation checklist</h2>
+                                                    <p>To summarize, the actions to perform are as follows:</p>
+                                                    <ul class="multilist">
+                                                        <li value="1">        For Users,      select a Call Template (restricted by partition/security if active)</li>
+                                                        <li value="2">        For Analysts,     select a Screen Set (and IPK Status, IPK Stream, Problem Type if so configured, restricted by partition/security if active)</li>
+                                                        <li value="3">        Then for both,<ul>
+<li value="1">        Apply variable data</li>
+<li value="2">        Create Call</li>
+</ul>
+</li>
+                                                    </ul>
+                                                    <h2>Creating Requests</h2>
+                                                    <p>The templates retrieved are subject to several security and configuration settings, including:</p>
+                                                    <ul>
+                                                        <li value="1">        partitioning Request Screen Sets and Workflow Templates</li>
+                                                        <li value="2">        Workflow Management Settings</li>
+                                                        <li value="3">        login's Workflow Management Role's Template Security settings</li>
+                                                    </ul>
+                                                    <h2>Calls and Requests – Determining Initial Assignment</h2>
+                                                    <p>In the WCF API, it is possible to specify the Officer and/or Group to which Calls and Requests are forwarded on creation. These are specified as parameters rather than properties to update. They are ignored if IPK or Workflow rules are in place to set this.</p>
+                                                    <p>In the RESTful API, it is possible to set these values on the Defer action, rather than the Create, so API users should use both actions, one after the other, to achieve the same thing.</p>
+                                                    <h2>Calls and Requests – Recording Actions</h2>
+                                                    <p>In the WCF API, the transactions to create and update calls include the ability to record “Action and Solution” information, which is largely recorded an associated history record. In the RESTful API, this can be achieved using the Defer action. This may include some of the following parameters:</p>
+                                                    <ul>
+                                                        <li value="1">        $action.Description.Description</li>
+                                                        <li value="2">        $action.Description.DescriptionHtml</li>
+                                                        <li value="3">        $action.Description.Title</li>
+                                                        <li value="4">        $action.ActionType</li>
+                                                    </ul>
+                                                    <p> </p>
+                                                    <h2>
+<a name="Creating"></a>Creating a Service Order</h2>
+                                                    <p>The items that need to be created for a valid service order are:</p>
+                                                    <ul>
+                                                        <li value="1">        Service Order</li>
+                                                        <li value="2">        Service Order Items</li>
+                                                        <li value="3">        A Call or Request per Service Order Item (if you want those items immediately submitted)</li>
+                                                    </ul>
+                                                    <p>Required inputs are: one or more service actions and/or service bundles, and a quantity for each.</p>
+                                                    <p>To create a new Service Order, a new service order record must first be created (api:v1/service-order/$create)</p>
+                                                    <p>For each service action in the order:</p>
+                                                    <p>A Service Order Item linked to the Service Order must be created (api:v1/service-order-item/$create) and a Call or Request must be created which is linked to the Service Order Item.</p>
+                                                    <p>The type of Call or Request to create is indicated in the metadata links for each service action</p>
+                                                    <p>Finally, the Service Order must be Submitted (using the Submit action), which will automatically calculate the Order Total and Submit the linked Tickets.</p>
+                                                    <p>The new dynamic service bundle type is not supported in this version of the API.</p>
+                                                    <p>The creation of a request will automatically create the necessary tasks and initiate the workflow.</p>
+                                                    <p>Note that the entity called Order is used for transactions that are part of Asset Management, and is not used for Service Orders.</p>
+                                                    <p> </p>
+                                                    <h2>Closing Calls</h2>
+                                                    <p>The process of closing a call in Core is subject to a number of configurable rules, settings and privileges. Some of these are handled by the rules engine and will be automatically invoked after calling the Close method, others need to be considered by the API user in determining what to pass to the Close method, and whether to call additional methods.</p>
+                                                    <p> </p>
+                                                

@@ -1,0 +1,61 @@
+==
+<?php
+use Alemba\Alemba\Models\Customer;
+
+function onStart()
+{
+
+    $this['customers'] = Customer::with('successstory')->whereNotNull('logo')->where('featured', 1)->orderBy('name')->take(15)->get();
+
+}
+?>
+==
+<div id="homepage-customers" class="row pt-5 pb-5">
+
+  <div class="col-10 offset-1 mb-5">
+    <h3>Trusted by the best.</h3>
+  </div>
+
+  <div class="row">
+
+    <div class="col-11 col-lg-3 offset-1 mb-5">
+
+      <img class="img-fluid mb-3 lazyload" data-src="{{ 'Customers/Kroger-200w.png'|media }}" data-srcset="{{ 'Customers/Kroger-200w.png'|media }} 2x" alt="Kroger" />
+
+      <h5 class="magenta">Kroger’s mission-critical processes managed by Alemba Service Manager.</h5>
+
+      <p class="dark">“It is all done automatically with no need for human interaction – and it all happens very quickly”</p>
+
+      <a class="btn btn-lg btn-outline pink light-bkg" href="{{ 'success-story'|page({ slug:'kroger-technology-using-vfire-automate-mission-critical-processes-across-whole-business' }) }}" role="button">Read more</a>
+
+    </div>
+
+    <div class="col-11 col-lg-6 offset-1">
+
+      {% for customer_row in customers|batch(5) %}
+
+        <div class="row d-flex flex-row mb-4 justify-content-center align-items-center customers">
+
+          {% for customer in customer_row %}
+
+            <div class="col">
+
+              {% if customer.successstory %} <a href="{{ 'success-story'|page({ slug:customer.successstory.slug }) }}"> {% endif %}
+
+                <img class="img-fluid lazyload" data-src="{{ customer.logo|media }}" data-srcset="{{ customer.logo|media }} 2x" alt="{{ customer.name }}" />
+
+              {% if customer.successstory %} </a> {% endif %}
+
+            </div>
+
+          {% endfor %}
+
+        </div>
+
+      {% endfor %}
+
+    </div>
+
+  </div>
+
+</div>

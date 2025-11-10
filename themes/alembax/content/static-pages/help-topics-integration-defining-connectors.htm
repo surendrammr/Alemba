@@ -1,0 +1,99 @@
+[viewBag]
+title = "Defining Connectors"
+url = "/help/topics/integration/defining-connectors"
+layout = "help"
+is_hidden = 0
+navigation_hidden = 0
+==
+                                                    <h1>
+<a name="top"></a>Defining Connectors</h1>
+                                                    <p class="intro">You can define each technology, or connector, with which <span class="GeneralVariablesCoreName">ASM Core</span> can communicate, which is installed on your <span class="GeneralVariablesSystemName">ASM System</span>. </p>
+                                                    <h2 class="Prerequisite">Before you start</h2>
+                                                    <p class="prereqtextlast">You must have <b>Integration Setup</b> selected in the <a href="../admin%20security%20roles/general%20access%20security%20role%20-%20admin%20tab.htm">Admin</a> tab of your <b>General Access Security Role</b>. </p>
+                                                    <ol>
+                                                        <li value="1">
+                                                            <p>Select <a href="../general%20topics/asmcorewindow.htm"><span style="font-size: 24pt;">≡</span></a> &gt; <b>Admin</b> &gt;  <b>Integration</b>.  </p>
+                                                            <p>The <b>Integration Platform Settings</b> window appears.</p>
+                                                        </li>
+                                                        <li value="2">Select <b>Connectors</b> from the explorer pane <a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="../../resources/images/ip%20connectors.png"><img class="MCPopupThumbnail img imgthumbnail" data-mc-width="362" data-mc-height="210" src="/storage/app/media/Help/images/ip%20connectors_thumb_0_48.png" tabindex=""></a>. The <b>Integration Connectors</b> window has a browse table displaying all the connectors installed on your system, regardless of whether you have a license for that particular connector.</li>
+                                                        <li value="3">You can assign a new description, set the connector’s visibility in other areas of the integration platform, and test if the connector is licensed and installed in the correct location.</li>
+                                                        <p>
+                                                            </p>
+<table style="mc-table-style: url('../../resources/tablestyles/fielddesc.css');" class="TableStyle-FieldDesc" cellspacing="0">
+                                                                <col class="TableStyle-FieldDesc-Column-Column1">
+                                                                <col class="TableStyle-FieldDesc-Column-Column2">
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">
+                                                                        <p>Description</p>
+                                                                    </td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                        <p>The description of the connector enables you to identify the connector. You can specify your own description by clicking in this field, and typing over the existing description.</p>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">
+                                                                        <p>(Assembly.TypeName)</p>
+                                                                    </td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                        <p>Connectors are integrated with <span class="GeneralVariablesCoreName">ASM Core</span> using Connector Dynamic Link Libraries (DLLs).  The Assembly.TypeName is a string defined by the Connector DLL that enables instances of an external source to be created by <span class="GeneralVariablesCoreName">ASM Core</span>. The Assembly.TypeName for a connector is provided along with its DLL. <span class="GeneralVariablesProductName">ASM</span> ships with a set of pre-defined connectors. If you have created your own connectors, ensure that the connector DLL exists in the <span class="GeneralVariablesProductName">ASM</span>\&lt;system&gt;\bin directory.</p>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column1-" colspan="2">
+                                                                        <p>Each connector may have the capability for being used for more than one type of third-party integration:</p>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">
+                                                                        <p>Resources</p>
+                                                                    </td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                        <p>The connector is enabled for Federated CMDB integration with external resources.</p>
+                                                                        <p class="note">This column  is read-only since integration capabilities are configured at the level of the connector.</p>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">
+                                                                        <p>Events</p>
+                                                                    </td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                        <p>The connector is enabled for Event Management.</p>
+                                                                        <p class="note">This column  is read-only since integration capabilities are configured at the level of the connector.</p>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">
+                                                                        <p>Actions</p>
+                                                                    </td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                        <p>The connector is enabled for Inbound and/or Outbound Actions.</p>
+                                                                        <p class="note">This column  is read-only since integration capabilities are configured at the level of the connector.</p>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">
+                                                                        <p>Visible</p>
+                                                                    </td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                        <p>If you are not licensed for a particular connector or you simply wish to hide a connector from displaying, for example when configuring sources, clear the checkbox.</p>
+                                                                        <p>If you select Visible, the connector will be displayed regardless of whether you are licensed for the particular connector or not. </p>
+                                                                        <p class="note">Making a connector visible simply displays it in the integration settings. While you may select any installed connector (for which the Visible checkbox has been selected) when defining a source, you will not be able to create the source successfully unless you are licensed for the particular connector and it is installed correctly. </p>
+                                                                    </td>
+                                                                </tr>
+                                                            </table>
+                                                        
+                                                        <li value="4">Select <img src="/storage/app/media/Help/images/save%20button.png">  to save the changes.</li>
+                                                    </ol>
+                                                    <h2>Testing Connectors</h2>
+                                                    <h2 class="Prerequisite">Before you start</h2>
+                                                    <p class="prereqtextlast">You must have <b>Integration Setup</b> selected in the <a href="../admin%20security%20roles/general%20access%20security%20role%20-%20admin%20tab.htm">Admin</a> tab of your <b>General Access Security Role</b>. </p>
+                                                    <ol>
+                                                        <li value="1">
+                                                            <p>Select <a href="../general%20topics/asmcorewindow.htm"><span style="font-size: 24pt;">≡</span></a> &gt; <b>Admin</b> &gt;  <b>Integration</b>.  </p>
+                                                            <p>The <b>Integration Platform Settings</b> window appears.</p>
+                                                        </li>
+                                                        <li value="2">Select <b>Connectors</b> from the explorer pane <a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="../../resources/images/ip%20connectors.png"><img class="MCPopupThumbnail img imgthumbnail" data-mc-width="362" data-mc-height="210" src="/storage/app/media/Help/images/ip%20connectors_thumb_0_48.png" tabindex=""></a>. The <b>Integration Connectors</b> window has a browse table displaying all the connectors installed on your system, regardless of whether you have a license for that particular connector.</li>
+                                                        <li value="3">Select the connector you want to test, and then select <img src="/storage/app/media/Help/images/test%20connector%20btn.png"> from the toolbar.</li>
+                                                        <li value="4">The system tests whether the Connector DLL exists in the correct location, and that you are licensed for using it. If your system is unable to connect to the Connector DLL or is not licensed for the connector, an error message displays.</li>
+                                                    </ol>
+                                                

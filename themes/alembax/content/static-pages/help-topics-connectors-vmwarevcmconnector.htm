@@ -1,0 +1,1133 @@
+[viewBag]
+title = "VMware vCenter Configuration Manager Connector"
+url = "/help/topics/connectors/vmwarevcmconnector"
+layout = "help"
+is_hidden = 0
+navigation_hidden = 0
+==
+                                                    <h1>VMware vCenter Configuration Manager Connector</h1>
+                                                    <p class="BODY_1">This section of the documentation contains technical information on the <span class="GeneralVariablesCoreName">ASM Core</span> to VMware vCenter Configuration Manager Connector, including:</p>
+                                                    <ul>
+                                                        <li class="BULLET1_1" value="1">The name of the .NET assembly file</li>
+                                                        <li class="BULLET1_1" value="2">The connection methodology</li>
+                                                        <li class="BULLET1_1" value="3">The resource and link types that can be discovered</li>
+                                                        <li class="BULLET1_1" value="4">The events that are generated</li>
+                                                        <li class="BULLET1_1" value="5">The actions that can be called under workflow control</li>
+                                                    </ul>
+                                                    <p class="note">For compatibility and version support details, refer to the <a href="connector%20matrix.htm" class="MCXref xref">ASM Connector Matrix</a>.</p>
+                                                    <p class="note">You should familiarize yourself with the information in <a href="connector%20installation%20guide.htm" class="MCXref xref">Installing Connectors</a> before installing any connectors, and read the <a href="../integration/integrate.htm" class="MCXref xref">Integration</a> topics for more information on how to configure them.</p>
+                                                    <h2>Functionality</h2>
+                                                    <p class="BODY_1">The VMware vCenter Configuration Manager connector allows organizations to enhance the following processes:</p>
+                                                    <ul>
+                                                        <li class="BULLET1_1" value="1">
+<b>Incident Management.</b> Automatically discover machine resources into the <span class="GeneralVariablesCoreName">ASM Core</span> Federated CMDB for the purposes of incident classification, reporting, and routing.</li>
+                                                        <li class="BULLET1_1" value="2"> <b>Asset Management.</b> Automatically discover installed software into the <span class="GeneralVariablesCoreName">ASM Core</span> Federated CMDB for the purposes of comparing the actual deployments of software with software license assignments.</li>
+                                                        <li class="BULLET1_1" value="3">
+<b>Change Management.</b> Automatically enforce the initiation of a formal Change Management process in <span class="GeneralVariablesCoreName">ASM Core</span> whenever a server administrator attempts to roll out changes (eg: Windows service packs or security bulletins) using VMware vCenter Configuration Manager.</li>
+                                                    </ul>
+                                                    <h2>Connector Details</h2>
+                                                    <table class="TableStyle-Rep_Hdr_Row" style="mc-table-style: url('../../resources/tablestyles/rep hdr row.css');margin-left: 0;margin-right: auto;" cellspacing="0">
+                                                        <col style="width: 199pt;" class="TableStyle-Rep_Hdr_Row-Column-Column1">
+                                                        <col style="width: 207pt;" class="TableStyle-Rep_Hdr_Row-Column-Column2">
+                                                        <thead>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Head-Header1">
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column1-Header1">
+                                                                    <p class="Strong">Information fields</p>
+                                                                </th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadD-Column2-Header1">
+                                                                    <p class="Strong">Description</p>
+                                                                </th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Connector</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p>VMware vCenter Configuration Manager &lt;-&gt; <span class="GeneralVariablesCoreName">ASM Core</span></p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p><span class="GeneralVariablesCoreName">ASM Core</span>
+                                                                    </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p>v10 and above</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p> Third-party application</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p>VMware vCenter Configuration Manager</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Assembly</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p>Infra.Connector.vCM.dll</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Configuration file</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p>Infra.Connector.vCM.icnf</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyB-Column1-Body1">
+                                                                    <p>Connection methodology</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyA-Column2-Body1">
+                                                                    <p>Database</p>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <h2>Connector Installation</h2>
+                                                    <p class="BODY_1">The steps below detail how to install the connector.</p>
+                                                    <ol start="1">
+                                                        <li value="1">Download the connector zip package, save it in a temporary directory then unzip it.</li>
+                                                        <li value="2">The unzip folder should contain 4 sub-folders: Bin, Config, Doc, and vCM Scripts.</li>
+                                                        <li value="3">Prepare the vCM Database. See<a href="#vCMdbPrep" class="MCXref xref">vCM Database Preparation</a>.</li>
+                                                        <li value="4">Prepare the <span class="GeneralVariablesCoreName">ASM Core</span> Server. See<a href="#vFireCoreServerPrep" class="MCXref xref">ASM Core Server Preparation</a>. </li>
+                                                        <li value="5">Configure a Connection Source. See<a href="#ConnectionSource" class="MCXref xref">Connection Source Creation</a>.</li>
+                                                    </ol>
+                                                    <h3>
+<a name="vCMdbPrep"></a>vCM Database Preparation</h3>
+                                                    <p class="BODY_1">A number of operations must be performed against the vCM database server as part of the connector installation. These operations must be performed by an account that is a database owner of the target database catalog such that any objects created in these steps should be created in the “dbo” schema.</p>
+                                                    <p class="BODY_1">Some of these operations are performed by shipped database script files (*.sql). Others should be performed by the SQL Server administration interface.</p>
+                                                    <p>The connector connects solely to the main vCM database catalog. By default this will be called “VCM”; in some upgraded environments this may be “SCM” or “ECM”. </p>
+                                                    <p>vCM utilizes additional database catalogs with suffixed names e.g.“VCM_Unix” and “VCM_Coll”. The database account used by the connector requires some access to one of these, the “Unix” database. However, the connector will never connect to this database directly.</p>
+                                                    <ol start="1" class="multilist">
+                                                        <li class="NumberedList_1" value="1">Copy the contents of the vCM Scripts directory to your vCM database server.</li>
+                                                        <li class="NumberedList_1" value="2">Login to the SQL Server administration interface as an administrator.</li>
+                                                        <li class="NumberedList_1" value="3">Create a dedicated database login for the <span class="GeneralVariablesProductName">ASM</span> connector.</li>
+                                                        <li class="NumberedList_1" value="4">On the main database catalog:<ul start="1"><li class="List21_1" value="1">Run the provided SQL script Create_vSM_Connector_Objects.sql.<br>(This creates the stored procedure used by the connector.)</li></ul>
+<ul start="1">
+<li class="List21_1" value="1">Run the provided SQL script Grant_vSM_Connector_Access_Main.sql.<br>(This creates the vSM_Connector database role and assigns it permissions.)</li>
+<li class="List21_1" value="2">Add the dedicated login as a user to the catalog</li>
+<li class="List21_1" value="3">Add the user as a member to the database role vSM_Connector.</li>
+<li class="List21_1" value="4">Run the provided SQL script Enable_vCM_Integration.sql.<br>(This enables vCM to create RFC events.)</li>
+</ul>
+</li>
+                                                        <li class="NumberedList_1" value="5">On the “Unix” database catalog:<ul start="1"><li class="List21_1" value="1">Run the provided SQL script Grant_vSM_Connector_Access_Unix.sql.</li></ul>
+<ul start="1"><li class="List21_1" value="1">Run the provided SQL script Grant_vSM_Connector_Access_Unix.sql.<br>(This creates the vSM_Connector database role and assigns it permissions.)</li></ul>
+<ul start="1"><li class="List21_1" value="1">Add the dedicated login as a user to the catalog</li></ul>
+<ul start="1"><li class="List21_1" value="1">Add the user as a member to the database role vSM_Connector.</li></ul>
+</li>
+                                                    </ol>
+                                                    <h3>Maintenance</h3>
+                                                    <p class="BODY_1">If required at a later date, RFC events can be disabled by running the database script <b>Disable_vCM_Integration.sql</b>.</p>
+                                                    <h3>
+<a name="vFireCoreServerPrep"></a><span class="GeneralVariablesCoreName">ASM Core</span> Server Preparation</h3>
+                                                    <ol start="1" class="ol_8">
+                                                        <li class="NumberedList_2" value="1">Copy the contents of the bin and config directories to the following locations on the <span class="GeneralVariablesCoreName">ASM Core</span> server:</li>
+                                                        <p>
+                                                            </p>
+<table class="TableStyle-Rep_Hdr_Row" style="margin-left: 0;margin-right: auto;mc-table-style: url('../../resources/tablestyles/rep hdr row.css');" cellspacing="0">
+                                                                <col class="TableStyle-Rep_Hdr_Row-Column-Column1">
+                                                                <col class="TableStyle-Rep_Hdr_Row-Column-Column2">
+                                                                <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                    <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1" style="font-weight: bold;">
+                                                                        <p>File Name</p>
+                                                                    </td>
+                                                                    <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1" style="font-weight: bold;">
+                                                                        <p>Target Location(s)</p>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                    <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                        <p>bin / Infra.Connector.vCM.dll</p>
+                                                                    </td>
+                                                                    <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                        <p>&lt; <span class="GeneralVariablesProductName">ASM</span> Root&gt;</p>
+                                                                        <p>&lt;Target System&gt;/bin</p>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                    <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                        <p>config / Infra.Connector.vCM.icnf</p>
+                                                                    </td>
+                                                                    <td rowspan="2" class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                        <p>&lt;Target System&gt;/config</p>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                    <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                        <p>config / Infra.Connector.vCM.Install.scp</p>
+                                                                    </td>
+                                                                </tr>
+                                                            </table>
+                                                        
+                                                    </ol>
+                                                    <ol start="2" class="ol_8">
+                                                        <li class="NumberedList_2" value="2">In the <span class="GeneralVariablesCoreName">ASM Core</span> Server Console, execute the SQL script <b>Infra.Connector.vCM.Install.scp</b> against the target system.</li>
+                                                    </ol>
+                                                    <p class="LIST1_2">Restart the following Windows services:</p>
+                                                    <ul class="ul_26">
+                                                        <li class="List21_2" value="1">The World Wide Web Publishing Service</li>
+                                                        <li class="List21_2" value="2">The <span class="GeneralVariablesProductName">ASM</span> Connector Service</li>
+                                                    </ul>
+                                                    <h3>
+<a name="ConnectionSource"></a>Connection Source Creation</h3>
+                                                    <p class="BODY_1">When creating a new VMware vCenter Configuration Manager source from the Source option of the Integration Platform, some specific parameters have to be entered as follows:</p>
+                                                    <table class="TableStyle-Rep_Hdr_Row" style="margin-left: 0;margin-right: auto;mc-table-style: url('../../resources/tablestyles/rep hdr row.css');" cellspacing="0">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column1">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column2">
+                                                        <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                            <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                <p>DB Connection String</p>
+                                                            </td>
+                                                            <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                <p>Identifies the database server and catalog using an ADO.NET Native SQL Server Client connection string, minus explicit credentials.</p>
+                                                                <p> </p>
+                                                                <p>E.g. Server=server-host-name-instance-name;Database=vCM</p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                            <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                <p>DB User ID</p>
+                                                            </td>
+                                                            <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                <p>The login id of the database user assigned to <span class="GeneralVariablesCoreName">ASM Core</span>.</p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                            <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                <p>DB Password</p>
+                                                            </td>
+                                                            <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                <p>The password of the database user.</p>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                    <p> </p>
+                                                    <p>
+                                                        <img src="/storage/app/media/Help/images/connectors%20source%20creation.png" class="screenshot">
+                                                    </p>
+                                                    <p class="BODY">Two modes of authentication against the database are supported:</p>
+                                                    <ul class="ul_1">
+                                                        <li value="1">SQL Server Authentication</li>
+                                                        <li value="2">Integrated Windows Authentication</li>
+                                                    </ul>
+                                                    <p class="BODY">In <b>SQL Server Authentication</b> the connector uses the credentials of a user created within the database. In this scenario, the credentials of that user are specified within the “DB User ID” and “DB Password” parameters.</p>
+                                                    <p class="BODY">In <b>Integrated Windows Authentication</b> the connector is authenticated using the credentials of a Windows account granted permission to the database. When this method is used the “DB User ID” and “DB Password” parameters are ignored and should be left blank. Instead, connector is authenticated using the account of the executing process. To use this mode of authentication:</p>
+                                                    <ol start="1" class="multilist">
+                                                        <li class="LIST1" value="1">The “DB Connection String” parameter requires an addition suffix, “<code>;Integrated Security=SSPI</code>”.<br>E.g. Server=<b>server-name</b>;Database=<b>main</b>;Integrated Security=SSPI<br>Where <b>main</b> is the name of the main database (see previous explanations about main vCM database).</li>
+                                                        <li class="NumberedList" value="2">The following processes must be configured to execute using a Windows account with the prerequisite database permissions.<ul start="1">
+<li class="List21" value="1">The IIS Application Pool used by the <span class="GeneralVariablesCoreName">ASM Core</span> virtual directory (directories)</li>
+<li class="List21" value="2">The various <span class="GeneralVariablesCoreName">ASM Core</span> Windows services</li>
+</ul>
+</li>
+                                                    </ol>
+                                                    <p class="BODY_1">A common mistake users make when configuring Integrated Windows Authentication is to only configure the account for one of the required processes. If the IIS Application Pool is configured with the correct account but the <span class="GeneralVariablesCoreName">ASM Core</span> Windows services are not, users may be confused as the connection will succeed within main application but background tasks such as scheduled FCMDB scans will fail.</p>
+                                                    <h1>Incident Management</h1>
+                                                    <p class="BODY_1">The VMware vCenter Configuration Manager connector allows you to populate your Federated CMDB with machines (ie: physical servers, virtual servers, desktops, and laptops) for the purposes of incident classification, reporting, and routing.</p>
+                                                    <h2>Resource Types</h2>
+                                                    <h3>Machine</h3>
+                                                    <p class="BODY">A resource that represents a single computer.</p>
+                                                    <table class="TableStyle-Rep_Hdr_Row" style="margin-left: 0;margin-right: auto;mc-table-style: url('../../resources/tablestyles/rep hdr row.css');" cellspacing="0">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column1">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column2">
+                                                        <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                            <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1" style="font-weight: bold;">
+                                                                <p>Field</p>
+                                                            </td>
+                                                            <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1" style="font-weight: bold;">
+                                                                <p>Data Type</p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                            <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                <p>Machine ID</p>
+                                                            </td>
+                                                            <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                <p>Int</p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                            <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                <p>Machine Name</p>
+                                                            </td>
+                                                            <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                <p>String</p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                            <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                <p>Domain Name</p>
+                                                            </td>
+                                                            <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                <p>String</p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                            <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                <p>Manufacturer</p>
+                                                            </td>
+                                                            <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                <p>String</p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                            <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                <p>Model</p>
+                                                            </td>
+                                                            <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                <p>String</p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                            <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                <p>Primary User</p>
+                                                            </td>
+                                                            <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                <p>String</p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                            <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                <p>Primary User NT Domain</p>
+                                                            </td>
+                                                            <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                <p>String</p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                            <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                <p>Primary User NT Login</p>
+                                                            </td>
+                                                            <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                <p>String</p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                            <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                <p>Last Rebooted</p>
+                                                            </td>
+                                                            <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                <p>date/time</p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                            <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                <p>Is Managed by vCM</p>
+                                                            </td>
+                                                            <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                <p>Boolean</p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                            <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                <p>Is VM</p>
+                                                            </td>
+                                                            <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                <p>Boolean</p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                            <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                <p>OS Name</p>
+                                                            </td>
+                                                            <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                <p>string</p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                            <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                <p>OS Vendor</p>
+                                                            </td>
+                                                            <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                <p>string</p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                            <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                <p>OS Version</p>
+                                                            </td>
+                                                            <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                <p>string</p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                            <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                <p>Time Zone</p>
+                                                            </td>
+                                                            <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                <p>string</p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                            <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                <p>Machine Type</p>
+                                                            </td>
+                                                            <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                <p>string</p>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                    <h2>Recommended Configuration</h2>
+                                                    <h3>Resources </h3>
+                                                    <p class="BODY">We recommend that you:</p>
+                                                    <ul>
+                                                        <li value="1">Create a <span class="span_2">Machine</span> CMDB Item Type and design a screen for it.</li>
+                                                        <li value="2">Create a <span class="span_2">Machine Template</span> Eg:<br><img src="/storage/app/media/Help/images/connectors%20vcm%20machine%20details.png" class="screenshot">
+</li>
+                                                        <li class="BULLET1_2" value="3">Set up a resource mapping in the Integration Platform to map vCM <span class="span_2">Machine</span> resources and attributes onto <span class="GeneralVariablesCoreName">ASM Core</span> <span class="span_2">Machine </span><span class="span_2">CIs. </span>The key fields to consider mapping are:</li>
+                                                    </ul>
+                                                    <table class="TableStyle-FieldDesc" style="mc-table-style: url('../../resources/tablestyles/fielddesc.css');" cellspacing="0">
+                                                        <col class="TableStyle-FieldDesc-Column-Column1">
+                                                        <col class="TableStyle-FieldDesc-Column-Column2">
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">
+                                                                <p><span class="GeneralVariablesCoreName">ASM Core</span> Machine CI Attribute</p>
+                                                            </td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                <p class="Strong"><b>Possible sources from the vCM Machine Resource</b>
+                                                                </p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">
+                                                                <p>Ref</p>
+                                                            </td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                <p>Machine ID </p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">
+                                                                <p>Title</p>
+                                                            </td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                <p>Machine Name </p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">
+                                                                <p>User</p>
+                                                            </td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">The connector dissects the “Primary User” field published by vCM into NT Domain and User ID components. These are provided to enable you to derive the “User” field of an imported Configuration Item using a Resolution Rule. If the <span class="GeneralVariablesSystemName">ASM System</span> is also integrated with Active Directory, these dissected fields can be matched to the “NT Domain Name” and “NT User ID” of an imported User. The criteria for such a resolution rule should be defined as follows:<p class="codefont">{Person:NT Account Name} = {Resource:Primary User NT User Login}</p>
+<p class="codefont">AND {Person:NT Domain Name} = {Resource:Primary User NT Domain Name}</p>
+<p class="note">The “Primary User” presented by vCM may not necessarily correspond to the “User”, or may not be populated at all. If this is a concern, use discrepancy reporting on this field to monitor changes to this value.</p>
+</td>
+                                                        </tr>
+                                                    </table>
+                                                    <p>You may also consider mapping other attributes such as Manufacturer, Model, OS Vendor, OS Name, and OS Version which can be useful for incident diagnosis, routing, and reporting purposes.</p>
+                                                    <h1>Software License Management</h1>
+                                                    <p>The VMware vCenter Configuration Manager connector allows you to populate your Federated CMDB with the software actually installed on each machine. This is intended to be used in conjunction with the Asset Management capabilities of <span class="GeneralVariablesCoreName">ASM Core</span>, which are used to maintain your inventory of software licenses and their current assignments. By comparing the software actually installed on machines with the current license assignments, you can determine whether you are under or over licensed.</p>
+                                                    <h2>Resource Types</h2>
+                                                    <h3>Windows Software</h3>
+                                                    <p>A resource that represents a specific minor version of a Windows software product that is installed on one or more machines.</p>
+                                                    <p> </p>
+                                                    <table class="TableStyle-FieldDesc" style="mc-table-style: url('../../resources/tablestyles/fielddesc.css');margin-left: 0;margin-right: auto;" cellspacing="0">
+                                                        <col class="TableStyle-FieldDesc-Column-Column1">
+                                                        <col class="TableStyle-FieldDesc-Column-Column2">
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-" style="font-weight: bold;">
+                                                                <p>Field</p>
+                                                            </td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-" style="font-weight: bold;">
+                                                                <p>Data Type</p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">
+                                                                <p>Product Key</p>
+                                                            </td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                <p>String</p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">
+                                                                <p>Product Name</p>
+                                                            </td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                <p>String</p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">
+                                                                <p>Product Version</p>
+                                                            </td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                <p>String</p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">
+                                                                <p>Major Version</p>
+                                                            </td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                <p>String</p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">
+                                                                <p>Minor Version</p>
+                                                            </td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                <p>String</p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">
+                                                                <p>Publisher</p>
+                                                            </td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                <p>string</p>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                    <h3>Unix Software</h3>
+                                                    <p>A resource that represents a specific minor version of a UNIX software product that is installed on one or more machines. </p>
+                                                    <table class="TableStyle-FieldDesc" style="mc-table-style: url('../../resources/tablestyles/fielddesc.css');margin-left: 0;margin-right: auto;" cellspacing="0">
+                                                        <col class="TableStyle-FieldDesc-Column-Column1">
+                                                        <col class="TableStyle-FieldDesc-Column-Column2">
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-" style="font-weight: bold;">
+                                                                <p>Field</p>
+                                                            </td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-" style="font-weight: bold;">
+                                                                <p>Data Type</p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">
+                                                                <p>Product Key</p>
+                                                            </td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                <p>string</p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">
+                                                                <p>Product Name</p>
+                                                            </td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                <p>string</p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">
+                                                                <p>Product Version</p>
+                                                            </td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                <p>string</p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">
+                                                                <p>Major Version</p>
+                                                            </td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                <p>string</p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">
+                                                                <p>Minor Version</p>
+                                                            </td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                <p>string</p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">
+                                                                <p>Long Name</p>
+                                                            </td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                <p>string</p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">
+                                                                <p>Description</p>
+                                                            </td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                <p>String</p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">
+                                                                <p>Category</p>
+                                                            </td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                <p>String</p>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                    <h1>Link Types</h1>
+                                                    <h3>Windows Software Installed On</h3>
+                                                    <p class="BODY_1">A relationship between a Machine resource and a Windows Software resource indicating that the software is installed on that machine.</p>
+                                                    <table class="TableStyle-FieldDesc" style="mc-table-style: url('../../resources/tablestyles/fielddesc.css');margin-left: 0;margin-right: auto;" cellspacing="0">
+                                                        <col class="TableStyle-FieldDesc-Column-Column1">
+                                                        <col class="TableStyle-FieldDesc-Column-Column2">
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">
+                                                                <p>Resource Type A</p>
+                                                            </td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                <p>Machine</p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">
+                                                                <p>Resource Type B</p>
+                                                            </td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                <p>Windows Software</p>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                    <p class="Caption1"> </p>
+                                                    <table class="TableStyle-FieldDesc" style="mc-table-style: url('../../resources/tablestyles/fielddesc.css');margin-left: 0;margin-right: auto;" cellspacing="0">
+                                                        <col class="TableStyle-FieldDesc-Column-Column1">
+                                                        <col class="TableStyle-FieldDesc-Column-Column2">
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">
+                                                                <p class="Strong">Field</p>
+                                                            </td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                <p class="Strong">Data Type</p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">
+                                                                <p>Date Installed</p>
+                                                            </td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                <p>date/time</p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">
+                                                                <p>Date Collected</p>
+                                                            </td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                <p>date/time</p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">
+                                                                <p>Date Last Used</p>
+                                                            </td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                <p>date/time</p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">
+                                                                <p>Frequency</p>
+                                                            </td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                <p>string</p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">
+                                                                <p>Install Source</p>
+                                                            </td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                <p>string</p>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                    <h3>Unix Software Installed On</h3>
+                                                    <p class="BODY_1">A relationship between a Machine resource and a UNIX Software resource indicating that the software is installed on that machine.</p>
+                                                    <table class="TableStyle-FieldDesc" style="mc-table-style: url('../../resources/tablestyles/fielddesc.css');margin-left: 0;margin-right: auto;" cellspacing="0">
+                                                        <col class="TableStyle-FieldDesc-Column-Column1">
+                                                        <col class="TableStyle-FieldDesc-Column-Column2">
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">
+                                                                <p>Resource Type A</p>
+                                                            </td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                <p>Machine</p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">
+                                                                <p>Resource Type B</p>
+                                                            </td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                <p>Unix Software</p>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                    <p class="Caption1"> </p>
+                                                    <table class="TableStyle-FieldDesc" style="mc-table-style: url('../../resources/tablestyles/fielddesc.css');margin-left: 0;margin-right: auto;" cellspacing="0">
+                                                        <col class="TableStyle-FieldDesc-Column-Column1">
+                                                        <col class="TableStyle-FieldDesc-Column-Column2">
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">
+                                                                <p class="Strong">Field</p>
+                                                            </td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                <p class="Strong">Data Type</p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">
+                                                                <p>Date Installed</p>
+                                                            </td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                <p>date/time</p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">
+                                                                <p>Date Collected</p>
+                                                            </td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                <p>date/time</p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">
+                                                                <p>Date Last Used</p>
+                                                            </td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                <p>date/time</p>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                    <h2>Recommended Configuration</h2>
+                                                    <h3>Resources</h3>
+                                                    <p class="BODY_3">It is recommended to either:</p>
+                                                    <ul class="ul_1">
+                                                        <li value="1">Store both Windows and UNIX software in the in-built <span class="span_2">Software Product</span> CMDB Item type.</li>
+                                                        <li value="2">Create separate descendent CMDB Item Types for <span class="span_2">Windows Software</span> and <span class="span_2">UNIX Software</span>.</li>
+                                                    </ul>
+                                                    <p class="BODY_1">It is recommended to map the VCM Resource attribute <span class="span_2">Product Name</span> to the <span class="GeneralVariablesCoreName">ASM Core</span> Configuration Item attribute <span class="span_2">Title</span>.</p>
+                                                    <p class="BODY">There are three possible ways to manage versions of software products in the CMDB as follows:</p>
+                                                    <ul>
+                                                        <li class="BULLET1_2" value="1">Each software product is stored as a single Configuration Item. To support this scenario, set up a Matching Rule based on:</li>
+                                                        <li class="BULLET1_2" value="2">Product Name</li>
+                                                        <li class="BULLET1_2" value="3">Each major version of a software product is stored as a single Configuration Item. To support this scenario, add a <span class="span_2">Major Version</span> attribute to your CMDB Item and set up a Matching Rule based on:<ul>
+<li value="1">Product Name</li>
+<li value="2">Major Version </li>
+<li value="3"> </li>
+</ul>
+</li>
+                                                    </ul>
+                                                    <p>
+                                                        <img src="/storage/app/media/Help/images/connectors%20vcm%20mapping%20sw.png" class="screenshot">
+                                                    </p>
+                                                    <ul>
+                                                        <li class="BULLET1_3" value="1">Each minor version of a Software Product is stored as a single Configuration Item. To support this scenario, add <span class="span_2">Major Version</span> and <span class="span_2">Minor Version </span>attributes to your CMDB Item and set up a Matching Rule based on:<ul>
+<li value="1">Product Name</li>
+<li value="2">Major Version</li>
+<li value="3">Minor Version</li>
+</ul>
+</li>
+                                                    </ul>
+                                                    <p class="BODY">The appropriate approach should be determined based on the granularity of tracking desired. By setting up Criteria in combination with Matching Rules it is possible to track different Software Products at different levels. As per any kind of matching configuration in <span class="GeneralVariablesCoreName">ASM Core</span>, users are advised to regulate ambiguous and non-matching resources to ensure flawed data is handled sensibly.</p>
+                                                    <h3>Links</h3>
+                                                    <p class="BODY_1">It is recommended that the <b>Installed On</b> links be imported using a special link type such as:</p>
+                                                    <ul>
+                                                        <li value="1">
+<b>Category</b> should be set to <b>Summary</b>. A single machine may have a large number of software products installed; similarly, a single software product may be installed on a very large number of machines. Therefore, rendering software installations in a CMDB linking can greatly reduce the readability of the CMDB Linking diagram and obfuscate those relationships that should be clearly visible in the diagram. This configuration is used to hide software installations on the diagram allowing more significant impact relationships to be more clearly presented.</li>
+                                                        <li value="2">
+<b>Principal</b> should be set to the <b>CMDB Item Type</b> of the machine CMDB Items imported from vCM, or a common ancestor thereof. This could be as simple as Configuration Item. Optionally, it can be helpful to specify a descriptive role name for Principal such as Installed On.</li>
+                                                        <li value="3">
+<b>Summarized</b> should be set to <b>Software Product</b> or whatever descendent type is being assigned to your software product CMDB Items imported from vCM. Optionally, it can be helpful to specify a descriptive role name for Summarized such as Installed Software.<br><img src="/storage/app/media/Help/images/connectors%20vcm%20link%20type%20details.png" class="screenshot">
+</li>
+                                                    </ul>
+                                                    <h1>Change Management</h1>
+                                                    <p>The VMware vCenter Configuration Manager connector allows you to automatically enforce the initiation of a formal Change Management process in <span class="GeneralVariablesCoreName">ASM Core</span> whenever a server administrator attempts to roll out changes (eg: Windows service packs or security bulletins) using VMware vCenter Configuration Manager.</p>
+                                                    <h2>Event Types</h2>
+                                                    <h3>RFC Event</h3>
+                                                    <p>An RFC Event represents a notification that a job has been created within vCM to affect some change in the environment that needs to be approved in order to proceed.</p>
+                                                    <p class="BODY">The event type exposes the following fields:</p>
+                                                    <table class="TableStyle-Rep_Hdr_Row" style="mc-table-style: url('../../resources/tablestyles/rep hdr row.css');" cellspacing="0">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column1">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column2">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column1">
+                                                        <thead>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Head-Header1">
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column1-Header1">
+                                                                    <p>Field</p>
+                                                                </th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column2-Header1">
+                                                                    <p>Data Type</p>
+                                                                </th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadD-Column1-Header1">
+                                                                    <p>Description</p>
+                                                                </th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>RFC Event GUID</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>String</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>The unique identifier of the job with VCM.</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Notes</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>String</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>Any notes the VCM administrator has entered to describe the change.</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Type</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>String</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>The type of job as characterized by VCM.</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Run Now</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>Boolean</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>A flag indicating whether the VCM administrator plans to run the job immediately or not.</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Run Time</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>date/time</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>The date/time at which the VCM administrator plans to run the job.</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Machine CIs</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>Reference to zero or more Machine resources</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>The list of machines that will be impacted by the job, for impact analysis purposes. </p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Machine CI Ids</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>String</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>A textual representation of above.</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Event ID</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>String</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>The <span class="GeneralVariablesCoreName">ASM Core</span> request/call ID (will be automatically updated by the connector).</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>RFC No</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>String</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>The <span class="GeneralVariablesCoreName">ASM Core</span> RFC number (will be automatically updated by the connector).</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyB-Column1-Body1">
+                                                                    <p>RFC Status</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyB-Column2-Body1">
+                                                                    <p>String</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyA-Column1-Body1">
+                                                                    <p>The status of the job. Will initially be “Pending” when the event is received.</p>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <h2>Outbound Actions</h2>
+                                                    <p class="BODY">The two Outbound Actions published by the connector are:</p>
+                                                    <ul>
+                                                        <li value="1">
+<b>Approve Change</b>. This action allows a change (as identified by a previous event) to proceed.</li>
+                                                        <li value="2">
+<b>Deny Change</b>. This action stops a change (as identified by a previous event) from proceeding.</li>
+                                                    </ul>
+                                                    <p>Both actions have the same parameters as follows:</p>
+                                                    <h3>Input Parameters</h3>
+                                                    <table class="TableStyle-Rep_Hdr_Row" style="mc-table-style: url('../../resources/tablestyles/rep hdr row.css');" cellspacing="0">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column1">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column2">
+                                                        <thead>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Head-Header1">
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column1-Header1">
+                                                                    <p class="Strong">Field</p>
+                                                                </th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadD-Column2-Header1">Data Type</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">RFC Event GUID</td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">string</td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">RFC No</td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">string</td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">RFC Status</td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">String</td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyB-Column1-Body1">RFC Notes</td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyA-Column2-Body1">String</td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <h3>Output Parameters</h3>
+                                                    <p class="BODY">The same fields exposed during receipt of the initial event are available as parameters from actions.</p>
+                                                    <h3>Error Handling</h3>
+                                                    <p>All outbound actions in the connector are attempted synchronously, with one of the following three outcomes possible:</p>
+                                                    <table class="TableStyle-FieldDesc" style="mc-table-style: url('../../resources/tablestyles/fielddesc.css');" cellspacing="0">
+                                                        <col class="TableStyle-FieldDesc-Column-Column1">
+                                                        <col class="TableStyle-FieldDesc-Column-Column2">
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">
+                                                                <p class="BODY_5">Success</p>
+                                                            </td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                <p class="BODY_1">Outbound Action tasks that are created and complete successfully will activate the <span class="span_2">Completion</span> branch of the workflow.</p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">
+                                                                <p class="BODY_5">Failure to Create</p>
+                                                            </td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                <p class="BODY_1">Outbound Action tasks that cannot be created due to a soft error (for example, if they cannot connect to the VCM database), will remain active and open. Such tasks will be subject to the retry and email notification parameters as defined in the connection source.</p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">
+                                                                <p class="BODY_5">Failure to Complete</p>
+                                                            </td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                <p class="BULLET1">Outbound Action tasks that cannot be completed due to a hard error (for example, if the GUID field is not mapped), will cause the <span class="span_2">Not Completed</span> branch of the workflow. Possible completion errors are: </p>
+                                                                <ul class="ul_21">
+                                                                    <li class="BULLET2_1" value="1">RFC Event GUID Not Mapped</li>
+                                                                    <li class="BULLET2_1" value="2">RFC Event GUID Empty</li>
+                                                                    <li class="BODY_1" value="3">RFC Event GUID Invalid</li>
+                                                                </ul>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                    <h2>Recommended Configuration</h2>
+                                                    <p class="BODY">At a high level, the steps involved in setting up Change Management are as follows:</p>
+                                                    <ol start="1" class="ol_8">
+                                                        <li class="BULLET1" value="1">Configure vCM Service Desk Integration. See the vCM documentation for details.</li>
+                                                        <li class="BULLET1" value="2">Model your Change Management process using the <span class="GeneralVariablesCoreName">ASM Core</span> Workflow Template Administration.</li>
+                                                        <li class="BULLET1" value="3">Map RFC Events through to your process using the <span class="GeneralVariablesCoreName">ASM Core</span> Integration Platform.</li>
+                                                        <li class="BULLET1" value="4">Add <span class="span_2">Outbound Actions</span> tasks to your process to Approve / Deny changes in vCM.</li>
+                                                    </ol>
+                                                    <h3>Modeling your Change Management Process</h3>
+                                                    <p>Your Change Management process should be modeled using the <span class="GeneralVariablesCoreName">ASM Core</span> Workflow Template Administration. A simple Change Management process can be seen below:</p>
+                                                    <p>
+                                                        <img src="/storage/app/media/Help/images/connectors%20vcm%20change%20mgt%20process.png" style="height: 266px;width: 536px;" class="screenshot">
+                                                    </p>
+                                                    <p>Create a Screen Set for your change process, and add the following extension fields to it. Display these fields as read only fields in your <span class="span_2">Request Details</span> screen within that Screen Set.</p>
+                                                    <table class="TableStyle-FieldDesc" style="mc-table-style: url('../../resources/tablestyles/fielddesc.css');" cellspacing="0">
+                                                        <col class="TableStyle-FieldDesc-Column-Column1">
+                                                        <col class="TableStyle-FieldDesc-Column-Column2">
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">
+                                                                <p class="TABLEHEAD">Field</p>
+                                                            </td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                <p class="TABLEHEAD">Data Type</p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">
+                                                                <p class="TABLETEXT_2">VCM GUID</p>
+                                                            </td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                <p class="TABLETEXT_2">Text</p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">
+                                                                <p class="TABLETEXT_2">VCM Notes</p>
+                                                            </td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                <p class="TABLETEXT_2">Text Area</p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">
+                                                                <p class="TABLETEXT_2">VCM Type</p>
+                                                            </td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                <p class="TABLETEXT_2">Text</p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">
+                                                                <p class="TABLETEXT_2">VCM Run Now</p>
+                                                            </td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                <p class="TABLETEXT_2">Checkbox</p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">
+                                                                <p class="TABLETEXT_2">VCM Run Date Time</p>
+                                                            </td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                <p class="TABLETEXT_2">Date</p>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                    <h3>Mapping RFC Events</h3>
+                                                    <p>The <span class="GeneralVariablesCoreName">ASM Core</span> Integration Platform should be used to map the receipt of vCM <span class="span_2">RFC </span><span class="span_2">E</span><span class="span_2">vents</span> onto the initiation of a request: </p>
+                                                    <p>
+                                                        <img src="/storage/app/media/Help/images/connectors%20vcm%20event%20type%20mapping.png" class="screenshot">
+                                                    </p>
+                                                    <p> </p>
+                                                    <p>All other Incoming Transactions should be configured to <span class="span_2">Take No Action</span> as follows:</p>
+                                                    <p>
+                                                        <img src="/storage/app/media/Help/images/connectors%20vcm%20incoming%20txns.png" class="screenshot">
+                                                    </p>
+                                                    <p class="Caption1"> </p>
+                                                    <p class="BODY">It is recommended to set up the following incoming field mappings:</p>
+                                                    <table class="TableStyle-Rep_Hdr_Row" style="mc-table-style: url('../../resources/tablestyles/rep hdr row.css');" cellspacing="0">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column1">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column2">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column1">
+                                                        <thead>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Head-Header1">
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column1-Header1">
+<span class="GeneralVariablesCoreName">ASM Core</span> Request Attribute</th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column2-Header1">
+                                                                    <p class="Strong">VCM Event Source</p>
+                                                                </th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadD-Column1-Header1">
+                                                                    <p class="Strong">Update</p>
+                                                                </th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>VCM GUID</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>RFC Event GUID </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>Always</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>VCM Notes</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>Notes </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>Always</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>VCM Type</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>Type</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>Always</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>VCM Run Now</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>Run Now</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>Always</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>VCM Run Date Time</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>Run Time</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>Always</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyB-Column1-Body1">
+                                                                    <p>Request CIs</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyB-Column2-Body1">
+                                                                    <p>Machine CIs</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyA-Column1-Body1">
+                                                                    <p>Always</p>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <p>The mapping of the GUID is important as this is needed to approve or deny the change. The mapping of the Machine CIs is important as it allows impact analysis to be performed.</p>
+                                                    <p>
+                                                        <img src="/storage/app/media/Help/images/connectors%20vcm%20guid.png" class="screenshot">
+                                                    </p>
+                                                    <h3>Approving / Denying Changes</h3>
+                                                    <p class="BODY">At appropriate points in your <span class="GeneralVariablesCoreName">ASM Core</span> Change Management process, you should insert Outbound Action tasks that approve or deny changes. The only important field to map is the RFC Event GUID as follows: <br></p>
+                                                    <p class="BODY">
+                                                        <img src="/storage/app/media/Help/images/connectors%20vcm%20outbound%20actions.png" class="screenshot">
+                                                    </p>
+                                                    <p class="BODY">The <span class="span_2">RFC No</span> field will be automatically populated with the <span class="GeneralVariablesCoreName">ASM Core</span> request number (eg: Request#123). It is possible to overwrite this default format by providing an alternative mapping for this field (eg: RFC352).</p>
+                                                    <p class="BODY">The <span class="span_2">RFC Notes</span> field can also optionally be mapped to pass additional information back to vCM.</p>
+                                                

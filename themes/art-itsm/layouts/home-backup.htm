@@ -1,0 +1,443 @@
+description = "The layout used when no standard Alemba header or footer is required"
+
+[seoTags]
+[spamProtection]
+==
+<?php
+
+use Alemba\Alemba\Models\Customer;
+use Alemba\Alemba\Models\ITIL;
+
+function onStart()
+{
+
+	$this['itil'] = ITIL::whereNotNull('icon')->where('icon', '!=', '')->orderBy('sort_order')->get();
+
+	$this['customers'] = Customer::whereNotNull('logo')->orderBy('name')->take(20)->get();
+
+}
+
+?>
+==
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+
+		{% if this.environment == 'production' %}
+
+		    {% partial 'analytics-etc' %}
+
+		{% endif %}
+
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="description" content="">
+		<meta name="google-site-verification" content="cgpiWrzV47MUzoeYn2LTd0rApPYN5vBzYaocEWQZbVo" />
+
+		{% if this.page.meta_title %}
+
+    		{% component 'seoTags' %}
+
+		{% else %}
+
+    		<title>Alemba - {{ this.page.title }}</title>
+
+		{% endif %}
+
+		{# Bootstrap #}
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+		{# Fonts #}
+		<link rel="stylesheet" type="text/css" href="{{ 'assets/fonts/articulatcf-normal/webfonts/articulatcf-normal.css'|theme }}">
+		<link rel="stylesheet" type="text/css" href="{{ 'assets/fonts/articulatcf-medium/webfonts/articulatcf-medium.css'|theme }}">
+
+		<link rel="stylesheet" media="all" href="{{ ['assets/css/styles.css']|theme }}" />
+
+		{% partial 'favicons' %}
+	</head>
+	<body>
+
+		<script type="application/ld+json">
+			{
+				"@context": "https://schema.org",
+				"@type": "Organization",
+				"url": "https://alemba.com",
+				"logo": "{{ 'assets/img/logo-alemba-grey.svg'|theme }}"
+			}
+		</script>
+
+		{% partial 'nav' %}
+
+		<main class="container-fluid" id="homepage-container">
+
+			<div class="row">
+
+				<div class="col d-flex justify-content-end me-3">
+					<ul>
+						<li class="list-inline-item"><img src="{{ 'Badges/badge_pinkverify_certified_18p.png'|media }}" alt="PinkVERIFY Certified" /></li> 
+                        <li class="list-inline-item"><a href="{{ 'gigaom-radar-report-it-service-management-itsm-2023'|page }}?utm_source=website+footer&utm_medium=footer&utm_id=GigaOm"><img style="height:100px;" src="{{ 'Badges/badge_gigaom_2023_outperformer.svg'|media }}" alt="Gigaom Radar Report: ITSM Outperformer 2023" /></a></li>
+                        <li class="list-inline-item"><a href="{{ 'gigaom-radar-report-it-service-management-itsm-2023'|page }}?utm_source=website+footer&utm_medium=footer&utm_id=GigaOm"><img style="height:100px;" src="{{ 'Badges/badge_gigaom_2023_leader.svg'|media }}" alt="Gigaom Radar Report: ITSM Leader 2023" /></a></li>
+                    </ul>
+				</div>
+
+			</div>
+
+			<div class="row">
+
+				<div class="col offset-1">
+
+					<h1>The art of ITSM.</h1>
+					<p class="lead">Fully-featured IT Service Management, beautifully simple.</p>
+					<p>Welcome to Alemba Service Manager.</p>
+					<a class="btn btn-lg btn-outline me-2" href="" role="button">Find out more</a>
+					<a class="btn btn-lg btn-primary" href="" role="button">Demo</a>
+			
+				</div>
+
+			</div>
+
+			<div class="row mt-5">
+
+				<div class="col offset-1">
+
+					<img src="{{ 'Misc/visualisation-workflow.png'|media }}" srcset="{{ 'Misc/visualisation-workflow.png'|media }} 2x" alt="Drag-and-drop workflow in ASM" />
+
+					<p class="caption"><strong>No-code workflow.</strong> Because dragging and dropping isn't a drag.</p>
+
+				</div>
+
+			</div>
+
+			<div class="homepage-hero">
+				<div class="rounded-circle badge-white" id="version-badge">
+					<div class="badge-text">
+						<span class="badge-text-small">Version</span> <span class="badge-text-big">10.6</span>
+					</div>
+				</div>
+				<img class="imac-mask" style="width:800px;" src="{{ 'Misc/pic-imac-asm-core-calls.jpg'|media }}" srcset="{{ 'Misc/pic-imac-asm-core-calls@2x.jpg'|media }} 2x" alt="ASM Core" />
+			</div>
+
+			{# PinkVerify banner #}
+
+			<div class="row banner-magenta mt-5 mb-5">
+
+				<div class="offset-1 col-9">
+					<img class="d-inline-block me-4" src="{{ 'Badges/badge_pinkverify_certified_18p.png'|media }}" alt="PinkVERIFY Certified 18 processes" />
+					<h3 class="d-inline-block mb-0">Now certified for 18 processes.</h3>
+
+					<a class="btn btn-lg btn-outline ms-5" href="" role="button">Find out more</a>
+				</div>
+
+			</div>
+
+			{# Processes #}
+
+			<div id="homepage-processes" class="mb-5">
+
+				<div class="row mb-5">
+
+					<div class="col-8 offset-1">
+						<h3>Simply the best ITSM tool.</h3>
+						<h5>An intuitive, ITIL-aligned IT Service Management solution for your whole business.</h5>
+					</div>
+
+					<div class="col-auto">
+						<a class="btn btn-lg btn-outline pink" href="" role="button">What is ITSM? Read our guide</a>
+					</div>
+
+				</div>
+
+				<div class="row">
+
+					<div class="col offset-1">
+
+						<ul class="itil-list list-unstyled list-inline">
+
+							{% for item in itil %}
+
+								<li class="list-inline-item">
+									<div class="icon-itil">
+										<img class="icon-itil-graphic" src="{{ item.icon|media }}" alt="{{ item.name }}" />
+										<h6 class="icon-itil-name">{{ item.name }}</h6>
+									</div>
+								</li>
+
+							{% endfor %}
+
+						</ul>
+
+					</div>
+
+				</div>
+
+			</div>
+
+			{# Sectors #}
+
+			<div id="homepage-sectors" class="mb-5">
+
+				<div class="row mb-5">
+
+					<div class="col-10 offset-1">
+						<h3>Industry standard.</h3>
+						<h5>Whatever your sector, Alemba Service Manager does the job.</h5>
+					</div>
+
+				</div>
+
+				<div class="row">
+
+					<div class="col-10 offset-1">
+
+						<div class="row row-cols-2 row-cols-lg-4 g-4">
+
+							<div class="col">
+								<div class="picture-card sector h-100" style="background-image:url('{{ 'Misc/sector-education.jpg'|media }}');">
+									<h4>Education</h4>
+								</div>
+							</div>
+
+							<div class="col">
+								<div class="picture-card sector h-100" style="background-image:url('{{ 'Misc/sector-retail.jpg'|media }}');">
+									<h4>Retail</h4>
+								</div>
+							</div>
+
+							<div class="col">
+								<div class="picture-card sector h-100" style="background-image:url('{{ 'Misc/sector-local-authorities.jpg'|media }}');">
+									<h4>Local Authorities</h4>
+								</div>
+							</div>
+
+							<div class="col">
+								<div class="picture-card sector h-100" style="background-image:url('{{ 'Misc/sector-msps.jpg'|media }}');">
+									<h4>Managed Service Providers</h4>
+								</div>
+							</div>
+
+						</div>
+
+					</div>
+
+				</div>
+
+			</div>
+
+			{# Featured links #}
+
+			<div id="homepage-featured" class="row">
+
+				<div class="row g-0 row-cols-xs-1 row-cols-md-3">
+
+					<div class="col featured text-light border-end d-flex justify-content-center align-items-center" style="background-image:url('{{ 'Misc/bkg-purple-pixels.jpg'|media }}');">
+
+						<div class="row d-flex flex-row justify-content-center align-items-center">
+
+							<div class="col-sm-12 col-md-5 featured-image">
+								<img class="w-50 img-fluid" src="{{ 'Misc/pic-alembot-face.png'|media }}" src="{{ 'Misc/pic-alembot-face@2x.png'|media }} 2x" alt=":)" />
+							</div>
+
+							<div class="col-sm-12 col-md-7 featured-text">
+								<h4>Alembot, at your service</h4>
+								<h6>ASM Hermes 10.6</h6>
+
+								<a class="btn btn-lg btn-outline pink" href="" role="button">Read more</a>
+							</div>
+
+						</div>
+
+					</div>
+
+					<div class="col featured text-light bkg-navyblue d-flex justify-content-center align-items-center">
+
+						<div class="row d-flex flex-row justify-content-center align-items-center">
+
+							<div class="col-sm-12 col-md-5 featured-image">
+								<img class="w-50 img-fluid" src="{{ 'Badges/badge_gigaom_2023_leader.svg'|media }}" alt="GigaOm Leader 2023" />
+							</div>
+
+							<div class="col-sm-12 col-md-7 featured-text">
+								<h4>Outperformer</h4>
+								<h6>We're on GigaOm's radar</h6>
+
+								<a class="btn btn-lg btn-outline pink" href="" role="button">Read more</a>
+							</div>
+
+						</div>
+
+					</div>
+
+					<div class="col featured text-dark border-start d-flex justify-content-center align-items-center" style="background-image:url('{{ 'Misc/bkg-uk-flag.jpg'|media }}');">
+
+						<div class="row d-flex flex-row justify-content-center align-items-center">
+
+							<div class="col-sm-12 col-md-5 featured-image">
+								<img class="w-50 img-fluid" src="{{ 'Misc/logo-govuk-black.png'|media }}" src="{{ 'Misc/logo-govuk-black.png'|media }} 2x" alt="GOV.UK" />
+							</div>
+
+							<div class="col-sm-12 col-md-7 featured-text">
+								<h4>Government procurement made easy</h4>
+								<h6>G-Cloud 13</h6>
+
+								<a class="btn btn-lg btn-outline pink" href="" role="button">Read more</a>
+							</div>
+
+						</div>
+
+					</div>
+
+				</div>
+
+			</div>
+
+			<div id="homepage-lower" class="row bkg-white">
+
+				{# Customers #}
+
+				<div id="homepage-customers" class="row pt-5 pb-5">
+
+					<div class="col-10 offset-1 mb-5">
+						<h3>Trusted by the best.</h3>
+					</div>
+
+					<div class="row row-cols-2">
+
+						<div class="col-3 offset-1">
+
+							<img class="img-fluid mb-3" src="{{ 'Customers/Kroger-200w.png'|media }}" srcset="{{ 'Customers/Kroger-200w.png'|media }} 2x" alt="Kroger" />
+
+							<h5 class="magenta">Kroger’s mission-critical processes managed by Alemba Service Manager.</h5>
+
+							<p>“It is all done automatically with no need for human interaction – and it all happens very quickly”</p>
+
+							<a class="btn btn-lg btn-outline pink" href="" role="button">Read more</a>
+
+						</div>
+
+						<div class="col offset-1">
+
+							{% for customer_row in customers|batch(5) %}
+
+								<div class="row d-flex flex-row mb-4 justify-content-center align-items-center">
+
+									{% for customer in customer_row %}
+
+										<div class="col">
+
+											<img class="h-50 w-50 img-fluid" src="{{ customer.logo|media }}" srcset="{{ customer.logo|media }} 2x" alt="{{ customer.name }}" />
+
+										</div>
+
+									{% endfor %}
+
+								</div>
+
+							{% endfor %}
+
+						</div>
+
+					</div>
+
+				</div>
+
+				{# Product roadmap #}
+
+				<div id="homepage-roadmap-block" class="row p-5 d-flex justify-content-center align-items-center">
+
+					<div class="col-9">
+
+						<div id="homepage-roadmap" class="d-flex p-5 justify-content-center align-items-center" style="background-image:url('{{ 'Banners/banner-product-roadmap.jpg'|media }}');">
+
+							<div id="homepage-roadmap-content">
+
+								<h3>Product Roadmap</h3>
+								<h5>Find out about the exciting upcoming features we have planned for future releases.</h5>
+
+								<a class="mt-4 btn btn-lg btn-outline" href="" role="button">Read more</a>
+
+							</div>
+
+						</div>
+
+					</div>
+
+				</div>
+
+			</div>
+
+		</main>
+		
+		<footer class="pt-5">
+
+		    <div class="container-fluid footer">
+		        <div class="row">
+
+		            <div class="col-10 offset-1 footer-left-block">
+		                <div class="row">
+
+		                    <nav class="col footer-nav">
+		                        <h4>Engage</h4>
+
+		                        <ul class="list-unstyled">
+		                            <li><a href="{{ 'demo'|page }}">Request a Demo</a></li>
+		                            <li><a href="{{ 'contact'|page }}">Contact Us</a></li>
+		                            <li><a href="{{ 'privacy-policy'|page }}">Privacy Policy</a></li>
+		                            <li><a href="{{ 'our-values'|page }}">Our Values</a></li>
+		                        </ul>
+
+		                        <h4>Learn</h4>
+		                        <ul class="list-unstyled">
+		                            <li><a href="/blog/news">News</a></li>
+		                            <li><a href="{{ 'blog'|page({ category: 'thoughts' }) }}">Blog</a></li>
+		                            <li><a href="{{ 'blog'|page({ category: 'news' }) }}">News</a></li>
+		                            <li><a href="{{ 'events'|page }}">Events</a></li>
+		                            <li><a href="{{ 'it-service-management'|page }}">IT Service Management</a></li>
+		                            <li><a href="{{ 'hr-service-management'|page }}">HR Service Request Management</a></li>
+		                            <li><a href="{{ 'facilities-management'|page }}">Facilities Service Management</a></li>
+		                            <li><a href="{{ 'resources'|page }}">Resources</a></li>
+		                        </ul>
+		                    </nav>
+
+		                    <div class="col">
+		                        <h4>Accreditations</h4>
+		                        <ul class="footer-partner-badges list-inline list-unstyled">
+		                            <li class="list-inline-item"><img class="lazyload" data-src="{{ 'Badges/badge_pinkverify_certified_18p.png'|media }}" alt="PinkVERIFY Certified" /></li>
+		                            <li class="list-inline-item"><img class="lazyload" data-src="{{ 'Partner logos/logo-aws-50h.png'|media }}" alt="Amazon Web Services Partner Network - Consulting Partner" /></li>
+		                            <li class="list-inline-item"><a href="{{ 'gigaom-radar-report-it-service-management-itsm-2023'|page }}?utm_source=website+footer&utm_medium=footer&utm_id=GigaOm"><img class="lazyload" style="height:100px;" data-src="{{ 'Badges/badge_gigaom_2023_outperformer.svg'|media }}" alt="Gigaom Radar Report: ITSM Outperformer 2023" /></a></li>
+		                            <li class="list-inline-item"><a href="{{ 'gigaom-radar-report-it-service-management-itsm-2023'|page }}?utm_source=website+footer&utm_medium=footer&utm_id=GigaOm"><img class="lazyload" style="height:100px;" data-src="{{ 'Badges/badge_gigaom_2023_leader.svg'|media }}" alt="Gigaom Radar Report: ITSM Leader 2023" /></a></li>
+		                        </ul>
+		                    </div>
+
+		                    <div class="col footer-right-block">
+
+				                <h4>Newsletter</h4>
+				                <p>Sign up to receive the latest news</p>
+				                <div class="renderNewsletterForm5c791353e7369"></div>
+
+				                {% component 'renderNewsletterForm' %}
+
+				                {% component 'ssbuttonsssb' %}
+				                
+				            </div>
+
+				        </div>
+
+			        </div>
+
+		        </div>
+
+		    </div>
+
+		    <div id="footer-logo">
+
+		    	<img src="{{ 'assets/images/logo-alemba-white.svg'|theme }}" alt="Alemba" />
+
+		    </div>
+
+		</footer>
+
+		{% partial 'footer-scripts-styles' %}
+
+	</body>
+</html>

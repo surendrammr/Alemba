@@ -1,0 +1,214 @@
+[viewBag]
+title = "Defining Agreement Thresholds"
+url = "/help/topics/slm/defining-agreement-thresholds"
+layout = "help"
+is_hidden = 0
+navigation_hidden = 0
+==
+                                                    <h1>
+<a name="top"></a>Defining Agreement Thresholds</h1>
+                                                    <p>Thresholds define the points at which an agreement should start escalation events, and the point at which an agreement is breached. Thresholds are based upon matrices, which are defined by your administrator. </p>
+                                                    <p>You can define IPK and Workflow Thresholds for SLAs, OLAs, and UCs.</p>
+                                                    <p>A matrix is a table containing threshold times. The actual times in the matrix are (usually) based upon Priority, and either Config Item or Problem Type. </p>
+                                                    <p class="exampletext">A matrix may set the breach time at 30 minutes for all high priority calls and 60 minutes for lower priority calls, but calls with a CMDB Type of Server have half those times.</p>
+                                                    <h2>Matrices and Factors</h2>
+                                                    <p>Thresholds are defined for agreements by applying matrices to escalation and breach times. Escalation times should always be lower than breach times. Remember, escalations are warnings that occur within a system to prevent agreements from being breached. If your escalation times are the same as your breach times, calls will not escalate until it is too late, that is, when an agreement breach has occurred. </p>
+                                                    <p>Rather than setting up many complicated matrices based on different types and levels of escalation and breaches, <span class="GeneralVariablesCoreName">ASM Core</span> lets you apply factors to a matrix. Factors are numbers that multiply all the existing times in a matrix by a certain amount. </p>
+                                                    <p class="exampletext">You might have an agreement breach matrix for SLAs defined by your administrator. You want to set up breach and escalation times based on that matrix for your current agreement. You are using Three Level Resolve Escalation. Let us assume for the purpose of this example that the matrix you are applying has one time, 100 minutes, for all combinations of Problem and Config Item Types.</p>
+                                                    <p>You want to set first level escalation to occur at 40 minutes, second level to occur at 60 minutes and third level escalation to occur at 80 minutes. The agreement is breached at the 100 minute mark (that is, if the call has not been resolved by 100 minutes).</p>
+                                                    <p>To do this, you don’t need multiple matrices for each of these escalation levels. You would just apply the same matrix at 1st, 2nd and 3rd escalation levels with a factor of 0.4, 0.6 and 0.8 respectively. The table below shows how this works.</p>
+                                                    <table style="mc-table-style: url('../../resources/tablestyles/rep hdr row.css');margin-left: 0;margin-right: auto;" class="TableStyle-Rep_Hdr_Row" cellspacing="0">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column1">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column2">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column1">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column2">
+                                                        <thead>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Head-Header1">
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column1-Header1">Event</th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column2-Header1">Base Matrix Time</th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column1-Header1">Factor</th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadD-Column2-Header1">Final Time</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Lvl 1 Esc.</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>100 minutes</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>0.4</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p>40 minutes</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Lvl 2 Esc.</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>100 minutes</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>0.6</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p>60 minutes</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Lvl 3 Esc.</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>100 minutes</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>0.8</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p>80 minutes</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyB-Column1-Body1">
+                                                                    <p>SLA Breach</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyB-Column2-Body1">
+                                                                    <p>100 minutes</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyB-Column1-Body1">
+                                                                    <p>1 (default)</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyA-Column2-Body1">
+                                                                    <p>100 minutes</p>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <p>
+                                                        <img src="/storage/app/media/Help/images/agreement%20matrix%20factors_401x171.png" style="width: 401;height: 171;">
+                                                    </p>
+                                                    <p>If you set a factor for a particular escalation or breach time, that factor is used as a multiple against the base time for that matrix. Note that factors can be any positive number. If you are using an escalation matrix for a breach time, you should apply a larger number as a factor (say two or three). If you are doing it the other way around and using a breach matrix for escalation times (such as in the above example), you should definitely use a small number (between zero and one) to ensure your escalation times are below your agreement breach times. </p>
+                                                    <p>By default, all factors are set at one (i.e., exactly the same as the original matrix time). You don’t have to use factors; your administrator may create specific matrices for different escalation types and escalation levels.</p>
+                                                    <h2>Thresholds for SLAs, OLAs, and UCs</h2>
+                                                    <p>If a threshold setting does not apply to the current agreement type, it is disabled (for example if you create an OLA or UC, the threshold settings for Response, First Call Back are disabled).</p>
+                                                    <ul style="list-style-type: disc;margin-left: 36pt;">
+                                                        <li style="list-style-type: disc;" value="1">If you create an SLA, you can set the Resolve, Response, and First Call Back thresholds.</li>
+                                                        <li style="list-style-type: disc;" value="2">If you create an OLA, you can set the Resolve and Action thresholds.</li>
+                                                        <li style="list-style-type: disc;" value="3">If you create a UC, you can set the Resolve and Action thresholds. </li>
+                                                    </ul>
+                                                    <p class="note">Action events start when the call/task to which the OLA or UC is applied is forwarded internally or externally. </p>
+                                                    <h2>Configuring Breaches</h2>
+                                                    <h2 class="Prerequisite">Before you start</h2>
+                                                    <p class="prereqtext1">You must have <b>Agreement New</b> selected in the <a href="../admin%20security%20roles/slm%20sec%20role%20-%20options%20tab.htm">Options</a> tab of your <b>Service Level Management security role</b> to create agreements. You must have <b>Agreement Update</b> selected in the same tab to update the information.</p>
+                                                    <p class="prereqtextlast">Familiarize yourself with the concepts behind matrices and factors. </p>
+                                                    <ol>
+                                                        <li value="1">Display the <b>Agreement Details</b> window, if it is not already visible on screen, by <a href="#top">searching for the agreement</a>.</li>
+                                                        <li value="2">In the Explorer pane, expand <b>Agreement</b>, then select <b>IPK Thresholds</b>  or <b>Workflow Thresholds</b>.</li>
+                                                        <li value="3">Select <img src="/storage/app/media/Help/images/edit%20button.png"> in the toolbar to activate the fields if necessary.</li>
+                                                        <li value="4">The Thresholds window is divided into two parts: </li>
+                                                        <table class="TableStyle-FieldDesc" style="mc-table-style: url('../../resources/tablestyles/fielddesc.css');margin-left: 0;margin-right: auto;" cellspacing="0">
+                                                            <col class="TableStyle-FieldDesc-Column-Column1">
+                                                            <col class="TableStyle-FieldDesc-Column-Column2">
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Breach Definition</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">Here you apply matrices for Resolve, Response, First Call Back, and Action agreement breaches. You must enable these options or define breach times for this agreement to create breach events. <p><b>For IPK Thresholds</b>, there are four rows in this section, corresponding to Resolve, Response, First Call Back, and Action agreement breach times. Depending on how your agreements are defined, you may need to have some or all of these enabled for the agreement you are creating.</p>
+<p><b>For Workflow Thresholds</b>, there are two rows in this section, corresponding to Resolve and Action agreement breach times. Depending on how your agreements are defined, you may or may not need to have this enabled.</p>
+</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyB-Column1-">Escalation Definition</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyA-Column2-">Here you can set times for Resolve, Response, First Call Back, and Action escalation</td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                        <li value="5">Select a breach threshold checkbox to activate it. This activates the selected breach threshold for the agreement and enables the other options in the row. </li>
+                                                        <li value="6">Complete the details.</li>
+                                                        <table class="TableStyle-FieldDesc" style="mc-table-style: url('../../resources/tablestyles/fielddesc.css');margin-left: 0;margin-right: auto;" cellspacing="0">
+                                                            <col class="TableStyle-FieldDesc-Column-Column1">
+                                                            <col class="TableStyle-FieldDesc-Column-Column2">
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Use Matrix</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">Select the matrix you want to use.<p>On the IPK Thresholds window, this list displays only Call matrices. </p>
+<p>On the Workflow Threshold window for SLAs, this list displays only Request matrices. For OLAs and UCs, this list only displays Task and Approval matrices.</p>
+</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Factor </td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">Specify a factor. The default is 1. The factor can be any positive number, and will be multiplied by the numbers in the matrix. Therefore, if you apply a factor of 0.5, the times in the matrix will all be halved to determine the breach times for this agreement.</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyB-Column1-">Recipients </td>
+                                                                    <td class="TableStyle-FieldDesc-BodyA-Column2-">Define the recipients for the breach.<p class="prereq">You can only define recipients if the Agreements option is selected on the Service Level Management Settings window. Otherwise, the Recipients button is disabled.</p>
+</td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                        <li value="7">After you have finished configuring the agreement breach  events, select <img src="/storage/app/media/Help/images/save%20and%20close%20button.png" alt="" title="">.</li>
+                                                    </ol>
+                                                    <h2>Configuring Escalations</h2>
+                                                    <h2 class="Prerequisite">Before you start</h2>
+                                                    <p class="prereqtext1">You must have <b>Agreement New</b> selected in the <a href="../admin%20security%20roles/slm%20sec%20role%20-%20options%20tab.htm">Options</a> tab of your <b>Service Level Management security role</b> to create agreements. You must have <b>Agreement Update</b> selected in the same tab to update the information.</p>
+                                                    <p class="prereqtextlast">Familiarize yourself with the concepts behind matrices and factors. </p>
+                                                    <ol>
+                                                        <li value="1">Display the <b>Agreement Details</b> window, if it is not already visible on screen, by <a href="#top">searching for the agreement</a>.</li>
+                                                        <li value="2">In the Explorer pane, expand <b>Agreement</b>, then select <b>IPK Thresholds</b>  or <b>Workflow Thresholds</b>.</li>
+                                                        <li value="3">Select <img src="/storage/app/media/Help/images/edit%20button.png"> in the toolbar to activate the fields if necessary.</li>
+                                                        <li value="4">The Thresholds window is divided into two parts: </li>
+                                                        <table class="TableStyle-FieldDesc" style="mc-table-style: url('../../resources/tablestyles/fielddesc.css');margin-left: 0;margin-right: auto;" cellspacing="0">
+                                                            <col class="TableStyle-FieldDesc-Column-Column1">
+                                                            <col class="TableStyle-FieldDesc-Column-Column2">
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Breach Definition</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">Here you apply matrices for Resolve, Response, First Call Back, and Action agreement breaches. You must enable these options or define breach times for this agreement to create breach events. <p><b>For IPK Thresholds</b>, there are four rows in this section, corresponding to Resolve, Response, First Call Back, and Action agreement breach times. Depending on how your agreements are defined, you may need to have some or all of these enabled for the agreement you are creating.</p>
+<p><b>For Workflow Thresholds</b>, there are two rows in this section, corresponding to Resolve and Action agreement breach times. Depending on how your agreements are defined, you may or may not need to have this enabled.</p>
+</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyB-Column1-">Escalation Definition</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyA-Column2-">Here you can set times for Resolve, Response, First Call Back, and Action escalation</td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                        <li value="5">Select a breach threshold checkbox to activate it. This activates the selected escalation threshold for the agreement. </li>
+                                                        <p class="note">You can enable one, two or three levels of resolve escalation (if they are enabled for your system). </p>
+                                                        <li value="6">Complete the details.</li>
+                                                        <table class="TableStyle-FieldDesc" style="mc-table-style: url('../../resources/tablestyles/fielddesc.css');margin-left: 0;margin-right: auto;" cellspacing="0">
+                                                            <col class="TableStyle-FieldDesc-Column-Column1">
+                                                            <col class="TableStyle-FieldDesc-Column-Column2">
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Use Matrix</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                        <p>Select a matrix to use for the escalation. If you are unsure what to use, select <b>Use Breach Matrix</b> to automatically select and apply the matrix chosen for that type of breach. </p>
+                                                                        <p class="exampletext">If you pick ‘Matrix A’ as a First Call Breach matrix, selecting the Use Breach Matrix option will automatically select ‘Matrix A’ for the First Call Back escalation matrix. </p>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Factor </td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">Specify a factor to use with the matrix. Similar to breaches, this number will be used as a multiplier against all the numbers in the matrix to calculate the escalation times. It is likely you will use a factor of 1 for the Breach Definition and small multiples (such as 0.5 or 0.3) for escalation times. Alternatively, you could use a large factor (such as 5 or 10) for the Breach Definition and a factor of 1 for the Escalation Definitions.<p class="note">Ensure that your escalation times are always below your breach times. Otherwise, calls will not escalate until it is too late (that is, once the agreement has been breached). </p>
+</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Min. Minutes</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">Type a number that will be used as a minimum time for that escalation type. Any time from the escalation matrix that (after being multiplied by the factor) is smaller than the min. minutes time is set to that time.<p>Minimum times are useful if you want to use a matrix and a factor for breach and escalation times, but want to ensure that no completely unrealistic times are applied to agreements. </p>
+<p class="exampletext">If you have a matrix sorted by problem type and with times of one hour, two hours and four hours for high, medium and low priorities. Your factor is 0.5, and you set min. minutes to 60. High priority calls have a time of half an hour (one multiplied by 0.5), but that is set to one hour so it meets the minimum time. Medium and high priority calls are set to one and two hours respectively are being multiplied by their factors; these meet the minimum time, so are unaffected.</p>
+</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyB-Column1-">Recipients</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyA-Column2-">Define the Recipients for the breach.<p class="prereq">You can only define recipients if the Agreements option is selected on the Service Level Management Settings window. Otherwise, the Recipients button is disabled.</p>
+</td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                        <li value="7">After you have finished configuring the escalation events, select <img src="/storage/app/media/Help/images/save%20and%20close%20button.png" alt="" title="">.</li>
+                                                    </ol>
+                                                

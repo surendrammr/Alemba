@@ -1,0 +1,64 @@
+input[type="text"], input[type="email"], input[type="password"], textarea, textarea.form-control, select.form-control {
+    border-color: $midgrey;
+    color: $darkgrey;
+    &:hover {
+        border-color: darken($midgrey, 10%);
+    }
+    &:focus, &:active {
+        border-color: $alembablue;
+        outline: none;
+        @include vendor-prefixes(box-shadow, 0 0 0 2px rgba(0,150,220,0.4));
+    }
+    
+    &[readonly] {
+        background-color: #ECEBEB;
+        cursor: default;
+        &:hover {
+            border-color: $midgrey;
+        }
+        &:focus, &:active {
+            border-color: $midgrey;
+            outline: none;
+            @include vendor-prefixes(box-shadow, none);
+        }
+    }
+}
+
+.form-group.has-error {
+    input[type="text"], input[type="email"], input[type="password"], textarea, textarea.form-control, select.form-control {
+        border-color: red;
+        &:hover {
+            border-color: darken(red, 10%);
+        }
+        &:focus, &:active {
+            border-color: red;
+        }
+    }
+}
+
+input[type="checkbox"] {
+    margin-right: 5px;
+}
+
+div.checkbox {
+    margin: 2rem 0 1rem 0;
+}
+
+.form-group {
+    margin-bottom: 2rem;
+}
+
+.form-group label {
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-size: 12px;
+    &.required::after {
+        content: "*";
+        color: $alembapink;
+    }
+    &.error {
+        text-transform: none;
+        letter-spacing: 0;
+        color: $alembapink;
+    }
+}

@@ -1,0 +1,112 @@
+[viewBag]
+title = "Defining Sources"
+url = "/help/topics/integration/managing-sources"
+layout = "help"
+is_hidden = 0
+navigation_hidden = 0
+==
+                                                    <h1>
+<a name="Defining"></a>Defining Sources</h1>
+                                                    <p>The <b>Integration Sources</b> window displays all Sources configured for your system. </p>
+                                                    <h2>Directory Server Integration Sources</h2>
+                                                    <p><span class="GeneralVariablesCoreName">ASM Core</span> can be integrated and synchronized with supported Directory Server technologies. You can import analyst and User databases from other directory servers into <span class="GeneralVariablesCoreName">ASM Core</span>. This means analyst and/or User details from an external database can be imported into <span class="GeneralVariablesCoreName">ASM Core</span>. </p>
+                                                    <p>The <span class="GeneralVariablesCoreName">ASM Core</span> Directory Server uses Microsoft.NET Directory Services library. This technology supports communication with the following directory servers which are compliant with the Lightweight Directory Access Protocol (LDAP) and other technologies:</p>
+                                                    <ul>
+                                                        <li value="1">Microsoft Active Directory</li>
+                                                        <li value="2">Sun Java System Directory Server </li>
+                                                        <li value="3">Novell eDirectory</li>
+                                                    </ul>
+                                                    <h2>Sources and Partitioning</h2>
+                                                    <p>Sources can be partitioned. If a source is created in a particular partition and CMDB items are also partitioned, CMDB items created from the external resources discovered on this source are assigned the source’s partition. If a source is not partitioned, the CMDB Items created from the external resources can inherit the partition through the template applied to them (if a partition is assigned to the template). If a source is partitioned, but CMDB items are not partitioned, the CMDB items created from the external source are not partitioned.</p>
+                                                    <h2>Adding a Source</h2>
+                                                    <h2 class="Prerequisite">Before you start</h2>
+                                                    <p class="prereqtext1">You must be licensed for the selected connector, and the Connector DLL must be installed in the correct location. See <a href="../connectors/connector%20installation%20guide.htm">Installing Connectors</a> for more information.</p>
+                                                    <p class="prereqtextlast">You must have <b>Integration Setup</b> selected in the <a href="../admin%20security%20roles/general%20access%20security%20role%20-%20admin%20tab.htm">Admin</a> tab of your <b>General Access Security Role</b>. </p>
+                                                    <ol>
+                                                        <li value="1">
+                                                            <p>Select <a href="../general%20topics/asmcorewindow.htm"><span style="font-size: 24pt;">≡</span></a> &gt; <b>Admin</b> &gt;  <b>Integration</b>.  </p>
+                                                            <p>The <b>Integration Platform Settings</b> window appears.</p>
+                                                        </li>
+                                                        <li value="2">Select the <b>Sources</b> option from the explorer pane <a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="../../resources/images/ip%20sources.png"><img class="MCPopupThumbnail img imgthumbnail" data-mc-width="367" data-mc-height="224" src="/storage/app/media/Help/images/ip%20sources_thumb_0_48.png" tabindex=""></a>.</li>
+                                                        <li value="3">The <b>Integration Sources</b> window has a browse table listing the sources that are currently configured in your system. It displays the following information for each source:</li>
+                                                        <p>
+                                                            </p>
+<table style="mc-table-style: url('../../resources/tablestyles/fielddesc.css');" class="TableStyle-FieldDesc" cellspacing="0">
+                                                                <col class="TableStyle-FieldDesc-Column-Column1">
+                                                                <col class="TableStyle-FieldDesc-Column-Column2">
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">
+                                                                        <p>Source</p>
+                                                                    </td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                        <p>the displayed name of the source</p>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">
+                                                                        <p>Connector</p>
+                                                                    </td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                        <p>the connector used to configure the source</p>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">
+                                                                        <p>Status</p>
+                                                                    </td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                        <p>the status of the source. This can be Active or Inactive.</p>
+                                                                        <p>Inactive sources are excluded from scans.</p>
+                                                                    </td>
+                                                                </tr>
+                                                            </table>
+                                                        
+                                                        <li value="4">Select <img src="/storage/app/media/Help/images/add%20new.png"> from the toolbar.</li>
+                                                        <li value="5">In the dialog box, the drop-down list displays all installed connectors that are set to <b>Visible</b> in the <b>Integration Connectors</b> window. Select a connector for the source from the drop-down list and click OK.</li>
+                                                        <p class="prereq">If you are not licensed for the selected connector, or the Connector DLL is not installed in the correct location, selecting OK will display an error message and you will not be able to create the source.</p>
+                                                        <li value="6">
+<a href="%7B%7B%20'help-configuring-integ-source#top'%7CstaticPage%20%7D%7D#top">Specify the source parameters</a> in the <b>Integration Source Details</b> window, scrolling down to complete all fields lower down in the window.</li>
+                                                        <li value="7">Select <img src="/storage/app/media/Help/images/save%20button.png">  to save the changes.</li>
+                                                    </ol>
+                                                    <h2>Updating a Source</h2>
+                                                    <h2 class="Prerequisite">Before you start</h2>
+                                                    <p class="prereqtextlast">You must have <b>Integration Setup</b> selected in the <a href="../admin%20security%20roles/general%20access%20security%20role%20-%20admin%20tab.htm">Admin</a> tab of your <b>General Access Security Role</b>. </p>
+                                                    <ol>
+                                                        <li value="1">
+                                                            <p>Select <a href="../general%20topics/asmcorewindow.htm"><span style="font-size: 24pt;">≡</span></a> &gt; <b>Admin</b> &gt;  <b>Integration</b>.  </p>
+                                                            <p>The <b>Integration Platform Settings</b> window appears.</p>
+                                                        </li>
+                                                        <li value="2">Select the <b>Sources</b> option from the explorer pane <a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="../../resources/images/ip%20sources.png"><img class="MCPopupThumbnail img imgthumbnail" data-mc-width="367" data-mc-height="224" src="/storage/app/media/Help/images/ip%20sources_thumb_0_48.png" tabindex=""></a>.</li>
+                                                        <li value="3">The Integration Sources window has a browse table listing the sources that are currently configured in your system. </li>
+                                                        <li value="4">Select the source you want to update and either double-click or select <img src="/storage/app/media/Help/images/action%20button.png"> on the toolbar.</li>
+                                                        <li value="5">
+<a href="%7B%7B%20'help-configuring-integ-source#top'%7CstaticPage%20%7D%7D#top">Specify the source parameters</a> in the <b>Integration Source Details</b> window, scrolling down to complete all fields lower down in the window.</li>
+                                                        <li value="6">Select <img src="/storage/app/media/Help/images/save%20button.png">  to save the changes.</li>
+                                                    </ol>
+                                                    <h2>Deleting a Source</h2>
+                                                    <h2 class="Prerequisite">Before you start</h2>
+                                                    <p class="prereqtextlast">You must have <b>Integration Setup</b> selected in the <a href="../admin%20security%20roles/general%20access%20security%20role%20-%20admin%20tab.htm">Admin</a> tab of your <b>General Access Security Role</b>. </p>
+                                                    <ol>
+                                                        <li value="1">
+                                                            <p>Select <a href="../general%20topics/asmcorewindow.htm"><span style="font-size: 24pt;">≡</span></a> &gt; <b>Admin</b> &gt;  <b>Integration</b>.  </p>
+                                                            <p>The <b>Integration Platform Settings</b> window appears.</p>
+                                                        </li>
+                                                        <li value="2">Select the <b>Sources</b> option from the explorer pane <a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="../../resources/images/ip%20sources.png"><img class="MCPopupThumbnail img imgthumbnail" data-mc-width="367" data-mc-height="224" src="/storage/app/media/Help/images/ip%20sources_thumb_0_48.png" tabindex=""></a>.</li>
+                                                        <li value="3">The Integration Sources window has a browse table listing the sources that are currently configured in your system</li>
+                                                        <li value="4">Select the source you want to delete. </li>
+                                                        <li value="5">Select <img src="/storage/app/media/Help/images/delete%20button.png"> from the toolbar. Confirm the deletion.</li>
+                                                    </ol>
+                                                    <h2>Testing a source</h2>
+                                                    <h2 class="Prerequisite">Before you start</h2>
+                                                    <p class="prereqtextlast">You must have <b>Integration Setup</b> selected in the <a href="../admin%20security%20roles/general%20access%20security%20role%20-%20admin%20tab.htm">Admin</a> tab of your <b>General Access Security Role</b>. </p>
+                                                    <ol>
+                                                        <li value="1">
+                                                            <p>Select <a href="../general%20topics/asmcorewindow.htm"><span style="font-size: 24pt;">≡</span></a> &gt; <b>Admin</b> &gt;  <b>Integration</b>.  </p>
+                                                            <p>The <b>Integration Platform Settings</b> window appears.</p>
+                                                        </li>
+                                                        <li value="2">Select the <b>Sources</b> option from the explorer pane <a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="../../resources/images/ip%20sources.png"><img class="MCPopupThumbnail img imgthumbnail" data-mc-width="367" data-mc-height="224" src="/storage/app/media/Help/images/ip%20sources_thumb_0_48.png" tabindex=""></a>.</li>
+                                                        <li value="3">The Integration Sources window has a browse table listing the sources that are currently configured in your system. </li>
+                                                        <li value="4">Select the source you want to test.</li>
+                                                        <li value="5">Select <img src="/storage/app/media/Help/images/test%20connector%20btn.png"> from the toolbar to verify that <span class="GeneralVariablesCoreName">ASM Core</span> can connect to this source. A dialog box appears informing you of the success or failure of this test.</li>
+                                                    </ol>
+                                                

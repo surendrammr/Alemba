@@ -1,0 +1,78 @@
+[viewBag]
+title = "Using a script to configure the database user accounts"
+url = "/help/topics/prerequisites/prereqdbacctpermissions"
+layout = "help"
+is_hidden = 0
+navigation_hidden = 0
+==
+                                                    <h1>Using a script to configure the database user accounts</h1>
+                                                    <p>You can use the script below to create the database user account and apply the relevant permissions for your <span class="GeneralVariablesDatabaseName">ASM database</span> and Master database. The comments indicate the commands that are executed at each stage of the script, so you may choose to use only part of the script if you are working with existing logins.</p>
+                                                    <p>The script uses the following variables:</p>
+                                                    <ul>
+                                                        <li value="1">[LOGIN_NAME] – the SQL Server login name, for example VFIRE_LOGIN</li>
+                                                        <li value="2">[Password1] – the SQL Server login password</li>
+                                                        <li value="3">[DATABASE_NAME] – the <span class="GeneralVariablesDatabaseName">ASM database</span> name</li>
+                                                        <li class="last" value="4">[USER_NAME] – the <span class="GeneralVariablesDatabaseName">ASM database</span> user that is applied to the SQL Server login, for example VFIRE_USER</li>
+                                                    </ul>
+                                                    <p class="codecomment"><span style="color: #32cd32;">--The following creates the SQL Server login account, with the <span class="GeneralVariablesDatabaseName">ASM database</span> set as the default database. Do not use spaces in the login name. The password must contain at least 8 characters, including at least one number and an uppercase letter.</span>
+                                                    </p>
+                                                    <p class="codefont"><span style="color: #0000ff;">USE</span> [MASTER];</p>
+                                                    <p class="codefont"><span style="color: #0000ff;">GO</span>
+                                                    </p>
+                                                    <p class="codefont"> </p>
+                                                    <p class="codefont"><span style="color: #0000ff;">CREATE LOGIN</span> [LOGIN_NAME] <span style="color: #0000ff;">WITH PASSWORD</span> = <span style="color: #ff0000;">'[Password1]'</span>, </p>
+                                                    <p class="codeindent"><span style="color: #0000ff;">DEFAULT_DATABASE</span> = [DATABASE_NAME]<br></p>
+                                                    <p class="codefont"><span style="color: #0000ff;">GO</span>
+                                                    </p>
+                                                    <p class="codefont"> </p>
+                                                    <p class="codefont"><span style="color: #0000ff;">ALTER SERVER ROLE</span> [sysadmin] <span style="color: #0000ff;">ADD MEMBER</span> [LOGIN_NAME]</p>
+                                                    <p class="codefont"><span style="color: #0000ff;">GO</span>
+                                                    </p>
+                                                    <p class="codecomment"><span style="color: #32cd32;">--The following creates the user account [USER_NAME] for the <span class="GeneralVariablesDatabaseName">ASM database</span></span>
+                                                    </p>
+                                                    <p class="codefont"><span style="color: #0000cd;">Use </span>[DATABASE_NAME];</p>
+                                                    <p class="codefont"><span style="color: #0000cd;">GO</span>
+                                                    </p>
+                                                    <p class="codefont"><span style="color: #0000cd;">IF </span><span style="color: #708090;">NOT EXISTS</span> (<span style="color: #0000cd;">SELECT </span>* <span style="color: #0000cd;">FROM </span><span style="color: #32cd32;">sys.database_principals </span><span style="color: #0000cd;">WHERE NAME</span> = <span style="color: #ff0000;">N'[USER_NAME]'</span>)</p>
+                                                    <p class="codeindent"><span style="color: #0000cd;">BEGIN</span>
+                                                    </p>
+                                                    <p class="codeindent1"><span style="color: #0000cd;">CREATE USER</span> [USER_NAME] <span style="color: #0000cd;">FOR LOGIN</span> [LOGIN_NAME]</p>
+                                                    <p class="codecomment"><span style="color: #32cd32;">--The following makes [USER_NAME] a member of the db_owner, db_datawriter, db_datareader and db_ddladmin groups</span>
+                                                        <br>
+                                                    </p>
+                                                    <p class="codeindent1"><span style="color: #0000cd;">EXEC</span> <span style="color: #b22222;">sp_addrolemember</span> <span style="color: #ff0000;">N'db_owner'</span>, <span style="color: #ff0000;">N'[USER_NAME]'</span> <br></p>
+                                                    <p class="codeindent1"><span style="color: #0000cd;">EXEC</span> <span style="color: #b22222;">sp_addrolemember</span> <span style="color: #ff0000;">N'db_datawriter'</span>, <span style="color: #ff0000;">N'[USER_NAME]'</span> <br></p>
+                                                    <p class="codeindent1"><span style="color: #0000cd;">EXEC</span> <span style="color: #b22222;">sp_addrolemember</span> <span style="color: #ff0000;">N'db_datareader'</span>, <span style="color: #ff0000;">N'[USER_NAME]'</span> <br></p>
+                                                    <p class="codeindent1"><span style="color: #0000cd;">EXEC</span> <span style="color: #b22222;">sp_addrolemember</span> <span style="color: #ff0000;">N'db_ddladmin'</span>, <span style="color: #ff0000;">N'[USER_NAME]'</span> <br></p>
+                                                    <p class="codeindent"><span style="color: #0000cd;">END</span>;<br></p>
+                                                    <p class="codefont"><span style="color: #0000cd;">GO</span>
+                                                    </p>
+                                                    <p class="codecomment"><span style="color: #32cd32;">--The following grants [USER_NAME] the minimum permissions for the  database</span>
+                                                        <br>
+                                                    </p>
+                                                    <p class="codefont"><span style="color: #0000cd;">GRANT VIEW DATABASE STATE TO</span> <span style="color: #000000;">[USER_NAME]</span>;<br></p>
+                                                    <p class="codefont"><span style="color: #0000cd;">GRANT VIEW DEFINITION TO</span> <span style="color: #000000;">[USER_NAME]</span></p>
+                                                    <p class="codecomment"><span style="color: #32cd32;">--The following creates the <span class="GeneralVariablesProductNameFull">Alemba Service Manager™</span> user account for the Master database</span>
+                                                        <br>
+                                                    </p>
+                                                    <p class="codefont"><span style="color: #0000ff;">USE</span> [MASTER];</p>
+                                                    <p class="codefont"><span style="color: #0000cd;">GO</span>
+                                                        <br>
+                                                    </p>
+                                                    <p class="codefont"><span style="color: #0000cd;">IF </span><span style="color: #708090;">NOT EXISTS</span> (<span style="color: #0000cd;">SELECT </span>* <span style="color: #0000cd;">FROM </span><span style="color: #32cd32;">sys.database_principals</span><span style="color: #0000cd;"> WHERE NAME</span> = <span style="color: #ff0000;">N'[USER_NAME]'</span>)<br></p>
+                                                    <p class="codeindent"><span style="color: #0000cd;">BEGIN</span>
+                                                        <br>
+                                                    </p>
+                                                    <p class="codeindent1"><span style="color: #0000cd;">CREATE USER</span> <span style="color: #000000;">[USER_NAME]</span> <span style="color: #0000cd;">FOR LOGIN</span> [LOGIN_NAME]</p>
+                                                    <p class="codeindent1"><span style="color: #0000cd;">EXEC</span> <span style="color: #b22222;">sp_addrolemember</span> <span style="color: #ff0000;">N'db_datareader'</span>, <span style="color: #ff0000;">N'[USER_NAME]'</span> <br></p>
+                                                    <p class="codeindent"><span style="color: #0000cd;">END</span>;</p>
+                                                    <p class="codecomment"><span style="color: #32cd32;">--The following grants [USER_NAME] minimum permissions for the Master database</span>
+                                                        <br>
+                                                    </p>
+                                                    <p class="codefont"><span style="color: #0000cd;">GRANT VIEW SERVER STATE TO</span> [USER_NAME]</p>
+                                                    <p class="codefont"><span style="color: #0000cd;">GRANT VIEW DATABASE STATE TO</span> [USER_NAME]</p>
+                                                    <p class="codefont"><span style="color: #0000cd;">GRANT VIEW DEFINITION TO</span> [USER_NAME]</p>
+                                                    <p class="codefont"><span style="color: #0000cd;">GRANT EXEC ON MASTER.</span>DBO.<span style="color: #b22222;">XP_REGREAD</span> <span style="color: #0000cd;">TO</span> <span style="color: #000000;">[USER_NAME]</span><br></p>
+                                                    <p class="codefont"><span style="color: #0000cd;">GO</span>
+                                                    </p>
+                                                

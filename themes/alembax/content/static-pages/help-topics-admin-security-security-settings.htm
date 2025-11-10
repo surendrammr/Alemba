@@ -1,0 +1,124 @@
+[viewBag]
+title = "Security Settings"
+url = "/help/topics/admin-security/security-settings"
+layout = "help"
+is_hidden = 0
+navigation_hidden = 0
+==
+                                                    <h1 class="Heading1_1">Security Settings</h1>
+                                                    <p class="intro">You can configure global security settings for <span class="GeneralVariablesCoreName">ASM Core</span>, including license corrals, password settings and service desk and workflow groups for the organization.</p>
+                                                    <h2>
+<a name="Enabling"></a>Enabling Integrated Security </h2>
+                                                    <p>Integrated Security allows Analysts to use their workstation login ID and password to access <span class="GeneralVariablesCoreName">ASM Core</span>. This means that when they launch <span class="GeneralVariablesCoreName">ASM Core</span>, they do not need to enter a username and password, which makes logging in quicker. However, it also means that only the Analyst logged in to a particular workstation can access <span class="GeneralVariablesCoreName">ASM Core</span> from that workstation. You will still need to select the system you want to work with if there is more than one (such as Dev, Test, etc).</p>
+                                                    <p class="note">If you want to log in using the default <b>Admin</b> account and use integrated security, append <span style="font-family: 'Courier New'; font-size: 11pt;">noauth=true</span> to the system URL to bring up the login window (e.g.: .../core.aspx?noauth=true). However, most administration functions can be performed by any Analyst as long as they have the permissions through their <a href="../admin%20security%20roles/general%20access%20security%20role.htm">General Access security role</a>.</p>
+                                                    <h3>Using Integrated Security and Directory Integration</h3>
+                                                    <p class="warning">If your system is configured for <b class="Bold">Active Directory integration</b> through the <b class="Bold">Integration Platform Settings</b>, Alemba recommends that you enable Integrated Security. If it is enabled for another type of directory server integration and <b class="Bold">Authenticate Imported People against Source </b>is selected in the <b class="Bold">Integration Source Details</b> for this directory server, this setting is ignored. </p>
+                                                    <p>If you enable integrated security and select <b class="Bold">Authenticate Imported People against Source</b> in the <b class="Bold">Integration Source Details</b> for the directory server, a person record imported through a directory server integration scan will be authenticated using the details stored in the <span class="GeneralVariablesDatabaseName">ASM database</span> or the directory server. If you do not enable integrated security, people logging in will be authenticated using the details stored in the <span class="GeneralVariablesDatabaseName">ASM database</span>. </p>
+                                                    <h2 class="Prerequisite">Before you start</h2>
+                                                    <p class="prereqtext1">Enable <b>Windows Authentication</b> and disable <b>Anonymous Authentication</b> for the related virtual directory in IIS on the web server where <span class="GeneralVariablesCoreName">ASM Core</span> is installed.</p>
+                                                    <p class="prereqtext1">Select <b class="Bold">Default <span class="GeneralVariablesSelfServicePortalName">Self Service Portal</span></b> for the system in the <span class="GeneralVariablesCoreName">ASM Core</span> Server Console as explained in the <a href="../server%20console/sc%20introduction.htm">Server Console Guide</a>. </p>
+                                                    <p class="prereqtext">Ensure that you have <b>Security Setup</b> selected in the <a href="%7B%7B%20'help-admin-security-roles-general-access-security-role#General'%7CstaticPage%20%7D%7D#General">Admin tab</a> of your <b>General Access security role</b> to access the <b>Security</b> options within the System window.</p>
+                                                    <ol>
+                                                        <li value="1">
+                                                            <p>Select <a href="../general%20topics/asmcorewindow.htm"><span style="font-size: 24pt;">≡</span></a> &gt; <b>Admin</b> &gt;  <b>System Administration</b>.   </p>
+                                                            <p>The System Administration window is displayed. </p>
+                                                            <p>In the Explorer pane, expand <b>Security</b>.</p>
+                                                        </li>
+                                                        <li value="2">Select the <b>Security Settings</b> option. The <b>Security Settings</b> window appears. Select the appropriate settings for your system:</li>
+                                                    </ol>
+                                                    <table class="TableStyle-FieldDesc" style="mc-table-style: url('../../resources/tablestyles/fielddesc.css');" cellspacing="0">
+                                                        <col class="TableStyle-FieldDesc-Column-Column1">
+                                                        <col class="TableStyle-FieldDesc-Column-Column2">
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">Full Application and HTML Only</td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">Enables <span class="GeneralVariablesCoreName">ASM Core</span> to automatically take the login details (username and password) from the workstation log in for the main application and the HTML Only interface. <p class="note">This means that the <span class="GeneralVariablesCoreName">ASM Core</span> login for an Analyst must match their workstation login. </p>
+</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">
+<span class="GeneralVariablesSelfServicePortalName">Self Service Portal</span>
+                                                            </td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">Enables integrated security on the <span class="GeneralVariablesSelfServicePortalName">Self Service Portal</span>. If this option is cleared, Users must log into the <span class="GeneralVariablesSelfServicePortalName">Self Service Portal</span> manually with their <span class="GeneralVariablesCoreName">ASM Core</span> username and password.</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">Passwords Required for Authorization/Approval</td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">Select this to force Analysts to enter a password when authorizing requests and completing approvals.<p class="prereq">This option only becomes enabled if one of the previous options is selected.</p>
+<p class="note">This setting is ignored when attempting to be used in combination with <a href="../sso%20technical%20reference%20guide/about%20sso.htm">SSO</a>, which is configured in the Integration settings.</p>
+</td>
+                                                        </tr>
+                                                    </table>
+                                                    <ol start="4">
+                                                        <li value="4">Select <img src="/storage/app/media/Help/images/save%20button.png">  to save the changes. Provide the <a href="../general%20topics/change%20reasons.htm">Change Reasons</a> if prompted to do so.</li>
+                                                    </ol>
+                                                    <h2>Configuring Security Settings for Passwords</h2>
+                                                    <p>You can configure the security settings for Passwords that are used to log into <span class="GeneralVariablesCoreName">ASM Core</span>. </p>
+                                                    <h2 class="Prerequisite">Before you start</h2>
+                                                    <p class="prereqtext">Ensure that you have <b>Security Setup</b> selected in the <a href="%7B%7B%20'help-admin-security-roles-general-access-security-role#General'%7CstaticPage%20%7D%7D#General">Admin tab</a> of your <b>General Access security role</b> to access the <b>Security</b> options within the System window.</p>
+                                                    <ol start="1">
+                                                        <li value="1">
+                                                            <p>Select <a href="../general%20topics/asmcorewindow.htm"><span style="font-size: 24pt;">≡</span></a> &gt; <b>Admin</b> &gt;  <b>System Administration</b>.   </p>
+                                                            <p>The System Administration window is displayed. </p>
+                                                            <p>In the Explorer pane, expand <b>Security</b>.</p>
+                                                        </li>
+                                                        <li value="2">Select the <b class="Bold">Security Settings</b> option from the Explorer pane to display the <b>Security Settings</b> window. The Password Configuration options are in the second section of the window <a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="../../resources/images/password%20in%20security%20settings.png"><img class="MCPopupThumbnail img imgthumbnail" data-mc-width="233" data-mc-height="149" src="/storage/app/media/Help/images/password%20in%20security%20settings_thumb_0_48.png" tabindex=""></a>.</li>
+                                                    </ol>
+                                                    <table class="TableStyle-FieldDesc" style="mc-table-style: url('../../resources/tablestyles/fielddesc.css');" cellspacing="0">
+                                                        <col class="TableStyle-FieldDesc-Column-Column1">
+                                                        <col class="TableStyle-FieldDesc-Column-Column2">
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">
+                                                                <p>Password Expiry</p>
+                                                            </td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">Select to enforce an expiry period for passwords of a specified number of days. <p>If an Analyst logs on and their password has expired, they are forced to <b class="Xref_outstanding">change their password</b>. The new password cannot be the same as their old password.</p>
+</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">Expiry Period (Days)</td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                <p class="prereq"><b class="Bold">Password Expiry</b> option must be selected to enable this option. </p>The number of days before passwords will expire. The default is 14 but it can be overwritten.</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">
+                                                                <p>Encrypt Password</p>
+                                                                <p> </p>
+                                                            </td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">Select to encrypt passwords in the database, so that passwords cannot be read. Only passwords that are added to the database after this option has been enabled will be encrypted.<br>Users will not be able to use the <b class="Bold">Forgotten Password</b> functionality on the <span class="GeneralVariablesSelfServicePortalName">Self Service Portal</span> to receive their password by email. Attempting to do so will return an error message <a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="../../resources/images/forgotten%20pw%20error.png"><img class="MCPopupThumbnail img imgthumbnail" data-mc-width="745" data-mc-height="77" src="/storage/app/media/Help/images/forgotten%20pw%20error_thumb_0_48.png" style="width: 434px;height: 45px;" tabindex=""></a>.</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">
+                                                                <p>Disable Access on Login Failure</p>
+                                                            </td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">Select to disable person records, preventing them from logging in, after a defined number of failed attempts. </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">
+                                                                <p>Max Failed Logins</p>
+                                                            </td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                <p class="prereq">This field becomes active when <b class="Bold">Disable Access on Login Failure</b> is selected.</p>
+                                                                <p>Specify the number of times a User or Analyst can attempt to log in to <span class="GeneralVariablesCoreName">ASM Core</span> or <span class="GeneralVariablesSelfServicePortalName">Self Service Portal</span> with an invalid password. The system will notify the person of the remaining number of attempts before the system will disable their access.</p>
+                                                                <p class="note">The number of failed logins is calculated by the system based on consecutive login attempts. After a successful login, the count for failed logins is reset, and the calculation of any subsequent failed logins restarts.  </p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">
+                                                                <p>Log Call on Access Disabled</p>
+                                                            </td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                <p class="prereq">This field becomes active when <b class="Bold">Disable Access on Login Failure</b> is selected.</p>Select to log a call if an Analyst’s access is disabled. </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">
+                                                                <p>Reset Password When Forgotten</p>
+                                                            </td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                <p class="prereq">This option is automatically selected and disabled if you select the <b class="Bold">Encrypt Password</b> option.</p>
+                                                                <p>Select to enable resetting of passwords if an Analyst does not remember their password. An administrator can set the Analyst’s password. </p>
+                                                                <p class="note">No email is sent when a password is reset.</p>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                    <ol start="3">
+                                                        <li value="3">Select <img src="/storage/app/media/Help/images/save%20button.png">  to save the changes. Provide the <a href="../general%20topics/change%20reasons.htm">Change Reasons</a> if prompted to do so.</li>
+                                                    </ol>
+                                                

@@ -1,0 +1,36 @@
+[viewBag]
+title = "Defining Resolution Rules"
+url = "/help/topics/integration/defining-resolution-rules"
+layout = "help"
+is_hidden = 0
+navigation_hidden = 0
+==
+                                                    <h1>Defining Resolution Rules</h1>
+                                                    <p>The Resolution Rules window allows you to “resolve” or match an item populating a referenced entity field on a source to an existing item in <span class="GeneralVariablesCoreName">ASM Core</span>. </p>
+                                                    <p class="exampletext">An external configuration item resource may have a field, Office, to identify the location of the Configuration Item. Through a resolution rule, the referenced location can be imported as a new Location in <span class="GeneralVariablesCoreName">ASM Core</span>, linked to the config item.</p>
+                                                    <p class="exampletext">A user has a company defined in the directory server. Through a resolution rule, the referenced company can be imported as a new organization record and defined in the Organization field on the person details record for the imported user.</p>
+                                                    <ol style="list-style-type: decimal;margin-left: 36pt;" start="1">
+                                                        <li value="1">Select the <b>Details</b> tab and add the name and, optionally, a description of the rule.</li>
+                                                        <li value="2">Select the <b>Search</b> tab and specify the criteria for determining the CMDB entity to populate the reference field in <span class="GeneralVariablesCoreName">ASM Core</span>:</li>
+                                                        <li value="3">At <b>Target Type,</b> click to select the CMDB entity type that the resolution rule will use to populate the field. </li>
+                                                        <li value="4">Use the rules builder panel below the <b>Target Type</b> field to add the rule. Start by clicking the question mark (?) to create the first part of the statement. Then click <img src="/storage/app/media/Help/images/type%20tiers%20button.png" alt="" title=""> to pick a field from the multi-tiered field selector. You can select a criterion relating to either the <span class="GeneralVariablesCoreName">ASM Core</span> field or the external resource field. For more information on defining rules, see <a href="../general%20topics/using%20the%20rules%20builder.htm">Using the Rules Builder</a>. In the second part of the rule, specify the value that should populate the <span class="GeneralVariablesCoreName">ASM Core</span> field should the criteria be met on the following lines.</li>
+                                                        <li value="5">Select the <b>Defaults</b> tab and specify the default field mapping to populate the <span class="GeneralVariablesCoreName">ASM Core</span> field. The default field mapping is used when no match can be found based on the criteria specified in the Search tab, or if multiple matches are found:<ul start="1">
+<li value="1">Select <b>Default to</b>. </li>
+<li value="2">Specify the default CMDB item for the field. </li>
+<li value="3">Optionally, select <b>Update resolved item</b> to update the details of the resolved (matched) existing CMDB item using the information specified in the <b>Create/Update Field Mappings</b> section</li>
+</ul>
+</li>
+                                                        <p class="note">You can set the default to create a new CMDB item. </p>
+                                                        <li value="6">To create a new CMDB item:<ul start="1">
+<li value="1">Select <b>Create new</b>. </li>
+<li value="2">At <b>Create/Update As Type</b>, click  <img src="/storage/app/media/Help/images/type%20tiers%20button.png" alt="" title=""> to select the CMDB entity type the system will use to create a new CMDB item, or update an existing CMDB item.</li>
+<li value="3">In the <b>Create/Update Field Mappings</b> section, add and define values for the fields you wish to be updated on the new or existing CMDB item. </li>
+<li value="4">Click <b>Add</b> to select a CMDB field relating to the selected CMDB entity type.</li>
+<li value="5">In the <b>Source Field</b> column, click <img src="/storage/app/media/Help/images/qd%20button.png" alt="" title="">  and select <b>(Value)</b> to type the value of the field on the source which should be used to populate the CMDB field.</li>
+<li value="6">In the <b>Update</b> column, select when the field will populated: <b>Always</b>, On Initial <b>Population Only</b>, or <b>Only When Blank</b>.</li>
+<li value="7">Repeat to add more fields.</li>
+</ul>
+</li>
+                                                        <li value="7">Click OK to save the resolution rule. </li>
+                                                    </ol>
+                                                

@@ -1,0 +1,122 @@
+url = "/events/:slug/register"
+layout = "home"
+title = "Register for an Alemba event"
+description = "Event registration page"
+is_hidden = 0
+meta_title = "Register for an Alemba event"
+meta_description = "Register for an Alemba event"
+robot_index = "index"
+robot_follow = "follow"
+seoOptionsEnabledInSitemap = 0
+seoOptionsUseUpdatedAt = 1
+seoOptionsRobotIndex = "index"
+seoOptionsRobotFollow = "follow"
+seoOptionsChangefreq = "daily"
+seoOptionsPriority = 0.5
+seoOptionsModelClass = "Alemba\Alemba\Models\Event"
+seoOptionsModelParams = "slug:slug"
+seoOptionsModelScope = "active"
+
+[renderForm renderEventForm]
+formCode = "event"
+
+[viewBag]
+seo_title = "Register for an Alemba event"
+seo_description = "Register for an Alemba event"
+robot_index = "index"
+robot_follow = "follow"
+==
+<?php
+use Alemba\Alemba\Models\Event;
+
+function onStart()
+{
+	// Get selected event
+
+	$this['event'] = Event::where('slug', $this->param('slug'))->first();
+
+	// Redirect to events page if slug isn't present or no event corresponds
+	
+	if(!$this->param('slug') || !$this['event']) {
+		return redirect()->to($this->controller->pageUrl('events'));
+	}
+
+	$this->page->title = "Register for ".$this['event']->name;
+}
+?>
+==
+<!-- Insert the event name into the form's hidden field -->
+<script>
+	
+	document.addEventListener("DOMContentLoaded", function(){
+        var eventname = '{{ event.name }}';
+        $('#EventName').val(eventname);
+    });
+
+</script>
+
+{% if event.banner_image %}
+
+	<!-- banner -->
+
+	<div class="jumbotron jumbotron-fluid banner pageBanner" style="background-image:url('{{ event.banner_image|media }}')">
+        <div class="container h-100">
+            <div class="row h-100">
+            </div>
+        </div>
+	</div>
+	
+{% else %}
+
+    <div class="jumbotron jumbotron-fluid banner" style="background-image:url('{{ 'assets/img/banners/banner-generic-4.jpg'|theme }}')">
+        <div class="container h-100">
+            <div class="row h-100">
+            </div>
+        </div>
+    </div>
+
+
+{% endif %}
+
+<!-- /banner -->
+
+{% partial 'demo-button' %}
+
+<!-- copy -->
+
+<div class="container copy">
+
+	<header class="col-md-12 copy-heading">
+	
+		<h1>{{ this.page.title }}</h1>
+		<h2><i class="fa fa-map-marker"></i>&nbsp;&nbsp;{{ event.location }}&nbsp;&nbsp;&nbsp;&bull;&nbsp;&nbsp;&nbsp;{{ event.full_dates }}</h2>
+
+	</header>
+
+	<div class="row justify-content-center">
+
+		<div class="col-md-10 copy-main">
+
+			<p class="lead">We'd love to see you at the <a href="{{ 'event-detail'|page({ slug: this.param.slug }) }}">{{ event.name }}</a>, {{ event.location }}.</p>
+			
+			{% if event.name == "Alemba Accelerate" %}
+			<div class="d-block mb-4" style="padding: 20px;border-radius:4px;background-color:#fafafa;border:1px solid #ECEBEB;">
+                <strong>Weds Dec 7th (EMEA/UK/US):</strong> 16:00 (GMT) | 17:00 (CET) | 11:00 (EST) | 08:00 (PST)<br>
+                <strong>Thurs Dec 8th (APJ):</strong> 09:00 (AEDT) | 11:00 (NZDT)<br><br>
+                (Future Webinars at Quarter end)<br>
+                <strong>Duration: 1.5 Hours</strong>
+            </div>
+			{% endif %}
+            
+            {% component 'renderEventForm' %}            
+
+		</div>
+
+	</div>
+
+</div>
+
+<!-- /copy -->
+
+<!-- Load Font Awesome -->
+{% partial "font-awesome" %}

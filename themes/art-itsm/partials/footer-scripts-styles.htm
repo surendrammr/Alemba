@@ -1,0 +1,84 @@
+==
+{# The following should get minified if CMS_ASSET_MINIFY=true is set in .env #}
+
+<script src="{{ [
+    'assets/node_modules/jquery/dist/jquery.min.js',
+    'assets/node_modules/lazysizes/lazysizes.min.js',
+    'assets/node_modules/lazysizes/plugins/unveilhooks/ls.unveilhooks.min.js',
+    'assets/node_modules/lazysizes/plugins/bgset/ls.bgset.min.js',
+    'assets/node_modules/jquery.cookie/jquery.cookie.min.js',
+    'assets/js/scripts.min.js',
+    '@framework',
+    '@framework.extras'
+]|theme }}" ></script>
+
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" defer integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" async integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+
+{# <script src="{{ 'assets/js/jquery.validate.min.js'|theme }}"></script> #}
+
+{# Algolia #}
+{% component 'searchSettings' %}
+<!-- Algolia JavaScript API client -->
+<script src="https://cdn.jsdelivr.net/npm/algoliasearch@4/dist/algoliasearch-lite.umd.js"></script>
+
+<!-- InstantSearch.js UI library -->
+<script src="https://cdn.jsdelivr.net/npm/instantsearch.js@4"></script>
+
+<script>
+    const ALGOLIA_APP_ID = '{{ algoliaAppId|escape('js') }}';
+    const ALGOLIA_SEARCH_KEY = '{{ algoliaSearchKey|escape('js') }}';
+
+    const search = instantsearch({
+      indexName: 'alemba_crawler_pages',
+      searchClient: algoliasearch(ALGOLIA_APP_ID, ALGOLIA_SEARCH_KEY),
+      insights: true,
+    });
+
+    search.addWidgets([
+      instantsearch.widgets.searchBox({
+        container: '#searchbox',
+        placeholder: 'Search here...',
+        showReset: true,
+        showSubmit: true,
+        showLoadingIndicator: true,
+        queryHook(query, search) {
+        if (query.length >= 3) {
+          search(query);
+        }
+      },
+      }),
+      instantsearch.widgets.hits({
+          container: '#hits',
+          templates: {
+            item(hit) {
+              return `
+                <a href="${hit.url}" class="list-group-item list-group-item-action">
+                  <div class="fw-bold">${hit._highlightResult?.title?.value || hit.title}</div>
+                  ${hit._highlightResult?.description?.value ? `<div class="small text-muted">${hit._highlightResult.description.value}</div>` : ''}
+                </a>
+              `;
+            },
+          },
+        }),
+      {
+        render({ state }) {
+          const hitsContainer = document.querySelector('#hits');
+          if (!state.query) {
+            hitsContainer.style.display = 'none';
+          } else {
+            hitsContainer.style.display = '';
+          }
+        },
+      }
+    ]);
+
+    console.log("InstantSearch initialized...");
+    search.start();
+</script>
+
+{% styles %}
+{% scripts %}
+
+{% partial 'linkedin-tag' %}
+{% partial 'hubspot-tag' %}

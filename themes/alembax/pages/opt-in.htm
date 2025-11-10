@@ -1,0 +1,86 @@
+title = "Subscription Opt-in"
+url = "/opt-in"
+layout = "home"
+description = "Opt-in page."
+is_hidden = 0
+robot_index = "noindex"
+canonical_url = "https://alemba.com/opt-in"
+meta_title = "Subscription Opt-in"
+meta_description = "Subscription Opt-in"
+robot_follow = "follow"
+seoOptionsEnabledInSitemap = 0
+seoOptionsUseUpdatedAt = 1
+seoOptionsRobotIndex = "index"
+seoOptionsRobotFollow = "follow"
+seoOptionsChangefreq = "daily"
+seoOptionsPriority = 0.5
+
+[renderForm]
+formCode = "opt-in"
+redirect = "opt-in"
+
+[viewBag]
+seo_title = "Subscription Opt-in"
+seo_description = "Subscription Opt-in"
+robot_index = "index"
+robot_follow = "follow"
+==
+<?php
+function onStart()
+{
+
+	// Get the form variables from the URL, if supplied
+	
+	$this['email'] = \Input::has('e') ? \Input::get('e') : false;
+	
+}
+?>
+==
+<script>
+	
+	document.addEventListener("DOMContentLoaded", function(){
+        var email = '{{ email }}';
+		$('#opt-in [name="email"]').val(email);
+    });
+	
+</script>
+
+<!-- banner -->
+
+<div class="jumbotron jumbotron-fluid banner dark pageBanner" style="background-image:url('{{ 'assets/img/banners/banner-download@0.5x.jpg'|theme }}')">
+
+	<div class="container">
+	</div>
+
+</div>
+
+<!-- /banner -->
+
+{% partial 'demo-button' %}
+
+<!-- copy -->
+
+<div class="container copy">
+
+	<header class="col-md-12 copy-heading">
+	
+		<h1>{{ this.page.title }}</h1>
+		<h2>Keep in the loop</h2>
+
+	</header>
+
+	<div class="row justify-content-center">
+
+		<div class="col-md-10 col-md-offset-1 copy-main">
+
+			<p class="lead">Please let us know you're happy to receive e-mails from Alemba.</p>
+
+            {% component 'renderForm' %}
+
+		</div>
+
+	</div>
+
+</div>
+
+<!-- /copy -->

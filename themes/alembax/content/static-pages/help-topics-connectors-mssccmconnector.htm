@@ -1,0 +1,368 @@
+[viewBag]
+title = "MS SCCM Connector"
+url = "/help/topics/connectors/mssccmconnector"
+layout = "help"
+is_hidden = 0
+navigation_hidden = 0
+==
+                                                    <h1>MS SCCM Connector</h1>
+                                                    <p>This section of the documentation contains technical specifications about the connector that is implemented to link <span class="GeneralVariablesCoreName">ASM Core</span> and  System Center Configuration Manager (SCCM). It describes the details of the third-party application, that is, Microsoft SCCM including: </p>
+                                                    <ul class="ul_6">
+                                                        <li class="note_1" value="1">The name of the .NET assembly file </li>
+                                                        <li class="note_1" value="2">Connection methodology </li>
+                                                        <li class="note_1" value="3">The resource and link types that can be discovered on the application </li>
+                                                        <li class="note_1" value="4">The attributes of each resource and link type that can be imported into the <span class="GeneralVariablesCoreName">ASM Core</span> Configuration Management Database (CMDB) </li>
+                                                    </ul>
+                                                    <p class="note">You should familiarize yourself with the information in <a href="connector%20installation%20guide.htm" class="MCXref xref">Installing Connectors</a> before installing any connectors, and read the <a href="../integration/integrate.htm" class="MCXref xref">Integration</a> topics for more information on how to configure them.</p>
+                                                    <h2>Use Case Scenario </h2>
+                                                    <table class="TableStyle-scenario_table" style="mc-table-style: url('../../resources/tablestyles/scenario table.css');" cellspacing="0">
+                                                        <col style="width: 50pt;" class="TableStyle-scenario_table-Column-Column1">
+                                                        <col style="width: 419pt;" class="TableStyle-scenario_table-Column-Column2">
+                                                        <tr class="TableStyle-scenario_table-Body-Body1">
+                                                            <td class="TableStyle-scenario_table-BodyE-Column1-Body1">
+                                                                <p class="Strong">Purpose</p>
+                                                            </td>
+                                                            <td class="TableStyle-scenario_table-BodyD-Column2-Body1">
+                                                                <p>An organization uses Microsoft SMS or SCCM to discover and maintain resources present in its organization networks.</p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="TableStyle-scenario_table-Body-Body1">
+                                                            <td class="TableStyle-scenario_table-BodyE-Column1-Body1">
+                                                                <p class="Strong">Role</p>
+                                                            </td>
+                                                            <td class="TableStyle-scenario_table-BodyD-Column2-Body1">
+                                                                <p>The role of the connector is to expose the resources and their relationships to allow for population and ongoing consistency controls of the <span class="GeneralVariablesCoreName">ASM Core</span> CMDB. </p>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                    <h2>Connector Description </h2>
+                                                    <p>The table below provides a description of the  Microsoft  SCCM Connector. </p>
+                                                    <table class="TableStyle-Rep_Hdr_Row" style="mc-table-style: url('../../resources/tablestyles/rep hdr row.css');" cellspacing="0">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column1">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column2">
+                                                        <thead>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Head-Header1">
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column1-Header1">
+                                                                    <p>Information fields </p>
+                                                                </th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadD-Column2-Header1">
+                                                                    <p>Description </p>
+                                                                </th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr style="height: 15pt;" class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Connector name </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p>MS SMS/SCCM &lt;-&gt; <span class="GeneralVariablesCoreName">ASM Core</span> </p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr style="height: 15pt;" class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1" style="font-weight: bold;">
+                                                                    <p>Third-party application </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p>Microsoft SCCM </p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr style="height: 15pt;" class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1" style="font-weight: bold;">
+                                                                    <p>.NET Assembly name </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p>Infra.Connector.SCCM.dll </p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr style="height: 15pt;" class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1" style="font-weight: bold;">
+                                                                    <p>Connector class  </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p>Infra.Connector.SCCM.SCCMConnector </p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr style="height: 15pt;" class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1" style="font-weight: bold;">
+                                                                    <p>Configuration file   </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p>Infra.Connector.SCCM.icnf </p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr style="height: 15pt;" class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyB-Column1-Body1" style="font-weight: bold;">
+                                                                    <p>Connection methodology </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyA-Column2-Body1">
+                                                                    <p>ODBC connection to an SQL Server database </p>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <h2>Connection Parameters </h2>
+                                                    <p>The table below provides a description on the connection parameters of the  Microsoft SMS and SCCM Connector. </p>
+                                                    <table class="TableStyle-FieldDesc" style="mc-table-style: url('../../resources/tablestyles/fielddesc.css');" cellspacing="0">
+                                                        <col style="width: 167pt;" class="TableStyle-FieldDesc-Column-Column1">
+                                                        <col style="width: 221pt;" class="TableStyle-FieldDesc-Column-Column2">
+                                                        <tr style="height: 19pt;">
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-" style="font-weight: bold;">
+                                                                <p>Information fields </p>
+                                                            </td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-" style="font-weight: bold;">
+                                                                <p>Description </p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr style="height: 27pt;">
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">
+                                                                <p>Database Connection </p>
+                                                            </td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                <p>Database connection string or system DSN to the SMS/SCCM SQL Server database </p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr style="height: 15pt;">
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">
+                                                                <p>Database Login ID </p>
+                                                            </td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                <p>Database login ID </p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr style="height: 15pt;">
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">
+                                                                <p>Database Password </p>
+                                                            </td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                <p>Database password </p>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                    <p>Below you can see an example of the connection parameters of an SMS/SCCM source including connection details. </p>
+                                                    <p>
+                                                        <img src="/storage/app/media/Help/images/connector%20sccm%20parameters.jpg" class="screenshot"> </p>
+                                                    <h2>Customization </h2>
+                                                    <p>The  Microsoft SMS and SCCM Connector permits extensions to the schema through customization of the configuration file. The possible customizations include but are not restricted to: </p>
+                                                    <ul class="ul_11">
+                                                        <li class="Bulleted" value="1">New resource types </li>
+                                                        <li class="Bulleted" value="2">New resource properties </li>
+                                                        <li class="Bulleted" value="3">New link types </li>
+                                                    </ul>
+                                                    <h2>Connector Diagnostics </h2>
+                                                    <p>The connector has the facility to trace information. The data can be obtained through Polling tracing or Application tracing. </p>
+                                                    <h1>Resource Types </h1>
+                                                    <p>This section lists the resource types and properties exposed by the connector on Microsoft SMS 20003 or SCCM 2007 systems. </p>
+                                                    <h2>Resource Types for SMS 2003 </h2>
+                                                    <h3>Metered Software </h3>
+                                                    <p>Metered software refers to a software product whose usage is monitored across an SMS site. </p>
+                                                    <p class="note">The connector ensures that only the active Metered software are exposed and imported in the Federated CMDB. </p>
+                                                    <p>The attributes of Metered software are as follows: </p>
+                                                    <ul class="ul_19">
+                                                        <li class="Bulleted" value="1">Rule ID  </li>
+                                                        <li class="Bulleted" value="2">Rule Name  </li>
+                                                        <li class="Bulleted" value="3">Comment  </li>
+                                                        <li class="Bulleted" value="4">File Name  </li>
+                                                        <li class="Bulleted" value="5">File Version  </li>
+                                                        <li class="Bulleted" value="6">Last Update Time  </li>
+                                                        <li class="Bulleted" value="7">Original File Name  </li>
+                                                        <li class="Bulleted" value="8">Security Key  </li>
+                                                        <li class="Bulleted" value="9">Site Code  </li>
+                                                        <li class="Bulleted" value="10">Source Site </li>
+                                                    </ul>
+                                                    <h3>Package </h3>
+                                                    <p>A Package is a software deployment package configured within SMS to be distributed to the systems within a site. The attributes of Package are as follows: </p>
+                                                    <ul class="ul_19">
+                                                        <li class="Bulleted" value="1">Package ID  </li>
+                                                        <li class="Bulleted" value="2">Name  </li>
+                                                        <li class="Bulleted" value="3">Description  </li>
+                                                        <li class="Bulleted" value="4">Language  </li>
+                                                        <li class="Bulleted" value="5">Manufacturer  </li>
+                                                        <li class="Bulleted" value="6">Version  </li>
+                                                        <li class="Bulleted" value="7">MIF Filename  </li>
+                                                        <li class="Bulleted" value="8">MIF Name  </li>
+                                                        <li class="Bulleted" value="9">MIF Publisher  </li>
+                                                        <li class="Bulleted" value="10">MIF Version  </li>
+                                                        <li class="Bulleted" value="11">Source Date  </li>
+                                                        <li class="Bulleted" value="12">Source Site  </li>
+                                                    </ul>
+                                                    <h2>Resource Types for SMS 2003 Source Version  </h2>
+                                                    <ul class="ul_11">
+                                                        <li class="Bulleted" value="1">Stored Pkg Path  </li>
+                                                        <li class="Bulleted" value="2">Stored Pkg Version </li>
+                                                    </ul>
+                                                    <h3>Resource </h3>
+                                                    <p>A Resource is a discovered system within an SMS site. Resource ID is used as the unique identifier of the Resource. The attributes of Resource are as follows: </p>
+                                                    <ul class="ul_11">
+                                                        <li class="Bulleted" value="1">Resource ID </li>
+                                                        <li class="Bulleted" value="2">Active </li>
+                                                        <li class="Bulleted" value="3">IP Addresses </li>
+                                                        <li class="Bulleted" value="4">IP Subnets </li>
+                                                        <li class="Bulleted" value="5">IPX Addresses </li>
+                                                        <li class="Bulleted" value="6">IPX Network Numbers </li>
+                                                        <li class="Bulleted" value="7">MAC Addresses </li>
+                                                        <li class="Bulleted" value="8">AD Site Name </li>
+                                                        <li class="Bulleted" value="9">CPU Type </li>
+                                                        <li class="Bulleted" value="10">Decommissioned </li>
+                                                        <li class="Bulleted" value="11">Hardware ID </li>
+                                                        <li class="Bulleted" value="12">User Domain </li>
+                                                        <li class="Bulleted" value="13">User Name </li>
+                                                        <li class="Bulleted" value="14">Name </li>
+                                                        <li class="Bulleted" value="15">NetBIOS Name </li>
+                                                        <li class="Bulleted" value="16">OS </li>
+                                                        <li class="Bulleted" value="17">Domain </li>
+                                                        <li class="Bulleted" value="18">SMBIOS UUID </li>
+                                                        <li class="Bulleted" value="19">Community Name </li>
+                                                        <li class="Bulleted" value="20">Last Hardware Scan </li>
+                                                        <li class="Bulleted" value="21">Manufacturer </li>
+                                                        <li class="Bulleted" value="22">Model </li>
+                                                        <li class="Bulleted" value="23">Description </li>
+                                                        <li class="Bulleted" value="24">Roles </li>
+                                                        <li class="Bulleted" value="25">Status </li>
+                                                        <li class="Bulleted" value="26">System Type </li>
+                                                        <li class="Bulleted" value="27">BIOS Serial No </li>
+                                                        <li class="Bulleted" value="28"># Processors </li>
+                                                        <li class="Bulleted" value="29">Processor Speed </li>
+                                                        <li class="Bulleted" value="30">Chassis Type </li>
+                                                        <li class="Bulleted" value="31">Chassis Serial No </li>
+                                                        <li class="Bulleted" value="32">CD-ROM </li>
+                                                        <li class="Bulleted" value="33">Modem </li>
+                                                        <li class="Bulleted" value="34">Physical drives </li>
+                                                        <li class="Bulleted" value="35">Storage (Mb) </li>
+                                                        <li class="Bulleted" value="36">Total Physical Memory (Kb) </li>
+                                                        <li class="Bulleted" value="37">Total Virtual Memory (Kb) </li>
+                                                        <li class="Bulleted" value="38">Total Storage (Mb) </li>
+                                                    </ul>
+                                                    <h2>Resource Types for SCCM 2007  </h2>
+                                                    <h3 class="Heading3">Metered Software </h3>
+                                                    <p>Metered software refers to a software product whose usage is monitored across an SCCM site. </p>
+                                                    <p class="note">The connector ensures that only the active Metered software are exposed and imported in the Federated CMDB. </p>
+                                                    <p>The attributes of Metered software are as follows: </p>
+                                                    <ul class="ul_19">
+                                                        <li class="Bulleted" value="1">Rule ID  </li>
+                                                        <li class="Bulleted" value="2">Rule Name  </li>
+                                                        <li class="Bulleted" value="3">Comment  </li>
+                                                        <li class="Bulleted" value="4">File Name  </li>
+                                                        <li class="Bulleted" value="5">File Version  </li>
+                                                        <li class="Bulleted" value="6">Last Update Time  </li>
+                                                        <li class="Bulleted" value="7">Original File Name  </li>
+                                                        <li class="Bulleted" value="8">Security Key  </li>
+                                                        <li class="Bulleted" value="9">Site Code  </li>
+                                                        <li class="Bulleted" value="10">Source Site </li>
+                                                    </ul>
+                                                    <h3>Package </h3>
+                                                    <p>A Package is a software deployment package configured within SCCM to be distributed to the systems within a site. The attributes of Package are as follows: </p>
+                                                    <ul class="ul_19">
+                                                        <li class="Bulleted" value="1">Package ID  </li>
+                                                        <li class="Bulleted" value="2">Name  </li>
+                                                        <li class="Bulleted" value="3">Description  </li>
+                                                        <li class="Bulleted" value="4">Language  </li>
+                                                        <li class="Bulleted" value="5">Manufacturer  </li>
+                                                        <li class="Bulleted" value="6">Version  </li>
+                                                    </ul>
+                                                    <ul class="ul_11">
+                                                        <li class="Bulleted" value="1">MIF Filename  </li>
+                                                        <li class="Bulleted" value="2">MIF Name  </li>
+                                                        <li class="Bulleted" value="3">MIF Publisher  </li>
+                                                        <li class="Bulleted" value="4">MIF Version  </li>
+                                                        <li class="Bulleted" value="5">Source Date  </li>
+                                                        <li class="Bulleted" value="6">Source Site  </li>
+                                                        <li class="Bulleted" value="7">Source Version  </li>
+                                                        <li class="Bulleted" value="8">Stored Pkg Path </li>
+                                                    </ul>
+                                                    <h3 class="Heading3">Resource </h3>
+                                                    <p>A Resource is a discovered system within an SCCM site. The attributes of Resource are as follows: </p>
+                                                    <ul class="ul_11">
+                                                        <li class="Bulleted" value="1">Resource ID  </li>
+                                                        <li class="Bulleted" value="2">Active  </li>
+                                                        <li class="Bulleted" value="3">AD Domain Name  </li>
+                                                        <li class="Bulleted" value="4">AD Site Name  </li>
+                                                        <li class="Bulleted" value="5">CPU Type  </li>
+                                                        <li class="Bulleted" value="6">Decommissioned  </li>
+                                                        <li class="Bulleted" value="7">Hardware ID  </li>
+                                                        <li class="Bulleted" value="8">Internet Enabled  </li>
+                                                        <li class="Bulleted" value="9">User Domain  </li>
+                                                        <li class="Bulleted" value="10">User Name  </li>
+                                                        <li class="Bulleted" value="11">Name  </li>
+                                                        <li class="Bulleted" value="12">NetBIOS Name  </li>
+                                                        <li class="Bulleted" value="13">OS  </li>
+                                                        <li class="Bulleted" value="14">Domain </li>
+                                                        <li class="Bulleted" value="15">SMBIOS GUID  </li>
+                                                        <li class="Bulleted" value="16">SMBIOS UUID  </li>
+                                                        <li class="Bulleted" value="17">Community Name  </li>
+                                                        <li class="Bulleted" value="18">Last Hardware Scan  </li>
+                                                        <li class="Bulleted" value="19">Manufacturer  </li>
+                                                        <li class="Bulleted" value="20">Model  </li>
+                                                        <li class="Bulleted" value="21">Description  </li>
+                                                        <li class="Bulleted" value="22">Roles  </li>
+                                                        <li class="Bulleted" value="23">Status  </li>
+                                                        <li class="Bulleted" value="24">System Type  </li>
+                                                        <li class="Bulleted" value="25">BIOS Serial No  </li>
+                                                        <li class="Bulleted" value="26"># Processors  </li>
+                                                        <li class="Bulleted" value="27">Processor Speed  </li>
+                                                        <li class="Bulleted" value="28">Chassis Type  </li>
+                                                        <li class="Bulleted" value="29">Chassis Serial No  </li>
+                                                        <li class="Bulleted" value="30">Total Physical Memory (KB)  </li>
+                                                        <li class="Bulleted" value="31">Total Virtual Memory (KB)  </li>
+                                                        <li class="Bulleted" value="32">Total Storage (MB)  </li>
+                                                        <li class="Bulleted" value="33">IP Address  </li>
+                                                        <li class="Bulleted" value="34">IP Subnet  </li>
+                                                        <li class="Bulleted" value="35">MAC Address </li>
+                                                    </ul>
+                                                    <h1>Link Types</h1>
+                                                    <p>A link is defined by its name, a higher resource type, and a lower resource type. The higher and lower resources correspond to the resources types of the resources that are located at the ends of the link. </p>
+                                                    <p>The table below lists the link types that the connector has to discover on Microsoft SMS 2003 or SCCM 2007 systems. The links can then be imported into the <span class="GeneralVariablesCoreName">ASM Core</span> CMDB. </p>
+                                                    <table class="TableStyle-Rep_Hdr_Row" style="mc-table-style: url('../../resources/tablestyles/rep hdr row.css');margin-left: 0;margin-right: auto;" cellspacing="0">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column1">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column2">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column1">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column2">
+                                                        <thead>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Head-Header1">
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column1-Header1"> </th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column2-Header1"> </th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadD-Column1-Header1" colspan="2">Resource type</th>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Head-Header1">
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column1-Header1">
+                                                                    <p>Link name </p>
+                                                                </th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column2-Header1">
+                                                                    <p>Link description </p>
+                                                                </th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column1-Header1">Higher resource type</th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadD-Column2-Header1">Lower resource type</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Installed on </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>A relationship describing that a particular instance of a Metered software product is currently installed on a given Resource </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Metered software </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p>Resource </p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyB-Column1-Body1">
+                                                                    <p>Distributed to </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyB-Column2-Body1">
+                                                                    <p>A relationship indicating that a particular package has been successfully distributed to a given Resource </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyB-Column1-Body1">
+                                                                    <p>Package </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyA-Column2-Body1">
+                                                                    <p>Resource </p>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                

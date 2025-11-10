@@ -1,0 +1,70 @@
+url = "/"
+layout = "home"
+title = "home"
+description = "The home page"
+is_hidden = 0
+meta_title = "ITSM | IT Service Management - Alemba"
+meta_description = "Upgrading your ITSM tool? Alemba Service Manager offers a highly-functional, ITIL-aligned IT Service Management tool to suit all your business needs."
+robot_index = "index"
+robot_follow = "follow"
+seo_title = "ITSM | IT Service Management - Alemba"
+seo_description = "Upgrading your ITSM tool? Alemba Service Manager offers a highly-functional, ITIL-aligned IT Service Management tool to suit all your business needs."
+seoOptionsEnabledInSitemap = 0
+seoOptionsUseUpdatedAt = 1
+seoOptionsRobotIndex = "index"
+seoOptionsRobotFollow = "follow"
+seoOptionsChangefreq = "daily"
+seoOptionsPriority = 0.5
+canonical_url = "https://alemba.com"
+seoOptionsMetaTitle = "ITSM | IT Service Management - Alemba"
+seoOptionsMetaDescription = "Upgrading your ITSM tool? Alemba Service Manager offers a highly-functional, ITIL-aligned IT Service Management tool to suit all your business needs."
+seoOptionsCanonicalUrl = "https://alemba.com"
+seoOptionsOgCard = "summary_large_image"
+
+[viewBag]
+seo_title = "ITSM | IT Service Management - Alemba"
+seo_description = "Upgrading your ITSM tool? Alemba Service Manager offers a highly-functional, ITIL-aligned IT Service Management tool to suit all your business needs."
+robot_index = "index"
+robot_follow = "follow"
+==
+<?php
+function onStart()
+{
+	
+	// Get country code
+	
+	$this['countrycode'] = isset($_SERVER["HTTP_CF_IPCOUNTRY"]) ? $_SERVER["HTTP_CF_IPCOUNTRY"] : '';
+
+}
+?>
+==
+<script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "url": "https://alemba.com",
+      "logo": "{{ 'assets/img/alemba-logo.svg'|theme }}"
+    }
+</script>
+
+{% partial 'banners/banner-frontpage-top' %}
+        
+{% partial 'demo-button' %}
+        
+{% partial 'banners/banner-gigaom' %}
+
+{% partial 'banners/banner-itsm' %}
+
+{% partial 'banners/banner-esm' %}
+
+{% partial 'banners/banner-customers' %}
+
+{% partial 'banners/banner-verticals' %}
+
+{% partial 'banners/banner-connectors' %}
+
+{% partial 'pagelinks-recent' %}
+
+{% partial 'banners/banner-gov' %}
+
+{% partial 'banners/banner-roadmap' %}

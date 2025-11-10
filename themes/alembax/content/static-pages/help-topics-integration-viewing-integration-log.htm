@@ -1,0 +1,111 @@
+[viewBag]
+title = "Viewing Integration Log"
+url = "/help/topics/integration/viewing-integration-log"
+layout = "help"
+is_hidden = 0
+navigation_hidden = 0
+==
+                                                    <h1>Viewing Integration Log</h1>
+                                                    <p>The Integration Activity window enables you to view all integration scheduling activity that has run on sources. </p>
+                                                    <h2 class="Prerequisite">Before you start</h2>
+                                                    <p class="prereqtext1">The <span class="GeneralVariablesCoreName">ASM Core</span> Integration Polling Service must be running for scheduled scans to run on Federated CMDB sources in the defined period. Event Management events are detected through the polling service and are not dependent on integration scheduling.</p>
+                                                    <p class="prereqtextlast">You must have <b>Integration Setup</b> selected in the <a href="../admin%20security%20roles/general%20access%20security%20role%20-%20admin%20tab.htm">Admin</a> tab of your <b>General Access Security Role</b>. </p>
+                                                    <ol>
+                                                        <li value="1">
+                                                            <p>Select <a href="../general%20topics/asmcorewindow.htm"><span style="font-size: 24pt;">≡</span></a> &gt; <b>Admin</b> &gt;  <b>Integration</b>.  </p>
+                                                            <p>The <b>Integration Platform Settings</b> window appears.</p>
+                                                        </li>
+                                                        <li value="2">Select the <b>Activity</b> option from the explorer pane <a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="../../resources/images/admin%20integ%20activity.png"><img class="MCPopupThumbnail img imgthumbnail" data-mc-width="426" data-mc-height="327" src="/storage/app/media/Help/images/admin%20integ%20activity_thumb_0_48.png" tabindex=""></a>.</li>
+                                                        <li value="3">Complete the details:</li>
+                                                        <p>
+                                                            </p>
+<table style="mc-table-style: url('../../resources/tablestyles/fielddesc no indent.css');" class="TableStyle-FieldDesc_no_indent" cellspacing="0">
+                                                                <col class="TableStyle-FieldDesc_no_indent-Column-Column1">
+                                                                <col class="TableStyle-FieldDesc_no_indent-Column-Column2">
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">
+                                                                        <p>From and To</p>
+                                                                    </td>
+                                                                    <td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">
+                                                                        <p>Select the start and end date to define the period in which you want to view activity.</p>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">
+                                                                        <p>Connector</p>
+                                                                    </td>
+                                                                    <td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">
+                                                                        <p>select the connector for which you want to view activity</p>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">
+                                                                        <p>Source</p>
+                                                                    </td>
+                                                                    <td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">
+                                                                        <p>select the source for which you want to view activity</p>
+                                                                    </td>
+                                                                </tr>
+                                                            </table>
+                                                        
+                                                        <li value="4">Select the <b>Log</b> view to view all event messages and warnings recorded in the period. To view the log details for a particular activity error or warning, double-click the entry in the browse table. The following types of integration activity may appear in the Log tab:<ol style="list-style-type: decimal;margin-left: 36pt;" start="1">
+<li style="list-style-type: disc;" value="1">
+<b>Activities that relate to the Federated CMDB</b>, such as errors while importing resources, connection errors, errors when the CMDB is not updated, when resources are unlinked. Depending on the integration connector and source, this may include directory server integration events, such as adding or deleting analysts and unforeseen errors such as network outages and security errors. Situations where person records could not be imported for reasons such as when their login ID is already in use by another person is also reported here. Details will include the person using the login ID and the person that could not be imported.</li>
+<li style="list-style-type: disc;" value="2">
+<b>Event Management events</b> such as the details of any attempted communication to a third party system, any errors generated when sending or receiving a transaction, or configuration errors.</li>
+</ol>
+</li>
+                                                        <li value="5">
+                                                            <p class="note">The activity log only records warnings and errors for Federated CMDB activity. If a person record has been successfully matched from a directory server integration source, this information will be recorded in the <b>Federated CMDB Administration</b> window, and in the <b>Audit Trail</b> for the person details record.</p>
+                                                        </li>
+                                                        <p>The following information is recorded in the synchronization log:</p>
+                                                        <p>
+                                                            </p>
+<table style="mc-table-style: url('../../resources/tablestyles/fielddesc.css');" class="TableStyle-FieldDesc" cellspacing="0">
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">
+                                                                        <p>Source</p>
+                                                                    </td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                        <p>The name of the source scanned or on which events were detected</p>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">
+                                                                        <p>Level</p>
+                                                                    </td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                        <p>The type of log entry, such as Error or Warning</p>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">
+                                                                        <p>Logged At</p>
+                                                                    </td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                        <p>The date on which the log was created</p>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">
+                                                                        <p>Message</p>
+                                                                    </td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                        <p>The details of the error message</p>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">
+                                                                        <p>Data</p>
+                                                                    </td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                        <p>The database details for the activity or event</p>
+                                                                    </td>
+                                                                </tr>
+                                                            </table>
+                                                        
+                                                        <li value="6">
+                                                            <p class="note">This information also appears in the <b>Federated CMDB Administration</b> window when you click the <b>Synchronization Log</b> view.</p>
+                                                        </li>
+                                                    </ol>
+                                                

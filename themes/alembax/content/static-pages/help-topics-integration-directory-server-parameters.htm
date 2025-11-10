@@ -1,0 +1,144 @@
+[viewBag]
+title = "Directory Server Parameters"
+url = "/help/topics/integration/directory-server-parameters"
+layout = "help"
+is_hidden = 0
+navigation_hidden = 0
+==
+                                                    <h1>Directory Server Parameters</h1>
+                                                    <p><span class="GeneralVariablesCoreName">ASM Core</span> can be integrated and synchronized with supported directory server technologies. This capability enables you to import analyst and User details stored in databases from other directory servers into VMware Service Manager. </p>
+                                                    <p>The <span class="GeneralVariablesCoreName">ASM Core</span> directory server uses Microsoft.NET Directory Services library. This technology supports communication with the following directory servers which are compliant with the Lightweight Directory Access Protocol (LDAP):</p>
+                                                    <ul>
+                                                        <li value="1">Microsoft Active Directory</li>
+                                                        <li value="2">Sun Java System directory server</li>
+                                                        <li value="3">Novell eDirectory</li>
+                                                    </ul>
+                                                    <p>Besides the fields common to all sources on the <a href="configuring%20integ%20source.htm">Integration Source Details window</a>, some fields are specific to directory server sources.</p>
+                                                    <p class="note">These fields can be named differently or vary depending on the connector.</p>
+                                                    <table style="mc-table-style: url('../../resources/tablestyles/fielddesc.css');" class="TableStyle-FieldDesc" cellspacing="0">
+                                                        <col class="TableStyle-FieldDesc-Column-Column1">
+                                                        <col class="TableStyle-FieldDesc-Column-Column2">
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">
+                                                                <p>LDAP Server Path</p>
+                                                            </td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                <p>This is the connection string which identifies the location of the directory server for which <span class="GeneralVariablesCoreName">ASM Core</span> will establish a connection.</p>
+                                                                <p>The connection string contains up to four pieces of information:</p>
+                                                                <table style="mc-table-style: url('../../resources/tablestyles/fielddesc no indent.css');" class="TableStyle-FieldDesc_no_indent" cellspacing="0">
+                                                                    <col class="TableStyle-FieldDesc_no_indent-Column-Column1">
+                                                                    <col class="TableStyle-FieldDesc_no_indent-Column-Column2">
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">
+                                                                            <p>Directory Protocol</p>
+                                                                        </td>
+                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">
+                                                                            <p>This part of the connection string is mandatory and will almost always be LDAP. An alternative is GC to indicate that the connection is to an Active Directory global catalog.</p>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">
+                                                                            <p>Host Name</p>
+                                                                        </td>
+                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">
+                                                                            <p>This is the IP name of the server on which the directory server application is installed.</p>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">
+                                                                            <p>IP Port Number</p>
+                                                                        </td>
+                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">
+                                                                            <p>This is the IP port number of the server on which LDAP is being hosted. This is required only if a port other than the LDAP default of 389 is used.</p>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">
+                                                                            <p>Root Naming Context</p>
+                                                                        </td>
+                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">
+                                                                            <p>This defines the scope of the objects retrieved by Directory Integration. It is expressed as the DN (Distinguished Name) of an OU. Directory Integration will import the sub-OUs, groups, and users within that OU. The Root Naming Context must be included in the connection string.</p>
+                                                                        </td>
+                                                                    </tr>
+                                                                </table>
+                                                                <p class="exampletext">Example of a connection string to connect to a Sun Java System Directory Server: LDAP://oneserver.mydomain.com:1095/dc=mydomain,dc=com</p>
+                                                                <p class="exampletext">Example of a connection string to connect to an Active Directory server: LDAP://adserver.mydomain.com/dc=mydomain,dc=com</p>
+                                                                <p class="exampletext">Example of a connection string to connect to the Global Catalog: GC://mygcserver.mydomain.com/</p>
+                                                                <p class="warning">The Root Naming Context must be included in the connection string. If the Root Naming Context is not included in the connection string, scans will not function correctly.</p>
+                                                                <p class="note">It is recommended that a server name is specified in the connection string field.</p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">
+                                                                <p>User DN/ID and Password</p>
+                                                            </td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                <p>These are the details used to authenticate <span class="GeneralVariablesCoreName">ASM Core</span>’s access to the server. In the case of connecting to an Active Directory, these can be left empty and the connection will be made using the credentials under which the <span class="GeneralVariablesCoreName">ASM Core</span> process is running. The password is always stored in an encrypted format in the database.</p>
+                                                                <p class="note">If the length of the entered password field does not equal the length of the stored password, and the Server and Login ID fields have not changed, the administrator will be prompted to re-enter the password. If the user changes the password on the integration tool, the Password field must be updated.</p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">
+                                                                <p>Server Bind</p>
+                                                            </td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                <p>This setting is used to improve the performance of connecting to a directory server if the LDAP Server Path field contains a server name. The connection is not improved for connecting to the directory server if the connection string for the server does not contain a server name.  </p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">
+                                                                <p>SSL</p>
+                                                            </td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                <p>This setting is used to create a secure connection between <span class="GeneralVariablesCoreName">ASM Core</span> and the directory server. This option is ignored if the User DN/ID field is not specified for the directory server.</p>
+                                                                <p class="note">When we use the term SSL in <span class="GeneralVariablesProductName">ASM</span>, we are actually referring to encryption protocols supported by IIS. This security is configured in IIS and <span class="GeneralVariablesProductName">ASM</span> will work with any protocol supported by the client and/or server.</p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">
+                                                                <p>Kerberos/NTLM</p>
+                                                            </td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                <p>This setting is used to enable the source to use the Kerberos security authentication protocol.</p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">
+                                                                <p>Flat Domain Name</p>
+                                                            </td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                <p class="prereq">This field only displays for an Active Directory Connector source. </p>
+                                                                <p>You can use this field to manually configure the domain that will be given to all users that are imported into <span class="GeneralVariablesCoreName">ASM Core</span> from the directory server. In the Active Directory, each user has a userID unique to the domain to which they belong. When there are multiple domains configured however, it is possible for two users belonging to different domains to have the same userID. In this situation, Active Directory uses their domain to distinguish between these users. When users are being imported into <span class="GeneralVariablesCoreName">ASM Core</span> from multiple domains defined in the Active Directory, <span class="GeneralVariablesCoreName">ASM Core</span> will store, for each imported analyst, their userID and an identifier for the domain to which they belong. This identifier is referred to as the flat domain name. This is what is used to identify users from multiple domains, when integrated security is configured. When users are imported from Active Directory into <span class="GeneralVariablesCoreName">ASM Core</span>, the system will try to derive their flat domain name by querying the directory server. This information however, is not always up to date. </p>
+                                                                <p>Use this field to specify the domain that will be used by any person records that have been imported from this directory server. The value specified in this field will override any domain retrieved from the directory server itself, it is strongly recommended (although not mandatory) that you use this field to make clear which domain should be assigned to the person records that are imported from this directory server. </p>
+                                                                <p class="warning">If you add the flat domain name after you have imported analysts or Users into <span class="GeneralVariablesCoreName">ASM Core</span>, you must rescan these analysts or Users in order to pick up the new domain name. </p>
+                                                                <p class="note">You can view the flat domain name of an analyst when you click the Login ID and Password button on the Person Details window for the analyst’s record. The flat domain is specified on the Domain field. </p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">
+                                                                <p>Delete Disabled Person Records</p>
+                                                            </td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                <p class="warning">This option displays only for an Active Directory Connector source. </p>
+                                                                <p>Select this option to delete person records that have been deleted in <span class="GeneralVariablesCoreName">ASM Core</span> if the corresponding record is disabled in the Active Directory. If the person details are reactivated from the Active Directory, the user details are restored in <span class="GeneralVariablesCoreName">ASM Core</span> during the next scheduled directory integration scan. </p>
+                                                                <p class="note">When a person record is deleted from <span class="GeneralVariablesCoreName">ASM Core</span> based on a disabled Active Directory record, the Login ID and Password fields for the deleted user within <span class="GeneralVariablesCoreName">ASM Core</span> will be available for reuse.</p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">
+                                                                <p>Authenticate Imported People against Source</p>
+                                                            </td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                <p class="prereq">This option only displays if the directory server  and the directory server connector support authentication. </p>
+                                                                <p>Select this option to enable <span class="GeneralVariablesCoreName">ASM Core</span> to authenticate already imported persons against the directory source from which they were initially imported.</p>
+                                                                <p class="warning"><span class="GeneralVariablesCompanyName2">Alemba®</span> recommends that if you have multiple sources for the same users, you only select this option for the definitive source you want <span class="GeneralVariablesCoreName">ASM Core</span> to use to authenticate the user. Otherwise, <span class="GeneralVariablesCoreName">ASM Core</span> will randomly select one of the sources enabled for authentication to authenticate the imported user. </p>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                    <h2>Authentication for an Active Directory Integration Connector</h2>
+                                                    <p>For Active Directory implementations, you should enable <b>Integrated Security</b> on the <b>Security Settings</b> window in <span class="GeneralVariablesCoreName">ASM Core</span>. Configuring Integrated Security identifies imported analysts with their originating domains, and then uses this information to authenticate the analyst against the corresponding Active Directory user when a directory integration scan is performed. For Active Directory users, it is not necessary to select the <b>Authenticate Imported People against Source</b> option.</p>
+                                                    <p class="warning">The Active Directory field userPrincipalName must be filled in for the Active Directory scan to run. If this is not done, an error message will display in the Activity Log stating that there is no userID.</p>
+                                                    <h2>Authentication for other Directory Integration Connectors</h2>
+                                                    <p>Person records imported from other directory servers are authenticated only if <b>Authenticate Imported People against Source</b> is selected. Analysts imported from non-Active Directory directory servers have their Distinguished Name (DN) stored in a <span class="GeneralVariablesCoreName">ASM Core</span> field called USER_QUALIFIED. When an analyst logs on to <span class="GeneralVariablesCoreName">ASM Core</span>, they are matched by the login ID to a user record. This setting is ignored if Integrated Security is enabled.</p>
+                                                    <p> </p>
+                                                

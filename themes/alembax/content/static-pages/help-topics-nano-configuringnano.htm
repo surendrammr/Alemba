@@ -1,0 +1,280 @@
+[viewBag]
+title = "Configuring Nano"
+url = "/help/topics/nano/configuringnano"
+layout = "help"
+is_hidden = 0
+navigation_hidden = 0
+==
+                                                    <h1>
+<a name="aanchor138"></a>
+                                                        <concept term="Nano"></concept><a name="top"></a>Configuring <span class="GeneralVariablesProduct2Name">Nano</span>
+</h1>
+                                                    <h2 class="Prerequisite" data-mc-conditions="Default.ScreenOnly">Before you start</h2>
+                                                    <p class="prereqtext1" data-mc-conditions="Default.ScreenOnly">It is recommended to read <a href="introducingnano.htm" class="MCXref xref">Introduction to Nano</a> and the <a href="featurelist.htm" class="MCXref xref">Nano Feature List</a> before continuing.</p>
+                                                    <p class="prereqtext" data-mc-conditions="Default.ScreenOnly"><span class="GeneralVariablesProduct2Name">Nano</span> is an interface to <span class="GeneralVariablesCoreName">ASM Core</span>, which must be installed on the server, and a system created in the <span class="GeneralVariablesCoreName">ASM Core</span> Server Console.</p>
+                                                    <p>Configuration options are available to System Administrators to modify the behavior and functions in <span class="GeneralVariablesProduct2Name">Nano</span>. </p>
+                                                    <p>The following configuration options are available:</p>
+                                                    <ul>
+                                                        <li value="1">IPK Management Security Role settings change the way calls in <span class="GeneralVariablesProduct2Name">Nano</span> behave for analysts with that role.</li>
+                                                        <li value="2">Workflow Management Security Role settings change the way tasks and requests in <span class="GeneralVariablesProduct2Name">Nano</span> behave for analysts with that role.</li>
+                                                        <li value="3">IPK Status Title settings control what happens to a call when a status is applied to a call in <span class="GeneralVariablesProduct2Name">Nano</span>, as well as what status columns are visible in Kanban layout.</li>
+                                                        <li value="4">Workflow Status Title settings control what happens to a request or task a when status is applied to a request or task in <span class="GeneralVariablesProduct2Name">Nano</span>, as well as what status columns are visible in Kanban layout.</li>
+                                                        <li value="5">Request Phases provide a graphical representation in tasks and requests in <span class="GeneralVariablesProduct2Name">Nano</span>, of the lifecycle of a workflow and its current phase. </li>
+                                                        <li value="6">Search Field settings change the search field behavior in <span class="GeneralVariablesProduct2Name">Nano</span> and <span class="GeneralVariablesCoreName">ASM Core</span>.</li>
+                                                        <li value="7">
+<span class="GeneralVariablesProduct2Name">Nano</span> System Settings change the user experience for analysts in <span class="GeneralVariablesProduct2Name">Nano</span>.</li>
+                                                        <li value="8">use <span class="GeneralVariablesDesignerName">ASM Designer</span> to modify <span class="GeneralVariablesProduct2Name">Nano</span> screens.</li>
+                                                    </ul>
+                                                    <p class="warning"><span class="GeneralVariablesProduct2Name">Nano</span> does not support outgoing email or systems  configured for plain text. If <b>Plain Text</b> is enabled, emails should not be sent from <span class="GeneralVariablesProduct2Name">Nano</span>.</p>
+                                                    <h2 class="Heading2">Recommended minimum configuration settings</h2>
+                                                    <p>Before analysts start  using <span class="GeneralVariablesProduct2Name">Nano</span>, you must configure three settings on statuses used in calls, requests, and tasks. This section describes why they're needed, how they work, and how to configure them.</p>
+                                                    <h3>Overview</h3>
+                                                    <p><b>A. Define functions for statuses.</b> Calls, requests, and tasks in <span class="GeneralVariablesProduct2Name">Nano</span> can be closed by assigning them a Status configured with the <b>Close</b> function. The same is true for pausing the clock on the SLA, and resuming service. These functions must be configured on the task, request, and call statuses.</p>
+                                                    <p><b>B. Assign images to statuses.</b> Assigning images to the statuses helps analysts to remember which statuses perform which functions.</p>
+                                                    <p><b>C. Define Parent statuses.</b> Outstanding screens in <span class="GeneralVariablesProduct2Name">Nano</span> offer a Kanban layout which displays work items as cards organized into columns that represent the item's Status. Systems that have more than a handful of statuses may prefer to define 'parent' statuses to keep the columns in Kanban layout to a reasonable number. Only statuses with the <b>Parent</b> setting appear as columns in Kanban layout.</p>
+                                                    <p><b>Consider whether your users are using SSO.</b> <span class="GeneralVariablesProduct2Name">Nano</span> supports SSO for more than one system. However, when several instances of <span class="GeneralVariablesProductName">ASM</span> are running on one system, but SSO has been applied to only one of them, <span class="GeneralVariablesProduct2Name">Nano</span> only logs in to the default system. In order for SSO to work correctly, the SSO needs to be enabled or disabled on all systems.</p>
+                                                    <h3>
+<a name="Configur"></a>How to configure the statuses for the Minimum Recommendation</h3>
+                                                    <h2 class="Prerequisite" data-mc-conditions="Default.ScreenOnly">Before you start</h2>
+                                                    <p class="prereqtext1" data-mc-conditions="Default.ScreenOnly">To configure call statuses, <b>IPK Setup</b> must be selected in the <a href="../admin%20security%20roles/general%20access%20security%20role%20-%20admin%20tab.htm">Admin</a> tab of your <b>General Access Security Role.</b></p>
+                                                    <p class="prereqtext" data-mc-conditions="Default.ScreenOnly">To configure request and task statuses, <b>Workflow Management Setup</b> must be selected in the <a href="../admin%20security%20roles/general%20access%20security%20role%20-%20admin%20tab.htm">Admin</a> tab of your <b>General Access Security Role</b></p>
+                                                    <p>You must perform the following on Call Statuses, Request Statuses, and Task Statuses: </p>
+                                                    <ol>
+                                                        <li value="1">Select <a href="../general%20topics/asmcorewindow.htm"><span style="font-size: 24pt;">≡</span></a> &gt; <b>Admin</b> &gt;  <b>System Administration</b>.</li>
+                                                        <li value="2"> Find and select the appropriate status window:</li>
+                                                    </ol>
+                                                    <ul>
+                                                        <li value="1">For <a href="../admin%20ipk%20management/call%20status%20titles.htm" class="MCXref xref">Call Status Titles</a> expand the <b>IPK Management</b> section;</li>
+                                                        <li value="2">For <a href="../admin%20workflow%20mgt/request%20completion%20statuses.htm" class="MCXref xref">Request Completion Statuses</a> expand the <b>Workflow Management</b> section;</li>
+                                                        <li value="3">For <a href="../admin%20workflow%20mgt/task%20status%20titles.htm" class="MCXref xref">Task Status Titles</a> expand the <b>Workflow Management</b> section.</li>
+                                                    </ul>
+                                                    <ol data-mc-continue="true">
+                                                        <li value="4">
+<b>Define functions for statuses.</b> Enable the <b>Close</b> checkbox for the status you want used to close the calls, requests, or tasks. This is required in order for analysts to be able to close work items from the Details screen. </li>
+                                                        <li value="5">
+<b>Assign images to statuses</b>. Use the drop down in the <b>Image</b> column to assign images to the statuses. The images help your analysts know what functions each status performs on the call, request or task; for example the closure status.</li>
+                                                        <li value="6">
+<b>Define Parent statuses</b>. Select the <b>Parent</b> checkbox for each status you want to displayed as a column in the Kanban layout.</li>
+                                                    </ol>
+                                                    <p class="note">Detailed information and instructions for each of these settings is available below.</p>
+                                                    <p class="note">The other configuration settings described below are optional and can be used to enhance your analyst's experience with <span class="GeneralVariablesProduct2Name">Nano</span>.</p>
+                                                    <h2 class="Heading2">All <span class="GeneralVariablesProduct2Name">Nano</span> configuration settings</h2>
+                                                    <p>This section describes all configuration settings available for <span class="GeneralVariablesProduct2Name">Nano</span>.</p>
+                                                    <h2 class="Prerequisite" data-mc-conditions="Default.ScreenOnly">Before you start</h2>
+                                                    <p class="prereqtext1" data-mc-conditions="Default.ScreenOnly">You must have: </p>
+                                                    <ul class="prereq">
+                                                        <li value="1" data-mc-conditions="Default.ScreenOnly">
+<b>Security Roles Setup</b> selected in the <a href="../admin%20security%20roles/general%20access%20security%20role%20-%20admin%20tab.htm">Admin</a> tab of your own <b>General Access security role</b> before you can assign or remove permissions for any security roles.</li>
+                                                        <li value="2" data-mc-conditions="Default.ScreenOnly">
+<b>IPK Setup</b> selected in the <a href="../admin%20security%20roles/general%20access%20security%20role%20-%20admin%20tab.htm">Admin</a> tab of your <b>General Access Security Role</b> in order to configure IPK administration settings.</li>
+                                                        <li value="3" data-mc-conditions="Default.ScreenOnly">
+<b>Workflow Management Setup</b> selected in the <a href="../admin%20security%20roles/general%20access%20security%20role%20-%20admin%20tab.htm">Admin</a> tab of your <b>General Access Security Role</b> in order to configure Workflow administration settings.</li>
+                                                        <li value="4" data-mc-conditions="Default.ScreenOnly">
+<b><span class="GeneralVariablesProduct2Name">Nano</span></b> selected in the <a href="../admin%20security%20roles/general%20access%20security%20role%20-%20admin%20tab.htm">Admin</a> tab of your <b>General Access Security Role</b> in order to configure <span class="GeneralVariablesProduct2Name">Nano</span> administration settings.</li>
+                                                    </ul>
+                                                    <h3>Security Role settings</h3>
+                                                    <p>Analysts can access <span class="GeneralVariablesProduct2Name">Nano</span> with no changes required to their <b>Security Roles</b>. <span class="GeneralVariablesProduct2Name">Nano</span> options in Security Roles can be configured to  change the way <span class="GeneralVariablesProduct2Name">Nano</span> behaves for analysts with those roles. The following settings are within the <b>Security Role</b> section of System Administration:</p>
+                                                    <ul>
+                                                        <li value="1"> <a href="../admin%20security%20roles/ipk%20management%20security%20roles%20-%20options%20tab.htm" target="_blank" class="MCXref xref">IPK Management Role: Options Tab</a>
+</li>
+                                                        <li value="2"> <a href="../admin%20security%20roles/workflow%20mgt%20sec%20role%20-%20requests%20tab.htm" target="_blank" class="MCXref xref">Workflow Management Security Role: Requests Tab</a>
+</li>
+                                                        <li value="3"> <a href="../admin%20security%20roles/workflow%20mgt%20sec%20role%20-%20tasks%20tab.htm" target="_blank" class="MCXref xref">Workflow Management Security Role: Tasks Tab</a>
+</li>
+                                                    </ul>
+                                                    <table style="mc-table-style: url('../../resources/tablestyles/fielddesc.css');" class="TableStyle-FieldDesc" cellspacing="0">
+                                                        <col class="TableStyle-FieldDesc-Column-Column1">
+                                                        <col class="TableStyle-FieldDesc-Column-Column2">
+                                                        <tbody>
+                                                            <tr class="TableStyle-nano_FieldDesc-Body-Body1">
+                                                                <td class="TableStyle-FieldDesc-BodyH-Column1-">Update Without Action</td>
+                                                                <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                        Select  to allow analysts with this role to update a work item without first taking action. Hides the Take Action button on calls, requests, and tasks in <span class="GeneralVariablesProduct2Name">Nano</span>.
+                    </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-nano_FieldDesc-Body-Body1">
+                                                                <td class="TableStyle-FieldDesc-BodyB-Column1-">Take Over on Forward</td>
+                                                                <td class="TableStyle-FieldDesc-BodyA-Column2-">
+                                                                    <p>When analysts with this setting  change the   Assigned To value in a work item to another analyst, that analyst automatically becomes the current owner of the work item.</p>
+                                                                    <p class="note">Take Over on Forward cannot be used when assigning work items to groups. The current analyst remains the current analyst.</p>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <h3>Status settings</h3>
+                                                    <p>Statuses in <span class="GeneralVariablesProduct2Name">Nano</span> can have images, and perform functions on the work item in <span class="GeneralVariablesProduct2Name">Nano</span>, such as stopping the SLA clock, closing a call, or approving a task. These settings only affect work items in <span class="GeneralVariablesProduct2Name">Nano</span>. The following settings are  in System Administration in:</p>
+                                                    <ul>
+                                                        <li value="1">The <a href="../admin%20ipk%20management/call%20status%20titles.htm" class="MCXref xref">Call Status Titles</a> window within the <b>IPK Management</b> section</li>
+                                                        <li value="2">The <a href="../admin%20workflow%20mgt/request%20completion%20statuses.htm" class="MCXref xref">Request Completion Statuses</a> window withing the <b>Workflow Management</b> section</li>
+                                                        <li value="3">The <a href="../admin%20workflow%20mgt/task%20status%20titles.htm" class="MCXref xref">Task Status Titles</a> window withing the <b>Workflow Management</b> section</li>
+                                                    </ul>
+                                                    <table class="TableStyle-nano_FieldDesc" style="mc-table-style: url('../../resources/tablestyles/nanofielddesc.css');" cellspacing="0">
+                                                        <col class="TableStyle-nano_FieldDesc-Column-Column1" style="width: 15%;">
+                                                        <col class="TableStyle-nano_FieldDesc-Column-Column2">
+                                                        <tbody>
+                                                            <tr class="TableStyle-nano_FieldDesc-Body-Body1">
+                                                                <td class="TableStyle-nano_FieldDesc-BodyE-Column1-Body1">Default</td>
+                                                                <td class="TableStyle-nano_FieldDesc-BodyD-Column2-Body1">Select this check box to assign this status by default to new calls created in <span class="GeneralVariablesProduct2Name">Nano</span>.</td>
+                                                            </tr>
+                                                            <tr class="TableStyle-nano_FieldDesc-Body-Body1">
+                                                                <td class="TableStyle-nano_FieldDesc-BodyE-Column1-Body1">
+                                                                    <p>Close</p>
+                                                                </td>
+                                                                <td class="TableStyle-nano_FieldDesc-BodyD-Column2-Body1">
+                        When a status with this setting is saved on a call or request in <span class="GeneralVariablesProduct2Name">Nano</span>, that work item is closed. Closed work items can be reopened using the Re-Open button; changing the status will not automatically re-open them<p class="note">Available for Call Status Titles and Request Completion Statuses only.                </p>
+</td>
+                                                            </tr>
+                                                            <tr class="TableStyle-nano_FieldDesc-Body-Body1">
+                                                                <td class="TableStyle-nano_FieldDesc-BodyE-Column1-Body1">Clock Stop</td>
+                                                                <td class="TableStyle-nano_FieldDesc-BodyD-Column2-Body1">
+                        When a status with this setting is saved on a work item, the SLA clock will stop (pause) on the linked agreement. Start the SLA clock again by selecting a status that does not have this setting.
+       </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-nano_FieldDesc-Body-Body1">
+                                                                <td class="TableStyle-nano_FieldDesc-BodyE-Column1-Body1">Resume Service</td>
+                                                                <td class="TableStyle-nano_FieldDesc-BodyD-Column2-Body1">When a status with this setting is saved on a work item, the service is resumed and the SLA agreement is closed. Selecting a different status will not restart the clock.<p class="note">Available for Call Status Titles and Request Completion Statuses only.                </p>
+</td>
+                                                            </tr>
+                                                            <tr class="TableStyle-nano_FieldDesc-Body-Body1">
+                                                                <td class="TableStyle-nano_FieldDesc-BodyE-Column1-Body1">Image</td>
+                                                                <td class="TableStyle-nano_FieldDesc-BodyD-Column2-Body1">
+                                                                    <p>                        Select an image from the list to indicate to users in <span class="GeneralVariablesProduct2Name">Nano</span> what function or action will be performed on the work item when it is saved with that status. Any image can be assigned to any status. Select <b>None</b> to display no image.</p>
+                                                                    <p>When selecting an image in System Admin, only the image name is shown; the table below shows the corresponding image that appears in <span class="GeneralVariablesProduct2Name">Nano</span>.</p>
+                                                                    <p class="exampletext"> A status configured to close a call should be assigned the <b>Close</b> image.</p>
+                                                                    <table style="mc-table-style: url('../../resources/tablestyles/fielddesc no indent.css');" class="TableStyle-FieldDesc_no_indent" cellspacing="0">
+                                                                        <col class="TableStyle-FieldDesc_no_indent-Column-Column1">
+                                                                        <col class="TableStyle-FieldDesc_no_indent-Column-Column2" style="width: 85%;">
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">Approve</td>
+                                                                                <td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">
+                                                                                    <img src="/storage/app/media/Help/images/approved.png">
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">Authorize</td>
+                                                                                <td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">
+                                                                                    <img src="/storage/app/media/Help/images/nanoauth.png">
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">Close</td>
+                                                                                <td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">
+                                                                                    <img src="/storage/app/media/Help/images/close%20x%20button.png">
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">None</td>
+                                                                                <td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">no image</td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">Reject</td>
+                                                                                <td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">
+                                                                                    <img src="/storage/app/media/Help/images/nanorejected.png">
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">Service Resume</td>
+                                                                                <td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">
+                                                                                    <img src="/storage/app/media/Help/images/nanoresumeservice.png">
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">Stop Clock</td>
+                                                                                <td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">
+                                                                                    <img src="/storage/app/media/Help/images/stop%20sla%20clock.png">
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">Unauthorize</td>
+                                                                                <td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">
+                                                                                    <img src="/storage/app/media/Help/images/nanounauth.png">
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">Update</td>
+                                                                                <td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">
+                                                                                    <img src="/storage/app/media/Help/images/nanoupdateicon.png">
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td class="TableStyle-FieldDesc_no_indent-BodyB-Column1-">User</td>
+                                                                                <td class="TableStyle-FieldDesc_no_indent-BodyA-Column2-">
+                                                                                    <img src="/storage/app/media/Help/images/nanousericon.png">
+                                                                                </td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-nano_FieldDesc-Body-Body1" data-mc-conditions="">
+                                                                <td class="TableStyle-nano_FieldDesc-BodyE-Column1-Body1">Parent Status</td>
+                                                                <td class="TableStyle-nano_FieldDesc-BodyD-Column2-Body1">Select to designate a status as the parent of the statuses beneath it.  Multiple parent statuses can be defined, turning each status between them into 'child' statuses of the parent above. Only statuses defined as Parents appear as columns in the Kanban layout in <span class="GeneralVariablesProduct2Name">Nano</span>, and each work item appears within its parent status column. </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-nano_FieldDesc-Body-Body1" data-mc-conditions="">
+                                                                <td class="TableStyle-nano_FieldDesc-BodyE-Column1-Body1">Request Status</td>
+                                                                <td class="TableStyle-nano_FieldDesc-BodyD-Column2-Body1">Task Statuses can be linked to a Request Status. When a task is saved in <span class="GeneralVariablesProduct2Name">Nano</span> with that task status, the parent request's status is updated to the one defined.<p class="note">Available for Task Status Titles only.</p>
+</td>
+                                                            </tr>
+                                                            <tr class="TableStyle-nano_FieldDesc-Body-Body1" data-mc-conditions="">
+                                                                <td class="TableStyle-nano_FieldDesc-BodyB-Column1-Body1">Request Phase</td>
+                                                                <td class="TableStyle-nano_FieldDesc-BodyA-Column2-Body1">Request Completion Statuses can be linked to a Request Phase. Request phases represent the various stages of the request lifecycle. Request phases are displayed graphically in the request details and task details windows in <span class="GeneralVariablesProduct2Name">Nano</span>, with the current phase highlighted. <p class="note">Available for Request Completion Statuses only.                </p>
+</td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <h3>Request phases</h3>
+                                                    <p> Request phases represent the various stages of the request lifecycle. Link Request Phases to Request Completion Statuses to displayed a segmented graphical representation on the request details and task details screens in <span class="GeneralVariablesProduct2Name">Nano</span>. As the request completion status changes, so does the phase segment highlighted in <span class="GeneralVariablesProduct2Name">Nano</span>. Request phases are displayed in the order in which they are listed in the <a href="../admin%20workflow%20mgt/request%20phases.htm" class="MCXref xref">Request Phases</a> window within the <b>Workflow Management</b> section in System Administration.</p>
+                                                    <p>For details on configuring Request Phases, see <a href="../admin%20workflow%20mgt/request%20phases.htm" class="MCXref xref">Request Phases</a>.</p>
+                                                    <h3>Search field settings</h3>
+                                                    <p>In <span class="GeneralVariablesProduct2Name">Nano</span>, when typing a  search term into a search field, a filtered set of results displays directly beneath the search field. Configure the results set behavior by selecting which data columns to show in the results, which fields to include in the search, and how many characters must be typed before the result set is presented. </p>
+                                                    <p>For details on configuring <span class="GeneralVariablesProduct2Name">Nano</span> Search Fields, see <a href="../admin%20system/searchfieldssettings.htm" class="MCXref xref">Configuring search fields</a>.</p>
+                                                    <h3>
+<span class="GeneralVariablesProduct2Name">Nano</span> settings</h3>
+                                                    <p>The <b><span class="GeneralVariablesProduct2Name">Nano</span> Settings</b> window in System Admin enables system administrators to change the user experience in <span class="GeneralVariablesProduct2Name">Nano</span>.</p>
+                                                    <p>Use the <b>On Save</b> setting to control what happens when analysts select <b>Save</b> on details screens: <b>Keep window open</b> or  <b>Close window</b>. </p>
+                                                    <p>Use the <b><span class="GeneralVariablesProduct2Name">Nano</span> Themes</b> option to change the <span class="GeneralVariablesProduct2Name">Nano</span> page header from a dark theme (Default) to a light them (Custom).</p>
+                                                    <p class="note">The <b>Custom Theme</b> has been developed to be customizable by anyone with skill in CSS. To customize, navigate to the system's <b>Content</b> folder, then edit <b>custom-header.css</b>; e.g.: C:\Program Files\<span class="GeneralVariablesCompanyName3">Alemba</span>\<span class="GeneralVariablesProductName">ASM</span>\&lt;System&gt;\Content\custom-header.css</p>
+                                                    <h2 class="Heading2">Designing <span class="GeneralVariablesProduct2Name">Nano</span> screens</h2>
+                                                    <h2 class="Prerequisite" data-mc-conditions="Default.ScreenOnly">Before you start</h2>
+                                                    <p class="prereqtext" data-mc-conditions="Default.ScreenOnly">To modify screens using <span class="GeneralVariablesDesignerName">ASM Designer</span>, you must have <b>Designer</b>  selected in the <a href="../admin%20security%20roles/general%20access%20security%20role%20-%20admin%20tab.htm">Admin</a> tab of your <b>General Access Security Role</b>.</p>
+                                                    <p><a href="../designer/using%20designer.htm" class="MCXref xref">Using ASM Designer</a>, you can modify the entity screens that appear in <span class="GeneralVariablesProduct2Name">Nano</span>. The entity screens used in <span class="GeneralVariablesProduct2Name">Nano</span> are: Call, Request, Task, Knowledge, CMDB Item, Person, Organization, and Location.</p>
+                                                    <p>To find and modify <span class="GeneralVariablesProduct2Name">Nano</span> screens:</p>
+                                                    <ol>
+                                                        <li value="1">
+                                                            <div class="MCDropDown MCDropDown_Closed dropDown">
+<span class="MCDropDownHead dropDownHead"><a href="#" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCHotSpotImage" aria-expanded="false"><img class="MCDropDown_Image_Icon" src="/storage/app/media/Help/images/transparent.gif" height="11" width="16" alt="Closed" data-mc-alt2="Open">Display the <span class="GeneralVariablesDesignerName">ASM Designer</span> window if it is not already visible on screen.</a></span>
+                                                                <div class="MCDropDownBody dropDownBody">
+                                                                    <p>Select <a href="../general%20topics/asmcorewindow.htm"><span style="font-size: 24pt;">≡</span></a> &gt; <b>Admin</b> &gt;  <b>Designer</b>. </p>
+            This window consists of three tabs that display different views:<table class="TableStyle-FieldDesc_no_indent" style="mc-table-style: url('../../resources/tablestyles/fielddesc no indent.css');" cellspacing="0">
+<col class="TableStyle-FieldDesc_no_indent-Column-Column1">
+<col class="TableStyle-FieldDesc_no_indent-Column-Column2">
+<tbody>
+<tr>
+<td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">Find a Screen</td>
+<td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">Can be used to search for and work with specific screens, forms or message templates, as well as create new in-house screens</td>
+</tr>
+<tr>
+<td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">View screens</td>
+<td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-"> Displays details of currently selected screens and is used to modify screens</td>
+</tr>
+<tr>
+<td class="TableStyle-FieldDesc_no_indent-BodyB-Column1-">Skins</td>
+<td class="TableStyle-FieldDesc_no_indent-BodyA-Column2-">Enables you to create and modify skins for your <span class="GeneralVariablesSelfServicePortalName">Self Service Portal</span>(s)</td>
+</tr>
+</tbody>
+</table>
+</div>
+                                                            </div>
+                                                        </li>
+                                                        <li value="2">Select the <b>Find a Screen</b> tab, then select an entity type (such as Call) from the <b>Screens</b> list in the left pane to populate the browse table.</li>
+                                                        <li value="3"> Using the <b>Screen Design</b> filter at the top, select <b><span class="GeneralVariablesProduct2Name">Nano</span> Screens</b> from the list to display the screens available for <span class="GeneralVariablesProduct2Name">Nano</span>.</li>
+                                                        <li value="4">From the browse table, select the <span class="GeneralVariablesProduct2Name">Nano</span> screen you want to modify and select <b>Open Screen</b>.</li>
+                                                        <li value="5">Modify the screen as needed, and then select <b>Save</b> to save your changes.</li>
+                                                    </ol>
+                                                    <p>Learn more about <a href="../designer/configuring%20screens.htm" class="MCXref xref">Configuring Screens</a>. </p>
+                                                    <h2 class="Prerequisite">Limitations  of <span class="GeneralVariablesProduct2Name">Nano</span> screens in <span class="GeneralVariablesDesignerName">ASM Designer</span>
+</h2>
+                                                    <p>Styling of <span class="GeneralVariablesProduct2Name">Nano</span> screens using the <b>Style</b> tab in <span class="GeneralVariablesDesignerName">ASM Designer</span>, is not available at this time.</p>
+                                                    <p><span class="GeneralVariablesProduct2Name">Nano</span> <b>review screens</b> display two columns only: one column for the field label, and the other for the field value. Changing field size and position will not display more columns in the review screen.</p>
+                                                

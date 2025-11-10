@@ -1,0 +1,337 @@
+[viewBag]
+title = "CA Cohesion Connector"
+url = "/help/topics/connectors/cacohesionconnector"
+layout = "help"
+is_hidden = 0
+navigation_hidden = 0
+==
+                                                    <h1>CA Cohesion Connector</h1>
+                                                    <p>This section of the documentation contains technical specifications about the connector that is implemented to link <span class="GeneralVariablesCoreName">ASM Core</span> and CA Cohesion systems. It describes the details of the third-party application, that is, CA Cohesion, including:</p>
+                                                    <ul>
+                                                        <li value="1">The name of the .NET assembly file</li>
+                                                        <li value="2">Connection methodology</li>
+                                                        <li value="3">The resource and link types that can be discovered on the application</li>
+                                                        <li value="4">The attributes of each resource and link types that can be imported into <span class="GeneralVariablesCoreName">ASM Core</span> Configuration Management Database (CMDB)</li>
+                                                    </ul>
+                                                    <p class="note">You should familiarize yourself with the information in <a href="connector%20installation%20guide.htm" class="MCXref xref">Installing Connectors</a> before installing any connectors, and read the <a href="../integration/integrate.htm" class="MCXref xref">Integration</a> topics for more information on how to configure them.</p>
+                                                    <h2>Use Case Scenario</h2>
+                                                    <table class="TableStyle-scenario_table" style="mc-table-style: url('../../resources/tablestyles/scenario table.css');margin-left: 0;margin-right: auto;" cellspacing="0">
+                                                        <col class="TableStyle-scenario_table-Column-Column1">
+                                                        <col class="TableStyle-scenario_table-Column-Column2">
+                                                        <tr class="TableStyle-scenario_table-Body-Body1">
+                                                            <td class="TableStyle-scenario_table-BodyE-Column1-Body1">
+                                                                <p class="Strong">Purpose</p>
+                                                            </td>
+                                                            <td class="TableStyle-scenario_table-BodyD-Column2-Body1">
+                                                                <p>An organization uses CA Cohesion to discover and maintain resources present in its organization networks.</p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="TableStyle-scenario_table-Body-Body1">
+                                                            <td class="TableStyle-scenario_table-BodyE-Column1-Body1">
+                                                                <p class="Strong">Role</p>
+                                                            </td>
+                                                            <td class="TableStyle-scenario_table-BodyD-Column2-Body1">
+                                                                <p>The role of this connector is to expose the resources and their relationships in order to allow for population and ongoing consistency checks of the <span class="GeneralVariablesCoreName">ASM Core</span> CMDB.</p>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                    <h2>Connector Description</h2>
+                                                    <table class="TableStyle-Rep_Hdr_Row" style="mc-table-style: url('../../resources/tablestyles/rep hdr row.css');" cellspacing="0">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column1">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column2">
+                                                        <thead>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Head-Header1">
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column1-Header1">Field Name</th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadD-Column2-Header1">Description</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1" style="font-weight: bold;">
+                                                                    <p class="Strong">Connector</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p>CA Cohesion  &lt;-&gt; <span class="GeneralVariablesCoreName">ASM Core</span></p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1" style="font-weight: bold;">
+                                                                    <p class="Strong">Third-party application</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p>CA Cohesion</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1" style="font-weight: bold;">
+                                                                    <p class="Strong">Assembly</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p>Infra.Connector.Cohesion.dll</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1" style="font-weight: bold;">
+                                                                    <p class="Strong">Connector class</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p>Infra.Connector. Cohesion.CohesionConnector</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1" style="font-weight: bold;">
+                                                                    <p class="Strong">Configuration file</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p>Infra.Connector. Cohesion.icnf</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyB-Column1-Body1" style="font-weight: bold;">
+                                                                    <p class="Strong">Connection methodology</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyA-Column2-Body1">
+                                                                    <p>ODBC connection to a SQL database</p>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <h2 class="Heading2">Connection Parameters</h2>
+                                                    <p>The table below provides a description of the CA Cohesion connection parameters.</p>
+                                                    <table class="TableStyle-Rep_Hdr_Row" style="mc-table-style: url('../../resources/tablestyles/rep hdr row.css');margin-left: 0;margin-right: auto;" cellspacing="0">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column1">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column2">
+                                                        <thead>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Head-Header1">
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column1-Header1">
+                                                                    <p class="Strong">Parameters</p>
+                                                                </th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadD-Column2-Header1">
+                                                                    <p class="Strong">Description</p>
+                                                                </th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr style="height: 19pt;" class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>DB connection</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p>Database connection string or system DSN to the CA Cohesion SQL database</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>DB Login ID </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p>Database Login ID</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyB-Column1-Body1">
+                                                                    <p>DB password</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyA-Column2-Body1">
+                                                                    <p>Database password</p>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <h2>Customization</h2>
+                                                    <p>This connector permits extensions to the schema through customization of the configuration file. The possible customizations are listed below. However, the customizations are not limited to these:</p>
+                                                    <ul>
+                                                        <li value="1">New resource types</li>
+                                                        <li value="2">New resource properties</li>
+                                                        <li value="3">New link types</li>
+                                                    </ul>
+                                                    <h2>Connector Diagnostics</h2>
+                                                    <p>The connector has the facility to trace information. The data can be obtained through Polling tracing or Application tracing.</p>
+                                                    <h1>Resource Types</h1>
+                                                    <h2 class="Heading2">Service</h2>
+                                                    <p class="NormalWeb_1">A Service is an application offering a service or performing a function. It can run across multiple hosts and be dependent on multiple software components.</p>
+                                                    <ul class="ul_6">
+                                                        <li value="1">Service ID </li>
+                                                        <li value="2">Name </li>
+                                                        <li value="3">Full Name </li>
+                                                        <li value="4">Short Name </li>
+                                                        <li value="5">Description </li>
+                                                        <li value="6">Version </li>
+                                                        <li value="7">Last Updated </li>
+                                                        <li value="8">Is Gold Standard </li>
+                                                        <li value="9">Is Baseline </li>
+                                                        <li value="10">Notes </li>
+                                                        <li value="11">Cluster </li>
+                                                        <li value="12">Cluster Description </li>
+                                                    </ul>
+                                                    <h2 class="Heading2">(Host)</h2>
+                                                    <p class="NormalWeb_1">A generic class of types covering the individual machines on a network. This class is divided into 7 resource types that share the same properties. The resource types are:</p>
+                                                    <ul>
+                                                        <li value="1">Unknown Host</li>
+                                                        <li value="2">Server</li>
+                                                        <li value="3">Load Balancer</li>
+                                                        <li value="4">Switch</li>
+                                                        <li value="5">Router</li>
+                                                        <li value="6">Firewall</li>
+                                                        <li value="7">Unknown Device</li>
+                                                    </ul>
+                                                    <p>The common attributes are:</p>
+                                                    <ul class="ul_6">
+                                                        <li class="Bullets_1_1" value="1">Host ID </li>
+                                                        <li class="Bullets_1_1" value="2">Host Name </li>
+                                                        <li class="Bullets_1_1" value="3">Domain </li>
+                                                        <li class="Bullets_1_1" value="4">IP Address </li>
+                                                        <li class="Bullets_1_1" value="5">MAC Address </li>
+                                                        <li class="Bullets_1_1" value="6">Agent Heartbeat </li>
+                                                        <li class="Bullets_1_1" value="7">Agent Alive </li>
+                                                        <li class="Bullets_1_1" value="8">Last Updated </li>
+                                                        <li class="Bullets_1_1" value="9">Platform </li>
+                                                        <li class="Bullets_1_1" value="10">OS Type </li>
+                                                        <li class="Bullets_1_1" value="11">OS Version </li>
+                                                        <li class="Bullets_1_1" value="12">Processor </li>
+                                                        <li class="Bullets_1_1" value="13">Type </li>
+                                                        <li class="Bullets_1_1" value="14">Status </li>
+                                                        <li class="Bullets_1_1" value="15">Manufacturer </li>
+                                                        <li class="Bullets_1_1" value="16">Model </li>
+                                                        <li class="Bullets_1_1" value="17">Serial No </li>
+                                                        <li class="Bullets_1_1" value="18">Capacity (GB) </li>
+                                                        <li class="Bullets_1_1" value="19">Processor Speed (GHz) </li>
+                                                        <li class="Bullets_1_1" value="20">Memory (MB) </li>
+                                                    </ul>
+                                                    <h2 class="Heading2">Software Blueprint</h2>
+                                                    <p>This consists of settings defined by the user within Cohesion by which Cohesion identifies instances of specific software components or group of software components installed on individual hosts.</p>
+                                                    <ul class="ul_6">
+                                                        <li class="Bullets_1_1" value="1">Component ID </li>
+                                                        <li class="Bullets_1_1" value="2">Name </li>
+                                                        <li class="Bullets_1_1" value="3">Full Name </li>
+                                                        <li class="Bullets_1_1" value="4">Short Name </li>
+                                                        <li class="Bullets_1_1" value="5">Description </li>
+                                                        <li class="Bullets_1_1" value="6">Qualifier </li>
+                                                        <li class="Bullets_1_1" value="7">Version </li>
+                                                        <li class="Bullets_1_1" value="8">Type </li>
+                                                        <li class="Bullets_1_1" value="9">Last Updated </li>
+                                                        <li class="Bullets_1_1" value="10">Vendor </li>
+                                                    </ul>
+                                                    <h2 class="Heading2">(Software Component Instance)</h2>
+                                                    <p>This is a generic class of types covering the instances of a specific Software Component on a particular host. It is divided into 15 resource types that share the same properties. The resource types are:</p>
+                                                    <ul>
+                                                        <li value="1">Custom Component</li>
+                                                        <li value="2">Directory Server Application</li>
+                                                        <li value="3">Web Server Application</li>
+                                                        <li value="4">Utility</li>
+                                                        <li value="5">IT Management System</li>
+                                                        <li value="6">Cendura Component</li>
+                                                        <li value="7">Application Platform</li>
+                                                        <li value="8">Enterprise Application</li>
+                                                        <li value="9">Imported Component</li>
+                                                        <li value="10">Messaging System</li>
+                                                        <li value="11">Network Device</li>
+                                                        <li value="12">OLAP Engine</li>
+                                                        <li value="13">Relational Database</li>
+                                                        <li value="14">Operating System</li>
+                                                        <li value="15">Reporting Engine</li>
+                                                    </ul>
+                                                    <p>The common attributes are:</p>
+                                                    <ul>
+                                                        <li value="1">Component ID </li>
+                                                        <li value="2">Name </li>
+                                                        <li value="3">Full Name </li>
+                                                        <li value="4">Short Name </li>
+                                                        <li value="5">Description </li>
+                                                        <li value="6">Qualifier </li>
+                                                        <li value="7">Version </li>
+                                                        <li value="8">Type </li>
+                                                        <li value="9">Last Updated </li>
+                                                        <li value="10">Vendor </li>
+                                                    </ul>
+                                                    <h1>Link Types</h1>
+                                                    <p>This section lists the link types that the connector has to discover on Cendura Cohesion V4.1 systems and then allow for their importation into the <span class="GeneralVariablesCoreName">ASM Core</span> CMDB.</p>
+                                                    <h2>(Software Component Instance) Component</h2>
+                                                    <p class="NormalWeb_2">This is a class of link types indicating that a particular Service uses and/or is dependent on a particular Software Component Instance.</p>
+                                                    <table class="TableStyle-FieldDesc" style="mc-table-style: url('../../resources/tablestyles/fielddesc.css');" cellspacing="0">
+                                                        <col class="TableStyle-FieldDesc-Column-Column1">
+                                                        <col class="TableStyle-FieldDesc-Column-Column2">
+                                                        <tr class="TableStyle-scenario_table-Body-Body1">
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">
+                                                                <p class="Strong">Higher Resource Type </p>
+                                                            </td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                <p>Service </p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="TableStyle-scenario_table-Body-Body1">
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">
+                                                                <p class="Strong">Lower Resource Type </p>
+                                                            </td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                <p>(Software Component Instance) </p>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                    <h2 class="Heading2">Running On (Host)</h2>
+                                                    <p class="NormalWeb_1">This is a class of link types indicating that a particular Service runs on a particular Host.</p>
+                                                    <table class="TableStyle-FieldDesc" style="mc-table-style: url('../../resources/tablestyles/fielddesc.css');" cellspacing="0">
+                                                        <col class="TableStyle-FieldDesc-Column-Column1">
+                                                        <col class="TableStyle-FieldDesc-Column-Column2">
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">
+                                                                <p class="Strong">Higher Resource Type </p>
+                                                            </td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                <p>Service </p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">
+                                                                <p class="Strong">Lower Resource Type </p>
+                                                            </td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                <p>(Host)</p>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                    <h2>(Software Component Instance) Installed On (Host)</h2>
+                                                    <p class="NormalWeb_2">This is a class of link types indicating that a particular Software Component Instance is installed on a particular Host.</p>
+                                                    <table class="TableStyle-FieldDesc" style="mc-table-style: url('../../resources/tablestyles/fielddesc.css');" cellspacing="0">
+                                                        <col class="TableStyle-FieldDesc-Column-Column1">
+                                                        <col class="TableStyle-FieldDesc-Column-Column2">
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">
+                                                                <p class="Strong">Higher Resource Type </p>
+                                                            </td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                <p>(Software Component Instance) </p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">
+                                                                <p class="Strong">Lower Resource Type </p>
+                                                            </td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                <p>(Host)</p>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                    <h2>(Software Component Instance) Instance of Software Blueprint</h2>
+                                                    <p class="NormalWeb_2">This is a class of link types indicating that a particular Software Component Instance is an instance of a particular Software Blueprint definition.</p>
+                                                    <table class="TableStyle-FieldDesc" style="mc-table-style: url('../../resources/tablestyles/fielddesc.css');" cellspacing="0">
+                                                        <col class="TableStyle-FieldDesc-Column-Column1">
+                                                        <col class="TableStyle-FieldDesc-Column-Column2">
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">
+                                                                <p class="Strong">Higher Resource Type </p>
+                                                            </td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                <p>(Software Component Instance)</p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">
+                                                                <p class="Strong">Lower Resource Type </p>
+                                                            </td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                <p>Software Blueprint </p>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                

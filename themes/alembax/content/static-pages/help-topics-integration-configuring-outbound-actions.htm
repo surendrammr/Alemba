@@ -1,0 +1,456 @@
+[viewBag]
+title = "Configuring Outbound Actions"
+url = "/help/topics/integration/configuring-outbound-actions"
+layout = "help"
+is_hidden = 0
+navigation_hidden = 0
+==
+                                                    <h1>
+<a name="top"></a>Configuring Outbound Actions</h1>
+                                                    <p>For Outbound Actions to be passed from <span class="GeneralVariablesCoreName">ASM Core</span> to the external system, you need to configure <span class="GeneralVariablesCoreName">ASM Core</span> by mapping, for each Outbound Action type, the fields from <span class="GeneralVariablesCoreName">ASM Core</span> to those of the external system. </p>
+                                                    <p>In parallel, you must also configure the external system to specify what must happen when it receives an Action sent by <span class="GeneralVariablesCoreName">ASM Core</span> (for example, initiate a workflow, send a notification, and so on). </p>
+                                                    <p>Each connector supports a number of Outbound Actions specific to the third-party system it connects to. </p>
+                                                    <p class="warning">The mappings defined in the <b>Outbound Actions</b> window do not apply to outbound action tasks. They must be <a href="%7B%7B%20'help-using-outbound-actions#The'%7CstaticPage%20%7D%7D#The">defined at the level of the task</a>.</p>
+                                                    <h2>Viewing Outbound Action Type Mappings</h2>
+                                                    <h2 class="Prerequisite">Before you start</h2>
+                                                    <p class="prereqtext1">Each third party connector you wish to configure to receive events from the external source must have been installed. </p>
+                                                    <p class="prereqtextlast">You must have <b>Integration Setup</b> selected in the <a href="../admin%20security%20roles/general%20access%20security%20role%20-%20admin%20tab.htm">Admin</a> tab of your <b>General Access Security Role</b>. </p>
+                                                    <ol>
+                                                        <li value="1">Select <a href="../general%20topics/asmcorewindow.htm"><span style="font-size: 24pt;">≡</span></a> &gt; <b>Admin</b> &gt; <b>Integration</b>.</li>
+                                                        <li value="2">
+                                                            <p>In the Explorer pane, under <b>Integration</b>, select <b>Outbound Actions</b>.</p>
+                                                            <p>The <b>Integration Outbound Settings</b> window appears. </p>
+                                                        </li>
+                                                        <li value="3">Select a source from the <b>Filter by Source</b> list to view outbound action types configured for the selected source. This displays the outbound action types configured for the selected source in the browse table. Outbound action types depend on the source system at the connector level, and are therefore read-only.</li>
+                                                        <p class="note">If selected, the Mapped checkbox indicates that details for the outbound action type have been added. It does not necessarily mean that incoming and outgoing transactions for the action type have been mapped</p>
+                                                        <li value="4">To access the mappings for an Outbound Action type, double-click the outbound action type in the browse table. The Outbound Action Type Mappings window appears, displaying the following information.</li>
+                                                        <table style="mc-table-style: url('../../resources/tablestyles/fielddesc no indent.css');margin-left: 0;margin-right: auto;" class="TableStyle-FieldDesc_no_indent" cellspacing="0">
+                                                            <col class="TableStyle-FieldDesc_no_indent-Column-Column1">
+                                                            <col class="TableStyle-FieldDesc_no_indent-Column-Column2">
+                                                            <tr>
+                                                                <td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">
+                                                                    <p>Source</p>
+                                                                </td>
+                                                                <td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">
+                                                                    <p>displays the name of the selected source from which the outbound action type is derived</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">
+                                                                    <p>Outbound Type</p>
+                                                                </td>
+                                                                <td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">
+                                                                    <p>displays the name of the outbound action type</p>
+                                                                </td>
+                                                            </tr>
+                                                        </table>
+                                                    </ol>
+                                                    <p>The Mappings browse table displays the following details about a mapping:</p>
+                                                    <table style="mc-table-style: url('../../resources/tablestyles/fielddesc.css');margin-left: 0;margin-right: auto;" class="TableStyle-FieldDesc" cellspacing="0">
+                                                        <col class="TableStyle-FieldDesc-Column-Column1">
+                                                        <col class="TableStyle-FieldDesc-Column-Column2">
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">
+                                                                <p>Mapping</p>
+                                                            </td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                <p>the name of the mapping specified when defining the mapping details</p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">
+                                                                <p>Screen Set</p>
+                                                            </td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                <p>the name of the call or task screen set defined in the mapping details</p>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                    <p>You can view, add, or delete a data mapping for the outbound action type. You can also change the priority of the data mappings defined for this outbound action type. </p>
+                                                    <h2>Adding an Outbound Action Type Mapping</h2>
+                                                    <h2 class="Prerequisite">Before you start</h2>
+                                                    <p class="prereqtextlast">You must have <b>Integration Setup</b> selected in the <a href="../admin%20security%20roles/general%20access%20security%20role%20-%20admin%20tab.htm">Admin</a> tab of your <b>General Access Security Role</b>. </p>
+                                                    <ol>
+                                                        <li value="1">Select <a href="../general%20topics/asmcorewindow.htm"><span style="font-size: 24pt;">≡</span></a> &gt; <b>Admin</b> &gt; <b>Integration</b>.</li>
+                                                        <li value="2">
+                                                            <p>In the Explorer pane, under <b>Integration</b>, select <b>Outbound Actions</b>.</p>
+                                                            <p>The <b>Integration Outbound Settings</b> window appears. </p>
+                                                        </li>
+                                                        <li value="3">Select a source from the <b>Filter by Source</b> list to view outbound action types configured for the selected source.</li>
+                                                        <li value="4">Select the <b>New</b> button.</li>
+                                                        <li value="5">
+<a href="#Specifyi">Specify the <b>Outbound Action Type</b> mapping details.</a>
+                                                        </li>
+                                                        <li value="6">Select <img src="/storage/app/media/Help/images/save%20button.png">  to save the changes.</li>
+                                                    </ol>
+                                                    <h2>Updating an Outbound Action Type Mapping</h2>
+                                                    <h2 class="Prerequisite">Before you start</h2>
+                                                    <p class="prereqtextlast">You must have <b>Integration Setup</b> selected in the <a href="../admin%20security%20roles/general%20access%20security%20role%20-%20admin%20tab.htm">Admin</a> tab of your <b>General Access Security Role</b>. </p>
+                                                    <ol>
+                                                        <li value="1">Select <a href="../general%20topics/asmcorewindow.htm"><span style="font-size: 24pt;">≡</span></a> &gt; <b>Admin</b> &gt; <b>Integration</b>.</li>
+                                                        <li value="2">
+                                                            <p>In the Explorer pane, under <b>Integration</b>, select <b>Outbound Actions</b>.</p>
+                                                            <p>The <b>Integration Outbound Settings</b> window appears. </p>
+                                                        </li>
+                                                        <li value="3">Select a source from the <b>Filter by Source</b> list to view outbound action types configured for the selected source.</li>
+                                                        <li value="4">Select the Outbound Action you want to update and select <img src="/storage/app/media/Help/images/action%20button.png">, or double-click on the entry.</li>
+                                                        <li value="5">The <b>Outbound Action Type</b> window appears. View or <a href="#Specifyi">update the details</a> as required.</li>
+                                                        <li value="6">Select <img src="/storage/app/media/Help/images/save%20button.png">  to save the changes.</li>
+                                                    </ol>
+                                                    <h2>Deleting an Outbound Action Type Mapping</h2>
+                                                    <h2 class="Prerequisite">Before you start</h2>
+                                                    <p class="prereqtextlast">You must have <b>Integration Setup</b> selected in the <a href="../admin%20security%20roles/general%20access%20security%20role%20-%20admin%20tab.htm">Admin</a> tab of your <b>General Access Security Role</b>. </p>
+                                                    <ol>
+                                                        <li value="1">Select <a href="../general%20topics/asmcorewindow.htm"><span style="font-size: 24pt;">≡</span></a> &gt; <b>Admin</b> &gt; <b>Integration</b>.</li>
+                                                        <li value="2">
+                                                            <p>In the Explorer pane, under <b>Integration</b>, select <b>Outbound Actions</b>.</p>
+                                                            <p>The <b>Integration Outbound Settings</b> window appears. </p>
+                                                        </li>
+                                                        <li value="3">In the browse table, select the Action you want to delete and select <img src="/storage/app/media/Help/images/delete%20button.png">.</li>
+                                                        <li value="4">Confirm the deletion.</li>
+                                                    </ol>
+                                                    <h2>Changing the Priority of Mappings</h2>
+                                                    <p><span class="GeneralVariablesCoreName">ASM Core</span> will apply the mappings in the order in which they appear in the Mappings browse table. If more than one mapping applies to an action, then the mapping that is higher in the list will be applied first, then the second one in the list, and so on.</p>
+                                                    <ol>
+                                                        <li value="1">Select <a href="../general%20topics/asmcorewindow.htm"><span style="font-size: 24pt;">≡</span></a> &gt; <b>Admin</b> &gt; <b>Integration</b>.</li>
+                                                        <li value="2">
+                                                            <p>In the Explorer pane, under <b>Integration</b>, select <b>Outbound Actions</b>.</p>
+                                                            <p>The <b>Integration Outbound Settings</b> window appears. </p>
+                                                        </li>
+                                                        <li value="3">Select a source from the <b>Filter by Source</b> list to view outbound action types configured for the selected source.</li>
+                                                        <li value="4">Select a mapping you want to move, and use the <b>Move up</b> and<b>Move Down</b> buttons to reposition it.</li>
+                                                        <li value="5">Repeat for any other mappings you wish to reposition.</li>
+                                                        <li value="6">Select <img src="/storage/app/media/Help/images/save%20button.png">  to save the changes if appropriate.</li>
+                                                    </ol>
+                                                    <h2>
+<a name="Specifyi"></a>Specifying the Outbound Action Type Mapping Details</h2>
+                                                    <p>The mapping details window for an Outbound Action allows you to define the conditions that must be met for <span class="GeneralVariablesCoreName">ASM Core</span> to initiate an Outbound Action, and how data fields will be mapped between the two systems. </p>
+                                                    <p>The following are the main steps for defining an Outbound Action mapping:</p>
+                                                    <ol>
+                                                        <li value="1">Associate external suppliers and contracts with the Outbound Action.</li>
+                                                        <li value="2">Select the actions (rules) you want <span class="GeneralVariablesCoreName">ASM Core</span> to take when it receives incoming messages associated with the Outbound Action.</li>
+                                                        <li value="3">Selecting when <span class="GeneralVariablesCoreName">ASM Core</span> must send outgoing messages for the Outbound Action.</li>
+                                                        <li value="4">Mapping the fields between <span class="GeneralVariablesCoreName">ASM Core</span> and the source system for both incoming and outgoing messages. This is required for an Outbound Action to be successful. </li>
+                                                        <li value="5">
+                                                            <p class="note">The mappings defined here are only applied when a call or External Supplier task is forwarded externally. An Outbound Action initiated by an Outbound Action task uses the mapping defined on the task. </p>
+                                                        </li>
+                                                    </ol>
+                                                    <p> </p>
+                                                    <ol style="list-style-type: decimal;" start="1">
+                                                        <li value="1">Click <b>New</b> or select an existing mapping and click Open on the Outbound Action Type Mappings window. </li>
+                                                        <p class="note">
+                                                            </p>
+<p>The <b>Source</b> and <b>Outbound Type</b> fields are pre-populated based on the source and type you selected to access this mapping. </p>
+                                                        
+                                                        <li value="2">Complete the details.</li>
+                                                        <p>
+                                                            </p>
+<table class="TableStyle-FieldDesc" style="mc-table-style: url('../../resources/tablestyles/fielddesc.css');" cellspacing="0">
+                                                                <col class="TableStyle-FieldDesc-Column-Column1">
+                                                                <col class="TableStyle-FieldDesc-Column-Column2">
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyH-Column1-">Name </td>
+                                                                        <td class="TableStyle-FieldDesc-BodyG-Column2-">Type a name for the mapping. This name appears in the Mappings table.</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyB-Column1-">Screen Set</td>
+                                                                        <td class="TableStyle-FieldDesc-BodyA-Column2-">
+                                                                            <p>select a call or External Supplier task screen set from the multi-tiered list. The screen set determines the fields that will be available for this mapping under the Fields – Outgoing and Fields – Incoming tabs.</p>
+                                                                            <table class="TableStyle-FieldDesc_no_indent" style="mc-table-style: url('../../resources/tablestyles/fielddesc no indent.css');" cellspacing="0">
+                                                                                <col class="TableStyle-FieldDesc_no_indent-Column-Column1">
+                                                                                <col class="TableStyle-FieldDesc_no_indent-Column-Column2">
+                                                                                <tbody>
+                                                                                    <tr>
+                                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">call screen set</td>
+                                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">
+                                                                                            <p>Select  to enable the Outbound Action to trigger when a call is forwarded externally. Call screen sets are defined by your system administrator.</p>
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                    <tr>
+                                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyB-Column1-">External Supplier </td>
+                                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyA-Column2-">Select to enable the Outbound Action to trigger when an External Supplier task is forwarded externally. External Supplier task screen sets are defined by your system administrator.</td>
+                                                                                    </tr>
+                                                                                </tbody>
+                                                                            </table>
+                                                                        </td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        
+                                                        <p class="warning">If you change the screen set after defining outgoing or incoming field mappings, a warning appears indicating that some field mappings may become invalid.</p>
+                                                        <li value="3">To associate an external supplier and contract with the Outbound Action mapping, select the <b>Suppliers &amp; Contracts</b> tab.</li>
+                                                        <p>
+                                                            </p>
+<table class="TableStyle-FieldDesc" style="mc-table-style: url('../../resources/tablestyles/fielddesc.css');" cellspacing="0">
+                                                                <col class="TableStyle-FieldDesc-Column-Column1">
+                                                                <col class="TableStyle-FieldDesc-Column-Column2">
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyH-Column1-">External Supplier</td>
+                                                                        <td class="TableStyle-FieldDesc-BodyG-Column2-">Select a supplier</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyB-Column1-">Contract</td>
+                                                                        <td class="TableStyle-FieldDesc-BodyA-Column2-">Select a contract.<p class="note">If you do not specify a contract, the Outbound Action will be matched by the external supplier only.</p>
+</td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        
+                                                        <li value="4">Click <b>Add</b> to add the supplier and/or contract to the browse table. Whenever a call or External Supplier task is forwarded to that external supplier and/or contract, this Outbound Action mapping will be applied.</li>
+                                                        <li value="5">
+                                                            <p class="note">You cannot specify the same supplier and contract (per screen set) for more than one Outbound Action mapping. However, you can link an external supplier to one mapping and the same supplier plus a contract to another mapping. In this case, the most specific mapping will be applied: if the call or task is forwarded to a supplier and contract matching the supplier and contract specified on the second mapping, this mapping will be applied. If not, it will use the default mapping for that supplier.</p>
+                                                        </li>
+                                                        <li value="6">Select the <b>Action</b> tab and specify the rules for Incoming and Outgoing Transactions using this mapping.</li>
+                                                        <li value="7">Select the <b>Fields - Outgoing</b> tab and specify how field values from the <span class="GeneralVariablesCoreName">ASM Core</span> call or External Supplier task must correlate with the field values on the external system when an outgoing message is sent by <span class="GeneralVariablesCoreName">ASM Core</span>.</li>
+                                                        <li value="8">To map a field, click <b>Add</b>. In the <b>Add Fields</b> window, select the fields (from the external system) you want to map to fields on the call or task, and click <b>OK</b>. On the browse table, click the corresponding cell in the Internal Field column. Then select <img src="/storage/app/media/Help/images/expandtiersbutton.png"> to pick a static value or a field relating to the Call or External Supplier Task screen set you selected earlier.</li>
+                                                        <p class="note">Depending on the field’s data type, additional options can be selected in the field selector <img src="/storage/app/media/Help/images/expandtiersbutton.png">, including: field transformations, profile maps, or resolution rules. Also, the call or task fields displayed are determined by the screen set. You can only select a field that is compatible with the field specified in the Action Field column.</p>
+                                                        <li value="9">Select the <b>Fields – Incoming</b> tab and specify how the field values from the external system must match the field values on the call or External Supplier task in <span class="GeneralVariablesCoreName">ASM Core</span> when an incoming message is received by <span class="GeneralVariablesCoreName">ASM Core</span>. </li>
+                                                        <li value="10">To map a field, click <b>Add</b>. In the <b>Add Fields</b> window, select the call or task fields from the selected Screen Set (including any custom fields created in <span class="GeneralVariablesDesignerName">ASM Designer</span>), you want to map to fields used in the external system. If the selected screen set is an External Supplier Task screen set, then you can also select fields from the task’s parent request. On the browse table, click the corresponding cell in the Action Field column. Then select <img src="/storage/app/media/Help/images/expandtiersbutton.png"> to pick a static value or a field from the external system. These fields are defined at the level of the connector.</li>
+                                                        <p class="note">Depending on the field’s data type, additional options can be selected, including: field transformations, profile maps, or resolution rules.</p>
+                                                        <li value="11">In the <b>Update</b> column, select the conditions for populating the field on the call or task. </li>
+                                                        <p>
+                                                            </p>
+<table class="TableStyle-FieldDesc" style="mc-table-style: url('../../resources/tablestyles/fielddesc.css');" cellspacing="0">
+                                                                <col class="TableStyle-FieldDesc-Column-Column1">
+                                                                <col class="TableStyle-FieldDesc-Column-Column2">
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyH-Column1-">Always</td>
+                                                                        <td class="TableStyle-FieldDesc-BodyG-Column2-">always matches the <span class="GeneralVariablesCoreName">ASM Core</span> field value with the value in the external system field. This means that any change to this field in the external system automatically updates the field value in the <span class="GeneralVariablesCoreName">ASM Core</span> call or task.</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyH-Column1-"> The Only When Blank</td>
+                                                                        <td class="TableStyle-FieldDesc-BodyG-Column2-">only populates the <span class="GeneralVariablesCoreName">ASM Core</span> field with the value of the external system field if the field on the call or task is blank. This means that an existing value on the <span class="GeneralVariablesCoreName">ASM Core</span> call or task cannot be overridden by a field value in the external system.</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyB-Column1-">On Initial Population Only</td>
+                                                                        <td class="TableStyle-FieldDesc-BodyA-Column2-"> is not relevant for Outbound Actions</td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        
+                                                    </ol>
+                                                    <h2>
+<a name="Rules"></a>Rules for Incoming and Outgoing Transactions - Outbound Actions</h2>
+                                                    <p>Rules for the way <span class="GeneralVariablesCoreName">ASM Core</span> will apply an outbound action type mapping to Incoming Transactions for the selected outbound action type are set in the Action tab on the mapping details window for an Outbound Action. The rules are described below.</p>
+                                                    <table style="mc-table-style: url('../../resources/tablestyles/fielddesc.css');" class="TableStyle-FieldDesc" cellspacing="0">
+                                                        <col class="TableStyle-FieldDesc-Column-Column1">
+                                                        <col class="TableStyle-FieldDesc-Column-Column2">
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">When Updated externally</td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">Select the rules that <span class="GeneralVariablesCoreName">ASM Core</span> must apply when receiving an UPDATE message for an Outbound Action using this mapping, specifically select the action that must be taken if the call or External Supplier task that resulted in the creation of the Outbound Action is still open:<table class="TableStyle-FieldDesc_no_indent" style="mc-table-style: url('../../resources/tablestyles/fielddesc no indent.css');" cellspacing="0">
+<col class="TableStyle-FieldDesc_no_indent-Column-Column1">
+<col class="TableStyle-FieldDesc_no_indent-Column-Column2">
+<tbody>
+<tr>
+<td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">Update </td>
+<td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">automatically updates the call or task with the details of the UPDATE message received from the external system</td>
+</tr>
+<tr>
+<td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">Add note</td>
+<td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-"> automatically adds a note to the call or task with the details of the UPDATE message received from the external system</td>
+</tr>
+<tr>
+<td class="TableStyle-FieldDesc_no_indent-BodyB-Column1-">Take no action</td>
+<td class="TableStyle-FieldDesc_no_indent-BodyA-Column2-"> ignores the UPDATE message received from the external system</td>
+</tr>
+</tbody>
+</table>
+</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">When Updated externally and Call or Task is closed</td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">Select the rules that <span class="GeneralVariablesCoreName">ASM Core</span> must apply when receiving an UPDATE message for an Outbound Action using this mapping, specifically select the action that must be taken if the call or External Supplier task that resulted in the creation of the Outbound Action is closed:<table class="TableStyle-FieldDesc_no_indent" style="mc-table-style: url('../../resources/tablestyles/fielddesc no indent.css');" cellspacing="0">
+<col class="TableStyle-FieldDesc_no_indent-Column-Column1">
+<col class="TableStyle-FieldDesc_no_indent-Column-Column2">
+<tbody>
+<tr>
+<td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">Add note</td>
+<td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-"> leaves the call or task closed but automatically adds a note to it with the details of the UPDATE message received from the external system</td>
+</tr>
+<tr>
+<td class="TableStyle-FieldDesc_no_indent-BodyB-Column1-">Take no action</td>
+<td class="TableStyle-FieldDesc_no_indent-BodyA-Column2-"> ignores the UPDATE message received from the external system</td>
+</tr>
+</tbody>
+</table>
+</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">When Notified externally</td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">Select the rules that <span class="GeneralVariablesCoreName">ASM Core</span> must apply when receiving a NOTIFY message for an Outbound Action using this mapping, specifically the action that must be taken if the call or External Supplier task that resulted in the creation of this Outbound Action is still open:<table class="TableStyle-FieldDesc_no_indent" style="mc-table-style: url('../../resources/tablestyles/fielddesc no indent.css');" cellspacing="0">
+<col class="TableStyle-FieldDesc_no_indent-Column-Column1">
+<col class="TableStyle-FieldDesc_no_indent-Column-Column2">
+<tbody>
+<tr>
+<td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">Add note</td>
+<td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">automatically adds a note to the call or task with the details of the NOTIFY message received from the external system</td>
+</tr>
+<tr>
+<td class="TableStyle-FieldDesc_no_indent-BodyB-Column1-">Take no action</td>
+<td class="TableStyle-FieldDesc_no_indent-BodyA-Column2-"> ignores the NOTIFY message received from the external system</td>
+</tr>
+</tbody>
+</table>
+</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">When Notified externally and Call or Task is closed</td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">Select the rules that <span class="GeneralVariablesCoreName">ASM Core</span> must apply when receiving a NOTIFY transaction for an event using this mapping, specifically the action that must be taken if the call or External Supplier task that resulted in the creation of this Outbound Action is closed:<table class="TableStyle-FieldDesc_no_indent" style="mc-table-style: url('../../resources/tablestyles/fielddesc no indent.css');" cellspacing="0">
+<col class="TableStyle-FieldDesc_no_indent-Column-Column1">
+<col class="TableStyle-FieldDesc_no_indent-Column-Column2">
+<tbody>
+<tr>
+<td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">Add note</td>
+<td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-"> leaves the call or task closed but automatically adds a note to it with the details of the NOTIFY message received from the external system</td>
+</tr>
+<tr>
+<td class="TableStyle-FieldDesc_no_indent-BodyB-Column1-">Take no action</td>
+<td class="TableStyle-FieldDesc_no_indent-BodyA-Column2-"> ignores the NOTIFY message received from the external system</td>
+</tr>
+</tbody>
+</table>
+</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">When Completed externally</td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">Select the rules that <span class="GeneralVariablesCoreName">ASM Core</span> must apply when receiving a COMPLETE message for an Outbound Action using this mapping, specifically select the action that must be taken if the call or External Supplier task that resulted in the creation of this Outbound Action is still open:<table class="TableStyle-FieldDesc_no_indent" style="mc-table-style: url('../../resources/tablestyles/fielddesc no indent.css');" cellspacing="0">
+<col class="TableStyle-FieldDesc_no_indent-Column-Column1">
+<col class="TableStyle-FieldDesc_no_indent-Column-Column2">
+<tbody>
+<tr>
+<td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">Close </td>
+<td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">automatically closes the call or task</td>
+</tr>
+<tr>
+<td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">Update </td>
+<td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">automatically updates the call or task with the details of the COMPLETE message received from the external system</td>
+</tr>
+<tr>
+<td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">Add note</td>
+<td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">automatically adds a note to the call or task with the details of the COMPLETE message received from the external system</td>
+</tr>
+<tr>
+<td class="TableStyle-FieldDesc_no_indent-BodyB-Column1-">Take no Action</td>
+<td class="TableStyle-FieldDesc_no_indent-BodyA-Column2-"> ignores the COMPLETE message received from the external system</td>
+</tr>
+</tbody>
+</table>
+</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">If child calls are present</td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">Select the action that must be taken if the call that resulted in the creation of this Outbound Action has calls linked as children:<table class="TableStyle-FieldDesc_no_indent" style="mc-table-style: url('../../resources/tablestyles/fielddesc no indent.css');" cellspacing="0">
+<col class="TableStyle-FieldDesc_no_indent-Column-Column1">
+<col class="TableStyle-FieldDesc_no_indent-Column-Column2">
+<tbody>
+<tr>
+<td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">Close child calls</td>
+<td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-"> automatically closes the calls linked as children</td>
+</tr>
+<tr>
+<td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">Add note to child calls</td>
+<td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">automatically adds a note to the child calls with the details of the COMPLETE message received from the external system</td>
+</tr>
+<tr>
+<td class="TableStyle-FieldDesc_no_indent-BodyB-Column1-">Take no Action </td>
+<td class="TableStyle-FieldDesc_no_indent-BodyA-Column2-">takes no action on the child calls</td>
+</tr>
+</tbody>
+</table>
+</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">When Completed externally and Call or Task is closed</td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">Select the rules that <span class="GeneralVariablesCoreName">ASM Core</span> must apply when receiving a COMPLETE message for an Outbound Action using this mapping, specifically, select the action that must be taken if the call or External Supplier task that resulted in the creation of this Outbound Action is closed:<table class="TableStyle-FieldDesc_no_indent" style="mc-table-style: url('../../resources/tablestyles/fielddesc no indent.css');" cellspacing="0">
+<col class="TableStyle-FieldDesc_no_indent-Column-Column1">
+<col class="TableStyle-FieldDesc_no_indent-Column-Column2">
+<tbody>
+<tr>
+<td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">Add note</td>
+<td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-"> leaves the call or task closed but automatically adds a note to it with the details of the COMPLETE message received from the external system</td>
+</tr>
+<tr>
+<td class="TableStyle-FieldDesc_no_indent-BodyB-Column1-">Take no action</td>
+<td class="TableStyle-FieldDesc_no_indent-BodyA-Column2-"> ignores the COMPLETE message received from the external system</td>
+</tr>
+</tbody>
+</table>
+</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">When Not Completed externally</td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">Select the rules that <span class="GeneralVariablesCoreName">ASM Core</span> must apply when receiving a NOT COMPLETE message for an Outbound Action using this mapping, specifically select the action that must be taken if the call or External Supplier task that resulted in the creation of this Outbound Action is still open:<table class="TableStyle-FieldDesc_no_indent" style="mc-table-style: url('../../resources/tablestyles/fielddesc no indent.css');" cellspacing="0">
+<col class="TableStyle-FieldDesc_no_indent-Column-Column1">
+<col class="TableStyle-FieldDesc_no_indent-Column-Column2">
+<tbody>
+<tr>
+<td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">Close </td>
+<td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">automatically closes the call or task</td>
+</tr>
+<tr>
+<td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">Update </td>
+<td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">automatically updates the call or task with the details of the NOT COMPLETE message received from the external system</td>
+</tr>
+<tr>
+<td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">Add note</td>
+<td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-"> automatically adds a note to the call or task with the details of the NOT COMPLETE message received from the external system</td>
+</tr>
+<tr>
+<td class="TableStyle-FieldDesc_no_indent-BodyB-Column1-">Take no action</td>
+<td class="TableStyle-FieldDesc_no_indent-BodyA-Column2-"> ignores the NOT COMPLETE message received from the external system</td>
+</tr>
+</tbody>
+</table>
+</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">If child calls are present</td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">Select the action that must be taken if the call that resulted in the creation of this Outbound Action has calls linked as children:<table class="TableStyle-FieldDesc_no_indent" style="mc-table-style: url('../../resources/tablestyles/fielddesc no indent.css');" cellspacing="0">
+<col class="TableStyle-FieldDesc_no_indent-Column-Column1">
+<col class="TableStyle-FieldDesc_no_indent-Column-Column2">
+<tbody>
+<tr>
+<td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">Close child calls</td>
+<td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-"> automatically closes the calls linked as children</td>
+</tr>
+<tr>
+<td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">Add note to child calls</td>
+<td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">automatically adds a note to the child calls with the details of the NOT COMPLETE message received from the external system</td>
+</tr>
+<tr>
+<td class="TableStyle-FieldDesc_no_indent-BodyB-Column1-">Take no Action</td>
+<td class="TableStyle-FieldDesc_no_indent-BodyA-Column2-"> takes no action on the child calls</td>
+</tr>
+</tbody>
+</table>
+</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">When Not Completed externally and Call or Task is closed</td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">Select the rules that <span class="GeneralVariablesCoreName">ASM Core</span> must apply when receiving a NOT COMPLETE message for an Outbound Action using this mapping, specifically select the action that must be taken if the call or External Supplier task that resulted in the creation of this Outbound Action is closed:<table class="TableStyle-FieldDesc_no_indent" style="mc-table-style: url('../../resources/tablestyles/fielddesc no indent.css');" cellspacing="0">
+<col class="TableStyle-FieldDesc_no_indent-Column-Column1">
+<col class="TableStyle-FieldDesc_no_indent-Column-Column2">
+<tbody>
+<tr>
+<td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">Add note</td>
+<td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-"> leaves the call or task closed but automatically adds a note to it with the details of the NOT COMPLETE message received from the external system</td>
+</tr>
+<tr>
+<td class="TableStyle-FieldDesc_no_indent-BodyB-Column1-">Take no action</td>
+<td class="TableStyle-FieldDesc_no_indent-BodyA-Column2-"> ignores the NOT COMPLETE message received from the external system</td>
+</tr>
+</tbody>
+</table>
+</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">Send Notify for system generated history messages</td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">Select this option to send a NOTIFY message to the external system whenever a system-generated entry (such as an agreement escalation) is added to the history of the call or External Supplier task that resulted in the creation of this Outbound Action.</td>
+                                                        </tr>
+                                                    </table>
+                                                    <p class="question">What happens if the system is configured to update, add a note, or take no action?</p>
+                                                    <p class="answer">When the system is configured to update the call or task, add a note to it, or take no action, on receiving the COMPLETE or NOT COMPLETE message, the call is automatically forwarded back to the analyst who forwarded the call externally, and the task is automatically forwarded to the request manager. The call or task history is updated on receiving a COMPLETE or INCOMPLETE message.</p>
+                                                

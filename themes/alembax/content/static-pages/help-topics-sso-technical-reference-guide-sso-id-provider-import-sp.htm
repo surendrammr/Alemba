@@ -1,0 +1,292 @@
+[viewBag]
+title = "Importing Service Provider metadata into the Identity Provider "
+url = "/help/topics/sso-technical-reference-guide/sso-id-provider-import-sp"
+layout = "help"
+is_hidden = 0
+navigation_hidden = 0
+==
+                                                    <h1>Importing Service Provider metadata into the Identity Provider </h1>
+                                                    <p>The Service Provider metadata must be imported into the Identity Provider to complete the trust relationship between the Identity Provider and the <span class="GeneralVariablesAppName">ASM app</span>. To Import the Service Provider metadata, follow these steps:</p>
+                                                    <p style="font-weight: bold;">On the Identity Provider Server (Server hosting your domain’s ADFS Server):</p>
+                                                    <ol start="1">
+                                                        <li value="1">Open the <b>Microsoft Management Centre</b> (MMC)</li>
+                                                        <li value="2">Add the AD FS Management snap-in. </li>
+                                                        <li value="3">Click <b>File &gt; Add/Remove Snap-in</b> .</li>
+                                                        <li value="4">Select <b>AD FS Management</b> from the list.<a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="../../resources/images/sso%20technical%20reference%20guide/sso%20add%20snap%20in.png"><img class="MCPopupThumbnail img imgthumbnail" data-mc-width="1006" data-mc-height="609" src="/storage/app/media/Help/images/sso%20technical%20reference%20guide/sso%20add%20snap%20in_thumb_0_48.png" style="width: 365px;height: 221px;" tabindex=""></a>
+</li>
+                                                        <li value="5">Click <b>OK</b>.</li>
+                                                        <li value="6">Expand the AD FS tree in the new snap-in.</li>
+                                                        <li value="7">Select <b>Relying Party Trusts</b>.<a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="../../resources/images/sso%20technical%20reference%20guide/sso%20add%20snap%20in%20rpt.png"><img class="MCPopupThumbnail img imgthumbnail" data-mc-width="347" data-mc-height="361" src="/storage/app/media/Help/images/sso%20technical%20reference%20guide/sso%20add%20snap%20in%20rpt_thumb_0_48.png" style="width: 189px;height: 197px;" tabindex=""></a>
+</li>
+                                                        <li value="8">Right click the folder and select <b>Add Relying Party Trust</b>. The Add Relying Party Trust wizard will open.</li>
+                                                        <li value="9">Click <b>Start</b>.</li>
+                                                        <li value="10">Select the <b>Import data about the relying party from a file</b> option.</li>
+                                                        <li value="11">Click <b>Browse</b>.</li>
+                                                        <li value="12">Select the text file with the metadata you saved earlier.<a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="../../resources/images/sso%20technical%20reference%20guide/sso%20rpt%20data%20source.png"><img class="MCPopupThumbnail img imgthumbnail" data-mc-width="750" data-mc-height="591" src="/storage/app/media/Help/images/sso%20technical%20reference%20guide/sso%20rpt%20data%20source_thumb_0_48.png" style="width: 448px;height: 353px;" tabindex=""></a>
+</li>
+                                                        <li value="13">Click <b>Next</b>
+</li>
+                                                        <li value="14">Enter a <b>Display Name</b> for the party trust.<a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="../../resources/images/sso%20technical%20reference%20guide/sso%20rpt%20display%20name.png"><img class="MCPopupThumbnail img imgthumbnail" data-mc-width="736" data-mc-height="586" src="/storage/app/media/Help/images/sso%20technical%20reference%20guide/sso%20rpt%20display%20name_thumb_0_48.png" style="width: 388px;height: 309px;" tabindex=""></a>
+</li>
+                                                        <li value="15">Click <b>Next</b>
+</li>
+                                                        <li value="16">Select the <b>I Do not want to configure multi-factor authentication settings for this relying party trust at this time</b> option. <a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="../../resources/images/sso%20technical%20reference%20guide/sso%20rpt%20steps.png"><img class="MCPopupThumbnail img imgthumbnail" data-mc-width="736" data-mc-height="589" src="/storage/app/media/Help/images/sso%20technical%20reference%20guide/sso%20rpt%20steps_thumb_0_48.png" style="width: 428px;height: 343px;" tabindex=""></a>
+</li>
+                                                        <li value="17">Click <b>Next</b>.</li>
+                                                        <li value="18">Select <b>Permit all users to access this relying party</b> option. <a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="../../resources/images/sso%20technical%20reference%20guide/sso%20rpt%20issuance%20auth.png"><img class="MCPopupThumbnail img imgthumbnail" data-mc-width="739" data-mc-height="595" src="/storage/app/media/Help/images/sso%20technical%20reference%20guide/sso%20rpt%20issuance%20auth_thumb_0_48.png" style="width: 389px;height: 313px;" tabindex=""></a>
+</li>
+                                                        <li value="19">Click <b>Next</b>, and <b>Next</b> again on the <b>Ready to Add Trust</b> screen.</li>
+                                                        <li value="20">Click Finish</li>
+                                                    </ol>
+                                                    <h2>Claim Rules</h2>
+                                                    <p>Once you have completed the <b>Add Relying Party Trust Wizard</b> you will need to configure the rules for the relying party. To configure this:</p>
+                                                    <ol start="1">
+                                                        <li value="1">Right Click on the <b>Relying Party Trust</b> you just created.</li>
+                                                        <li value="2">Select <b>Edit Claim Rules</b>. <a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="../../resources/images/sso%20technical%20reference%20guide/sso%20rpt%20claim%20rules.png"><img class="MCPopupThumbnail img imgthumbnail" data-mc-width="568" data-mc-height="324" src="/storage/app/media/Help/images/sso%20technical%20reference%20guide/sso%20rpt%20claim%20rules_thumb_0_48.png" style="width: 402px;height: 229px;" tabindex=""></a>
+</li>
+                                                        <li value="3">Click <b>Add Rule</b>. The <b>Add Transform Claim Rule Wizard</b> will open.</li>
+                                                        <li value="4">Select <b>Send LDAP Attributes as Claims</b> as the Claim Rule Template. <a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="../../resources/images/sso%20technical%20reference%20guide/sso%20rpt%20select%20rule%20template.png"><img class="MCPopupThumbnail img imgthumbnail" data-mc-width="734" data-mc-height="598" src="/storage/app/media/Help/images/sso%20technical%20reference%20guide/sso%20rpt%20select%20rule%20template_thumb_0_48.png" style="width: 409px;height: 333px;" tabindex=""></a>
+</li>
+                                                        <li value="5">Click <b>Next</b>.</li>
+                                                        <li value="6">Enter a relevant <b>Claim Rule Name</b> for the rule.</li>
+                                                        <li value="7">Select <b>Active Directory</b> under <b>Attribute Store</b> drop-down field.</li>
+                                                        <li value="8">Map the <b>LDAP Attributes</b> to <b>Outgoing Claim Values</b>. <a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="../../resources/images/sso%20technical%20reference%20guide/sso%20rpt%20test%20rule.png"><img class="MCPopupThumbnail img imgthumbnail" data-mc-width="577" data-mc-height="599" src="/storage/app/media/Help/images/sso%20technical%20reference%20guide/sso%20rpt%20test%20rule_thumb_0_48.png" style="width: 286px;height: 297px;" tabindex=""></a>
+</li>
+                                                        <li value="9">Click <b>OK</b>, <b>Apply</b> and <b>OK</b> to complete the rule.</li>
+                                                        <li value="10">Right click on the Relying Party trust from the MMC snap-in and select <b>Properties</b>.</li>
+                                                        <li value="11">Select the Identifiers tab.<a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="../../resources/images/sso%20technical%20reference%20guide/sso%20rpt%20identifiers.png"><img class="MCPopupThumbnail img imgthumbnail" data-mc-width="419" data-mc-height="483" src="/storage/app/media/Help/images/sso%20technical%20reference%20guide/sso%20rpt%20identifiers_thumb_0_48.png" style="width: 223px;height: 257px;" tabindex=""></a>
+</li>
+                                                        <li value="12"> In the <b>Relying Party Identifier</b> field, enter/paste the Service Identifier string extracted from the <span class="GeneralVariablesProductName">ASM</span> Service Provider Record.</li>
+                                                        <li value="13">Click <b>Add</b>.</li>
+                                                        <li value="14">Click <b>Advanced</b> tab. </li>
+                                                        <li value="15">Set the <b>Secure Hash Algorithm</b> to <b>SHA-1</b> or <b>SHA-256</b>; whichever is selected in the Identity Provider details.<a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="../../resources/images/sso%20technical%20reference%20guide/sso%20rpt%20sha.png"><img class="MCPopupThumbnail img imgthumbnail" data-mc-width="406" data-mc-height="473" src="/storage/app/media/Help/images/sso%20technical%20reference%20guide/sso%20rpt%20sha_thumb_0_48.png" style="width: 243px;height: 276px;" tabindex=""></a>
+</li>
+                                                        <li value="16">Click OK</li>
+                                                    </ol>
+                                                    <h2>Note on Claim Rules</h2>
+                                                    <p>The Single Sign On Connector does not read the LDAP Attributes directly, instead it reads the attributes received in the Inbound SAML Assertion. <b>Name ID</b> is a special SAML Assertion attribute which represents the User Name.</p>
+                                                    <p>The Single Sign On Connector currently ships with mappings for User Name, First Name, Surname and Email Address by default. It is recommended that the Identity Provider Claims be configured for these <span class="GeneralVariablesProductName">ASM</span> Single Sign On connector mappings</p>
+                                                    <p class="note">In ADFS, some special cases of the Inbound Claims are translated to similar looking Display Names. However, if you select the names using the drop-down then the actual Outbound Claim appears in the URL formal, which can cause confusion, the Single Sign On Connector therefore translates this back to a value that more closely resembles the display name:</p>
+                                                    <p class="exampletext">Connector receives Email Address and not <a href="http://schemas.xmlsoap.org/claims/EmailAddress">http://schemas.xmlsoap.org/claims/EmailAddress</a></p>
+                                                    <table style="margin-left: 0;margin-right: auto;width: 100%;mc-table-style: url('../../resources/tablestyles/rep hdr row.css');" class="TableStyle-Rep_Hdr_Row" cellspacing="0">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column1">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column2">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column1">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column2">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column1">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column2">
+                                                        <thead>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Head-Header1">
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column1-Header1">
+                                                                    <p>SAML</p>
+                                                                </th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column2-Header1">
+                                                                    <p>ADFS LDAP Attribute Display</p>
+                                                                </th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column1-Header1">
+                                                                    <p>ADFS Outbound Claim Display *</p>
+                                                                </th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column2-Header1">
+                                                                    <p>ADFS Outbound Claim Actual</p>
+                                                                </th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column1-Header1">
+                                                                    <p>Converted To</p>
+                                                                </th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadD-Column2-Header1">
+                                                                    <p><span class="GeneralVariablesProductName">ASM</span> ICNF</p>
+                                                                </th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Name ID</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>Name ID</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Name ID</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>Name ID</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>User Name</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p>User Name</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>First Name</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>Given-Name</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Given Name</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p><a href="http://schemas.xmlsoap.org/ws/2005/05/identity/claims/givenname">http://schemas.xmlsoap.org/ws/2005/05/identity/claims/givenname</a>
+                                                                    </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>First Name</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p>First Name</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Surname</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>Surname</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Surname</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p><a href="http://schemas.xmlsoap.org/ws/2005/05/identity/claims/surname">http://schemas.xmlsoap.org/ws/2005/05/identity/claims/surname</a>
+                                                                    </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Surname</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p>Surname</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Email Address</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>E-Mail-Addresses</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>E-Mail Address</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p><a href="http://schemas.xmlsoap.org/claims/EmailAddress">http://schemas.xmlsoap.org/claims/EmailAddress</a>
+                                                                    </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Email Address</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p>Email Address</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyB-Column1-Body1">
+                                                                    <p>First Name</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyB-Column2-Body1">
+                                                                    <p>Given-Name</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyB-Column1-Body1">
+                                                                    <p>First Name</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyB-Column2-Body1">
+                                                                    <p>First Name</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyB-Column1-Body1">
+                                                                    <p> </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyA-Column2-Body1">
+                                                                    <p>First Name</p>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <p>*ADFS Outbound Claim Display is free text</p>
+                                                    <p class="warning">For Azure, you must use the connector and set the matching rules to ensure that users do not have multiple usernames. This is configurable in the Premium version.</p>
+                                                    <h2>Person Import and Resource Mapping</h2>
+                                                    <p>The Single Sign-On Connector, in the same way as other <span class="GeneralVariablesProductName">ASM</span> Directory Services connectors, can allow Person Records to be imported directly into <span class="GeneralVariablesProductName">ASM</span> from the Identity Provider. The Person Records in <span class="GeneralVariablesProductName">ASM</span> will then be kept up to date. </p>
+                                                    <p>In order to use the Single Sign-On Connector an Integration Resource Mapping needs to be <a href="../integration/defining%20a%20resource%20mapping.htm">configured</a>.</p>
+                                                    <h3>Recommended Field Mappings for Single Sign-On Connector Person Import</h3>
+                                                    <table style="margin-left: 0;margin-right: auto;mc-table-style: url('../../resources/tablestyles/rep hdr row.css');" class="TableStyle-Rep_Hdr_Row" cellspacing="0">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column1">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column2" style="width: 13px;">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column1">
+                                                        <thead>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Head-Header1">
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column1-Header1">
+                                                                    <p><span class="GeneralVariablesProductName">ASM</span>
+                                                                    </p>
+                                                                </th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column2-Header1">Connector Mapping</th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadD-Column1-Header1">
+                                                                    <p>Identity Provider</p>
+                                                                </th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>First Name</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">First Name</td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>First Name</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Surname</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">Surname</td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>Surname</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>User Qualified Name</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">User Name</td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>User Name</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>NT Account Name</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">User Name</td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>User Name <i>(must be same as User Qualified Name)</i></p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Login ID</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">User Name</td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>User Name <i>(must be unique)</i></p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyB-Column1-Body1">
+                                                                    <p>NT Domain Name</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyB-Column2-Body1">
+<i>Must be blank</i>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyA-Column1-Body1">
+                                                                    <p><i>Must be blank</i>
+                                                                    </p>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <p>All of the SAML based Identity Providers can be configured to send a variety of attributes with the SAML Security assertions, however it may not always be easily configurable through the respective user interfaces. For example the Active Directory Manager attribute is not exposed through the Microsoft ADFS User Interface.</p>
+                                                    <p>Once the attributes have all been exposed by the Identity Provider the <span class="GeneralVariablesProductName">ASM</span> Integration Platform and SSO Connector can easily consume these attributes and import/update Person Records as per other LDAP Connectors, however as this is time consuming and/or requires specific skills to configure the Identity Provider Claims then it may be a consideration to pre populate Users and Analysts using another method such as directly synchronising to an Active Directory Source, bulk import using a CSV file and the CSV Connector or by manual population initially. </p>
+                                                    <p>It is also possible to configure SSO for a brand new system as long as the Username is mapped as above, however the accounts will only be created upon the initial login to <span class="GeneralVariablesProductName">ASM</span>, therefore it is again recommended to pre populate the <span class="GeneralVariablesSystemName">ASM System</span> with Users and Analysts using another method such as directly synchronising to an Active Directory Source, bulk import using a CSV file and the CSV Connector or by manual population in order to have a useable system.</p>
+                                                    <p>Once the Users and Analysts have been pre populated you can then use Resource Matching rules to match to and update the seeded database records with the Identify Provider using the SSO Connector.</p>
+                                                

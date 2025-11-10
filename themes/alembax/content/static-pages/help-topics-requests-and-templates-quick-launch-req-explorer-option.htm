@@ -1,0 +1,37 @@
+[viewBag]
+title = "Quick Launch Explorer Option"
+url = "/help/topics/requests-and-templates/quick-launch-req-explorer-option"
+layout = "help"
+is_hidden = 0
+navigation_hidden = 0
+==
+                                                    <h1>Quick Launch Explorer Option</h1>
+                                                    <p class="intro">The Quick Launch section on the Request Details Explorer displays shortcuts you can use to launch URLs from within <span class="GeneralVariablesCoreName">ASM Core</span>. Only Quick Launch URLs you have access to as part of you Workflow Management Security Role settings are displayed. </p>
+                                                    <p class="intro"> </p>
+                                                    <p>Parameters such as request field values or field values on a CMDB item linked to the request can be passed to a Quick Launch URL. This is useful for example, for automatically filling in a part number on a website for purchasing purposes..</p>
+                                                    <p class="note"> If you run a quick launch URL which uses CMDB item fields as parameters passed to this URL, <span class="GeneralVariablesProductName">ASM</span> will use the currently selected configuration item or service linked to the request. If no configuration item is selected, the one with the lowest reference number is used. </p>
+                                                    <h2>Running a Quick Launch URL</h2>
+                                                    <h2 class="Prerequisite">Before you start</h2>
+                                                    <p class="prereqtext1"><b>Quick Launch</b> is only visible if the quick launch functionality is enabled in <a href="../admin%20system/system%20settings.htm">System Settings</a>. All quick launch URLs, including the parameters used, have been configured on the <a href="../admin%20system/quick%20launch.htm">Quick Launch</a> window in System Administration.</p>
+                                                    <p class="prereqtext">You must have access to quick launch URLs on the <a href="../admin%20security%20roles/workflow%20mgt%20sec%20role%20-%20req%20ql.htm">Request Quick Launch</a> tab of your <b>Workflow Management Security Role</b>.</p>
+                                                    <ol style="list-style-type: decimal;margin-left: 36pt;" start="1">
+                                                        <li value="1">Expand the <b>Quick Launch</b> group in the Request Details explorer pane. A list of all the quick launch URLs to which you have access will display.</li>
+                                                        <li value="2">Select the explorer which corresponds to the URL you want to run.</li>
+                                                        <p>
+                                                            </p>
+<p class="note"> All quick launch URLs run from outside the <span class="GeneralVariablesProductName">ASM</span> main application, meaning that existing organization IT policies regarding running URLs will still be enforced. Therefore if your IT policy does not allow you to run certain aURLs, you will still not be able to run these URLs even if they are displayed on the Quick Launch tab.</p>
+                                                        
+                                                        <li value="3">
+                                                            <p>The URL opens in a separate browser. If this Quick Launch URL has been configured to update the request history, a new request history entry is added, indicating the name of the URL run from the request and any parameters passed to the URL.</p>
+                                                        </li>
+                                                    </ol>
+                                                    <h3>Receiving output or errors from a quick launch URL</h3>
+                                                    <p><span class="GeneralVariablesProductName">ASM</span> will try to update the user of any output it receives from a quick launch URL that has been run from a request. Any output received can be regular output, or an error.</p>
+                                                    <ul>
+                                                        <li value="1">If <span class="GeneralVariablesProductName">ASM</span> receives regular output from a quick launch URL, an informational popup dialog will display with the output message. If the quick launch URL has been configured to update the task history, an entry titled “Quick Launch Output” will be added to the task history. This entry will include the name of the URL from which an output has been received, plus any configured parameters and the output received from the quick launch URL.</li>
+                                                        <li value="2">If <span class="GeneralVariablesProductName">ASM</span> receives an error from a quick launch URL (for example, incorrect parameters has been passed to the quick launch URL), a warning popup dialog will display with a generic error message “Unable to launch application. Please contact your system administrator”, plus the details of the error message received.</li>
+                                                    </ul>
+                                                    <p class="warning"> Not all URLs will return an output to <span class="GeneralVariablesProductName">ASM</span>. While <span class="GeneralVariablesProductName">ASM</span> will display any output received from a URL, you may not see any response in the cases where a URL does not provide an output. </p>
+                                                    <p> </p>
+                                                    <p> </p>
+                                                

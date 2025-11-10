@@ -1,0 +1,29 @@
+[viewBag]
+title = "Installing and upgrading on Multiple Web Servers "
+url = "/help/topics/installation-and-upgrade/install-and-upgrade/install-and-upgrade-multiple-servers"
+layout = "help"
+is_hidden = 0
+navigation_hidden = 0
+==
+                                                    <h1>Installing and upgrading on Multiple Web Servers </h1>
+                                                    <p>You can install <span class="GeneralVariablesProductNameFull">Alemba Service Manager™</span> on more than one web server that all access the same database, and distribute the load using a load balancer, as illustrated below.</p>
+                                                    <p style="text-align: center;">
+                                                        <img src="/storage/app/media/Help/images/load%20balancer.png" class="screenshot">
+                                                        
+                                                    </p>
+                                                    <p>To install <span class="GeneralVariablesProductNameFull">Alemba Service Manager™</span> on more than one web server:</p>
+                                                    <ol>
+                                                        <li value="1">Install <span class="GeneralVariablesProductNameFull">Alemba Service Manager™</span> on each web server.</li>
+                                                        <li value="2">Create and configure a new system on each of those servers, ensuring they all point to the same database. </li>
+                                                        <li value="3">On all but one of the servers, disable database upgrade:<ul><li value="1">In the registry key, disable the database upgrade using the registry string <code style="font-size: 10pt;">SkipDatabaseUpgrade</code> = <b>1<br><img src="/storage/app/media/Help/images/regkeyskipdb_567x173.png" style="width: 567;height: 173;"></b>
+</li></ul>
+</li>
+                                                        <li value="4"> Disable each of the <span class="GeneralVariablesProductName">ASM</span> polling services on all but one server:</li>
+                                                    </ol>
+                                                    <ul>
+                                                        <li value="1">Stop the <a href="install%20polling.htm"><span class="GeneralVariablesProductName">ASM</span> service</a> and set the "Start Up" property to <b>Manual</b>; except for the <span class="GeneralVariablesProductName">ASM</span> Administrative Service.</li>
+                                                        <li value="2">Ensure the <span class="GeneralVariablesProductName">ASM</span> Administrative Service is running on all servers and its Start Up property is set to <b>Automatic</b>.</li>
+                                                        <p class="note">Services can be load-balanced. Set a service to Automatic on one server and Manual on all other servers. Each service should only be running on one server.</p>
+                                                    </ul>
+                                                    <p class="warning">When <b>upgrading</b> in a multi-server environment, run the upgrade once only on the shared database. On the second and subsequent servers, select <b>No</b> if prompted to upgrade the database. </p>
+                                                

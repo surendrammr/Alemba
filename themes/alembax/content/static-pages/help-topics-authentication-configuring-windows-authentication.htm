@@ -1,0 +1,23 @@
+[viewBag]
+title = "Configuring Windows Authentication for the Alemba API"
+url = "/help/topics/authentication/configuring-windows-authentication"
+layout = "help"
+is_hidden = 0
+navigation_hidden = 0
+==
+                                                    <h1>Configuring Windows Authentication for the <span class="GeneralVariablesAPIName">Alemba API</span>
+</h1>
+                                                    <p class="intro"><span class="GeneralVariablesAPIName">Alemba API</span> Clients can be configured to support Windows Authentication, subject to correct configuration of Integrated Security for the session type.</p>
+                                                    <p class="exampletext">If Core Analyst login has Integrated Security enabled, Windows Authentication can also be enabled for <span class="GeneralVariablesAPIName">Alemba API</span> Clients where the Session Type or request scope is set to Analyst.</p>
+                                                    <p class="reference">See <b>How to log in to the API</b> in the API Explorer help section.</p>
+                                                    <p class="prereq"><b><span class="GeneralVariablesSelfServicePortalName">Self Service Portal</span></b> must be selected in the <b>Integrated Security</b> section of the <a href="../admin%20security/security%20settings.htm">Security Settings</a> window.</p>
+                                                    <p>To enable Windows Authentication, the corresponding setting must be enabled for the individual API client in Alemba Admin. <a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="../../resources/images/configuring%20authentication%20for%20the%20alemba%20api/configuring%20windows%20authentication.png"><img class="MCPopupThumbnail img imgthumbnail" data-mc-width="551" data-mc-height="45" src="/storage/app/media/Help/images/configuring%20authentication%20for%20the%20alemba%20api/configuring%20windows%20authentication_thumb_0_48.png" tabindex=""></a></p>
+                                                    <p>The <b>Alemba.Web</b> Web Application (in IIS) must also be configured to use Windows Authentication as follows:</p>
+                                                    <ol style="list-style-type: decimal;margin-left: 36pt;" start="1">
+                                                        <li value="1">In <b>Feature Delegation</b>, set <b>Authentication – Windows</b> to <b>Read/Write</b>.<a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="../../resources/images/configuring%20authentication%20for%20the%20alemba%20api/configuring%20windows%20authentication_1.png"><img class="MCPopupThumbnail img imgthumbnail" data-mc-width="616" data-mc-height="598" src="/storage/app/media/Help/images/configuring%20authentication%20for%20the%20alemba%20api/configuring%20windows%20authentication_1_thumb_0_48.png" tabindex=""></a>
+</li>
+                                                        <p class="note">This is an application server level setting (accessed through the root node in IIS) and allows the Alemba Authorization Server to use passive Windows Authentication.</p>
+                                                        <li value="2">Enable Windows Authentication and Anonymous Authentication for the Alemba.Web application. <a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="../../resources/images/configuring%20authentication%20for%20the%20alemba%20api/configuring%20windows%20authentication_2.png"><img class="MCPopupThumbnail img imgthumbnail" data-mc-width="595" data-mc-height="243" src="/storage/app/media/Help/images/configuring%20authentication%20for%20the%20alemba%20api/configuring%20windows%20authentication_2_thumb_0_48.png" tabindex=""></a> <a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="../../resources/images/configuring%20authentication%20for%20the%20alemba%20api/configuring%20windows%20authentication_3.png"><img class="MCPopupThumbnail img imgthumbnail" data-mc-width="452" data-mc-height="122" src="/storage/app/media/Help/images/configuring%20authentication%20for%20the%20alemba%20api/configuring%20windows%20authentication_3_thumb_0_48.png" tabindex=""></a>
+</li>
+                                                    </ol>
+                                                

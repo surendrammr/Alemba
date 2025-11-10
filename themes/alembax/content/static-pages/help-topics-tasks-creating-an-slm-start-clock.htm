@@ -1,0 +1,120 @@
+[viewBag]
+title = "Creating an SLM Start Clock/Stop Clock Task"
+url = "/help/topics/tasks/creating-an-slm-start-clock"
+layout = "help"
+is_hidden = 0
+navigation_hidden = 0
+==
+                                                    <h1>
+<a name="top"></a>Creating an SLM Start Clock/Stop Clock Task</h1>
+                                                    <p>  SLM Start Clock and SLM Stop Clock tasks enable you to set explicit points in your workflow where you want the clock on a SLA linked to a request to started or suspended. SLAs linked to a request will be closed once the request to which it is linked is set to an open-resolved state of closed.</p>
+                                                    <p>Within <span class="GeneralVariablesProductName">ASM</span>, SLAs linked to a request are automatically started as soon as the request becomes authorized, and closed with closure of the request. However, when considering real world situations, there are often pre-approval and post-implementation steps that occur outside of when an agreement should be run. As a result, there can be a significant time period from when a pre-authorized request is created to when it is actually approved to be implemented, causing any SLAs on the request to breach. SLM Start Clock and Stop Clock tasks enable you to explicitly specify on your workflow when a SLA linked to a request shall start and suspend, meaning that your request SLAs will not unexpectedly breach.</p>
+                                                    <p>The <b>SLM Start Clock</b> task is used to start or resume an SLA linked to the current request. The SLM Start Clock task performs the same function as the <b>Start Clock</b> button on the <a href="../requests%20and%20templates/request%20service%20window.htm">Request Service Window</a>. Similarly, the <b>SLM Stop Clock</b> task is used to suspend a SLA linked to the current request. The SLM Stop Clock task performs the same function as the <b>Stop Clock</b> button on the <a href="../requests%20and%20templates/request%20service%20window.htm">Request Service Window</a>.</p>
+                                                    <p>It is possible that when the SLM Start Clock/Stop Clock task becomes active, it will not be able to start/suspend the SLA. This can occur when:</p>
+                                                    <ul>
+                                                        <li value="1">the <b>SLM Task</b> option has not been selected in the <a href="../requests%20and%20templates/slm%20request%20explorer%20option.htm">SLM explorer option</a> on the current request</li>
+                                                        <li value="2">there is no SLA linked to the request</li>
+                                                        <li value="3">the SLA is already running when a SLM Start Clock task becomes active</li>
+                                                        <li value="4">the SLA is already suspended when a SLM Stop Clock task becomes active.</li>
+                                                    </ul>
+                                                    <p class="prereq">To use SLM Start Clock/Stop Clock Tasks on a Request, the <b>SLM Task</b> option  must be selected on the <b>Request SLM</b> window.</p>
+                                                    <p class="prereq">The SLM task functionality must first be enabled by selecting the <b>SLM Task</b> option on the <a href="../requests%20and%20templates/slm%20request%20explorer%20option.htm">Service Level Management</a> window of the request/workflow template. If there are SLM tasks on the workflow but the SLM Task option is not selected on the request, <span class="GeneralVariablesProductName">ASM</span> will ignore all of these SLM tasks. </p>
+                                                    <ol start="1">
+                                                        <li value="1">
+<a href="%7B%7B%20'help-requests-and-templates-searching-for-requests#top'%7CstaticPage%20%7D%7D#top">Search for </a>the <b>Request Details</b> window, if it is not already on screen.</li>
+                                                        <li value="2">
+                                                            <div class="MCDropDown MCDropDown_Closed dropDown">
+<span class="MCDropDownHead dropDownHead"><a href="#" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCHotSpotImage" aria-expanded="false"><img class="MCDropDown_Image_Icon" src="/storage/app/media/Help/images/transparent.gif" height="11" width="16" alt="Closed" data-mc-alt2="Open">Display the dependency diagram.</a></span>
+                                                                <div class="MCDropDownBody dropDownBody">
+                                                                    <p>Click the <b>Dependencies</b> button <img src="/storage/app/media/Help/images/dependencies%20button.png"> on the toolbar or select the <b>Update Dependencies</b> explorer option on the <b>Request Details</b> or <b>Task Details</b> window.</p>
+                                                                </div>
+                                                            </div>
+                                                        </li>
+                                                        <p>
+                                                            </p>
+<p class="note">If you are working on a specific request, and the workflow template you have used to create the request already has tasks defined in it, you will see these tasks here. You can open them and change their details such as dates, assignment, or expenses. You can add new tasks or delete them from the current request without affecting the template.</p>
+                                                        
+                                                        <li value="3">
+                                                            <div class="MCDropDown MCDropDown_Closed dropDown">
+<span class="MCDropDownHead dropDownHead"><a href="#" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCHotSpotImage" aria-expanded="false"><img class="MCDropDown_Image_Icon" src="/storage/app/media/Help/images/transparent.gif" height="11" width="16" alt="Closed" data-mc-alt2="Open">Add the <b>SLM Start Clock</b> or <b>SLM Stop Clock</b>  to the Dependency Diagram.</a></span>
+                                                                <div class="MCDropDownBody dropDownBody">
+                                                                    <p>Select the <img src="/storage/app/media/Help/images/slm%20start%20clock%20task%20icon.png"> or <img src="/storage/app/media/Help/images/slm%20stop%20clock%20task%20icon.png"> icon from the task palette and drag it to position. Alternatively, right-click in the window, and from the menu that appears, select <b>New</b> and then the  task entity type. Then <a href="%7B%7B%20'help-requests-and-templates-dependency-diagrams#Linking'%7CstaticPage%20%7D%7D#Linking">link the task</a> to the previous task in the workflow.</p>
+                                                                </div>
+                                                            </div>
+                                                        </li>
+                                                        <li value="4">On the dependency diagram, double-click the <b>SLM Start Clock</b> <img src="/storage/app/media/Help/images/slm%20start%20clock%20task%20icon.png"> or <b>SLM Stop Clock</b> <img src="/storage/app/media/Help/images/slm%20stop%20clock%20task%20icon.png"> task icon to view the <b>SLM Start</b> or <b>SLM Stop Task Details</b> window.</li>
+                                                        <li value="5">If needed, take action on the task in order to edit the details.</li>
+                                                        <li value="6">
+<a href="%7B%7B%20'help-creating-a-task#Complete_the_common_task_fields'%7CstaticPage%20%7D%7D#Complete_the_common_task_fields">Complete the task fields</a>.</li>
+                                                        <li value="7">Save the details.</li>
+                                                        <li value="8" data-mc-conditions="Default.Work in Progress">
+<span style="background-color: #ffff00;">Do you then select the SLM Task option?</span>
+                                                        </li>
+                                                    </ol>
+                                                    <h2>Selecting the Settings in the SLM Explorer Option</h2>
+                                                    <p>Since the SLM tasks are representations of the <b>Start SLA Clock</b> and <b>Stop SLA Clock</b> buttons on the <a href="../requests%20and%20templates/request%20service%20window.htm">Request Service Window</a>, the <b>SLA Immediate</b> option can be used in conjunction with the <b>SLM Task</b> option in the <a href="../requests%20and%20templates/slm%20request%20explorer%20option.htm">SLM explorer option</a> to achieve any of the following:</p>
+                                                    <ul>
+                                                        <li value="1">When <b>SLA Immediate</b> is unselected and <b>SLM Task</b> is selected, the SLA on the request will start once the request becomes authorized. Any SLM tasks found on the workflow will be used to start or suspend the SLA.</li>
+                                                        <li value="2">When <b>SLA Immediate</b> is selected and <b>SLM Task</b> is not selected, the SLA on the request will start immediately, that is, when the request is first saved or deferred. Any SLM tasks found on the workflow will be ignored since the SLM Task functionality has not been enabled.</li>
+                                                        <li value="3">When <b>SLA Immediate</b> and <b>SLM Task</b> are both unselected, the SLA on the request will start once the request becomes authorized. Any SLM tasks found on the workflow will be ignored since the SLM Task functionality has not been enabled.</li>
+                                                    </ul>
+                                                    <h2>What happens when a SLM Start Clock/Stop Clock task becomes active</h2>
+                                                    <p>SLM Start/Stop Clock tasks will run automatically in a workflow. Once a SLM task has been run on a workflow, the task history will be updated with details of what action <span class="GeneralVariablesProductName">ASM</span> has taken on the SLA linked to the request. As with other tasks, this task history entry will also be visible on the request history.</p>
+                                                    <p><span class="GeneralVariablesProductName">ASM</span> will always start/suspend the SLA which is currently linked to the request. The table below provides a summary of the possible history entries with which <span class="GeneralVariablesProductName">ASM</span> will update on a SLM task.</p>
+                                                    <p class="note"> When an SLM Stop Clock task is used to suspend an SLA linked to a request, the SLA indicator on the Service Window may still display an active SLA. This is a known technical limitation of this functionality.</p>
+                                                    <h2>Start Clock/Stop Clock events in the Task History</h2>
+                                                    <p>The history of any SLM Start Clock/Stop Clock task will be updated whenever the task becomes active. This includes when the SLM Start Clock/Stop Clock task cannot start/suspend the SLA. </p>
+                                                    <table style="margin-left: 0;margin-right: auto;mc-table-style: url('../../resources/tablestyles/rep hdr row.css');" class="TableStyle-Rep_Hdr_Row" cellspacing="0">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column1">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column2">
+                                                        <thead>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Head-Header1">
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column1-Header1">SLM Task History Entry</th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadD-Column2-Header1">Explanation</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>SLA Clock Started</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p><span class="GeneralVariablesProductName">ASM</span> has started/resumed the SLA currently linked to the request</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>SLA Clock Stopped</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p><span class="GeneralVariablesProductName">ASM</span> has stopped the SLA currently linked to the request</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>SLM task ignored since there is no agreement linked to the request</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p><span class="GeneralVariablesProductName">ASM</span> has performed no action on the request, since there is no SLA currently linked</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Start Clock task ignored since the agreement is already active</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p>The SLA linked to the request is already running e.g. by a previous SLM Start Clock task on the workflow, or the SLA Immediate option is selected on the request. Therefore, <span class="GeneralVariablesProductName">ASM</span> has ignored this task and no change has been made to the SLA linked to the request.</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyB-Column1-Body1">
+                                                                    <p>Stop Clock task ignored since agreement is already suspended</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyA-Column2-Body1">
+                                                                    <p>The SLA linked to the request has already been suspended e.g. by a previous SLM Stop Clock task.</p>
+                                                                    <p>Therefore, <span class="GeneralVariablesProductName">ASM</span> has ignored this task and no change has been made to the SLA linked to the request.</p>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                

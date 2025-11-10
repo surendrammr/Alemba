@@ -1,0 +1,1003 @@
+[viewBag]
+title = " EMC Smarts NCM Connector"
+url = "/help/topics/connectors/emcsmartsncmconnector"
+layout = "help"
+is_hidden = 0
+navigation_hidden = 0
+==
+                                                    <h1> EMC Smarts NCM Connector</h1>
+                                                    <p class="note">EMC Smarts NCM is also referred to as <b>Network Configuration Manager</b> or <b>NCM</b> in the <span class="GeneralVariablesCoreName">ASM Core</span> user interface.</p>
+                                                    <p>This section of the documentation contains technical specifications about the connector that is implemented to link  <span class="GeneralVariablesCoreName">ASM Core</span> and EMC Smarts NCM. This connector deals with two main aspects of the Integration Platform, namely Federated Configuration Management Database (CMDB) and Outbound actions. The documentation details the third-party application, that is, EMC Smarts NCM including:</p>
+                                                    <ul>
+                                                        <li value="1">The name of the .NET assembly file</li>
+                                                        <li value="2">Connection methodology</li>
+                                                        <li value="3">The resource and link types that can be discovered on the third-party application</li>
+                                                        <li value="4">The attributes of each resource and link type that can be imported into the <span class="GeneralVariablesCoreName">ASM Core</span> CMDB</li>
+                                                        <li value="5">The requirements involved with the management of Outbound actions between <span class="GeneralVariablesCoreName">ASM Core</span> and EMC Smarts NCM</li>
+                                                    </ul>
+                                                    <p class="note">For compatibility and version support details, refer to the <a href="connector%20matrix.htm" class="MCXref xref">ASM Connector Matrix</a>.</p>
+                                                    <p class="note">You should familiarize yourself with the information in <a href="connector%20installation%20guide.htm" class="MCXref xref">Installing Connectors</a> before installing any connectors, and read the <a href="../integration/integrate.htm" class="MCXref xref">Integration</a> topics for more information on how to configure them.</p>
+                                                    <h2>Functionalities</h2>
+                                                    <p>An organization uses EMC Smarts NCM to discover resources on their network and to maintain their compliances. The role of this connector is:</p>
+                                                    <ol class="multilist">
+                                                        <li value="1">To expose the resources to allow for population and consistency checks of the <span class="GeneralVariablesCoreName">ASM Core</span> CMDB.</li>
+                                                        <li value="2">To allow for outbound workflow actions to be performed from a <span class="GeneralVariablesCoreName">ASM Core</span> workflow in order to:<ul>
+<li class="Bulleted_4" value="1">Retrieve all configuration items (CIs) affected by a specific job already set up in EMC Smarts NCM</li>
+<li class="Bulleted_4" value="2">Trigger the execution or cancellation of a EMC Smarts NCM specific job</li>
+</ul>
+</li>
+                                                    </ol>
+                                                    <h2>
+<a name="_Ref257809488"></a>Use Case Scenario </h2>
+                                                    <p>The functionalities described allow for the running, amongst several other possibilities, of the following use cases:</p>
+                                                    <ul>
+                                                        <li class="li_1" value="1">
+<span class="GeneralVariablesCoreName">ASM Core</span> CMDB population with network resources previously discovered by EMC Smarts NCM.</li>
+                                                        <li class="li_1" value="2">Creation of a new Request for Change in the <span class="GeneralVariablesSystemName">ASM System</span>.</li>
+                                                        <li class="li_1" value="3">During the unfolding of the Request for Change, a <span class="GeneralVariablesCoreName">ASM Core</span> task is sent to an EMC Smarts NCM network administrator. For cross reporting requirement, this task conveys the <span class="GeneralVariablesCoreName">ASM Core</span> change request identifier.</li>
+                                                        <li class="li_1" value="4">The network administrator creates jobs in EMC Smarts NCM using the EMC Smarts NCM console. For every new job created, the console generates a Job ID.</li>
+                                                        <li class="li_1" value="5">The Job ID is manually copied in the <span class="GeneralVariablesCoreName">ASM Core</span> task and sent back to the RFC workflow.</li>
+                                                        <li class="li_1" value="6">A <span class="GeneralVariablesProductName">ASM</span> outbound action task, including the Job ID specified during the previous step, calls out to EMC Smarts NCM for it to return the list of affected CIs. Job identification is performed by using the EMC Smarts NCM job identified.</li>
+                                                        <li class="li_1" value="7">
+<span class="GeneralVariablesCoreName">ASM Core</span> Change Manager can examine the Business Service dependencies in order to determine impact level before approving or denying a change.</li>
+                                                        <li class="li_1" value="8">A second <span class="GeneralVariablesCoreName">ASM Core</span> workflow outbound task calls out to EMC Smarts NCM to either execute or cancel a job, through the Job ID as appropriate.</li>
+                                                    </ul>
+                                                    <p>Updates to the CMDB eventually happen when the next scanning process of EMC Smarts NCM resources is performed.</p>
+                                                    <h2>Connector Description</h2>
+                                                    <p>The table below provides a description of the  EMC Smarts NCM Connector.</p>
+                                                    <table class="TableStyle-Rep_Hdr_Row" style="mc-table-style: url('../../resources/tablestyles/rep hdr row.css');" cellspacing="0">
+                                                        <col style="width: 185pt;" class="TableStyle-Rep_Hdr_Row-Column-Column1">
+                                                        <col style="width: 203pt;" class="TableStyle-Rep_Hdr_Row-Column-Column2">
+                                                        <thead>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Head-Header1">
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column1-Header1">
+                                                                    <p class="Strong">Information fields</p>
+                                                                </th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadD-Column2-Header1">
+                                                                    <p class="Strong">Description</p>
+                                                                </th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Connector</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p>EMC Smarts NCM  v4.1 &lt;-&gt; <span class="GeneralVariablesCoreName">ASM Core</span></p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Third-party application</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p>EMC Smarts NCM</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Assembly</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p>Infra.Connector.VMware Service Manager.NCM.VMware Service ManagerNCMConnector</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Connector class</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p>VMware Service Manager<br>NCMConnector</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Configuration file</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">Infra.Connector.VMware Service Manager.NCM.icnf</td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyB-Column1-Body1">
+                                                                    <p>Connection methodology</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyA-Column2-Body1">
+                                                                    <p>Web Services</p>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <h2>Connection Parameters</h2>
+                                                    <p>When creating a new EMC Smarts NCM source from the Source option of the Integration Platform, some EMC Smarts NCM specific parameters have to be entered.</p>
+                                                    <p class="note">The credentials of the EMC Smarts NCM analyst related to the Username and password specified below should have adequate rights to trigger, schedule and cancel jobs in EMC Smarts NCM.</p>
+                                                    <p>The table below provides the connection parameters of the  EMC Smarts NCM Connector.</p>
+                                                    <table class="TableStyle-FieldDesc" style="mc-table-style: url('../../resources/tablestyles/fielddesc.css');margin-left: 0;margin-right: auto;" cellspacing="0">
+                                                        <col class="TableStyle-FieldDesc-Column-Column1">
+                                                        <col class="TableStyle-FieldDesc-Column-Column2">
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-" style="font-weight: bold;">
+                                                                <p class="Strong">Parameters</p>
+                                                            </td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-" style="font-weight: bold;">
+                                                                <p class="Strong">Description</p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">
+                                                                <p>Web Service URL</p>
+                                                            </td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                <p>URL of the <span class="GeneralVariablesCoreName">ASM Core</span> NCM Web Services. For example, </p>
+                                                                <p>http://&lt;server</p>
+                                                                <p>name&gt;:8881/ws/api/41/services/ApiService?wsdl</p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">
+                                                                <p>User name</p>
+                                                            </td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                <p>Ionix NCM user name</p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">
+                                                                <p>Password</p>
+                                                            </td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                <p>EMC Smarts NCM password</p>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                    <p> </p>
+                                                    <p>The Connection Parameters window of EMC Smarts NCM WebService is illustrated below.</p>
+                                                    <img src="/storage/app/media/Help/images/connector%20ncm%201.png" class="screenshot">
+                                                    <h1>Federated CMDB population</h1>
+                                                    <h2>Resource Types</h2>
+                                                    <p>This section lists the resource types and their properties that the connector has to discover on EMC Smarts NCM systems. The connector later imports the resource types it has discovered into the <span class="GeneralVariablesCoreName">ASM Core</span> CMDB.</p>
+                                                    <h3>Switch</h3>
+                                                    <p>The attributes of this resource type are as follows:</p>
+                                                    <ul>
+                                                        <li value="1">Derived Device Name</li>
+                                                        <li value="2">Description</li>
+                                                        <li value="3">URL for Contextual Launch</li>
+                                                        <li value="4"> Unique Identifier</li>
+                                                        <li value="5">Hostname</li>
+                                                        <li value="6">Domain Name (from fqdn)</li>
+                                                        <li value="7">Device Type</li>
+                                                        <li value="8">Management IP Address</li>
+                                                        <li value="9">Operating system</li>
+                                                        <li value="10">Device vendor</li>
+                                                        <li value="11">Device model</li>
+                                                        <li value="12">Serial Number</li>
+                                                        <li value="13">SNMP Contact</li>
+                                                        <li value="14">SNMP location</li>
+                                                    </ul>
+                                                    <h3>Router</h3>
+                                                    <p>The attributes of this resource type are as follows:</p>
+                                                    <ul>
+                                                        <li value="1">Derived Device Name</li>
+                                                        <li value="2">Description</li>
+                                                        <li value="3">URL for Contextual Launch</li>
+                                                        <li value="4"> Unique Identifier</li>
+                                                        <li value="5">Hostname</li>
+                                                        <li value="6">Domain Name (from fqdn)</li>
+                                                        <li value="7">Device Type</li>
+                                                        <li value="8">Management IP Address</li>
+                                                        <li value="9">Operating system</li>
+                                                        <li value="10">Device vendor</li>
+                                                        <li value="11">Device model</li>
+                                                        <li value="12">Serial Number</li>
+                                                        <li value="13">SNMP Contact</li>
+                                                        <li value="14">SNMP location</li>
+                                                    </ul>
+                                                    <h3>VPN Concentrator</h3>
+                                                    <p>The attributes of this resource type are as follows:</p>
+                                                    <ul>
+                                                        <li value="1">Derived Device Name</li>
+                                                        <li value="2">Description</li>
+                                                        <li value="3">URL for Contextual Launch</li>
+                                                        <li value="4"> Unique Identifier</li>
+                                                        <li value="5">Hostname</li>
+                                                        <li value="6">Domain Name (from fqdn)</li>
+                                                        <li value="7">Device Type</li>
+                                                        <li value="8">Management IP Address</li>
+                                                        <li value="9">Operating system</li>
+                                                        <li value="10">Device vendor</li>
+                                                        <li value="11">Device model</li>
+                                                        <li value="12">Serial Number</li>
+                                                        <li value="13">SNMP Contact</li>
+                                                        <li value="14">SNMP location</li>
+                                                    </ul>
+                                                    <h3>ATM Switch</h3>
+                                                    <p>The attributes of this resource type are as follows:</p>
+                                                    <ul>
+                                                        <li value="1">Derived Device Name</li>
+                                                        <li value="2">Description</li>
+                                                        <li value="3">URL for Contextual Launch</li>
+                                                        <li value="4"> Unique Identifier</li>
+                                                        <li value="5">Hostname</li>
+                                                        <li value="6">Domain Name (from fqdn)</li>
+                                                        <li value="7">Device Type</li>
+                                                        <li value="8">Management IP Address</li>
+                                                        <li value="9">Operating system</li>
+                                                        <li value="10">Device vendor</li>
+                                                        <li value="11">Device model</li>
+                                                        <li value="12">Serial Number</li>
+                                                        <li value="13">SNMP Contact</li>
+                                                        <li value="14">SNMP location</li>
+                                                    </ul>
+                                                    <h3>Firewall</h3>
+                                                    <p>The attributes of this resource type are as follows:</p>
+                                                    <ul>
+                                                        <li value="1">Derived Device Name</li>
+                                                        <li value="2">Description</li>
+                                                        <li value="3">URL for Contextual Launch</li>
+                                                        <li value="4"> Unique Identifier</li>
+                                                        <li value="5">Hostname</li>
+                                                        <li value="6">Domain Name (from fqdn)</li>
+                                                        <li value="7">Device Type</li>
+                                                        <li value="8">Management IP Address</li>
+                                                        <li value="9">Operating system</li>
+                                                        <li value="10">Device vendor</li>
+                                                        <li value="11">Device model</li>
+                                                        <li value="12">Serial Number</li>
+                                                        <li value="13">SNMP Contact</li>
+                                                        <li value="14">SNMP location</li>
+                                                    </ul>
+                                                    <h3>Wireless Application</h3>
+                                                    <p>The attributes of this resource type are as follows:</p>
+                                                    <ul>
+                                                        <li value="1">Derived Device Name</li>
+                                                        <li value="2">Description</li>
+                                                        <li value="3">URL for Contextual Launch</li>
+                                                        <li value="4"> Unique Identifier</li>
+                                                        <li value="5">Hostname</li>
+                                                        <li value="6">Domain Name (from fqdn)</li>
+                                                        <li value="7">Device Type</li>
+                                                        <li value="8">Management IP Address</li>
+                                                        <li value="9">Operating system</li>
+                                                        <li value="10">Device vendor</li>
+                                                        <li value="11">Device model</li>
+                                                        <li value="12">Serial Number</li>
+                                                        <li value="13">SNMP Contact</li>
+                                                        <li value="14">SNMP location</li>
+                                                    </ul>
+                                                    <h3>Layer 3 Switch</h3>
+                                                    <p>The attributes of this resource type are as follows:</p>
+                                                    <ul>
+                                                        <li value="1">Derived Device Name</li>
+                                                        <li value="2">Description</li>
+                                                        <li value="3">URL for Contextual Launch</li>
+                                                        <li value="4"> Unique Identifier</li>
+                                                        <li value="5">Hostname</li>
+                                                        <li value="6">Domain Name (from fqdn)</li>
+                                                        <li value="7">Device Type</li>
+                                                        <li value="8">Management IP Address</li>
+                                                        <li value="9">Operating system</li>
+                                                        <li value="10">Device vendor</li>
+                                                        <li value="11">Device model</li>
+                                                        <li value="12">Serial Number</li>
+                                                        <li value="13">SNMP Contact</li>
+                                                        <li value="14">SNMP location</li>
+                                                    </ul>
+                                                    <h3>Content Cache</h3>
+                                                    <p>The attributes of this resource type are as follows:</p>
+                                                    <ul>
+                                                        <li value="1">Derived Device Name</li>
+                                                        <li value="2">Description</li>
+                                                        <li value="3">URL for Contextual Launch</li>
+                                                        <li value="4"> Unique Identifier</li>
+                                                        <li value="5">Hostname</li>
+                                                        <li value="6">Domain Name (from fqdn)</li>
+                                                        <li value="7">Device Type</li>
+                                                        <li value="8">Management IP Address</li>
+                                                        <li value="9">Operating system</li>
+                                                        <li value="10">Device vendor</li>
+                                                        <li value="11">Device model</li>
+                                                        <li value="12">Serial Number</li>
+                                                        <li value="13">SNMP Contact</li>
+                                                        <li value="14">SNMP location</li>
+                                                    </ul>
+                                                    <h3>Load Balancer</h3>
+                                                    <p>The attributes of this resource type are as follows:</p>
+                                                    <ul>
+                                                        <li value="1">Derived Device Name</li>
+                                                        <li value="2">Description</li>
+                                                        <li value="3">URL for Contextual Launch</li>
+                                                        <li value="4"> Unique Identifier</li>
+                                                        <li value="5">Hostname</li>
+                                                        <li value="6">Domain Name (from fqdn)</li>
+                                                        <li value="7">Device Type</li>
+                                                        <li value="8">Management IP Address</li>
+                                                        <li value="9">Operating system</li>
+                                                        <li value="10">Device vendor</li>
+                                                        <li value="11">Device model</li>
+                                                        <li value="12">Serial Number</li>
+                                                        <li value="13">SNMP Contact</li>
+                                                        <li value="14">SNMP location</li>
+                                                    </ul>
+                                                    <h3>VOIP Device</h3>
+                                                    <p>The attributes of this resource type are as follows:</p>
+                                                    <ul>
+                                                        <li value="1">Derived Device Name</li>
+                                                        <li value="2">Description</li>
+                                                        <li value="3">URL for Contextual Launch</li>
+                                                        <li value="4"> Unique Identifier</li>
+                                                        <li value="5">Hostname</li>
+                                                        <li value="6">Domain Name (from fqdn)</li>
+                                                        <li value="7">Device Type</li>
+                                                        <li value="8">Management IP Address</li>
+                                                        <li value="9">Operating system</li>
+                                                        <li value="10">Device vendor</li>
+                                                        <li value="11">Device model</li>
+                                                        <li value="12">Serial Number</li>
+                                                        <li value="13">SNMP Contact</li>
+                                                        <li value="14">SNMP location</li>
+                                                    </ul>
+                                                    <h3> Server</h3>
+                                                    <p>The attributes of this resource type are as follows:</p>
+                                                    <ul>
+                                                        <li value="1">Derived Device Name</li>
+                                                        <li value="2">Description</li>
+                                                        <li value="3">URL for Contextual Launch</li>
+                                                        <li value="4"> Unique Identifier</li>
+                                                        <li value="5">Hostname</li>
+                                                        <li value="6">Domain Name (from fqdn)</li>
+                                                        <li value="7">Device Type</li>
+                                                        <li value="8">Management IP Address</li>
+                                                        <li value="9">Operating system</li>
+                                                        <li value="10">Device vendor</li>
+                                                        <li value="11">Device model</li>
+                                                        <li value="12">Serial Number</li>
+                                                        <li value="13">SNMP Contact</li>
+                                                        <li value="14">SNMP location</li>
+                                                    </ul>
+                                                    <h3>IP Phone</h3>
+                                                    <p>The attributes of this resource type are as follows:</p>
+                                                    <ul>
+                                                        <li value="1">Derived Device Name</li>
+                                                        <li value="2">Description</li>
+                                                        <li value="3">URL for Contextual Launch</li>
+                                                        <li value="4"> Unique Identifier</li>
+                                                        <li value="5">Hostname</li>
+                                                        <li value="6">Domain Name (from fqdn)</li>
+                                                        <li value="7">Device Type</li>
+                                                        <li value="8">Management IP Address</li>
+                                                        <li value="9">Operating system</li>
+                                                        <li value="10">Device vendor</li>
+                                                        <li value="11">Device model</li>
+                                                        <li value="12">Serial Number</li>
+                                                        <li value="13">SNMP Contact</li>
+                                                        <li value="14">SNMP location</li>
+                                                    </ul>
+                                                    <h3> Others</h3>
+                                                    <p>The attributes of this resource type are as follows:</p>
+                                                    <ul>
+                                                        <li value="1">Derived Device Name</li>
+                                                    </ul>
+                                                    <ul>
+                                                        <li value="1">Description</li>
+                                                    </ul>
+                                                    <ul>
+                                                        <li value="1">URL for Contextual Launch</li>
+                                                    </ul>
+                                                    <ul>
+                                                        <li value="1"> Unique Identifier</li>
+                                                    </ul>
+                                                    <ul>
+                                                        <li value="1">Hostname</li>
+                                                    </ul>
+                                                    <ul>
+                                                        <li value="1">Domain Name (from fqdn)</li>
+                                                    </ul>
+                                                    <ul>
+                                                        <li value="1">Device Type</li>
+                                                    </ul>
+                                                    <ul>
+                                                        <li value="1">Management IP Address</li>
+                                                    </ul>
+                                                    <ul>
+                                                        <li value="1">Operating system</li>
+                                                    </ul>
+                                                    <ul>
+                                                        <li value="1">Device vendor</li>
+                                                    </ul>
+                                                    <ul>
+                                                        <li value="1">Device model</li>
+                                                    </ul>
+                                                    <ul>
+                                                        <li value="1">Serial Number</li>
+                                                    </ul>
+                                                    <ul>
+                                                        <li value="1">SNMP Contact</li>
+                                                    </ul>
+                                                    <ul>
+                                                        <li value="1">SNMP location</li>
+                                                    </ul>
+                                                    <h2>Link Types</h2>
+                                                    <p>Link types are not defined in the  EMC Smarts NCM Connector. However, the connector does support the introduction of link types. This can be done by customizing the configuration file.</p>
+                                                    <h1>Outbound Actions</h1>
+                                                    <h2>Technical Considerations</h2>
+                                                    <p>Interactions between <span class="GeneralVariablesCoreName">ASM Core</span> and EMC Smarts NCM systems are defined by a series of pre-defined actions. These actions are called Outbound actions in <span class="GeneralVariablesCoreName">ASM Core</span>. They and their operations are detailed and managed by the  EMC Smarts NCM Connector and the Integration Platform.</p>
+                                                    <p>The current actions defined by the  EMC Smarts NCM Connector are:</p>
+                                                    <ul>
+                                                        <li value="1">Job Information </li>
+                                                        <li value="2">Job Execute</li>
+                                                        <li value="3">Job Cancel</li>
+                                                        <li value="4">Job Schedule</li>
+                                                        <li value="5">Job Completion</li>
+                                                    </ul>
+                                                    <p>When <span class="GeneralVariablesCoreName">ASM Core</span> executes any of the actions above, a communication protocol is used to ensure the proper exchange of information between the two systems. The protocol relies on the following transactions as shown:</p>
+                                                    <p>
+                                                        <img src="/storage/app/media/Help/images/communication%20protocols%203.png" class="screenshot">
+                                                    </p>
+                                                    <p class="note">Only the Create transaction is compulsory for an action to take place. The existence of any other transactions depends on the nature of the action. For instance, an action aimed at retrieving a readily available piece of information from EMC Smarts NCM is unlikely to handle an Update transaction. This is because this action is non-persistent. <span class="GeneralVariablesCoreName">ASM Core</span> asks for the information with a Create transaction and EMC Smarts NCM immediately replies using a Complete transaction that includes the relevant data.</p>
+                                                    <p>The settings for the actions between <span class="GeneralVariablesCoreName">ASM Core</span> and EMC Smarts NCM are managed through the Outbound Actions option in the Integration Platform. Amongst the parameters that can be defined, a mapping between some EMC Smarts NCM and some <span class="GeneralVariablesCoreName">ASM Core</span> fields is required. The EMC Smarts NCM fields available are mainly composed of the attributes qualifying a job in EMC Smarts NCM.</p>
+                                                    <p>The table below lists the EMC Smarts NCM field names, their types and display in <span class="GeneralVariablesCoreName">ASM Core</span>.</p>
+                                                    <p> </p>
+                                                    <table class="TableStyle-Rep_Hdr_Row" style="mc-table-style: url('../../resources/tablestyles/rep hdr row.css');margin-left: 0;margin-right: auto;" cellspacing="0">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column1">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column2">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column1">
+                                                        <thead>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Head-Header1">
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column1-Header1">
+                                                                    <p>EMC Smarts NCM field names</p>
+                                                                </th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column2-Header1">
+                                                                    <p class="Strong">Type</p>
+                                                                </th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadD-Column1-Header1">
+                                                                    <p>Field display in <span class="GeneralVariablesCoreName">ASM Core</span></p>
+                                                                </th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>id.resourceName</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>String</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>Job ID</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>approvedBy</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>String</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>Job Key</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>id.approvedBy</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>String</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>approvedBy</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>auditTag</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>Long</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>auditTag</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>instanceIndex</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>String</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>instanceIndex</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>jobDescription</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>String</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>jobDescription</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>jobName</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>String</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>jobName</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>jobOwner</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>String</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>jobOwner</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>jobPriority</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>String</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>jobPriority</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>jobRunOption</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>String</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>jobRunOption</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>jobStatus</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>String</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>jobStatus</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>jobType</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>String</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>jobType</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>maintWindowType</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>String</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>maintWindowType</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>occurrencesCompleted</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>Long</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>occurrencesCompleted</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>targetTime</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>String</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>targetTime</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>updateComment</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>String</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>updateComment</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>updatedBy</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>String</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>updatedBy</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Approved</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>Boolean</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>Approved</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>maintWinOverride</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>Boolean</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>maintWinOverride</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Modified</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>Boolean</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>Modified</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>preserveTaskOrder</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>Boolean</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>preserveTaskOrder</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Recurring</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>Boolean</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>Recurring</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>runInNextMaintWin</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>Boolean</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>runInNextMaintWin</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>sharedConfig</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>Boolean</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>sharedConfig</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyB-Column1-Body1">
+                                                                    <p>impactedDevices</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyB-Column2-Body1">
+                                                                    <p>String</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyA-Column1-Body1">
+                                                                    <p>impactedDevices</p>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <p class="note"><span class="span_2">impactedDevices</span> is not mapped to specific EMC Smarts NCM  fields. It contains device IDs of every devices affected by a specific job.</p>
+                                                    <h2>Outbound Actions Details</h2>
+                                                    <p>Five Outbound actions have been implemented in the  EMC Smarts NCM Connector. These actions allow, at the minimum, the running of the use case scenario given in the <a href="Connector%20for%20EMC%20Smarts%20NCM.htm" class="ParaTextOnly MCXref xref xrefParaTextOnly">Use Case Scenario</a>. However, they can be used in many different ways in order to accommodate other specific User requirements.</p>
+                                                    <p>The five Outbound actions are:</p>
+                                                    <ul>
+                                                        <li value="1">Job Information</li>
+                                                        <li value="2">Job Execute</li>
+                                                        <li value="3">Job Cancel</li>
+                                                        <li value="4">Job Schedule</li>
+                                                        <li value="5">Job Completion</li>
+                                                    </ul>
+                                                    <p class="note">The first three actions — Job Information, Job Execute and Job Cancel - are asynchronous. So, the tasks in Service Manager is immediately marked as <span class="span_2">Completed</span>. They just retrieve the information of the job. In the case of Job Execute and Job Cancel actions, it sends off an operation to be performed on the job, but does not wait for the job to complete execution in EMC Smarts NCM. The last two actions — Job Schedule and Job Completion, are synchronous and are not marked as <span class="span_2">Completed</span> until the job is completed in EMC Smarts NCM.</p>
+                                                    <p class="note">The <b class="crossref">Integration Platform Guide</b> contains detailed instructions on how to set up Outbound actions.</p>
+                                                    <h3>Job Information </h3>
+                                                    <p>When provided with an Identifier of a Job previously created in EMC Smarts NCM, this action retrieves the list of the affected devices that are impacted by the Job related to the Job Identifier supplied.</p>
+                                                    <p>The table below provides a description of the Job Information action.</p>
+                                                    <table class="TableStyle-FieldDesc" style="mc-table-style: url('../../resources/tablestyles/fielddesc.css');margin-left: 0;margin-right: auto;" cellspacing="0">
+                                                        <col class="TableStyle-FieldDesc-Column-Column1">
+                                                        <col class="TableStyle-FieldDesc-Column-Column2">
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">
+                                                                <p>Input from <span class="GeneralVariablesCoreName">ASM Core</span></p>
+                                                            </td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                <p><b>EMC Smarts NCM job identifier</b>
+                                                                </p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">
+                                                                <p>Action performed</p>
+                                                            </td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                <p>Retrieve a list of affected devices into <span class="GeneralVariablesCoreName">ASM Core</span></p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">
+                                                                <p>Output from EMC Smarts NCM</p>
+                                                            </td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                <p>List of affected devices</p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">
+                                                                <p>Task deemed completed</p>
+                                                            </td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                <p>When the initial transaction requesting specific information is sent by <span class="GeneralVariablesCoreName">ASM Core</span> to EMC Smarts NCM</p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">
+                                                                <p>Type of transactions involved</p>
+                                                            </td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                <p>Create</p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">
+                                                                <p>Miscellaneous</p>
+                                                            </td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                <p>Absence of Update, Notify, and Cancel transaction</p>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                    <h3>Job Execute</h3>
+                                                    <p>When provided with an Identifier of a Job previously created in EMC Smarts NCM, this action triggers the execution of the Job related to the Job Identifier supplied. The table below provides a description of the Job Execute action.</p>
+                                                    <table class="TableStyle-FieldDesc" style="mc-table-style: url('../../resources/tablestyles/fielddesc.css');margin-left: 0;margin-right: auto;" cellspacing="0">
+                                                        <col class="TableStyle-FieldDesc-Column-Column1">
+                                                        <col class="TableStyle-FieldDesc-Column-Column2">
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-" style="font-weight: bold;">
+                                                                <p>Input from <span class="GeneralVariablesCoreName">ASM Core</span></p>
+                                                            </td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-" style="font-weight: bold;">
+                                                                <p>EMC Smarts NCM job identifier</p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">
+                                                                <p>Action performed</p>
+                                                            </td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                <p>Sets the job to run in the next maintenance window</p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">
+                                                                <p>Output from EMC Smarts NCM</p>
+                                                            </td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                <p>List of affected resources</p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">
+                                                                <p>Task deemed completed</p>
+                                                            </td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                <p>When the initial transaction requesting a specific Job to be set up is sent by Service Manager to EMC Smarts NCM</p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">
+                                                                <p>Type of transaction involved</p>
+                                                            </td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                <p>Create</p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">
+                                                                <p>Miscellaneous</p>
+                                                            </td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                <p>Absence of Update, Notify and Cancel transaction</p>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                    <h3>Job Cancel</h3>
+                                                    <p>When provided with an Identifier of a Job previously created in EMC Smarts NCM, this action cancels the Job related to the Job Identifier supplied. The table below provides a description of the Job Cancel action.</p>
+                                                    <table class="TableStyle-FieldDesc" style="mc-table-style: url('../../resources/tablestyles/fielddesc.css');margin-left: 0;margin-right: auto;" cellspacing="0">
+                                                        <col class="TableStyle-FieldDesc-Column-Column1">
+                                                        <col class="TableStyle-FieldDesc-Column-Column2">
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-" style="font-weight: bold;">
+                                                                <p>Input from <span class="GeneralVariablesCoreName">ASM Core</span></p>
+                                                            </td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-" style="font-weight: bold;">
+                                                                <p>EMC Smarts NCM job identifier</p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">
+                                                                <p>Action performed</p>
+                                                            </td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                <p>Cancel a specific Job in EMC Smarts NCM</p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">
+                                                                <p>Output from EMC Smarts NCM</p>
+                                                            </td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                <p>List of affected resources</p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">
+                                                                <p>Task deemed completed</p>
+                                                            </td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                <p>When the initial transaction requesting a specific Job to be cancelled is sent by <span class="GeneralVariablesCoreName">ASM Core</span> to EMC Smarts NCM</p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">
+                                                                <p>Type of transactions involved</p>
+                                                            </td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                <p>Create</p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">
+                                                                <p>Miscellaneous</p>
+                                                            </td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                <p>Absence of Update, Notify, and Cancel transaction</p>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                    <h3>Job Schedule</h3>
+                                                    <p>When provided with an Identifier of a Job previously created in EMC Smarts NCM, this action is able to schedule the Job related to the Job Identifier supplied. The table below provides a description of the Job Schedule action.</p>
+                                                    <table class="TableStyle-FieldDesc" style="mc-table-style: url('../../resources/tablestyles/fielddesc.css');margin-left: 0;margin-right: auto;" cellspacing="0">
+                                                        <col class="TableStyle-FieldDesc-Column-Column1">
+                                                        <col class="TableStyle-FieldDesc-Column-Column2">
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-" style="font-weight: bold;">
+                                                                <p>Input from <span class="GeneralVariablesCoreName">ASM Core</span></p>
+                                                            </td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-" style="font-weight: bold;">
+                                                                <p>EMC Smarts NCM job identifier</p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">
+                                                                <p>Action performed</p>
+                                                            </td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                <p>Scheduling a specific Job in EMC Smarts NCM</p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">
+                                                                <p>Output from EMC Smarts NCM</p>
+                                                            </td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                <p>List of affected resources</p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">
+                                                                <p>Task deemed completed</p>
+                                                            </td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                <p>When the Completed transaction sent by EMC Smarts NCM is received by <span class="GeneralVariablesCoreName">ASM Core</span></p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">
+                                                                <p>Type of transactions involved</p>
+                                                            </td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                <p>Create</p>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                    <h3>Job Completion</h3>
+                                                    <p>When provided with an Identifier of a Job previously created in EMC Smarts NCM, this action monitors when the Job related to the Job Identifier supplied is completed in EMC Smarts NCM. The table below provides a description of the Job Completion action.</p>
+                                                    <table class="TableStyle-FieldDesc" style="mc-table-style: url('../../resources/tablestyles/fielddesc.css');margin-left: 0;margin-right: auto;" cellspacing="0">
+                                                        <col class="TableStyle-FieldDesc-Column-Column1">
+                                                        <col class="TableStyle-FieldDesc-Column-Column2">
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-" style="font-weight: bold;">
+                                                                <p>Input from <span class="GeneralVariablesCoreName">ASM Core</span></p>
+                                                            </td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-" style="font-weight: bold;">
+                                                                <p>EMC Smarts NCM job identifier</p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">
+                                                                <p>Action performed</p>
+                                                            </td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                <p>Scheduling a specific Job in EMC Smarts NCM</p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">
+                                                                <p>Output from EMC Smarts NCM</p>
+                                                            </td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                <p>List of affected resources</p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">
+                                                                <p>Task deemed completed</p>
+                                                            </td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                <p>When the Completed transaction sent by EMC Smarts NCM is received by <span class="GeneralVariablesCoreName">ASM Core</span></p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">
+                                                                <p>Type of transactions involved</p>
+                                                            </td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                <p>Create</p>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                

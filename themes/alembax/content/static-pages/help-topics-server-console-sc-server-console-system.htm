@@ -1,0 +1,83 @@
+[viewBag]
+title = "Server Console system tasks "
+url = "/help/topics/server-console/sc-server-console-system"
+layout = "help"
+is_hidden = 0
+navigation_hidden = 0
+==
+                                                    <h1>Server Console system tasks </h1>
+                                                    <p>You can perform a range of tasks using the Server Console. You can access the tasks in the <b>Actions</b> pane to the right of the server console window. Tasks are grouped by functional area (that is, System Setup, Database Tasks, and so on). </p>
+                                                    <h2>System Setup tasks</h2>
+                                                    <h3>Copying the original files to the <span class="GeneralVariablesSystemName">ASM System</span> directory</h3>
+                                                    <p>Select  <b>Copy Files</b> to copy the original files to the System directory. </p>
+                                                    <p class="warning"> This task may overwrite customized files. You should only undertake this task following consultation with <span class="GeneralVariablesCompanyName2">Alemba®</span>. </p>
+                                                    <h3>Parsing custom query files</h3>
+                                                    <p class="note">You must parse the query files after any change to a query file, config-queries.xml, or the database schema, or if you have created a custom query file. </p>
+                                                    <p>In the Server Console <b>Actions</b> pane, select  <b>Parse Query Files</b> to parse the custom or updated query file. </p>
+                                                    <p>This process creates a parsed .SQP file in the queries folder for that <span class="GeneralVariablesSystemName">ASM System</span>. This is a binary file; you cannot use a text editor to read or edit it. </p>
+                                                    <p>This task: </p>
+                                                    <ul>
+                                                        <li value="1">Identifies the query files and the order in which they are used by the system.</li>
+                                                        <li value="2">Fetches information about the database schema to enforce correct parameter lengths in the queries.</li>
+                                                        <li value="3">Writes the queries into a format that is quick to read by the application.</li>
+                                                    </ul>
+                                                    <h3>
+<a name="Running"></a>Running custom PowerShell scripts</h3>
+                                                    <p>In the Server Console <b>Actions</b> pane, select <b>Run Custom PowerShell Scripts</b> to manually run the PowerShell script required to use the <span class="GeneralVariablesAPIName">Alemba API</span>. When you select this option, the script is automatically selected. Select <b>Open</b> to run it.</p>
+                                                    <h3>Configuring system properties </h3>
+                                                    <p>In the Server Console <b>Actions</b> pane, select <b>Properties</b> to configure your <span class="GeneralVariablesSystemName">ASM System</span> properties. You can specify a new system name, path, or configure your database connection. For more information, <a href="sc%20configuring%20your%20system.htm" class="MCXref xref">Configuring an existing system</a>.</p>
+                                                    <h2 class="newpage">Archiving system data</h2>
+                                                    <h2 class="Prerequisite">Before you start</h2>
+                                                    <p class="prereqtext1">We recommend that you archive data outside of database usage peak hours, as it consumes resources, especially if your database is large. If Analysts are taking action on a call during the archive process, an error may occur. </p>
+                                                    <p class="warning">After calls are archived, you cannot move them back to the standard tables unless you move them manually using SQL commands.</p>
+                                                    <p> You can reduce the size of your Call Logging and Call History tables by archiving the data. This improves your system performance.</p>
+                                                    <p>When a call is archived, the following happens:</p>
+                                                    <ul>
+                                                        <li value="1">All items within the CL_CALL_LOGGING database table, which holds the Call Details, are moved to the table ARCHIVE_CALL_LOGGING.</li>
+                                                        <li value="2">All items within the CL_PROBLEM_HISTORY database table, which holds the Call History, are moved to the table ARCHIVE_PROBLEM_HISTORY.</li>
+                                                        <li value="3">Any calls, knowledge entries and other entities linked to the archived call are unlinked.</li>
+                                                        <li value="4">All other items that are linked to the archived call, such as attachments, are deleted.</li>
+                                                    </ul>
+                                                    <p class="note">You can configure your Analysts' search criteria to include the <b>Archived Calls</b> check box and drop-down list. This enables Analysts to search archived calls.</p>
+                                                    <p>To archive calls:</p>
+                                                    <ol>
+                                                        <li value="1">
+                                                            <p> In the Server Console <b>Actions</b> pane, select <b>Archiving</b> &gt; <b>Archive Calls</b>. </p>
+                                                            <p>The Archive Wizard window appears.</p>
+                                                        </li>
+                                                        <li value="2">
+                                                            <p>In the <b>Archive Calls Actioned Until</b> drop-down, select or type the final date for closed calls you want to archive.</p>
+                                                            <p class="note">The archiving process uses the <b>Time Last Actioned</b> date.</p>
+                                                            <p>All calls that were closed up to and including this date are archived.</p>
+                                                        </li>
+                                                        <li value="3">
+                                                            <p>If required, select the <b>Include Experience Base Calls</b> check box to archive calls that were selected for the Experience Base.</p>
+                                                            <p class="note">This option is clear by default, since it is assumed that administrators want to keep Experience Base calls separate from the archiving process. </p>
+                                                        </li>
+                                                        <li value="4">
+                                                            <p>Select <b>Next</b>. </p>
+                                                            <p>A confirmation dialog box appears.</p>
+                                                        </li>
+                                                        <li value="5">
+                                                            <p>Select <b>Yes</b> to start the archiving process.</p>
+                                                            <p>This may take a few minutes. After the archiving completes, the wizard confirms its success or failure. </p>
+                                                            <p class="note">If you receive an error during the archiving process, you should perform the archive again.</p>
+                                                        </li>
+                                                        <li value="6">
+                                                            <p>If required, select <b>View Log File</b> to view the log file of the results.</p>
+                                                        </li>
+                                                        <li value="7">
+                                                            <p>Select <b>Finish</b> to close the <b>Archive Calls</b> window.</p>
+                                                            <p>If you selected the View Log File check box, the log file opens.</p>
+                                                        </li>
+                                                    </ol>
+                                                    <h2 class="newpage">Importing and exporting workflows</h2>
+                                                    <p>You can import and export <span class="GeneralVariablesProductName">ASM</span> workflow templates between <span class="GeneralVariablesSystemName">ASM System</span>s. This is particularly useful for transferring workflow templates from a test system to a production system, or when best practice templates are provided by <span class="GeneralVariablesCompanyName2">Alemba®</span>. </p>
+                                                    <p class="warning">When importing workflow templates, we strongly recommend that the source and target  <span class="GeneralVariablesSystemName">ASM System</span>s have the same configuration settings. This is especially important when importing partitioned workflow templates. To ensure the templates are ported to the correct partition, the systems must have the same partition settings configured within <span class="GeneralVariablesCoreName">ASM Core</span> System Administration. </p>
+                                                    <p class="note">For more information about Workflow Template Portability, see the <b>Workflow Template Portability Guide</b>.</p>
+                                                    <h2>Customizing the server console view </h2>
+                                                    <p>In the Server Console <b>Actions</b> pane, select <b>View</b> &gt; <b>Customise</b> to change the Server Console display. </p>
+                                                    <p>On the <b>Customize View</b> dialog box, select a check box to display an item, or clear it to hide an item. </p>
+                                                    <h2>Other actions </h2>
+                                                    <p>Using the <b>Actions</b> pane, you can also <b>Delete</b>, <b>Rename</b> and <b>Refresh</b> the selected system.</p>
+                                                

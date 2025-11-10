@@ -1,0 +1,206 @@
+url = "/self-service-portal"
+layout = "home"
+title = "Self-service Portal"
+description = "Features > Self-service Portal"
+is_hidden = 0
+meta_title = "Self-Service Portal | Alemba Service Manager ITSM Features"
+meta_description = "Enable your customers to help themselves with Alemba Service Manager's user-friendly, 100% license-free ITSM self-service portal."
+robot_index = "index"
+robot_follow = "follow"
+seoOptionsEnabledInSitemap = 0
+seoOptionsUseUpdatedAt = 1
+seoOptionsRobotIndex = "index"
+seoOptionsRobotFollow = "follow"
+seoOptionsChangefreq = "daily"
+seoOptionsPriority = 0.5
+canonical_url = "https://alemba.com/self-service-portal"
+seo_title = "Self-Service Portal | Alemba Service Manager ITSM Features"
+seo_description = "Enable your customers to help themselves with Alemba Service Manager's user-friendly, 100% license-free ITSM self-service portal."
+
+[viewBag]
+seo_title = "Self-Service Portal | Alemba Service Manager ITSM Features"
+seo_description = "Enable your customers to help themselves with Alemba Service Manager's user-friendly, 100% license-free ITSM self-service portal."
+robot_index = "index"
+robot_follow = "follow"
+==
+<?php
+function onStart()
+{
+    //add chart.js
+	$this->addJs('assets/node_modules/chart.js/dist/Chart.bundle.min.js');
+	$this->addJs('assets/js/charts.min.js');
+}
+?>
+==
+<!-- banner -->
+
+<div class="jumbotron jumbotron-fluid banner dark pageBanner" style="background-image:url('{{ 'assets/img/banners/banner-download@0.5x.jpg'|theme }}')">
+
+	<div class="container-fluid h-100" style="background-color: rgba(0,0,0,0.5);">
+	    <div class="row h-100">
+    	    <div class="col my-auto text-center">
+        	    <div class="banner-chart mx-auto" style="width: 280px;">
+        	        <canvas id="callPie"></canvas>
+                </div>
+                <h2 class="tag-line">Customers experienced a 30% reduction in calls to the service desk</h2>
+		    </div>
+		</div>
+	</div>
+
+</div>
+
+<!-- /banner -->
+
+{% partial 'demo-button' %}
+
+<div class="container copy">
+
+    <header class="col-md-12 copy-heading">
+
+		<nav aria-label="breadcrumb">
+            <ol class="breadcrumb justify-content-center">
+                <li class="breadcrumb-item">Features</li>
+                <li class="breadcrumb-item active">{{ this.page.title }}</li>
+            </ol>
+        </nav>
+	
+		<h1>{{ this.page.title }}</h1>
+		<h2>100% License Free</h2>
+
+	</header>
+	    
+    <div class="row justify-content-center">
+    
+        <div class="col-md-10">
+            <p class="lead">Alemba Service Manager offers an attractive, user-friendly self-service interface that allows end users to log calls and requests, and place orders.</p>
+    		<p>Alemba Service Manager Self Service is 100% license-free, which means you can make it available to as many users as you wish without incurring any additional expenses.</p>
+    		<hr>
+        </div>
+        
+    </div>
+
+</div>
+
+<div class="container features-index">
+            
+    <div class="row justify-content-center">
+       
+        <div class="col-lg-3 col-md-4 col-sm-6 col-xs">
+            <div class="features-index-icon-container row">
+                <div class="d-block mx-auto my-auto features-index-icon">
+                    <img src="{{ 'assets/img/graphics/icon-section-dna.svg'|theme }}" alt="Custom branding" class="">
+                </div>
+            </div>
+            <h4 class="text-center">Custom branding</h4>
+            <p class="text-center no-button">The self-service interface can be branded to your corporate logos and color themes.</p>
+            
+        </div>
+        
+        <div class="col-lg-3 col-md-4 col-sm-6 col-xs">
+            <div class="features-index-icon-container row">
+                <div class="d-block mx-auto my-auto features-index-icon">
+                    <img src="{{ 'assets/img/graphics/icon-section-chat.svg'|theme }}" alt="Chat" class="">
+                </div>
+            </div>
+            <h4 class="text-center">Chat</h4>
+            <p class="text-center no-button">Users can chat with analysts in real time to help solve their problems.</p>
+            
+        </div>
+        
+        <div class="col-lg-3 col-md-4 col-sm-6 col-xs">
+            <div class="features-index-icon-container row">
+                <div class="d-block mx-auto my-auto features-index-icon">
+                    <img src="{{ 'assets/img/graphics/icon-section-retail.svg'|theme }}" alt="shop" class="">
+                </div>
+            </div>
+            <h4 class="text-center">Shop</h4>
+            <p class="text-center no-button">Customers can browse the service request catalogue and easily request services by adding them to their shopping cart.</p>
+            
+        </div>
+        
+        <div class="col-lg-3 col-md-4 col-sm-6 col-xs">
+            <div class="features-index-icon-container row">
+                <div class="d-block mx-auto my-auto features-index-icon">
+                    <img src="{{ 'assets/img/graphics/icon-section-info.svg'|theme }}" alt="Solve" class="">
+                </div>
+            </div>
+            <h4 class="text-center">Solve</h4>
+            <p class="text-center no-button">Your customers can solve problems by searching the integrated knowledge base.</p>
+            
+        </div>
+        
+        <div class="col-lg-3 col-md-4 col-sm-6 col-xs">
+            <div class="features-index-icon-container row">
+                <div class="d-block mx-auto my-auto features-index-icon">
+                    <img src="{{ 'assets/img/graphics/icon-section-templates.svg'|theme }}" alt="Widgets" class="">
+                </div>
+            </div>
+            <h4 class="text-center">Widgets</h4>
+            <p class="text-center no-button">Design custom ‘get in touch’ widgets for easy access to frequently requested services.</p>
+            
+        </div>
+        
+        <div class="col-lg-3 col-md-4 col-sm-6 col-xs">
+            <div class="features-index-icon-container row">
+                <div class="d-block mx-auto my-auto features-index-icon">
+                    <img src="{{ 'assets/img/graphics/icon-section-news.svg'|theme }}" alt="News" class="">
+                </div>
+            </div>
+            <h4 class="text-center">News</h4>
+            <p class="text-center no-button">The news feed function allows you to share important information with your customers.</p>
+            
+        </div>
+        
+        <div class="col-lg-3 col-md-4 col-sm-6 col-xs">
+            <div class="features-index-icon-container row">
+                <div class="d-block mx-auto my-auto features-index-icon">
+                    <img src="{{ 'assets/img/graphics/icon-section-mobile.svg'|theme }}" alt="mobile" class="">
+                </div>
+            </div>
+            <h4 class="text-center">Mobile</h4>
+            <p class="text-center no-button">A responsive UI allows users to log and track calls, approvals, orders and assets while on the go.</p>
+        </div>
+        
+        <div class="col-lg-3 col-md-4 col-sm-6 col-xs">
+            <div class="features-index-icon-container row">
+                <div class="d-block mx-auto my-auto features-index-icon">
+                    <img src="{{ 'assets/img/graphics/icon-section-business.svg'|theme }}" alt="mobile" class="">
+                </div>
+            </div>
+            <h4 class="text-center">For all business units</h4>
+            <p class="text-center no-button">You can adopt a unified self-service portal incorporating different departments, such as IT HR and Facilities, or choose to have segregated portals for each business unit.</p>
+        </div>
+
+        <div class="col-12 col-md-10">
+            <video autoplay muted loop playsinline poster="{{ 'assets/video/demo-itil-poster.jpg'|theme }}" class="w-100">
+                <source src="{{ 'assets/video/ssp-branding-loop.mp4'|theme }}" type="video/mp4">
+            </video>
+        </div>
+        
+    </div>
+
+</div>
+
+<div class="jumbotron jumbotron-fluid" style="background-image:url('{{ 'assets/img/banners/banner-bg-esm.jpg'|theme }}')">
+    <div class="container">
+        <div class="row">
+
+            <div class="col-sm-6 col-md-9 my-auto">
+
+                <h2>APS Bank</h2>
+                <h6><br>Streamlining their employee on-boarding process using Alemba Service Manager</h6>
+
+                <div class="cta-button">
+                    <a href="{{'hr-service-management'|page}}" class="btn btn-primary">Find out more</a>
+                </div>
+            </div>
+
+            <div class="col-sm-6 col-md-3 my-auto">
+                <img src="{{ 'Customers/aps-bank-logo.png'|media }}" alt="APS Bank" class="d-block mx-auto img-fluid mb-4">
+            </div>
+
+        </div>
+    </div>
+</div>
+
+{% partial 'pagelinks-recent' %}

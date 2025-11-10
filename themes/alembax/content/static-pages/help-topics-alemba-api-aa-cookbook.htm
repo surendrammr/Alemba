@@ -1,0 +1,96 @@
+[viewBag]
+title = "Alemba API Programmers' Cookbook"
+url = "/help/topics/alemba-api/aa-cookbook"
+layout = "help"
+is_hidden = 0
+navigation_hidden = 0
+==
+                                                    <h1>
+<span class="GeneralVariablesAPIName">Alemba API</span> Programmers' Cookbook</h1>
+                                                    <p>This section of the documentation contains information on how to use the API to create well-formed <span class="GeneralVariablesCompanyName2">Alemba®</span> objects, i.e. objects in the <span class="GeneralVariablesDatabaseName">ASM database</span> that contain the data and relationships necessary for those objects to behave in a manner that is compatible with objects created by the suite of <span class="GeneralVariablesProductName">ASM</span> applications.</p>
+                                                    <h2>The role of the <span class="GeneralVariablesCompanyName2">Alemba®</span> rules engine</h2>
+                                                    <p>The business logic that determines how objects behave after creation is contained in the <span class="GeneralVariablesCompanyName2">Alemba®</span> rules engine (also known as Infra Rules). Some examples of what it does are:</p>
+                                                    <ul>
+                                                        <li value="1">        The initial routing of calls</li>
+                                                        <li value="2">        The creation and progression of tasks for new requests</li>
+                                                        <li value="3">        The application of SLAs and other agreements</li>
+                                                        <li value="4">        Creating history entries</li>
+                                                    </ul>
+                                                    <p>This engine is invoked when objects are created via the API, so the rules therein will be automatically applied, just as they are for objects created via <span class="GeneralVariablesProductName">ASM</span> interfaces. This simplifies using the API in a large number of cases – all the API user has to do is to set the values that will trigger those rules and the engine will take care of the rest. The key properties and parameters that impact behaviour are covered in the recipes.</p>
+                                                    <h2>Processes that don’t use the rules engine</h2>
+                                                    <p>There are some processes which must operate across multiple transactions and require user interaction. In these cases, the API user has more work to do – to create things in the right order, and to link the objects correctly. One such example is the creation of Service Orders - details for how to do this are given in <a href="%7B%7B%20'help-aa-cookbook-recipes#Creating'%7CstaticPage%20%7D%7D#Creating" class="MCXref xref">Creating a Service Order</a>.</p>
+                                                    <h2>Implications of the difference between a WCF and RESTful API</h2>
+                                                    <p>In the Classic WCF (Windows Communication Foundation) API, some transactions include parameters that not only impact the main subject of the transaction, but also create, link or update other related objects. This kind of hybrid action is not appropriate in an API whose nature is to enable state transfers, rather than to implement compound rules-driven behaviour. The same ends can be achieved in other ways, and these are described in the cookbook.</p>
+                                                    <h2>Cooking principles - Lock before you update</h2>
+                                                    <p>The following example refers to Call, but applies to all lockable items, such as Assets and Tickets (Calls, Requests and Tasks) and their sub-types.</p>
+                                                    <p>Before performing an update in <span class="GeneralVariablesCoreName">ASM Core</span>, you need to Take Action in Core, which as well as assigning the call to yourself. The Core user interface also locks the call, until you close the call screen. You need to follow equivalent principles when using the API to ensure consistent operation with the Core application</p>
+                                                    <p>Note that in the API, the actions available to you will depend on the state of the record, and the subset of actions that you should attempt are subject to your privileges.</p>
+                                                    <p>When you Get a record:</p>
+                                                    <table style="width: 100%;mc-table-style: url('../../resources/tablestyles/fielddesc.css');margin-left: 0;margin-right: auto;" class="TableStyle-FieldDesc" cellspacing="0">
+                                                        <col class="TableStyle-FieldDesc-Column-Column1">
+                                                        <col class="TableStyle-FieldDesc-Column-Column2">
+                                                        <tbody>
+                                                            <tr>
+                                                                <td class="TableStyle-FieldDesc-BodyH-Column1-">If it is not locked</td>
+                                                                <td class="TableStyle-FieldDesc-BodyG-Column2-">  the only PUT/POST action described will be Lock</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="TableStyle-FieldDesc-BodyH-Column1-">        If it is locked by someone else</td>
+                                                                <td class="TableStyle-FieldDesc-BodyG-Column2-">the lock action may fail. The response will tell you who has locked that record<p class="exampletext">"Message": "Record locked by Jessica Mercato",<br>"SubStatus": "None",<br>"Type": "HttpStatusException"<br>}</p>
+</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="TableStyle-FieldDesc-BodyB-Column1-">        If it is already locked by you</td>
+                                                                <td class="TableStyle-FieldDesc-BodyA-Column2-">all PUT/POST actions that are appropriate to the record in its current state will be described including Unlock (but not Lock)</td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <p> </p>
+                                                    <p>Other actions may work, even if they are not listed for the current state of the entity. But there is a higher likelihood that they will fail.</p>
+                                                    <p>When you Lock a record:</p>
+                                                    <table style="width: 100%;mc-table-style: url('../../resources/tablestyles/fielddesc.css');margin-left: 0;margin-right: auto;" class="TableStyle-FieldDesc" cellspacing="0">
+                                                        <col class="TableStyle-FieldDesc-Column-Column1">
+                                                        <col class="TableStyle-FieldDesc-Column-Column2">
+                                                        <tbody>
+                                                            <tr>
+                                                                <td class="TableStyle-FieldDesc-BodyH-Column1-">If the lock does not succeed – (because someone else has locked it in the meantime and you do not have the Take Over Calls privilege)</td>
+                                                                <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                    <p>Retry a limited number of times, and if still failing, either report an error or try again later, according to the nature of the activity</p>
+                                                                    <p>If you succeed during a retry, Get the record again and check its timestamp (LastActionDate). If changed, validate that it is still in a state where it makes sense to apply your changes, and proceed if so</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="TableStyle-FieldDesc-BodyB-Column1-">        If the lock succeeds</td>
+                                                                <td class="TableStyle-FieldDesc-BodyA-Column2-">all PUT/POST appropriate actions will be available. </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <p> </p>
+                                                    <p>Now you can perform the desired action.</p>
+                                                    <table style="width: 100%;mc-table-style: url('../../resources/tablestyles/fielddesc.css');margin-left: 0;margin-right: auto;" class="TableStyle-FieldDesc" cellspacing="0">
+                                                        <col class="TableStyle-FieldDesc-Column-Column1">
+                                                        <col class="TableStyle-FieldDesc-Column-Column2">
+                                                        <tbody>
+                                                            <tr>
+                                                                <td class="TableStyle-FieldDesc-BodyH-Column1-">
+                                                                    <p>If the action fails (because someone else has locked it in the meantime)</p>
+                                                                </td>
+                                                                <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                    <ol>
+                                                                        <li value="1">      Note how many times the action has failed and limit action retries to avoid endlessly looping.</li>
+                                                                        <li value="2">        Go back to trying to lock the record as above.</li>
+                                                                    </ol>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="TableStyle-FieldDesc-BodyB-Column1-">If the action succeeds</td>
+                                                                <td class="TableStyle-FieldDesc-BodyA-Column2-">
+                                                                    <p>        If you need to perform further actions on the same record, proceed with those actions.</p>
+                                                                    <p class="note">Some actions – e.g. Defer, Forward, Close – automatically perform an Unlock too. If you need to perform further actions after this, you may need to lock the object again. The response to any action, also includes a list of suggested actions applicable to the current state.</p>
+                                                                    <p>        If you have finished with the record, you must ensure that it is unlocked – the API will not do this automatically until the current session expires, although unlocking is implied by some ticket actions (Defer, Forward, Close).</p>
+                                                                    <p class="note">Locked records will eventually be unlocked when the current session expires, just as in <span class="GeneralVariablesCoreName">ASM Core</span>. This follows the same pattern as implemented across the <span class="GeneralVariablesProductName">ASM</span> product set, and should not cause unexpected behavior in those products.</p>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                

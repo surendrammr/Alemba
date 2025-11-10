@@ -1,0 +1,257 @@
+url = "/"
+layout = "home"
+title = "home"
+description = "The home page"
+is_hidden = 0
+meta_title = "ITSM Tool for Smart IT Service Management | Alemba"
+meta_description = "Alemba Service Manager is an ITIL-aligned ITSM tool that automates workflows and elevates IT service delivery across your organization."
+class = "bkg-dark"
+robot_index = "index"
+robot_follow = "follow"
+seoOptionsEnabledInSitemap = 1
+seoOptionsUseUpdatedAt = 1
+seoOptionsRobotIndex = "index"
+seoOptionsRobotFollow = "follow"
+seoOptionsChangefreq = "daily"
+seoOptionsPriority = 0.5
+canonical_url = "https://alemba.com"
+seoOptionsCanonicalUrl = "https://alemba.com"
+seoOptionsOgCard = "summary_large_image"
+==
+<?php
+use Alemba\Alemba\Models\Release;
+
+function onStart()
+{
+    // Get latest release (as an array to avoid it overriding the homepage SEO tags)
+
+    $this['latest_release'] = Release::where('live', 1)->orderBy('date', 'desc')->first()->toArray();
+
+}
+?>
+==
+<script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "url": "https://alemba.com",
+      "logo": "{{ 'assets/images/alemba-logo.svg'|theme }}"
+    }
+</script>
+
+{#
+<div class="jumbotron jumbotron-fluid homepage-banner-strip py-2">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col homepage-banner-strip-content">
+                <img class="img-fluid" src="{{ 'Misc/logo-govuk.png'|media }}" alt="gov.uk">
+                <h5><a style="text-decoration:none" href="{{ 'blog-entry'|page({ category: 'news', slug: 'alemba-service-manager-g-cloud-14-framework-appointment' }) }}">Now available on G-Cloud 14</a></h5>
+            </div>
+        </div>
+    </div>
+</div>
+#}
+
+<div class="jumbotron jumbotron-fluid homepage-banner-strip py-2">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col homepage-banner-strip-content">
+                <h5><a style="text-decoration:none" href="{{ 'blog-entry'|page({ category: 'news', slug: 'alemba-service-manager-certified-22-pinkverify-processes' }) }}">ASM is now PinkVERIFY&reg; Certified for 22 Processes - #1 Certified Vendor in the world</a></h5>
+            </div>
+        </div>
+    </div>
+</div>
+
+{#
+<div class="jumbotron jumbotron-fluid homepage-banner-strip py-2">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col homepage-banner-strip-content">
+                <i class="fa fa-calendar me-2"></i>
+                <h5><a style="text-decoration:none" href="https://alemba.com/events/alemba-customer-lunch-learn-sessions-uk-ireland-2025">Join our free customer Lunch & Learn sessions across the UK & Ireland – Sign up today →</a></h5>
+            </div>
+        </div>
+    </div>
+</div>
+#}
+
+<main class="container-fluid" id="homepage-container">
+
+  <div class="row">
+
+    <div class="col d-flex justify-content-end me-3">
+      <ul id="homepage-banner-badges">
+        <li class="list-inline-item"><a href="{{ 'pinkverify'|page }}"><img src="{{ 'Badges/badge_pinkverify_certified_22p.png'|media }}" srcset="{{ 'Badges/badge_pinkverify_certified_22p@2x.png'|media }} 2x" alt="PinkVERIFY Certified" /></a></li> 
+            <li class="list-inline-item"><a href="{{ 'blog'|page({ 'category':'news', 'slug':'gigaom-outperformer-alemba-radar-report-it-service-management-itsm-2023' }) }}"><img style="height:100px;" src="{{ 'Badges/badge_gigaom_2023_outperformer.svg'|media }}" alt="Gigaom Radar Report: ITSM Outperformer 2023" /></a></li>
+            <li class="list-inline-item"><a href="{{ 'blog'|page({ 'category':'news', 'slug':'gigaom-outperformer-alemba-radar-report-it-service-management-itsm-2023' }) }}"><img style="height:100px;" src="{{ 'Badges/badge_gigaom_2023_leader.svg'|media }}" alt="Gigaom Radar Report: ITSM Leader 2023" /></a></li>
+        </ul>
+    </div>
+
+  </div>
+
+  <div class="row">
+    <div class="col-10 offset-1">
+      <h1>The art of ITSM.</h1>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-10 col-sm-6 col-lg-10 offset-1">
+
+      <h2 class="mb-4" style="font-size:1.2rem; line-height:1.6rem;">Fully-featured IT Service Management software, beautifully&nbsp;simple.<br> {# Non-breaking space between 'beautifully simple' to 'simple' ending up on its own #}
+      Welcome to Alemba Service Manager.</h2>
+      <a class="btn btn-lg btn-bright me-2" href="{{ 'it-service-management'|page }}" role="button">Find out more</a>
+      <a class="btn btn-lg btn-primary" href="{{ 'demo'|page }}" role="button">Request a demo</a>
+  
+    </div>
+
+  </div>
+
+  <div class="row mt-5">
+
+    <div class="col-10 col-md-5 col-lg-8 col-xl-5 offset-1 flex-column align-items-center" id="homepage-carousel">
+        
+        <div id="featureCarousel" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                
+                <div class="carousel-item active">
+                    <a href="{{ 'graphical-workflow'|page }}"><img class="img-fluid lazyload" data-src="{{ 'Carousel/slide-workflow.png'|media }}?v=3" alt="Drag-and-drop workflow in ASM" /></a>
+                    <p class="d-block caption"><strong>No-code workflow.</strong><br>Because dragging and dropping isn't a drag.</p>
+                </div>
+
+                <div class="carousel-item">
+                    <a href="{{ 'pinkverify'|page }}"><img class="img-fluid lazyload" data-src="{{ 'Carousel/slide-pinkverify-22p.jpg'|media }}" data-srcset="{{ 'Carousel/slide-pinkverify-22p@2x.jpg'|media }} 2x" alt="22 PinkVERIFY processes" /></a>
+                    <p class="d-block caption"><strong>Certified excellence in ITSM. 22 processes and counting</strong><br>#1 certified vendor in the world.</p>
+                </div>
+
+                <div class="carousel-item">
+                    <div class="embed-responsive embed-responsive-16by9">
+                      <iframe class="embed-responsive-item" width="476" height="268" src="https://www.youtube.com/embed/rdJBBNWYZqo?si=gDSA7K7wS1w2T508" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    </div>
+                    <p class="d-block caption"><strong>Alemba x Barts Health NHS Trust</strong><br>Achieving World-Class ITSM Support.</p>
+                </div>
+
+                <div class="carousel-item">
+                    <a href="{{ 'esm'|page }}"><img class="img-fluid lazyload" data-src="{{ 'Carousel/slide-esm.png'|media }}" data-srcset="{{ 'Carousel/slide-esm@2x.png'|media }} 2x" alt="Enterprise Service Management" /></a>
+                    <p class="d-block caption"><strong>Everyone's invited.</strong><br>True Enterprise Service Management for the whole business.</p>
+                </div>
+
+                <div class="carousel-item">
+                    <a href="{{ 'rapid-start'|page }}"><img class="img-fluid lazyload" data-src="{{ 'Carousel/slide-rapidstart.png'|media }}" data-srcset="{{ 'Carousel/slide-rapidstart@2x.png'|media }} 2x" alt="Rapid Start" /></a>
+                    <p class="d-block caption"><strong>Ready-to-go ITSM.</strong><br>Pre-built processes; faster time-to-value; cost-effective setup.</p>
+                </div>
+
+                <div class="carousel-item">
+                    <a href="{{ 'why-alemba'|page }}"><img class="img-fluid lazyload" data-src="{{ 'Carousel/slide-mobile.png'|media }}" data-srcset="{{ 'Carousel/slide-mobile@2x.png'|media }} 2x" alt="Premium features, great value" /></a>
+                    <p class="d-block caption"><strong>Minimal investment, maximum returns.</strong><br>Premium features at great value for money.</p>
+                </div>
+
+                {#
+
+                <div class="carousel-item">
+                    <a href="{{ 'rapid-start'|page }}"><img class="img-fluid" src="{{ 'Carousel/slide-ready-to-go.png'|media }}" srcset="{{ 'Carousel/slide-ready-to-go@2x.png'|media }} 2x" alt="18 PinkVERIFY processes" /></a>
+                    <p class="d-block caption"><strong>Ready-to-go ITSM.</strong> Pre-built processes, faster time-to-value, cost-effective setup.</p>
+                </div>
+
+                <div class="carousel-item">
+                    <a href="{{ 'rapid-start'|page }}"><img class="img-fluid" src="{{ 'Carousel/slide-ready-to-go.png'|media }}" srcset="{{ 'Carousel/slide-ready-to-go@2x.png'|media }} 2x" alt="18 PinkVERIFY processes" /></a>
+                    <p class="d-block caption"><strong>Minimal investment, maximum returns.</strong> It's a no-brainer.</p>
+                </div>
+
+                #}
+
+            </div>
+
+            <button class="carousel-control-prev" type="button" data-bs-target="#featureCarousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#featureCarousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+        
+    </div>
+
+  </div>
+
+  <div class="homepage-hero d-none d-md-block">
+    <div class="rounded-circle badge-white" id="version-badge">
+      <div class="badge-text">
+        <span class="badge-text-small">Version</span> <span class="badge-text-big"><a href="{{ 'release-detail'|page({ slug:latest_release.slug }) }}">{{ latest_release.version_number }}</a></span>
+      </div>
+    </div>
+    <img class="imac-mask lazyload" data-src="{{ 'Misc/pic-imac-asm-core-calls.jpg'|media }}" data-srcset="{{ 'Misc/pic-imac-asm-core-calls@2x.jpg'|media }} 2x" alt="ASM Core" />
+  </div>
+
+  {# PinkVerify banner #}
+
+  <div class="row banner-magenta mt-5 d-flex align-items-center" id="homepage-pinkverify-banner">
+
+    <div class="col-4 offset-1 col-sm-3 col-md-2 mb-3 mb-sm-0 col-lg-2">
+        <img class="d-inline-block img-fluid lazyload" data-src="{{ 'Badges/badge_pinkverify_certified_22p.png'|media }}" data-srcset="{{ 'Badges/badge_pinkverify_certified_22p@2x.png'|media }} 2x" alt="PinkVERIFY Certified 22 processes" />
+    </div>
+    <div class="col-7 offset-sm-0 col-sm-5 col-md-6 mb-3 mb-sm-0 col-lg-6">
+        <h4 class="d-inline-block mb-0">Now certified for 22 processes. &nbsp;&nbsp;<i class="orange fa-solid fa-award"></i> <strong>#1 certified vendor in the world</strong></h4>
+    </div>
+    <div class="col-7 offset-5 offset-sm-0 col-sm-3 col-md-3 mb-sm-0 col-lg-3">
+      <a class="btn btn-lg btn-bright" href="{{ 'pinkverify'|page }}" role="button">Find out more</a>
+    </div>
+
+  </div>
+
+  <div id="homepage-middle" class="row bkg-light pt-5">
+
+    <div class="row">
+        <div class="mb-5 col-3 col-xxl-auto offset-xxl-2 d-flex justify-content-center align-items-center"><img class="lazyload" style="max-width:110px; max-height:60px;" data-src="{{ 'Customers/Barts Health NHS Trust logo.svg'|media }}" alt="Barts Health NHS Trust" /></div>
+        <div class="mb-5 col-3 col-xxl-1 d-flex justify-content-center align-items-center"><img class="lazyload" style="max-width:110px; max-height:60px;" data-src="{{ 'Customers/logo-ppg.svg'|media }}" alt="PPG" /></div>
+        <div class="mb-5 col-3 col-xxl-1 d-flex justify-content-center align-items-center"><img class="lazyload" style="max-width:110px; max-height:60px;" data-src="{{ 'Customers/aps-bank-logo.png'|media }}" alt="APS Bank" /></div>
+        <div class="mb-5 col-3 col-xxl-1 d-flex justify-content-center align-items-center"><img class="lazyload" style="max-width:110px; max-height:60px;" data-src="{{ 'Customers/customer-liverpool.png'|media }}" alt="Liverpool City Council" /></div>
+        <div class="mb-5 col-3 col-xxl-1 d-flex justify-content-center align-items-center"><img class="lazyload" style="max-width:110px; max-height:60px;" data-src="{{ 'Customers/Kroger-200w.png'|media }}" alt="Kroger" /></div>
+        <div class="mb-5 col-3 col-xxl-1 d-flex justify-content-center align-items-center"><img class="lazyload" style="max-width:110px; max-height:60px;" data-src="{{ 'Customers/customer-wilfred-laurier.png'|media }}" alt="Wilfred Laurier" /></div>
+        <div class="mb-5 col-3 col-xxl-1 d-flex justify-content-center align-items-center"><img class="lazyload" style="max-width:110px; max-height:60px;" data-src="{{ 'Customers/North Yorkshire Police logo.svg'|media }}" alt="North Yorkshire Police" /></div>
+        <div class="mb-5 col-3 col-xxl-1 d-flex justify-content-center align-items-center"><img class="lazyload" style="max-width:110px; max-height:60px;" data-src="{{ 'Customers/Idaho Power logo.svg'|media }}" alt="Idaho Power" /></div>
+    </div>
+
+  </div>
+
+  <div class="homepage-below-banner pt-5">
+
+    {# Processes #}
+
+    {% partial 'processes' %}
+
+    <div>
+        <script src="https://widget.trustmary.com/5gBu_ZMA1"></script>
+    </div>
+
+    <div class="row mb-5">
+        <div class="col-10 offset-1 text-center">
+
+            <div class="embed-responsive embed-responsive-16by9">
+                <iframe width="840" height="473" src="https://www.youtube.com/embed/22dM2nPSy_o?si=weXsDbkkAFdM6o6F" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+        </div>
+    </div>
+
+    {# Sectors #}
+
+    {% partial 'sectors' %}
+
+    {# Featured links #}
+
+    {% partial 'featured' %}
+
+    {# Lower section, with a white background #}
+
+    <div id="homepage-lower" class="row bkg-light">
+
+        {% partial 'customers' %}
+
+        {% partial 'roadmap' %}
+
+    </div>
+
+  </div>
+
+</main>

@@ -1,0 +1,169 @@
+[viewBag]
+title = "Managing Outages"
+url = "/help/topics/availability/managing-outages"
+layout = "help"
+is_hidden = 0
+navigation_hidden = 0
+==
+                                                    <h1>Managing Outages</h1>
+                                                    <p>You can create, update and close planned and unplanned outages in <span class="GeneralVariablesCoreName">ASM Core</span>. </p>
+                                                    <h2>Creating an Outage</h2>
+                                                    <h2 class="Prerequisite">Before you start</h2>
+                                                    <p class="prereqtext">You must have <b>Create Outage from Call</b>, <b>Create Outage from Task</b> and/or <b>Create Outage from Request</b> selected in your <a href="../admin%20security%20roles/availability%20management%20security.htm">Availability Management security role</a> to create outages.</p>
+                                                    <p>Outages that are <b class="Xref_outstanding">created from a call</b> are always unplanned and are logged as a result of a User having an issue with a config item or service.</p>
+                                                    <p>Outages that are <b class="Xref_outstanding">created from requests</b> or <b class="Xref_outstanding">tasks </b>are always planned, and you can inform your Users about planned outages via the bulletin board. Planned outages can only be logged against CMDB items that are linked to the request. You can also create outages against all items that are dependent on the linked item.</p>
+                                                    <h2>
+<a name="Accessing_the_Outages_Tab"></a>Viewing Outages for a CMDB Item</h2>
+                                                    <p>You can view the current, historical and planned outages for CMDB Item with availability tracking.
+</p>
+                                                    <h2 class="Prerequisite">Before you start</h2>
+                                                    <p class="prereqtext1">An availability schedule must have been <a href="#Accessing_the_Schedules_Tab">applied</a> to the CMDB item.</p>
+                                                    <p class="prereqtextlast">You must have <b>Browse Outages</b> selected in your <a href="../admin%20security%20roles/availability%20management%20security.htm">Availability Management security role</a>.</p>
+                                                    <ol>
+                                                        <li value="1">
+                                                            <div class="MCDropDown MCDropDown_Closed dropDown">
+<span class="MCDropDownHead dropDownHead"><a href="#" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCHotSpotImage" aria-expanded="false"><img class="MCDropDown_Image_Icon" src="/storage/app/media/Help/images/transparent.gif" height="11" width="16" alt="Closed" data-mc-alt2="Open">Display the CMDB Item Details window, if it is not already on screen.</a></span>
+                                                                <div class="MCDropDownBody dropDownBody">
+                                                                    <p><a href="#Searchin">Search for the CMDB item</a>. Then select the item you want to work with and select <img src="/storage/app/media/Help/images/action%20button.png">.</p>
+                                                                </div>
+                                                            </div>
+                                                        </li>
+                                                        <li value="2">In the Explorer pane, expand <b>CMDB Item</b>, then select <b>Availability</b>. </li>
+                                                        <li value="3">The <b>&lt;Entity&gt; Availability</b> window appears, with the applied time zone. </li>
+                                                        <li value="4">Select the <b>Outages</b> tab <a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="../../resources/images/availability_outages.png"><img class="MCPopupThumbnail img imgthumbnail" data-mc-width="599" data-mc-height="445" src="/storage/app/media/Help/images/availability_outages_thumb_0_48.png" tabindex=""></a>. Previous outages are displayed in black. If there is a current outage, it appears in red. Planned outages (future) are indicated by a blue background. </li>
+                                                        <p class="note">You can filter the search results by selecting the <img src="/storage/app/media/Help/images/down%20arrow%20blue.png"> button and selecting from the drop-down list.</p>
+                                                        <li value="5">For each outage, the browse control displays the following information.</li>
+                                                        <p>
+                                                            </p>
+<table style="width: 100%;margin-left: 0;margin-right: auto;mc-table-style: url('../../resources/tablestyles/fielddesc no indent.css');" class="TableStyle-FieldDesc_no_indent" cellspacing="0">
+                                                                <col class="TableStyle-FieldDesc_no_indent-Column-Column1">
+                                                                <col class="TableStyle-FieldDesc_no_indent-Column-Column2">
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">Description
+</td>
+                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">			This is the description of the outage.
+</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">
+               Outage Start</td>
+                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">This is the day and time set for the outage to be applied to the CMDB Item.</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">Outage End
+</td>
+                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">
+               This is the day and time set for the outage to end.</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">
+               Downtime </td>
+                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">
+The time period for which the CMDB Item will be unavailable.</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyB-Column1-">
+Outage Type</td>
+                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyA-Column2-">
+The type of outage for the CMDB Item.</td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        
+                                                        <li value="6">Select an outage and then select <img src="/storage/app/media/Help/images/view%20entities%20button.png"> to view calls, requests, and/or tasks that are <a href="../cmdb/linking%20cmdb%20items.htm">linked</a> to the selected outage. This information appears as an <b>Outage Quick Search – Linked Entities</b> window.</li>
+                                                        <li value="7">You can view further information by double-clicking on one of the entries in this window.</li>
+                                                    </ol>
+                                                    <h2>Updating Outage Details</h2>
+                                                    <h2 class="Prerequisite">Before you start</h2>
+                                                    <p class="prereqtext1">An availability schedule must have been <a href="#Accessing_the_Schedules_Tab">applied</a> to the CMDB item.</p>
+                                                    <p class="prereqtextlast">You must have <b>Outage Update</b> selected in your <a href="../admin%20security%20roles/availability%20management%20security.htm">Availability Management security role</a>.</p>
+                                                    <p class="prereqtextlast">There must be a current or past outage on the CMDB Item.</p>
+                                                    <ol>
+                                                        <li value="1">
+                                                            <div class="MCDropDown MCDropDown_Closed dropDown">
+<span class="MCDropDownHead dropDownHead"><a href="#" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCHotSpotImage" aria-expanded="false"><img class="MCDropDown_Image_Icon" src="/storage/app/media/Help/images/transparent.gif" height="11" width="16" alt="Closed" data-mc-alt2="Open">Display the CMDB Item Details window, if it is not already on screen.</a></span>
+                                                                <div class="MCDropDownBody dropDownBody">
+                                                                    <p><a href="#Searchin">Search for the CMDB item</a>. Then select the item you want to work with and select <img src="/storage/app/media/Help/images/action%20button.png">.</p>
+                                                                </div>
+                                                            </div>
+                                                        </li>
+                                                        <li value="2">In the Explorer pane, expand <b>CMDB Item</b>, then select <b>Availability</b>. </li>
+                                                        <li value="3">The <b>&lt;Entity&gt; Availability</b> window appears, with the applied time zone. </li>
+                                                        <li value="4">Select the <b>Outages</b> tab <a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="../../resources/images/availability_outages.png"><img class="MCPopupThumbnail img imgthumbnail" data-mc-width="599" data-mc-height="445" src="/storage/app/media/Help/images/availability_outages_thumb_0_48.png" tabindex=""></a>.</li>
+                                                        <li value="5">Select the outage entry you want to modify by highlighting the entry and selecting <img src="/storage/app/media/Help/images/update%20button.png" alt="" title=""> .            </li>
+                                                        <li value="6">In the <b>Outage Details</b> window, modify the Outage Details as required. </li>
+                                                        <p>
+                                                            </p>
+<table style="width: 100%;margin-left: 0;margin-right: auto;mc-table-style: url('../../resources/tablestyles/fielddesc no indent.css');" class="TableStyle-FieldDesc_no_indent" cellspacing="0">
+                                                                <col class="TableStyle-FieldDesc_no_indent-Column-Column1">
+                                                                <col class="TableStyle-FieldDesc_no_indent-Column-Column2">
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">Type</td>
+                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">
+                                                                            <p>The type of outage. Select from the drop-down list. </p>
+                                                                            <p>The list of <a href="../admin%20availability/outage%20types.htm">Outage Types</a> is filtered depending on the entity linked to the outage. Requests and tasks display planned outages. Calls display unplanned outages.</p>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">Description
+</td>
+                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">			This is the description of the outage.
+</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">
+               Outage Start</td>
+                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">This is the day and time set for the outage to be applied to the CMDB Item.</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">Outage End
+</td>
+                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">
+               This is the day and time set for the outage to end.<p class="note">You cannot set a date/time in the future for an unplanned outage.</p>
+</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">
+               Downtime </td>
+                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">
+The time period for which the CMDB Item will be unavailable.</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyB-Column1-">
+Outage Type</td>
+                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyA-Column2-">
+The type of outage for the CMDB Item.</td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        
+                                                        <li value="7">Select <img src="/storage/app/media/Help/images/save%20button.png"> to save your changes.
+            </li>
+                                                    </ol>
+                                                    <h2>Manually Closing an Outage</h2>
+                                                    <p>An unplanned outage can be closed by closing the call linked to the outage or closing the outage manually by updating the Outage's <b>End Date</b>. </p>
+                                                    <p>Planned outages are closed automatically when the end date has passed. However, you may close an outage manually if the outage ends earlier than planned, or if the request or task to which the outage is linked is completed earlier than expected.        </p>
+                                                    <p>A planned outage can be closed using one of the following methods:
+</p>
+                                                    <ul>
+                                                        <li value="1">By completing the request or task linked to the outage.</li>
+                                                        <li value="2">By using the <a href="../requests%20and%20templates/outages%20explorer%20option.htm"><b>Outages</b></a> option on the Request Details Explorer.
+            </li>
+                                                        <li value="3">By closing the outage manually on the <a href="%7B%7B%20'help-displaying-outages#top'%7CstaticPage%20%7D%7D#top"><b>Outage Search</b></a> or <a href="%7B%7B%20'help-displaying-outages#Displaying_the_Current_Outages_Window'%7CstaticPage%20%7D%7D#Displaying_the_Current_Outages_Window"><b>Current Outages</b></a> window.
+            </li>
+                                                    </ul>
+                                                    <ol>
+                                                        <li value="1">In the relevant window, select the outage to view the <b>Outage Details</b>.
+            </li>
+                                                        <li value="2">If needed, update the current description of the outage in the <b>Description</b> column of the browse table. 
+            </li>
+                                                        <li value="3">In the <b>Outage End</b> field, enter a date/time that has passed.
+            </li>
+                                                        <li value="4">Save the changes.
+            </li>
+                                                        <li value="5">In the dialog box, select <b>Yes</b> to confirm the outage closure.
+</li>
+                                                    </ol>
+                                                

@@ -1,0 +1,105 @@
+[viewBag]
+title = "Setting Up Amendable Requests"
+url = "/help/topics/requests-and-templates/setting-up-amendable-requests"
+layout = "help"
+is_hidden = 0
+navigation_hidden = 0
+==
+                                                    <h1>Setting Up Amendable Requests</h1>
+                                                    <p>You can create service bundles linked to requests, and allow users to add service actions to the bundle when they place the request in the <span class="GeneralVariablesSelfServicePortalName">Self Service Portal</span>. You can specify the stages in the workflow during which the request is amendable, and can have additional items added. Outside these stages, the request will not be amendable.</p>
+                                                    <p>The steps involved in creating amendable requests are as follows:</p>
+                                                    <ol>
+                                                        <li value="1">Ensure that there is an appropriate set of <a href="../admin%20cmdb/portal%20display%20categories.htm">Self Service Portal Display categories</a> for the service bundle and service actions. You will need a category for the service bundle that contains one or more categories in lower tiers for the service actions, for example, <b>Training</b> may contain <b>E-learning</b>, <b>On-site Training</b>, and so on.</li>
+                                                        <li value="2">
+<a href="%7B%7B%20'help-cmdb-managing-service-bundles#Adding'%7CstaticPage%20%7D%7D#Adding">Create a service bundle linked to a request</a>. As well as completing the other details, in the <b>Service Bundle Details</b> window:<ul>
+<li value="1">Select the <span class="GeneralVariablesSelfServicePortalName">Self Service Portal</span> display category that contains lower tiers. Using our example above, you would select <b>Training</b>.</li>
+<li value="2">Ensure that the <b>Portfolio Status</b> is set to <b><span class="GeneralVariablesServiceRequestCatalog">Service Request Catalog</span></b>.</li>
+<li value="3">Select the <b>Create Request</b> checkbox in the <b>Templates</b> section. In the <b>Using template</b> drop down list, select the workflow template. </li>
+<li value="4">Check that the appropriate selection is made in the <b><a href="../cmdb/managing%20subscriber%20groups.htm">Subscribers</a></b> or <a href="../cmdb/managing%20stakeholders.htm"><b>Stakeholders</b></a> tabs to make the service bundle visible to the correct people and groups in the <span class="GeneralVariablesServiceRequestCatalog">Service Request Catalog</span>.</li>
+</ul>
+</li>
+                                                        <li value="3">Create or identify the service actions that you want made available. In the <a href="../cmdb/managing%20service%20actions.htm"><b>Service Action Details</b></a> window for each service action:<ul>
+<li value="1">Select one of the categories within the service bundle's self service portal display category. Using our example above, you would select <b>E-learning</b> or <b>On-site Training</b>.</li>
+<li value="2">Ensure that the <b>Portfolio Status</b> is set to <b><span class="GeneralVariablesServiceRequestCatalog">Service Request Catalog</span></b>.</li>
+<li value="3">Select <b>A Request</b> in the <b>Templates</b> section. Then select a workflow template other than the one used for the service bundle.</li>
+</ul>
+</li>
+                                                        <li value="4"> In the<a href="../admin%20workflow%20mgt/request%20completion%20statuses.htm" style="font-weight: bold;"> Request Completion Statuses</a> window, identify the statuses that you want to be amendable by selecting the <b>Amendable</b> checkbox. All checkboxes are unticked by default so that the request is not amendable at any stage.</li>
+                                                        <li value="5">In the workflow for the request, open the <b>Task Details</b> window for the individual tasks, and set the <b>Request Completion Statuses</b>, to determine when in the workflow the request is amendable.</li>
+                                                        <p class="note">If there is a workflow for the service action and the service bundle, you must set the request completion statuses in both workflows.</p>
+                                                        <li value="6">
+                                                            <p>Ensure that all of your settings have been saved, and test your service bundle in the portal.</p>
+                                                            <p>When users order the Service Bundle, the submission form linked to the request workflow should be displayed, with an <b>Additional Items</b> widget in which service actions can be added/edited and displayed. The border color around the service action indicates whether the it is amendable or non-amendable at the current stage in the workflow process. Green indicates non-amendable and orange indicates amendable. When the service bundle can no longer be amended, all of the input fields are disabled and action buttons are no longer shown.</p>
+                                                            <p class="tip">Note the conditions below, which dictate when a service bundle or service action is amendable.</p>
+                                                        </li>
+                                                    </ol>
+                                                    <h2>Amendable Statuses for Service Bundles and Service Actions</h2>
+                                                    <p>If you are having difficulties making your service bundles and service actions amendable, it may be due to the conflicting statuses in the service bundle and service action workflows. Check the statuses using the following matrix.</p>
+                                                    <table style="mc-table-style: url('../../resources/tablestyles/rep hdr row.css');margin-left: 0;margin-right: auto;" class="TableStyle-Rep_Hdr_Row" cellspacing="0">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column1">
+                                                        
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column2">
+                                                        
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column1">
+                                                        
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column2">
+                                                        
+                                                        <thead>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Head-Header1">
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column1-Header1">Service Bundle</th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column2-Header1">Service Action</th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column1-Header1" style="text-align: center;">SB Amendable?</th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadD-Column2-Header1" style="text-align: center;">SA Amendable?</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">Not amendable</td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">Amendable</td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1" style="text-align: center;">No</td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1" style="text-align: center;">No</td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">Not amendable</td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">Not amendable</td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1" style="text-align: center;">No</td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1" style="text-align: center;">No</td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">Amendable</td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">Amendable</td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1" style="text-align: center;">Yes</td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1" style="text-align: center;">Yes</td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyB-Column1-Body1">Amendable</td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyB-Column2-Body1">Not amendable</td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyB-Column1-Body1" style="text-align: center;">Yes</td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyA-Column2-Body1" style="text-align: center;">No</td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <p> </p>
+                                                    <h2>Amendable Requests in Action</h2>
+                                                    <p>Here is an example of an amendable request, with workflows demonstrating the steps involved in setting it up.</p>
+                                                    <p class="exampletext1">To demonstrate these steps in action , we created a service bundle called <b>Designer Training</b>, which contains <b>Designer E-learning</b>, <b>Designer In-house Training</b> and <b>Designer Student Guide</b>. We want the request to be amendable until it is closed.
+        </p>
+<p> </p>
+<ol>
+<li value="1">In the <a href="../admin%20cmdb/portal%20display%20categories.htm">Self Service Portal Display Categories</a> window, we created a set of categories, with a tier for the service bundle and a tier below for the service actions we want to make available. <a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="../../resources/images/ar%20portal%20display%20cats.png"><img class="MCPopupThumbnail img imgthumbnail" data-mc-width="949" data-mc-height="182" src="/storage/app/media/Help/images/ar%20portal%20display%20cats_thumb_0_48.png" tabindex=""></a>
+</li>
+<li value="2">We created a service bundle called <b>Designer Training</b>, linked to a request template called <b>Training Request</b>. We made it visible in <b>Documentation and Training</b>, in the second tier of the <b>IT</b> portal display category. <a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="../../resources/images/ar%20svc%20bundle.png"><img class="MCPopupThumbnail img imgthumbnail" data-mc-width="611" data-mc-height="428" src="/storage/app/media/Help/images/ar%20svc%20bundle_thumb_0_48.png" tabindex=""></a>
+</li>
+<li value="3">We then created <b>Designer e-learning</b>, <b>Designer In-house Training</b> and <b>Designer Student Guide</b> as service actions. We made these visible in the <b>E-learning</b>, <b>In-house Training</b> and <b>Documentation</b> portal display categories, which are in the third tier, beneath <b>Documentation and Training</b>. <a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="../../resources/images/ar%20svc%20action%20details.png"><img class="MCPopupThumbnail img imgthumbnail" data-mc-width="599" data-mc-height="350" src="/storage/app/media/Help/images/ar%20svc%20action%20details_thumb_0_48.png" tabindex=""></a>
+</li>
+<li value="4">In the<a href="../admin%20workflow%20mgt/request%20completion%20statuses.htm" style="font-weight: bold;"> Request Completion Statuses</a> window, we made the <b>Unspecified</b> status amendable. <a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="../../resources/images/ar%20req%20completion%20status.png"><img class="MCPopupThumbnail img imgthumbnail" data-mc-width="409" data-mc-height="375" src="/storage/app/media/Help/images/ar%20req%20completion%20status_thumb_0_48.png" tabindex=""></a>
+</li>
+<li value="5">In the request workflows for the service bundle and the service actions, we opened the <b>Task Details</b> window for the individual tasks, and ensured that the status was Unspecified for all of the tasks except the Closure task.</li>
+</ol>
+<p> </p>
+<p>When we go into the <span class="GeneralVariablesSelfServicePortalName">Self Service Portal</span>, and browse the <span class="GeneralVariablesServiceRequestCatalog">Service Request Catalog</span>, we can see all of our service actions and our service bundle. <a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="../../resources/images/ar%20svc%20cat.png"><img class="MCPopupThumbnail img imgthumbnail" data-mc-width="711" data-mc-height="480" src="/storage/app/media/Help/images/ar%20svc%20cat_thumb_0_48.png" tabindex=""></a></p>
+<p>When we select the service bundle, and scroll to the bottom of the screen, we have a section called <b>Additional Items</b>, with a drop down list of the categories that contain items, and an <img src="/storage/app/media/Help/images/add%20items%20btn.png"> button. <a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="../../resources/images/ar%20svc%20cat%20add%20items.png"><img class="MCPopupThumbnail img imgthumbnail" data-mc-width="432" data-mc-height="220" src="/storage/app/media/Help/images/ar%20svc%20cat%20add%20items_thumb_0_48.png" tabindex=""></a></p>
+<p>From here, we can select the category we want, which will display the items within it, and order them as part of the bundle.</p>
+<p>Once we have ordered one item, we are returned to the service bundle order page, where we can see the item that we have added, with the orange border, as it is still amendable. <a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="../../resources/images/ar%20svc%20cat%20added%20items.png"><img class="MCPopupThumbnail img imgthumbnail" data-mc-width="707" data-mc-height="293" src="/storage/app/media/Help/images/ar%20svc%20cat%20added%20items_thumb_0_48.png" tabindex=""></a></p>
+<p>We can continue to add items, save the order, or submit the request in the usual way. It will then follow the workflow paths as normal, with the service actions and service bundle becoming unamendable when they reach their closure tasks. </p>
+                                                

@@ -1,0 +1,172 @@
+[viewBag]
+title = "Configuration Portability"
+url = "/help/topics/config-port/configuration-portability"
+layout = "help"
+is_hidden = 0
+navigation_hidden = 0
+==
+                                                    <h1>Configuration Portability</h1>
+                                                    <p>Organizations often set up test systems when they implement major changes to an existing production system. The test system is analyzed to ensure that all changes have been applied correctly before updating the production environment. It is imperative for organizations to follow this procedure in order to reduce the likelihood of errors or failures when these changes are implemented on the production system. </p>
+                                                    <p><span class="GeneralVariablesSystemName">ASM System</span>s are business-critical and require complex configuration and setup by administrators. As a result, it is typical to set up a test system for <span class="GeneralVariablesCoreName">ASM Core</span>, ensure the setup reflects the organization’s requirements, make changes if required, and then recreate the settings and data from the test system into the production system. Depending on the scale of an organization’s operations, this task can be time-consuming. </p>
+                                                    <p><b>Configuration Portability</b> enables you to copy selected configuration settings from one system to another system using a simple export and import mechanism. All this can be performed directly from the client application, which means that you do not need to have access to the <span class="GeneralVariablesCoreName">ASM Core</span> server to import and export configuration settings. This saves time and minimizes human error by avoiding the need to manually configure two identical systems if moving from a test environment to a live environment.  </p>
+                                                    <p>Once an organization has developed screens and configured settings on a development system (referred to as the <b>source</b>), the changes are imported and validated in the test system (referred to as the <b>target</b> ), and then imported into the production system (referred to as the <b>master target</b> ). Configuration Portability enables you to select the configuration settings you want to copy, export the settings from the source system, and then import them into the master target system. </p>
+                                                    <p>You can transfer administration settings pertaining to functional areas such as Service Desk, Workflow Management, Configuration Management and Service Level Management. The following data can be ported:</p>
+                                                    <ul>
+                                                        <li value="1">System Administration settings</li>
+                                                        <li value="2">Screens, forms, and message templates configured in <span class="GeneralVariablesDesignerName">ASM Designer</span>
+</li>
+                                                    </ul>
+                                                    <p>The following cannot be ported:</p>
+                                                    <ul>
+                                                        <li value="1">System default values (such as the default System Title defined in System Administration)</li>
+                                                        <li value="2">Templates (such as Workflow Templates and Call Templates)</li>
+                                                        <li value="3">IPK Workflow Rules</li>
+                                                        <li value="4">Forum Management Rules</li>
+                                                        <li value="5">Activity Logs</li>
+                                                        <li value="6">Person records</li>
+                                                        <li value="7">Passwords and Email settings</li>
+                                                        <li value="8">System customizations, stored procedures, and integration settings. (These settings involve files which are not located within the database, such as SQL files, or HTML files.) They must be transferred manually between the source and the target systems.</li>
+                                                        <li value="9">Integration Platform settings</li>
+                                                    </ul>
+                                                    <p class="note">Workflow templates can be ported through the Server Console.</p>
+                                                    <h2 class="Prerequisite">
+<a name="Prerequi"></a>Prerequisites and Considerations</h2>
+                                                    <p class="prereqtext1">Note the following requirements and recommendations.</p>
+                                                    <ul class="prereq">
+                                                        <li style="list-style-type: disc;" value="1">You must only port from a single source system, that is, you cannot port from multiple systems into one target system. This means that you must use configuration portability in a serialized release environment. Refer to the <a href="cp%20overview%20best%20practice.htm" class="MCXref xref">Config Port Overview &amp; Best Practices</a> topic for more information.</li>
+                                                        <li style="list-style-type: disc;" value="2">Ensure the same version of the software is installed on both the source and target systems.</li>
+                                                        <li style="list-style-type: disc;" value="3">Back up your target system before porting data.</li>
+                                                        <li style="list-style-type: disc;" value="4">If your system has been customized, it is recommended <span class="GeneralVariablesCompanyName2">Alemba®</span> Professional Services assists you in porting data between systems.</li>
+                                                        <li style="list-style-type: disc;" value="5">Note the specific instructions for <a href="#Config" class="MCXref xref">Config Portability with CSV Connectors (Upload option)</a> below.</li>
+                                                        <li value="6">When Configuration Portability is used to make changes to a production environment, the production settings should not be changed manually. This is to prevent data mismatches and the potential for unexpected behavior.</li>
+                                                        <li value="7">Partition settings play a major role in determining how your <span class="GeneralVariablesSystemName">ASM System</span> functions. Importing to or exporting from a system that has partitioning enabled and subsequently disabled may result in random errors in the export and import process. In addition, partition names must be unique for the process to be successful.</li>
+                                                    </ul>
+                                                    <h2>Rules for Supported Options</h2>
+                                                    <p>Certain settings have specific rules applied to them when they are imported into the target system. The table below lists the rules for such options.</p>
+                                                    <table style="margin-left: 0;margin-right: auto;mc-table-style: url('../../resources/tablestyles/rep hdr row.css');" class="TableStyle-Rep_Hdr_Row" cellspacing="0">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column1">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column2">
+                                                        <thead>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Head-Header1">
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column1-Header1">Option or Setting to be Imported</th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadD-Column2-Header1">Import Condition / Rule</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">IPK and Workflow Management Groups</td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">The recipient analyst and partition settings must match in the source and target systems.
+</td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">Stored Procedures	</td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">Only the <i>settings</i> for stored procedures are imported, not the stored procedures themselves.
+</td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">IPK Management Security Role	</td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">The Screen Sets tab appears on the IPK Management Security Role window when IPK statuses and streams are not enabled. If a call screen set does not exist on the target system, the corresponding role is created but will not have the screens linked to it. This action will be recorded in the import log.
+</td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">Call, Customer Survey, Request and Task Screen Sets	</td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">To export and import screens and data schema, the appropriate screen sets must be selected under the <b>Screens</b>, <b>Forms</b> and/or <b>Message Templates</b> tabs. This will process all screens for that screen set. Alternatively you may select individual screens from <b>Screens – Individual</b>.
+Selecting the screen sets in the IPK Management or Workflow Management tabs will only import the screen set names.
+</td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyB-Column1-Body1">Knowledge screens	</td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyA-Column2-Body1">When knowledge screens are copied, Knowledge Entry Types and Knowledge Base types are also copied because they are dependent settings.
+</td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <h2>How Configuration Portability Works</h2>
+                                                    <p>The data transfer between two systems is a two-step process. The data must first be <i>exported</i> from the source system (for example, the development environment), and then <i>imported</i> into the target system (for example, the test or pre-production environment) or the master target system (for example, the production environment).</p>
+                                                    <p>To copy data between two systems, a common mechanism for matching the source and target data is used. <span class="GeneralVariablesCoreName">ASM Core</span> applies a <b>Global Unique Identifier (GUID)</b> as the matching key to each database entry across database instances. This allows renamed text fields, for example, to be recognized during the import process. Two items with different GUIDs are identified as different items.</p>
+                                                    <p class="note">Before exporting the production database to the development system, it is recommended that you first run the <b>Config Portability GUID Assignment.scp</b> via the server console to allocate unique identifiers (GUIDs) to any fields missing a GUID so the system properties remain synchronized when using Configuration Portability.</p>
+                                                    <p class="note">Custom schema files go in the <b>Config</b> directory and allow you to add additional elements. Schema files are version specific and this option should only be used by an experienced developer.</p>
+                                                    <p>The following reconciliation rules are applied when configuration data is imported to a system with existing data:</p>
+                                                    <ul>
+                                                        <p class="note">In the explanations below, "target" refers to both a target system and a master target system.</p>
+                                                        <li value="2">Items in the source and target systems are identified as being the same if the target item does not have a GUID, but has the same entity and partition as the item in the source system. The target item is then filled with the GUID from the source.</li>
+                                                        <li value="3">If a value is active in the source system and no matching value is found in the target system, a new value (same as that in the source) is created in the target system. If the partition is not relevant, it is not considered as a reconciliation criterion.</li>
+                                                        <p class="exampletext">If the Finance workflow group (present in the source system) does not exist in the target system, it is added in the target system.</p>
+                                                        <p class="note">Insertion of items with the same names as existing items in the target system is allowed.</p>
+                                                        <li value="4">If a value exists in the target system but not in the source system, the value in the target system is kept (it is not deleted).</li>
+                                                        <li value="5">If a value has been deleted in the source system, it is imported into the target system as a deleted value.</li>
+                                                        <li value="6">If a value in the target system matches one in the source system but it is a deleted value, the value is marked as active if it is active in the source system.</li>
+                                                        <li value="7">If matching deleted values are found on the source and target systems, no change is made to the target system.</li>
+                                                        <li value="8">After an import, the names and statuses (active/passive) of the items imported in the target system are kept the same as the names and statuses of their matching source items.</li>
+                                                        <p class="note">If the name or status of the matching source item is different, the name or status of the target item is changed to that of the source item (whether the latest change to the target item was manual or automatic).</p>
+                                                        <p class="note">Name case is not taken into consideration for name matching. In addition, if the GUID is not present in the target item (that is, porting has not occurred), the whitespace character (represented below with “_” character) in the name of the target item is affected as follows - <br><br>“Significant_” is replaced with “Significant”<br>“_Significant” is not replaced. Instead, a new “Significant” is added to the target<br></p>
+                                                        <li value="9">After an import, the relative order hierarchy of the items imported in the target system is the same as the relative order hierarchy of their matching source items. This means that:<ul>
+<li value="1">When inserting a new item in the target system, the item is ordered below another item that has the same order hierarchy.</li>
+<li value="2">When reordering a new item in the target system, the item is ordered below the item that has the same order hierarchy.</li>
+<li value="3">The relative order hierarchy of target items with no matching source items is kept as is.</li>
+</ul>
+</li>
+                                                        <p class="exampletext">For example, if the source system has Low &gt; Medium &gt; High and the target system has High &gt; Mediocre &gt; Low &gt; Insignificant, the resulting order in the target system will be: Low &gt; Mediocre &gt; Medium &gt; High &gt; Insignificant <br><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="../../resources/images/config%20port%20order.png"><img class="MCPopupThumbnail img imgthumbnail" data-mc-width="475" data-mc-height="387" src="/storage/app/media/Help/images/config%20port%20order_thumb_0_48.png" style="width: 80px;height: 65px;" tabindex=""></a></p>
+                                                        <p class="note">Items that can be ordered hierarchically include administrative values where users specify ordering by using the pair of up and down arrows in the toolbar (for example, the Call Priority options).</p>
+                                                        <li value="10">All dependent settings are automatically imported (for example, call screen set names are imported when call screen sets are imported). If the dependency is not imported for any particular reason (for example, the person does not exist in the target system), a log is written.</li>
+                                                    </ul>
+                                                    <h2>
+<a name="Config"></a>Config Portability with CSV Connectors (Upload option)</h2>
+                                                    <p>If you are using the CSV connector, you are porting the settings, but not the CSV file itself. Therefore, when porting the settings for a CSV connector, take the following steps:</p>
+                                                    <ol>
+                                                        <li value="1">
+<a href="%7B%7B%20'help-porting-configuration-data#Selectin'%7CstaticPage%20%7D%7D#Selectin">Export the CSV Connector Settings</a> from the source system.</li>
+                                                        <li value="2">
+<a href="%7B%7B%20'help-porting-configuration-data#Importin'%7CstaticPage%20%7D%7D#Importin">Import the CSV Connector Settings</a> into the target system.</li>
+                                                        <li value="3">Open the CSV Connector Source in the target system.</li>
+                                                        <li value="4">Upload the CSV File.</li>
+                                                        <li value="5">Click <img src="/storage/app/media/Help/images/test%20connector%20btn.png"> to confirm that the target connector source system is working as expected.</li>
+                                                        <li value="6">Configure/review the Integration Resource, etc. as usual.</li>
+                                                    </ol>
+                                                    <h2>Working with Individual Screens, Forms and Message Templates</h2>
+                                                    <p>You can export individual Screens, Forms and Message Templates.</p>
+                                                    <p class="note">Only designable screens will be available for export. Non designer screens will have to be copied manually. The scope of the data is limited to the selected screen and directly related items.</p>
+                                                    <p>The imported/exported information for these items is only displayed on the <b>By Selection</b> tab. These items are only a subset of the screen designer options, so are not relevant <b>By Section</b>. </p>
+                                                    <p>Parent screen sets which are not found in the target systems will have some values set to defaults. These items include IMAGE_REF and REPORT_REF. To keep this information consistent, it is recommended to select the <b>CMDB Item Types</b> option as well.</p>
+                                                    <h3>Additional Data Exported</h3>
+                                                    <ul>
+                                                        <li value="1">Screen Set including parents</li>
+                                                        <li value="2">Security Profiles</li>
+                                                        <li value="3">Security Profile Access</li>
+                                                        <li value="4">Partitions</li>
+                                                        <li value="5">Extension Fields</li>
+                                                    </ul>
+                                                    <h3>Screens containing references to extension fields on other screens</h3>
+                                                    <p>If needing to port a screen which contains references to extension fields on another screen (such as in filters or rules, or linked fields) both screens need to be included in the Config Port, and the import needs to be run twice on the target system(s) using the same config file. </p>
+                                                    <p>If this is not done, the rules in the target system will appear correct but will not work.</p>
+                                                    <p class="exampletext"><b>Example scenario: Screen A contains a rule that references a field on screen B</b>
+                                                        <br>1. Export both screens from the source system<br>2. Import the config file into the target system (this creates the field)<br>3. Import the same config file into the target system a second time (this links the field to the rule)</p>
+                                                    <h3>Exceptions</h3>
+                                                    <table style="width: 100%;mc-table-style: url('../../resources/tablestyles/rep hdr row.css');margin-left: 0;margin-right: auto;" class="TableStyle-Rep_Hdr_Row" cellspacing="0">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column1">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column2">
+                                                        <thead>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Head-Header1">
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column1-Header1">Case</th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadD-Column2-Header1">Description</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">Selecting an entire screen set and individual options</td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">If a user selects a screen set under the Screens, Forms, and/or Message Templates tab, any individual Screens, Forms, and/or Message Templates selected for that screen set will be ignored. This is because the screen set and its associated types are already marked for export.</td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">Linked Fields on Individual Screens</td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">If there are fields linked to a screen set from another screen set, these fields will be imported and linked to the screen. They will not be linked to the original screen, even if it exists.</td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">Linked Extension Field of another Extension field</td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">These fields will be ignored and the field definition will be left untouched in the source html</td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyB-Column1-Body1">Importing Individual Screens</td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyA-Column2-Body1">Screens will only be available for import if they were exported as individual screens. You cannot export Screens -&gt; Call and then import only selected screen sets.</td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table> 

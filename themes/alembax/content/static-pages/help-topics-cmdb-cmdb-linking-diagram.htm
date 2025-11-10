@@ -1,0 +1,370 @@
+[viewBag]
+title = "CMDB Linking Diagram"
+url = "/help/topics/cmdb/cmdb-linking-diagram"
+layout = "help"
+is_hidden = 0
+navigation_hidden = 0
+==
+                                                    <h1>
+<a name="aanchor83"></a>
+                                                        <concept term="CMDB"></concept>CMDB Linking Diagram</h1>
+                                                    <p class="intro">The Linking Diagram provides you with a graphical view of a specific CMDB item and the links to other CMDB items that have been defined. </p>
+                                                    <p class="note">Only the CMDB items linked through the <b>Linked Items</b> tab in the CMDB Item Details window appear on the linking diagram. Items linked through an extension field that has been added to the CMDB Item Details window in <span class="GeneralVariablesDesignerName">ASM Designer</span> will not appear.</p>
+                                                    <h2>Uses for the Linking Diagram</h2>
+                                                    <p class="exampletext">There is a range of scenarios in which the linking diagram can be used to plan and project manage. Here are a few:<br><br>You want to carry out an upgrade to a server. You can simulate an outage on the Linking Diagram to visually represent the impact of taking down the server, and can contact those impacted to arrange a suitable time for the outage.<br><br>A User calls the service desk to report that their email is not working. You can use the Linking Diagram to see if there are any current outages that may be causing the email issue. If not, you can use  the Find Causes feature to visually track where the problem may be originating, or to perform more formal Fault Tree Analysis.<br><br>As part of a Continuous Service Improvement program, you want to perform Component Failure Impact Analysis to identify critical CIs and fragile services, with multiple single points of failure (SPOFs). The linking diagram shows you all you need to know regarding inter-CI impact and alternative CIs to complete the CFIA grid.</p>
+                                                    <h2>
+<a name="Viewing"></a>Viewing the Linking Diagram</h2>
+                                                    <h2 class="Prerequisite">Before you start</h2>
+                                                    <p class="prereqtext"><b>Enable Full Expand</b> should be selected in the <a href="../admin%20cmdb/cmdb%20settings.htm">CMDB Settings</a> in order to use the <b>Full Expand</b> option in the Linking Diagram.</p>
+                                                    <ol class="multilist">
+                                                        <li value="1">Display the linking diagram in either of the following ways:<ul>
+<li value="1">
+<a href="%7B%7B%20'help-managing-cmdb-items#Searchin'%7CstaticPage%20%7D%7D#Searchin">Search for the CMDB item</a>. When the results are displayed in the browse table, select the item and then select <img src="/storage/app/media/Help/images/cmdb%20linking%20diagram%20button.png"> from the toolbar.</li>
+<li value="2">Select the <b><a href="../cmdb%20explorer%20options/linking%20explorer%20option.htm">Linking</a></b> explorer option from the <b>&lt;Entity&gt; Details</b> window.</li>
+<li value="3"><p class="note">This is only available if the item is linked to other items.</p></li>
+</ul>
+</li>
+                                                        <p> The linking diagram appears.</p>
+                                                        <li value="2">
+                                                            <p class="note">Container-component links are not displayed on the linking diagram. Components can be viewed through the <a href="../cmdb%20explorer%20options/components%20explorer%20option.htm">Components explorer option</a> or by right-clicking on a container item.</p>
+                                                        </li>
+                                                        <li value="3">
+                                                            <p class="note">Summarized links are displayed on the <a href="#The_Summarized_Tab">Summarized tab</a> in the Information panel.</p>
+                                                        </li>
+                                                        <li value="4">With the linking diagram on screen, you can do any of the following:</li>
+                                                        <p>
+                                                            </p>
+<table class="TableStyle-FieldDesc" style="mc-table-style: url('../../resources/tablestyles/fielddesc.css');margin-left: 0;margin-right: auto;" cellspacing="0">
+                                                                <col class="TableStyle-FieldDesc-Column-Column1">
+                                                                <col class="TableStyle-FieldDesc-Column-Column2">
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyH-Column1-">Zoom in or out</td>
+                                                                        <td class="TableStyle-FieldDesc-BodyG-Column2-">Use the slider <a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="../../resources/images/linking%20diagram%20zoom%20button.png"><img class="MCPopupThumbnail img imgthumbnail" data-mc-width="123" data-mc-height="20" src="/storage/app/media/Help/images/linking%20diagram%20zoom%20button_thumb_0_48.png" tabindex=""></a>to zoom in (select and drag right) or out (select and drag left) </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyH-Column1-">Move around the diagram</td>
+                                                                        <td class="TableStyle-FieldDesc-BodyG-Column2-">Select white space and drag to move the linking diagram around the window</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyH-Column1-">Show or hide the captions</td>
+                                                                        <td class="TableStyle-FieldDesc-BodyG-Column2-">Select <img src="/storage/app/media/Help/images/expand%20contract%20captions%20button.png"> to show or hide the captions on the linking diagram.</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyH-Column1-">View the links between items</td>
+                                                                        <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                            <p>Double-click a link line in the linking diagram. </p>
+                                                                            <ul>
+                                                                                <li value="1">If the link is a single parent-child or peer-peer link, the Link Details popup window appears. </li>
+                                                                                <li value="2">If the link has multiple links, the links are listed, allowing you to select the one whose details you wish to view and select Open to view the Link Details.</li>
+                                                                            </ul>
+                                                                            <p>The following table shows the arrow types used and what they denote, where A and B represent different items:</p>
+                                                                            <table style="mc-table-style: url('../../resources/tablestyles/rep hdr row.css');margin-left: 0;margin-right: auto;" class="TableStyle-Rep_Hdr_Row" cellspacing="0">
+                                                                                <col class="TableStyle-Rep_Hdr_Row-Column-Column1" style="width: 80px;">
+                                                                                <col class="TableStyle-Rep_Hdr_Row-Column-Column2">
+                                                                                <thead>
+                                                                                    <tr class="TableStyle-Rep_Hdr_Row-Head-Header1">
+                                                                                        <th class="TableStyle-Rep_Hdr_Row-HeadE-Column1-Header1">Arrow type...</th>
+                                                                                        <th class="TableStyle-Rep_Hdr_Row-HeadD-Column2-Header1">
+                                                                                            <p>Means...</p>
+                                                                                        </th>
+                                                                                    </tr>
+                                                                                </thead>
+                                                                                <tbody>
+                                                                                    <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                                        <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                                            <p>A → B</p>
+                                                                                        </td>
+                                                                                        <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                                            <p>A impacts B</p>
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                    <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                                        <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                                            <p>A ↔ B</p>
+                                                                                        </td>
+                                                                                        <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">A and B impact each other</td>
+                                                                                    </tr>
+                                                                                    <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                                        <td class="TableStyle-Rep_Hdr_Row-BodyB-Column1-Body1">
+                                                                                            <p>A <span style="font-family: 'Symbol'">=</span> B</p>
+                                                                                        </td>
+                                                                                        <td class="TableStyle-Rep_Hdr_Row-BodyA-Column2-Body1">
+                                                                                            <p>A and B have multiple links</p>
+                                                                                            <p class="note">A multiple link occurs when two CMDB items are linked using more than one link type. For example, a software product can be linked to a laptop using both a Connected To and Installed On link type.</p>
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                </tbody>
+                                                                            </table>
+                                                                            <p class="note">Your administrator may have <a href="../admin%20cmdb/cmdb%20link%20types.htm">defined link types</a>. In this case, the lines between the linked CMDB items may be different sizes or colors depending on the types of links between them. There may also be captions along the lines describing the links. The legend beneath the linking diagram will explain the different link types and icons.  You can show or hide the legend in the filter options.</p>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyH-Column1-">View the linked items</td>
+                                                                        <td class="TableStyle-FieldDesc-BodyG-Column2-">
+<b>View the linked items</b> on the linking diagram. Each CMDB item has a plus or a minus symbol next to it. Select the plus symbol to show all other CMDB items linked to it – both at a higher (parent) level and at a lower (child) level. Select the minus symbol to hide the linked CMDB items that are linked at the lower level; the parents will still be displayed. <p>The legend at the bottom of the diagram explains any icons attached to the item(s).</p>
+<li value="3"><p class="note">The level of depth of links displayed is set by the Range option found in the <a href="#Filterin">Filter menu</a>. </p></li>
+</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyH-Column1-">View an item in more detail</td>
+                                                                        <td class="TableStyle-FieldDesc-BodyG-Column2-">Double click on an item to view the details or right-click on it and select <b>Select Item</b> from the menu.<p class="note">You can also view further information on the <a href="#The">information panel</a>.</p>
+</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyH-Column1-">View component items</td>
+                                                                        <td class="TableStyle-FieldDesc-BodyG-Column2-">Right-click on a CMDB item and select <b>Show Components</b> to view the information about components in the Info tab in the Information Panel. Alternatively, select the <a href="../cmdb%20explorer%20options/components%20explorer%20option.htm">Components</a> Explorer option.<p class="note">This is only available if the selected CMDB item has component CMDB items.</p>
+</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyH-Column1-">Print the diagram</td>
+                                                                        <td class="TableStyle-FieldDesc-BodyG-Column2-">Right-click on a CMDB item and select <b>Print</b> to print the Linking Diagram.</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyH-Column1-">Copy the diagram</td>
+                                                                        <td class="TableStyle-FieldDesc-BodyG-Column2-">Right-click on a CMDB item and select <b>Copy Chart</b> to copy the Linking Diagram to the clipboard as a bitmap file.</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyH-Column1-">Expand and view links</td>
+                                                                        <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                            <p>Right-click on a CMDB item and select <b>Full Expand</b> to expand and view links for the selected item. </p>
+                                                                            <p class="prereq">This option is only visible if <b>Enable Full Expand</b> is selected on the <a href="../admin%20cmdb/cmdb%20settings.htm">CMDB Settings</a> window</p>
+                                                                            <p class="note">You should be aware that selecting Full Expand can have performance implications for large CMDBs.</p>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyB-Column1-">View external resources</td>
+                                                                        <td class="TableStyle-FieldDesc-BodyA-Column2-">
+                                                                            <p>Right-click on a CMDB item and select <b>Show External Resource</b> to display details of any external resources linked to the CMDB item. Alternatively, select the <a href="../cmdb%20explorer%20options/external%20resources%20explorer.htm">External Resources</a> Explorer option.</p>
+                                                                            <p class="note">This is only available if there are linked external resources. You can see the  Ext. Resource icon <img src="/storage/app/media/Help/images/linking%20diagram%20ext%20resource%20icon.png"> if there are associated external resources and the option to display the icon is selected in the Filter menu.</p>
+                                                                        </td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        
+                                                        <li value="5">You may also want to <a href="#Filterin">filter the information</a> displayed, <a href="#Finding">find the cause</a> of an outage or <a href="#Simulati">simulate an outage</a>.</li>
+                                                        <li value="6">You can also select from a range of <a href="%7B%7B%20'help-managing-cmdb-items#Options'%7CstaticPage%20%7D%7D#Options">Explorer options</a> to carry out further tasks.</li>
+                                                    </ol>
+                                                    <h2>
+<a name="Filterin"></a>Filtering the Linking Diagram</h2>
+                                                    <ol class="multilist">
+                                                        <li value="1">To filter the items included in the linking diagram, select <b>Filters</b> in the top left hand corner of the linking diagram to see the drop down filter menu. Then select your filter options as follows.</li>
+                                                        <table style="margin-left: 0;margin-right: auto;mc-table-style: url('../../resources/tablestyles/fielddesc.css');" class="TableStyle-FieldDesc" cellspacing="0">
+                                                            <col class="TableStyle-FieldDesc-Column-Column1">
+                                                            <col class="TableStyle-FieldDesc-Column-Column2">
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">
+                                                                        <p>Relationship Profiling </p>
+                                                                    </td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                        <table class="TableStyle-FieldDesc_no_indent" style="mc-table-style: url('../../resources/tablestyles/fielddesc no indent.css');margin-left: 0;margin-right: auto;" cellspacing="0">
+                                                                            <col class="TableStyle-FieldDesc_no_indent-Column-Column1">
+                                                                            <col class="TableStyle-FieldDesc_no_indent-Column-Column2">
+                                                                            <tbody>
+                                                                                <tr>
+                                                                                    <td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">Impacted by Main</td>
+                                                                                    <td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-"> Display linked items on which the current item has an impact</td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">Impacts Main</td>
+                                                                                    <td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">Is this the same as impacts parent???</td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">Impacts Parent</td>
+                                                                                    <td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">Display linked items that impact the current item</td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">Impacted and Impacts Main</td>
+                                                                                    <td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">Display all linked item that both impact and those that are impacted by the current item</td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td class="TableStyle-FieldDesc_no_indent-BodyB-Column1-">Not Impacted</td>
+                                                                                    <td class="TableStyle-FieldDesc_no_indent-BodyA-Column2-">Display linked items that are not impacted by the current item</td>
+                                                                                </tr>
+                                                                            </tbody>
+                                                                        </table>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Display</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                        <table class="TableStyle-FieldDesc_no_indent" style="mc-table-style: url('../../resources/tablestyles/fielddesc no indent.css');margin-left: 0;margin-right: auto;" cellspacing="0">
+                                                                            <col class="TableStyle-FieldDesc_no_indent-Column-Column1">
+                                                                            <col class="TableStyle-FieldDesc_no_indent-Column-Column2">
+                                                                            <tbody>
+                                                                                <tr>
+                                                                                    <td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">Ext. Resource Ind</td>
+                                                                                    <td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">display the Ext. Resource icon <img src="/storage/app/media/Help/images/linking%20diagram%20ext%20resource%20icon.png"> for CMDB items linked to an external resource</td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">Component Ind</td>
+                                                                                    <td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">Display the Container-Component icon for CMDB items using a container-component link</td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">Summarized Ind</td>
+                                                                                    <td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">Display the Summarized icon <img src="/storage/app/media/Help/images/linking%20diagram%20summarized%20icon.png"> for CMDB items using a <a href="%7B%7B%20'help-admin-cmdb-cmdb-link-types#Summary%0A_Link_Type'%7CstaticPage%20%7D%7D#Summary%0A_Link_Type">summary</a> link type</td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">Captions</td>
+                                                                                    <td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">Display link captions</td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">Hints</td>
+                                                                                    <td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">Display the title of a CMDB item when you hover over it on the linking diagram</td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">Legend</td>
+                                                                                    <td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">Display the legend at the bottom of the linking diagram</td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td class="TableStyle-FieldDesc_no_indent-BodyB-Column1-">Range</td>
+                                                                                    <td class="TableStyle-FieldDesc_no_indent-BodyA-Column2-">Specify the number of levels displayed on the linking diagram. For example, selecting 4 as the range displays four levels of the linking diagram</td>
+                                                                                </tr>
+                                                                            </tbody>
+                                                                        </table>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyB-Column1-">Link Types</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyA-Column2-">Select the Link Types that you want to display on the linking diagram.<p class="note">The link types available include all link types that have been created on your system, including link types which have been deleted. This is because some items in the CMDB linking diagram may still use deleted link types.</p>
+<p class="note">If you increase the number of levels displayed in the linking diagram, the additional levels will only be displayed if you have not expanded the node for any CMDB Items in the diagram. When you expand a node, and then close it, only the child nodes close, the parent node remains open, and is therefore not refreshed when the number of levels to be displayed is changed.</p>
+</td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                        <li value="2">Select <b>Ok</b> to refresh the linking diagram and close the Filter menu . Select <b>Reset</b> to revert to the default system settings for the linking diagram.</li>
+                                                    </ol>
+                                                    <h2>
+<a name="Finding"></a>Finding the Cause of an Outage on the Linking Diagram</h2>
+                                                    <p class="intro">The linking diagram displays any outages on linked CMDB items that may be causing the outage on the selected CMDB item. The number of levels displayed depends on the value selected for the Range drop-down. </p>
+                                                    <p>The Find Causes button on the linking diagram displays the potential causes for an outage on a selected CMDB item.</p>
+                                                    <p>The ‘find cause’ analysis does not pick up deleted links or linked items.</p>
+                                                    <ol>
+                                                        <li value="1">Display the linking diagram in either of the following ways:<ul>
+<li value="1">
+<a href="%7B%7B%20'help-managing-cmdb-items#Searchin'%7CstaticPage%20%7D%7D#Searchin">Search for the CMDB item</a>. When the results are displayed in the browse table, select the item and then select <img src="/storage/app/media/Help/images/cmdb%20linking%20diagram%20button.png"> from the toolbar.</li>
+<li value="2">Select the <b><a href="../cmdb%20explorer%20options/linking%20explorer%20option.htm">Linking</a></b> explorer option from the <b>&lt;Entity&gt; Details</b> window.</li>
+<p></p>
+<p class="note">This is only available if the item is linked to other items.</p>
+</ul>
+</li>
+                                                        <p> The linking diagram appears <a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="../../resources/images/eg%20of%20linking%20diagram.png"><img class="MCPopupThumbnail img imgthumbnail" data-mc-width="1221" data-mc-height="714" src="/storage/app/media/Help/images/eg%20of%20linking%20diagram_thumb_0_48.png" tabindex=""></a>.</p>
+                                                        <p class="note">Container-component links are not displayed on the linking diagram. Components can be viewed through the <a href="../cmdb%20explorer%20options/components%20explorer%20option.htm">Components explorer option</a> or by right-clicking on a container item.</p>
+                                                        <p class="note">Summarized links are displayed on the <a href="#The_Summarized_Tab">Summarized tab</a> in the Information panel.</p>
+                                                        <li value="2">Select a CMDB item on the linking diagram for which you wish to view the outage cause analysis.</li>
+                                                        <li value="3">Select <b>Find Causes</b> in the top right corner of the diagram.</li>
+                                                        <li value="4">The linking diagram is redisplayed with red circles through the affected items, and a Potential Causes Analysis panel appears below the Info tab. This panel displays services and configuration items that may have caused the outage on the selected CMDB item.</li>
+                                                        <li value="5">Select <b>Find Causes</b> to end the cause analysis and return to the linking diagram.</li>
+                                                    </ol>
+                                                    <h2>
+<a name="Simulati"></a>Simulating an Outage on the Linking Diagram</h2>
+                                                    <p>You can simulate an outage against a selected CMDB item, to assess the impact of different “what-if” scenarios. The Simulate Outage functionality also takes into consideration any existing outages on linked items.</p>
+                                                    <ol>
+                                                        <li value="1">Display the linking diagram in either of the following ways:<ul>
+<li value="1">
+<a href="%7B%7B%20'help-managing-cmdb-items#Searchin'%7CstaticPage%20%7D%7D#Searchin">Search for the CMDB item</a>. When the results are displayed in the browse table, select the item and then select <img src="/storage/app/media/Help/images/cmdb%20linking%20diagram%20button.png"> from the toolbar.</li>
+<li value="2">Select the <b><a href="../cmdb%20explorer%20options/linking%20explorer%20option.htm">Linking</a></b> explorer option from the <b>&lt;Entity&gt; Details</b> window.</li>
+<p></p>
+<p class="note">This is only available if the item is linked to other items.</p>
+</ul>
+</li>
+                                                        <p> The linking diagram appears <a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="../../resources/images/eg%20of%20linking%20diagram.png"><img class="MCPopupThumbnail img imgthumbnail" data-mc-width="1221" data-mc-height="714" src="/storage/app/media/Help/images/eg%20of%20linking%20diagram_thumb_0_48.png" tabindex=""></a>.</p>
+                                                        <li value="2">Select a CMDB item on the linking diagram for which you wish to view the impact of an outage.</li>
+                                                        <li value="3">Select <b>Simulate Outage</b> in the top right hand corner of the linking diagram.</li>
+                                                        <p class="note">The number of levels that are displayed in the diagram can be set using the <a href="#Filterin">filter options</a>. The default number of levels displayed in the CMDB linking diagram is 1.</p>
+                                                        <li value="4">The diagram is redisplayed with only the affected items, shown with red circles indicating that they would be adversely affected. The <a href="#The_Info_Tab">Info tab</a> in the Information panel displays a <b>Full Impact Analysis</b> section which lists the services and configuration items impacted by the outage on the selected CMDB item. </li>
+                                                        <li value="5">To return to the linking diagram, select <b>Find Causes</b> in the top right hand corner of the linking diagram.</li>
+                                                    </ol>
+                                                    <h2>
+<a name="The"></a>The Information Panel on the Linking Diagram</h2>
+                                                    <p>The information panel to the right of the linking diagram displays information for CMDB item or link type currently selected on the diagram. If you are conducting a simulated outage, the full impact analysis is also displayed.</p>
+                                                    <p>The information panel has the following tabs:</p>
+                                                    <table style="mc-table-style: url('../../resources/tablestyles/fielddesc.css');margin-left: 0;margin-right: auto;" class="TableStyle-FieldDesc" cellspacing="0">
+                                                        <col class="TableStyle-FieldDesc-Column-Column1">
+                                                        <col class="TableStyle-FieldDesc-Column-Column2">
+                                                        <tbody>
+                                                            <tr>
+                                                                <td class="TableStyle-FieldDesc-BodyH-Column1-">
+<a href="#The_Info_Tab">Info</a>
+                                                                </td>
+                                                                <td class="TableStyle-FieldDesc-BodyG-Column2-">Displays information about the CMDB item currently selected on the linking diagram, such as its title, status, and creation date.</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="TableStyle-FieldDesc-BodyH-Column1-">
+<a href="#The_Stakeholders_Tab">Stakeholders</a>
+                                                                </td>
+                                                                <td class="TableStyle-FieldDesc-BodyG-Column2-">Displays a list of the stakeholders linked to the currently selected CMDB item. This tab is disabled if you select a link type.</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="TableStyle-FieldDesc-BodyH-Column1-">
+<a href="#The_Impact_Tab">Impact</a>
+                                                                </td>
+                                                                <td class="TableStyle-FieldDesc-BodyG-Column2-">Displays the linked CMDB items and other CMDB entities (such as people, organizations, and agreements) that are impacted by the currently selected CMDB item. This tab is disabled if you select a link type.</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="TableStyle-FieldDesc-BodyB-Column1-">
+<a href="#The_Summarized_Tab">Summarized</a>
+                                                                </td>
+                                                                <td class="TableStyle-FieldDesc-BodyA-Column2-">
+                                                                    <li value="1">Displays a list of CMDB items that are linked to the currently selected CMDB item by the Summary CMDB <a href="../admin%20cmdb/cmdb%20link%20types.htm">link type</a>. </li>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <h3>
+<a name="The_Info_Tab"></a>The Info Tab</h3>
+                                                    <p class="intro">The Info tab on the linking diagram Information Panel displays information about the item or link currently selected on the linking diagram. These details will depend on the type of CMDB item or type of link.</p>
+                                                    <p>A selected CMDB item can be identified on the diagram as the image has a visible border and the item name is highlighted. If you select a link, the name of the link is shown at the top of the Information Panel. </p>
+                                                    <p>For an item, the following information appears.</p>
+                                                    <ul>
+                                                        <li value="1">Title</li>
+                                                        <li value="2">Status</li>
+                                                        <li value="3">Criticality</li>
+                                                        <li value="4">Availability Tracked</li>
+                                                        <li value="5">Org</li>
+                                                        <li value="6">Location</li>
+                                                        <li value="7">User</li>
+                                                        <li value="8">Service Level</li>
+                                                        <li value="9">Version</li>
+                                                        <li value="10">Class</li>
+                                                        <li value="11">CMDB Item Type</li>
+                                                        <li value="12">Last Checked (Date)</li>
+                                                        <li value="13">Last Updated (Date)</li>
+                                                        <li value="14">Created (Date)</li>
+                                                        <li value="15">Partition</li>
+                                                    </ul>
+                                                    <p>The following information appears for a selected link.</p>
+                                                    <ul>
+                                                        <li value="1">Link Name</li>
+                                                        <li value="2">Category</li>
+                                                        <li value="3">CMDB Item A </li>
+                                                        <li value="4">Role A</li>
+                                                        <li value="5">CMDB Item B</li>
+                                                        <li value="6">Role B</li>
+                                                        <li value="7">A Impacts B</li>
+                                                        <li value="8">B Impacts A</li>
+                                                    </ul>
+                                                    <h3>
+<a name="The_Stakeholders_Tab"></a>The Stakeholders Tab</h3>
+                                                    <p class="intro">The Stakeholders tab on the linking diagram Information Panel displays information about all stakeholders that are defined for the CMDB item currently selected in the linking diagram. </p>
+                                                    <p>Each section in this tab has a heading that defines the stakeholder type, that is, Person, Organization, IPK Group, or Workflow Group. The heading shows the icon that represents the stakeholder type.</p>
+                                                    <p>To show or hide the linked items for each section, simply select the + or – icons in front of the item type. Vertical and horizontal scroll bars will appear when required to view the complete data set. </p>
+                                                    <h3>
+<a name="The_Impact_Tab"></a>The Impact Tab</h3>
+                                                    <p class="intro">The Impact tab on the linking diagram Information Panel displays all linked CMDB entities that are dependent on the selected CMDB item. This applies to any CMDB item selected on the linking diagram, including a service, service action, service bundle, or configuration item. </p>
+                                                    <p class="note">The information in the Impact tab is the same information that appears in the <b>Impact Search</b> window, accessed by selecting <b>Impact</b> from the drop-down menu on a CMDB item Q/D field.</p>
+                                                    <p>The tab includes a tree with nodes for all the CMDB items that have been linked to the selected CMDB item. Agreements and Locations are shown if you are viewing a service item.</p>
+                                                    <p>To show or hide the linked items for each node, simply select the + or – icons in front of the item type. Vertical and horizontal scroll bars will appear when required to view the complete data set. </p>
+                                                    <h3>
+<a name="The_Summarized_Tab"></a>The Summarized Tab</h3>
+                                                    <p>The Summarized tab on the linking diagram Information Panel shows CMDB items that are linked to the selected item by a Summary CMDB link type.</p>
+                                                    <ol>
+                                                        <li value="1">Select an item that is linked to another by a Summary link. Depending on the selections made in the <a href="#Filterin">Filter</a> menu, the <img src="/storage/app/media/Help/images/summarized%20link%20icon.png" alt="" title=""> icon will be shown next to the item. (The tab is unavailable if you select a link type or a CMDB item that is not linked to other items using a Summary link.)</li>
+                                                        <li value="2">
+                                                            <p>On the information panel, select the <b>Summarized</b> tab.</p>
+                                                            <p>The tab lists the items linked by a summary link, and you can select any of them to view the details. </p>
+                                                            <p>Use <img src="/storage/app/media/Help/images/infopanelscrollbuttons_34x19.png" style="width: 34;height: 19;"> to scroll left and right in the information panel to view the different tabs.</p>
+                                                        </li>
+                                                    </ol>
+                                                

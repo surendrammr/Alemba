@@ -1,0 +1,11 @@
+<label>Save changes to this page <strong>before</strong> you send the e-mail!</label>
+
+<div style="margin-top:10px;">
+	<button type="button"
+	data-request="onSendEmail"
+    data-request-data="redirect:0,id:<?= $model->id ?>"
+    data-request-confirm="Are you sure you want to send the e-mail to the selected recipients?"
+    data-request-redirect="<?= route('send-email', ['id' => $model->id]) ?>"
+    data-request-success="alert('The e-mail will be sent now.')"
+    class="btn btn-primary">Send e-mail</button>
+</div>

@@ -1,0 +1,71 @@
+[viewBag]
+title = "Setting Up Incoming and Outgoing Email"
+url = "/help/topics/using-email/configure-email"
+layout = "help"
+is_hidden = 0
+navigation_hidden = 0
+==
+                                                    <h1>Setting Up Incoming and Outgoing Email</h1>
+                                                    <p>Administrators can set up incoming and outgoing email accounts on the <a href="../admin%20system/email%20settings.htm">Email Settings</a> window, accessible from the System Administration.</p>
+                                                    <p>Incoming and Outgoing Email run through the <span class="GeneralVariablesMessagingServiceName">ASM Messaging Service</span> – this is a polling service that operates under the <span class="GeneralVariablesCoreName">ASM Core</span> application - which checks these accounts at regular one-minute intervals. </p>
+                                                    <p>In the case of incoming emails, the service analyzes the subject heading of the email(s) it picks up and acts according to any key words found in the subject line. Click <a href="recognized%20incoming%20subject%20lines.htm">here</a> to see which subject lines are accepted or rejected by <span class="GeneralVariablesCoreName">ASM Core</span>.</p>
+                                                    <p>In the case of outgoing emails, if an instruction to send an email has been put into the message table, an email is sent through one of the configured outgoing servers. For details on how to send emails from <span class="GeneralVariablesCoreName">ASM Core</span>, click <a href="../general%20topics/sending%20an%20email.htm">here</a>.</p>
+                                                    <p>A number of settings must be configured to use incoming and outgoing emails in <span class="GeneralVariablesCoreName">ASM Core</span>.</p>
+                                                    <ul>
+                                                        <li value="1">
+<a href="#Start_vFire_Service" class="MCXref xref">Starting the ASM Messaging Service</a>
+                                                        </li>
+                                                        <li value="2">
+<a href="#Configure_Email_Settings" class="MCXref xref">Configuring the ASM Core Email Settings</a>
+                                                        </li>
+                                                        <li value="3">
+<a href="#Configure_Email_Notifications" class="MCXref xref">Configuring Email Notifications</a>
+                                                        </li>
+                                                        <li value="4">
+<a href="#Design_Email_Templates" class="MCXref xref">Configuring or Designing Email Templates</a>
+                                                        </li>
+                                                        <li value="5">
+<a href="#Map_Email_Templates" class="MCXref xref">Mapping Email Templates to Message Types</a>
+                                                        </li>
+                                                        <li value="6">
+<a href="#Email_Options_for_IPK_and_Workflow_Groups" class="MCXref xref">Email Options for IPK and Workflow Groups</a>
+                                                        </li>
+                                                    </ul>
+                                                    <h2>
+<a name="Start_vFire_Service"></a>Starting the <span class="GeneralVariablesMessagingServiceName">ASM Messaging Service</span>
+</h2>
+                                                    <p>In order to use incoming and outgoing email, the <span class="GeneralVariablesCoreName">ASM Core</span> Messaging service must be running on the web server where your <span class="GeneralVariablesSystemName">ASM System</span> is installed. </p>
+                                                    <p>If unsure whether the messaging service is running, the system or network administrator can start the service manually:</p>
+                                                    <ol>
+                                                        <li value="1">On the web server, open the <b>Services</b> window using the correct method for your version of Windows Server.</li>
+                                                        <li value="2">The Services window displays a list of all the services available on the web server.</li>
+                                                        <li value="3">From the list of services, right-click the <b><span class="GeneralVariablesProductName">ASM</span>Messaging Service</b> so that a menu appears. If the menu option <b>Stop</b> is enabled, your <span class="GeneralVariablesMessagingServiceName">ASM Messaging Service</span> is already running.</li>
+                                                        <li value="4">If your messaging service is not running, click the <b>Start</b> option from the right-click menu. <a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="../../resources/images/polling%20services.png"><img class="MCPopupThumbnail img imgthumbnail" data-mc-width="861" data-mc-height="509" src="/storage/app/media/Help/images/polling%20services_thumb_0_48.png" tabindex=""></a>
+</li>
+                                                    </ol>
+                                                    <p class="note">The <span class="GeneralVariablesCoreName">ASM Core</span> Administrative Service should also be running</p>
+                                                    <h2>
+<a name="Configure_Email_Settings"></a>Configuring the <span class="GeneralVariablesCoreName">ASM Core</span> Email Settings</h2>
+                                                    <p>Your <span class="GeneralVariablesSystemName">ASM System</span> can be configured to check for one or more incoming mail accounts, and set up one or more outgoing mail accounts which will be used to send emails from <span class="GeneralVariablesCoreName">ASM Core</span> to analysts, Users, external suppliers, groups or stakeholders.</p>
+                                                    <p>Once you have determined that the <span class="GeneralVariablesCoreName">ASM Core</span> messaging service is running, add and configure the incoming and outgoing email servers in <span class="GeneralVariablesCoreName">ASM Core</span> using the <a href="../admin%20system/email%20settings.htm">Email Settings</a> window in System Administration.</p>
+                                                    <h2>
+<a name="Configure_Email_Notifications"></a>Configuring Email Notifications</h2>
+                                                    <p> You can configure when and how email, pager and system messages should be sent from <span class="GeneralVariablesCoreName">ASM Core</span>, including how system messages ‘pop up’ on an Analyst’s window.</p>
+                                                    <p>These settings are configured using the <a href="../admin%20system/messaging.htm">Messaging</a> window in System Administration, and relate to both incoming and outgoing emails.</p>
+                                                    <h2>
+<a name="Design_Email_Templates"></a>Configuring or Designing Email Templates</h2>
+                                                    <p>The email messages that <span class="GeneralVariablesCoreName">ASM Core</span> sends out are formatted according to a number of standard HTML message templates included with <span class="GeneralVariablesCoreName">ASM Core</span>. There are separate templates for each of the different situations in which emails can be sent, such as call forwarding, email request manager, etc. These templates are pre-formatted and include all necessary fields based on the specific template.</p>
+                                                    <p>To modify email templates and create new ones, <span class="GeneralVariablesCoreName">ASM Core</span> recommends using the <span class="GeneralVariablesCoreName">ASM Core</span> <a href="../designer/using%20designer.htm"><span class="GeneralVariablesDesignerName">ASM Designer</span></a>.  </p>
+                                                    <p>For details on how to create, edit, and delete message templates, click <a href="../designer/configuring%20message%20templates.htm">here</a>.</p>
+                                                    <p>All <a href="../designer/configuring%20message%20templates.htm">message templates</a> created or edited with the <a href="../designer/using%20designer.htm"><span class="GeneralVariablesDesignerName">ASM Designer</span></a> are automatically available from <span class="GeneralVariablesCoreName">ASM Core</span> and appear on the <a href="../admin%20system/message%20types.htm">Message Type Map</a> window.</p>
+                                                    <h2>
+<a name="Map_Email_Templates"></a>Mapping Email Templates to Message Types</h2>
+                                                    <p>For a message (email) template to be used, it must be linked to a given event in <span class="GeneralVariablesCoreName">ASM Core</span> – for example, the forwarding of a call. You can therefore assign different email templates for notifying a User about the state of a call, notifying an analyst about the breach of a service level agreement, or notifying an external contact that an approval task has been forwarded to them.</p>
+                                                    <p><span class="GeneralVariablesCoreName">ASM Core</span> also enables you to assign multiple templates to the same message type, for example, for use through different partitions.</p>
+                                                    <p>The process of assigning templates to message types is performed on the <a href="../admin%20system/message%20types.htm">Message Types</a> window. </p>
+                                                    <p>For a list of all message types and the system event they're connected to, click here.</p>
+                                                    <h2>
+<a name="Email_Options_for_IPK_and_Workflow_Groups"></a>Email Options for IPK and Workflow Groups</h2>
+                                                    <p>Depending on how you set up the Email ID and Email Analysts options for your <a href="../admin%20security/ipk%20groups.htm">IPK Groups</a> and <a href="../admin%20security/workflow%20management%20groups.htm">Workflow Groups</a>, emails will be sent to either the group email ID, the email ID of each analyst in that group, or both.</p>
+                                                    <p>For information on how to configure email options for IPK and Workflow groups, click <a href="../general%20topics/email%20and%20pager%20options.htm">here</a>.</p>
+                                                

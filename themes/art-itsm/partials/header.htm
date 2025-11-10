@@ -1,0 +1,94 @@
+description = "The header code (JavaScript, meta tags etc)"
+==
+<?php
+use Jenssegers\Agent\Agent;
+
+function onStart()
+{
+
+	// Check for user agent
+
+	$agent = new Agent();
+
+	$this['ismobile'] = FALSE;
+
+	if( $agent->isMobile() || $agent->isTablet() ) {
+		
+		$this['ismobile'] = TRUE;
+
+	}
+
+	$this['countrycode'] = isset($_SERVER["HTTP_CF_IPCOUNTRY"]) ? $_SERVER["HTTP_CF_IPCOUNTRY"] : '';
+
+}
+?>
+==
+<!DOCTYPE html>
+<html lang="en" {% if htmlClass %}class="{{ htmlClass }}"{% endif %}>
+<head>
+<meta charset="utf-8">
+
+{% if this.environment == 'production' %}
+
+    {% partial 'analytics-etc' %}
+
+{% endif %}
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="google-site-verification" content="cgpiWrzV47MUzoeYn2LTd0rApPYN5vBzYaocEWQZbVo" />
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+{% partial 'head-scripts-styles' %}
+
+{% partial 'favicons' %}
+
+{% if this.page.meta_title %}
+
+    {% component 'seoTags' %}
+
+{% else %}
+
+    <title>Alemba - {{ this.page.title }}</title>
+
+{% endif %}
+
+</head>
+
+{% put scripts %}
+
+    <script>
+
+        $(document).ready(function(){
+
+            $('body form').on('submit', function() {
+
+                var email = $('.validateEmail input[name=email]').val();
+
+                // If free e-mail clients have been used, alert and return to the form
+
+                var check_email = '[a-zA-Z0-9]{0,}([.]?[a-zA-Z0-9]{1,})[@](gmail.com|hotmail.com|yahoo.com|gmail.co.uk|googlemail.com|hotmail.co.uk|yahoo.co.uk|outlook.com)';
+                var patt = new RegExp(check_email);
+                var result = patt.test(email);
+
+                if (result === true) {
+
+                    alert("Sorry, you can't use that e-mail. Please use another.");
+                    return false;
+
+                }
+
+            });
+
+        });
+
+    </script>
+
+{% endput %}
+
+<body class="page-{{ this.page.id }} {{ this.page.class }}">
+
+    {% if this.environment == 'production' %}
+
+        {% partial 'google-tag-manager-noscript' %}
+
+    {% endif %}

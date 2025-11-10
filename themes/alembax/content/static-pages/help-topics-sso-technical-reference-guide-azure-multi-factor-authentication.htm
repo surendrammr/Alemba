@@ -1,0 +1,43 @@
+[viewBag]
+title = "Azure Multi-factor Authentication"
+url = "/help/topics/sso-technical-reference-guide/azure-multi-factor-authentication"
+layout = "help"
+is_hidden = 0
+navigation_hidden = 0
+==
+                                                    <h1>
+<a name="top"></a>Azure Multi-factor Authentication</h1>
+                                                    <p class="intro">This documentation provides a high level introduction to <span class="GeneralVariablesCoreName">ASM Core</span> and Azure Multi-factor Authentication with Azure Active Directory.</p>
+                                                    <p>Multi-factor authentication (MFA) is a method of authentication that requires the use of more than one verification method and adds a critical second layer of security to user sign-ins by requiring the following verification methods: </p>
+                                                    <ul>
+                                                        <li value="1">Something you know (typically a password) <br>
+</li>
+                                                        <li value="2">Something you have (a trusted device that is not easily duplicated, like a phone)</li>
+                                                    </ul>
+                                                    <p> </p>
+                                                    <p>The security of multi-factor authentication lies in its layered approach. Compromising multiple authentication factors presents a significant challenge for attackers. Even if an attacker manages to learn the user's password, it is useless without also having possession of the trusted device. Should the user lose the device, the person who finds it won't be able to use it unless he or she also knows the user's password.</p>
+                                                    <p>Azure Multi-factor Authentication helps safeguard access to data and applications while meeting user demand for a simple sign-in process. It delivers strong authentication via a range of easy verification options —phone call, text message, mobile app notification or verification code.</p>
+                                                    <p><span class="GeneralVariablesCompanyName2">Alemba®</span> use <b>Azure Multi-factor Authentication</b>* in conjunction with the <span class="GeneralVariablesCompanyName2">Alemba®</span> SSO integration module, to provide connectivity to <b>Azure Active Directory</b>* with SAML authentication<conditionaltext data-mc-conditions="Default.ScreenOnly"> (for further information see the <a href="../../Resources/PDFs/SSO%20Technical%20Ref%20Guide.pdf">SSO Technical Reference Guide</a>)</conditionaltext>. </p>
+                                                    <p class="note">*Azure Services are not provided as part of the <span class="GeneralVariablesCompanyName2">Alemba®</span> Cloud offering, pricing and further information on Azure can be found at <a href="https://azure.microsoft.com">https://azure.microsoft.com</a></p>
+                                                    <h1>Multi-factor Authentication User Transaction Steps for <span class="GeneralVariablesProductName">ASM</span>
+</h1>
+                                                    <p>The <span class="GeneralVariablesProductName">ASM</span> User or Analyst makes a request to access the application by loading an appropriate <span class="GeneralVariablesProductName">ASM</span> URL in a Browser. The <span class="GeneralVariablesAppName">ASM app</span> will detect this request and generate a SAML request, <span class="GeneralVariablesProductName">ASM</span> then redirects the User/Analyst’s browser to the Azure Portal URL.<a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="../../resources/images/sso%20technical%20reference%20guide/multi%20factor%20auth.png"><img class="MCPopupThumbnail img imgthumbnail" data-mc-width="423" data-mc-height="377" src="/storage/app/media/Help/images/sso%20technical%20reference%20guide/multi%20factor%20auth_thumb_0_48.png" tabindex=""></a></p>
+                                                    <p>The Azure Authentication Service detects that the user has been configured to use the Multi-factor Authentication Service and the user is directed to a configuration page. The Users selects from a predefined set of verification methods:</p>
+                                                    <ul>
+                                                        <li value="1">Phone call</li>
+                                                        <li value="2">Text message</li>
+                                                        <li value="3">Mobile app notification – allowing users to choose the method they prefer</li>
+                                                        <li value="4">Mobile app verification code</li>
+                                                    </ul>
+                                                    <p><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="../../resources/images/sso%20technical%20reference%20guide/multi%20factor%20auth%20method.png"><img class="MCPopupThumbnail img imgthumbnail" data-mc-width="550" data-mc-height="481" src="/storage/app/media/Help/images/sso%20technical%20reference%20guide/multi%20factor%20auth%20method_thumb_0_48.png" style="width: 371px;height: 270px;" tabindex=""></a>
+                                                    </p>
+                                                    <p>Once the user has chosen and configured their preferred verification method the setup of MFA is complete. The user is then able to login and verify their account with the method selected. User Configuration of MFA is only required on the User/Analyst first login with Azure Multi-factor authentication.<a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="../../resources/images/sso%20technical%20reference%20guide/multi%20factor%20auth%20login.png"><img class="MCPopupThumbnail img imgthumbnail" data-mc-width="340" data-mc-height="370" src="/storage/app/media/Help/images/sso%20technical%20reference%20guide/multi%20factor%20auth%20login_thumb_0_48.png" style="width: 256px;height: 279px;" tabindex=""></a></p>
+                                                    <p>Azure Multi-Factor Authentication authenticates the User/Analyst. The SAML Response is then passed back to the User/Analyst’s Browser which is then sent to the <span class="GeneralVariablesProductName">ASM</span> URL, once <span class="GeneralVariablesProductName">ASM</span> verifies this response the User/Analyst is logged into the <span class="GeneralVariablesAppName">ASM app</span>.<br></p>
+                                                    <h1>Multi-Factor Authentication Technical Transaction Steps for <span class="GeneralVariablesProductName">ASM</span>
+</h1>
+                                                    <p>The User/Analyst browser requests the <span class="GeneralVariablesProductName">ASM</span> url to login to the application. <span class="GeneralVariablesProductName">ASM</span> SSO intercepts the request and redirects the User/Analyst browser to the Azure portal login. The Azure portal login accepts the User/Analyst AD credentials and request multi-factor authentication from the User/Analyst. At the same time the Azure MFA service provides the User/Analyst with the method for multi-factor authentication. <br></p>
+                                                    <p>The User/Analyst supplies the multi-factor authentication to the Azure portal login, which is then passed to the MFA service. Once the MFA verification is authorized, the Azure AD service will generate a SAML assertion which is passed back to the User/Analyst browser. This in turn is passed back to the <span class="GeneralVariablesCoreName">ASM Core</span> SSO service for verification. Once the SAML assertion is verified the User/Analyst is logged in and redirected to the <span class="GeneralVariablesCoreName">ASM Core</span> application.<br></p>
+                                                    <p>
+                                                        <img src="/storage/app/media/Help/images/sso%20technical%20reference%20guide/multi%20factor%20auth%20steps_602x337.png" style="width: 602;height: 337;" class="screenshot">
+                                                    </p>
+                                                

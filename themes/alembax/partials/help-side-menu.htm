@@ -1,0 +1,109 @@
+==
+<?php
+
+use Alemba\Alemba\Models\HelpArticle;
+
+function onStart() {
+
+	$menu = collect();
+
+	// Get the selected article (if it exists)
+
+	$selected_article = HelpArticle::find($this['id']);
+
+	if($selected_article && $selected_article->parent_id) {
+
+		// Get the parent topic
+		
+		$this['parent_topic'] = HelpArticle::find($selected_article->parent_id);
+
+		// Add the parent topic's *parent* to the menu first
+
+		if($this['parent_topic']->topic) {
+
+			$menu = $this['parent_topic']->topic->getAllChildren();
+
+		} else {
+
+			$menu = $this['parent_topic']->getAllChildren();
+
+		}
+
+		// Add its articles to the array
+
+/*
+		
+
+		$parent_articles = $parent_topic->articles()->orderBy('sort_order')->get();
+
+		foreach ($parent_articles as $key => $topic) {
+			
+			$array = [];
+			$array['topic'] = $topic;
+
+			$articles = HelpArticle::whereParentId($topic->id)->orderBy('sort_order')->get();
+
+			if($topic->is_topic && $articles) {
+
+				$array['articles'] = $articles;
+
+			}
+
+			$menu[] = $array;
+
+		}
+
+		*/
+
+	}
+
+	$this['menu'] = $menu;
+
+}
+
+?>
+==
+
+<ul>
+
+	<li>
+
+		{% if parent_topic %}
+
+			<a href="{{ 'help-article'|page({ topic:parent_topic.parent_slug, slug:parent_topic.slug }) }}"><strong>{{ parent_topic.link_name }}</strong></a>
+
+		{% else %}
+
+			<a href="{{ 'help'|page }}">Home</a>
+
+		{% endif %}
+
+		<ul>
+
+		{% for topic in menu %}
+
+			<li><a href="{{ 'help-article'|page({ topic:topic.parent_slug, slug:topic.slug }) }}">{% if topic.id == id %} <strong>{{ topic.link_name }}</strong> {% else %} {{ topic.link_name }} {% endif %}</a>
+
+				{% if topic.id == id and topic.articles|length > 0 %}
+
+					<ul>
+
+						{% for article in topic.articles %}
+
+							<li><a href="{{ 'help-article'|page({ topic:topic.slug, slug:article.slug }) }}">{{ article.id == selected_article.id ? '<strong>' ~ article.link_name ~ '</strong>' : article.link_name }}</a></li>
+						
+						{% endfor %}
+
+					</ul>
+
+				{% endif %}
+
+			</li>
+
+		{% endfor %}
+
+		</ul>
+
+	</li>
+
+</ul>

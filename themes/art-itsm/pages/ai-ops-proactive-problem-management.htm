@@ -1,0 +1,116 @@
+url = "/features/ai-ops"
+layout = "home"
+title = "AI Ops: Proactive Problem Management"
+seoOptionsEnabledInSitemap = 1
+seoOptionsUseUpdatedAt = 1
+seoOptionsRobotIndex = "index"
+seoOptionsRobotFollow = "follow"
+meta_title = "AI Ops – Proactive Problem Management | Alemba ITSM"
+meta_description = "Use AI Ops for proactive ITSM problem management. Alemba Service Manager integrates real-time dashboards and AI to detect and prevent issues before they escalate."
+robot_index = "index"
+robot_follow = "follow"
+
+[siteSearchInclude]
+
+[viewBag]
+==
+<!-- banner -->
+
+<div class="jumbotron jumbotron-fluid banner dark pageBanner" style="background-image:url('{{ 'Banners/banner-ai-ops@0.5x.jpg'|media }}')">
+
+	<div class="container-fluid h-100">
+	    <div class="row h-100">
+    	    <div class="col my-auto text-center">
+		    </div>
+		</div>
+	</div>
+
+</div>
+
+<!-- /banner -->
+
+{% partial 'demo-button' %}
+
+<div class="container-fluid bkg-dark">
+
+    <div class="container copy">
+
+        <header class="col-10 offset-1 copy-heading">
+
+    		<nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item">Features</li>
+                    <li class="breadcrumb-item active">{{ this.page.title }}</li>
+                </ol>
+            </nav>
+    	
+    		<h1>{{ this.page.title }}</h1>
+
+    	</header>
+    	    
+        <div class="row">
+        
+            <div class="col-10 offset-1">
+                <p class="lead mb-3">Did you know that Alemba Service Manager (ASM) can synchronize your real-time IT dashboards with AI Ops to provide advanced Proactive Problem Management?</p>
+                
+                <p>ASM allows you to visualize the pattern of current Incidents in your system. AI Ops supports two methods of pattern recognition:</p>
+
+                <h3>Absolute Count</h3>
+                <p>AI Ops will count the number of Incidents that match the set criteria within a given period of time. If the threshold is exceeded, then AI Ops will automatically create a Problem record and link the matching Incidents as children. The problem record and a notification will be sent to the Problem Manager.</p>
+                
+                <h3>Change of Behavior Threshold</h3>
+                <p>A recurring time period is configured and the number of Incidents in the current period is compared with the number in the previous period. Should the change between the periods exceed a given percentage, then a Problem record and notification will be sent to the Problem Manager with all the Incidents in the current period linked as children.</p>
+                <img src="{{ 'Diagrams/ai-ops-diagram.png'|media }}" alt="Example AI Ops logic diagram" class="mt-2 img-fluid" />
+                <p class="caption"><small>Example: The number of matching Incidents recorded in time period A is compared with the number of Incidents recorded in time period B, and if the change exceeds the set threshold (X%), then a Problem record is logged with all the Incidents recorded in time period B attached as children.</small></p>
+
+                <h3>Using Dashboards to Support Problem Management</h3>
+                <p>The powerful dashboard engine in ASM ships with a set of useful reports that support the problem manager in their analysis of Incidents and events being logged in the system.</p>
+                <p>Information such as Incidents per Service, per Configuration Item, per Location and per Department can highlight infrastructural or training issues. </p>
+                <p>The effect of newly released Changes into the infrastructure can be monitored by dashboards that focus on the CI or services changed and the users of those services looking for post-Change spikes.</p>
+                <img src="{{ 'Screens/screenshot-reporting-teams@2x.jpg'|media }}" alt="Screenshot of reporting Dashboard" class="mt-2 img-fluid shadow rounded" />
+                <p class="caption"><small>Example: Powerful Problem Management dashboards help Problem Managers identify trends and discover root causes.</small></p>
+
+                <h3>How to get started: Configuring AI Ops</h3>
+                <p>This section will define how to configure AI Ops for Problem Management. You must have AI Ops in your IPK Security role to configure AI Ops.</p>
+                <p>You can schedule “AI Ops rules” which will run and analyze your Call and Request activity. Each rule has a “threshold” that is, a particular number of events within a running period, and a set of conditions which, when met, will automatically trigger a new call/request in ASM.</p>
+
+                <h4 class="mt-5">Configuring AI Ops Rules</h4>
+                <p>Using the AI Ops wizard, you will be guided through the steps required to configure a rule.</p>
+                <p>If a step or option is mandatory it is flagged with an asterisk (*). Once a step is complete it is marked with a green tick, except the Welcome and Summary steps.</p>
+
+                <h4 class="mt-5">Step 1: Instructions (Optional)</h4>
+                <p>This step provides an overview of the steps for setting up your AI Ops. You can clear ‘Show Instructions’ at startup to skip this step on creating new AI Ops rules or editing existing rules.</p>
+
+                <h4 class="mt-5">Step 2: Title and Description</h4>
+                <p>Provide a name (title) and description for your rule. This is a mandatory field. * It is good practice to use a meaningful name to help identify the purpose of the rule.</p>
+                <p><i><small>*If a step or option is mandatory it is flagged with an asterisk (*)</small></i></p>
+
+                <h4 class="mt-5">Step 3: Data Set</h4>
+                <p>Here you will decide if you want to analyze Incidents or Requests. Additionally, you can decide if the rule runs for a set time span or runs indefinitely.</p>
+
+                <h4 class="mt-5">Step 4: Selection Criteria</h4>
+                <p>Here you will select the parameters in the call that you wish to pattern match on.</p>
+
+                <h4 class="mt-5">Step 5: Grouping Criteria</h4>
+                <p>This step configures the matching rules and thresholds based on the parameters selected in Step 4.</p>
+
+                <h4 class="mt-5">Step 6: Schedule</h4>
+                <p>In this step, schedule the time frame for your analysis, that is, when and how often the rule should run.</p>
+
+                <h3>Use Case for AI Ops</h3>
+                <p>A Problem Manager suspects instability in the network environment. She can configure an automated AI Ops rule to log a Problem call whenever more than 5 high priority outage calls are logged against critical servers. She can configure the rule to exclude any servers that have a Physical Status of “In Test” or “Training Dedicated”. Finally, she can configure the call to be auto assigned to the problem Management team.</p>
+                <p>When the AI Ops rule runs and reaches the threshold of 5 high priority outage calls against the critical server, a new Problem is automatically logged by the system and forwarded to the Problem Management team.</p>
+                {#
+                <a class="btn btn-lg btn-primary mb-4 me-2" href="https://alemba.com/asm/demo" role="button">Request a demo</a>
+                <a class="btn btn-lg btn-bright me-2 mb-4" href="https://alemba.com/contact" role="button">Contact us today</a>
+                #}
+            </div>
+            
+        </div>
+
+    </div>
+
+</div>
+
+
+{% partial 'pagelinks-recent' %}

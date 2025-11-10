@@ -1,0 +1,702 @@
+[viewBag]
+title = "Managing External Resources"
+url = "/help/topics/integration/managing-external-resources"
+layout = "help"
+is_hidden = 0
+navigation_hidden = 0
+==
+                                                    <h1>Managing External Resources</h1>
+                                                    <p>You can manage external resources from either the:</p>
+                                                    <ul class="multilist">
+                                                        <li value="1">
+<b>External Resource Search</b> window. From here, you can <a href="searching%20for%20external%20resources.htm">search for external resources</a>.</li>
+                                                        <li value="2">
+<b>Federated CMDB Administration</b> window - after you have configured the Federated CMDB and run scans. This window displays the external resources detected by the scan. The Federated CMDB Administration window provides a generic interface between the <span class="GeneralVariablesCoreName">ASM Core</span> CMDB and the external technologies with which your system is integrated. The resources managed by an organization through external applications and technologies are represented as CMDB entities in <span class="GeneralVariablesCoreName">ASM Core</span> (such as configuration items, or people). From here you can:<ul>
+<li style="list-style-type: disc;" value="1">Link CMDB Items to external resources</li>
+<li style="list-style-type: disc;" value="2">Import newly discovered resources/users as CMDB Items/People</li>
+<li style="list-style-type: disc;" value="3">Search for CMDB Items in an external resource repository.</li>
+</ul>
+</li>
+                                                    </ul>
+                                                    <h2 class="Prerequisite">Before you start</h2>
+                                                    <p class="prereqtextlast">You must have <b>Federated CMDB</b> selected in the <a href="../admin%20security%20roles/general%20access%20security%20role%20-%20admin%20tab.htm">Admin</a> tab of your <b>General Access Security Role</b>. </p>
+                                                    <ol>
+                                                        <li value="1">
+                                                            <p>Select <a href="../general%20topics/asmcorewindow.htm"><span style="font-size: 24pt;">≡</span></a> &gt; <b>Admin</b> &gt; <b>Federated CMDB</b>.</p>
+                                                            <p>The <b>Federated CMDB Administration</b> window appears.</p>
+                                                        </li>
+                                                        <li value="2">From the left pane, specify the search criteria to view the required external resources:</li>
+                                                        <p>
+                                                            </p>
+<table class="TableStyle-FieldDesc" style="mc-table-style: url('../../resources/tablestyles/fielddesc.css');margin-left: 0;margin-right: auto;" cellspacing="0">
+                                                                <col class="TableStyle-FieldDesc-Column-Column1">
+                                                                <col class="TableStyle-FieldDesc-Column-Column2">
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyH-Column1-">Imported Resources</td>
+                                                                        <td class="TableStyle-FieldDesc-BodyG-Column2-">Select  to view all the resources imported in the last scan. This view also displays the definitive resource records (cached replicas) of the resources that were imported into <span class="GeneralVariablesCoreName">ASM Core</span> from previous scans. From this window, you can select one or more resources and exclude them. Excluded resources are not included when the system performs a cached search.<div class="MCDropDown MCDropDown_Closed dropDown">
+<span class="MCDropDownHead dropDownHead"><a href="#" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCHotSpotImage" aria-expanded="false"><img class="MCDropDown_Image_Icon" src="/storage/app/media/Help/images/transparent.gif" height="11" width="16" alt="Closed" data-mc-alt2="Open">You can filter these records further using the options at the bottom of the pane. You may need to scroll down to see them all.</a></span><div class="MCDropDownBody dropDownBody"><table style="mc-table-style: url('../../resources/tablestyles/fielddesc no indent.css');" class="TableStyle-FieldDesc_no_indent" cellspacing="0">
+<tr>
+<td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">Active</td>
+<td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">Select this option to view external resources that have become active since the previous scan. If you do not select this option, the Inactive option is selected automatically. One of these options is always selected.</td>
+</tr>
+<tr>
+<td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">Inactive</td>
+<td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">Select this option to view external resources that have become inactive since the last scan. If you do not select this option, the Active option is selected automatically. One of these options is always selected.</td>
+</tr>
+<tr>
+<td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">Linked to CMDB Items</td>
+<td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">Select this option to view imported or excluded resources that are linked to CMDB items.</td>
+</tr>
+<tr>
+<td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">Not Linked to CMDB Items</td>
+<td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">Select this option to view imported or excluded resources that are not linked to CMDB items</td>
+</tr>
+</table></div>
+</div>
+<p>From this view you can:</p>
+<ul>
+<li value="1">
+<a href="#Viewing">View the details</a> of an external resource</li>
+<li value="2">Select one or more resources and exclude them</li>
+</ul>
+</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyH-Column1-">Excluded Resources</td>
+                                                                        <td class="TableStyle-FieldDesc-BodyG-Column2-">Select  to view all the excluded definitive resource records. These are external resources that have been discovered, but have not been imported into the CMDB. Excluded resources are displayed in a tabular format. You can choose to include resources that have been previously excluded.<div class="MCDropDown MCDropDown_Closed dropDown">
+<span class="MCDropDownHead dropDownHead"><a href="#" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCHotSpotImage" aria-expanded="false"><img class="MCDropDown_Image_Icon" src="/storage/app/media/Help/images/transparent.gif" height="11" width="16" alt="Closed" data-mc-alt2="Open">You can filter these records further using the options at the bottom of the pane. You may need to scroll down to see them all.</a></span><div class="MCDropDownBody dropDownBody"><table style="mc-table-style: url('../../resources/tablestyles/fielddesc no indent.css');" class="TableStyle-FieldDesc_no_indent" cellspacing="0">
+<tr>
+<td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">Active</td>
+<td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">Select this option to view external resources that have become active since the previous scan. If you do not select this option, the Inactive option is selected automatically. One of these options is always selected.</td>
+</tr>
+<tr>
+<td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">Inactive</td>
+<td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">Select this option to view external resources that have become inactive since the last scan. If you do not select this option, the Active option is selected automatically. One of these options is always selected.</td>
+</tr>
+<tr>
+<td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">Linked to CMDB Items</td>
+<td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">Select this option to view imported or excluded resources that are linked to CMDB items.</td>
+</tr>
+<tr>
+<td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">Not Linked to CMDB Items</td>
+<td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">Select this option to view imported or excluded resources that are not linked to CMDB items</td>
+</tr>
+</table></div>
+</div>
+<p>From this view you can:</p>
+<ul>
+<li value="1">
+<a href="#Viewing">View the details</a> of an external resource</li>
+<li value="2">Select one or more excluded resources and include them</li>
+</ul>
+</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyH-Column1-">Pending Imports</td>
+                                                                        <td class="TableStyle-FieldDesc-BodyG-Column2-">Select  to view resources that have not been imported yet, including resources that have been updated since the last scan. You can choose to discard the updates and retain the resource in the CMDB in its earlier state.<p>From this view you can:</p>
+<ul>
+<li value="1">
+<a href="#Viewing">View the details</a> of a pending resource </li>
+<li value="2">Import a pending resource</li>
+<li value="3">Discard the updates and retain the resource in the CMDB in its earlier state</li>
+</ul>
+<p class="note">Selecting a resource in this view displays it in the <b>Pending External Resource</b> window. You can import a pending resource from the <b>Pending External Resource</b> window or the <b>Federated CMDB Administration</b> window.</p>
+</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyH-Column1-">Activated Resources</td>
+                                                                        <td class="TableStyle-FieldDesc-BodyG-Column2-">Select to view updates to definitive resource records that have been detected where the resource mapping has been configured to add resources to the activated resources list. Activated resources are those that were discovered in a previous scan, and were found to be inactive at that time.<p>From this view you can:</p>
+<ul>
+<li value="1">
+<a href="#Viewing">View the details</a> of an activated resource</li>
+<li value="2">Acknowledge or discard updates</li>
+<li value="3">Select one or more resources and exclude them. (Excluded resources are not included when the system performs a cached search.)</li>
+</ul>
+<p class="note">Selecting a resource in this view opens the resources in the <b>External Resource</b> window.</p>
+</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyH-Column1-">Deactivated Resources</td>
+                                                                        <td class="TableStyle-FieldDesc-BodyG-Column2-">Select to view updates to definitive resource records that have been detected where the resource mapping has been configured to add resources to the deactivated resources list. Deactivated resources are those resources that were detected as being active in an earlier scan, and are now inactive.<p>From this view you can:</p>
+<ul>
+<li value="1">
+<a href="#Viewing">View the details</a> of a deactivated resource</li>
+<li value="2">Acknowledge or discard updates</li>
+<li value="3">Select one or more resources and exclude them. (Excluded resources are not included when the system performs a cached search.)</li>
+</ul>
+<p class="note">Selecting a resource in this view opens the resources in the <b>External Resource</b> window.</p>
+</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyH-Column1-">Discrepancy Reports</td>
+                                                                        <td class="TableStyle-FieldDesc-BodyG-Column2-">Select to view all the outstanding CMDB reports for each CMDB Item linked to a resource, or Person linked to a directory server user. It highlights the differences between the CMDB item and the imported resource, or the Person and the imported user. <p>From this view you can:</p>
+<ul>
+<li value="1">View the details of a discrepancy report</li>
+<li value="2">Discard the changes</li>
+<li value="3">Apply the changes to linked CMDB records</li>
+</ul>
+<p class="note">Selecting a report from this view opens the CMDB Item Details window, or Person Details window, depending on whether you select a network discovery tool or directory server resource, open at the Discrepancy Report window.</p>
+</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyB-Column1-">Synchronization Log</td>
+                                                                        <td class="TableStyle-FieldDesc-BodyA-Column2-">Select to view all the errors and warnings reported from a scheduled scan run on the selected source.<p>The synchronization log can be filtered by the <b>Date From</b> and <b>Date To</b>, allowing you to specify the time period of integration activity.</p>
+<p>From this view you can:</p>
+<ul>
+<li value="1">View the details of a log entry</li>
+<li value="2">Clear a log entry</li>
+</ul>
+</td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        
+                                                        <li value="3">Having selected your filter options, click <b>Search</b> at the bottom of the left hand pane. The details are displayed in a browse table in the right hand pane.  You can <a href="%7B%7B%20'help-general-topics-working-with-browse-tables#Changing'%7CstaticPage%20%7D%7D#Changing">adjust the column widths</a> if required.</li>
+                                                        <li value="4">Scroll through the entries, or select one or more and use the toolbar buttons to carry out further functions. To view an entry in detail, double click on it in the browse table.</li>
+                                                    </ol>
+                                                    <h2>
+<a name="Viewing"></a>Viewing External Resources</h2>
+                                                    <p>The <b>External Resource</b> window displays the details of a selected activated or deactivated external resource. When you select an activated or deactivated external resource, and double-click it, its details are displayed in the External Resource window.</p>
+                                                    <p>The <b>Pending External Resource</b> window displays if you select a pending resource on the Federated CMDB Administration window, Pending Imports tab, and double-click it.</p>
+                                                    <h2 class="Prerequisite">Before you start</h2>
+                                                    <p class="prereqtextlast">You must have <b>Federated CMDB</b> selected in the <a href="../admin%20security%20roles/general%20access%20security%20role%20-%20admin%20tab.htm">Admin</a> tab of your <b>General Access Security Role</b>. </p>
+                                                    <p>Display the <b>External Resources</b> window in either of the following ways:</p>
+                                                    <ul>
+                                                        <li value="1">
+<a href="searching%20for%20external%20resources.htm">Search for the external resource</a>.</li>
+                                                        <li value="2">
+                                                            <div class="MCDropDown MCDropDown_Closed dropDown">
+<span class="MCDropDownHead dropDownHead"><a href="#" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCHotSpotImage" aria-expanded="false"><img class="MCDropDown_Image_Icon" src="/storage/app/media/Help/images/transparent.gif" height="11" width="16" alt="Closed" data-mc-alt2="Open">Use the Federated CMDB Administration window.</a></span>
+                                                                <div class="MCDropDownBody dropDownBody">
+                                                                    <p>Select <a href="../general%20topics/asmcorewindow.htm"><span style="font-size: 24pt;">≡</span></a> &gt; <b>Admin</b> &gt; <b>Federated CMDB</b>. </p>
+                                                                    <p>The <b>Federated CMDB Administration</b> window appears.</p>
+                                                                    <p>In the left hand pane, select one of the following from the View drop-down list:</p>
+<ul>
+<li value="1">Imported Resources</li>
+<li value="2">Excluded Resources</li>
+<li value="3">Activated Resources</li>
+<li value="4">Deactivated Resources</li>
+</ul>
+                                                                    <p>Select <img src="/storage/app/media/Help/images/review%20button.png"> from the toolbar to display the <b>External Resource</b> window. </p>
+                                                                </div>
+                                                            </div>
+                                                        </li>
+                                                    </ul>
+                                                    <p>The <b>External Resource</b> window displays the following read-only attributes:</p>
+                                                    <table class="TableStyle-FieldDesc" style="mc-table-style: url('../../resources/tablestyles/fielddesc.css');" cellspacing="0">
+                                                        <col class="TableStyle-FieldDesc-Column-Column1">
+                                                        <col class="TableStyle-FieldDesc-Column-Column2">
+                                                        <tbody>
+                                                            <tr>
+                                                                <td class="TableStyle-FieldDesc-BodyH-Column1-">Resource</td>
+                                                                <td class="TableStyle-FieldDesc-BodyG-Column2-">the resource’s alias</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="TableStyle-FieldDesc-BodyH-Column1-">Type</td>
+                                                                <td class="TableStyle-FieldDesc-BodyG-Column2-">the resource’s type</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="TableStyle-FieldDesc-BodyB-Column1-">Unique ID</td>
+                                                                <td class="TableStyle-FieldDesc-BodyA-Column2-">the unique ID assigned to the definitive resource record</td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <p> </p>
+                                                    <p>The <b>Info</b> tab is selected by default and provides a read-only summary with the following information about the selected resource:</p>
+                                                    <table style="mc-table-style: url('../../resources/tablestyles/fielddesc.css');" class="TableStyle-FieldDesc" cellspacing="0">
+                                                        <col class="TableStyle-FieldDesc-Column-Column1">
+                                                        <col class="TableStyle-FieldDesc-Column-Column2">
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">
+                                                                <p>Source Details</p>
+                                                            </td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                <table style="mc-table-style: url('../../resources/tablestyles/fielddesc no indent.css');" class="TableStyle-FieldDesc_no_indent" cellspacing="0">
+                                                                    <col class="TableStyle-FieldDesc_no_indent-Column-Column1">
+                                                                    <col class="TableStyle-FieldDesc_no_indent-Column-Column2">
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">Source</td>
+                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">Name of the Source</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">Connector</td>
+                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">Name of the Connector</td>
+                                                                    </tr>
+                                                                </table>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">
+                                                                <p>Resource Details</p>
+                                                            </td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                <table style="mc-table-style: url('../../resources/tablestyles/fielddesc no indent.css');" class="TableStyle-FieldDesc_no_indent" cellspacing="0">
+                                                                    <col class="TableStyle-FieldDesc_no_indent-Column-Column1">
+                                                                    <col class="TableStyle-FieldDesc_no_indent-Column-Column2">
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">Mapping</td>
+                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">Name of the resource mapping</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">Group</td>
+                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">Name of the resource mapping group</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">Group Type</td>
+                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">Name of the Group Type</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">Discovered At</td>
+                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">The date and time at which the resource was first discovered.</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">Updated At</td>
+                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">The date and time at which the resource was updated.</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">Timestamp</td>
+                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">The time at which a resource was updated in the third party application</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">Status</td>
+                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">The status of the resource (this can be Active, Inactive, or New)</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">Update Status</td>
+                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">The status of the resource as detected by a scheduled scan. It can be Active, Inactive, or None. None indicates that the scan has not detected any change in the external resource during the scan.</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">Imported</td>
+                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">This indicates if a CMDB item has been created and linked to this external resource, and can be Yes or No.</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">Included</td>
+                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">This is always Yes because only included resources are detected by a scan.</td>
+                                                                    </tr>
+                                                                </table>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">
+                                                                <p>Matching</p>
+                                                            </td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                <table style="mc-table-style: url('../../resources/tablestyles/fielddesc no indent.css');margin-left: 0;margin-right: auto;" class="TableStyle-FieldDesc_no_indent" cellspacing="0">
+                                                                    <col class="TableStyle-FieldDesc_no_indent-Column-Column1">
+                                                                    <col class="TableStyle-FieldDesc_no_indent-Column-Column2">
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">Match Status</td>
+                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">This describes the system’s ability to reconcile this external resource with an existing CMDB entity (such as a configuration item or person depending on whether this is for a directory server integration connector or a network discovery connector), using the defined criteria defined for the resource type. The Match Status for an external resource reflects the standing of the resource at the time of its discovery during the scan. It does not reflect the creation of, deletion of, or changes to a corresponding CMDB since that scan. These changes are not reflected until the next regulated scan of the source. <p>The Match Status can be:</p>
+<ul>
+<li value="1"> 
+N/A – no matching criteria has been defined for this resource type; therefore, no reconciliation has been performed on this external resource.
+</li>
+<li value="2">Match – this resource has been matched to exactly one CMDB record.</li>
+<li value="3">
+No Match – no CMDB record has been found to match this resource.
+</li>
+<li value="4">Multiple – two or more CMDB records have been found to match this resource.
+</li>
+</ul>
+<p class="note">Whenever an existing CMDB record is matched to an external resource, an informational event is recorded on the Integration Platform Activity Log.
+</p>
+<p>This indicates how the resource compares with the matching criteria specified in the resource type mapping, and can be NA, No Match, One Match, or Multiple Match.</p>
+</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">Alternate ID</td>
+                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">This is a secondary ID that can be used to specify a matching.</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">Reconciliation ID</td>
+                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">This is used when the same resource is discovered by different discovery tools. For example, the Data Center Insight (DCI) third party connector is able to gather resources from both EMC Smarts SAM and ADM. The Reconciliation ID allows different instances of the same resource to be identified as the same resource</td>
+                                                                    </tr>
+                                                                </table>
+                                                                <p> </p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">
+                                                                <p>Other tabs on this window</p>
+                                                            </td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                <table style="mc-table-style: url('../../resources/tablestyles/fielddesc no indent.css');margin-left: 0;margin-right: auto;" class="TableStyle-FieldDesc_no_indent" cellspacing="0">
+                                                                    <col class="TableStyle-FieldDesc_no_indent-Column-Column1">
+                                                                    <col class="TableStyle-FieldDesc_no_indent-Column-Column2">
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">Resource</td>
+                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">Use this tab to browse the properties and corresponding values for the resource object.</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">Linked Items</td>
+                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">Use this tab to view linked CMDB items. Select a resource by clicking on it in the left hand pane.</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">Discrepancy Reports</td>
+                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">Use this tab to view discrepancy reports between the external resource and the linked CMDB items or people.</td>
+                                                                    </tr>
+                                                                </table>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                    <p> </p>
+                                                    <h2>Including External Resources</h2>
+                                                    <p>You can include resources that you may have excluded earlier.</p>
+                                                    <h2 class="Prerequisite">Before you start</h2>
+                                                    <p class="prereqtextlast">You must have <b>Federated CMDB</b> selected in the <a href="../admin%20security%20roles/general%20access%20security%20role%20-%20admin%20tab.htm">Admin</a> tab of your <b>General Access Security Role</b>. </p>
+                                                    <ol>
+                                                        <li value="1">Display the <b>External Resources</b> window in either of the following ways:</li>
+                                                        <p>
+                                                            </p>
+</ol>
+<ul>
+                                                                <li value="1">
+<a href="searching%20for%20external%20resources.htm">Search for the external resource</a>.</li>
+                                                                <li value="2">
+                                                                    <div class="MCDropDown MCDropDown_Closed dropDown">
+<span class="MCDropDownHead dropDownHead"><a href="#" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCHotSpotImage" aria-expanded="false"><img class="MCDropDown_Image_Icon" src="/storage/app/media/Help/images/transparent.gif" height="11" width="16" alt="Closed" data-mc-alt2="Open">Use the Federated CMDB Administration window.</a></span>
+                                                                        <div class="MCDropDownBody dropDownBody">
+                                                                            <p>Select <a href="../general%20topics/asmcorewindow.htm"><span style="font-size: 24pt;">≡</span></a> &gt; <b>Admin</b> &gt; <b>Federated CMDB</b>. </p>
+                                                                            <p>The <b>Federated CMDB Administration</b> window appears.</p>
+                                                                            <p>In the left hand pane, select <b>Excluded Resources</b>.</p>
+                                                                            <p>Specify any further search criteria, and then select <b>Search</b> at the bottom of the pane.</p>
+                                                                            <p>Select <img src="/storage/app/media/Help/images/review%20button.png"> from the toolbar to display the <b>External Resource</b> window. </p>
+                                                                        </div>
+                                                                    </div>
+                                                                </li>
+                                                            </ul>
+                                                        
+                                                        <li value="2">Select the resource you want to include.</li>
+                                                        <li value="3">
+                                                            <p>Select <img src="/storage/app/media/Help/images/include%20resources.png">. </p>
+                                                            <p>The <b>Include Resource</b> window appears.</p>
+                                                        </li>
+                                                        <li value="4">Select the action you wish to apply to the resource.</li>
+                                                        <p>
+                                                            </p>
+<table class="TableStyle-FieldDesc" style="mc-table-style: url('../../resources/tablestyles/fielddesc.css');margin-left: 0;margin-right: auto;" cellspacing="0">
+                                                                <col class="TableStyle-FieldDesc-Column-Column1">
+                                                                <col class="TableStyle-FieldDesc-Column-Column2">
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyH-Column1-">Restore </td>
+                                                                        <td class="TableStyle-FieldDesc-BodyG-Column2-">to bring the deleted CMDB item or person back into the system and restore the links between the CMDB record and the current resource</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyH-Column1-">Take No Action</td>
+                                                                        <td class="TableStyle-FieldDesc-BodyG-Column2-"> to include the resource without restoring the linked CMDB item or person</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyB-Column1-">Alert me when this operation is complete</td>
+                                                                        <td class="TableStyle-FieldDesc-BodyA-Column2-">to receive notification when the action is complete</td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        
+                                                        <li value="5">Click <b>OK</b>. The resource appears in the Included Resources view of the Federated CMDB Administration window.</li>
+                                                    
+                                                    <h2>Excluding External Resources</h2>
+                                                    <h2 class="Prerequisite">Before you start</h2>
+                                                    <p class="prereqtextlast">You must have <b>Federated CMDB</b> selected in the <a href="../admin%20security%20roles/general%20access%20security%20role%20-%20admin%20tab.htm">Admin</a> tab of your <b>General Access Security Role</b>. </p>
+                                                    <ol>
+                                                        <li value="1">Display the window in one of the following ways.</li>
+                                                        <p>
+                                                            </p>
+</ol>
+<ul>
+                                                                <li value="1">
+<a href="searching%20for%20external%20resources.htm">Search for the external resource</a>.</li>
+                                                                <li value="2">
+                                                                    <div class="MCDropDown MCDropDown_Closed dropDown">
+<span class="MCDropDownHead dropDownHead"><a href="#" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCHotSpotImage" aria-expanded="false"><img class="MCDropDown_Image_Icon" src="/storage/app/media/Help/images/transparent.gif" height="11" width="16" alt="Closed" data-mc-alt2="Open">Use the Federated CMDB Administration window.</a></span>
+                                                                        <div class="MCDropDownBody dropDownBody">
+                                                                            <p>Select <a href="../general%20topics/asmcorewindow.htm"><span style="font-size: 24pt;">≡</span></a> &gt; <b>Admin</b> &gt; <b>Federated CMDB</b>. </p>
+                                                                            <p>The <b>Federated CMDB Administration</b> window appears.</p>
+                                                                            <p>In the left hand pane, select one of the following from the View drop-down list:</p>
+<ul>
+<li value="1">Imported Resources</li>
+<li value="2">Activated Resources</li>
+<li value="3">Deactivated Resources</li>
+<li value="4">Pending Imports</li>
+</ul>
+                                                                        </div>
+                                                                    </div>
+                                                                </li>
+                                                            </ul>
+                                                        
+                                                        <li value="2">Select the resource you want to exclude.</li>
+                                                        <li value="3">
+                                                            <p>Select  <img src="/storage/app/media/Help/images/exclude%20sel%20resources%20btn.png">. </p>
+                                                            <p>The <b>Exclude Resource</b> window appears.</p>
+                                                        </li>
+                                                        <li value="4">Using the options, select an action for the resource.</li>
+                                                        <p>
+                                                            </p>
+<table class="TableStyle-FieldDesc" style="mc-table-style: url('../../resources/tablestyles/fielddesc.css');margin-left: 0;margin-right: auto;" cellspacing="0">
+                                                                <col class="TableStyle-FieldDesc-Column-Column1">
+                                                                <col class="TableStyle-FieldDesc-Column-Column2">
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyH-Column1-">Delete</td>
+                                                                        <td class="TableStyle-FieldDesc-BodyG-Column2-">to delete the linked CMDB items or people</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyH-Column1-">Unlink from Resource</td>
+                                                                        <td class="TableStyle-FieldDesc-BodyG-Column2-">to remove the link between the selected resource and the linked CMDB items or people</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyB-Column1-">Take No Action</td>
+                                                                        <td class="TableStyle-FieldDesc-BodyA-Column2-"> to leave the links as they are</td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        
+                                                        <li value="5">Click <b>OK</b>. The resource appears in the Excluded Resources view of the Federated CMDB Administration window.</li>
+                                                    
+                                                    <h2>Importing Pending Resources</h2>
+                                                    <h2 class="Prerequisite">Before you start</h2>
+                                                    <p class="prereqtextlast">You must have <b>Federated CMDB</b> selected in the <a href="../admin%20security%20roles/general%20access%20security%20role%20-%20admin%20tab.htm">Admin</a> tab of your <b>General Access Security Role</b>. </p>
+                                                    <ol>
+                                                        <li value="1">Display the <b>External Resources/Pending Imports</b> window in either of the following ways:</li>
+                                                        <p>
+                                                            </p>
+</ol>
+<ul>
+                                                                <li value="1">
+<a href="searching%20for%20external%20resources.htm">Search for the external resource</a>.</li>
+                                                                <li value="2">
+                                                                    <div class="MCDropDown MCDropDown_Closed dropDown">
+<span class="MCDropDownHead dropDownHead"><a href="#" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCHotSpotImage" aria-expanded="false"><img class="MCDropDown_Image_Icon" src="/storage/app/media/Help/images/transparent.gif" height="11" width="16" alt="Closed" data-mc-alt2="Open">Use the Federated CMDB Administration window.</a></span>
+                                                                        <div class="MCDropDownBody dropDownBody">
+                                                                            <p>Select <a href="../general%20topics/asmcorewindow.htm"><span style="font-size: 24pt;">≡</span></a> &gt; <b>Admin</b> &gt; <b>Federated CMDB</b>. </p>
+                                                                            <p>The <b>Federated CMDB Administration</b> window appears.</p>
+                                                                            <p>In the left hand pane, select <b>Pending Imports</b> from the <b>View</b> drop-down list. Complete other search criteria if appropriate and then select <b>Search</b>.</p>
+                                                                        </div>
+                                                                    </div>
+                                                                </li>
+                                                            </ul>
+                                                        
+                                                        <li value="2">In the <b>Pending Imports/External Resource</b> view, select the resource.</li>
+                                                        <li value="3">To create and link a CMDB item, select <img src="/storage/app/media/Help/images/new%20linked%20cmdb%20item.png">. Or, to create and link a person, click <img src="/storage/app/media/Help/images/new%20linked%20person.png">.</li>
+                                                        <li value="4">The <b>Import Parameters</b> dialog box appears. To select a different template from the one specified at the level of the mapping, select <b>Override mapped template</b> and select the CMDB entity type and template you want to use in the <b>Import As</b> and <b>Using template</b> fields. Select Alert me when this operation is complete to </li>
+                                                        <li value="5">Complete the <a href="%7B%7B%20'help-cmdb-cmdb-item-details#top'%7CstaticPage%20%7D%7D#top">CMDB Item Details</a> or <a href="%7B%7B%20'help-managing-people-managing-people#Completing_Person_Details'%7CstaticPage%20%7D%7D#Completing_Person_Details">Person Details</a>. </li>
+                                                        <li value="6">Select <b>OK</b>. This will import and try to link each selected external resource with one of the matching items discovered by the scan, if there is one that exists. This is determined by the value in the <b>Match Status</b> column for the external resource. If a matching item does not exist for the external resource, a new CDMB item is created.</li>
+                                                        <li value="7">
+                                                            <p class="note">If you import an external resource with a <b>Match Status</b> of “Multiple” (that is, two or more CMDB items matched the criteria of this resource type), a warning will display to say that this resource will be arbitrarily linked to only one of the selected CMDB records. You can click OK to continue, or Cancel. A warning event is also inserted into the activity log, to indicate that multiple matches have been identified to the external resource.</p>
+                                                            <p class="warning">Resources will not be linked to their matching CMDB items if these items are currently locked or frozen. If the system has not been able to link any selected external resource to any CMDB items, a warning will display with the number of resources where linking to its matching CMDB item has been unsuccessful. A warning event is also recorded into the activity log. Should this occur, you should refer to the activity log of the scan for further information.</p>
+                                                        </li>
+                                                    
+                                                    <h2>Discarding a Pending Resource</h2>
+                                                    <h2 class="Prerequisite">Before you start</h2>
+                                                    <p class="prereqtextlast">You must have <b>Federated CMDB</b> selected in the <a href="../admin%20security%20roles/general%20access%20security%20role%20-%20admin%20tab.htm">Admin</a> tab of your <b>General Access Security Role</b>. </p>
+                                                    <ol>
+                                                        <li value="1">Display the <b>Pending Imports</b> window in either of the following ways:</li>
+                                                        <p>
+                                                            </p>
+</ol>
+<ul>
+                                                                <li value="1">
+<a href="searching%20for%20external%20resources.htm">Search for the external resource</a>.</li>
+                                                                <li value="2">
+                                                                    <div class="MCDropDown MCDropDown_Closed dropDown">
+<span class="MCDropDownHead dropDownHead"><a href="#" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCHotSpotImage" aria-expanded="false"><img class="MCDropDown_Image_Icon" src="/storage/app/media/Help/images/transparent.gif" height="11" width="16" alt="Closed" data-mc-alt2="Open">Use the Federated CMDB Administration window.</a></span>
+                                                                        <div class="MCDropDownBody dropDownBody">
+                                                                            <p>Select <a href="../general%20topics/asmcorewindow.htm"><span style="font-size: 24pt;">≡</span></a> &gt; <b>Admin</b> &gt; <b>Federated CMDB</b>. </p>
+                                                                            <p>The <b>Federated CMDB Administration</b> window appears.</p>
+                                                                            <p>In the left hand pane, select <b>Pending Imports</b> from the <b>View</b> drop-down list. Complete other search criteria if appropriate and then select <b>Search</b>.</p>
+                                                                        </div>
+                                                                    </div>
+                                                                </li>
+                                                            </ul>
+                                                        
+                                                        <li value="2">In the <b>Pending Imports/External Resource</b> view, select the resource.</li>
+                                                        <li value="3">
+                                                            <p>Select <img src="/storage/app/media/Help/images/discard%20resource.png">. </p>
+                                                            <p>The pending import is removed from the <b>Pending Imports</b> view.</p>
+                                                        </li>
+                                                    
+                                                    <h2>Linking External Resources to Existing CMDB Records</h2>
+                                                    <p>You can link external resources to existing CMDB records from the following windows:</p>
+                                                    <ul>
+                                                        <li value="1">External Resource window</li>
+                                                        <li value="2">Pending External Resource window</li>
+                                                    </ul>
+                                                    <h2 class="Prerequisite">Before you start</h2>
+                                                    <p class="prereqtextlast">You must have <b>Federated CMDB</b> selected in the <a href="../admin%20security%20roles/general%20access%20security%20role%20-%20admin%20tab.htm">Admin</a> tab of your <b>General Access Security Role</b>. </p>
+                                                    <ol>
+                                                        <li value="1">Display the <b>External Resources/Pending Imports</b> window in either of the following ways:</li>
+                                                        <p>
+                                                            </p>
+</ol>
+<ul>
+                                                                <li value="1">
+<a href="searching%20for%20external%20resources.htm">Search for the external resource</a>.</li>
+                                                                <li value="2">
+                                                                    <div class="MCDropDown MCDropDown_Closed dropDown">
+<span class="MCDropDownHead dropDownHead"><a href="#" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCHotSpotImage" aria-expanded="false"><img class="MCDropDown_Image_Icon" src="/storage/app/media/Help/images/transparent.gif" height="11" width="16" alt="Closed" data-mc-alt2="Open">Use the Federated CMDB Administration window.</a></span>
+                                                                        <div class="MCDropDownBody dropDownBody">
+                                                                            <p>Select <a href="../general%20topics/asmcorewindow.htm"><span style="font-size: 24pt;">≡</span></a> &gt; <b>Admin</b> &gt; <b>Federated CMDB</b>. </p>
+                                                                            <p>The <b>Federated CMDB Administration</b> window appears.</p>
+                                                                            <p>In the left hand pane, select <b>Pending Imports</b> from the <b>View</b> drop-down list. Complete other search criteria if appropriate and then select <b>Search</b>.</p>
+                                                                        </div>
+                                                                    </div>
+                                                                </li>
+                                                            </ul>
+                                                        
+                                                        <li value="2">Select the resource you want to link from the browse table.</li>
+                                                        <li value="3">From the <b>External Resource</b> window, select <img src="/storage/app/media/Help/images/search%20and%20link%20cmdb.png"> to link a CMDB Item   or <img src="/storage/app/media/Help/images/search%20and%20link%20person.png"> to link a person. From the <b>Pending External Resource</b> window, select <img src="/storage/app/media/Help/images/link%20button.png" alt="" title=""> . The Search window for the selected entity type appears. <a href="%7B%7B%20'help-managing-people-managing-people#Viewing'%7CstaticPage%20%7D%7D#Viewing">Search for the person</a> or <a href="%7B%7B%20'help-cmdb-managing-cmdb-items#Searchin'%7CstaticPage%20%7D%7D#Searchin">CMDB item</a> and select the record(s) that you want to link to the resource.</li>
+                                                    
+                                                    <h2>Acknowledging or Discarding Updates</h2>
+                                                    <p>When viewing the list of activated or deactivated resources, you can either acknowledge or discard the updates made to the resource since the last scan. Acknowledging the update copies the property values of the resource to the corresponding CMDB record.</p>
+                                                    <h2 class="Prerequisite">Before you start</h2>
+                                                    <p class="prereqtextlast">You must have <b>Federated CMDB</b> selected in the <a href="../admin%20security%20roles/general%20access%20security%20role%20-%20admin%20tab.htm">Admin</a> tab of your <b>General Access Security Role</b>. </p>
+                                                    <ol>
+                                                        <li value="1">Display the  window in either of the following ways:</li>
+                                                        <p>
+                                                            </p>
+</ol>
+<ul>
+                                                                <li value="1">
+<a href="searching%20for%20external%20resources.htm">Search for the external resource</a>.</li>
+                                                                <li value="2">
+                                                                    <div class="MCDropDown MCDropDown_Closed dropDown">
+<span class="MCDropDownHead dropDownHead"><a href="#" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCHotSpotImage" aria-expanded="false"><img class="MCDropDown_Image_Icon" src="/storage/app/media/Help/images/transparent.gif" height="11" width="16" alt="Closed" data-mc-alt2="Open">Use the Federated CMDB Administration window.</a></span>
+                                                                        <div class="MCDropDownBody dropDownBody">
+                                                                            <p>Select <a href="../general%20topics/asmcorewindow.htm"><span style="font-size: 24pt;">≡</span></a> &gt; <b>Admin</b> &gt; <b>Federated CMDB</b>. </p>
+                                                                            <p>The <b>Federated CMDB Administration</b> window appears.</p>
+                                                                            <p>In the left hand pane, select <b>Activated Resources</b> or <b>Deactivated Resources</b> from the <b>View</b> drop-down list. Complete other search criteria if appropriate and then select <b>Search</b>.</p>
+                                                                        </div>
+                                                                    </div>
+                                                                </li>
+                                                            </ul>
+                                                        
+                                                        <li value="2">Select the resource from the browse table, and then select <img src="/storage/app/media/Help/images/ack%20sel%20updates%20btn.png"> to acknowledge the update, or <img src="/storage/app/media/Help/images/discard%20resource.png"> to discard it.</li>
+                                                        <p class="note">
+                                                            </p>
+<p>For resources that have become active since the previous scan, you can either restore links to CMDB records that were linked to the resource when it was active or take no action on the linked CMDB records. For resources that have been deactivated, you can either delete linked CMDB records, unlink the resource from linked CMDB records, or take no action on linked records. The action to restore, delete, unlink or take no action on a link is only applied when none of the linked resources are still awaiting a status update.</p>
+                                                            <p> </p>
+                                                        
+                                                    
+                                                    <h2>Viewing and Managing Discrepancy Reports</h2>
+                                                    <p>A discrepancy report displays the difference between an external resource and linked CMDB records. A discrepancy report is generated whenever conflicts are detected between discovered external resource properties and mapped CMDB fields as a result of a scan.</p>
+                                                    <p>This report can be used to detect:</p>
+                                                    <ul>
+                                                        <li value="1">whether a request was completed successfully.</li>
+                                                        <li value="2">whether an unauthorized change has been applied to the linked CMDB item.</li>
+                                                    </ul>
+                                                    <p>The Discrepancy Reports view on the Federated CMDB Administration window enables you to view all the discrepancy reports generated for a specific connector, source and resource type.</p>
+                                                    <h2 class="Prerequisite">Before you start</h2>
+                                                    <p class="prereqtextlast">You must have <b>Federated CMDB</b> selected in the <a href="../admin%20security%20roles/general%20access%20security%20role%20-%20admin%20tab.htm">Admin</a> tab of your <b>General Access Security Role</b>. </p>
+                                                    <ol>
+                                                        <li value="1">Display the  window in either of the following ways:</li>
+                                                        <p>
+                                                            </p>
+</ol>
+<ul>
+                                                                <li value="1">
+<a href="searching%20for%20external%20resources.htm">Search for the external resource</a>.</li>
+                                                                <li value="2">
+                                                                    <div class="MCDropDown MCDropDown_Closed dropDown">
+<span class="MCDropDownHead dropDownHead"><a href="#" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCHotSpotImage" aria-expanded="false"><img class="MCDropDown_Image_Icon" src="/storage/app/media/Help/images/transparent.gif" height="11" width="16" alt="Closed" data-mc-alt2="Open">Use the Federated CMDB Administration window.</a></span>
+                                                                        <div class="MCDropDownBody dropDownBody">
+                                                                            <p>Select <a href="../general%20topics/asmcorewindow.htm"><span style="font-size: 24pt;">≡</span></a> &gt; <b>Admin</b> &gt; <b>Federated CMDB</b>. </p>
+                                                                            <p>The <b>Federated CMDB Administration</b> window appears.</p>
+                                                                            <p>In the left hand pane, select <b>Discrepancy Reports</b> from the <b>View</b> drop-down list. Complete other search criteria if appropriate and then select <b>Search</b>.</p>
+                                                                        </div>
+                                                                    </div>
+                                                                </li>
+                                                            </ul>
+                                                        
+                                                        <li value="2">Select one or more reports from the browse table, and then select the appropriate toolbar button:</li>
+                                                        <p>
+                                                            </p>
+<table style="mc-table-style: url('../../resources/tablestyles/rep hdr row.css');margin-left: 0;margin-right: auto;" class="TableStyle-Rep_Hdr_Row" cellspacing="0">
+                                                                <col class="TableStyle-Rep_Hdr_Row-Column-Column1" style="width: 13px;">
+                                                                <col class="TableStyle-Rep_Hdr_Row-Column-Column2">
+                                                                <thead>
+                                                                    <tr class="TableStyle-Rep_Hdr_Row-Head-Header1">
+                                                                        <th class="TableStyle-Rep_Hdr_Row-HeadE-Column1-Header1">Select</th>
+                                                                        <th class="TableStyle-Rep_Hdr_Row-HeadD-Column2-Header1">To...</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                        <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                            <img src="/storage/app/media/Help/images/apply%20changes%20button.png">
+                                                                        </td>
+                                                                        <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">copy the value of the resource property to the CMDB record’s field</td>
+                                                                    </tr>
+                                                                    <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                        <td class="TableStyle-Rep_Hdr_Row-BodyB-Column1-Body1">
+                                                                            <img src="/storage/app/media/Help/images/discard%20resource.png">
+                                                                        </td>
+                                                                        <td class="TableStyle-Rep_Hdr_Row-BodyA-Column2-Body1">delete the discrepancy report item and not update the CMDB record’s field</td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        
+                                                        <li value="3">To display the <b>Discrepancy Reports</b> window for a particular report, select the report and then select <img src="/storage/app/media/Help/images/review%20button.png">. </li>
+                                                        <li value="4">The <b>Discrepancy Reports</b> window appears with the following details:</li>
+                                                        <p>
+                                                            </p>
+<table class="TableStyle-FieldDesc" style="mc-table-style: url('../../resources/tablestyles/fielddesc.css');margin-left: 0;margin-right: auto;" cellspacing="0">
+                                                                <col class="TableStyle-FieldDesc-Column-Column1">
+                                                                <col class="TableStyle-FieldDesc-Column-Column2">
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyH-Column1-">Resource </td>
+                                                                        <td class="TableStyle-FieldDesc-BodyG-Column2-">the name of the external resource</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyH-Column1-">Resource Property</td>
+                                                                        <td class="TableStyle-FieldDesc-BodyG-Column2-">the property of the resource</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyH-Column1-">Reported </td>
+                                                                        <td class="TableStyle-FieldDesc-BodyG-Column2-">the date and time the discrepancy was reported</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyH-Column1-">CMDB Property</td>
+                                                                        <td class="TableStyle-FieldDesc-BodyG-Column2-">the property of the corresponding CMDB record</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyH-Column1-">Resource Value</td>
+                                                                        <td class="TableStyle-FieldDesc-BodyG-Column2-">the value of the resource</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyH-Column1-">Current CMDB Value</td>
+                                                                        <td class="TableStyle-FieldDesc-BodyG-Column2-">the current value of the corresponding CMDB record</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyB-Column1-">Action </td>
+                                                                        <td class="TableStyle-FieldDesc-BodyA-Column2-">the last action taken to rectify the discrepancy</td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        
+                                                        <li value="5">Click the list in the <b>Action</b> field and select:</li>
+                                                        <p>
+                                                            </p>
+<table class="TableStyle-FieldDesc" style="mc-table-style: url('../../resources/tablestyles/fielddesc.css');margin-left: 0;margin-right: auto;" cellspacing="0">
+                                                                <col class="TableStyle-FieldDesc-Column-Column1">
+                                                                <col class="TableStyle-FieldDesc-Column-Column2">
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyH-Column1-">Apply</td>
+                                                                        <td class="TableStyle-FieldDesc-BodyG-Column2-">copy the value of the resource property to the CMDB record’s field</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyH-Column1-">Discard </td>
+                                                                        <td class="TableStyle-FieldDesc-BodyG-Column2-">delete the discrepancy report item and not update the CMDB record’s field</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyB-Column1-">No Action </td>
+                                                                        <td class="TableStyle-FieldDesc-BodyA-Column2-">if no action is required</td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                            <li value="2">Select <img src="/storage/app/media/Help/images/apply%20changes%20button.png"> to apply the changes.</li>
+                                                        
+                                                    
+                                                

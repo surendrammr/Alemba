@@ -1,0 +1,225 @@
+[viewBag]
+title = "Dynamic Screens"
+url = "/help/topics/designer/dynamic-screens"
+layout = "help"
+is_hidden = 0
+navigation_hidden = 0
+==
+                                                    <h1>Dynamic Screens</h1>
+                                                    <p>Dynamic screens allow fields and sections of the screen that an analyst or user is completing to be made available depending on dynamically changing conditions.  You can configure rules that will make parts of the screen hidden, read-only or optional until certain conditions are met, at which point they become visible, optional or mandatory.</p>
+                                                    <p>This helps to keep the screen simple, and reflect the order in which you want things done, helping the analyst or user complete the task in hand quicker.</p>
+                                                    <p>You can apply these to most of the elements that make up a screen – fields (including HTML fields), headings, and entire tabs or sections. Buttons can even be hidden until required, according to your needs. Wherever the properties Hidden, Read Only or Required appear on a screen element, this new feature can be used.</p>
+                                                    <h2>Examples of Dynamic Screens in Action</h2>
+                                                    <p>Here are just some ways in which you can use dynamic screens. Click on the links to find out more about each scenario:</p>
+                                                    <ul>
+                                                        <li value="1">display a warning if a call is about to breach</li>
+                                                        <li value="2">hide non-essential fields when users are logging a Critical incident</li>
+                                                        <li value="3">only show implementation details on a Change after it is Authorized</li>
+                                                        <li value="4">hide unnecessary detail on a Service form until you need to add it to the catalog</li>
+                                                    </ul>
+                                                    <h3>Breach Scenario</h3>
+                                                    <p>
+                                                        <img src="/storage/app/media/Help/images/incident%20level2.png" class="screenshot">
+                                                    </p>
+                                                    <p>Once it reaches level 3, the screen changes to display a warning:</p>
+                                                    <p>
+                                                        <img src="/storage/app/media/Help/images/incident%20level3.jpg" class="screenshot">
+                                                    </p>
+                                                    <h3>Critical Situations</h3>
+                                                    <p>On the , the user is presented with a number of fields when logging an incident. <a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="../../resources/images/portal%20log%20normal%20incident.png"><img class="MCPopupThumbnail img imgthumbnail" data-mc-width="689" data-mc-height="834" src="/storage/app/media/Help/images/portal%20log%20normal%20incident_thumb_0_48.png" tabindex=""></a> </p>
+                                                    <p> </p>
+                                                    <p>You can use dynamic screens to configure the incident logging window on the portal so that the user only has to complete the essential details, if it is a critical issue. <a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="../../resources/images/portal%20log%20critical%20incident.png"><img class="MCPopupThumbnail img imgthumbnail" data-mc-width="453" data-mc-height="744" src="/storage/app/media/Help/images/portal%20log%20critical%20incident_thumb_0_48.png" tabindex=""></a></p>
+                                                    <p>Here is how to create the rule in <span class="GeneralVariablesDesignerName">ASM Designer</span>:</p>
+                                                    <table style="margin-left: 0;margin-right: auto;mc-table-style: url('../../resources/tablestyles/rep hdr row.css');" class="TableStyle-Table_with_Repeating_Header_Row TableStyle-Rep_Hdr_Row" cellspacing="0">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column1">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column2">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column1">
+                                                        <thead>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Head-Header1">
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column1-Header1">Rule</th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column2-Header1">Apply to Hidden property of … field</th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadD-Column1-Header1">… on Screen</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>SLA Alert Level &lt;&gt; Level 3</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>new HTML Editor type field with warning</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>Call Details</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyB-Column1-Body1">
+                                                                    <p>Call Priority = Critical</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyB-Column2-Body1">
+                                                                    <p>all fields down to Description</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyA-Column1-Body1">
+                                                                    <p>Call Submission</p>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <h3>
+<a name="Logging"></a>Logging a Change</h3>
+                                                    <p>Within a Change, you can configure the implementation details to be hidden until the request is authorized. <a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="../../resources/images/change%20screen%20unspecified.png"><img class="MCPopupThumbnail img imgthumbnail" data-mc-width="604" data-mc-height="280" src="/storage/app/media/Help/images/change%20screen%20unspecified_thumb_0_48.png" tabindex=""></a> <a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="../../resources/images/change%20screen%20authorized.png"><img class="MCPopupThumbnail img imgthumbnail" data-mc-width="601" data-mc-height="277" src="/storage/app/media/Help/images/change%20screen%20authorized_thumb_0_48.png" tabindex=""></a></p>
+                                                    <p>Here is how to create the rule in <span class="GeneralVariablesDesignerName">ASM Designer</span>:</p>
+                                                    <table style="margin-left: 0;margin-right: auto;mc-table-style: url('../../resources/tablestyles/rep hdr row.css');" class="TableStyle-Table_with_Repeating_Header_Row TableStyle-Rep_Hdr_Row" cellspacing="0">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column1">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column2">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column1">
+                                                        <thead>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Head-Header1">
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column1-Header1">Rule</th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column2-Header1">Apply to Hidden property of … field</th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadD-Column1-Header1">… on Screen</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyB-Column1-Body1">
+                                                                    <p>Completion Status = Unspecified</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyB-Column2-Body1">
+                                                                    <p>Implementation Details (collapsible section)</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyA-Column1-Body1">
+                                                                    <p>Request</p>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <h3>Entering Catalog Information</h3>
+                                                    <p>On the Service Details screen, you can hide detailed catalog information until the analyst needs to complete it. <a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="../../resources/images/service%20details%20unspecified.png"><img class="MCPopupThumbnail img imgthumbnail" data-mc-width="612" data-mc-height="390" src="/storage/app/media/Help/images/service%20details%20unspecified_thumb_0_48.png" tabindex=""></a> </p>
+                                                    <p>Here is how to set up the examples mentioned above.</p>
+                                                    <table style="margin-left: 0;margin-right: auto;mc-table-style: url('../../resources/tablestyles/rep hdr row.css');" class="TableStyle-Table_with_Repeating_Header_Row TableStyle-Rep_Hdr_Row" cellspacing="0">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column1">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column2">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column1">
+                                                        <thead>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Head-Header1">
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column1-Header1">Rule</th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column2-Header1">Apply to Hidden property of … field</th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadD-Column1-Header1">… on Screen</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyB-Column1-Body1">
+                                                                    <p>Service Portfolio Status = Unspecified</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyB-Column2-Body1">
+                                                                    <p>Catalog Information (collapsible section)</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyA-Column1-Body1">
+                                                                    <p>Service</p>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <h2 class="newpage" data-mc-conditions="Default.Pink">Priority Override</h2>
+                                                    <p data-mc-conditions="Default.Pink">It is common to not only want to audit changes to call Priority, but also to restrict who can change it in the first place. Dynamic fields can be used to control this, as described below. (This assumes that the Priority Matrix is in use, but can be adapted if it is not.)</p>
+                                                    <ul data-mc-conditions="Default.Pink">
+                                                        <li value="1">Make Impact and Urgency (which drive Priority) available when logging calls, but only available when updating calls if an analyst checks Override Priority</li>
+                                                        <li value="2">Make Override Reason visible and mandatory if Override Priority is checked</li>
+                                                    </ul>
+                                                    <p data-mc-conditions="Default.Pink">To implement this, two rules are needed:</p>
+                                                    <table style="width: 100%;margin-left: 0;margin-right: auto;mc-table-style: url('../../resources/tablestyles/fielddesc.css');" class="TableStyle-FieldDesc" cellspacing="0" data-mc-conditions="Default.Pink">
+                                                        <col style="width: 285px;" class="TableStyle-FieldDesc-Column-Column1">
+                                                        <col class="TableStyle-FieldDesc-Column-Column2">
+                                                        <tbody>
+                                                            <tr>
+                                                                <td class="TableStyle-FieldDesc-BodyH-Column1-">
+                                                                    <ul>
+                                                                        <li value="1">New Call	</li>
+                                                                    </ul>
+                                                                </td>
+                                                                <td class="TableStyle-FieldDesc-BodyG-Column2-">{:Open} = “New Call”</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="TableStyle-FieldDesc-BodyB-Column1-">
+                                                                    <ul>
+                                                                        <li value="1">Not New and Not Overridden</li>
+                                                                    </ul>
+                                                                </td>
+                                                                <td class="TableStyle-FieldDesc-BodyA-Column2-">	{:Open} &lt;&gt; “New Call” AND {:Override Priority} = “False”</td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <p data-mc-conditions="Default.Pink">Apply the rules as follows:</p>
+                                                    <ul data-mc-conditions="Default.Pink">
+                                                        <li value="1">Set Read Only on Impact and Urgency to <b>Not New and Not Overridden</b>
+</li>
+                                                        <li value="2">Set Read Only on Override Priority to <b>New Call</b>
+</li>
+                                                        <li value="3">Set Hidden on Override Reason to <b>Not New and Not Overriddenden</b>
+</li>
+                                                    </ul>
+                                                    <p data-mc-conditions="Default.Pink">Additionally:</p>
+                                                    <ul data-mc-conditions="Default.Pink">
+                                                        <li value="1">Set Required on Override Reason to <b>Always</b>
+</li>
+                                                        <li value="2">Set Access on Override Priority to <b>Read Only</b> for the Security Profiles who should not be able to change Priority</li>
+                                                    </ul>
+                                                    <h2 data-mc-conditions="Default.Pink">Simpler Screens</h2>
+                                                    <p data-mc-conditions="Default.Pink">You can simplify the layout of screens by making fields hidden until activated by a checkbox. A simple example is to hide the <b>Caused by RFC number</b> (and any associated fields from the Change) on an Incident, unless the <b>Caused by RFC</b> checkbox is selected. This is achieved by applying a rule to the <b>Hidden</b> property on the dependent fields, which is applied if '{: Caused by RF} = "False" '.</p>
+                                                    <p data-mc-conditions="Default.Pink">You can ensure that change approval is received for knowledge changes and thatreviews are performed, by using two checkboxes - <b>Change Approved</b> and <b>QA Complete</b>. The setting of these is audited, and they become visible and mandatory when moving the article status from <b>Draft</b> or <b>Review Required</b> to . This is enabled using the following four rules:</p>
+                                                    <ol data-mc-conditions="Default.Pink">
+                                                        <li value="1">
+<b>Draft</b> - {:Entry Status} = "Draft"</li>
+                                                        <li value="2">
+<b>Not Draft</b> - {:Entry Status} &lt;&gt; "Draft"</li>
+                                                        <li value="3">
+<b>Not Published</b> - {:Entry Status} = "Draft" OR {:Entry Status} = "Review Pending"</li>
+                                                        <li value="4">
+<b>Published</b> - {:Entry Status} = "Published Internally" OR {:Entry Status} = "Published to Portal"</li>
+                                                    </ol>
+                                                    <p data-mc-conditions="Default.Pink">The settings on these fields are as follows:</p>
+                                                    <table style="border-left-style: none;border-left-width: 2px;border-left-color: #0096dc;border-right-style: none;border-right-width: 2px;border-right-color: #0096dc;border-top-style: none;border-top-width: 2px;border-top-color: #0096dc;border-bottom-style: none;border-bottom-width: 2px;border-bottom-color: #0096dc;margin-left: 0;margin-right: auto;width: 100%;" data-mc-conditions="Default.Pink">
+                                                        <col>
+                                                        <col>
+                                                        <col>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td>
+                                                                    <p><b> Change Approved</b>
+                                                                    </p>
+                                                                </td>
+                                                                <td>
+<b>Hidden</b> if <b>Draft</b>
+</td>
+                                                                <td>
+<b>Required</b> if <b>Not Draft</b>
+</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <p><b> QA Complete</b>
+                                                                    </p>
+                                                                </td>
+                                                                <td>
+<b>Hidden</b> if <b>Not Published</b>
+</td>
+                                                                <td>
+<b>Required</b> if <b>Published</b>
+</td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <p class="note" data-mc-conditions="Default.Pink">The same technique can be used to audit the confirmation of other actions, such as notifying Service Stakeholders that a knowledge entry related to a Service has been published.</p>
+                                                    <h2>Setting up Dynamic Screens</h2>
+                                                    <p>Dynamic screens are easy to set up.</p>
+                                                    <ol>
+                                                        <li value="1">
+<a href="%7B%7B%20'help-configuring-fields#Creating'%7CstaticPage%20%7D%7D#Creating">Define the rule</a> in <span class="GeneralVariablesDesignerName">ASM Designer</span>.</li>
+                                                        <li value="2">
+<a href="%7B%7B%20'help-configuring-fields#Setting'%7CstaticPage%20%7D%7D#Setting">Apply it</a> to as many fields as you want. </li>
+                                                    </ol>
+                                                    <p class="note">If you define the rule on a parent screen, it will be available to all its child screens, should you wish to use it.</p>
+                                                

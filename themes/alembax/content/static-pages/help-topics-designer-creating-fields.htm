@@ -1,0 +1,181 @@
+[viewBag]
+title = "Creating a Custom Field"
+url = "/help/topics/designer/creating-fields"
+layout = "help"
+is_hidden = 0
+navigation_hidden = 0
+==
+                                                    <h1>
+<a name="top"></a><a name="Creating"></a>Creating a Custom Field</h1>
+                                                    <p>If the field you require does not exist in <span class="GeneralVariablesCoreName">ASM Core</span>, you can create and add your own.  Custom fields can also be used in reporting, setting up rules for Conditional Branching tasks, and can to search for items in <span class="GeneralVariablesCoreName">ASM Core</span>. </p>
+                                                    <h2 class="Prerequisite">Before you start</h2>
+                                                    <p class="prereqtext1">You must have <b>Designer</b>  selected in your <a href="%7B%7B%20'help-admin-security-roles-general-access-security-role---admin-tab#General'%7CstaticPage%20%7D%7D#General">General Access security role</a> before you can use this option.</p>
+                                                    <p class="prereqtextlast">To maintain an audit trail of changes made to screens, forms and message templates, Designer must be selected in the <a href="../admin%20system/auditing.htm">Auditing</a> window.</p>
+                                                    <ol>
+                                                        <li value="1">
+                                                            <div class="MCDropDown MCDropDown_Closed dropDown">
+<span class="MCDropDownHead dropDownHead"><a href="#" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCHotSpotImage" aria-expanded="false"><img class="MCDropDown_Image_Icon" src="/storage/app/media/Help/images/transparent.gif" height="11" width="16" alt="Closed" data-mc-alt2="Open">Display the <span class="GeneralVariablesDesignerName">ASM Designer</span> window if it is not already visible on screen.</a></span>
+                                                                <div class="MCDropDownBody dropDownBody">
+                                                                    <p>Select <a href="../general%20topics/asmcorewindow.htm"><span style="font-size: 24pt;">≡</span></a> &gt; <b>Admin</b> &gt;  <b>Designer</b>. </p>
+            This window consists of three tabs that display different views:<table class="TableStyle-FieldDesc_no_indent" style="mc-table-style: url('../../resources/tablestyles/fielddesc no indent.css');" cellspacing="0">
+<col class="TableStyle-FieldDesc_no_indent-Column-Column1">
+<col class="TableStyle-FieldDesc_no_indent-Column-Column2">
+<tbody>
+<tr>
+<td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">Find a Screen</td>
+<td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">Can be used to search for and work with specific screens, forms or message templates, as well as create new in-house screens</td>
+</tr>
+<tr>
+<td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">View screens</td>
+<td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-"> Displays details of currently selected screens and is used to modify screens</td>
+</tr>
+<tr>
+<td class="TableStyle-FieldDesc_no_indent-BodyB-Column1-">Skins</td>
+<td class="TableStyle-FieldDesc_no_indent-BodyA-Column2-">Enables you to create and modify skins for your <span class="GeneralVariablesSelfServicePortalName">Self Service Portal</span>(s)</td>
+</tr>
+</tbody>
+</table>
+</div>
+                                                            </div>
+                                                        </li>
+                                                        <li value="2">
+                                                            <div class="MCDropDown MCDropDown_Closed dropDown">
+<span class="MCDropDownHead dropDownHead"><a href="#" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCHotSpotImage" aria-expanded="false"><img class="MCDropDown_Image_Icon" src="/storage/app/media/Help/images/transparent.gif" height="11" width="16" alt="Closed" data-mc-alt2="Open">Find the screen, if it is not already displayed.</a></span>
+                                                                <div class="MCDropDownBody dropDownBody">
+                                                                    <ol class="multilist">
+                                                                        <li value="1">Select the <b>Find a Screen</b> tab:</li>
+                                                                        <p>The left pane contains an alphabetical list of the main entity types in <span class="GeneralVariablesCoreName">ASM Core</span> (such as, Agreement, Bulletin, Call, etc) with which screens are associated.  </p>
+                                                                        <p>The main pane has a set of filters across the top of the window, beneath which there is a browse table containing details of the screens, templates and forms.</p>
+                                                                        <li value="2">Select the entity type (such as <b>Call</b>) from the left pane. The table displays the <i>configurable</i> screens, templates and forms associated with the selected entity, with the first one highlighted. Items you cannot create or configure are not included. The number of screens associated with the selected entity is displayed in the bottom right hand corner of the window.  <img src="/storage/app/media/Help/images/screen%20list%20in%20designer_151x94.png" style="width: 151;height: 94;">
+</li>
+                                                                        <li value="3">Filter and sort the screens if you wish: <b>To filter the number of entries displayed on the table</b>, use the fields at the top of the window:</li>
+                                                                        <table class="TableStyle-FieldDesc_no_indent" style="mc-table-style: url('../../resources/tablestyles/fielddesc no indent.css');margin-left: 0;margin-right: auto;" cellspacing="0">
+                                                                            <col class="TableStyle-FieldDesc_no_indent-Column-Column1">
+                                                                            <col class="TableStyle-FieldDesc_no_indent-Column-Column2">
+                                                                            <tbody>
+                                                                                <tr>
+                                                                                    <td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">Screen Name</td>
+                                                                                    <td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">Type a name and select <b>Find</b>.</td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">Screen Set</td>
+                                                                                    <td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">
+                                                                                        <p>A drop-down list of all screen sets. Each entity type has a standard screen set which has the same name as the entity. For example, the default screen set for calls is Call Screen Set.</p>
+                                                                                        <p class="note">Certain entity types, such as Organization, Person, Agreement and Location, only have default screen sets. Others, such as Call, Request, Task, CMDB item, Contract and Knowledge can have custom screen sets and these will appear on the list. Only one Details screen and one Submission screen can exist per screen set. You can have multiple message templates and service desk forms in the same screen set.</p>
+                                                                                    </td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td class="TableStyle-FieldDesc_no_indent-BodyB-Column1-">Screen Design</td>
+                                                                                    <td class="TableStyle-FieldDesc_no_indent-BodyA-Column2-">A drop-down list of available designs</td>
+                                                                                </tr>
+                                                                            </tbody>
+                                                                        </table>
+                                                                        <p><b>To sort the information</b>, click on the required column heading (such as Name). The entries are displayed in alphabetical order for that column.</p>
+                                                                        <li value="4">Select the screen, template or form you wish to work with, and select  <b>Open Screen</b> at the bottom of the window. To select multiple screens, select one and hold down the Shift or Ctrl key and select the rest.</li>
+                                                                        <li value="5">The window changes and if you look in the top left corner, you will see that the <b>View Screens</b> tab is now selected. </li>
+                                                                        <li value="6">
+                                                                            <p class="note">You can select the <b>Find a Screen</b> tab again if you wish to select a different screen.</p>
+                                                                        </li>
+                                                                    </ol> </div>
+                                                            </div>
+                                                        </li>
+                                                        <li value="3">In the left pane, select the <b>Add a Field</b> tab.</li>
+                                                        <li value="4">Select  <b>Create New</b> in the left pane beneath the browse table of field types. </li>
+                                                        <li value="5">The <b>Create a Text Field</b> window is displayed. Select the type of field you wish to create from the list in the left pane:</li>
+                                                        <table class="TableStyle-FieldDesc_no_indent" style="mc-table-style: url('../../resources/tablestyles/fielddesc no indent.css');" cellspacing="0">
+                                                            <col class="TableStyle-FieldDesc_no_indent-Column-Column1">
+                                                            <col class="TableStyle-FieldDesc_no_indent-Column-Column2">
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">Text Field</td>
+                                                                    <td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">Enables  input of a single line of text in the field. Text can include all alphanumeric and special characters.</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">Text Area</td>
+                                                                    <td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">Enables input of multiple lines of text. <p class="note">Text Area custom fields  cannot be used in rules for Conditional Branching tasks or in Rules Builder, and cannot be added as search criteria on Search windows.</p>
+</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">Numeric Field</td>
+                                                                    <td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">Enables input of numeric values – both integers and decimal fraction numbers.</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">Drop Down</td>
+                                                                    <td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">Drop-down list fields can be used to create a list of values from which one can be chosen.<p>Select the list of values for the drop-down. You can either use an existing list of values (such as the <a href="../admin%20ipk%20management/call%20priority.htm">Call Priority</a> list), or you can create your own.</p>
+<p>To use an existing list, select <b>Assign an existing list</b> and select a list, scrolling down if necessary. You can edit, copy or delete lists created in-house. (Standard lists can be edited in the relevant area of System Administration.) </p>
+<p class="note">To use vCloud CMDB item types, ensure that you select the (vCloud) CMDB Item Type. Selecting another CI type would not trigger the filtering mechanism that is possible with the (vCloud) CMDB type. </p>
+<p>To create a new list and define your own values, select <b>Create List</b> and <a href="#Specifyi">specify the list details</a>.</p>
+</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">Single Value QD</td>
+                                                                    <td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">Enables the search and selection of one value in this field. The entity type configured for the QD field determines the type of items returned in the search and available for selection for the screen or submission form. <p>At <b>QD Type</b>, select the entity type you want to use. If you select a sub entity type (such as User which is a type of Person), then the values which can be selected in the QD field are limited to the sub type (that is, only person records designated as Users can be selected in a User entity type QD).</p>
+<p class="note">You cannot create QD fields for calls, requests or tasks.</p>
+</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">Multiple Value QD</td>
+                                                                    <td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">Enables the search and selection of multiple values in this field. The entity type configured for the QD field determines the type of items returned in the search and available for selection for the screen or submission form.  Using a QD field on a submission form within vFire Self Service is similar to <a href="../general%20topics/using%20the%20search%20button.htm">using QD fields</a> within <span class="GeneralVariablesCoreName">ASM Core</span>.</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">List box</td>
+                                                                    <td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">List boxes can be used to create a list of values that are displayed on screen from which one can be chosen.<p>Select the list of values for the drop-down. You can either use an existing list of values (such as the <a href="../admin%20ipk%20management/call%20priority.htm">Call Priority</a> list), or you can create your own.</p>
+<p>To use an existing list, select <b>Assign an existing list</b> and select a list, scrolling down if necessary. You can edit, copy or delete lists created in-house. (Standard lists can be edited in the relevant area of System Administration.) </p>
+<p class="note">To use vCloud CMDB item types, ensure that you select the (vCloud) CMDB Item Type. Selecting another CI type would not trigger the filtering mechanism that is possible with the (vCloud) CMDB type. </p>
+<p>To create a new list and define your own values, select <b>Create List</b> and <a href="#Specifyi">specify the list details</a>.</p>
+</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">Multi-Select</td>
+                                                                    <td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">Like drop-downs, multi-select fields can be used to create a list of values. However, in this case one or more values can be selected from the list. <p>Select the list of values for the drop-down. You can either use an existing list of values (such as the <a href="../admin%20ipk%20management/call%20priority.htm">Call Priority</a> list), or you can create your own.</p>
+<p>To use an existing list, select <b>Assign an existing list</b> and select a list, scrolling down if necessary. You can edit, copy or delete lists created in-house. (Standard lists can be edited in the relevant area of System Administration.) </p>
+<p class="note">To use vCloud CMDB item types, ensure that you select the (vCloud) CMDB Item Type. Selecting another CI type would not trigger the filtering mechanism that is possible with the (vCloud) CMDB type. </p>
+<p>To create a new list and define your own values, select <b>Create List</b> and <a href="#Specifyi">specify the list details</a>.</p>
+</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">Checkbox</td>
+                                                                    <td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-"> Can be used to denote binary values. A checkbox can have only two states - it can either be selected or cleared.</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc_no_indent-BodyB-Column1-">Date</td>
+                                                                    <td class="TableStyle-FieldDesc_no_indent-BodyA-Column2-">Enables  input of a date in the field.</td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                        <li value="6">In the main part of the <b>Create a [field type]</b> window, complete the details:</li>
+                                                        <p>
+                                                            </p>
+<table class="TableStyle-FieldDesc_no_indent" style="mc-table-style: url('../../resources/tablestyles/fielddesc no indent.css');" cellspacing="0">
+                                                                <col class="TableStyle-FieldDesc_no_indent-Column-Column1">
+                                                                <col class="TableStyle-FieldDesc_no_indent-Column-Column2">
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">Display Name</td>
+                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-"> This name will appear on screens. You can change the Display Name for the field later if you wish. </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyB-Column1-">Database Name</td>
+                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyA-Column2-">This is automatically completed using the <b>Display Name</b>. All alphabetical letters are converted to uppercase and spaces are converted to underscores to satisfy the naming convention requirement for fields in the database. The Database Name is the name by which the field will be referenced in database tables. This never changes, even if you change the Display Name later.</td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        
+                                                        <li value="7">Select <b>Create</b>. The new field is added to the existing lists, in alphabetical order, and you will also see it in the list of fields in the left pane of the main window. The <b>Create a [entity type]</b> window stays open allowing you to create more fields.  </li>
+                                                        <li value="8">Repeat for all the fields you wish to create, and then select <b>Close</b>. </li>
+                                                    </ol>
+                                                    <h1>
+<a name="Specifyi"></a>Specifying the <b>List Details</b>
+</h1>
+                                                    <p>
+                                                        </p>
+<p>The <b>List Details</b> window which appears when you are creating a field enables you to define a list of values for a Drop Down or List Box field. </p>
+                                                    
+                                                    <ol style="list-style-type: decimal;margin-left: 36pt;" start="1">
+                                                        <li value="1">In the <b>List Name</b> field, specify a name for the list.</li>
+                                                        <li value="2">Select <b>Add</b> to insert a new row in the browse table, and type the name of the value. </li>
+                                                        <li value="3">Repeat until you have defined all the values for the list.</li>
+                                                        <li value="4">To remove a value, select it and then <b>Remove</b>. To change the order in which a value appears in the list, select it and then <b>Move Up</b> or <b>Move Down</b>.</li>
+                                                        <li value="5">Select <b>OK</b> to save the list and return to the <b>Create a Field</b> window with your new list pre-selected.</li>
+                                                    </ol>
+                                                

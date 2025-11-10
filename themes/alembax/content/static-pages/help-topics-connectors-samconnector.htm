@@ -1,0 +1,1457 @@
+[viewBag]
+title = "Service Assurance Manager Connector"
+url = "/help/topics/connectors/samconnector"
+layout = "help"
+is_hidden = 0
+navigation_hidden = 0
+==
+                                                    <h1>
+<a name="top"></a>Service Assurance Manager Connector</h1>
+                                                    <p>The  Service Assurance Manager Connector is implemented to link <span class="GeneralVariablesCoreName">ASM Core</span> and EMC Smarts Service Assurance Manager (SAM). This section of the documentation describes the details of the third-party application, that is, EMC Smarts SAM including: </p>
+                                                    <ul class="ul_11">
+                                                        <li class="li_2" value="1">The name of the .NET assembly file </li>
+                                                        <li class="li_2" value="2">Connection methodology </li>
+                                                        <li class="li_2" value="3">The resource and link types that can be discovered on the third-party application </li>
+                                                        <li class="li_3" value="4">The attributes of each resource and link type that can be imported into the <span class="GeneralVariablesCoreName">ASM Core</span> CMDB </li>
+                                                        <li class="li_4" value="5">The requirements involved in the handling of Event Management between <span class="GeneralVariablesCoreName">ASM Core</span> and EMC Smarts SAM </li>
+                                                    </ul>
+                                                    <p class="note">For compatibility and version support details, refer to the <a href="connector%20matrix.htm" class="MCXref xref">ASM Connector Matrix</a>.</p>
+                                                    <p class="note">You should familiarize yourself with the information in <a href="connector%20installation%20guide.htm" class="MCXref xref">Installing Connectors</a> before installing any connectors, and read the <a href="../integration/integrate.htm" class="MCXref xref">Integration</a> topics for more information on how to configure them.</p>
+                                                    <h2>Use Case Scenario </h2>
+                                                    <table class="TableStyle-scenario_table" style="mc-table-style: url('../../resources/tablestyles/scenario table.css');margin-left: 0;margin-right: auto;" cellspacing="0">
+                                                        <col class="TableStyle-scenario_table-Column-Column1">
+                                                        <col class="TableStyle-scenario_table-Column-Column2">
+                                                        <tr class="TableStyle-scenario_table-Body-Body1">
+                                                            <td class="TableStyle-scenario_table-BodyE-Column1-Body1">
+                                                                <p class="Strong">Purpose</p>
+                                                            </td>
+                                                            <td class="TableStyle-scenario_table-BodyD-Column2-Body1">
+                                                                <p>An organization uses Service Assurance Manager (SAM) to discover resources in its organization’s networks and monitor its day-to-day operation. SAM automatically correlates topology and event data from multiple-managed domains to diagnose root cause problems and the impact that those problems have on business-critical processes and services. SAM enables the operations personnel to effectively prioritize their time and resources to maintain and sustain the business-critical processes and services. </p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="TableStyle-scenario_table-Body-Body1">
+                                                            <td class="TableStyle-scenario_table-BodyE-Column1-Body1">
+                                                                <p class="Strong">Role</p>
+                                                            </td>
+                                                            <td class="TableStyle-scenario_table-BodyD-Column2-Body1">
+                                                                <p>The roles of the  SAM Connector are: </p>
+                                                                <ul>
+                                                                    <li class="li_3" value="1">To expose the resources and links that allows for population and consistency checks of the CMDB. </li>
+                                                                    <li class="li_3" value="2">To allow for communications between <span class="GeneralVariablesCoreName">ASM Core</span> and SAM in relation to the events created in SAM. </li>
+                                                                </ul>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                    <h2>Connector Description </h2>
+                                                    <p>The table below provides a description of the  SAM Connector. </p>
+                                                    <table class="TableStyle-Rep_Hdr_Row" style="mc-table-style: url('../../resources/tablestyles/rep hdr row.css');" cellspacing="0">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column1">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column2">
+                                                        <thead>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Head-Header1">
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column1-Header1">
+                                                                    <p class="Strong">Information fields </p>
+                                                                </th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadD-Column2-Header1">Name</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Connector </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p>EMC Smarts SAM &lt;-&gt; <span class="GeneralVariablesCoreName">ASM Core</span> </p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Third-party application </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p>EMC SAM </p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Assembly </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p>Infra.Connector.Ionix.SAM.dll </p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Connector class (Source class) </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p>IonixSAMConnector </p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Configuration file </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p>Infra.Connector.Ionix.SAM.icnf </p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyB-Column1-Body1">
+                                                                    <p>Connection methodology </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyA-Column2-Body1">
+                                                                    <p>API </p>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <p class="warning_1">Java needs to be installed on the <span class="GeneralVariablesCoreName">ASM Core</span> server for the SAM connector to operate properly. The minimum version of Java required for this integration is Java 8, 64-bit.  </p>
+                                                    <h2 class="Heading2">Connection Parameters </h2>
+                                                    <p>The table below provides a description of the connection parameters. </p>
+                                                    <table class="TableStyle-Rep_Hdr_Row" style="margin-left: 0;margin-right: auto;mc-table-style: url('../../resources/tablestyles/rep hdr row.css');" cellspacing="0">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column1">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column2">
+                                                        <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                            <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1" style="font-weight: bold;">
+                                                                <p class="Strong">Parameters </p>
+                                                            </td>
+                                                            <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1" style="font-weight: bold;">
+                                                                <p class="Strong">Description </p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                            <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                <p>Broker IP address </p>
+                                                            </td>
+                                                            <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                <p>IP address of broker. Format: &lt;IPADDRESS&gt;:&lt;PORT&gt; for example, 192.168.0.133:426 </p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr style="height: 15pt;" class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                            <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                <p>Login ID </p>
+                                                            </td>
+                                                            <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                <p>EMC SAM login ID </p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr style="height: 15pt;" class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                            <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                <p>Password </p>
+                                                            </td>
+                                                            <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                <p>EMC SAM password </p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr style="height: 15pt;" class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                            <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                <p>SAM Domain </p>
+                                                            </td>
+                                                            <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                <p>EMC SAM domain (default: “INCHARGE-SA”) </p>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                    <h2 class="Heading2">User Diagnostics </h2>
+                                                    <p>The connector has the facility to trace information. The data can be obtained through Polling tracing or Application tracing. </p>
+                                                    <h1 class="Heading1">
+<a name="Installi"></a>Installing the SAM Connector</h1>
+                                                    <p>This section describes how to install the  SAM Connector. Installation of this connector is different from the other connectors provided for <span class="GeneralVariablesProductName">ASM</span>. The installation instructions given here are only relevant to this connector.</p>
+                                                    <p class="prereq">Before you begin using the  SAM Connector, ensure that the server has the Windows x64 version of Java Runtime Environment (JRE) installed. This is required to use the connector. You can download JRE from the Java website (Windows x64 version): <a href="http://www.oracle.com/technetwork/java/javase/downloads/" style="font-weight: bold;">http://www.oracle.com/technetwork/java/javase/downloads/</a></p>
+                                                    <ol start="1" class="multilist">
+                                                        <li value="1">Create folder C:\<b><span class="GeneralVariablesProductName">ASM</span>SAM</b> on the<span class="GeneralVariablesProductName">ASM</span> web server. </li>
+                                                        <li class="li_3" value="2">Copy the file <b>Infra.Connector.Ionix.SAM.DomainManager.jar</b> from the <span class="GeneralVariablesProductName">ASM</span> application root folder to the newly created C:\<span class="GeneralVariablesProductName">ASM</span>SAM folder.  </li>
+                                                        <li class="li_3" value="3">
+                                                            <p>Copy all files from the SAM server '<b>&lt;Ionix SAM installation directory&gt;\CONSOLE\Smarts\classes</b>' folder to the C:\<span class="GeneralVariablesProductName">ASM</span>SAM folder on the <span class="GeneralVariablesProductName">ASM</span> server </p>
+                                                        </li>
+                                                        <li value="4">Create or update the CLASSPATH environment variable in the system so that the connector knows where to find the Java libraries by completing the following steps.</li>
+                                                        <li value="5"> Go to <b>Control Panel</b> and double-click <b>System</b>. This displays the system properties of the current system.</li>
+                                                        <li value="6">In the <b>System Properties</b> dialog box, click the <b>Advanced</b> tab and click <b>Environment Variables</b>. <a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="../../resources/images/connector%20sam%20sys%20properties.jpg"><img class="MCPopupThumbnail img imgthumbnail" data-mc-width="420" data-mc-height="487" src="/storage/app/media/Help/images/connector%20sam%20sys%20properties_thumb_0_48.jpg" tabindex=""></a><br><br>
+</li>
+                                                        <li value="7">Find the CLASSPATH environmental variable and click <b>Edit</b>. If there is no CLASSPATH variable, create one by clicking <b>New</b> located in the System variables section. <a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="../../resources/images/connector%20sam%20env%20variables.jpg"><img class="MCPopupThumbnail img imgthumbnail" data-mc-width="384" data-mc-height="430" src="/storage/app/media/Help/images/connector%20sam%20env%20variables_thumb_0_48.jpg" tabindex=""></a>
+</li>
+                                                        <li value="8">Ensure that the <b>Variable name</b> field is CLASSPATH. <a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="../../resources/images/connector%20sam%20ed%20sys%20variable.jpg"><img class="MCPopupThumbnail img imgthumbnail" data-mc-width="348" data-mc-height="148" src="/storage/app/media/Help/images/connector%20sam%20ed%20sys%20variable_thumb_0_48.jpg" tabindex=""></a>
+</li>
+                                                        <li value="9">Click <b>Edit</b>. In the <b>Edit System Variable</b> dialog box, add the following values to the CLASSPATH variable in the <b>Variable Value</b> field:<br>C:\<span class="GeneralVariablesProductName">ASM</span>SAM\Infra.Connector.Ionix.SAM.DomainManager.jar;<br>C:\<span class="GeneralVariablesProductName">ASM</span>SAM\adm.jar;<br>C:\<span class="GeneralVariablesProductName">ASM</span>SAM\certj.jar;<br>C:\<span class="GeneralVariablesProductName">ASM</span>SAM\clsapi.jar;<br>C:\<span class="GeneralVariablesProductName">ASM</span>SAM\cmp_core.jar;<br>C:\<span class="GeneralVariablesProductName">ASM</span>SAM\cryptojce.jar;<br>C:\<span class="GeneralVariablesProductName">ASM</span>SAM\cryptojcommon.jar;<br>C:\<span class="GeneralVariablesProductName">ASM</span>SAM\i18napi.jar;<br>C:\<span class="GeneralVariablesProductName">ASM</span>SAM\icu4j-3_8_1.jar;<br>C:\<span class="GeneralVariablesProductName">ASM</span>SAM\icu4j-charsets-3_8_1.jar;<br>C:\<span class="GeneralVariablesProductName">ASM</span>SAM\iv2query.jar;<br>C:\<span class="GeneralVariablesProductName">ASM</span>SAM\java_probe.jar;<br>C:\<span class="GeneralVariablesProductName">ASM</span>SAM\java_probe_sample.jar;<br>C:\<span class="GeneralVariablesProductName">ASM</span>SAM\jcmFIPS.jar;<br>C:\<span class="GeneralVariablesProductName">ASM</span>SAM\jcommon-0.7.0.jar;<br>C:\<span class="GeneralVariablesProductName">ASM</span>SAM\jfreechart-0.9.3.jar;<br>C:\vFireSAM\jgl3.1.0.jar;<br>C:\vFireSAM\jvmif.jar;<br>C:\vFireSAM\log4j-1.2.13.jar;<br>C:\vFireSAM\logger-0.0.1.jar;<br>C:\vFireSAM\masterpiece.jar;<br>C:\vFireSAM\masterpiece_l10n.jar;<br>C:\vFireSAM\monitoring_action.jar;<br>C:\vFireSAM\monitoring_action_sample-javadoc.jar;<br>C:\vFireSAM\monitoring_action_sample.jar;<br>C:\vFireSAM\net.jar;<br>C:\vFireSAM\platform.jar;<br>C:\vFireSAM\servlet.jar;<br>C:\vFireSAM\skclient.jar;<br>C:\vFireSAM\sm_dxa.jar;<br>C:\vFireSAM\sm_icf_tm_base.jar;<br>C:\vFireSAM\sm_repos.jar;<br>C:\vFireSAM\sm_system.jar;<br>C:\vFireSAM\sslj.jar;<br>C:\vFireSAM\suite.jar;<br>C:\vFireSAM\tsgdtj50.jar;<br>C:\vFireSAM\tsgetj50.jar;<br>C:\vFireSAM\tsglt50.jar;<br>C:\vFireSAM\tsgltc50.jar;<br>C:\vFireSAM\tsgmtj50.jar;<br>C:\vFireSAM\platform-javadoc.jar;</li>
+                                                        <li value="10">You can append values to an environmental variable by separating each value with a semicolon.</li>
+                                                        <li value="11">Click <b>OK</b> to apply the changes to the system.</li>
+                                                        <li value="12">Next, you need to register the  SAM Connector in the database: <ul start="1">
+<li class="li_3" value="1">Open the <span class="GeneralVariablesProductName">ASM</span> Server Console and right-click on the system in which the connector is installed.</li>
+<li class="li_3" value="2">Select <b>Database Tasks &gt; Run Custom SQL Script</b> in the menu that appears. A standard <b>Windows Open</b> dialog box appears.</li>
+<li class="li_3" value="3">In the <b>Windows Open</b> dialog box, navigate to and select the <b>Infra.Connector.Ionix.SAM.Install.scp</b> file which is in the <span class="GeneralVariablesProductName">ASM</span> System's <b>Config</b>folder.</li>
+<li class="li_3" value="4">Click <b>Open</b>.</li>
+<li class="li_3" value="5">Click <b>No</b> when prompted if there are other scripts to run.</li>
+</ul>
+</li>
+                                                        <li value="13">Close the <span class="GeneralVariablesProductName">ASM</span> Server Console.</li>
+                                                        <li value="14"> Perform a Microsoft Internet Information Services (IIS) reset by typing <code>iisreset</code> in the <b>Run</b> command prompt.</li>
+                                                        <li value="15">Restart the <span class="GeneralVariablesProductName">ASM</span> Connector service.</li>
+                                                        <li value="16">
+                                                            <p class="note">In some cases it may be required to restart the <span class="GeneralVariablesCoreName">ASM Core</span> server to pick up the new CLASSPATH</p>
+                                                        </li>
+                                                    </ol>
+                                                    <p>This completes the installation of the  SAM Connector and makes it ready for use within the <span class="GeneralVariablesProductName">ASM</span> application. </p>
+                                                    <h2>Firewall Settings </h2>
+                                                    <p>In certain cases, it is possible that a firewall is present between SAM and the <span class="GeneralVariablesSystemName">ASM System</span>. In such cases, the firewall needs to be set up so that it allows bi-directional TCP transactions between the system on one side, and the SAM broker and the SAM domain that is decided to be connected to, on the other side. Practically, the firewall needs to allow transactions that use the IP addresses and port details of any of the three entities. </p>
+                                                    <h1>Federated CMDB Population </h1>
+                                                    <p>This section explains how <span class="GeneralVariablesProductName">ASM</span> handles resource and link types and their properties in order to populate and manage the CMDB.</p>
+                                                    <p>The structure of the Federated CMDB in <span class="GeneralVariablesCoreName">ASM Core</span> has been specially modified to provide a more dynamic approach to the connector usage. With this CMDB configuration, resources and links are presented according to the user’s specific configuration and not according to the configuration file alone. </p>
+                                                    <h2>Functionalities based on Improved Federated CMDB Structure </h2>
+                                                    <p>The  SAM Connector proposes a dynamic method that allows for exposure and import of resources discovered and managed by SAM. This method provides the user with the capability of importing every resource present in SAM, and not only the ones that are described in the connector configuration file. </p>
+                                                    <p>The default option for the connector is to expose resources only from INCHARGE-SA domain. However, the connector has been so built that pulling data from any sub domains does not represent an important development effort. </p>
+                                                    <h2>Resource and Link Types Exposed by Connector</h2>
+                                                    <p>The dynamic model means that every resource type handled by SAM is also handled by the connector. </p>
+                                                    <p>
+                                                        <img src="/storage/app/media/Help/images/connector%20integration%20resources.png" alt="" title="" class="screenshot">
+                                                    </p>
+                                                    <p>Following the same concept, all the attributes handled by EMC SAM for any resource type would be available when setting up field mappings. </p>
+                                                    <h1>Link Types </h1>
+                                                    <p>A link is defined for the connector by three factors - its name, the higher resource and the lower resource. The higher and lower resources are the types of resources (or resource types) that are located at the ends of the link. </p>
+                                                    <p>For Resource types, the list of Link types displayed by the connector is dynamically generated. This means that all the relationships available in SAM are listed in this control. <img src="/storage/app/media/Help/images/connector%20integration%20links.png" class="screenshot"></p>
+                                                    <p class="p_22">The <span class="GeneralVariablesCoreName">ASM Core</span> Integration Platform allows the configuration of attributes for any links exposed by the connector. The parameters that can be modified are: </p>
+                                                    <ul>
+                                                        <li value="1">Impact Overridden </li>
+                                                        <li value="2">Impacts Lower </li>
+                                                        <li value="3">Impacts Upper </li>
+                                                        <li value="4">Link Status Ref </li>
+                                                        <li value="5">Link Type </li>
+                                                    </ul>
+                                                    <h1>Event Management </h1>
+                                                    <p>This section provides an overview of the Event Management functionality. </p>
+                                                    <h2>Functionality overview </h2>
+                                                    <p>The purposes of this functionality are: </p>
+                                                    <ul>
+                                                        <li value="1">To automatically transpose notifications generated by SAM into <span class="GeneralVariablesCoreName">ASM Core</span> calls or requests </li>
+                                                        <li value="2">To maintain the consistency of the information held in the notification and in the item created in <span class="GeneralVariablesCoreName">ASM Core</span> </li>
+                                                    </ul>
+                                                    <h2>Event Management Operation </h2>
+                                                    <p>The running of this functionality relies on the monitoring of the SAM notification queue by the  SAM Connector in order to detect any new notifications. When this happens, the Integration Platform compares the attributes of the new notification against some user-defined criteria. if the criteria are met, it proceeds with the creation of a call or problem or a request depending on the user settings. </p>
+                                                    <p>From a practical point of view, SAM notification attributes can be mapped to <span class="GeneralVariablesCoreName">ASM Core</span> fields. This mapping is used when creating a new call or request. Upon creation, the <span class="GeneralVariablesCoreName">ASM Core</span> call or request ID is sent back to SAM and the appropriate notification record is updated to reflect the ID of the item that has been created in <span class="GeneralVariablesCoreName">ASM Core</span>. </p>
+                                                    <p>As the notification goes through updates, the connector ensures that these modifications are properly transmitted to the related <span class="GeneralVariablesCoreName">ASM Core</span> item. The current behavior of <span class="GeneralVariablesCoreName">ASM Core</span>, upon receipt of such updates and notifications, depends on the Event Mapping settings in the system. </p>
+                                                    <p>Eventually, actions on the network will be taken and the SAM notification will be marked as <span class="span_2">Inactive</span> or will disappear from its queue. This fact will also be transmitted to the relevant <span class="GeneralVariablesCoreName">ASM Core</span> item and the final result (<span class="span_2">Call Updated, Call Closed</span> and so on) will again depend on the Event Mapping settings. </p>
+                                                    <h2>Specific Use Cases </h2>
+                                                    <p>The following use cases describe the scenario where an organization sets up integration between <span class="GeneralVariablesCoreName">ASM Core</span> and SAM: </p>
+                                                    <p>Role Service Manager is responsible for Service Desk and Change operations and SAM is responsible for issuing alerts and root cause analysis. </p>
+                                                    <p>The table below describes some specific use case scenarios on SAM and <span class="GeneralVariablesCoreName">ASM Core</span> integration. </p>
+                                                    <table class="TableStyle-Rep_Hdr_Row" style="mc-table-style: url('../../resources/tablestyles/rep hdr row.css');margin-left: 0;margin-right: auto;" cellspacing="0">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column1">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column2">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column1">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column2">
+                                                        <thead>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Head-Header1">
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column1-Header1">
+                                                                    <p>Use case number </p>
+                                                                </th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column2-Header1">
+                                                                    <p>Use case scenario </p>
+                                                                </th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column1-Header1">
+                                                                    <p>Action </p>
+                                                                </th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadD-Column2-Header1">Event Management transaction</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>1 </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>SAM sends an alert to <span class="GeneralVariablesCoreName">ASM Core</span>. </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p><span class="GeneralVariablesCoreName">ASM Core</span> logs a call with this information and automatically forwards the call to the Incident Management group. The analyst takes over the call and clicks the Acknowledge Event button. </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p><span class="GeneralVariablesCoreName">ASM Core</span> sends an Acknowledgement transaction to SAM. </p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>2 </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>SAM sends a root cause alert to <span class="GeneralVariablesCoreName">ASM Core</span>. This root cause possesses a certainty of 60%. </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p><span class="GeneralVariablesCoreName">ASM Core</span> logs a call in response to this alert. The network engineer fixes the issue and clears the alert in SAM. </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p>SAM issues a Resolve transaction to <span class="GeneralVariablesCoreName">ASM Core</span>. <span class="GeneralVariablesCoreName">ASM Core</span> closes the logged call. </p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyB-Column1-Body1">
+                                                                    <p>3 </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyB-Column2-Body1">
+                                                                    <p>SAM sends a root cause alert to <span class="GeneralVariablesCoreName">ASM Core</span>, indicating that the root cause is the email server with 60% certainty. Two minutes later, SAM logs a new alert for the same issue, saying that the root cause is actually a switch with 90% certainty. </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyB-Column1-Body1">
+                                                                    <p><span class="GeneralVariablesCoreName">ASM Core</span> logs a call in response to the first alert. </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyA-Column2-Body1">
+                                                                    <p>In response to the second alert, SAM issues a Delete transaction to <span class="GeneralVariablesCoreName">ASM Core</span>. <span class="GeneralVariablesCoreName">ASM Core</span> closes the call logged as a result of the first alert, and logs a new call based on the second root cause. </p>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <h2>Event Management and Transactions </h2>
+                                                    <p>The use case scenarios in the previous section, and more generally the Event Management operation of the connector, rely on a particular communication protocol between the two systems. This protocol is composed of different transactions that are illustrated below. </p>
+                                                    <p>
+                                                        <img src="/storage/app/media/Help/images/communication%20protocols%204.png" class="screenshot">
+                                                    </p>
+                                                    <p>The table below lists the transactions, definition and behavior in the specific case of this connector. </p>
+                                                    <table class="TableStyle-Rep_Hdr_Row" style="margin-left: 0;margin-right: auto;mc-table-style: url('../../resources/tablestyles/rep hdr row.css');" cellspacing="0">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column1">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column2">
+                                                        <thead>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Head-Header1">
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column1-Header1">
+                                                                    <p class="Strong">Event Management transactions </p>
+                                                                </th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadD-Column2-Header1">
+                                                                    <p class="Strong">Description </p>
+                                                                </th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Receive </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p>An event is sent from an external system to <span class="GeneralVariablesCoreName">ASM Core</span>. <span class="GeneralVariablesCoreName">ASM Core</span> receives this event. </p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Acknowledge </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p><span class="GeneralVariablesCoreName">ASM Core</span> sends a transaction to an external system with a formal statement acknowledging that their event has been received. </p>
+                                                                    <p>This is different from a transactional acknowledge or not acknowledge (ack or nack) note sent between systems.</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Notify </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p>Occurs when there is a call or request within <span class="GeneralVariablesCoreName">ASM Core</span> logged due to an event sent from an external system: </p>
+                                                                    <ul class="ul_12">
+                                                                        <li class="Bulleted_1" value="1">Notification is initiated from <span class="GeneralVariablesCoreName">ASM Core</span> to the external system after an Analyst adds a note to the call or request. </li>
+                                                                        <li class="Bulleted_1" value="2">Notification is initiated from an external system and is sent to <span class="GeneralVariablesCoreName">ASM Core</span> as a NOTIFY event. It is either added as a note or ignored, depending on the settings in the Event Mapping screen. </li>
+                                                                    </ul>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Update </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p>Occurs when there is a call or request within <span class="GeneralVariablesCoreName">ASM Core</span> logged due to an event sent from an external system: </p>
+                                                                    <ul class="ul_12">
+                                                                        <li class="Bulleted_1" value="1">From <span class="GeneralVariablesCoreName">ASM Core</span>, an Update is created and sent to the external system when an Analyst updates a call or request by forwarding Internally, Externally, Deferring, or Saving to the database. </li>
+                                                                        <li class="Bulleted_1" value="2">From the external system, an UPDATE message is sent to <span class="GeneralVariablesCoreName">ASM Core</span> any time an event related to a call in <span class="GeneralVariablesCoreName">ASM Core</span> is modified. The <span class="GeneralVariablesCoreName">ASM Core</span> call or request is physically closed, a note is added, or it is ignored, depending on the settings in Event Mapping. </li>
+                                                                    </ul>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Resolve </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p>Occurs when the event has been resolved in the external system and a Resolve transaction is sent to <span class="GeneralVariablesCoreName">ASM Core</span>. </p>
+                                                                    <p>The <span class="GeneralVariablesCoreName">ASM Core</span> call or request is physically closed, a note is added, or it is ignored, depending on the settings in Event Mapping. </p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyB-Column1-Body1">
+                                                                    <p>Delete </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyA-Column2-Body1">
+                                                                    <p>Occurs when the event is no longer valid on the external system (for example, the alert sent of the root cause with 60% certainty has been superseded by a more accurate root cause at 90% certainty). It also informs <span class="GeneralVariablesCoreName">ASM Core</span> through a transaction. </p>
+                                                                    <p>The <span class="GeneralVariablesCoreName">ASM Core</span> call or request is physically closed, a note is added, or it is ignored, depending on the settings in Event Mapping. </p>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <h2>Business Rules </h2>
+                                                    <table class="TableStyle-FieldDesc" style="mc-table-style: url('../../resources/tablestyles/fielddesc.css');" cellspacing="0">
+                                                        <col style="width: 90pt;" class="TableStyle-FieldDesc-Column-Column1">
+                                                        <col style="width: 338pt;" class="TableStyle-FieldDesc-Column-Column2">
+                                                        <tr style="height: 19pt;">
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-" style="font-weight: bold;">
+                                                                <p class="Strong">Transaction </p>
+                                                            </td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-" style="font-weight: bold;">
+                                                                <p class="Strong">Rules </p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td rowspan="3" class="TableStyle-FieldDesc-BodyH-Column1-">
+                                                                <p>Receive </p>
+                                                            </td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                <p>The Receive transaction leads to a new call being logged, a new problem being created or a request being initiated depending on Integration Platform settings. </p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                <p>A reliable unique ID is stored against any specific call created to ensure proper management of the subsequent communications </p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                <p>Any possible data in relation with the time or date of the event or root cause is made available to <span class="GeneralVariablesCoreName">ASM Core</span>. This allows for possible back-dating of any call or problem logged in <span class="GeneralVariablesCoreName">ASM Core</span> after it receives a Receive message from SAM. </p>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                    <p class="note">There are no business rules for the other transaction types.</p>
+                                                    <p>Events are uniquely identified by both the event ID and the lastNotifiedAt date, such that for any given event, the connector treats each new occurrence of the same event as a new event in <span class="GeneralVariablesCoreName">ASM Core</span>. This is because the unique identifier in SAM is only based on the device and the type of event. Consequently, if only the ID is used, the same event type, for example Unresponsive, that occurs much later and for entirely different reasons, would be treated as the same event. Another consequence is that if an event in SAM is resolved and then reoccurs, the <span class="GeneralVariablesCoreName">ASM Core</span> call number returned to SAM will be matching the initial call logged in <span class="GeneralVariablesCoreName">ASM Core</span> and not any subsequent calls. </p>
+                                                    <h2>Setting up the Event Management Functionality </h2>
+                                                    <p>Check the following items when setting up the Event Management functionality of the  SAM Connector: </p>
+                                                    <ul>
+                                                        <li value="1">Ensure that the <b>Event Management</b> checkbox is selected in the Integration Platform settings window. </li>
+                                                        <li value="2">Ensure that the SAM connector is installed and the check boxes in the <b>Events</b> and <b>Visible</b> columns are selected in the Integration Connectors window. </li>
+                                                        <li value="3">Ensure that a <b>SAM</b> <b>source</b> is defined in the Integration Source window. </li>
+                                                        <li value="4">Ensure that a <b>SAM Event mapping</b> is defined in the Event screen. This mapping should at least specify the action to be performed (log call or create request) when a notification is carried over, as well as the template to be used for this action. </li>
+                                                    </ul>
+                                                    <h2>Starting the Event Management Functionality </h2>
+                                                    <p>If the <b>Event Management</b> checkbox in the Integration Platform administration screen is selected, the Event Management functionality starts running as soon as a proper Event mapping is completed and saved. When starting, the connector checks the SAM notification queue and logs a call for every item that is present and fulfils the criteria that are implemented in the Event mapping. This can lead to a large number of calls being created when activating the Event Management functionality. </p>
+                                                    <p>One solution to avoid this behavior is to include in the Event criteria setting an item based on the <span class="span_2">FirstNotifiedAt</span> attribute. For example, you could plan to <span class="span_2">“go live”</span> with Event management on a precise date and, as a consequence, specify that the value of <span class="span_2">FirstNotifiedAt</span> has to be after this date before any action can be triggered in <span class="GeneralVariablesCoreName">ASM Core</span>. </p>
+                                                    <h1>Notification Attributes</h1>
+                                                    <p>The table below lists the notification attributes that are available when setting up an Event mapping. </p>
+                                                    <table class="TableStyle-Rep_Hdr_Row" style="mc-table-style: url('../../resources/tablestyles/rep hdr row.css');margin-left: 0;margin-right: auto;width: 100%;" cellspacing="0">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column1">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column2">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column1">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column2">
+                                                        <thead>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Head-Header1">
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column1-Header1">Key </th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column2-Header1">Display </th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column1-Header1">Data type</th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadD-Column2-Header1">Is multivalued </th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Acknowledged </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>Acknowledged </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Boolean </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p>False </p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>AcknowledgmentTime </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>AcknowledgmentTime </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>dateTime </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p>False </p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Active </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>Active </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Boolean </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p>False </p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>AffectedConfigItem </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>AffectedConfigItem </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>String </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p>False </p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1" colspan="4">
+                                                                    <p class="note">AffectedConfigItem is not a SAM notification attribute, it is computed by the connector. It is of reference to a resource type, which means its value can be used to identify a Configuration Item that may have been imported during a previous Federated CMDB scan through the Resolve capability of Event mapping. The value is based on the fields <span class="span_2">ElementClassName</span> and <span class="span_2">ElementName</span> of the SAM notification. If these fields are empty, then its value is based on the fields <span class="span_2">ClassName</span> and <span class="span_2">InstanceName</span>. If these fields are also empty, then the value of <span class="span_2">AffectedConfigItem</span> will be null. </p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>AuditTrailSizeLimit </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>AuditTrailSizeLimit </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Integer </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p>False </p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>AutoAcknowledgmentInterval </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>AutoAcknowledgmentInterval </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Integer </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p>False </p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Category </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>Category </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>String </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p>False </p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Certainty </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>Certainty </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Float </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p>False </p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>ClassDisplayName </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>ClassDisplayName </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>String </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p>False </p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>ClassName </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>ClassName </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>String </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p>False </p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>ClearOnAcknowledge </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>ClearOnAcknowledge </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Boolean </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p>False </p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>CreationClassName </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>CreationClassName </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>String </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p>False </p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Description </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>Description </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>String </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p>False </p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>DisplayName </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>DisplayName </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>String </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p>False </p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>ElementClassName </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>ElementClassName </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>String </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p>False </p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>ElementName </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>ElementName </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>String </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p>False </p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>EventDisplayName </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>EventDisplayName </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>String </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p>False </p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>EventName </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>EventName </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>String </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p>False </p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>EventState </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>EventState </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>String </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p>False </p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>EventStateTable </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>EventStateTable </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>String </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p>True </p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>EventText </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>EventText </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>String </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p>False </p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>EventType </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>EventType </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>String </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p>False </p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>FirstNotifiedAt </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>FirstNotifiedAt </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>dateTime </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p>False </p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>FirstScheduledAutoAcknowledge </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>FirstScheduledAutoAcknowledge </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Integer </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p>False </p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>FirstScheduledAutoArchive </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>FirstScheduledAutoArchive </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Integer </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p>False </p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>FirstScheduledAutoClear </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>FirstScheduledAutoClear </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Integer </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p>False </p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Impact </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>Impact </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Integer </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p>False </p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>InactiveAutoArchiveInterval </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>InactiveAutoArchiveInterval </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Integer </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p>False </p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>InMaintenance </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>InMaintenance </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Boolean </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p>False </p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>InstanceDisplayName </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>InstanceDisplayName </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>String </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p>False </p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>InstanceName </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>InstanceName </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>String </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p>False </p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>internalElementClassName </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>internalElementClassName </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>String </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p>False </p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>internalElementName </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>internalElementName </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>String </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p>False </p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>IsAggregate </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>IsAggregate </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Boolean </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p>False </p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>IsAggregatedBy </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>IsAggregatedBy </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Boolean </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p>False </p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>IsProblem </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>IsProblem </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Boolean </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p>False </p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>IsRoot </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>IsRoot </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Boolean </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p>False </p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>LastChangedAt </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>LastChangedAt </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>dateTime </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p>False </p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>LastClearedAt </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>LastClearedAt </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>dateTime </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p>False </p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>LastNotifiedAt </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>LastNotifiedAt </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>dateTime </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p>False </p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Name </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>Name </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>String </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p>False </p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>NextSerialNumber </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>NextSerialNumber </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Integer </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p>False </p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>OccurrenceCount </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>OccurrenceCount </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Integer </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p>False </p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>OriginalSources </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>OriginalSources </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>String </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p>True </p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Owner </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>Owner </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>String </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p>False </p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>scheduledForNotify </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>scheduledForNotify </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Boolean </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p>False </p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>ServiceName </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>ServiceName </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>String </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p>False </p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Severity </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>Severity </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Integer </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p>False </p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>ShouldAutoAcknowledge </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>ShouldAutoAcknowledge </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Boolean </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p>False </p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>ShouldAutoAcknowledgeAt </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>ShouldAutoAcknowledgeAt </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>dateTime </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p>False </p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>ShouldAutoArchive </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>ShouldAutoArchive </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Boolean </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p>False </p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>ShouldAutoClear </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>ShouldAutoClear </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Boolean </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p>False </p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>ShouldAutoClearAt </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>ShouldAutoClearAt </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>dateTime </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p>False </p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>ShouldInactiveAutoArchive </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>ShouldInactiveAutoArchive </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Boolean </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p>False </p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>ShouldInactiveAutoArchiveAt </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>ShouldInactiveAutoArchiveAt </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>dateTime </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p>False </p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>ShouldScheduleAutoAcknowledge </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>ShouldScheduleAutoAcknowledge </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Boolean </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p>False </p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>ShouldScheduleAutoArchive </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>ShouldScheduleAutoArchive </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Boolean </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p>False </p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>ShouldScheduleAutoClear </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>ShouldScheduleAutoClear </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>boolean </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p>False </p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>ShouldScheduleInactiveAutoArchi ve </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>ShouldScheduleInactiveAutoArchive </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Boolean </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p>False </p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>SourceDomainName </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>SourceDomainName </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>String </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p>False </p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>SourceEventType </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>SourceEventType </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>String </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p>False </p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>TroubleTicketID </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>TroubleTicketID </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>String </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p>False </p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>UserDefined1 </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>UserDefined1 </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>String </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p>False </p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>UserDefined10 </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>UserDefined10 </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>String </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p>False </p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>UserDefined2 </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>UserDefined2 </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>String </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p>False </p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>UserDefined3 </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>UserDefined3 </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>String </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p>False </p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>UserDefined4 </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>UserDefined4 </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>String </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p>False </p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>UserDefined5 </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>UserDefined5 </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>String </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p>False </p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>UserDefined6 </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>UserDefined6 </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>String </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p>False </p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>UserDefined7 </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>UserDefined7 </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>String </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p>False </p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>UserDefined8 </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>UserDefined8 </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>String </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p>False </p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyB-Column1-Body1">
+                                                                    <p>UserDefined9 </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyB-Column2-Body1">
+                                                                    <p>UserDefined9 </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyB-Column1-Body1">
+                                                                    <p>String </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyA-Column2-Body1">
+                                                                    <p>False </p>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                

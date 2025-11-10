@@ -1,0 +1,17 @@
+{% if uploader_plugin_enabled %}
+    <div class="{{ field.wrapper_class }}">
+        {% if field.label %}
+            <label class="{{ field.label_class }} form-label" for="{{ field.name }}">{{ field.label }}</label>
+        {% endif %}
+
+        {% component field.name %}
+
+        {% if field.comment %}
+            <div class="form-text">{{ field.comment }}</div>
+        {% endif %}
+    </div>
+{% else %}
+    <div class="alert alert-warning" role="alert">
+        You must install <a target="_blank" href="https://octobercms.com/plugin/responsiv-uploader">Uploader Plugin</a> to use upload feature!
+    </div>
+{% endif %}

@@ -1,0 +1,328 @@
+html.fsvs {
+    min-height: 100%;
+    
+    body {
+        height: 100%;
+    }
+
+    .navbar, #nav-dropdowns {
+        z-index: 1000;
+        width: 100%;
+    }
+
+    .navbar, #nav-dropdowns {
+        position: relative;
+    }
+    
+    #fsvs-body {
+        -webkit-backface-visibility: hidden;
+        -webkit-perspective: 1000;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 1;
+        height: 100%;
+        width: 100%;
+    }
+    
+    header#header.site-header {
+        background: transparent;
+        box-shadow: none;
+        z-index: 9999;
+        
+        .header-logo {
+            a {
+                width: 189px;
+                height: 42px;
+                background: url(../img/alemba-header-logo-mono-white.png) no-repeat left top;
+                background-size: contain;
+                img {
+                    opacity: 0;
+                }
+            }
+        }
+        
+        .mobile-menu-button span {
+            background-color: white;
+        }
+        
+    }
+    
+    section.slide {
+        padding: 105px 0;
+        position: relative;
+        height: 100%;
+        width: 100%;
+        overflow: hidden;
+        -webkit-backface-visibility: hidden;
+        -webkit-perspective: 1000;
+        
+        .bottom-btn-wrapper {
+            position: absolute;
+            bottom: 20px;
+            margin-left: auto;
+            margin-right: auto;
+            left: 0;
+            right: 0;
+            text-align: center;
+            
+            .next-btn {
+                opacity: 0.5;
+                @include vendor-prefixes(transition, all ease-out 0.2s);
+                &:hover {
+                    opacity: 1;
+                }
+            }
+            
+            i {
+                color: white;
+                font-size: 60px;
+            }
+        }
+    }
+}
+
+html.fsvs body #fsvs-pagination {
+    width: 24px;
+    li.pagination-link {
+        width: 16px;
+        height: 16px;
+        margin-bottom: 12px;
+
+        &.active > span, &.active > span > span {
+            border: 1px solid white;
+        }
+        > span {
+            width: 16px;
+            height: 16px;
+            > span {
+                width: 8px;
+                height: 8px;
+                margin: 3px;
+                border: 1px solid transparent;
+            }
+        }
+    }
+}
+
+@include media-breakpoint-up(lg) {
+    
+    html.fsvs header#header.site-header .main-nav li.nav-item > a {
+        color: white;
+    }
+}
+
+@include media-breakpoint-down(md) {
+    
+    html.fsvs section.slide {
+        padding: 119px 30px 100px 30px;
+    }
+    
+    html.fsvs body #fsvs-pagination {
+        right: 10px !important;
+    }
+}
+
+
+/* Full Screen Scrolling Demo Page */
+html.fsvs body.page-demo, html.fsvs body.page-squeeze-demo {
+    section.slide {
+        color: white;
+        background-color: black;
+        background-size: cover;
+        
+        &#slide-1 {
+            background: url(../video/demo-itil-poster.jpg) no-repeat center;
+        }
+        &#slide-2 {
+            background: url(../video/demo-portal-poster.jpg) no-repeat center;
+        }
+        &#slide-3 {
+            background: url(../video/demo-brand-poster.jpg) no-repeat center;
+        }
+        &#slide-4 {
+            background: url(../video/demo-workflow-poster.jpg) no-repeat center;
+        }
+        &#slide-5 {
+            background: url(../video/demo-build-poster.jpg) no-repeat center;
+        }
+        &#slide-6 {
+            background: url(../video/demo-reporting-poster.jpg) no-repeat center;
+        }
+        
+        .overlay {
+            background-color: rgba(0,0,0,0.8);
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 0;
+            pointer-events: none;
+        }
+        
+        video.fs-video-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            pointer-events: none;
+            z-index: -1;
+        }
+        
+        .col {
+            z-index: 1;
+        }
+        
+        img.asm-logo {
+            margin-bottom: 3rem;
+        }
+        
+        h2 {
+            font-size: 60px;
+            line-height: 1.25;
+        }
+        
+        h3 {
+            font-family: 'Lato', Arial, sans-serif;
+            margin-top: 1rem;
+            text-transform: uppercase;
+            font-size: 24px;
+            letter-spacing: 3px;
+        }
+        
+        .btn.btn-primary {
+            margin-top: 3rem;
+            font-size: 16px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: white;
+            border: 2px solid white;
+            padding: 1rem 2.5rem;
+            @include vendor-prefixes(transition, unquote("opacity ease-out 0.3s 0.8s, transform ease-out 0.3s 0.8s"));
+            overflow: hidden;
+            position: relative;
+            
+            &:after {
+                content: '';
+                position: absolute;
+                display: block;
+                top: 0;
+                left: calc(-100% - 60px);
+                width: calc(100% + 60px);
+                bottom: 0;
+                background: $alembapink;
+                -webkit-transform-origin: 100% 0;
+                -ms-transform-origin: 100% 0;
+                transform-origin: 100% 0;
+                -webkit-transform: skew(-30deg);
+                -ms-transform: skew(-30deg);
+                transform: skew(-30deg);
+                z-index: -1;
+                @include vendor-prefixes(transition, all ease-out 0.2s);
+            }
+            
+            &:hover, &:active, &:focus {
+                color: white !important;
+                background-color: transparent !important;
+                border-color: $alembapink !important;
+                &:after {
+                    left: -30px;
+                }
+            }
+        }
+        
+        form.demo-lite {
+            .form-group {
+                margin-top: 3rem;
+                position: relative;
+                label {
+                    position: absolute;
+                    width: 1px;
+                    height: 1px;
+                    padding: 0;
+                    margin: -1px;
+                    overflow: hidden;
+                    clip: rect(0,0,0,0);
+                    border: 0;
+                }
+            }
+            .form-control {
+                height: 42px;
+                width: 630px;
+                font-size: 16px;
+                max-width: 100%;
+                margin: 0 auto;
+                text-align: center;
+                @include vendor-prefixes(border-radius, 21px);
+            }
+            .btn.btn-primary {
+                margin-top: 2rem;
+            }
+
+            // Centre the Captcha
+
+            .g-recaptcha {
+                width: 304px;
+                margin: 0 auto 0 auto;
+            }
+        }
+        
+        + section.slide {
+            img, h2, h3, .form-control {
+                position: relative;
+                transform: translateY(70px);  
+                opacity: 0;
+                @include vendor-prefixes(transition, all ease-out 0.3s);
+            }
+            
+            .btn.btn-primary {
+                transform: translateY(70px);
+                opacity: 0;
+            }
+            
+            img {
+                transition-delay: 0.5s;
+            }
+
+            h2, h3 {
+                transition-delay: 0.7s;
+            }
+
+            .form-control {
+                transition-delay: 0.8s;
+            }
+
+            &.active-slide {
+                img, h2, h3, .btn.btn-primary, .form-control {
+                    transform: translateY(0);
+                    opacity: 1;
+                }
+            }
+        }
+    }
+}
+
+@include media-breakpoint-down(md) {
+    
+    html.fsvs body.page-demo section.slide {
+        h2 {
+            font-size: 42px;
+        }
+    }
+}
+
+@include media-breakpoint-down(sm) {
+    
+    html.fsvs body.page-demo section.slide {
+        h2 {
+            font-size: 38px;
+        }
+        img.asm-logo {
+            width: 250px;
+            height: auto;
+        }
+    }
+}

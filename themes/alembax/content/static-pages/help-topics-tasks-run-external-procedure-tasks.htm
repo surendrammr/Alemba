@@ -1,0 +1,670 @@
+[viewBag]
+title = "Run External Procedure Tasks"
+url = "/help/topics/tasks/run-external-procedure-tasks"
+layout = "help"
+is_hidden = 0
+navigation_hidden = 0
+==
+                                                    <h1>Run External Procedure Tasks</h1>
+                                                    <p class="intro">A Run External Procedure task can be used to automate any procedure that is part of a workflow. It is used to call and execute an external script. Parameters, configured in the task, are passed to the script at runtime.</p>
+                                                    <p class="intro"> </p>
+                                                    <p>The ability to automatically run an executable once the task is activated allows for an additional level of automation outside of the reach of <span class="GeneralVariablesProductName">ASM</span> - for example, a web service could be run to update a user account within another application.</p>
+                                                    <p>The Run External Procedure Task provides a level of integration through script files, web services, visual basic scripts and other executable files that would otherwise require customization within <span class="GeneralVariablesProductName">ASM</span>. Invoking an executable within a workflow process provides the flexibility to make changes not only to other applications but also to networks, networked computers and hardware, websites, configuration information, system setups and more.</p>
+                                                    <p>Scripts are added to <span class="GeneralVariablesProductName">ASM</span> through the Server Console by your system administrator. Users can then specify any of these scripts as the one to be run when a Run External Procedure Task becomes active in a workflow. The script to be run is selected from a drop-down list within the Run External Procedure Task. Additional parameters can be passed from the Task or Request to the external task in order to fine tune the script. Any parameters defined must be compatible with the script selected. Once the task is activated, the parameters will be appended to the script, the script will be run, the task will complete, and the workflow will progress.</p>
+                                                    <p class="exampletext">You can create a script for installing software on a particular server, say InstallSoftware.vbs, and add it to the Server Console. When you define the Run External Procedure Task, you will be able to select this script from the Command list. The script requires a parameter that provides the name of the server on which the script needs to install the software. The parameter could be something like “-server //MACHINE01”.</p>
+                                                    <h2>Creating a Run External Procedure Task</h2>
+                                                    <p class="prereq">The task must be completed automatically for the script execution to occur. The procedure or command specified on a Run External Procedure task will execute only if the task is closed by the Workflow polling service. If this task is closed using the <b>Complete</b> button on the <b>Task Details</b> window, the message “Completing this Task manually will not run the external command. Do you want to continue?" will be displayed, and the procedure or command will not run.</p>
+                                                    <ol style="list-style-type: decimal;margin-left: 36pt;" start="1">
+                                                        <li value="1">
+<a href="%7B%7B%20'help-requests-and-templates-searching-for-requests#top'%7CstaticPage%20%7D%7D#top">Search for </a>the <b>Request Details</b> window, if it is not already on screen.</li>
+                                                        <li value="2">Select the <b>Update Dependencies</b> explorer option on the <b>Request Details</b> window, or the <img src="/storage/app/media/Help/images/dependencies%20button.png"> button from the toolbar. The <b>Task Dependencies</b> window appears with icons for task entity types displayed below the toolbar. </li>
+                                                        <p class="note">If the workflow template you have used to create the request already has tasks defined in it, you will see these tasks here. You can open them and change their details such as dates, assignment, or expenses. You can add new tasks or delete them from the current request without affecting the template.</p>
+                                                        <li value="3">
+                                                            <div class="MCDropDown MCDropDown_Closed dropDown">
+<span class="MCDropDownHead dropDownHead"><a href="#" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCHotSpotImage" aria-expanded="false"><img class="MCDropDown_Image_Icon" src="/storage/app/media/Help/images/transparent.gif" height="11" width="16" alt="Closed" data-mc-alt2="Open">Add the <b>Run External Procedure task</b>  to the Dependency Diagram.</a></span>
+                                                                <div class="MCDropDownBody dropDownBody">
+                                                                    <p>Select the <img src="/storage/app/media/Help/images/run%20external%20procedure%20task%20icon.png" style="width: 39px;height: 36px;"> icon from the task palette and drag it to position. Alternatively, right-click in the window, and from the menu that appears, select <b>New</b> and then the <b>Run External Procedure</b> task entity type. Then <a href="%7B%7B%20'help-requests-and-templates-dependency-diagrams#Linking'%7CstaticPage%20%7D%7D#Linking">link the task</a> to the previous task in the workflow.</p>
+                                                                </div>
+                                                            </div>
+                                                        </li>
+                                                        <li value="4">On the dependency diagram, double-click the <b>Run External Procedure task</b> icon <a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="../../resources/images/run%20external%20procedure%20task%20icon.png"><img class="MCPopupThumbnail img imgthumbnail" data-mc-width="39" data-mc-height="36" src="/storage/app/media/Help/images/run%20external%20procedure%20task%20icon_thumb_0_48.png" style="width: 39px;height: 36px;" tabindex=""></a>to view the <b>Run External Procedure Task Details</b> window.</li>
+                                                        <li value="5">If needed, take action on the task in order to edit the details.</li>
+                                                        <li value="6">
+<a href="%7B%7B%20'help-creating-a-task#Complete_the_common_task_fields'%7CstaticPage%20%7D%7D#Complete_the_common_task_fields">Complete the common task fields</a> on this task.</li>
+                                                        <li value="7">Specify the details of the external procedure to be run.</li>
+                                                        <p>
+                                                            </p>
+<table style="width: 100%;mc-table-style: url('../../resources/tablestyles/fielddesc.css');margin-left: 0;margin-right: auto;" class="TableStyle-FieldDesc" cellspacing="0">
+                                                                <col class="TableStyle-FieldDesc-Column-Column1">
+                                                                <col class="TableStyle-FieldDesc-Column-Column2">
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyH-Column1-">Command</td>
+                                                                        <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                            <p>This list displays all the scripts that are available on your systems. (Scripts are any form of executable files, such as batch files, Visual Basic scripts, and Web services.)</p>
+                                                                            <p class="prereq">Script are added through the Server Console. </p>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyB-Column1-">Parameters</td>
+                                                                        <td class="TableStyle-FieldDesc-BodyA-Column2-">
+                                                                            <p>This field can be used to pass additional parameters that will be appended to the script when this task is implemented and the script is run. The parameters have to be compatible with the script selected in the <b>Command</b> list.</p>
+                                                                            <p class="note">See <a href="#Passing">Passing Field Values to the External Procedure</a> for more details.</p>
+                                                                            <p class="note">See <a href="#Passing2">Passing Variables to PowerShell</a> to pass variables to a PowerShell script.</p>
+                                                                        </td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        
+                                                        <li value="8">Save the task. It will be completed automatically once it is activated as part of a workflow.</li>
+                                                    </ol>
+                                                    <h2>
+<a name="Passing"></a>Passing Field Values to the External Procedure</h2>
+                                                    <p>You can pass field values from the Request and/or Task to the command, by entering the parameter names from the table into the <b>Parameters</b> field of the <b>Run External Procedure Task Detail</b> window.</p>
+                                                    <p class="exampletext">The Request ID needs to be passed to the RunExe.exe executable on the command line, along with constants “xyz” and “aaa,” to allow the Requests to initiate an RBA process as a sub-flow to handle release automation or provisioning. When “xyz [REQUEST_NO] aaa” is entered in the <b>Parameters</b> field, the number of the current Request (163108, for this example) will replace [REQUEST_NO] in the command line of the external procedure task like this: “RunExe.exe xyz 163108 aaa”.</p>
+                                                    <p>The table below provides the list of standard Request and Task parameters which can be passed in the command line of the executable.</p>
+                                                    <p class="note">The parameters related to Request and Task must be put between square brackets, as shown.</p>
+                                                    <table style="width: 100%;mc-table-style: url('../../resources/tablestyles/rep hdr row.css');margin-left: 0;margin-right: auto;" class="TableStyle-Rep_Hdr_Row" cellspacing="0">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column1">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column2">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column1">
+                                                        <thead>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Head-Header1">
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column1-Header1">Field	</th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column2-Header1">Output	</th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadD-Column1-Header1">
+                                                                    <p>Parameter</p>
+                                                                </th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">Request Number</td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">	Ref No</td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>	[REQUEST_NO]</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">Request Title</td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">Text	</td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>	[REQUEST_TITLE]</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1" rowspan="2">User</td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">	Ref No</td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p> 	[REQUESTOR_REF]</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">Text </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>		[USER_FULL_NAME]</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">Tel </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">Text </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>		[TEL]</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1" rowspan="2">Organization </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">Ref No</td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>	 	[CLIENT_CO_REF]</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">Text </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>		[CLIENT_CO_NAME]</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1" rowspan="2">Location </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">	Ref No</td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p> 	[LOCATION_REF]</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>	Text </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">	[LOCATION_NAME]</td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">Request Type </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">Text </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">[REQUEST_TYPE]</td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">Ref </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">Text </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>		[REQUEST_REF]</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">Priority </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">Text </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p>		[REQUEST_PRIORITY_REF]</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Request Description x 	</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">Text </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">	[REQUEST_DESC]</td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">Task Number </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">	Ref No</td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p> 	[TASK_NO]</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyB-Column1-Body1">Task Title</td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyB-Column2-Body1">Text </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyA-Column1-Body1">
+                                                                    <p> 		[TASK_TITLE]</p>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <h3>Passing Dates and Text Strings</h3>
+                                                    <p>You should confirm the expected format of any dates that you pass to an external procedure to ensure that they are not mistranslated. If, for example, you pass a date in the format ddmmyy, and the external system is expecting a date in the format mmddyy, the date will be misrepresented. </p>
+                                                    <p>Also, if there are spaces in the original material, the parameter can get split into several parameters. If, for example, you pass <b>date time</b>, it will become two separate fields. You can use this to your advantage if you want to, say, strip out the time that is stored by default in the originating system's date field, but it is something that you need to be aware of. Likewise, if a name is held as <b>FirstName LastName</b> in the originating system, it will be dismantled into two different parameters. The universal way to keep everything together is to use single quotes outside the square brackets to contain the string.</p>
+                                                    <h2>Request Parameter Examples</h2>
+                                                    <p class="warning">Any parameter pertaining to a request apart from those below, must be prefixed with REQUEST:</p>
+                                                    <h3>Request Text/Text Area/Numeric/Checkbox/Date Field</h3>
+                                                    <table class="TableStyle-Rep_Hdr_Row" style="margin-left: 0;margin-right: auto;width: 100%;mc-table-style: url('../../resources/tablestyles/rep hdr row.css');" cellspacing="0">
+                                                        <col style="width: 127pt;" class="TableStyle-Rep_Hdr_Row-Column-Column1">
+                                                        <col style="width: 64pt;" class="TableStyle-Rep_Hdr_Row-Column-Column2">
+                                                        <col style="width: 78pt;" class="TableStyle-Rep_Hdr_Row-Column-Column1">
+                                                        <thead>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Head-Header1">
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column1-Header1">
+                                                                    <p class="p_4">Example</p>
+                                                                </th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column2-Header1">
+                                                                    <p class="p_4">Prefix</p>
+                                                                </th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadD-Column1-Header1">
+                                                                    <p class="p_4">Value</p>
+                                                                </th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyB-Column1-Body1">
+                                                                    <p class="p_4">Request Target Date</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyB-Column2-Body1">
+                                                                    <p class="p_4">REQUEST:</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyA-Column1-Body1">
+                                                                    <p class="p_4">TARGET_DATE</p>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <p> </p>
+                                                    <h3>Request Dropdown/List Box/Multi-Select Field</h3>
+                                                    <table class="TableStyle-Rep_Hdr_Row" style="margin-left: 0;margin-right: auto;width: 100%;mc-table-style: url('../../resources/tablestyles/rep hdr row.css');" cellspacing="0">
+                                                        <col style="width: 113pt;" class="TableStyle-Rep_Hdr_Row-Column-Column1">
+                                                        <col style="width: 78pt;" class="TableStyle-Rep_Hdr_Row-Column-Column2">
+                                                        <col style="width: 103pt;" class="TableStyle-Rep_Hdr_Row-Column-Column1">
+                                                        <col style="width: 97pt;" class="TableStyle-Rep_Hdr_Row-Column-Column2">
+                                                        <thead>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Head-Header1">
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column1-Header1">
+                                                                    <p class="p_4">Example</p>
+                                                                </th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column2-Header1">
+                                                                    <p class="p_4">Prefix</p>
+                                                                </th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column1-Header1">
+                                                                    <p class="p_4">Look Up Value in Request</p>
+                                                                </th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadD-Column2-Header1">
+                                                                    <p class="p_4">Assigned List</p>
+                                                                </th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyB-Column1-Body1">
+                                                                    <p class="p_4">Risk</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyB-Column2-Body1">
+                                                                    <p class="p_4">REQUEST:</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyB-Column1-Body1">
+                                                                    <p class="p_4">RISK_REF</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyA-Column2-Body1">
+                                                                    <p class="p_4">#CR_REQ_RISK</p>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <p> </p>
+                                                    <h3>Request QD Field</h3>
+                                                    <table class="TableStyle-Rep_Hdr_Row" style="margin-left: 0;margin-right: auto;width: 100%;mc-table-style: url('../../resources/tablestyles/rep hdr row.css');" cellspacing="0">
+                                                        <col style="width: 76pt;" class="TableStyle-Rep_Hdr_Row-Column-Column1">
+                                                        <col style="width: 66pt;" class="TableStyle-Rep_Hdr_Row-Column-Column2">
+                                                        <col style="width: 95pt;" class="TableStyle-Rep_Hdr_Row-Column-Column1">
+                                                        <col style="width: 121pt;" class="TableStyle-Rep_Hdr_Row-Column-Column2">
+                                                        <col style="width: 94pt;" class="TableStyle-Rep_Hdr_Row-Column-Column1">
+                                                        <thead>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Head-Header1">
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column1-Header1">
+                                                                    <p class="p_4">Example</p>
+                                                                </th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column2-Header1">
+                                                                    <p class="p_4">Prefix</p>
+                                                                </th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column1-Header1">
+                                                                    <p class="p_4">Look Up Value in Request</p>
+                                                                </th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column2-Header1">
+                                                                    <p class="p_4">Look Up Table</p>
+                                                                </th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadD-Column1-Header1">
+                                                                    <p class="p_4">Value</p>
+                                                                </th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p class="p_4">User</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p class="p_4">REQUEST:</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p class="p_4">REQUESTOR_REF</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p class="p_4">$AR_PERSON.</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p class="p_4">DISPLAY</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p class="p_4">Organisation</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p class="p_4">REQUEST:</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p class="p_4">CLIENT_CO_REF</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p class="p_4">$AR_CLIENT_COMPANY.</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p class="p_4">CLIENT_CO_NAME</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyB-Column1-Body1">
+                                                                    <p class="p_4">Location</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyB-Column2-Body1">
+                                                                    <p class="p_4">REQUEST:</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyB-Column1-Body1">
+                                                                    <p class="p_4">LOCATION_REF</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyB-Column2-Body1">
+                                                                    <p class="p_4">$AR_LOCATIONS.</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyA-Column1-Body1">
+                                                                    <p class="p_4">LOCATION_NAME</p>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <p> </p>
+                                                    <h3>Request QD Linked Field</h3>
+                                                    <table class="TableStyle-Rep_Hdr_Row" style="margin-left: 0;margin-right: auto;width: 100%;mc-table-style: url('../../resources/tablestyles/rep hdr row.css');" cellspacing="0">
+                                                        <col style="width: 67pt;" class="TableStyle-Rep_Hdr_Row-Column-Column1">
+                                                        <col style="width: 67pt;" class="TableStyle-Rep_Hdr_Row-Column-Column2">
+                                                        <col style="width: 95pt;" class="TableStyle-Rep_Hdr_Row-Column-Column1">
+                                                        <col style="width: 121pt;" class="TableStyle-Rep_Hdr_Row-Column-Column2">
+                                                        <col style="width: 101pt;" class="TableStyle-Rep_Hdr_Row-Column-Column1">
+                                                        <thead>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Head-Header1">
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column1-Header1">
+                                                                    <p class="p_4">Example</p>
+                                                                </th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column2-Header1">
+                                                                    <p class="p_4">Prefix</p>
+                                                                </th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column1-Header1">
+                                                                    <p class="p_4">Look Up Value in Request</p>
+                                                                </th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column2-Header1">
+                                                                    <p class="p_4">Look Up Table</p>
+                                                                </th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadD-Column1-Header1">
+                                                                    <p class="p_4">Value</p>
+                                                                </th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p class="p_4">User’s Login ID</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p class="p_4">REQUEST:</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p class="p_4">REQUESTOR_REF</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p class="p_4">$AR_PERSON.</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p class="p_4">USER_ID</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p class="p_4">Org’s Custom String 1</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p class="p_4">REQUEST:</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p class="p_4">CLIENT_CO_REF</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p class="p_4">$AR_CLIENT_COMPANY.</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                    <p class="p_4">CUSTOM_STRING_1</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyB-Column1-Body1">
+                                                                    <p class="p_4">Location’s Postcode</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyB-Column2-Body1">
+                                                                    <p class="p_4">REQUEST:</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyB-Column1-Body1">
+                                                                    <p class="p_4">LOCATION_REF</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyB-Column2-Body1">
+                                                                    <p class="p_4">$AR_LOCATIONS.</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyA-Column1-Body1">
+                                                                    <p class="p_4">POSTCODE</p>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <p> </p>
+                                                    <h3>Request <span class="Bold">Custom Extension</span> Text/Text Area/Numeric/Checkbox/Date</h3>
+                                                    <table class="TableStyle-Rep_Hdr_Row" style="margin-left: 0;margin-right: auto;width: 100%;mc-table-style: url('../../resources/tablestyles/rep hdr row.css');" cellspacing="0">
+                                                        <col style="width: 113pt;" class="TableStyle-Rep_Hdr_Row-Column-Column1">
+                                                        <col style="width: 78pt;" class="TableStyle-Rep_Hdr_Row-Column-Column2">
+                                                        <col style="width: 127pt;" class="TableStyle-Rep_Hdr_Row-Column-Column1">
+                                                        <thead>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Head-Header1">
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column1-Header1">
+                                                                    <p class="p_4">Example</p>
+                                                                </th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column2-Header1">
+                                                                    <p class="p_4">Prefix</p>
+                                                                </th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadD-Column1-Header1">
+                                                                    <p class="p_4">Value</p>
+                                                                </th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyB-Column1-Body1">
+                                                                    <p class="p_4">Barcode No (Custom Field 500096)</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyB-Column2-Body1">
+                                                                    <p class="p_4">REQUEST:</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyA-Column1-Body1">
+                                                                    <p class="p_4">EXTFLDV_500096</p>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <p> </p>
+                                                    <h3>Request <span class="Bold">Custom Extension</span> Dropdown/List Box/Multi-Select</h3>
+                                                    <table class="TableStyle-Rep_Hdr_Row" style="margin-left: 0;margin-right: auto;width: 100%;mc-table-style: url('../../resources/tablestyles/rep hdr row.css');" cellspacing="0">
+                                                        <col style="width: 113pt;" class="TableStyle-Rep_Hdr_Row-Column-Column1">
+                                                        <col style="width: 78pt;" class="TableStyle-Rep_Hdr_Row-Column-Column2">
+                                                        <col style="width: 103pt;" class="TableStyle-Rep_Hdr_Row-Column-Column1">
+                                                        <col style="width: 97pt;" class="TableStyle-Rep_Hdr_Row-Column-Column2">
+                                                        <thead>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Head-Header1">
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column1-Header1">
+                                                                    <p class="p_4">Example</p>
+                                                                </th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column2-Header1">
+                                                                    <p class="p_4">Prefix</p>
+                                                                </th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column1-Header1">
+                                                                    <p class="p_4">Look Up Value in Request</p>
+                                                                </th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadD-Column2-Header1">
+                                                                    <p class="p_4">Assigned List</p>
+                                                                </th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyB-Column1-Body1">
+                                                                    <p class="p_4">Leave Type (Custom Field 500108)</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyB-Column2-Body1">
+                                                                    <p class="p_4">REQUEST:</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyB-Column1-Body1">
+                                                                    <p class="p_4">EXTFLDV_500108</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyA-Column2-Body1">
+                                                                    <p class="p_4">#EXTPROFILE50005</p>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <p> </p>
+                                                    <h3>Request <span class="Bold">Custom Extension</span> Single Value QD/Multiple Value QD</h3>
+                                                    <table class="TableStyle-Rep_Hdr_Row" style="margin-left: 0;margin-right: auto;width: 100%;mc-table-style: url('../../resources/tablestyles/rep hdr row.css');" cellspacing="0">
+                                                        <col style="width: 85pt;" class="TableStyle-Rep_Hdr_Row-Column-Column1">
+                                                        
+                                                        <col style="width: 78pt;" class="TableStyle-Rep_Hdr_Row-Column-Column2">
+                                                        
+                                                        <col style="width: 103pt;" class="TableStyle-Rep_Hdr_Row-Column-Column1">
+                                                        
+                                                        <col style="width: 97pt;" class="TableStyle-Rep_Hdr_Row-Column-Column2">
+                                                        
+                                                        <col style="width: 88pt;" class="TableStyle-Rep_Hdr_Row-Column-Column1">
+                                                        
+                                                        <thead>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Head-Header1">
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column1-Header1">
+                                                                    <p class="p_4">Example</p>
+                                                                </th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column2-Header1">
+                                                                    <p class="p_4">Prefix</p>
+                                                                </th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column1-Header1">
+                                                                    <p class="p_4">Look Up Value in Request</p>
+                                                                </th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column2-Header1">
+                                                                    <p class="p_4">Look Up Table</p>
+                                                                </th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadD-Column1-Header1">
+                                                                    <p class="p_4">Value</p>
+                                                                </th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyB-Column1-Body1">
+                                                                    <p class="p_4">Business Owner (Custom Field 500076)</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyB-Column2-Body1">
+                                                                    <p class="p_4">REQUEST:</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyB-Column1-Body1">
+                                                                    <p class="p_4">EXTFLDV_500076</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyB-Column2-Body1">
+                                                                    <p class="p_4">$AR_PERSON.</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyA-Column1-Body1">
+                                                                    <p class="p_4">DISPLAY</p>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <p> </p>
+                                                    <h2>Task Parameter Examples</h2>
+                                                    <h3>Task Text/Text Area/Numeric/Checkbox/Date Field</h3>
+                                                    <table class="TableStyle-Rep_Hdr_Row" style="margin-left: 0;margin-right: auto;width: 100%;mc-table-style: url('../../resources/tablestyles/rep hdr row.css');" cellspacing="0">
+                                                        <col style="width: 127pt;" class="TableStyle-Rep_Hdr_Row-Column-Column1">
+                                                        
+                                                        <col style="width: 101pt;" class="TableStyle-Rep_Hdr_Row-Column-Column2">
+                                                        
+                                                        <thead>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Head-Header1">
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column1-Header1">
+                                                                    <p class="p_4">Example</p>
+                                                                </th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadD-Column2-Header1">
+                                                                    <p class="p_4">Value</p>
+                                                                </th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyB-Column1-Body1">
+                                                                    <p class="p_4">Task Completion Date</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyA-Column2-Body1">
+                                                                    <p class="p_4">COMPLETION_DATE</p>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <p> </p>
+                                                    <h3>Task Dropdown/List Box/Multi-Select Field</h3>
+                                                    <table class="TableStyle-Rep_Hdr_Row" style="margin-left: 0;margin-right: auto;width: 100%;mc-table-style: url('../../resources/tablestyles/rep hdr row.css');" cellspacing="0">
+                                                        <col style="width: 113pt;" class="TableStyle-Rep_Hdr_Row-Column-Column1">
+                                                        
+                                                        <col style="width: 113pt;" class="TableStyle-Rep_Hdr_Row-Column-Column2">
+                                                        
+                                                        <col style="width: 113pt;" class="TableStyle-Rep_Hdr_Row-Column-Column1">
+                                                        
+                                                        <thead>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Head-Header1">
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column1-Header1">
+                                                                    <p class="p_4">Example</p>
+                                                                </th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column2-Header1">
+                                                                    <p class="p_4">Look Up Value in Task</p>
+                                                                </th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadD-Column1-Header1">
+                                                                    <p class="p_4">Look Up Table</p>
+                                                                </th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyB-Column1-Body1">
+                                                                    <p class="p_4">Request Status on Completion</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyB-Column2-Body1">
+                                                                    <p class="p_4">REQ_STATUS</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyA-Column1-Body1">
+                                                                    <p class="p_4">$CR_REQ_STATUS</p>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <p> </p>
+                                                    <h3>Task QD Linked Field</h3>
+                                                    <table class="TableStyle-Rep_Hdr_Row" style="margin-left: 0;margin-right: auto;width: 100%;mc-table-style: url('../../resources/tablestyles/rep hdr row.css');" cellspacing="0">
+                                                        <col style="width: 67pt;" class="TableStyle-Rep_Hdr_Row-Column-Column1">
+                                                        
+                                                        <col style="width: 95pt;" class="TableStyle-Rep_Hdr_Row-Column-Column2">
+                                                        
+                                                        <col style="width: 121pt;" class="TableStyle-Rep_Hdr_Row-Column-Column1">
+                                                        
+                                                        <col style="width: 101pt;" class="TableStyle-Rep_Hdr_Row-Column-Column2">
+                                                        
+                                                        <thead>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Head-Header1">
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column1-Header1">
+                                                                    <p class="p_4">Example</p>
+                                                                </th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column2-Header1">
+                                                                    <p class="p_4">Look Up Value in Request</p>
+                                                                </th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column1-Header1">
+                                                                    <p class="p_4">Look Up Table</p>
+                                                                </th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadD-Column2-Header1">
+                                                                    <p class="p_4">Value</p>
+                                                                </th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyB-Column1-Body1">
+                                                                    <p class="p_4">Owned BY</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyB-Column2-Body1">
+                                                                    <p class="p_4">CURRENT_REF</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyB-Column1-Body1">
+                                                                    <p class="p_4">$AR_PERSON.</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyA-Column2-Body1">
+                                                                    <p class="p_4">DISPLAY</p>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <h2>
+<a name="Passing2"></a>Passing Variables to PowerShell</h2>
+                                                    <p class="prereq"> You may need to update the execution policy: <a href="https://technet.microsoft.com/en-us/library/hh849812.aspx">https://technet.microsoft.com/en-us/library/hh849812.aspx</a><br>Try the RemoteSigned policy first or seek advice from your security team on the implications of this.
+
+</p>
+                                                    <ol>
+                                                        <li value="1">In the server console on the application server, expand your system name and create the external command in the server console.<a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="../../resources/images/powershell%20variables%201.png"><img class="MCPopupThumbnail img imgthumbnail" data-mc-width="380" data-mc-height="185" src="/storage/app/media/Help/images/powershell%20variables%201_thumb_0_48.png" tabindex=""></a>
+</li>
+                                                        <li value="2">In the workflow, add or locate the <a href="#" class="selected">Run External Procedure</a> task where you can specify the file name and the parameters to be passed. </li>
+                                                        <p class="tip">You can get field names is by going into <span class="GeneralVariablesDesignerName">ASM Designer</span> and opening an email template. Drop the field you are looking for onto the email and it will display its database name and reference. Then just close the email template without saving.
+</p>
+                                                        <p class="note">Make sure the parameter names you are passing (in this example one of them is –paramGroupName) is also an accepted parameter in the PowerShell file.
+<a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="../../resources/images/powershell%20variables%202.png"><img class="MCPopupThumbnail img imgthumbnail" data-mc-width="751" data-mc-height="165" src="/storage/app/media/Help/images/powershell%20variables%202_thumb_0_48.png" tabindex=""></a></p>
+                                                    </ol>
+                                                

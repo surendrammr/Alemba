@@ -1,0 +1,156 @@
+url = "/events/:slug"
+layout = "home"
+title = "Events"
+description = "Event detail page"
+is_hidden = 0
+meta_title = "Latest Events | ITSM News - Alemba"
+meta_description = "View upcoming IT Service Management industry events."
+robot_index = "index"
+canonical_url = "https://alemba.com/events"
+robot_follow = "follow"
+seoOptionsEnabledInSitemap = 1
+seoOptionsUseUpdatedAt = 1
+seoOptionsRobotIndex = "index"
+seoOptionsRobotFollow = "follow"
+seoOptionsChangefreq = "daily"
+seoOptionsPriority = 0.5
+seoOptionsModelClass = "Alemba\Alemba\Models\Event"
+seoOptionsModelParams = "slug:slug"
+seoOptionsModelScope = "active"
+==
+<?php
+use Alemba\Alemba\Models\Event;
+
+function onStart()
+{
+	// Get selected event
+
+	$this['event'] = Event::where('slug', $this->param('slug'))->first();
+
+	$this['heading'] = "Sorry!";
+	$this['subheading'] = "This page no longer exists.";
+	$this['breadcrumb'] = "Event detail";
+
+	if($this['event']) {
+
+		$this['heading'] = $this['event']->name;
+		$this['subheading'] = '<i class="fa fa-map-marker"></i>&nbsp;&nbsp;'.$this['event']->location.'&nbsp;&nbsp;&nbsp;&bull;&nbsp;&nbsp;&nbsp;'.$this['event']->full_dates;
+		$this['breadcrumb'] = $this['event']->name_short;
+
+		$this->page->title = "Events - ".$this['event']->name;
+
+	}
+
+}
+?>
+==
+<!-- Structured data -->
+
+{% if event %}
+
+	<script type="application/ld+json">
+
+		{{ event.schema|json_encode(constant('JSON_PRETTY_PRINT'))|raw }}
+
+	</script>
+
+{% endif %}
+
+{% if event and event.banner_image %}
+
+	<!-- banner -->
+
+	<div class="jumbotron jumbotron-fluid banner pageBanner" style="background-image:url('{{ event.banner_image|media }}')">
+        <div class="container">
+        
+        </div>
+	</div>
+	
+{% else %}
+
+    <div class="jumbotron jumbotron-fluid banner" style="background-image:url('{{ 'Banners/banner-sits16-laurence.jpg'|media }}')">
+        <div class="container">
+        
+        </div>
+	</div>
+
+{% endif %}
+
+<!-- /banner -->
+
+{% partial 'demo-button' %}
+
+<!-- copy -->
+<div class="container-fluid bkg-dark">
+    <div class="container copy">
+
+    	<header class="col-10 offset-1 copy-heading">
+
+
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{{ 'events'|page }}">Events</a></li>
+                    <li class="breadcrumb-item active">{{ breadcrumb }}</li>
+                </ol>
+            </nav>
+    		
+    	
+    		<h1>{{ heading }}</h1>
+    		<h2>{{ subheading|raw }}</h2>
+
+    	</header>
+
+    	<div class="row">
+
+    		<div class="col-10 offset-1 copy-main">
+
+    			{% if event %}
+
+    				<p class="lead">{{ event.intro }}</p>
+
+    				{{ event.text|md }}
+
+    				{% for image in event.images %}
+
+    					<div class="image full-width-image">
+
+    						<img src="{{ image.image|media }}" alt="{{ image.caption_heading }}" />
+    						<p class="caption"><strong>{{ image.caption_heading }}</strong> {{ image.caption_description }}</p>
+
+    					</div>
+    					
+    				{% endfor %}
+
+    			{% else %}
+
+    				<p class="lead">Go back to our <a href="{{ 'events'|page }}">Events</a> page.</p>
+
+    			{% endif %}
+
+    		</div>
+
+    	</div>
+
+    </div>
+</div>
+
+<!-- /copy -->
+
+<!-- copy-links -->
+<div class="container-fluid bkg-dark">
+    <div class="container copy">
+
+    	<div class="row">
+
+    		<div class="col-sm-12 text-center">
+
+    			<a href="{{ 'events'|page }}" class="button-link btn btn-outline pink">Back to Events</a></li>
+
+    		</div>
+
+    	</div>
+
+    </div>
+</div>
+
+<!-- /copy-links -->

@@ -1,0 +1,896 @@
+[viewBag]
+title = "Alemba API Programmers’ Guide"
+url = "/help/topics/alemba-api/aa-programmers-guide"
+layout = "help"
+is_hidden = 0
+navigation_hidden = 0
+==
+                                                    <h1>
+<span class="GeneralVariablesAPIName">Alemba API</span> Programmers’ Guide</h1>
+                                                    <h2>
+<a name="API"></a>API structure</h2>
+                                                    <p>The RESTful API is built on top of a schema that encompasses the primary data entities in the <span class="GeneralVariablesSystemName">ASM System</span>. Additionally a number of logical entities have been added that allow similar entities to be grouped together. The hierarchical structure allows sub-entities to inherit common properties, allowing for consistent meaning and behavior.</p>
+                                                    <p>The structure is indicated in the <a href="aa%20entity%20details.htm" class="MCXref xref">Alemba API Entity Details
+Pane
+</a>in the API explorer.</p>
+                                                    <h2>Languages</h2>
+                                                    <p>The API is platform independent - it can be accessed from any kind of web client, using a range of languages. The API Explorer provides language neutral examples of the structures sent and received as part of a web request/response, for each action, for each entity.</p>
+                                                    <h2>Authentication</h2>
+                                                    <p>The API uses standard oAuth 2.0 authentication, via /alemba.web/oauth/login.</p>
+                                                    <p>The authentication workflow issues a short-lived (10 minutes) Access Token and a longer-lived (24 hours) Refresh Token on Login. The Access Token is used for authentication on the REST API. The Refresh Token is used to renew the Access Token and therefore maintain the session. The Refresh Token allocates a <span class="GeneralVariablesCoreName">ASM Core</span> Session and consumes a licence.</p>
+                                                    <p>The process is illustrated as follows, flowing from the top downwards. <img src="/storage/app/media/Help/images/alemba%20api/aa%20auth%20process.jpg" class="screenshot"></p>
+                                                    <p>When the Refresh Token is used to renew an Access Token, a new Refresh Token is also issued, and the <span class="GeneralVariablesCoreName">ASM Core</span> Session is extended. The used Refresh Token becomes invalid and should be discarded. Clients should store the new Refresh Token for subsequent usage. If the <span class="GeneralVariablesCoreName">ASM Core</span> Session expires or is removed, the Refresh Token will become invalid. If the Refresh Token expires, the <span class="GeneralVariablesCoreName">ASM Core</span> Session is terminated.</p>
+                                                    <p>The single use Refresh Token and short lived Access Token ensures that compromised tokens quickly become invalid - protecting the security of individual users, and preventing unauthorized Access Token reuse.</p>
+                                                    <p>The Access Token must be presented in the Authorization header of the HTTP request:</p>
+                                                    <p class="indent"><i>Authorization: Bearer &lt;Access Token&gt;</i>
+                                                    </p>
+                                                    <p>Note that the Authorization service supports the following oAuth 2.0 Grant Types:</p>
+                                                    <ul>
+                                                        <li value="1">authorization_code – Authenticate using Single Sign On (SSO), for Windows authentication and SAML      </li>
+                                                        <li value="2">client_credentials – Authenticate using integrated security  for anonymous access to the API, not full access</li>
+                                                        <li value="3">      password – Authenticate using a username and password</li>
+                                                        <li value="4">        refresh_token – Authenticate using an existing Refresh Token</li>
+                                                    </ul>
+                                                    <h2>Logging in</h2>
+                                                    <p>Below is an example of the code used to login with a username and password.</p>
+                                                    <p class="tip">For more information on client ids, see <a href="../authentication/configuring%20authentication.htm" class="MCXref xref">Configuring Authentication for the Alemba API</a>.</p> <p class="codefont">function passwordLogin()  {</p>
+<div class="code">var args = {<p class="codeindent">client_id: "clientid",</p>
+<p class="codeindent">grant_type: "password",</p>
+<p class="codeindent">scope: "scope",</p>
+<p class="codeindent">password: "username",</p>
+<p class="codeindent">username: "password"</p>
+<p class="codefont">var xhr = $.ajax({</p>
+<p class="codeindent">url: 'alemba.web/oauth/login',</p>
+<p class="codeindent">type: "POST",</p>
+<p class="codeindent">data: args,</p>
+<p class="codeindent">contentType: 'application/x-www-form-urlencoded'</p>
+<p class="codeindent">});</p>
+<p class="codeindent">xhr.done(onGrantSuccess).fail(function (err) { return onGrantFailure(err, "password"); });</p>
+<p class="codeindent">return xhr;</p>}</div>
+<p> </p>
+<p>Or, to refresh your access token:</p>
+<p class="codefont">function refreshTokenLogin(refreshToken) {</p>
+<div class="code">var args = {<p class="codeindent">client_id: "clientid",grant_type: "refresh_token",scope: "scope",refresh_token: refreshToken</p>
+<p class="codefont">};</p>
+<p class="codefont">var xhr = $.ajax({</p>
+<p class="codeindent">url: 'alemba.web/oauth/login',<br>type: 'POST',<br>data: args,contentType: 'application/x-www-form-urlencoded'</p>
+<p class="codefont">});</p>
+<p class="codefont">xhr.done(onGrantSuccess).fail(function (err) {</p>
+<p class="codeindent">if (err.status == 401) {</p>
+<p class="codeindent">}</p>
+<p class="codeindent">else {</p>
+<p class="codeindent">onGrantFailure(err, "refresh_token");</p>
+<p class="codeindent">}</p>
+<p class="codefont">});</p>
+<p class="codefont">return xhr;</p>}</div>
+<p class="warning"><b>scope</b> should be set to <b>session-type:Analyst</b> or <b>session-type:User</b>. It is case sensitive.</p>
+<h2>Login Responses</h2>
+<p>For successful Logins the response will be:</p>
+<div class="code">{<p class="codeindent">expires_in: number,    // number of seconds until access_token expiry</p>
+<p class="codeindent">access_token: string,  // token used for data access</p>
+<p class="codeindent">refresh_token: string, // token used for access_token renewal</p>
+<p class="codeindent">scope: string,         // The actual scope of the token</p>
+<p> </p>}​</div>
+<p class="warning">Note that there is a new refresh_token in the response. The old one will no longer work and must be discarded. It is acceptable to renew your access_token before it is due to expire, but you must not do so with every request.</p>
+<p>If the authorization request is not successful, clients can expect to receive a suitable HTTP response code  and JSON formatted data containing an error code.</p>
+<p>The response data may also include error_description, which gives the developer a clue as to the precise cause of the failure.</p>{<p class="codeindent">error: string,              // one of the oauth 2.0 error codes</p>
+<p class="codeindent">error_description: string,  // a description of the error if applicable</p>}​<p>In these cases, the response is deliberately vague so as to protect the integrity of the authorization server.</p>
+<table style="width: 100%;mc-table-style: url('../../resources/tablestyles/rep hdr row no break.css');margin-left: 0;margin-right: auto;" class="TableStyle-Rep_Hdr_Row_no_break" cellspacing="0">
+<col class="TableStyle-Rep_Hdr_Row_no_break-Column-Column1">
+<col class="TableStyle-Rep_Hdr_Row_no_break-Column-Column1">
+<col class="TableStyle-Rep_Hdr_Row_no_break-Column-Column1">
+<thead><tr class="TableStyle-Rep_Hdr_Row_no_break-Head-Header1">
+<th class="TableStyle-Rep_Hdr_Row_no_break-HeadE-Column1-Header1"><p>HTTP Status Code</p></th>
+<th class="TableStyle-Rep_Hdr_Row_no_break-HeadE-Column1-Header1"><p>Error Code</p></th>
+<th class="TableStyle-Rep_Hdr_Row_no_break-HeadD-Column1-Header1"><p>Reasons</p></th>
+</tr></thead>
+<tbody>
+<tr class="TableStyle-Rep_Hdr_Row_no_break-Body-Body1">
+<td class="TableStyle-Rep_Hdr_Row_no_break-BodyE-Column1-Body1"><p>401</p></td>
+<td class="TableStyle-Rep_Hdr_Row_no_break-BodyE-Column1-Body1"><p>invalid_client</p></td>
+<td class="TableStyle-Rep_Hdr_Row_no_break-BodyD-Column1-Body1"><p>The client_id is incorrect or the client is not enabled</p></td>
+</tr>
+<tr class="TableStyle-Rep_Hdr_Row_no_break-Body-Body1">
+<td class="TableStyle-Rep_Hdr_Row_no_break-BodyB-Column1-Body1"><p>​400</p></td>
+<td class="TableStyle-Rep_Hdr_Row_no_break-BodyB-Column1-Body1"><p>invalid_grant</p></td>
+<td class="TableStyle-Rep_Hdr_Row_no_break-BodyA-Column1-Body1"><p>The credentials are not correct, the user is not allowed to login</p></td>
+</tr>
+</tbody>
+</table>
+<p>If you receive a 401 response, it is because your access token has expired, and you must refresh it using the refresh token. If you receive a 401 response when using a refresh token, you must login again with username and password.</p>
+<h2>Logging out</h2>
+<p>You can logout as follows:</p>
+<div class="code">function logout() {<p class="codeindent">var deferred = $.Deferred();</p>
+<p class="codeindent">var args = {</p>
+<p class="codeindent1">token: exports.grant.refresh_token</p>
+<p class="codeindent">};</p>
+<p class="codeindent">var xhr = $.ajax({</p>
+<p class="codeindent1">url: 'alemba.web/oauth/login',</p>
+<p class="codeindent1">type: "POST",</p>
+<p class="codeindent1">data: args,</p>
+<p class="codeindent1">contentType: 'application/x-www-form-urlencoded',</p>
+<p class="codeindent1">headers: {</p>
+<p class="codeindent2">"Authorization": "Bearer " + exports.grant.access_token</p>
+<p class="codeindent1">}</p>
+<p class="codeindent">});</p>
+<p class="codeindent">xhr.done(function () {</p>
+<p class="codeindent1">//Logout success</p>
+<p class="codeindent1">deferred.resolve();</p>
+<p class="codeindent">}).fail(function (err) {</p>
+<p class="codeindent1">switch (err.status) {</p>
+<p class="codeindent2">case 404:</p>
+<p class="codeindent3">deferred.resolve();</p>
+<p class="codeindent3">break;</p>
+<p class="codeindent2">case 400:</p>
+<p class="codeindent3">deferred.reject("Invalid token");</p>
+<p class="codeindent3">break;</p>
+<p class="codeindent2">case 401:</p>
+<p class="codeindent3">refreshTokenLogin(exports.grant.refresh_token).done(function () {</p>
+<p class="codeindent4">//We've successfully refreshed the access token</p>
+<p class="codeindent4">//Now we can try to invalidate the refresh token again</p>
+<p class="codeindent4">logout().done(function () {</p>
+<p class="codeindent4">deferred.resolve();</p>
+<p class="codeindent4">}).fail(function (err) {</p>
+<p class="codeindent5">//Logout is still not working.</p>
+<p class="codeindent5">//The session may still be active and may still be consuming a license.</p>
+<p class="codeindent5">//The session can be terminated by an administrator from logon control, so this error should be reported</p>
+<p class="codeindent5">deferred.reject(err);</p>
+<p class="codeindent4">});</p>
+<p class="codeindent3">}).fail(function () {</p>
+<p class="codeindent4">//If you cant log in its because the refresh token has expired.</p>
+<p class="codeindent4">//This can be considered a successful logout</p>
+<p class="codeindent4">deferred.resolve();</p>
+<p class="codeindent3">});</p>
+<p class="codeindent3">break;</p>
+<p class="codeindent2">case 403: //Not allowed, probably because the refresh token is not related to the access token</p>
+<p class="codeindent2">default:</p>
+<p class="codeindent3">deferred.reject(err.responseJSON.Message);</p>
+<p class="codeindent3">break;</p>
+<p class="codeindent2">}</p>
+<p class="codeindent1">});</p>
+<p class="codeindent1">return deferred.promise();</p>
+<p>}​</p>
+</div>
+<h2>Logout Responses</h2>
+<p>Logout will give one of the following responses:</p>
+<table style="width: 100%;margin-left: 0;margin-right: auto;mc-table-style: url('../../resources/tablestyles/rep hdr row no break.css');" class="TableStyle-Rep_Hdr_Row_no_break" cellspacing="0">
+<col class="TableStyle-Rep_Hdr_Row_no_break-Column-Column1">
+<col class="TableStyle-Rep_Hdr_Row_no_break-Column-Column1">
+<thead><tr class="TableStyle-Rep_Hdr_Row_no_break-Head-Header1">
+<th class="TableStyle-Rep_Hdr_Row_no_break-HeadE-Column1-Header1">Response</th>
+<th class="TableStyle-Rep_Hdr_Row_no_break-HeadD-Column1-Header1">Meaning</th>
+</tr></thead>
+<tbody>
+<tr class="TableStyle-Rep_Hdr_Row_no_break-Body-Body1">
+<td class="TableStyle-Rep_Hdr_Row_no_break-BodyE-Column1-Body1">200</td>
+<td class="TableStyle-Rep_Hdr_Row_no_break-BodyD-Column1-Body1">Logged out successfully</td>
+</tr>
+<tr class="TableStyle-Rep_Hdr_Row_no_break-Body-Body1">
+<td class="TableStyle-Rep_Hdr_Row_no_break-BodyE-Column1-Body1">400</td>
+<td class="TableStyle-Rep_Hdr_Row_no_break-BodyD-Column1-Body1"> Token invalid or missing</td>
+</tr>
+<tr class="TableStyle-Rep_Hdr_Row_no_break-Body-Body1">
+<td class="TableStyle-Rep_Hdr_Row_no_break-BodyE-Column1-Body1"><p>401</p></td>
+<td class="TableStyle-Rep_Hdr_Row_no_break-BodyD-Column1-Body1">Not authorized because it’s not been possible to validate your ownership of the refresh token. In this case you must refresh the access token and try again</td>
+</tr>
+<tr class="TableStyle-Rep_Hdr_Row_no_break-Body-Body1">
+<td class="TableStyle-Rep_Hdr_Row_no_break-BodyE-Column1-Body1">403</td>
+<td class="TableStyle-Rep_Hdr_Row_no_break-BodyD-Column1-Body1">That refresh token doesn’t belong to you</td>
+</tr>
+<tr class="TableStyle-Rep_Hdr_Row_no_break-Body-Body1">
+<td class="TableStyle-Rep_Hdr_Row_no_break-BodyB-Column1-Body1">404</td>
+<td class="TableStyle-Rep_Hdr_Row_no_break-BodyA-Column1-Body1">The refresh token is valid but has already been removed. Maybe you logged in elsewhere</td>
+</tr>
+</tbody>
+</table>
+<h2>Base RESTful API methods</h2>
+<p>The following HTTP verbs are used by the API to perform the listed actions.</p>
+<table style="width: 100%;mc-table-style: url('../../resources/tablestyles/fielddesc.css');margin-left: 0;margin-right: auto;" class="TableStyle-FieldDesc" cellspacing="0">
+<col class="TableStyle-FieldDesc-Column-Column1">
+<col class="TableStyle-FieldDesc-Column-Column2">
+<tbody>
+<tr>
+<td class="TableStyle-FieldDesc-BodyH-Column1-">Create </td>
+<td class="TableStyle-FieldDesc-BodyG-Column2-">POST</td>
+</tr>
+<tr>
+<td class="TableStyle-FieldDesc-BodyH-Column1-">Read </td>
+<td class="TableStyle-FieldDesc-BodyG-Column2-">GET</td>
+</tr>
+<tr>
+<td class="TableStyle-FieldDesc-BodyH-Column1-">Update </td>
+<td class="TableStyle-FieldDesc-BodyG-Column2-">PUT</td>
+</tr>
+<tr>
+<td class="TableStyle-FieldDesc-BodyB-Column1-">Delete </td>
+<td class="TableStyle-FieldDesc-BodyA-Column2-">DELETE<p class="note">The API supports delete where it is appropriate, including delete for attachments and person images (avatars)</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h2>A programmatically discoverable API</h2>
+<p>The API can be used to return information about itself, in the form of hypermedia – machine readable descriptions and links to further similar information, allowing a developer to progressively explore the breadth and depth of the API for themselves. What is more, these descriptions are used by the API itself, guaranteeing that this “documentation” is always current.</p>
+<p>For example, to discover root level information on the scope of the API, invoke</p>
+<p><b>http://localhost/alemba.api/api?$metadata&amp;$options</b></p>
+<p>Note that this response will also be returned for any request which does not specify a resource, for example:</p>
+<p class="codefont">GET http://localhost/alemba.api</p>
+<p class="codefont">GET http://localhost/alemba.api/api</p>
+<p class="codefont">GET http://localhost/alemba.api/api/v1</p>
+<p>​</p>
+<p>The metadata will be returned in JSON format and will contain links to the metadata for top level entities exposed by the API, for example:</p>
+<div class="code">{<p class="codeindent">"_links": {</p>
+<p class="codeindent1">"Approval": [</p>
+<p class="codeindent2">{</p>
+<p class="codeindent3">"_self": "api:v1/approval/$metadata"</p>
+<p class="codeindent2">}</p>
+<p class="codeindent1">],</p>
+<p class="codeindent1">"Call": [</p>
+<p class="codeindent2">{</p>
+<p class="codeindent3">"_self": "api:v1/call/$metadata"</p>
+<p class="codeindent2">}</p>
+<p class="codeindent1">],</p>
+<p class="codeindent1">...</p>
+<p class="codeindent">},</p>
+<p class="codeindent">"description": "A description of the API, the links at this level and the ResourceDescriptor response type."</p>
+<p>}</p>
+<p> </p>
+</div>
+<p>​All metadata responses may include the following properties:</p>
+<table style="width: 100%;mc-table-style: url('../../resources/tablestyles/fielddesc.css');margin-left: 0;margin-right: auto;" class="TableStyle-FieldDesc" cellspacing="0">
+<col class="TableStyle-FieldDesc-Column-Column1">
+<col class="TableStyle-FieldDesc-Column-Column2">
+<tbody>
+<tr>
+<td class="TableStyle-FieldDesc-BodyH-Column1-">children</td>
+<td class="TableStyle-FieldDesc-BodyG-Column2-">An array of descendant types for the current response<p class="exampletext">Call may list children including Incident</p>
+<p>The metadata for each child only includes "_self"</p>
+</td>
+</tr>
+<tr>
+<td class="TableStyle-FieldDesc-BodyH-Column1-"><p>description</p></td>
+<td class="TableStyle-FieldDesc-BodyG-Column2-"><p>A description of the current metadata response</p></td>
+</tr>
+<tr>
+<td class="TableStyle-FieldDesc-BodyH-Column1-"><p>name</p></td>
+<td class="TableStyle-FieldDesc-BodyG-Column2-"><p>The name of the entity that is the subject of the metadata response</p></td>
+</tr>
+<tr>
+<td class="TableStyle-FieldDesc-BodyB-Column1-"><p>properties</p></td>
+<td class="TableStyle-FieldDesc-BodyA-Column2-"><p>An array of property descriptions for the subject entity. These properties provide the minimum information required to understand the data model and basic constraints.</p></td>
+</tr>
+</tbody>
+</table>
+<p>Each entry in the array may include the following properties:</p>
+<table style="width: 100%;mc-table-style: url('../../resources/tablestyles/fielddesc.css');margin-left: 0;margin-right: auto;" class="TableStyle-FieldDesc" cellspacing="0">
+<col class="TableStyle-FieldDesc-Column-Column1">
+<col class="TableStyle-FieldDesc-Column-Column2">
+<tbody>
+<tr>
+<td class="TableStyle-FieldDesc-BodyH-Column1-"><p>name</p></td>
+<td class="TableStyle-FieldDesc-BodyG-Column2-">The name of the entity property</td>
+</tr>
+<tr>
+<td class="TableStyle-FieldDesc-BodyH-Column1-"><p>displayName</p></td>
+<td class="TableStyle-FieldDesc-BodyG-Column2-">The default display name of the property. This could be used in table column headers or form fields</td>
+</tr>
+<tr>
+<td class="TableStyle-FieldDesc-BodyB-Column1-"><p>type</p></td>
+<td class="TableStyle-FieldDesc-BodyA-Column2-">
+<p>A description of the data type of this property. The type property is a complex type which has the following properties:</p>
+<table style="width: 100%;mc-table-style: url('../../resources/tablestyles/fielddesc no indent.css');margin-left: 0;margin-right: auto;" class="TableStyle-FieldDesc_no_indent" cellspacing="0">
+<col class="TableStyle-FieldDesc_no_indent-Column-Column1">
+<col class="TableStyle-FieldDesc_no_indent-Column-Column2">
+<tbody>
+<tr>
+<td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-"><p>displayTypes</p></td>
+<td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-"><p>The suggested display types for this property</p></td>
+</tr>
+<tr>
+<td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-"><p>dataType</p></td>
+<td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-"><p>The type of data this property represents</p></td>
+</tr>
+<tr>
+<td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-"><p>class</p></td>
+<td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-"><p>The kind of property</p></td>
+</tr>
+<tr>
+<td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-"><p>description</p></td>
+<td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">A description of the purpose of the property</td>
+</tr>
+<tr>
+<td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-"><p>usage</p></td>
+<td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-"><p>Internal when the property is used for internal business logic, otherwise Public</p></td>
+</tr>
+<tr>
+<td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-"><p>isKey</p></td>
+<td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-"><p>The property represents the unique identifier (primary key) for the entity</p></td>
+</tr>
+<tr>
+<td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-"><p>noSearch</p></td>
+<td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-"><p>When true, this property is not supported in searches</p></td>
+</tr>
+<tr>
+<td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-"><p>defaultValue</p></td>
+<td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-"><p>An indication of the default value for this property</p></td>
+</tr>
+<tr>
+<td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-"><p>length</p></td>
+<td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-"><p>The maximum length of this field. Text fields only</p></td>
+</tr>
+<tr>
+<td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-"><p>uppercase</p></td>
+<td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">
+<p>When true, this indicates that the Text value will be capitalized. </p>
+<p class="warning">Non capitalized input may cause validation errors in a future release.</p>
+</td>
+</tr>
+<tr>
+<td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-"><p>status</p></td>
+<td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-"><p>Indicates the current release status of the subject entity. "Alpha", "Beta", "GA"</p></td>
+</tr>
+<tr>
+<td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-"><p>_actions</p></td>
+<td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-"><p>A hash map of action name and an array of action metadata</p></td>
+</tr>
+<tr>
+<td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-"><p>_context</p></td>
+<td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-"><p>A reference to the entity metadata of a record or of the metadata of the parent of the subject entity</p></td>
+</tr>
+<tr>
+<td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-"><p>_links</p></td>
+<td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-"><p>A hash map of name and an array of link metadata. These links must be requested using the http verb GET</p></td>
+</tr>
+<tr>
+<td class="TableStyle-FieldDesc_no_indent-BodyB-Column1-"><p>_self</p></td>
+<td class="TableStyle-FieldDesc_no_indent-BodyA-Column2-">A reference to the current response link and action metadata will always include a link to _self and will often include an "href" property</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+<p> </p>
+<p>The "href" may be templated, as denoted by the syntax {id}. The templated values must be replaced by the client.</p>
+<p class="exampletext">{id} in "api:v1/call/{id}" should be replaced with the Ref of a call.</p>
+<p>{id} always indicates the primary key field for the target entity. All other entity properties may also be referenced in the template. e.g. {Partition} where Partition is the name of the property in the entity referenced by "_context".</p>
+<p>"_context" and "_self" will always define a medialink to an API resource. For brevity, the links are prefixed with "api:"</p>
+<p>Clients should replace this prefix with the actual API base url</p>
+<p class="exampletext"> Given an api base url of http://web-server/core-system/alemba.api/api, api:v1/call/$metadata should be interpreted as http://web-server/core-system/alemba.api/api/v1/call/$metadata</p>
+<p>All API medialinks can be invoked using the $options suffix.</p>
+<p>These links can then be followed to explore further details about the entity, what it is and what it can do.</p>
+<p>All API entities support simple and predictable RESTful actions.</p>
+<p class="exampletext">"api:v1/call" supports GET for searching and POST for create</p>
+<p class="exampletext">"api:v1/call/1​" supports PUT for update and GET to get that instance of a call.</p>
+<h2>Discovering the entity actions</h2>
+<p>Many entities also support more complex actions, such as forward.</p>
+<p>These actions are typically accessed using "<b>api:v1/call/1/forward</b>"</p>
+<p>Details of the required inputs and supported HTTP method can be found in the metadata for that action.</p>
+<p>For example the Call Create action metadata can be accessed with</p>
+<p><b>http://localhost/alemba.api/api/call/$create?$options</b></p>
+<p>This metadata gives you info about the Create action, including a list of mandatory and optional properties and parameters.  $create in the above example can be substituted with any action that is supported by the Call entity.</p>
+<p>What is more, you can use the same principles not just as an aid to programming, but at runtime too. The metadata that is returned about a specific object contains links for the list of actions for that object instance in its current state. (An exception is the Search action, which will only return links to the relevant Get action for each record.) For example you will only see the Reopen action if a Call is in a closed state.</p>
+<h2>
+<a name="Searchin"></a>Searching</h2>
+<p>The Rest API supports expressive searching of most entities</p>
+<p>The query parameters and syntax applies to all Search actions for all entities.​</p>
+<p>To start, it is possible to simple request a resource using HTTP GET.</p>
+<p><b>​GET api:v1/call</b></p>
+<p>This will return a reference to all accessible calls in JSON format</p>
+<div class="code">{<p class="codeindent">"results": [</p>
+<p class="codeindent1">{</p>
+<p class="codeindent2">"_context": "api:v1/call/$metadata",</p>
+<p class="codeindent2">"_self": "api:v1/call/3"</p>
+<p class="codeindent1">},</p>
+<p class="codeindent1">{</p>
+<p class="codeindent2">"_context": "api:v1/incident/$metadata",</p>
+<p class="codeindent2">"_self": "api:v1/incident/4"</p>
+<p class="codeindent1">}</p>
+<p class="codeindent">],</p>
+<p class="codeindent">"_self": "api:v1/call?$top=2147483647",</p>
+<p class="codeindent">"__count": 275</p>}</div>
+<p> </p>
+<p>The response contains the following properties</p>
+<ul>
+<li value="1">"results": This is an array of search results. Each result will always include a _context url (so you know what it is) and a _self url (so you know how to get that item).</li>
+<li value="2">​"_self": This is a url refering to the current response​</li>
+</ul>
+<p>Notice that the _self url includes a query string parameter</p>
+<p class="codeindent">$top=2147483647​</p>
+<p>The search actually ran without any row limit. It will try to return every row (accessible to the current session).</p>
+<p>This query string parameter is added to the response as a hint.</p>
+<h2>Paging</h2>
+<p>The Rest API supports flexible paging of search results.</p>
+<p><b>$top</b> accepts a positive signed integer value (Int32) and is used to define a row count.</p>
+<p class="codefont">GET api:v1/call​?$top=30</p>
+<p>This will limit the response to the top 30 records. If you don’t explicitly specify the row count, then it will default to $top=100.</p>
+<p><b>$orderby</b> accepts a comma separated list of property names and optional sort direction (see $select for more details on property names) and is used to define the order of the results​</p>
+<p class="codefont">​GET api:v1/call​?$orderby=Ref​</p>
+<p>This will return all Calls ordered by Ref</p>
+<p> </p>
+<p>By default the orderby clause will be applied in ascending order, but this can be overridden</p>
+<p>​​​GET api:v1/call​?$orderby=Ref​ asc</p>
+<p>This will return all Calls ordered by Ref in ascending order</p>
+<p>GET api:v1/call​?$orderby=Ref​ desc</p>
+<p>This will return all Calls ordered by Ref​ in descending order</p>
+<p> </p>
+<p><b>$skip</b> accepts a positive signed integer value (Int32) and is used to define a number of rows to skip</p>
+<p class="exampletext"><code>GET api:v1/call​?$top=30</code></p>
+<p>This will limit the response to the top 30 records</p>
+<p>and <code>GET api:v1/call​?$skip=30&amp;$top=30</code></p>
+<p>This will skip the first 30 records and return the next 30 (ie rows 31 to 60)</p>
+<p> </p>
+<p>These parameters can be combined (in any order) to control page size and contents</p>
+<p class="exampletext"><code>GET api:v1/call​?$top=30&amp;$skip=30&amp;$orderby=Ref​ desc</code></p>
+<p>This will return the top 30 Calls ordered by Ref in descending order</p>
+<p> </p>
+<p>The API also supports <b>counting</b>, which can be used to calculate the total number of pages</p>
+<p><b>$count</b> must be set to true and is used to instruct the api to return a count only</p>
+<p class="codefont">GET api:v1/call​?$count=true</p>
+<p>This will return a text/plain response containing a number which represents the total number of rows.</p>
+<p> </p>
+<p>Alternatively, <b>$inlinecount</b> can be used to have the count be returned with a set of results</p>
+<p class="codefont">GET api:v1/call​?$top=30&amp;$inlinecount=true</p>
+<div class="code">{<p class="codeindent">"results": [</p>
+<p class="codeindent1">{</p>
+<p class="codeindent2">"_context": "api:v1/call/$metadata",</p>
+<p class="codeindent2">"_self": "api:v1/call/3"</p>
+<p class="codeindent1">},</p>
+<p class="codeindent1">{</p>
+<p class="codeindent2">"_context": "api:v1/incident/$metadata",</p>
+<p class="codeindent2">"_self": "api:v1/incident/4"</p>
+<p class="codeindent1">}</p>
+<p class="codeindent">],</p>
+<p class="codeindent">"_self": "api:v1/call?$top=2147483647",</p>
+<p class="codeindent">"__count": 275</p>
+<p>}</p>
+</div>
+<p class="note">Note that "__count" is included in the response body.​</p>
+<p>​</p>
+<h3>Best Practice</h3>
+<p>Use of these paging features is critical for individual client and application wide performance and should be utilized by all API consumers for all searches.</p>
+<p>Even where it is assumed that there are only a handful of records.</p>
+<p>Using <b>$inlinecount</b> results in two executions of the database query; one to get the count; and one to get the result set. Therefore it is important that this parameter is not added to every request.​</p>
+<h2>Selecting columns​</h2>
+<p>The Rest API supports configurable column selection in search results.</p>
+<p><b>$select</b> accepts a comma separated list of property paths to include in the search results</p>
+<p class="codefont">GET api:v1/call​?$select=Ref,Description​​</p>
+<p>This instructs the API to include Ref and Description in the search results​</p>
+<p> </p>
+<div class="code">{<p class="codeindent">"results": [</p>
+<p class="codeindent1">{</p>
+<p class="codeindent2">"Ref": 3,</p>
+<p class="codeindent2">"Description": "Microsoft Windows 2000 needs to be installed across all client machines.",</p>
+<p class="codeindent2">"_context": "api:v1/call/$metadata",</p>
+<p class="codeindent2">"_self": "api:v1/call/3"</p>
+<p class="codeindent1">},</p>
+<p class="codeindent1">{</p>
+<p class="codeindent2">"Ref": 4,</p>
+<p class="codeindent2">"Description": "Cannot access intranet.",</p>
+<p class="codeindent2">"_context": "api:v1/incident/$metadata",</p>
+<p class="codeindent2">"_self": "api:v1/incident/4"</p>
+<p class="codeindent1">}</p>
+<p class="codeindent">],</p>
+<p class="codeindent">"_self": "api:v1/call?$select=Ref,Description&amp;$top=2147483647"</p>}</div>
+<p> </p>
+<p><b>Note that as well as retrieving properties from the entity, you can directly retrieve properties from related entities</b>. This is extremely powerful. In the Classic WCF API, you would first need to get the raw foreign key ref from the main entity and then do a lookup on the related one, or you would have to write your own custom query, including joining objects and ensuring that the related object is not locked. The RESTful API is built on an underlying schema that takes care of these complexities and allows you to get the data you need in the simplest possible way. In fact you can traverse the entity relationships as far as you need, so getting a call priority’s name can be achieved with:</p>
+<p class="codefont">GET api:v1/call​?$select=Ref,Description​​,Priority.Name</p>
+<div class="code">{<p class="codeindent">"Ref": 4,</p>
+<p class="codeindent">"Description": "Cannot access intranet."​,</p>
+<p class="codeindent">"Priority": {</p>
+<p class="codeindent1">"Name": "Priority 3",</p>
+<p class="codeindent1">"_context": "api:v1/call-priority/$metadata",</p>
+<p class="codeindent1">"_self": "api:v1/call-priority/3"</p>
+<p class="codeindent">},</p>
+<p class="codeindent">"_context": "api:v1/incident/$metadata",</p>
+<p class="codeindent">"_self": "api:v1/incident/4"</p>}</div>
+<p>Notice that the linked entity includes metadata links.</p>
+<p>This also applies to linked fields from linked relations.</p>
+<p class="codefont">​GET api:v1/call​?$select=Ref,Description​​,Service.Location.Name</p>
+<p>Returns</p>
+<div class="code">
+<p>{</p>
+<p class="codeindent">"Ref": 4,</p>
+<p class="codeindent">"Description": "Cannot access intranet.",</p>
+<p class="codeindent">"Service": {</p>
+<p class="codeindent1">"Location": {</p>
+<p class="codeindent1">"Name": "San Francisco",</p>
+<p class="codeindent1">"_context": "api:v1/location/$metadata",</p>
+<p class="codeindent1">"_self": "api:v1/location/9"</p>
+<p class="codeindent1">},</p>
+<p class="codeindent1">"_context": "api:v1/service/$metadata",</p>
+<p class="codeindent1">"_self": "api:v1/service/1"</p>
+<p class="codeindent">},</p>
+<p class="codeindent">"_context": "api:v1/incident/$metadata",</p>
+<p class="codeindent">"_self": "api:v1/incident/4"</p>
+<p>}</p>
+</div>
+<p> </p>
+<p>Property paths in $select can be aliased using a prefix to simplify the response</p>
+<p class="codefont">GET api:v1/call​?$select=Ref,Description​​,LocationName:Service.Location.Name​</p>
+<div class="code">{</div>
+<div class="code">"Ref": 4,</div>
+<div class="code">"Description": "Cannot access intranet.",</div>
+<div class="code">"LocationName": "San Francisco",</div>
+<div class="code">"_context": "api:v1/incident/$metadata",</div>
+<div class="code">"_self": "api:v1/incident/4"</div>
+<div class="code">}</div>
+<p> </p>
+<p>$select will also accept named Extension Augmenters</p>
+<p class="codefont">GET api:v1/call​?$select=Ref,@AssignmentState</p>
+<p>This will add the computed assignment state to the response ​​</p>
+<div class="code">{</div>
+<div class="code">"Ref": 4,</div>
+<div class="code">"AssignmentState": "Assigned to Me",</div>
+<div class="code">"_context": "api:v1/incident/$metadata",</div>
+<div class="code">"_self": "api:v1/incident/4"</div>
+<div class="code">}</div>
+<p> </p>
+<p>To help with orientation during development, $select will also accept *. This will return all properties for the entity.</p>
+<p class="codefont">$select=*</p>
+<p> </p>
+<h3>Best Practice</h3>
+<p>$select=* is only intended for development and should not be used in production.</p>
+<p>Selecting values from extension fields is supported, but carries a significant overhead and so should be avoided.</p>
+<h2>Filtering</h2>
+<p>​The Rest API supports expressive filtering of search results.</p>
+<p><b>$filter</b> accepts a C# LINQ style predicate which is translated to parameterized SQL and applied as a search filter</p>
+<p class="codefont">GET api:v1/call​?$filter=Priority==1</p>
+<p>This would return all accessible calls where the Priority is equal to 1</p>
+<h3>Equality Operators and Methods</h3>
+<p>All data types support basic equality comparison</p>
+<table style="width: 100%;mc-table-style: url('../../resources/tablestyles/fielddesc.css');margin-left: 0;margin-right: auto;" class="TableStyle-FieldDesc" cellspacing="0">
+<col class="TableStyle-FieldDesc-Column-Column1">
+<col class="TableStyle-FieldDesc-Column-Column2">
+<tbody>
+<tr>
+<td class="TableStyle-FieldDesc-BodyH-Column1-"><p>==</p></td>
+<td class="TableStyle-FieldDesc-BodyG-Column2-"><p>Is equal to</p></td>
+</tr>
+<tr>
+<td class="TableStyle-FieldDesc-BodyH-Column1-"><p>=</p></td>
+<td class="TableStyle-FieldDesc-BodyG-Column2-"><p>Is equal to</p></td>
+</tr>
+<tr>
+<td class="TableStyle-FieldDesc-BodyB-Column1-"><p>!=</p></td>
+<td class="TableStyle-FieldDesc-BodyA-Column2-"><p>Not equal to</p></td>
+</tr>
+</tbody>
+</table>
+<p>Binary data types support basic equality comparison but in practice, this can only be used to compare the property value with null.</p>
+<p class="codefont">GET api:v1/call/1/attachment​?$filter=BinaryData!=null</p>
+<p> </p>
+<p><b>Boolean</b> data types support basic equality operators</p>
+<p>When comparing with true or false, the right hand side of a boolean property equality expression can be omitted.</p>
+<p>Binary equality expressions can also be negated with !</p>
+<p class="codefont">GET api:v1/person​?$filter=IsLoggedIn==true</p>
+<p>is equivalent to</p>
+<p class="codefont">GET api:v1/person​?$filter=IsLoggedIn</p>
+<p>or</p>
+<p class="codefont">GET api:v1/person​?$filter=IsLoggedIn==false</p>
+<p>is equivalent to</p>
+<p class="codefont">GET api:v1/person​?$filter=!IsLoggedIn</p>
+<p> </p>
+<p><b>DateTime</b> data type filters must be used with one of the applicable augmenters</p>
+<p class="codefont">GET api:v1/call​?$filter=CreatedDate&gt;@DateTime(2017-01-01T00:00:00.000+1)</p>
+<p>This will return all Calls which were created after Midnight on January 1st 2017 (UTC+1)</p>
+<p>Note that the date value must be expressed in ISO8601 format</p>
+<p> </p>
+<p>The @Now augmenter can be used to compare a date value with the current time.</p>
+<p class="codefont">GET api:v1/call​?$filter=CreatedDate==@Now</p>
+<p>This is most useful where a query will be designed and then subsequently reused.</p>
+<p> </p>
+<p>The @NowOffset augmenter can be used to compare a date value with the current time and an offset expressed in days hours and minutes</p>
+<p class="codefont">GET api:v1/call​?$filter=CreatedDate&gt;@NowOffset(0,-1,-30)</p>
+<p>This will return Calls created in the last 0 days, 1 hours and 30 minutes (in the last hour and a half).</p>
+<p> </p>
+<p>As with all filters, the expressions can be combined using logical And (&amp;&amp;) and Or (||) operators</p>
+<p class="codefont">GET api:v1/call​?$filter=CreatedDate&gt;=@DateTime(2017-01-01T00:00:00.000+1)&amp;&amp;CreatedDate&lt;=@NowOffset(0,0,-30)​​</p>
+<p>This will return Calls created between Midnight on January 1st 2017 (UTC+1)​ and half an hour ago.</p>
+<p> </p>
+<p>Dates do not have to be defined in UTC format, but MUST include the timezone.</p>
+<p>If no timezone is supplied, dates are assumed to be in local server time.</p>
+<p> </p>
+<p><b>Text</b> and <b>RichText</b> data types support basic equality and can also be used with some string comparison methods</p>
+<p> </p>
+<p>The <b>Contains</b> method can be used to match records where a string property contains a word or phrase</p>
+<p class="codefont">GET api:v1/call​?$filter=ShortDescription.Contains("email")</p>
+<p> </p>
+<p>The <b>StartsWith</b> method can be used to match records where a string property starts with a word or phrase​</p>
+<p class="codefont">GET api:v1/call​?$filter=ShortDescription.StartsWith("email")</p>
+<p> </p>
+<p>​The <b>EndsWith</b> method can be used to match records where a string property ends with a word or phrase​​</p>
+<p class="codefont">GET api:v1/call​?$filter=ShortDescription.EndsWith("email")</p>
+<p> </p>
+<p>As with all filters, the expressions can be combined using logical <b>And (&amp;&amp;)</b> and <b>Or (||)</b> operators​</p>
+<p class="codefont">​GET api:v1/call​?$filter=hortDescription.Contains("email")||ShortDescription.StartsWith("outlook")</p>
+<p> </p>
+<p><b>Number</b> data types support more complex equality comparison operators</p>
+<table style="width: 100%;mc-table-style: url('../../resources/tablestyles/fielddesc.css');margin-left: 0;margin-right: auto;" class="TableStyle-FieldDesc" cellspacing="0">
+<col class="TableStyle-FieldDesc-Column-Column1">
+<col class="TableStyle-FieldDesc-Column-Column2">
+<tbody>
+<tr>
+<td class="TableStyle-FieldDesc-BodyH-Column1-"><p>&gt;</p></td>
+<td class="TableStyle-FieldDesc-BodyG-Column2-"><p>Greater than</p></td>
+</tr>
+<tr>
+<td class="TableStyle-FieldDesc-BodyH-Column1-"><p>&lt;</p></td>
+<td class="TableStyle-FieldDesc-BodyG-Column2-"><p>Less than</p></td>
+</tr>
+<tr>
+<td class="TableStyle-FieldDesc-BodyH-Column1-"><p>&gt;=</p></td>
+<td class="TableStyle-FieldDesc-BodyG-Column2-"><p>Greater than or equal to</p></td>
+</tr>
+<tr>
+<td class="TableStyle-FieldDesc-BodyB-Column1-"><p>&lt;=</p></td>
+<td class="TableStyle-FieldDesc-BodyA-Column2-"><p>Less than or equal to</p></td>
+</tr>
+</tbody>
+</table>
+<p class="codefont"> </p>
+<p class="codefont">GET api:v1/call​?$filter=Number1&gt;=3</p>
+<p> </p>
+<h3>Combining Expressions</h3>
+<p>Filter expressions can be combined using logical And (<code>&amp;&amp;</code>) and Or (<code>||</code>) operators​​ and can be grouped using ​parentheses <code>(</code> and <code>)</code></p>
+<p class="codefont">GET api:v1/call​?$filter=((Number1&gt;=3​||Number2==1)&amp;&amp;(Priority==3||Priority==1))||(CreatedDate&gt;@NowOffset(0,0,-30)​​​&amp;&amp;@IsAssignedToMe)</p>
+<p> </p>
+<p>​Note that query string parameter values must be url encoded</p>
+<p class="codefont">GET api:v1/call​?$filter=((Number1%3E%3D3%E2%80%8B%7C%7CNumber2%3D%3D1)%26%26(Priority%3D%3D3%7C%7CPriority%3D%3D1))%7C%7C(CreatedDate%3E%40NowOffset(0,0,-30)%E2%80%8B%E2%80%8B%E2%80%8B%26%26%40IsAssignedToMe)</p>
+<h2>
+<a name="Sorting"></a>Sorting</h2>
+<p>The API supports sorting using $order, and you can use several qualifiers, as illustrated in the following examples.</p>
+<p><code>$orderby=FirstName</code> would sort the result by the FirstName property in descending (a-z) order.</p>
+<p><code>$orderby=FirstName desc</code> would also sort the result by the FirstName property in descending (a-z) order.</p>
+<p><code>$orderby=FirstName asc</code> would sort the result by the FirstName property in ascending (z-a) order.</p>
+<p>It is also possible to specify multiple order properties:</p>
+<p><code>$orderby=FirstName, LastName asc</code> would sort the result by the FirstName property in descending (a-z) order and then sort by the LastName property in ascending (z-a) order, e.g. Andrew Anderson, John Smith, John Jones</p>
+<h2>
+<a name="Joining"></a>Joining</h2>
+<p>You can use <b>$leftJoin</b> and <b>$innerJoin</b> to link to entities that are not already linked as part of the schema definition. This is the case with entities that have multi-column keys e.g. CallHistory, which has a composite key of Ref and LastHistoryOrder. Once you create such a join, you will want to refer to properties of that joined entity, so part of the definition of the join is an alias for that join, in the format</p>
+<p style="font-weight: bold;">Alias:TargetEntity(TargetProperty==SourceProperty)</p>
+<p>… where the clause in brackets can occur multiple times. For example:</p>
+<p style="font-weight: bold;">&amp;$leftJoin=LastAction:CallHistory(TicketId==Ref &amp;&amp; Order==LastHistoryOrder)</p>
+<p>You can then use the alias in your select clause just as if it were a property of the entity with a Data Type that is the target entity, e.g. LastAction.Description.</p>
+<p>Note that this technique should be used sparingly, because as with extension fields the relationship is not indexed and so may result in reduced performance.</p>
+<h2>Case sensitivity</h2>
+<p class="warning">Everything after any of the $ functions above is case sensitive.</p>
+<h2>Security</h2>
+<h3>Handling partitions</h3>
+<p>Where entities are Partitioned, the results returned are automatically limited to those in partitions accessible to the current session.  Therefore it is not necessary to apply partition filtering, however if desired, a specific partition can be specified in one of two ways.</p>
+<ul>
+<li value="1">
+<b>$filter=Partition==1</b> will return records where the Partition Ref equals 1. The filter will be applied even if the entity is not partitioned</li>
+<li value="2">
+<b>$partition=1</b> will work as above, but will only apply the partition filter if the entity is actually partitioned. This will also account for variable partitioning of Asset types, e.g api/v1/asset?$partition=1 will return a combination of Services, ConfigurationItems, etc. where Service may be partitioned, but ConfigurationItem is not.</li>
+</ul>
+<p class="tip"><b>$partition=1</b> is the <b>recommended method</b>.</p>
+<h2>
+<a name="Data"></a>Data Types</h2>
+<p>The following data types are exposed by the API:</p>
+<table style="width: 100%;mc-table-style: url('../../resources/tablestyles/rep hdr row no break.css');margin-left: 0;margin-right: auto;" class="TableStyle-Rep_Hdr_Row_no_break" cellspacing="0">
+<col class="TableStyle-Rep_Hdr_Row_no_break-Column-Column1">
+<col class="TableStyle-Rep_Hdr_Row_no_break-Column-Column1">
+<thead><tr class="TableStyle-Rep_Hdr_Row_no_break-Head-Header1">
+<th class="TableStyle-Rep_Hdr_Row_no_break-HeadE-Column1-Header1"><p>RESTful API</p></th>
+<th class="TableStyle-Rep_Hdr_Row_no_break-HeadD-Column1-Header1"><p>Equivalent in Classic (WCF) API</p></th>
+</tr></thead>
+<tbody>
+<tr class="TableStyle-Rep_Hdr_Row_no_break-Body-Body1">
+<td class="TableStyle-Rep_Hdr_Row_no_break-BodyE-Column1-Body1"><p>Binary</p></td>
+<td class="TableStyle-Rep_Hdr_Row_no_break-BodyD-Column1-Body1"><p>Byte Array</p></td>
+</tr>
+<tr class="TableStyle-Rep_Hdr_Row_no_break-Body-Body1">
+<td class="TableStyle-Rep_Hdr_Row_no_break-BodyE-Column1-Body1"><p>Boolean</p></td>
+<td class="TableStyle-Rep_Hdr_Row_no_break-BodyD-Column1-Body1"><p>Boolean, Yes/No</p></td>
+</tr>
+<tr class="TableStyle-Rep_Hdr_Row_no_break-Body-Body1">
+<td class="TableStyle-Rep_Hdr_Row_no_break-BodyE-Column1-Body1"><p>DateTime</p></td>
+<td class="TableStyle-Rep_Hdr_Row_no_break-BodyD-Column1-Body1"><p>Date/Time</p></td>
+</tr>
+<tr class="TableStyle-Rep_Hdr_Row_no_break-Body-Body1">
+<td class="TableStyle-Rep_Hdr_Row_no_break-BodyE-Column1-Body1"><p>Integer</p></td>
+<td class="TableStyle-Rep_Hdr_Row_no_break-BodyD-Column1-Body1"><p>Integer</p></td>
+</tr>
+<tr class="TableStyle-Rep_Hdr_Row_no_break-Body-Body1">
+<td class="TableStyle-Rep_Hdr_Row_no_break-BodyE-Column1-Body1"><p>Long</p></td>
+<td class="TableStyle-Rep_Hdr_Row_no_break-BodyD-Column1-Body1"><p>Long</p></td>
+</tr>
+<tr class="TableStyle-Rep_Hdr_Row_no_break-Body-Body1">
+<td class="TableStyle-Rep_Hdr_Row_no_break-BodyE-Column1-Body1"><p>Float</p></td>
+<td class="TableStyle-Rep_Hdr_Row_no_break-BodyD-Column1-Body1"><p>Float</p></td>
+</tr>
+<tr class="TableStyle-Rep_Hdr_Row_no_break-Body-Body1">
+<td class="TableStyle-Rep_Hdr_Row_no_break-BodyE-Column1-Body1"><p>Double</p></td>
+<td class="TableStyle-Rep_Hdr_Row_no_break-BodyD-Column1-Body1"><p>Double</p></td>
+</tr>
+<tr class="TableStyle-Rep_Hdr_Row_no_break-Body-Body1">
+<td class="TableStyle-Rep_Hdr_Row_no_break-BodyE-Column1-Body1"><p>Decimal</p></td>
+<td class="TableStyle-Rep_Hdr_Row_no_break-BodyD-Column1-Body1"><p>Decimal</p></td>
+</tr>
+<tr class="TableStyle-Rep_Hdr_Row_no_break-Body-Body1">
+<td class="TableStyle-Rep_Hdr_Row_no_break-BodyE-Column1-Body1"><p>Short</p></td>
+<td class="TableStyle-Rep_Hdr_Row_no_break-BodyD-Column1-Body1"><p>Short</p></td>
+</tr>
+<tr class="TableStyle-Rep_Hdr_Row_no_break-Body-Body1">
+<td class="TableStyle-Rep_Hdr_Row_no_break-BodyE-Column1-Body1"><p>Text</p></td>
+<td class="TableStyle-Rep_Hdr_Row_no_break-BodyD-Column1-Body1"><p>String</p></td>
+</tr>
+<tr class="TableStyle-Rep_Hdr_Row_no_break-Body-Body1">
+<td class="TableStyle-Rep_Hdr_Row_no_break-BodyB-Column1-Body1"><p>RichText</p></td>
+<td class="TableStyle-Rep_Hdr_Row_no_break-BodyA-Column1-Body1"><p>String</p></td>
+</tr>
+</tbody>
+</table>
+<p>Data types can also be entities. For example, the Service properties on a Call has a Data Type of Service (Lookup in the metadata json). This means that it contains the key value of the associated object – select the circle icon in the API Explorer to see what that is. (This is equivalent to the WCF data type “Lookup”.)</p>
+<p>Note that Boolean property standardizes underlying data inconsistencies. Across various tables, flags are stored as <b>"Y", "YES", "T", "TRUE", "ON", "1", "P", "A"</b> – for all of these, the API will return true, and conversely will convert true to appropriate values on PUT and POST.</p>
+<p> </p>
+<h2>Display Types</h2>
+<p>The following table shows the types that are supported, and the related data types.</p>
+<table style="width: 100%;mc-table-style: url('../../resources/tablestyles/rep hdr row no break.css');margin-left: 0;margin-right: auto;" class="TableStyle-Rep_Hdr_Row_no_break" cellspacing="0">
+<col class="TableStyle-Rep_Hdr_Row_no_break-Column-Column1">
+<col class="TableStyle-Rep_Hdr_Row_no_break-Column-Column1">
+<thead><tr class="TableStyle-Rep_Hdr_Row_no_break-Head-Header1">
+<th class="TableStyle-Rep_Hdr_Row_no_break-HeadE-Column1-Header1"><p>Display Type</p></th>
+<th class="TableStyle-Rep_Hdr_Row_no_break-HeadD-Column1-Header1"><p>Data Type</p></th>
+</tr></thead>
+<tbody>
+<tr class="TableStyle-Rep_Hdr_Row_no_break-Body-Body1">
+<td class="TableStyle-Rep_Hdr_Row_no_break-BodyE-Column1-Body1"><p>Checkbox</p></td>
+<td class="TableStyle-Rep_Hdr_Row_no_break-BodyD-Column1-Body1"><p>Boolean</p></td>
+</tr>
+<tr class="TableStyle-Rep_Hdr_Row_no_break-Body-Body1">
+<td class="TableStyle-Rep_Hdr_Row_no_break-BodyE-Column1-Body1"><p>DatePicker</p></td>
+<td class="TableStyle-Rep_Hdr_Row_no_break-BodyD-Column1-Body1"><p>DateTime</p></td>
+</tr>
+<tr class="TableStyle-Rep_Hdr_Row_no_break-Body-Body1">
+<td class="TableStyle-Rep_Hdr_Row_no_break-BodyE-Column1-Body1"><p>DateTimePicker</p></td>
+<td class="TableStyle-Rep_Hdr_Row_no_break-BodyD-Column1-Body1"><p>DateTime</p></td>
+</tr>
+<tr class="TableStyle-Rep_Hdr_Row_no_break-Body-Body1">
+<td class="TableStyle-Rep_Hdr_Row_no_break-BodyE-Column1-Body1"><p>Lookup</p></td>
+<td class="TableStyle-Rep_Hdr_Row_no_break-BodyD-Column1-Body1"><p>entity</p></td>
+</tr>
+<tr class="TableStyle-Rep_Hdr_Row_no_break-Body-Body1">
+<td class="TableStyle-Rep_Hdr_Row_no_break-BodyE-Column1-Body1"><p>MultiLookup</p></td>
+<td class="TableStyle-Rep_Hdr_Row_no_break-BodyD-Column1-Body1"><p>entity</p></td>
+</tr>
+<tr class="TableStyle-Rep_Hdr_Row_no_break-Body-Body1">
+<td class="TableStyle-Rep_Hdr_Row_no_break-BodyE-Column1-Body1"><p>MultiSelect</p></td>
+<td class="TableStyle-Rep_Hdr_Row_no_break-BodyD-Column1-Body1"><p>entity</p></td>
+</tr>
+<tr class="TableStyle-Rep_Hdr_Row_no_break-Body-Body1">
+<td class="TableStyle-Rep_Hdr_Row_no_break-BodyE-Column1-Body1"><p>ListBox</p></td>
+<td class="TableStyle-Rep_Hdr_Row_no_break-BodyD-Column1-Body1"><p>entity</p></td>
+</tr>
+<tr class="TableStyle-Rep_Hdr_Row_no_break-Body-Body1">
+<td class="TableStyle-Rep_Hdr_Row_no_break-BodyE-Column1-Body1"><p>Numeric</p></td>
+<td class="TableStyle-Rep_Hdr_Row_no_break-BodyD-Column1-Body1"><p>Integer, Long, Float, Double, Decimal, Short</p></td>
+</tr>
+<tr class="TableStyle-Rep_Hdr_Row_no_break-Body-Body1">
+<td class="TableStyle-Rep_Hdr_Row_no_break-BodyE-Column1-Body1"><p>Password</p></td>
+<td class="TableStyle-Rep_Hdr_Row_no_break-BodyD-Column1-Body1"><p>Text</p></td>
+</tr>
+<tr class="TableStyle-Rep_Hdr_Row_no_break-Body-Body1">
+<td class="TableStyle-Rep_Hdr_Row_no_break-BodyE-Column1-Body1"><p>RichText</p></td>
+<td class="TableStyle-Rep_Hdr_Row_no_break-BodyD-Column1-Body1"><p>RichText</p></td>
+</tr>
+<tr class="TableStyle-Rep_Hdr_Row_no_break-Body-Body1">
+<td class="TableStyle-Rep_Hdr_Row_no_break-BodyE-Column1-Body1"><p>Select</p></td>
+<td class="TableStyle-Rep_Hdr_Row_no_break-BodyD-Column1-Body1"><p>entity</p></td>
+</tr>
+<tr class="TableStyle-Rep_Hdr_Row_no_break-Body-Body1">
+<td class="TableStyle-Rep_Hdr_Row_no_break-BodyE-Column1-Body1"><p>Text</p></td>
+<td class="TableStyle-Rep_Hdr_Row_no_break-BodyD-Column1-Body1"><p>Text</p></td>
+</tr>
+<tr class="TableStyle-Rep_Hdr_Row_no_break-Body-Body1">
+<td class="TableStyle-Rep_Hdr_Row_no_break-BodyE-Column1-Body1"><p>TextArea</p></td>
+<td class="TableStyle-Rep_Hdr_Row_no_break-BodyD-Column1-Body1"><p>RichText</p></td>
+</tr>
+<tr class="TableStyle-Rep_Hdr_Row_no_break-Body-Body1">
+<td class="TableStyle-Rep_Hdr_Row_no_break-BodyB-Column1-Body1"><p>TieredSelect</p></td>
+<td class="TableStyle-Rep_Hdr_Row_no_break-BodyA-Column1-Body1"><p>Entity</p></td>
+</tr>
+</tbody>
+</table>
+<p> </p>
+<h2>
+<a name="Augmente"></a>Augmenters</h2>
+<p>The API includes a set of inbuilt functions that simplify the retrieval of complex data using Search actions. This allows API users to easily select, view and manipulate data using business-level concepts, rather than dealing with the low level data that sometimes needs gathering from many sources to provide that information. These functions are known as augmenters. These can be used as virtual variables, for example in a filter clause. So if you only want to see calls that have breached, you would say:</p>
+<p><b>GET http://…/api/v1.0/call?$filter=@SlmBreached</b></p>
+<p>There are a number of different types of Augmenters:</p>
+<ul>
+<li value="1">
+<b>Condition Augmenters</b> – for use with $filter, encapsulating complex search conditions (including joins).</li>
+<li value="2">
+<b>Function Augmenters</b> – provide additional functionality to the queries and are  entity-independent</li>
+<li value="3">
+<b>Token Augmenters</b> – return simple values for use in query filters and are entity-independent</li>
+<li value="4">
+<b>Extension Augmenters</b> – computed properties, properties selected from other tables with join, etc.</li>
+</ul>
+<h3>Useful Augmenters</h3>
+<p>The table below lists some of the most useful augmenters. They are used for all entity types, and apply to calls, requests and tasks.</p>
+<p class="reference">To find the other augmenters appropriate for an entity, examine the entity in the API explorer.</p>
+<table style="width: 100%;mc-table-style: url('../../resources/tablestyles/rep hdr row no break.css');margin-left: 0;margin-right: auto;" class="TableStyle-Rep_Hdr_Row_no_break" cellspacing="0">
+<col class="TableStyle-Rep_Hdr_Row_no_break-Column-Column1">
+<col class="TableStyle-Rep_Hdr_Row_no_break-Column-Column1">
+<col class="TableStyle-Rep_Hdr_Row_no_break-Column-Column1">
+<thead><tr class="TableStyle-Rep_Hdr_Row_no_break-Head-Header1">
+<th class="TableStyle-Rep_Hdr_Row_no_break-HeadE-Column1-Header1">Augmenter</th>
+<th class="TableStyle-Rep_Hdr_Row_no_break-HeadE-Column1-Header1">Application</th>
+<th class="TableStyle-Rep_Hdr_Row_no_break-HeadD-Column1-Header1">Example</th>
+</tr></thead>
+<tbody>
+<tr class="TableStyle-Rep_Hdr_Row_no_break-Body-Body1">
+<td class="TableStyle-Rep_Hdr_Row_no_break-BodyE-Column1-Body1">@IsDeleted</td>
+<td class="TableStyle-Rep_Hdr_Row_no_break-BodyE-Column1-Body1">Entities that have been deleted</td>
+<td class="TableStyle-Rep_Hdr_Row_no_break-BodyD-Column1-Body1">$filter=@IsDeleted<p>$filter=!@IsDeleted</p>
+</td>
+</tr>
+<tr class="TableStyle-Rep_Hdr_Row_no_break-Body-Body1">
+<td class="TableStyle-Rep_Hdr_Row_no_break-BodyE-Column1-Body1">@DateTime</td>
+<td class="TableStyle-Rep_Hdr_Row_no_break-BodyE-Column1-Body1">	Creates a value from a date/time string in ISO 8601 format, for use in query filters</td>
+<td class="TableStyle-Rep_Hdr_Row_no_break-BodyD-Column1-Body1"><p>	$filter=LoggedDate &gt; @DateTime(2000-01-01T00:00:00.000Z)</p></td>
+</tr>
+<tr class="TableStyle-Rep_Hdr_Row_no_break-Body-Body1">
+<td class="TableStyle-Rep_Hdr_Row_no_break-BodyE-Column1-Body1">@Guid</td>
+<td class="TableStyle-Rep_Hdr_Row_no_break-BodyE-Column1-Body1">	Creates a value from a GUID string, for use in query filters</td>
+<td class="TableStyle-Rep_Hdr_Row_no_break-BodyD-Column1-Body1">$filter=Id = @Guid(75f7a7d5-652f-4e30-bd92-dc6e9594b28b)</td>
+</tr>
+<tr class="TableStyle-Rep_Hdr_Row_no_break-Body-Body1">
+<td class="TableStyle-Rep_Hdr_Row_no_break-BodyE-Column1-Body1">@Now</td>
+<td class="TableStyle-Rep_Hdr_Row_no_break-BodyE-Column1-Body1">	Current date</td>
+<td class="TableStyle-Rep_Hdr_Row_no_break-BodyD-Column1-Body1"><p> 	$filter=LoggedDate &lt;= @Now</p></td>
+</tr>
+<tr class="TableStyle-Rep_Hdr_Row_no_break-Body-Body1">
+<td class="TableStyle-Rep_Hdr_Row_no_break-BodyE-Column1-Body1">@NowOffset</td>
+<td class="TableStyle-Rep_Hdr_Row_no_break-BodyE-Column1-Body1"><p>	Offsets the current date by days, hours and minutes	Filter logged date within last 7 days, 2 hours, 30 minutes</p></td>
+<td class="TableStyle-Rep_Hdr_Row_no_break-BodyD-Column1-Body1"><p>$filter= LoggedDate &gt; @NowOffset(-7,-2,-30)</p></td>
+</tr>
+<tr class="TableStyle-Rep_Hdr_Row_no_break-Body-Body1">
+<td class="TableStyle-Rep_Hdr_Row_no_break-BodyE-Column1-Body1">@OrganizationId</td>
+<td class="TableStyle-Rep_Hdr_Row_no_break-BodyE-Column1-Body1">Current users Organization id</td>
+<td class="TableStyle-Rep_Hdr_Row_no_break-BodyD-Column1-Body1">
+<p>		$filter=User.OrganizationId == @OrganizationId</p>
+<p>$filter=User.Organization == @OrganizationId</p>
+<p>$filter=User.Organization.Ref == @OrganizationId</p>
+</td>
+</tr>
+<tr class="TableStyle-Rep_Hdr_Row_no_break-Body-Body1">
+<td class="TableStyle-Rep_Hdr_Row_no_break-BodyB-Column1-Body1">@UserId</td>
+<td class="TableStyle-Rep_Hdr_Row_no_break-BodyB-Column1-Body1">	Current user's id</td>
+<td class="TableStyle-Rep_Hdr_Row_no_break-BodyA-Column1-Body1">
+<p>	$filter=User == @UserId</p>
+<p>$filter=UserId == @UserId</p>
+<p>$filter=User.Ref == @UserId</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h2>Error Handling</h2>
+<p>The API will return errors with an appropriate HTTP Status Code and a message with the following structure:</p>
+<table style="width: 100%;mc-table-style: url('../../resources/tablestyles/fielddesc.css');margin-left: 0;margin-right: auto;" class="TableStyle-FieldDesc" cellspacing="0">
+<col class="TableStyle-FieldDesc-Column-Column1">
+<col class="TableStyle-FieldDesc-Column-Column2">
+<tbody>
+<tr>
+<td class="TableStyle-FieldDesc-BodyH-Column1-">Message:</td>
+<td class="TableStyle-FieldDesc-BodyG-Column2-">string - This is the error message</td>
+</tr>
+<tr>
+<td class="TableStyle-FieldDesc-BodyH-Column1-">Type:</td>
+<td class="TableStyle-FieldDesc-BodyG-Column2-">string - This is the type of the error – usually just the Exception type name</td>
+</tr>
+<tr>
+<td class="TableStyle-FieldDesc-BodyB-Column1-">SubStatus:</td>
+<td class="TableStyle-FieldDesc-BodyA-Column2-">string - This is a string which will help to narrow down the reason for the HTTP Status Code</td>
+</tr>
+</tbody>
+</table>
+<p></p>
+<p>Current SubStatus values are:</p>
+<p class="indent">None, ResourceNotFound, RecordNotFound, LinkedRecordNotFound, NotSupported, NotImplemented, NotAllowed</p>
+<p>Programmatically, you should rely upon the HTTP Status Code and the SubStatus.</p>
+<p>The HTTP Status Codes that are explicitly returned are: 200, 304, 400, 401, 403, 404, 405, 415 and 500.</p>
+<p class="note">Often a <b>404</b> response will include a message body (as described above). This is so that you can tell the difference between a badly formed url and a non-existent record.</p>

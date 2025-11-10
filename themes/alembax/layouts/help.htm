@@ -1,0 +1,86 @@
+description = "The default help page layout"
+
+[staticPage]
+useContent = 1
+default = 0
+
+[searchInput]
+useAutoComplete = 1
+autoCompleteResultCount = 5
+showProviderBadge = 1
+
+[staticBreadcrumbs]
+
+[staticMenu helpMenu]
+code = "menu"
+
+[seoTags]
+==
+{% partial 'header-help' %}
+
+<link rel="stylesheet" type="text/css" media="all" href="{{ 'assets/css/help-homepage.css'|theme }}?v={{ date().timestamp }}" />
+<link rel="stylesheet" type="text/css" media="all" href="{{ 'assets/css/help.css'|theme }}?v={{ date().timestamp }}" />
+
+<div class="row breadcrumb mb-4">
+
+	<div class="col">
+
+		<label>You are here:</label>
+
+		<ul>
+
+			<li><a href="{{ 'help'|page }}">Home</a></li>
+
+			{% for item in breadcrumbs %}
+
+				<li><a href="{{ 'help-article'|page({ topic:item.topic.slug, slug:item.slug }) }}">{{ item.name }}</a></li>
+
+			{% endfor %}
+
+			<li>{{ article.name }}</li>
+
+		</ul>
+
+	</div>
+
+	<div class="col-5 search-column">
+
+		{% component 'searchInput' %}
+
+	</div>
+
+</div>
+
+<div class="container-fluid">
+
+	<div class="row">
+
+		<div class="col mt-4">
+
+			{% page %}
+
+		</div>
+
+		{% if this.page.id != 'help' %}
+
+			<div class="col-4">
+
+				<div class="help-menu-side">
+
+					{% partial 'help-side-menu' id=article.id %}
+
+				</div>
+
+			</div>
+
+		{% endif %}
+
+	</div>
+
+</div>
+
+{% partial 'footer-lite' %}
+
+{% framework extras %}
+{% styles %}
+{% scripts %}

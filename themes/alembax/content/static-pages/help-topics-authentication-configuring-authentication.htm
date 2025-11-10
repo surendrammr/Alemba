@@ -1,0 +1,93 @@
+[viewBag]
+title = "Configuring Authentication for the Alemba API"
+url = "/help/topics/authentication/configuring-authentication"
+layout = "help"
+is_hidden = 0
+navigation_hidden = 0
+==
+                                                    <h1>Configuring Authentication for the <span class="GeneralVariablesAPIName">Alemba API</span>
+</h1>
+                                                    <p class="intro">The <span class="GeneralVariablesAPIName">Alemba API</span> supports Bearer token authentication using OAuth 2.0.<br>Two built in clients are pre-configured for use with Password authentication. These may need to be configured to use the desired authentication type before first use.</p>
+                                                    <p> </p>
+                                                    <ol>
+                                                        <li value="1">Open the new <span class="GeneralVariablesCompanyName2">Alemba®</span> admin page in your web browser - <code>https://{host-name}/{core-system-name}/<span class="GeneralVariablesCompanyName2">Alemba®</span>.Web/alemba/admin</code>.</li>
+                                                        <li value="2">Log in as an Analyst with the Security Setup General Access role.<a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="../../resources/images/configuring%20authentication%20for%20the%20alemba%20api/configuring%20authentication.png"><img class="MCPopupThumbnail img imgthumbnail" data-mc-width="487" data-mc-height="227" src="/storage/app/media/Help/images/configuring%20authentication%20for%20the%20alemba%20api/configuring%20authentication_thumb_0_48.png" tabindex=""></a>
+</li>
+                                                        <p class="note">On first use, a login form will be displayed.</p>
+                                                        <li value="3">
+<span class="GeneralVariablesCompanyName2">Alemba®</span> Admin and the API Explorer are configured to prompt for confirmation before login is completed. <a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="../../resources/images/configuring%20authentication%20for%20the%20alemba%20api/configuring%20authentication_1.png"><img class="MCPopupThumbnail img imgthumbnail" data-mc-width="486" data-mc-height="216" src="/storage/app/media/Help/images/configuring%20authentication%20for%20the%20alemba%20api/configuring%20authentication_1_thumb_0_48.png" tabindex=""></a>
+</li>
+                                                        <li value="4">Click the <b>API Clients</b> link<a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="../../resources/images/configuring%20authentication%20for%20the%20alemba%20api/click%20the%20api%20clients%20link.png"><img class="MCPopupThumbnail img imgthumbnail" data-mc-width="1108" data-mc-height="364" src="/storage/app/media/Help/images/configuring%20authentication%20for%20the%20alemba%20api/click%20the%20api%20clients%20link_thumb_0_48.png" tabindex=""></a>
+</li>
+                                                        <li value="5">Select the API Client you wish to configure. <a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="../../resources/images/configuring%20authentication%20for%20the%20alemba%20api/click%20the%20api%20clients%20link_1.png"><img class="MCPopupThumbnail img imgthumbnail" data-mc-width="1106" data-mc-height="905" src="/storage/app/media/Help/images/configuring%20authentication%20for%20the%20alemba%20api/click%20the%20api%20clients%20link_1_thumb_0_48.png" tabindex=""></a>
+</li>
+                                                        <p>
+                                                            </p>
+<table style="width: 100%;mc-table-style: url('../../resources/tablestyles/fielddesc.css');margin-left: 0;margin-right: auto;" class="TableStyle-FieldDesc" cellspacing="0">
+                                                                <col class="TableStyle-FieldDesc-Column-Column1">
+                                                                <col class="TableStyle-FieldDesc-Column-Column2">
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyH-Column1-">
+                                                                            <p>Client Secret</p>
+                                                                        </td>
+                                                                        <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                            <p>If specified, the calling OAuth Client must provide this value when processing user authentication. </p>
+                                                                            <p class="reference">See <b>How to log in to the API</b> in the API explorer Help.</p>
+                                                                            <p>This value is akin to a password and should only be used by client code where the client is trusted and is able to keep secrets. </p>
+                                                                            <p class="exampletext">A JavaScript client is not able to securely store this secret so should not use this value for authentication.</p>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyH-Column1-">
+                                                                            <p>Name</p>
+                                                                        </td>
+                                                                        <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                            <p>The API Client must have a name which should be unique. This is only used as a display name.</p>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyH-Column1-">
+                                                                            <p>Session Type</p>
+                                                                        </td>
+                                                                        <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                            <p>Possible Values: <b>Any</b>, <b>User</b>, <b>Analyst</b></p>
+                                                                            <p>If set to <b>User</b> or <b>Analyst</b>, OAuth clients will only be able to get an access token of the specified type. </p>
+                                                                            <p>If set to <b>Any</b>, OAuth clients must specify a scope when processing user authentication. (see How to log in to the API)</p>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyH-Column1-">
+                                                                            <p>Enabled</p>
+                                                                        </td>
+                                                                        <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                            <p>If this is unchecked, authentication for this client will be disabled.</p>
+                                                                            <p>This can be used to disable 3<sup>rd</sup> party access to the system</p>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyH-Column1-">
+                                                                            <p>Allowed Redirect Uri</p>
+                                                                        </td>
+                                                                        <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                            <p>Used in OAuth Authorization Code grant flow. This defaults to the host name first used to initiate the authorization code request. </p>
+                                                                            <p>This security feature is used to prevent token interception or misuse. It is not possible for a third party application to complete an authorization code grant without first configuring this setting.</p>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyB-Column1-">
+                                                                            <p>Enabled Authentication Types</p>
+                                                                        </td>
+                                                                        <td class="TableStyle-FieldDesc-BodyA-Column2-">
+                                                                            <p>Password authentication is enabled by default. One or more authentication types can be enabled. When multiple authentication types are enabled<a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="../../resources/images/configuring%20authentication%20for%20the%20alemba%20api/click%20the%20api%20clients%20link_2.png"><img class="MCPopupThumbnail img imgthumbnail" data-mc-width="605" data-mc-height="231" src="/storage/app/media/Help/images/configuring%20authentication%20for%20the%20alemba%20api/click%20the%20api%20clients%20link_2_thumb_0_48.png" tabindex=""></a> the login dialog will ask the user to choose between login types which are enabled (and correctly configured).<a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="../../resources/images/configuring%20authentication%20for%20the%20alemba%20api/click%20the%20api%20clients%20link_3.png"><img class="MCPopupThumbnail img imgthumbnail" data-mc-width="491" data-mc-height="233" src="/storage/app/media/Help/images/configuring%20authentication%20for%20the%20alemba%20api/click%20the%20api%20clients%20link_3_thumb_0_48.png" tabindex=""></a> </p>
+                                                                            <p>Users may then be able to log in using a Username and Password, or Windows Authentication or Single Sign On (using SAML).</p>
+                                                                            <p class="warning">It is recommended that only one type of authentication be used per API Client at a time.</p>
+                                                                            <p class="reference">See <a href="configuring%20windows%20authentication.htm" class="MCXref xref">Configuring Windows Authentication for the Alemba API</a> and <a href="configuring%20single%20sign%20on.htm" class="MCXref xref">Configuring Single Sign On using SAML for the Alemba API</a>.</p>
+                                                                        </td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        
+                                                    </ol>
+                                                    <p>All configuration changes will take effect immediately. Existing sessions will not be affected by these changes.</p>
+                                                

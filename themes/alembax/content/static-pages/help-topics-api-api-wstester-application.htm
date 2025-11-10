@@ -1,0 +1,39 @@
+[viewBag]
+title = "API WSTester Application"
+url = "/help/topics/api/api-wstester-application"
+layout = "help"
+is_hidden = 0
+navigation_hidden = 0
+==
+                                                    <h1>
+<a name="aanchor97"></a>
+                                                        <concept term="Classic API"></concept>API WSTester Application</h1>
+                                                    <p class="reference"><span class="GeneralVariablesProductName">ASM</span> has two Application Programming Interfaces (or APIs), which enable you to develop programs that automate many common <span class="GeneralVariablesProductName">ASM</span> transactions. This section of the documentation deals with the Classic API. For more information on the RESTful <span class="GeneralVariablesAPIName">Alemba API</span>, see <a href="../alemba%20api/alemba%20api.htm">here</a>.<br><br></p>
+                                                    <p class="intro"><span class="GeneralVariablesProductName">ASM</span> provides an API Test application (WStester) that can be used to run transactions via the web service to test whether they work as desired. </p>
+                                                    <p>In order to use the API Test application, you must first configure the WSTester web.config file to point to the <span class="GeneralVariablesProductName">ASM</span> end point address before running any transactions.</p>
+                                                    <p class="warning">Object uploads cannot be done via the Web Service Tester.  This is because a file object is a binary array that cannot be entered in a text field, and the Web Service API tester does not allow for binary fields.  To test object uploads, you must use an API. </p>
+                                                    <h2>Configuring the WSTester Endpoint </h2>
+                                                    <p>In order the use the API test application, you must first configure the end point address, to which the application will connect. To do this, navigate to the following folder:</p>
+                                                    <p><span class="Hyperlink">&lt;installation directory&gt;\</span><span class="Hyperlink">alemba</span><span class="Hyperlink">\</span><span class="Hyperlink"><span class="GeneralVariablesProductName">ASM</span></span><span class="Hyperlink">\&lt;system name</span><span class="Hyperlink">&gt;</span><span class="Hyperlink">\WStester</span>
+                                                    </p>
+                                                    <p>Open the web.config file in a text editing tool, such as Notepad.</p>
+                                                    <p>In the web.config file, change the endpoint address (this is located at the bottom of the file) so it points to the <span class="GeneralVariablesProductName">ASM</span> Web service. The end point address follows the format: </p>http://&lt;machine_name&gt;/&lt;virtual_directory&gt;/ServiceManager.svc<p> </p>
+<p><img src="/storage/app/media/Help/images/api%20wstester%20application_601x120.png" style="visibility: visible;mso-wrap-style: square;border-top-style: solid;border-top-width: 1pt;border-bottom-style: solid;border-bottom-width: 1pt;border-left-style: solid;border-left-width: 1pt;border-right-style: solid;border-right-width: 1pt;width: 601;height: 120;"></p>
+<h2>Accessing WSTester</h2>
+<p>You can reach the WSTester test application via the URL </p>
+<p class="Hyperlink">http://&lt;server_name&gt;/&lt;virtual_directory&gt;/WStester/Login.aspx</p>
+<h3>Testing the LogIn Transaction</h3>
+<p>The first transaction to be tested is the login transaction, which will also log you in to the system so you can test further transactions. </p>
+<p><img src="/storage/app/media/Help/images/api%20wstester%20application_1.png" style="visibility: visible;mso-wrap-style: square;width: 472px;height: 164px;border-top-style: solid;border-top-width: 1pt;border-bottom-style: solid;border-bottom-width: 1pt;border-left-style: solid;border-left-width: 1pt;border-right-style: solid;border-right-width: 1pt;"></p>
+<p>Enter a username, password, database and URL and click the Login button.</p>
+<p class="note">The URL will take the form: http://&lt;server_name&gt;/&lt;virtual_directory&gt;/ServiceManager.svc </p>
+<p>You will then be taken to the Transactions window, where you can test various API transactions against the system you have logged into.</p>
+<h3>Use Transactions</h3>
+<p>You can expand and collapse the categories of transactions by clicking on the +/- buttons next to each transaction group name. Select any of the transaction names to go to the window for that specific transaction.</p>
+<p><img src="/storage/app/media/Help/images/api%20wstester%20application_2.png" style="width: 389px;height: 545px;" class="screenshot"></p>
+<p>The fields displayed will vary depending on the specific transaction window. Any Enumerated fields will display as a dropdown list, while Boolean values will display as a checkbox.</p>
+<p class="note">For more information on the different parameter types available in the API, see <a href="%7B%7B%20'help-using-the-api#Paramete'%7CstaticPage%20%7D%7D#Paramete">Parameter Types</a>.</p>
+<p>Complete some or all of these fields before clicking the Submit button to test the transaction.</p>
+<p><img src="/storage/app/media/Help/images/api%20wstester%20application_3_573x706.png" style="width: 573;height: 706;" class="screenshot"></p>
+<p>Once you have clicked the Submit button, the <b>Transaction Results</b> window will be displayed. This window shows the status codes and any messages generated. Note that a status of 0 indicates a successful transaction, and no message will be displayed. If you receive an error and want to modify the values you have specified, click Back. You can check the <span class="GeneralVariablesAppName">ASM app</span> to view the result of a successful transaction.</p>
+<p>To view a list of all transactions, click <b>All Trans</b>.</p>

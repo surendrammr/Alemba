@@ -1,0 +1,44 @@
+[viewBag]
+title = "Running an AI Ops Rule"
+url = "/help/topics/ai-ops/running-an-ai-ops-rule"
+layout = "help"
+is_hidden = 0
+navigation_hidden = 0
+==
+                                                    <h1>Running an AI Ops Rule</h1>
+                                                    <p class="prereq">A rule will only run if:
+        
+        </p>
+<ul class="prereq">
+<li value="1">All the mandatory information has been specified in the <a href="ai%20ops%20wizard.htm">AI Ops Wizard</a> and it has been activated. </li>
+<li value="2">The <span class="GeneralVariablesProductName">ASM</span> AI Ops Polling Service is running on the <span class="GeneralVariablesProductName">ASM</span> server (enables events to be logged automatically by the system).</li>
+</ul>
+                                                    <p>The following outlines what happens when an AI Ops rule runs.</p>
+                                                    <ul>
+                                                        <li value="1">If the rule runs and does not meet the threshold and conditions within the running period, no call/request is logged for this rule.</li>
+                                                        <li value="2">If the rule runs and the threshold and all other conditions are met, a call or request is logged. Furthermore, if a <a href="%7B%7B%20'help-ai-ops-wizard#Step2'%7CstaticPage%20%7D%7D#Step2">Grouping Criteria</a> has been used, multiple calls or requests may be triggered for each member of the group (provided each member meets the threshold), when the rule runs. The call or request will be forwarded to the appropriate analyst or group specified on the Call Template or Workflow Template specified for the rule.</li>
+                                                        <li value="3">The next time the rule runs and the threshold and all the conditions are met, a new call or request will be logged if:<ul>
+<li value="1">The first call or request is closed, or </li>
+<li value="2">The first call or request logged is still open, and the <b>Always Create a Call or Request</b> option is selected for the rule in the <a href="%7B%7B%20'help-ai-ops-wizard#Step3'%7CstaticPage%20%7D%7D#Step3">Logging Output</a> step in the wizard. Since the first call/request logged is still open, the new call/request will be linked as a child of the first call/request.</li>
+</ul>
+</li>
+                                                        <li value="4">This process will potentially be repeated as the rule runs and meets its threshold again during the running period. In other words, when the rule runs again, it will:<ul>
+<li value="1">Log a new call or request if the previous call or request is closed. The new call or request is not linked to the previous call or request, since it is a new issue.</li>
+<li value="2">Log a new call or request and link it as a child of the previous call or request if the latter is still open and the logging option <b>Always Create a Call or Request</b> is selected for the rule in the <a href="%7B%7B%20'help-ai-ops-wizard#Step3'%7CstaticPage%20%7D%7D#Step3">Logging Output</a> step in the wizard.</li>
+<li value="3">Not log a new call or request, if the previous call or request is still open and the logging option <b>Always Create a Call or Request</b> is cleared for the rule in the <a href="%7B%7B%20'help-ai-ops-wizard#Step3'%7CstaticPage%20%7D%7D#Step3">Logging Output</a> step in the wizard.</li>
+</ul>
+</li>
+                                                    </ul>
+                                                    <p>Ultimately, on closing any parent <a href="../calls/call%20closing.htm">call</a> or request, all the linked child calls or requests can also be closed.</p>
+                                                    <p class="tip">You can control the assignment of a Call or Request logged by an AI Ops rule by configuring the rule to use a specific Call Template or Workflow Template. For Calls, you can also set up <a href="../calls/using%20the%20ipk%20rules%20builder.htm">IPK Workflow Rules</a> to route the Calls or trigger notifications.</p>
+                                                    <p>When a call or request is logged through a rule, the following is added to the Description of the call or request:</p>
+                                                    <ul>
+                                                        <li value="1">Title and Description</li>
+                                                        <li value="2">Data Set</li>
+                                                        <li value="3">Selection Criteria</li>
+                                                        <li value="4">Grouping Criteria</li>
+                                                        <li value="5">Schedule</li>
+                                                        <li value="6">Logging Output</li>
+                                                    </ul>
+                                                    <p class="note">If there are any outages running against a call or request analyzed, or SLM breach events, this information is not applied to the call or request logged through the AI Ops rule.</p>
+                                                

@@ -1,0 +1,157 @@
+[viewBag]
+title = "Configuring MAPI"
+url = "/help/topics/admin-system/config-mapi-server"
+layout = "help"
+is_hidden = 0
+navigation_hidden = 0
+==
+                                                    <h1>Configuring MAPI</h1>
+                                                    <p>Additional configuration steps are required for MAPI before you can define the parameters for incoming and outgoing mail within System Admin.</p>
+                                                    <p>You must:</p>
+                                                    <ol>
+                                                        <li value="1">Download MAPI onto the web server</li>
+                                                        <li value="2">Create the MAPI profile on the web server</li>
+                                                        <li value="3">Configure <span class="GeneralVariablesCoreName">ASM Core</span> to use the MAPI connection</li>
+                                                        <li value="4">Configure the <span class="GeneralVariablesCoreName">ASM Core</span> services to use appropriate access account</li>
+                                                    </ol>
+                                                    <p class="note">If you have difficulties, see the <a href="#Troubles" class="MCXref xref">Troubleshooting
+</a>section for suggestions.</p>
+                                                    <h3 class="Heading3">Downloading the MAPI  Client</h3>
+                                                    <p>You must have MAPI and Outlook downloaded and configured on the web server where <span class="GeneralVariablesCoreName">ASM Core</span> is installed. </p>
+                                                    <p>If you have the 64bit version of Outlook, Exchange Server, or Exchange Admin installed on the  web server, MAPI is already provided. </p>
+                                                    <h2>Creating the MAPI Profile</h2>
+                                                    <p>A MAPI profile needs to be created on the web server. </p>
+                                                    <p class="note">If you are using Exchange as a mail server, you will not need to create a MAPI profile for the incoming email account.</p>
+                                                    <p><b>If you have Outlook installed</b> on the web server, you can add MAPI profiles using the <b>Mail Settings</b> in the <b>Control Panel</b>. </p>
+                                                    <ol start="1">
+                                                        <li value="1">Open the Mail Setup dialog box by selecting Control Panel &gt; Mail.</li>
+                                                        <li value="2">Select the <b>Show Profiles</b> button.</li>
+                                                        <li value="3">Add the MAPI profile.</li>
+                                                    </ol>
+                                                    <p><b>If you do not have Outlook installed</b>, use the following link to find instructions, as provided by Microsoft. <a href="http://support.microsoft.com/kb/306962" class="Hyperlink">http://support.microsoft.com/kb/306962</a></p>
+                                                    <p>Or use the steps below:</p>
+                                                    <ol>
+                                                        <li value="1">Download the <b>MAPI Profile Manager</b> from the <a href="https://support.microsoft.com/en-us/kb/228736">Microsoft website</a> onto the web server.</li>
+                                                        <li value="2">Open <b>Profman2.exe</b> from the extracted directory.</li>
+                                                        <li value="3">Click <b>Create New Profile</b> and enter a name for the profile.</li>
+                                                        <li value="4">Select the newly created profile and click <b>Add service to selected profile</b>.</li>
+                                                        <li value="5">Select <b>Microsoft Exchange Server</b>, and click OK.</li>
+                                                        <li value="6">Enter the name of the <b>Microsoft Exchange server</b> and <b>Mailbox</b> to be used with <span class="GeneralVariablesCoreName">ASM Core</span>.</li>
+                                                        <li value="7">Click <b>Check Name</b> in this window. The Exchange Server and Mailbox should be underlined, indicating that they are reachable. If not, or you see an error, check the details and try again.</li>
+                                                        <li value="8">If additional settings, such as Advanced, Dial-Up Networking or Remote Mail are required for your MAPI connection, consult your Exchange Server documentation.</li>
+                                                        <li value="9">Click <b>OK</b>. Your MAPI profile is now configured.</li>
+                                                    </ol>
+                                                    <p class="note">If the MAPI account has more than one mailbox, <span class="GeneralVariablesCoreName">ASM Core</span> uses the default folder to retrieve email.</p>
+                                                    <h2>Configuring <span class="GeneralVariablesCoreName">ASM Core</span> to use the MAPI connection</h2>
+                                                    <h2 class="Prerequisite">Before you start</h2>
+                                                    <p class="prereqtext1">If you have details for another server displayed, you must close these before adding a new server.</p>
+                                                    <p class="prereqtext">You must have <b>System Set Up</b> selected in the <a href="../admin%20security%20roles/general%20access%20security%20role%20-%20admin%20tab.htm">Admin</a> tab of your <b>General Access security role</b>.</p>
+                                                    <ol>
+                                                        <li value="1">
+From System Administration, expand the <b>System</b> section and open <b>Email Settings</b>.
+</li>
+                                                        <li value="2">Select the Incoming or Outgoing server that you want to add, and click <b>Add</b>.
+</li>
+                                                        <li value="3">Enter the Exchange Server and mailbox details.
+</li>
+                                                        <li value="4">Enter the login ID and password of the appropriate account.
+ Or select the <b>Use NT Auth</b> checkbox.</li>
+                                                        <li value="5">Enter details for options such as Logging Analyst and Auto Reply, as described in <a href="email%20settings.htm" target="_blank">Email Settings</a>.</li>
+                                                        <li value="6">Click <b>Save</b>. MAPI is now configured for use with <span class="GeneralVariablesCoreName">ASM Core</span>.
+</li>
+                                                    </ol>
+                                                    <p class="note">You cannot test the connection on MAPI accounts within the Email Server Details as you do with SMTP or IMAP.
+</p>
+                                                    <h2>Configuring <span class="GeneralVariablesCoreName">ASM Core</span> Services
+</h2>
+                                                    <p>To use MAPI for incoming emails, the <b><span class="GeneralVariablesMessagingServiceName">ASM Messaging Service</span></b> must run as an account that has full access to the mail server and MAPI mailbox. </p>
+                                                    <p><b>If using a normal Windows account</b> it must have full access to the mail server and MAPI mailbox, and have appropriate privileges to run as local service.</p>
+                                                    <p><b>If using MAPI mailbox account</b>, it must also be a services account with the appropriate privileges to run as local service. Use this account to log onto the web server so that a Windows profile is created on that server.</p>
+                                                    <p class="note">The account must also have full access to the database if <b>DB NT Auth</b> is selected in Server Console &gt; System Properties &gt; Database tab.</p>
+                                                    <p class="warning">All <span class="GeneralVariablesCoreName">ASM Core</span> Services must run under the same account.</p>
+                                                    <ol>
+                                                        <li value="1">Click <b>Start</b> &gt; <b>Run</b>, type <b>services.msc</b>, and click <b>OK</b>. The <b>Services</b> window opens.
+</li>
+                                                        <li value="2">Right-click each of the <span class="GeneralVariablesCoreName">ASM Core</span> services and select <b>Properties</b>.
+</li>
+                                                        <li value="3">Click the <b>Log On</b> tab and change the <b>Log On </b>to the appropriate account. Be sure to include the domain in the Login ID (DOMAIN/username).
+</li>
+                                                    </ol>
+                                                    <ol data-mc-continue="true">
+                                                        <li value="4">Change all of the services to run as the same account.
+</li>
+                                                        <li value="5">Restart all of the <span class="GeneralVariablesCoreName">ASM Core</span> Services by restarting the Administrative Service.
+</li>
+                                                    </ol>
+                                                    <h2>
+<a name="Troubles"></a>Troubleshooting
+</h2>
+                                                    <p>If you receive errors after completing the steps above, use these troubleshooting steps.</p>
+                                                    <table class="TableStyle-Rep_Hdr_Row" style="mc-table-style: url('../../resources/tablestyles/rep hdr row.css');margin-left: 0;margin-right: auto;" cellspacing="0">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column1">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column2">
+                                                        <thead>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Head-Header1">
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column1-Header1">Error</th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadD-Column2-Header1">
+                                                                    <p>Solution</p>
+                                                                </th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+MAPI_E_NOT_FOUND</td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p>Often indicates that the account you are using does not have permission or cannot reach the Exchange server.
+</p>
+                                                                    <ul>
+                                                                        <li value="1">Ensure that you have installed the Microsoft Exchange Server MAPI Client  from the link above, and that you have configured a profile for the account.
+</li>
+                                                                        <li value="2">Ensure you have configured the services to run as the email account, and that the email account has been granted Log On as Service rights on the server.
+</li>
+                                                                        <li value="3">Deselect the NT Authentication checkbox in <span class="GeneralVariablesCoreName">ASM Core</span> and restart the Messaging Service.
+
+</li>
+                                                                    </ul>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">	MAPI_E_NOACCESS</td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p>Often indicates a permission issue, where the email account configured for the services does not have full rights to the mailbox.
+</p>
+                                                                    <p>If you are using Microsoft Exchange, open a web browser and log into Outlook Web Access as the email account you have configured for the services. Ensure that this account can successfully log into the account.
+
+</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyB-Column1-Body1">MAPI_FAILONEPROVIDER</td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyA-Column2-Body1">
+                                                                    <p>A catch-all error, but often indicates that there is a configuration problem with one or more folders on the mail server.
+</p>
+                                                                    <p>If you are using Microsoft Exchange, ensure that Public Folders have been configured on the Exchange server and are accessible by the email account you are using.
+</p>
+                                                                    <p>If the error persists after configuring the Public Folders, you can add a string to the registry to tell Collaboration Data Objects to ignore the Public Folders:
+</p>
+                                                                    <p class="note">Before making any registry modifications, ensure that you have a current and valid backup of the registry and the virtual machine. For more information on backing up and restoring the registry, see the Microsoft article 136393 (http://support.microsoft.com/kb/136393) .
+</p>
+                                                                    <ol>
+                                                                        <li value="1">On the <span class="GeneralVariablesCoreName">ASM Core</span> server, click Start &gt; Run, type regedit, and press Enter. The Registry Editor window opens.
+</li>
+                                                                        <li value="2">Navigate to:
+HKEY_LOCAL_MACHINE/SOFTWARE/Wow6432Node/Microsoft/Windows Messaging Subsystem/CDO
+</li>
+                                                                        <li value="3">If no CDO key exists, create one.
+</li>
+                                                                        <li value="4">Add a 32-bit DWORD with the name Ignore No PF, and set the value to 1.
+</li>
+                                                                        <li value="5">Restart the messaging service for the change to take effect.
+</li>
+                                                                    </ol>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                

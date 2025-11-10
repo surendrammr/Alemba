@@ -1,0 +1,42 @@
+[viewBag]
+title = "Configuring Azure Active Directory discovery"
+url = "/help/topics/sso-technical-reference-guide/configuring-azure-active-directory"
+layout = "help"
+is_hidden = 0
+navigation_hidden = 0
+==
+                                                    <h1>Configuring Azure Active Directory discovery</h1>
+                                                    <p class="intro">This topic describes how to configure Azure Active Directory discovery through Secure Lightweight Directory Access Protocol (TLS 1.2).</p>
+                                                    <h2>Configuring <span class="GeneralVariablesCoreName">ASM Core</span>
+</h2>
+                                                    <p>Core can be easily configured to scan your Azure Active Directory using the Active Directory Connector secured with SSL. </p>
+                                                    <ol>
+                                                        <li value="1">Configure your active Directory Connector integration with the Azure Domain in the LDAP server path. This must match the certificate name. If you are using a wild card SSL certificate for your domain, then you will need to preface the address with Azure. <a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="../../resources/images/configuring%20azure%20active%20directory%20discovery/configuring%20azure%20active%20directory.png"><img class="MCPopupThumbnail img imgthumbnail" data-mc-width="773" data-mc-height="615" src="/storage/app/media/Help/images/configuring%20azure%20active%20directory%20discovery/configuring%20azure%20active%20directory_thumb_0_48.png" style="width: 483px;height: 384px;" tabindex=""></a>
+</li>
+                                                        <p class="exampletext">*.alembatest.com would be configured as LDAP://Azure.alembatest.com</p>
+                                                        <li value="2">
+                Configure your security settings per your requirements, if you are using the SSO connector for authentication do not check “authenticate imported people at source”. </li>
+                                                        <li value="3">Configure your Resource and Filed mapping values as per the AD connector guide.</li>
+                                                    </ol>
+                                                    <p class="warning">If you are using the SSO connector for authentication you must ensure your Matching Fields are configured to match existing user on the AD and SSO connectors.  </p>
+                                                    <p> </p>
+                                                    <h2>Configuring Azure Active Directory.</h2>
+                                                    <p>To configure the Azure Active Directory to allow LDAPS connections you will need to navigate to your Azure Active Directory using the older Azure portal at <a href="https://manage.windowsazure.com">https://manage.windowsazure.com</a></p>
+                                                    <ol>
+                                                        <li value="1">Navigate the Active Directory and Domain you wish to configure and select the <b>Configure</b> tab.<a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="../../resources/images/configuring%20azure%20active%20directory%20discovery/configuring%20azure%20active%20directory_1.png"><img class="MCPopupThumbnail img imgthumbnail" data-mc-width="888" data-mc-height="158" src="/storage/app/media/Help/images/configuring%20azure%20active%20directory%20discovery/configuring%20azure%20active%20directory_1_thumb_0_48.png" style="width: 547px;height: 97px;" tabindex=""></a>
+</li>
+                                                        <li value="2">Scroll down to the “domain service” section and enable Domain Services. <a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="../../resources/images/configuring%20azure%20active%20directory%20discovery/configuring%20azure%20active%20directory_2.png"><img class="MCPopupThumbnail img imgthumbnail" data-mc-width="892" data-mc-height="701" src="/storage/app/media/Help/images/configuring%20azure%20active%20directory%20discovery/configuring%20azure%20active%20directory_2_thumb_0_48.png" style="width: 602px;height: 473px;" tabindex=""></a>
+</li>
+                                                        <li value="3">
+                                                            <p>You will then need to configure your LDAPS certificate which will need to be uploaded to Azure in PFX format.  </p>
+                                                        </li>
+                                                        <li value="4">
+                                                            <p>Once you have configured your certificate enable. Enable <b>Secure LDAP Access over the Internet</b>. <a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="../../resources/images/configuring%20azure%20active%20directory%20discovery/you%20will%20then%20need%20to%20configure.png"><img class="MCPopupThumbnail img imgthumbnail" data-mc-width="660" data-mc-height="119" src="/storage/app/media/Help/images/configuring%20azure%20active%20directory%20discovery/you%20will%20then%20need%20to%20configure_thumb_0_48.png" style="width: 602px;height: 108px;" tabindex=""></a><br></p>
+                                                        </li>
+                                                        <li value="5">Once enabled, you will need to ensure you have the relevant Entries in your Domain DNS records to point to the IP address shown in the “External IP Address for LDAPS Access” field. </li>
+                                                        <p class="reference">
+                                                            </p>
+<p>Further information on configuring AZURE LDAPS can be found at <a href="https://azure.microsoft.com/en-gb/documentation/articles/active-directory-ds-admin-guide-configure-secure-ldap/#requirements-for-the-secure-ldap-certificate">https://azure.microsoft.com/en-gb/documentation/articles/active-directory-ds-admin-guide-configure-secure-ldap/#requirements-for-the-secure-ldap-certificate</a></p>
+                                                        
+                                                    </ol>
+                                                

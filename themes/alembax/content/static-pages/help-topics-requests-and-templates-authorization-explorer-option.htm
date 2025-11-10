@@ -1,0 +1,71 @@
+[viewBag]
+title = "Authorizing Requests"
+url = "/help/topics/requests-and-templates/authorization-explorer-option"
+layout = "help"
+is_hidden = 0
+navigation_hidden = 0
+==
+                                                    <h1>Authorizing Requests</h1>
+                                                    <p>The Authorization Explorer option enables you to authorize the current request so it can start being implemented. Authorizing a request releases all tasks and approvals in the request. </p>
+                                                    <p>You can pre-authorize requests by authorizing the workflow template. By default (unless configured differently by the system administrator), tasks and approvals are not authorized when first created. </p>
+                                                    <h2 class="Prerequisite">Before you start</h2>
+                                                    <p class="prereqtext1">Authorization must be selected in the <a href="../admin%20workflow%20mgt/workflow%20management%20settings.htm">Workflow Management Settings</a> window to activate the explorer option.</p>
+                                                    <p class="prereqtext">If the request is pre-authorized (at the level of the workflow template), the  option is disabled on the Request Details window. If a request has been authorized either in the template or manually, and additional tasks are added to the workflow (at the level of the request), these tasks are added as un-authorized and suspended. The Authorize button will be enabled if there are any unauthorized tasks.</p>
+                                                    <p> </p>
+                                                    <ol>
+                                                        <li value="1">Select the <b>Take Action</b> button on the <b>Request Details</b> window if necessary to allow you to work on the request.</li>
+                                                        <li value="2">In the Explorer pane, expand <b>Details</b>, then select <b>Authorization</b>  to display the <b>Request &lt;number&gt; Authorization</b> window. </li>
+                                                        <p class="note">If the current request is already authorized, the window will display any comments made by the analyst who performed the authorization. The <b>Authorize</b> and <b>Reject</b> buttons will be disabled. You can view and update any task linked to the request. Simply double-click its name in the <b>Tasks</b> List. If you are the owner, it will open in Action mode; otherwise, it will display in Review mode. Alternatively, select a task in the browse table and click <b>Review</b> or <b>Open</b>.</p>
+                                                        <li value="3">Complete the details.</li>
+                                                        <p>
+                                                            </p>
+<table class="TableStyle-FieldDesc" style="mc-table-style: url('../../resources/tablestyles/fielddesc.css');margin-left: 0;margin-right: auto;" cellspacing="0">
+                                                                <col class="TableStyle-FieldDesc-Column-Column1">
+                                                                <col class="TableStyle-FieldDesc-Column-Column2">
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyH-Column1-">Status </td>
+                                                                        <td class="TableStyle-FieldDesc-BodyG-Column2-">Select the status which best reflects the reason for your authorization or rejection of the request</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyH-Column1-">Password </td>
+                                                                        <td class="TableStyle-FieldDesc-BodyG-Column2-">Type in the password you use to log on to <span class="GeneralVariablesCoreName">ASM Core</span>. This level of security ensures that an analyst with the appropriate permissions is authorizing the request. (Depending on the settings by the system administrator, you may not have to enter your password.)</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyH-Column1-">Comments </td>
+                                                                        <td class="TableStyle-FieldDesc-BodyG-Column2-">Add any comments to the authorization (or rejection) for the request</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyH-Column1-">Send Email</td>
+                                                                        <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                            <p class="prereq"><b>Email</b> must be selected under <b>Workflow Management</b> on the <a href="../admin%20system/messaging.htm">Messaging</a> window within System Administration.</p>
+                                                                            <p>Select  to send an email to the analysts or groups who will receive tasks following authorization of the request. This is useful to notify those recipients who are not logged on to <span class="GeneralVariablesCoreName">ASM Core</span> that the request has been authorized.</p>
+                                                                            <p>If you select this option, an email will be sent to the task assignees regardless of whether the Email option was selected on the task itself. </p>
+                                                                            <p class="note">This feature only applies to the tasks that have no dependencies: emails will only be sent to the recipients of tasks which are not dependent on the completion of other tasks.</p>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyH-Column1-"> Send Pager</td>
+                                                                        <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                            <p class="prereq"><b>Pager</b> must be selected under <b>Workflow Management</b> on the <a href="../admin%20system/messaging.htm">Messaging</a> window within System Administration.</p>
+                                                                            <p>Select to send a pager message to the analysts or groups who will receive tasks following authorization of the request. This is useful to notify those recipients who are not logged on to <span class="GeneralVariablesCoreName">ASM Core</span> that the request has been authorized. </p>
+                                                                            <p class="note">This feature applies only to recipients of tasks that are not dependent.</p>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyB-Column1-"> Email Requestor</td>
+                                                                        <td class="TableStyle-FieldDesc-BodyA-Column2-">Select to notify the person who logged the request (for example, a user through the <span class="GeneralVariablesSelfServicePortalName">Self Service Portal</span>) that their request has been authorized (or rejected).</td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        
+                                                        <li value="4">Click <b>Authorize</b> to release the tasks and approvals within the request for action. Otherwise, click <b>Reject</b> to reject the request, and confirm the rejection.</li>
+                                                    </ol>
+                                                    <p>Once the request is authorized or rejected, a small orange square appears next to the <b>Authorization</b> option on the Explorer pane to indicate that a decision has been made on the request.</p>
+                                                    <h2>Pre-Authorizing a Workflow Template</h2>
+                                                    <p class="prereq"><b>Authorization</b> must be selected in the <a href="../admin%20workflow%20mgt/workflow%20management%20settings.htm">Workflow Management Settings</a> window.</p>
+                                                    <p>You can pre-authorize requests based on a workflow template from the <b>Workflow Template Details</b> window. This means that requests based on the template will become active (and the dependent tasks automatically released) as soon as the request is saved. If the template on which the request is based is not pre-authorized, the request manager has to authorize each request before it becomes active.</p>
+                                                    <p>Select the <a href="#" class="selected">Authorization</a> explorer option from the <b>Workflow Template Details</b> window, and follow the instructions as for a request.</p>
+                                                    <p>If a request has been authorized either by pre-authorizing the template or manually, and additional tasks are added to the request workflow (at the level of the request), these tasks are added as un-authorized and suspended. </p>
+                                                    <p>To release these tasks, the request manager needs to go to the Authorization window and authorize the new tasks in the same way the request was authorized.</p>
+                                                

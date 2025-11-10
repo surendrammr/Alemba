@@ -1,0 +1,250 @@
+[viewBag]
+title = "Centennial Discovery / FrontRange Connector"
+url = "/help/topics/connectors/centennialdiscoveryconnector"
+layout = "help"
+is_hidden = 0
+navigation_hidden = 0
+==
+                                                    <h1>Centennial Discovery / FrontRange Connector</h1>
+                                                    <p>This section of the documentation contains technical specifications about the connector that is implemented to link <span class="GeneralVariablesCoreName">ASM Core</span> and Centennial Discovery version 2007/FrontRange 2009 systems. It describes the details of the third-party application that is Centennial Discovery / FrontRange, including:</p>
+                                                    <ul>
+                                                        <li class="Bulleted_1" value="1">The version for which the connector has been developed</li>
+                                                        <li class="Bulleted_1" value="2">The name of the .NET assembly file</li>
+                                                        <li class="Bulleted_1" value="3">Connection methodology</li>
+                                                        <li class="Bulleted_1" value="4">The resource and link types that can be discovered on the application</li>
+                                                        <li class="Bulleted_1" value="5">The attributes of each resource and link types that can be imported into the <span class="GeneralVariablesCoreName">ASM Core</span> Configuration Management Database (CMDB)</li>
+                                                        <li class="note" value="6">If not specified,  version 2007 of Centennial Discovery/FrontRange, should be assumed as adequate.</li>
+                                                    </ul>
+                                                    <p class="note">You should familiarize yourself with the information in <a href="connector%20installation%20guide.htm" class="MCXref xref">Installing Connectors</a> before installing any connectors, and read the <a href="../integration/integrate.htm" class="MCXref xref">Integration</a> topics for more information on how to configure them.</p>
+                                                    <h2>Use Case Scenario</h2>
+                                                    <table class="TableStyle-scenario_table" style="mc-table-style: url('../../resources/tablestyles/scenario table.css');" cellspacing="0">
+                                                        <col class="TableStyle-scenario_table-Column-Column1">
+                                                        <col class="TableStyle-scenario_table-Column-Column2">
+                                                        <tr class="TableStyle-scenario_table-Body-Body1">
+                                                            <td class="TableStyle-scenario_table-BodyE-Column1-Body1">
+                    Purpose
+                </td>
+                                                            <td class="TableStyle-scenario_table-BodyD-Column2-Body1">An organization uses Centennial Discovery version 2007/FrontRange 2009 to discover and maintain resources present in its organization networks.</td>
+                                                        </tr>
+                                                        <tr class="TableStyle-scenario_table-Body-Body1">
+                                                            <td class="TableStyle-scenario_table-BodyE-Column1-Body1">
+                    Role
+                </td>
+                                                            <td class="TableStyle-scenario_table-BodyD-Column2-Body1">The role of this connector is to expose the resources and their relationships in order to allow for population and ongoing consistency checks of the <span class="GeneralVariablesCoreName">ASM Core</span> CMDB.</td>
+                                                        </tr>
+                                                    </table>
+                                                    <h2>Connector description</h2>
+                                                    <p>The table below provides a description of the Centennial Discovery / FrontRange Connector.</p>
+                                                    <table class="TableStyle-Rep_Hdr_Row" style="mc-table-style: url('../../resources/tablestyles/rep hdr row.css');" cellspacing="0">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column1">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column2">
+                                                        <thead>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Head-Header1">
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column1-Header1">
+                                                                    <p>Information fields</p>
+                                                                </th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadD-Column2-Header1">
+                                                                    <p>Description</p>
+                                                                </th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Connector </p>
+                                                                    <p> </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p>Centennial Discovery v2007/FrontRange 2009 &lt;-&gt; <span class="GeneralVariablesCoreName">ASM Core</span></p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Third-party application</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p>Centennial Discovery / FrontRange</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Assembly</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p>Infra.Connector.Centennial.dll</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Connector class</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p>Infra.Connector.Centennial.CentennialConnector</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Configuration file</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p>Infra.Connector.Centennial.icnf</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyB-Column1-Body1">
+                                                                    <p>Connection methodology</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyA-Column2-Body1">
+                                                                    <p>ODBC connection to a SQL database</p>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <h2>Connection Parameters</h2>
+                                                    <p>The table below provides a description of Centennial Discovery / FrontRange connection parameters.</p>
+                                                    <table class="TableStyle-FieldDesc" style="mc-table-style: url('../../resources/tablestyles/fielddesc.css');" cellspacing="0">
+                                                        <col style="width: 105pt;" class="TableStyle-FieldDesc-Column-Column1">
+                                                        
+                                                        <col style="width: 318pt;" class="TableStyle-FieldDesc-Column-Column2">
+                                                        
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">
+                                                                <p>Parameters</p>
+                                                            </td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                <p>Description</p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr style="height: 19pt;">
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">
+                                                                <p>DB connection</p>
+                                                            </td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                <p>Database connection string or system DSN to the Centennial Discovery/FrontRange SQL database.</p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">
+                                                                <p>DB Login ID </p>
+                                                            </td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                <p>Database Login ID.</p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">
+                                                                <p>DB password</p>
+                                                            </td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                <p>Database password.</p>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                    <h1>Customization</h1>
+                                                    <p>This connector permits extensions to the schema through customization of the configuration file. The possible customizations are listed below. However, the customizations are not limited to these:</p>
+                                                    <ul>
+                                                        <li class="Bulleted_1" value="1">New resource types</li>
+                                                        <li class="Bulleted_1" value="2">New resource properties</li>
+                                                        <li class="Bulleted_1" value="3">New link types</li>
+                                                    </ul>
+                                                    <h2>Connector diagnostics</h2>
+                                                    <p>The connector has the facility to trace information. The data can be obtained through Polling tracing or Application tracing.</p>
+                                                    <h1>Resource Types</h1>
+                                                    <h2>(Network Device)</h2>
+                                                    <p>A generic class of types representing devices discovered on a network by Centennial Discovery / FrontRange. The connector correctly recognizes when a device moves between these types. The complete list of types is configurable within Centennial Discovery / FrontRange and users are able to add their own. A typical Centennial Discovery / FrontRange install will come with the following types:</p>
+                                                    <ul>
+                                                        <li value="1">Network PC </li>
+                                                        <li value="2">Standalone PC</li>
+                                                        <li value="3">Server</li>
+                                                        <li value="4">Remote Server</li>
+                                                        <li value="5">Network Portable</li>
+                                                        <li value="6">Standalone Portable</li>
+                                                        <li value="7">Standalone Server</li>
+                                                        <li value="8">Network Device</li>
+                                                        <li value="9">Printer</li>
+                                                        <li value="10">Fax</li>
+                                                        <li value="11">Router</li>
+                                                        <li value="12">Switch</li>
+                                                        <li value="13">Scanner</li>
+                                                        <li value="14">Monitor</li>
+                                                        <li value="15">Power Supply</li>
+                                                        <li value="16">Peripheral Device</li>
+                                                        <li value="17">Thin Client</li>
+                                                        <li value="18">Unix Box</li>
+                                                        <li value="19">Macintosh</li>
+                                                        <li value="20">Unauditable Computer</li>
+                                                        <li value="21">Other</li>
+                                                        <li value="22">Hub</li>
+                                                        <li value="23">SAN/NAS</li>
+                                                        <li value="24">WiFi</li>
+                                                        <li value="25">FireWall</li>
+                                                    </ul>
+                                                    <p class="NormalWeb_1">Resource types of this class all support the following properties.</p>
+                                                    <ul class="ul_4">
+                                                        <li value="1">Unique ID </li>
+                                                        <li value="2">Name </li>
+                                                        <li value="3">Machine Name </li>
+                                                        <li value="4">Domain </li>
+                                                        <li value="5">Last User </li>
+                                                        <li value="6">Description </li>
+                                                        <li value="7">OU </li>
+                                                        <li value="8">Last Contact </li>
+                                                        <li value="9">Audit Schedule </li>
+                                                        <li value="10">Client Address </li>
+                                                        <li value="11">Client Version </li>
+                                                        <li value="12">MAC Address 1 </li>
+                                                        <li value="13">MAC Address 2 </li>
+                                                        <li value="14">MAC Address 3 </li>
+                                                        <li value="15">IP Address 1 </li>
+                                                        <li value="16">IP Address 2 </li>
+                                                        <li value="17">IP Address 3 </li>
+                                                        <li value="18">Notes </li>
+                                                        <li value="19">Type </li>
+                                                        <li value="20">Memory (KB) </li>
+                                                        <li value="21">Disk Capacity (MB) </li>
+                                                        <li value="22">Disk Free (MB) </li>
+                                                        <li value="23">Processor Speed </li>
+                                                        <li value="24">Operating System </li>
+                                                        <li value="25">Manufacturer</li>
+                                                        <li value="26">Model</li>
+                                                        <li value="27">Serial Number</li>
+                                                    </ul>
+                                                    <h2>Software</h2>
+                                                    <p class="NormalWeb_1"><b>Software</b> is a software application or component that may be installed on various devices around the network.</p>
+                                                    <ul>
+                                                        <li value="1">Unique ID </li>
+                                                        <li value="2">Name </li>
+                                                        <li value="3">Type </li>
+                                                        <li value="4">Manufacturer </li>
+                                                        <li value="5">Version </li>
+                                                        <li value="6">Lic Required </li>
+                                                        <li value="7">Lic Used </li>
+                                                        <li value="8">Lic Not Used </li>
+                                                    </ul>
+                                                    <h1>Link Types</h1>
+                                                    <p>This section lists the link types that the connector has to discover on Centennial Discovery / FrontRange v2007 systems and then allow for their importation into the <span class="GeneralVariablesCoreName">ASM Core</span> CMDB.</p>
+                                                    <h2>Installed On (Network Device)</h2>
+                                                    <p class="NormalWeb_1">A class of link types covering a link type for each (Network Device) resource type. This represents that a particular Software resource is currently installed on a particular Network Device resource.</p>
+                                                    <table class="TableStyle-FieldDesc" style="mc-table-style: url('../../resources/tablestyles/fielddesc.css');" cellspacing="0">
+                                                        <col style="width: 135pt;" class="TableStyle-FieldDesc-Column-Column1">
+                                                        
+                                                        <col style="width: 168pt;" class="TableStyle-FieldDesc-Column-Column2">
+                                                        
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">
+                                                                <p class="p_5">Higher Resource Type </p>
+                                                            </td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                <p>Software </p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">
+                                                                <p class="p_5">Lower Resource Type </p>
+                                                            </td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                <p>(Network Device) </p>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                

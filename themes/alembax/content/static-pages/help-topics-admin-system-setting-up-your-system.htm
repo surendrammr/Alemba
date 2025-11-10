@@ -1,0 +1,98 @@
+[viewBag]
+title = "Setting Up your System"
+url = "/help/topics/admin-system/setting-up-your-system"
+layout = "help"
+is_hidden = 0
+navigation_hidden = 0
+==
+                                                    <h1>Setting Up your System</h1>
+                                                    <p class="intro">This section gives you a high level overview of the different aspects of the system you should consider when designing the setup of your system, followed by a step by step recommended order of setup.</p>
+                                                    <h2>Concepts and Considerations</h2>
+                                                    <p>There are various concepts and functions you need to understand and consider before setting up <span class="GeneralVariablesCoreName">ASM Core</span>.</p>
+                                                    <h3>Configuring your System</h3>
+                                                    <h2 class="Consider">To consider</h2>
+                                                    <p class="prereqtext1">To what extent do you want to configure <span class="GeneralVariablesCoreName">ASM Core</span>?</p>
+                                                    <p class="prereqtext1">For example, do you want to change the field titles for the Call Details, Request Details and Configuration Item Details windows?</p>
+                                                    <p class="prereqtextlast">Do you want to redesign <span class="GeneralVariablesCoreName">ASM Core</span> windows (for example, add fields to the main display and change colors)?</p>
+                                                    <p>The <span class="GeneralVariablesSystemName">ASM System</span> can be configured to whatever extent is required to reflect your organization’s terminology and procedures.</p>
+                                                    <p>You can change the names of fields and menu items using the <a href="system%20titles.htm">System Titles</a> window. You can simply change the spelling, the terminology (for example, rename Call to Ticket), and so on.</p>
+                                                    <p>To configure windows further, use the <a href="../designer/using%20designer.htm"><span class="GeneralVariablesDesignerName">ASM Designer</span></a> to add and remove fields from windows, rearrange them, and change colors.</p>
+                                                    <h3>Analyst Skills and Security Roles</h3>
+                                                    <h2 class="Consider">To consider</h2>
+                                                    <p class="prereqtext1">If analysts have specialist skills, do you want to link them to call types or to CMDB item types?</p>
+                                                    <p class="prereqtext1">Which analysts do you want to be able to change options in the Administration module or add other analysts to the system?</p>
+                                                    <p class="prereqtextlast">Do you want all analysts to be able to log calls and/or requests or give only certain analysts the ability to receive calls and tasks?</p>
+                                                    <p>The skills of your analysts can be linked to both call types and/or CMDB item types. This enables analysts to direct calls to the appropriate person to be solved, based on the issue type or CMDB item type specified in the call.</p>
+                                                    <p>Skills are assigned to analysts on the Person Details window through the <a href="../cmdb%20explorer%20options/skills%20explorer%20option.htm">Skills</a> Explorer option.</p>
+                                                    <p>Controlling access to different parts of the system is important. A security role is a set of security options and permissions pertaining to a specific part of the application. There are security roles for general access, IPK Management, Workflow Management, Configuration (CMDB) Management, Service Level Management, Availability Management, Knowledge Management, and the Bulletin Board. You can create any number of roles and then assign those roles to individual analysts.</p>
+                                                    <p>Security roles are created in the various <a href="../admin%20security%20roles/security%20roles.htm">Security Roles</a> options in System Administration, and assigned to people in the <a href="%7B%7B%20'help-managing-people-managing-people#Security_Roles'%7CstaticPage%20%7D%7D#Security_Roles">Person Details</a> window.</p>
+                                                    <h3>Groups</h3>
+                                                    <h2 class="Consider">To consider</h2>
+                                                    <p class="prereqtext">Do you want to organize analysts into groups so that a call or task can be forwarded to an entire group as well as to individual analysts?</p>
+                                                    <p>Analysts can be organized into groups to reflect how your support center operates and optimize <span class="GeneralVariablesCoreName">ASM Core</span> features such as call and task forwarding and escalation.</p>
+                                                    <p>When a call or task is forwarded to a group, every member of the group receives it. In the case of calls, the first analyst to action the call becomes the owner and the call is removed from the other analysts’ Calls Outstanding windows.</p>
+                                                    <p>To create IPK groups, use the <a href="../admin%20security/ipk%20groups.htm">IPK Groups</a> window. To create workflow groups, use the <a href="../admin%20security/workflow%20management%20groups.htm">Workflow Management Groups</a> window.</p>
+                                                    <h3>Call Resolution and Closure</h3>
+                                                    <h2 class="Consider">To consider</h2>
+                                                    <p class="prereqtext">Do you want only specific analysts to be able to close calls?</p>
+                                                    <p><span class="GeneralVariablesCoreName">ASM Core</span> can be set up to allow any analyst who resolves a call to also close it, or to give only certain analysts the ability to close calls. In the latter case, <span class="GeneralVariablesCoreName">ASM Core</span> automatically forwards the call to a closing analyst for final sign-off once the call has been resolved.</p>
+                                                    <p>If you want only certain analysts to be able to close calls, select the <b>Comments</b> closure method in the <a href="../admin%20ipk%20management/ipk%20settings%20(partitioned).htm">IPK Settings (Partitioned)</a> window.</p>
+                                                    <p>You can then either:</p>
+                                                    <ul>
+                                                        <li value="1">give analysts the ability to close calls as part of their <a href="../admin%20security%20roles/ipk%20management%20security%20roles%20-%20options%20tab.htm">IPK security role</a>
+</li>
+                                                        <p>or</p>
+                                                        <li value="2">nominate a particular group as the <a href="../admin%20ipk%20management/closure%20groups.htm">closure group</a> and link analysts to that group.</li>
+                                                    </ul>
+                                                    <h3>Requests, Tasks and Approvals</h3>
+                                                    <h2 class="Consider">To consider</h2>
+                                                    <p class="prereqtext1">What sort of request types do you want to set up?</p>
+                                                    <p class="prereqtextlast">Do you want <span class="GeneralVariablesCoreName">ASM Core</span> to automatically calculate requests and task target dates?</p>
+                                                    <p>A request is an order for change. The owner of a request is known as the Request Manager for that request. A Request Manager is defined as any analyst who has been assigned Manager permissions as part of their Workflow Management security role.</p>
+                                                    <p>By default, new tasks are suspended when they are created and need to be authorized by the Request Manager. The tasks are then unsuspended but only become active (that is, able to be actioned) once all their parent tasks are completed, which means that the tasks that precede the current task in the workflow and upon which it depends must be closed.</p>
+                                                    <p>An approval is a special kind of task that must be signed off before the workflow can progress and the request can be completed.</p>
+                                                    <p><span class="GeneralVariablesCoreName">ASM Core</span> provides several task types that can be added to your workflow to perform specialized actions.</p>
+                                                    <h2>Service Level Management</h2>
+                                                    <h2 class="Consider">To consider</h2>
+                                                    <p class="prereqtext1">Do you want <span class="GeneralVariablesCoreName">ASM Core</span> to escalate calls, requests and tasks if they are not actioned or resolved within a certain period of time?</p>
+                                                    <p class="prereqtext1">Would you like calls and requests involving different configuration items, Users or organizations to escalate at different times?</p>
+                                                    <p class="prereqtextlast">Do you want to be able to escalate different types of CMDB items at different times?</p>
+                                                    <p>Escalation causes alarms to be activated when a call or request has not been actioned or closed within the required period of time. The call or request escalates to one or more analysts and appears on their Calls or Requests Outstanding window (providing the relevant escalation options have been selected).</p>
+                                                    <p>You can configure the system to automatically send an email or pager message to the analyst(s) receiving the escalated call or request when it is first escalated.</p>
+                                                    <p>After a certain amount of time (longer than the escalation time), the service agreement is said to be “breached”. In this case, financial penalties may apply, depending on the particular agreements and relationships you have set up. Escalations are designed to prevent these agreement breaches by warning analysts that the maximum time permitted by the agreement is approaching.</p>
+                                                    <h3>Partitioning</h3>
+                                                    <h2 class="Consider">To consider</h2>
+                                                    <p class="prereqtext">Do you want to create different system configurations for different groups in such areas as issue profiling, CMDB records, and Workflow or Service Desk management?</p>
+                                                    <p><a href="partitioning.htm">Partitioning</a> is a way of dividing items in your database into separate sections in order to set up different Service Desk, Workflow Management and CMDB options for different groups and analysts.</p>
+                                                    <p>For example, an organization’s Service Desk can have multiple support groups responsible for a wide variety of unrelated systems, technologies and User support over a common user-base and organizational structure. Each support group requires its own issue types and service levels for different organizations and Users, as well as different escalation response times. In addition, the configuration items supported by each group may be of no interest to other groups.</p>
+                                                    <p>With partitioning, the organization needs to maintain one database, with only the information relevant to Analysts and Users of a particular partition being accessible to them. On the other hand, non-partitioned information can be accessed and updated by all analysts.</p>
+                                                    <h3>Configuration Management Database (CMDB)</h3>
+                                                    <h2 class="Consider">To consider</h2>
+                                                    <p class="prereqtext1">What services do you want to create for your organization?</p>
+                                                    <p class="prereqtext1">What type of configuration items do you want to record: hardware, software? How many components of these do you want to record: PC, screen, keyboard, cards in the PC?</p>
+                                                    <p class="prereqtext1">Who are your Users (internal staff, external Users)?</p>
+                                                    <p class="prereqtextlast">Which organizations do you support (if any)?</p>
+                                                    <p>The CMDB refers to the collection of services you provide and the configuration items, people, organizations, locations, agreements, cost centers, and contracts supporting these services.</p>
+                                                    <p>CMDB records are added to the CMDB from the New drop-down menu on the toolbar or from the Call, Request and Task Details or Search windows. Parameters for the CMDB are defined under System Administration &gt; CMDB.</p>
+                                                    <p>The Users supported by your Service Desk (that is, the people who contact the Service Desk with problems) can vary. They may be linked to different organizations, be located at different sites, belong to different departments, use different CMDB items, require different levels of support, have specific network IDs, and so on. <span class="GeneralVariablesCoreName">ASM Core</span> enables you to record all of this information.</p>
+                                                    <p>You can also give certain analysts in your Service Desk responsibility for particular contracts, and define separate agreements for different Users, organizations and external suppliers.</p>
+                                                    <h2>Steps in Setting Up the System</h2>
+                                                    <p>Because of the flexibility offered by <span class="GeneralVariablesCoreName">ASM Core</span>, you do not need to set up your system in a particular order. However, if you are setting up your system for the first time, we recommend you do so in the following order.</p>
+                                                    <ol>
+                                                        <li value="1">Familiarize yourself with the procedure for<b class="Xref_outstanding"> logging calls</b> and <b class="Xref_outstanding">requests</b>.</li>
+                                                        <li value="2">
+<a href="%7B%7B%20'help-toc-topics-system-admin#top'%7CstaticPage%20%7D%7D#top">Configure the system settings</a>. Use the options in the System Administration menu to configure the global, partitioned, email, and other system settings.
+</li>
+                                                        <li value="3">Configure global <a href="%7B%7B%20'help-admin-ipk-management-ipk-management#top'%7CstaticPage%20%7D%7D#top">IPK Management</a> and <a href="%7B%7B%20'help-admin-workflow-mgt-workflow-management#top'%7CstaticPage%20%7D%7D#top">Workflow Management</a> settings. You can define values displayed in drop-down lists when logging a call or request; and settings relating to the internal operation of the system, such as linking call types to reasons. The <a href="%7B%7B%20'help-admin-ipk-management-ipk-settings-(partitioned)#top'%7CstaticPage%20%7D%7D#top">IPK Settings (Partitioned)</a> window enables you to configure additional settings that apply to partitions.
+</li>
+                                                        <li value="4">Define <a href="%7B%7B%20'help-admin-security-ipk-groups#top'%7CstaticPage%20%7D%7D#top">IPK</a> and <a href="%7B%7B%20'help-admin-security-workflow-management-groups#top'%7CstaticPage%20%7D%7D#top">workflow management groups</a>.
+</li>
+                                                        <li value="5">Create and define the required <a href="%7B%7B%20'help-admin-security-roles-security-roles#top'%7CstaticPage%20%7D%7D#top">security roles</a>.
+</li>
+                                                        <li value="6">Define global <a href="%7B%7B%20'help-admin-cmdb-configuring-your-cmdb#top'%7CstaticPage%20%7D%7D#top">CMDB settings</a> as well as options that can be selected for individual CMDB records. Then, add configuration items, services, people, organizations, locations and other entities to the CMDB.
+</li>
+                                                        <li value="7">Set options to track <a href="../admin%20availability/admin%20availability.htm">availability</a> for the CMDB items.
+</li>
+                                                        <li value="8">Set up your <a href="%7B%7B%20'help-admin-slm-service-level-management#top'%7CstaticPage%20%7D%7D#top">SLM options</a>. This includes defining escalation and breach types and creating matrices. </li>
+                                                    </ol>
+                                                

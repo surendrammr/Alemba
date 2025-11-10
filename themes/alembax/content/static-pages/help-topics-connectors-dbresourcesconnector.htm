@@ -1,0 +1,153 @@
+[viewBag]
+title = "Resource Databases Connector"
+url = "/help/topics/connectors/dbresourcesconnector"
+layout = "help"
+is_hidden = 0
+navigation_hidden = 0
+==
+                                                    <h1>
+<a name="top"></a>Resource Databases Connector</h1>
+                                                    <p>The Database Resources Connector is a highly configurable connector that enables <span class="GeneralVariablesCoreName">ASM Core</span> to import resources from external databases. The connector requires configuration of the associated ICNF file within the <span class="GeneralVariablesCoreName">ASM Core</span> folder structure so that it can cater for any schema in third-party databases. This connector can import external resource data into <span class="GeneralVariablesCoreName">ASM Core</span> as Configuration Items, Services, Service Actions, Person records, Subscriber Groups, Knowledge articles, Organization, Location, Cost Center, and Contract records. The connector can retrieve data from many tables in a database and define links and views for the elements imported.</p>
+                                                    <p class="warning">Resources cannot be imported until the associated ICNF file has been configured for the target database. Learn more about <a href="#Installi" class="MCXref xref">Configuring the Database Resource Connector</a></p>
+                                                    <p>This section of the documentation describes the details of the connector, including:</p>
+                                                    <ul>
+                                                        <li class="Bulleted_1" value="1">The name of the files used </li>
+                                                        <li class="Bulleted_1" value="2">Connector class</li>
+                                                        <li class="Bulleted_1" value="3">Connection methodology </li>
+                                                        <li class="Bulleted_1" value="4">Use case scenario</li>
+                                                    </ul>
+                                                    <p class="note">You should familiarize yourself with the information in <a href="connector%20installation%20guide.htm" class="MCXref xref">Installing Connectors</a> before installing any connectors, and read the <a href="../integration/integrate.htm" class="MCXref xref">Integration</a> topics for more information on how to configure them.</p>
+                                                    <h2>Use Case Scenario </h2>
+                                                    <table class="TableStyle-scenario_table" style="mc-table-style: url('../../resources/tablestyles/scenario table.css');margin-left: 0;margin-right: auto;" cellspacing="0">
+                                                        <col class="TableStyle-scenario_table-Column-Column1">
+                                                        <col class="TableStyle-scenario_table-Column-Column2">
+                                                        <tr class="TableStyle-scenario_table-Body-Body1">
+                                                            <td class="TableStyle-scenario_table-BodyE-Column1-Body1">
+                                                                <p class="Strong">Purpose</p>
+                                                            </td>
+                                                            <td class="TableStyle-scenario_table-BodyD-Column2-Body1">
+                                                                <p>An organization records employee data in a third-party database and wants to import and merge that data with <span class="GeneralVariablesCoreName">ASM Core</span>.</p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="TableStyle-scenario_table-Body-Body1">
+                                                            <td class="TableStyle-scenario_table-BodyE-Column1-Body1">
+                                                                <p class="Strong">Role</p>
+                                                            </td>
+                                                            <td class="TableStyle-scenario_table-BodyD-Column2-Body1">
+                                                                <p>The role of this connector is to expose the data  in order to allow for population and ongoing consistency checks of the <span class="GeneralVariablesCoreName">ASM Core</span> CMDB.</p>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                    <h2>Connector Description </h2>
+                                                    <p>The table below provides a description of the  CMDB databases Connector. </p>
+                                                    <table class="TableStyle-Rep_Hdr_Row" style="mc-table-style: url('../../resources/tablestyles/rep hdr row.css');width: 612px;" cellspacing="0">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column1">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column2">
+                                                        <thead>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Head-Header1">
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column1-Header1">
+                                                                    <p class="Strong">Information fields </p>
+                                                                </th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadD-Column2-Header1">Name</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Connector </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p>3rd-party database &lt;-&gt; <span class="GeneralVariablesCoreName">ASM Core</span></p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Assembly </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p><span class="GeneralVariablesCompanyName2">Alemba®</span>.Connector.SQL.FedCMDB.dll</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Connector class (Source class) </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p><span class="GeneralVariablesCompanyName2">Alemba®</span>.Connector.SQL.FedCMDB.Connector</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Configuration file </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p><span class="GeneralVariablesCompanyName2">Alemba®</span>.Connector.SQL.FedCMDB.icnf</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyB-Column1-Body1">
+                                                                    <p>Connection methodology </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyA-Column2-Body1">
+                                                                    <p>Database</p>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <h2 class="Heading2">Connection Parameters </h2>
+                                                    <p>The login account used to access the database must have permissions to read and write to the specified table(s).</p>
+                                                    <p style="font-weight: bold;">If using Windows Authentication  to log into the database</p>
+                                                    <ul>
+                                                        <li value="1">the Windows User configured for the <span class="GeneralVariablesProductName">ASM</span> Connector Service, and the IIS User account for the Web UI, must both have read and write permissions to the database</li>
+                                                        <li value="2">append <b>;Integrated Security=SSPI</b> to the connection string</li>
+                                                        <li value="3">leave blank the Login ID and Password fields in the connection parameters </li>
+                                                    </ul>
+                                                    <table class="TableStyle-Rep_Hdr_Row" style="mc-table-style: url('../../resources/tablestyles/rep hdr row.css');" cellspacing="0">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column1">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column2">
+                                                        <thead>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Head-Header1">
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column1-Header1">
+                                                                    <p class="Strong">Parameters</p>
+                                                                </th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadD-Column2-Header1">Description</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Connection String </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p>Database server connection string. Formats:</p>Server=&lt;DatabaseServer&gt;;Database=&lt;DatabaseName&gt;<p>Server=&lt;DatabaseServer&gt;;Database=&lt;DatabaseName&gt;;Integrated Security=SSPI</p>
+<p class="exampletext">Server=localhost;Database=vFireCore </p>
+<p class="exampletext"> Server=localhost;Database=vFireCore;Integrated Security=SSPI </p>
+</td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Login ID </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p>Login ID for the third-party database</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyB-Column1-Body1">
+                                                                    <p>Password </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyA-Column2-Body1">
+                                                                    <p>Password for the third-party database</p>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <p class="warning">Connecting to an Oracle database may require a different connection string format, for example, Datasource=&lt;DatabaseName&gt;.</p>
+                                                    <h2 class="Heading2">Diagnostics </h2>
+                                                    <p>The connector has the facility to trace information. The data can be obtained through Polling tracing or Application tracing. </p>
+                                                    <h2>
+<a name="Installi"></a>Configuring the Database Resource Connector</h2>
+                                                    <p>This connector requires configuration of the connector configuration file (.ICNF) to expose the tables and attributes in the third-party database that contain resources to be imported into <span class="GeneralVariablesCoreName">ASM Core</span>.</p>
+                                                    <p> Unlike other connectors, the ICNF file for the Database Resources Connector does not come pre-configured. Configuration of <b><span class="GeneralVariablesCompanyName2">Alemba®</span>.Connector.SQL.FedCMDB.icnf</b> is required. </p>
+                                                    <p>A  <a href="tutorial%20for%20db%20resource%20conn.htm" class="MCXref xref">Tutorial for Configuring the Database Resources Connector </a> has been provided as a guide on how to configure the ICNF file for this connector. For further assistance with configuring your ICNF file, contact your Account Manager to engage an <span class="GeneralVariablesCompanyName2">Alemba®</span> Professional Services Consultant.</p>
+                                                

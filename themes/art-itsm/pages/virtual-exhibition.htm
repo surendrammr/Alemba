@@ -1,0 +1,237 @@
+url = "/virtual-exhibition"
+layout = "home"
+title = "Virtual Exhibition"
+description = "Virtual Exhibition page"
+is_hidden = 0
+meta_title = "Virtual Exhibition | Alemba Service Manager ITSM Resources"
+meta_description = "See demonstrations of Alemba's latest ITSM solutions here."
+robot_index = "index"
+robot_follow = "follow"
+seoOptionsEnabledInSitemap = 0
+seoOptionsUseUpdatedAt = 1
+seoOptionsRobotIndex = "index"
+seoOptionsRobotFollow = "follow"
+seoOptionsChangefreq = "daily"
+seoOptionsPriority = 0.5
+canonical_url = "https://alemba.com/virtual-exhibition"
+seoOptionsMetaTitle = "Virtual Exhibition | Alemba Service Manager ITSM Resources"
+seoOptionsMetaDescription = "See demonstrations of Alemba's latest ITSM solutions here."
+seoOptionsCanonicalUrl = "https://alemba.com/virtual-exhibition"
+seoOptionsOgCard = "summary_large_image"
+==
+<?php
+function onStart()
+{
+
+	// Type should be either Video, Download or Link
+
+	$hotspots = [
+		'tv1' => [
+			'title' => 'Nano',
+			'headline' => 'Welcome to Nano',
+			'description' => 'Fast, responsive, made for business users. Nano is small but perfectly formed.',
+			'position' => 'top:39%; left:31.5%',
+			'url' => 'https://player.vimeo.com/video/464059133',
+			'type' => 'Video'
+		],
+		'tv2' => [
+			'title' => 'MSPs',
+			'headline' => 'Managed Service Providers',
+			'description' => 'Alemba Service Manager is the perfect tool for MSPs. Find out why.',
+			'position' => 'top:39%; left:67.5%',
+			'url' => 'https://player.vimeo.com/video/478002614',
+			'type' => 'Video'
+		],
+		'literature' => [
+			'title' => 'Brochure',
+			'headline' => 'Brochure',
+			'description' => 'Alemba Service Manager Product Overview',
+			'position' => 'top:57.5%; left:52%',
+			'url' => 'https://alemba.com/downloads/alemba-service-management-product-overview',
+			'type' => 'Download'
+		],
+		'computer1' => [
+			'title' => 'Multi-language',
+			'headline' => 'Multi-language',
+			'description' => 'Whatever language your users speak, Alemba Service Manager is fluent.',
+			'position' => 'top:53%; left:46%',
+			'url' => 'https://player.vimeo.com/video/477995451',
+			'type' => 'Video'
+		],
+		'computer2' => [
+			'title' => 'Chat',
+			'headline' => 'Chat',
+			'description' => 'Connecting with your users using online chat is more important than ever. Find out how it works.',
+			'position' => 'top:53%; left:57%',
+			'url' => 'https://player.vimeo.com/video/477995958',
+			'type' => 'Video'
+		],
+		'computer3' => [
+			'title' => 'Azure Logic apps',
+			'headline' => 'Azure Logic apps',
+			'description' => 'Supercharge your workflow by using Azure Logic apps.',
+			'position' => 'top:51%; left:65.5%',
+			'url' => 'https://player.vimeo.com/video/603894048',
+			'type' => 'Video'
+		],
+		'presentation' => [
+			'title' => 'Keynote presentation',
+			'headline' => 'Remote delivery first: Notes from the front line',
+			'description' => 'There is an unprecedented need to manage the implementation of projects successfully through remote-working technologies. Alemba\'s Tom Kingsley shares tips and tricks to ensure a successful remote collaboration for both client and service provider.',
+			'position' => 'top:50%; left:18%',
+			'url' => 'https://vimeo.com/643527145',
+			'type' => 'Link'
+		],
+	];
+
+	$this['hotspots'] = $hotspots;
+	$this['hotspots_json'] = json_encode($hotspots);
+
+	// Use Popper for tooltips
+
+	$this->addJs('https://unpkg.com/@popperjs/core@2');
+
+}
+?>
+==
+{% put scripts %}
+
+<script type="text/javascript">
+
+	var hotspots = {{ hotspots_json|raw }};
+	var popover = $('.virtual-exhibition-popover');
+
+	function showPopover() {
+
+		popover.fadeIn();
+
+	}
+
+	function closePopover() {
+
+		popover.fadeOut();
+
+	}
+
+	function changePopoverDetails(key)
+	{
+
+		data = hotspots[key];
+
+		$('#popover-headline').html(data.headline);
+		$('#popover-description').html(data.description);
+
+		if(data.type == 'Video') {
+
+			$('#popover-link').hide();
+			$('#popover-video').attr('src', data.url);
+			$('#popover-video').show();
+
+		} else if(data.type == 'Download') {
+
+			$('#popover-video').hide();
+			$('#popover-link').attr('href', data.url);
+			$('#popover-link').html('Download');
+			$('#popover-link').show();
+
+		} else {
+
+			$('#popover-video').hide();
+			$('#popover-link').attr('href', data.url);
+			$('#popover-link').html('View');
+			$('#popover-link').show();
+
+		}
+
+	}
+	
+	$(document).ready(function(){
+
+		$('.button-close').click(function(){
+
+			closePopover();
+
+		});
+
+		$('.hotspot').click(function(){
+
+			key = $(this).data('key');
+
+			changePopoverDetails(key);
+			showPopover();
+
+		});
+
+	});
+
+	// Popovers
+
+	{% for key, hotspot in hotspots %}
+
+		const {{ 'button_' ~ key }} = document.querySelector('.hotspot_{{ key }}');
+		const {{ 'tooltip_' ~ key }} = document.querySelector('.tooltip_{{ key }}');
+
+		// Pass the button, the tooltip, and some options, and Popper will do the
+		// magic positioning for you:
+		Popper.createPopper({{ 'button_' ~ key }}, {{ 'tooltip_' ~ key }}, {
+			placement: 'right',
+		});
+
+	{% endfor %}
+
+</script>
+
+{% endput %}
+
+<div class="container-fluid copy virtual-exhibition">
+
+	<div class="row" style="padding:0;">
+
+		<div id="virtual-exhibition-image">
+
+			<div class="virtual-exhibition-popover" style="display:none;">
+
+				<a class="btn button-close" href="#">&times;</a>
+
+				<div class="virtual-exhibition-popover-heading">
+
+					<h3 id="popover-headline"></h3>
+					<p id="popover-description"></p>
+
+				</div>
+
+				<div class="virtual-exhibition-popover-content">
+
+					<iframe id="popover-video" src="" width="640" height="360" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
+
+					<a id="popover-link" class="btn" href="" target="_blank"></a>
+
+				</div>
+
+			</div>
+
+			<h1 class="headline-overlapping-white text-center mt-3">{{ this.page.title }}</h1>
+
+			{% partial 'demo-button' %}
+
+			<div class="virtual-exhibition-image-and-hotspots">
+
+				<img class="virtual-exhibition-image" src="{{ 'Events/pic-virtual-exhibition.jpg'|media }}?v=3" alt="Virtual exhibition stand">
+
+				{% for key, hotspot in hotspots %}
+
+					<div id="tooltip-{{ key }}" class="tooltip" role="tooltip">
+						<h4>{{ hotspot.title }}</h4>
+						<p><small>{{ hotspot.type }}</small></p>
+					</div>
+					<div id="hotspot-{{ key }}" data-key="{{ key }}" class="hotspot" style="{{ hotspot.position }}" title="{{ hotspot.title }}"></div>
+
+				{% endfor %}
+
+			</div>
+
+		</div>
+
+	</div>
+
+</div>

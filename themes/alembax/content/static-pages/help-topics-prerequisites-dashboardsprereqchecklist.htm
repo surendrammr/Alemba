@@ -1,0 +1,603 @@
+[viewBag]
+title = "Dashboards prerequisites checklist"
+url = "/help/topics/prerequisites/dashboardsprereqchecklist"
+layout = "help"
+is_hidden = 0
+navigation_hidden = 0
+==
+                                                    <h1>Dashboards prerequisites checklist</h1>
+                                                    <p>You install the dashboards platform separately from <span class="GeneralVariablesProductNameFull">Alemba Service Manager™</span> software.</p>
+                                                    <p>For improved performance, we recommend that you install the Dashboard software on a separate Application Server. You must also install the <span class="GeneralVariablesDashboardSDK">Dashboard SDK</span> software on the <span class="GeneralVariablesProductName">ASM</span> Application Server.</p>
+                                                    <p>You can use virtual machines to run your <span class="GeneralVariablesSystemName">ASM System</span> if the guest operating system is supported by <span class="GeneralVariablesCompanyName2">Alemba®</span> and the virtual machine vendor. </p>
+                                                    <p>The recommended minimum requirements for dashboards are summarized below.</p>
+                                                    <p class="note">If your site has a large volume of data, you should consider using hardware with a higher specification.</p>
+                                                    <p class="note">Each Dashboard application has its own prerequisites. If you install these applications on the same server, then the prerequisites are cumulative, and are also in addition to the prerequisites for <span class="GeneralVariablesProductName">ASM</span>. For example, if you choose to install the <span class="GeneralVariablesUserManagementServer">User Management Server</span> on the Dashboard Application Server, you will need a recommended 8 GB RAM for memory. For more information about <span class="GeneralVariablesProductName">ASM</span> prerequisites, see <a href="prereq%20checklist.htm" class="MCXref xref">Prerequisites checklist</a>.</p>
+                                                    <h2>Infrastructure map</h2>
+                                                    <p>The following is an example of the infrastructure relationships of a standard implementation of the Dashboard Platform.</p>
+                                                    <p>
+                                                        <img src="/storage/app/media/Help/images/install%20topography.jpg" class="screenshot">
+                                                        
+                                                    </p>
+                                                    <p class="note">This diagram could differ significantly, depending on your internal infrastructure requirements and datacenter landscape.</p>
+                                                    <h2>Dashboard Platform</h2>
+                                                    <p>The following prerequisites are for the Dashboard Platform. </p>
+                                                    <h3>Application Server</h3>
+                                                    <p><b>Operating System: </b>
+                                                    </p>
+                                                    <table style="mc-table-style: url('../../resources/tablestyles/rep hdr row.css');margin-left: 0;margin-right: auto;width: 952px;" class="TableStyle-Rep_Hdr_Row" cellspacing="0">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column1" style="width: 197px;">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column2" style="width: 78px;">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column1" style="width: 95px;">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column2" style="width: 119px;">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column1">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column2" style="width: 71px;">
+                                                        <thead>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Head-Header1">
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column1-Header1">Operating System</th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column2-Header1">IIS Version</th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column1-Header1">Hardware</th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column2-Header1">.Net Framework version</th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column1-Header1">Additional Requirements</th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadD-Column2-Header1">Check?</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">Windows Server 2012 R2</td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">IIS 8.5</td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1" style="vertical-align: middle;padding-left: 5px;padding-right: 5px;padding-top: 5px;padding-bottom: 5px;border-left-style: none;border-left-width: 0px;border-left-color: #0096dc;border-right-style: solid;border-right-width: 1px;border-right-color: #0096dc;border-top-style: none;border-top-width: 0px;border-top-color: #0096dc;border-bottom-style: solid;border-bottom-width: 1px;border-bottom-color: #0096dc;text-align: center;" rowspan="3">  64-bit</td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1" style="vertical-align: middle;padding-left: 5px;padding-right: 5px;padding-top: 5px;padding-bottom: 5px;border-left-style: none;border-left-width: 0px;border-left-color: #0096dc;border-right-style: solid;border-right-width: 1px;border-right-color: #0096dc;border-top-style: none;border-top-width: 0px;border-top-color: #0096dc;border-bottom-style: solid;border-bottom-width: 1px;border-bottom-color: #0096dc;">
+                                                                    <p rowspan="11" style="text-align: left;">.NET 3.5</p>
+                                                                    <p rowspan="11" style="text-align: left;">.NET 4.5.2 and above</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1" style="vertical-align: middle;" rowspan="3">
+                                                                    <p><span class="GeneralVariablesUserManagementServer">User Management Server</span>
+                                                                    </p>
+                                                                    <p>SMTP Mail Server</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1" rowspan="3" style="background-color: #e4eef3;padding-left: 5px;padding-right: 5px;padding-top: 5px;padding-bottom: 5px;border-left-style: none;border-left-width: 0px;border-left-color: #0096dc;border-right-style: none;border-right-width: 0px;border-right-color: #0096dc;border-top-style: none;border-top-width: 0px;border-top-color: #0096dc;border-bottom-style: solid;border-bottom-width: 1px;border-bottom-color: #0096dc;"> </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">Windows Server 2016</td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">IIS 10.0</td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1" style="vertical-align: middle;padding-left: 5px;padding-right: 5px;padding-top: 5px;padding-bottom: 5px;border-left-style: none;border-left-width: 0px;border-left-color: #0096dc;border-right-style: solid;border-right-width: 1px;border-right-color: #0096dc;border-top-style: none;border-top-width: 0px;border-top-color: #0096dc;border-bottom-style: solid;border-bottom-width: 1px;border-bottom-color: #0096dc;">.NET 4.5.2 and above</td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyB-Column1-Body1">Windows Server 2019</td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyB-Column2-Body1">IIS 10.0</td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyB-Column2-Body1" style="vertical-align: middle;padding-left: 5px;padding-right: 5px;padding-top: 5px;padding-bottom: 5px;border-left-style: none;border-left-width: 0px;border-left-color: #0096dc;border-right-style: solid;border-right-width: 1px;border-right-color: #0096dc;border-top-style: none;border-top-width: 0px;border-top-color: #0096dc;border-bottom-style: solid;border-bottom-width: 1px;border-bottom-color: #0096dc;">.NET 4.7 and above</td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <p class="note">An SSL certificate from a valid certification authority is required for HTTPS binding. A self signed server certificate is only supported for HTTP binding. </p>
+                                                    <p><b>Minimum/recommended hardware requirements:</b>
+                                                    </p>
+                                                    <table style="margin-left: 0;margin-right: auto;mc-table-style: url('../../resources/tablestyles/rep hdr row.css');width: 952px;" class="TableStyle-Rep_Hdr_Row" cellspacing="0">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column1" style="width: 142px;">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column2" style="width: 313px;">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column1" style="width: 424px;">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column2" style="width: 70px;">
+                                                        <thead>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Head-Header1">
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column1-Header1">
+                                                                    <p>Hardware</p>
+                                                                </th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column2-Header1">Minimum (per system)</th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column1-Header1" style="text-align: center;">Recommended  (per system)</th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadD-Column2-Header1">Check?</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>CPU</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>1 CPU Core</p>
+                                                                    <p>1 GHz/Core</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1" style="text-align: left;">
+                                                                    <p>2 CPU Cores</p>
+                                                                    <p>2 GHz/Core</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1" rowspan="3" style="background-color: #e4eef3;padding-left: 5px;padding-right: 5px;padding-top: 5px;padding-bottom: 5px;border-left-style: none;border-left-width: 0px;border-left-color: #0096dc;border-right-style: none;border-right-width: 0px;border-right-color: #0096dc;border-top-style: none;border-top-width: 0px;border-top-color: #0096dc;border-bottom-style: solid;border-bottom-width: 1px;border-bottom-color: #0096dc;"> </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Memory</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>2 GB RAM</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1" style="text-align: left;">4 GB RAM</td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyB-Column1-Body1">HD</td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyB-Column2-Body1">300 MB HDD </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyB-Column1-Body1" style="text-align: left;">1 GB+ HDD</td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <p><b>Configuring Windows Server for Dashboards: </b>
+                                                    </p>
+                                                    <ul>
+                                                        <li value="1">For Windows Server 2012, see <a href="prereqconfigserver2012.htm" class="MCXref xref">Configuring Windows Server 2012 R2 for Alemba Service Manager™</a>.</li>
+                                                        <li value="2">For Windows Server 2016, see <a href="prereqconfigserver2016.htm" class="MCXref xref">Configuring Windows Server 2016 for Alemba Service Manager™</a>.</li>
+                                                        <li value="3">For Windows Server 2019, see <a href="prereqconfigserver2019.htm" class="MCXref xref">Configuring Windows Server 2019 for Alemba Service Manager™</a>.</li>
+                                                    </ul>
+                                                    <p><b>Additional considerations:</b>
+                                                    </p>
+                                                    <ul>
+                                                        <li value="1">Ensure that the CPUs are not over-committed.</li>
+                                                        <li value="2">We recommend optimizing the web server for background service performance.</li>
+                                                        <li value="3">
+                                                            <p>If required, you can configure multiple web servers under a load-balancer. </p>
+                                                            <p>Contact <span class="GeneralVariablesCompanyName2">Alemba®</span> Support regarding the best configuration for your requirements.</p>
+                                                        </li>
+                                                        <li value="4">
+                                                            <p>It is advisable to install a supported web browser – see <a href="#Client" class="MCXref xref">Client requirements</a> for more information. </p>
+                                                        </li>
+                                                        <li style="margin-bottom: 0;" value="5">
+                                                            <p style="margin-bottom: 0;">If you use Unicode databases, install the relevant language packs associated with any non-English characters that your Analysts use.  </p>
+                                                            <p style="margin-bottom: 0;">This ensures that the indexing service on the web server performs indexing correctly. </p>
+                                                        </li>
+                                                    </ul>
+                                                    <h3>
+<a name="Database"></a>Dashboard database server</h3>
+                                                    <p style="page-break-after: avoid;">We recommend that you install the dashboard database on a separate dedicated server from the <span class="GeneralVariablesDatabaseName">ASM database</span> to improve performance. If the Dashboard database is installed on the same server as the <span class="GeneralVariablesDatabaseName">ASM database</span>, it must have its own database and schema.</p>
+                                                    <p class="note"><span class="GeneralVariablesCompanyName2">Alemba®</span>  does not support SQL Server Express editions.</p>
+                                                    <table style="mc-table-style: url('../../resources/tablestyles/rep hdr row.css');width: 952px;" class="TableStyle-Rep_Hdr_Row" cellspacing="0">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column1">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column2" style="width: 70px;">
+                                                        <thead>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Head-Header1">
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column1-Header1">Requirement</th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadD-Column2-Header1">Check?</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyB-Column1-Body1">
+                                                                    <p><b>Supported versions:</b>
+                                                                    </p>
+                                                                    <ul>
+                                                                        <li class="last" value="1">SQL Server 2012 (64-bit)</li>
+                                                                        <li class="last" value="2">SQL Server 2014 (64-bit)</li>
+                                                                        <li class="last" value="3">SQL Server 2016 (64-bit)</li>
+                                                                        <li class="last" value="4">SQL Server 2017 (64-bit)</li>
+                                                                        <li class="last" value="5">SQL Server 2019 (64-bit)</li>
+                                                                    </ul>
+                                                                    <p><b>Minimum hardware requirements:</b>
+                                                                    </p>
+                                                                    <ul>
+                                                                        <li value="1">Consult your database vendor’s documentation for the minimum recommended hardware configuration required for the database version you intend to deploy.</li>
+                                                                        <li value="2">
+                                                                            <p>500 MB free space for the database.</p>
+                                                                        </li>
+                                                                        <li value="3">We recommend that you install the Dashboards and Reporting software on a separate server to the database server.</li>
+                                                                    </ul>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyA-Column2-Body1" style="background-color: #e4eef3"> </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <h3>Dashboard database user account permissions</h3>
+                                                    <p style="margin-bottom: 0;">For installations where a new SQL Server database is used, we recommend that you create a single database user account for administering the Dashboards database and performing operations such as running upgrade scripts on the database. You can restrict this database user account to access the Dashboard database only.</p>
+                                                    <p style="margin-bottom: 0;"> </p>
+                                                    <table style="margin-left: 0;margin-right: auto;mc-table-style: url('../../resources/tablestyles/rep hdr row.css');width: 952px;" class="TableStyle-Rep_Hdr_Row" cellspacing="0">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column1">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column2" style="width: 70px;">
+                                                        <thead>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Head-Header1">
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column1-Header1">Requirement</th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadD-Column2-Header1">Check?</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyB-Column1-Body1">
+                                                                    <p>Minimum required server roles and user mappings for the Dashboard Server and User Management Server during installation:</p>
+                                                                    <table style="mc-table-style: url('../../resources/tablestyles/table_with_borders.css');" class="TableStyle-Table_with_borders" cellspacing="0">
+                                                                        <col class="TableStyle-Table_with_borders-Column-Column1">
+                                                                        <col class="TableStyle-Table_with_borders-Column-Column1">
+                                                                        <col class="TableStyle-Table_with_borders-Column-Column1">
+                                                                        <tbody>
+                                                                            <tr class="TableStyle-Table_with_borders-Body-Body1">
+                                                                                <td class="TableStyle-Table_with_borders-BodyE-Column1-Body1" style="font-weight: bold;">DB Selection at Startup</td>
+                                                                                <td class="TableStyle-Table_with_borders-BodyE-Column1-Body1" style="font-weight: bold;">Server Roles</td>
+                                                                                <td class="TableStyle-Table_with_borders-BodyD-Column1-Body1" style="font-weight: bold;">User Mappings</td>
+                                                                            </tr>
+                                                                            <tr class="TableStyle-Table_with_borders-Body-Body1">
+                                                                                <td class="TableStyle-Table_with_borders-BodyE-Column1-Body1">New Database</td>
+                                                                                <td class="TableStyle-Table_with_borders-BodyE-Column1-Body1">Public</td>
+                                                                                <td class="TableStyle-Table_with_borders-BodyD-Column1-Body1">
+                                                                                    <ul>
+                                                                                        <li value="1">db_owner</li>
+                                                                                        <li value="2">public</li>
+                                                                                    </ul>
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr class="TableStyle-Table_with_borders-Body-Body1">
+                                                                                <td class="TableStyle-Table_with_borders-BodyE-Column1-Body1" rowspan="2">Existing Database</td>
+                                                                                <td class="TableStyle-Table_with_borders-BodyE-Column1-Body1">Public</td>
+                                                                                <td class="TableStyle-Table_with_borders-BodyD-Column1-Body1">
+                                                                                    <ul>
+                                                                                        <li value="1">db_owner</li>
+                                                                                        <li value="2">public</li>
+                                                                                    </ul>
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr class="TableStyle-Table_with_borders-Body-Body1">
+                                                                                <td class="TableStyle-Table_with_borders-BodyB-Column1-Body1">Public</td>
+                                                                                <td class="TableStyle-Table_with_borders-BodyA-Column1-Body1">
+                                                                                    <ul>
+                                                                                        <li value="1">db_datareader</li>
+                                                                                        <li value="2">db_datawriter</li>
+                                                                                        <li value="3">db_ddladmin</li>
+                                                                                        <li value="4">public
+</li>
+                                                                                    </ul>
+                                                                                </td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                    <p>Minimum required permissions for the SQL Server Data Sources:</p>
+                                                                    <table style="mc-table-style: url('../../resources/tablestyles/table_with_borders.css');" class="TableStyle-Table_with_borders" cellspacing="0">
+                                                                        <col class="TableStyle-Table_with_borders-Column-Column1">
+                                                                        <col class="TableStyle-Table_with_borders-Column-Column1">
+                                                                        <tbody>
+                                                                            <tr class="TableStyle-Table_with_borders-Body-Body1">
+                                                                                <td class="TableStyle-Table_with_borders-BodyE-Column1-Body1" style="font-weight: bold;">Intermediate Server (Target Server)</td>
+                                                                                <td class="TableStyle-Table_with_borders-BodyD-Column1-Body1" style="font-weight: bold;">Data Source (Source Server)</td>
+                                                                            </tr>
+                                                                            <tr class="TableStyle-Table_with_borders-Body-Body1">
+                                                                                <td class="TableStyle-Table_with_borders-BodyB-Column1-Body1">
+                                                                                    <p> Database Roles:</p>
+                                                                                    <ul>
+                                                                                        <li value="1">db_datareader</li>
+                                                                                        <li value="2">db_datawriter</li>
+                                                                                    </ul>
+                                                                                    <p>Server Roles:</p>
+                                                                                    <ul>
+                                                                                        <li value="1">dbcreator</li>
+                                                                                        <li value="2">public</li>
+                                                                                    </ul>
+                                                                                    <p class="note">Required to create the Schema, Database, and Tables.</p>
+                                                                                </td>
+                                                                                <td class="TableStyle-Table_with_borders-BodyA-Column1-Body1">
+                                                                                    <p> Database Role:</p>
+                                                                                    <ul>
+                                                                                        <li value="1">db_datareader</li>
+                                                                                    </ul>
+                                                                                    <p class="note">Required to access table data and schema.</p>
+                                                                                </td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                    <p class="warning">We recommend consulting your database administrator if you wish to change the database owner to a new account that can perform ordinary operations to the database as well as administrative operations, as you will need to manually change the database owner of all tables. </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyA-Column2-Body1" style="background-color: #e4eef3"> </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <h2>Networking</h2>
+                                                    <table style="margin-left: 0;margin-right: auto;mc-table-style: url('../../resources/tablestyles/rep hdr row.css');width: 952px;" class="TableStyle-Rep_Hdr_Row" cellspacing="0">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column1">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column2" style="width: 70px;">
+                                                        <thead>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Head-Header1">
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column1-Header1">Requirement</th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadD-Column2-Header1">Check?</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyB-Column1-Body1">
+                                                                    <p>The network location of the database server to the Dashboards server to the <span class="GeneralVariablesProductNameFull">Alemba Service Manager™</span> server will impact performance. In your system design, you must consider network switching and firewall configurations.  While <span class="GeneralVariablesCompanyName2">Alemba®</span> are not responsible for your system performance and can only provide very limited guidance in this area, we can recommend third-party consultants to provide specialist advice.</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyA-Column2-Body1" style="background-color: #e4eef3"> </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <h2>SMTP Exchange Server</h2>
+                                                    <p>The Dashboard and Reports software uses SMTP for sending scheduled dashboards and reports.</p>
+                                                    <table style="margin-left: 0;margin-right: auto;mc-table-style: url('../../resources/tablestyles/rep hdr row.css');width: 952px;" class="TableStyle-Rep_Hdr_Row" cellspacing="0">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column1">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column2" style="width: 70px;">
+                                                        <thead>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Head-Header1">
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column1-Header1">Requirement</th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadD-Column2-Header1">Check?</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyB-Column1-Body1">
+                                                                    <p><b>Supported versions:</b>
+                                                                    </p>
+                                                                    <ul>
+                                                                        <li value="1">Exchange 2010</li>
+                                                                        <li value="2">Exchange 2013</li>
+                                                                        <li value="3">Exchange 2016</li>
+                                                                        <li value="4">Exchange 2019</li>
+                                                                        <li class="last" value="5">Exchange 365</li>
+                                                                    </ul>
+                                                                    <p><b>Email Protocols:</b>
+                                                                    </p>
+                                                                    <ul>
+                                                                        <li value="1">Outgoing Email: SMTP</li>
+                                                                    </ul>
+                                                                    <p class="note">If you are using SMTP over SSL, ensure your web server can communicate with your SMTP server.</p>
+                                                                    <p class="note">Other email servers like Novell GroupWise and IBM Lotus Notes are untested and not supported but may also work for the SMTP protocol.</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyA-Column2-Body1" style="background-color: #e4eef3"> </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <h2>
+<a name="Client"></a>Client requirements</h2>
+                                                    <p style="page-break-before: avoid;page-break-after: avoid;">The client requirements are the same for the <span class="GeneralVariablesDashboardServer">Dashboard Server</span>, Dashboard SDK, and the Dashboard Desktop Designer:</p>
+                                                    <table style="width: 952px;mc-table-style: url('../../resources/tablestyles/rep hdr row.css');" class="TableStyle-Rep_Hdr_Row" cellspacing="0">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column1" style="width: 85%;">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column2" style="width: 70px;">
+                                                        <thead>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Head-Header1">
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column1-Header1">Requirement</th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadD-Column2-Header1">Check?</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyB-Column1-Body1">
+                                                                    <p><b>Supported browsers for Windows 7, 8.1, 10:</b>
+                                                                    </p>
+                                                                    <ul>
+                                                                        <li value="1">Chrome (latest), minimum supported version: 73.0</li>
+                                                                    </ul>
+                                                                    <p class="note">Chrome frequently updates its browser, which regularly increases the version number.</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyA-Column2-Body1" style="background-color: #e4eef3"> </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <h2>
+<span class="GeneralVariablesUserManagementServer">User Management Server</span>
+                                                    </h2>
+                                                    <p>You can install the <span class="GeneralVariablesUserManagementServer">User Management Server</span> as an independent server, or on the same server as the <span class="GeneralVariablesDashboardServer">Dashboard Server</span>. Speak to your Account Manager for advice.</p>
+                                                    <table style="margin-left: 0;margin-right: auto;mc-table-style: url('../../resources/tablestyles/rep hdr row.css');width: 952px;" class="TableStyle-Rep_Hdr_Row" cellspacing="0">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column1" style="width: 142px;">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column2" style="width: 313px;">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column1">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column2" style="width: 70px;">
+                                                        <thead>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Head-Header1">
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column1-Header1">
+                                                                    <p>Hardware</p>
+                                                                </th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column2-Header1">Minimum Requirement</th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column1-Header1" style="text-align: center;">Recommended Requirement</th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadD-Column2-Header1">Check?</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Memory</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>2 GB RAM</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1" style="text-align: left;">4 GB RAM</td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1" style="background-color: #e4eef3;padding-left: 5px;padding-right: 5px;padding-top: 5px;padding-bottom: 5px;border-left-style: none;border-left-width: 0px;border-left-color: #0096dc;border-right-style: none;border-right-width: 0px;border-right-color: #0096dc;border-top-style: none;border-top-width: 0px;border-top-color: #0096dc;border-bottom-style: solid;border-bottom-width: 1px;border-bottom-color: #0096dc;" rowspan="2"> </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyB-Column1-Body1">HD</td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyB-Column2-Body1">500 MB HDD </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyB-Column1-Body1" style="text-align: left;">1 GB+ HDD</td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <h2>
+<span class="GeneralVariablesDashboardSDK">Dashboard SDK</span>
+                                                    </h2>
+                                                    <p>If you are using multiple web servers for dashboards, you must install the <span class="GeneralVariablesDashboardSDK">Dashboard SDK</span> on each server.</p>
+                                                    <h3>Application Server</h3>
+                                                    <p><b>Operating System: </b>
+                                                    </p>
+                                                    <table style="mc-table-style: url('../../resources/tablestyles/rep hdr row.css');margin-left: 0;margin-right: auto;width: 952px;" class="TableStyle-Rep_Hdr_Row" cellspacing="0">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column1" style="width: 197px;">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column2" style="width: 78px;">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column1" style="width: 95px;">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column2" style="width: 119px;">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column1">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column2" style="width: 71px;">
+                                                        <thead>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Head-Header1">
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column1-Header1">Operating System</th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column2-Header1">IIS Version</th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column1-Header1">Hardware</th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column2-Header1">.Net Framework version</th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column1-Header1">Additional Requirements</th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadD-Column2-Header1">Check?</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">Windows Server 2012 R2</td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">IIS 8.5</td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1" style="vertical-align: middle;padding-left: 5px;padding-right: 5px;padding-top: 5px;padding-bottom: 5px;border-left-style: none;border-left-width: 0px;border-left-color: #0096dc;border-right-style: solid;border-right-width: 1px;border-right-color: #0096dc;border-top-style: none;border-top-width: 0px;border-top-color: #0096dc;border-bottom-style: solid;border-bottom-width: 1px;border-bottom-color: #0096dc;text-align: center;" rowspan="3">64-bit</td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1" style="vertical-align: middle;padding-left: 5px;padding-right: 5px;padding-top: 5px;padding-bottom: 5px;border-left-style: none;border-left-width: 0px;border-left-color: #0096dc;border-right-style: solid;border-right-width: 1px;border-right-color: #0096dc;border-top-style: none;border-top-width: 0px;border-top-color: #0096dc;border-bottom-style: solid;border-bottom-width: 1px;border-bottom-color: #0096dc;">
+                                                                    <p rowspan="11" style="text-align: left;">.NET 3.5</p>
+                                                                    <p rowspan="11" style="text-align: left;">.NET 4.5.2 and above</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1" style="vertical-align: middle;" rowspan="3">
+                                                                    <p>MS Visual Studio 2012 or later (not mandatory)</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1" rowspan="3" style="background-color: #e4eef3;padding-left: 5px;padding-right: 5px;padding-top: 5px;padding-bottom: 5px;border-left-style: none;border-left-width: 0px;border-left-color: #0096dc;border-right-style: none;border-right-width: 0px;border-right-color: #0096dc;border-top-style: none;border-top-width: 0px;border-top-color: #0096dc;border-bottom-style: solid;border-bottom-width: 1px;border-bottom-color: #0096dc;"> </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">Windows Server 2016</td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">IIS 10.0</td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1" style="vertical-align: middle;padding-left: 5px;padding-right: 5px;padding-top: 5px;padding-bottom: 5px;border-left-style: none;border-left-width: 0px;border-left-color: #0096dc;border-right-style: solid;border-right-width: 1px;border-right-color: #0096dc;border-top-style: none;border-top-width: 0px;border-top-color: #0096dc;border-bottom-style: solid;border-bottom-width: 1px;border-bottom-color: #0096dc;">.NET 4.5.2 and above</td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyB-Column1-Body1">Windows Server 2019</td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyB-Column2-Body1">IIS 10.0</td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyB-Column2-Body1" style="vertical-align: middle;padding-left: 5px;padding-right: 5px;padding-top: 5px;padding-bottom: 5px;border-left-style: none;border-left-width: 0px;border-left-color: #0096dc;border-right-style: solid;border-right-width: 1px;border-right-color: #0096dc;border-top-style: none;border-top-width: 0px;border-top-color: #0096dc;border-bottom-style: solid;border-bottom-width: 1px;border-bottom-color: #0096dc;">.NET 4.7 and above</td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <p class="note">We do not support upgrading Windows Servers. Instead, we recommend that you always create a new machine  when you change operating system.</p>
+                                                    <p><b>Minimum/recommended hardware requirements:</b>
+                                                    </p>
+                                                    <table style="margin-left: 0;margin-right: auto;mc-table-style: url('../../resources/tablestyles/rep hdr row.css');width: 952px;" class="TableStyle-Rep_Hdr_Row" cellspacing="0">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column1" style="width: 142px;">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column2" style="width: 313px;">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column1" style="width: 424px;">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column2" style="width: 70px;">
+                                                        <thead>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Head-Header1">
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column1-Header1">
+                                                                    <p>Hardware</p>
+                                                                </th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column2-Header1">Minimum (per system)</th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column1-Header1" style="text-align: center;">Recommended (per system)</th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadD-Column2-Header1">Check?</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>CPU</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>2 CPU Core</p>
+                                                                    <p>2 GHz/Core</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1" style="text-align: left;">
+                                                                    <p>2 CPU Cores</p>
+                                                                    <p>2 GHz/Core</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1" rowspan="3" style="background-color: #e4eef3;padding-left: 5px;padding-right: 5px;padding-top: 5px;padding-bottom: 5px;border-left-style: none;border-left-width: 0px;border-left-color: #0096dc;border-right-style: none;border-right-width: 0px;border-right-color: #0096dc;border-top-style: none;border-top-width: 0px;border-top-color: #0096dc;border-bottom-style: solid;border-bottom-width: 1px;border-bottom-color: #0096dc;"> </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Memory</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>2 GB RAM</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1" style="text-align: left;">4 GB RAM</td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyB-Column1-Body1">HD</td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyB-Column2-Body1">2 GB HDD </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyB-Column1-Body1" style="text-align: left;">4 GB HDD</td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <p>For information about <span class="GeneralVariablesDashboardSDK">Dashboard SDK</span> client requirements, see <a href="#Client" class="MCXref xref">Client requirements</a>.</p>
+                                                    <h2>Dashboard Desktop Designer</h2>
+                                                    <p><b>Operating System: </b>
+                                                    </p>
+                                                    <table style="mc-table-style: url('../../resources/tablestyles/rep hdr row.css');margin-left: 0;margin-right: auto;width: 952px;" class="TableStyle-Rep_Hdr_Row" cellspacing="0">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column1" style="width: 197px;">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column2" style="width: 78px;">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column1" style="width: 95px;">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column2" style="width: 119px;">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column1">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column2" style="width: 70px;">
+                                                        <thead>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Head-Header1">
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column1-Header1">Operating System</th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column2-Header1">IIS Version</th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column1-Header1">Hardware</th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column2-Header1">.Net Framework version</th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column1-Header1">Additional Requirements</th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadD-Column2-Header1">Check?</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">Windows 7, 8.1 or 10</td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">IIS Express</td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1" style="vertical-align: middle;padding-left: 5px;padding-right: 5px;padding-top: 5px;padding-bottom: 5px;border-left-style: none;border-left-width: 0px;border-left-color: #0096dc;border-right-style: solid;border-right-width: 1px;border-right-color: #0096dc;border-top-style: none;border-top-width: 0px;border-top-color: #0096dc;border-bottom-style: solid;border-bottom-width: 1px;border-bottom-color: #0096dc;text-align: center;" rowspan="4">64-bit</td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1" style="vertical-align: middle;padding-left: 5px;padding-right: 5px;padding-top: 5px;padding-bottom: 5px;border-left-style: none;border-left-width: 0px;border-left-color: #0096dc;border-right-style: solid;border-right-width: 1px;border-right-color: #0096dc;border-top-style: none;border-top-width: 0px;border-top-color: #0096dc;border-bottom-style: solid;border-bottom-width: 1px;border-bottom-color: #0096dc;">.NET 4.5.2 and above</td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1" style="vertical-align: middle;" rowspan="4">
+                                                                    <p>MS Visual Studio 2012 or later (not mandatory)</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1" style="background-color: #e4eef3;padding-left: 5px;padding-right: 5px;padding-top: 5px;padding-bottom: 5px;border-left-style: none;border-left-width: 0px;border-left-color: #0096dc;border-right-style: none;border-right-width: 0px;border-right-color: #0096dc;border-top-style: none;border-top-width: 0px;border-top-color: #0096dc;border-bottom-style: solid;border-bottom-width: 1px;border-bottom-color: #0096dc;" rowspan="4"> </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">Windows Server 2012 R2</td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">IIS 8.5</td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1" style="vertical-align: middle;padding-left: 5px;padding-right: 5px;padding-top: 5px;padding-bottom: 5px;border-left-style: none;border-left-width: 0px;border-left-color: #0096dc;border-right-style: solid;border-right-width: 1px;border-right-color: #0096dc;border-top-style: none;border-top-width: 0px;border-top-color: #0096dc;border-bottom-style: solid;border-bottom-width: 1px;border-bottom-color: #0096dc;">
+                                                                    <p rowspan="11" style="text-align: left;">.NET 3.5</p>
+                                                                    <p rowspan="11" style="text-align: left;">.NET 4.5.2 and above</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">Windows Server 2016</td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">IIS 10.0</td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1" style="vertical-align: middle;padding-left: 5px;padding-right: 5px;padding-top: 5px;padding-bottom: 5px;border-left-style: none;border-left-width: 0px;border-left-color: #0096dc;border-right-style: solid;border-right-width: 1px;border-right-color: #0096dc;border-top-style: none;border-top-width: 0px;border-top-color: #0096dc;border-bottom-style: solid;border-bottom-width: 1px;border-bottom-color: #0096dc;">.NET 4.5.2 and above</td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyB-Column1-Body1">Windows Server 2019</td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyB-Column2-Body1">IIS 10.0</td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyB-Column2-Body1" style="vertical-align: middle;padding-left: 5px;padding-right: 5px;padding-top: 5px;padding-bottom: 5px;border-left-style: none;border-left-width: 0px;border-left-color: #0096dc;border-right-style: solid;border-right-width: 1px;border-right-color: #0096dc;border-top-style: none;border-top-width: 0px;border-top-color: #0096dc;border-bottom-style: solid;border-bottom-width: 1px;border-bottom-color: #0096dc;">.NET 4.7 and above</td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <p><b>Minimum/recommended hardware requirements:</b>
+                                                    </p>
+                                                    <table style="margin-left: 0;margin-right: auto;mc-table-style: url('../../resources/tablestyles/rep hdr row.css');width: 952px;" class="TableStyle-Rep_Hdr_Row" cellspacing="0">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column1" style="width: 142px;">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column2" style="width: 313px;">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column1">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column2" style="width: 70px;">
+                                                        <thead>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Head-Header1">
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column1-Header1">
+                                                                    <p>Hardware</p>
+                                                                </th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column2-Header1">Minimum (per system)</th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column1-Header1" style="text-align: center;">Recommended (per system)</th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadD-Column2-Header1">Check?</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>CPU</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>2 CPU Cores</p>
+                                                                    <p>2 GHz/Core</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1" style="text-align: left;">
+                                                                    <p>2 CPU Cores</p>
+                                                                    <p>2 GHz/Core</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1" rowspan="3" style="background-color: #e4eef3;padding-left: 5px;padding-right: 5px;padding-top: 5px;padding-bottom: 5px;border-left-style: none;border-left-width: 0px;border-left-color: #0096dc;border-right-style: none;border-right-width: 0px;border-right-color: #0096dc;border-top-style: none;border-top-width: 0px;border-top-color: #0096dc;border-bottom-style: solid;border-bottom-width: 1px;border-bottom-color: #0096dc;"> </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Memory</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                    <p>2 GB RAM</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1" style="text-align: left;">2 GB RAM</td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyB-Column1-Body1">HD</td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyB-Column2-Body1">2 GB HDD </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyB-Column1-Body1" style="text-align: left;">4 GB HDD</td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <p>For information about Dashboard Desktop Designer client requirements, see <a href="#Client" class="MCXref xref">Client requirements</a>.</p>
+                                                    <p class="note">You can use either the Dashboard Desktop Designer or the Web Designer to design your dashboards. The Dashboard Desktop Designer has more features than the Web Designer, and requires a SQL data source. You must use the Web Designer if you want to use the <span class="GeneralVariablesAPIName">Alemba API</span> data source.</p>
+                                                    <h2>What next?</h2>
+                                                    <p>For information about installing dashboards, see <a href="../installingdashboards/installationoverview.htm" class="MCXref xref">Dashboard platform installation overview</a>. </p>
+                                                

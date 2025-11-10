@@ -1,0 +1,108 @@
+[viewBag]
+title = "Depreciation Methods "
+url = "/help/topics/depreciation/depreciation-methods"
+layout = "help"
+is_hidden = 0
+navigation_hidden = 0
+==
+                                                    <h1>Depreciation Methods </h1>
+                                                    <p style="background-color: #f20093;color: #ffffff;font-weight: bold;text-align: center;">This part of the online help is currently in development.</p>
+                                                    <p class="intro">You can specify different depreciation methods that are used in the depreciation calculation process. Depreciation methods can be linked to different CMDB item types and are run against the <span class="GeneralVariablesDatabaseName">ASM database</span> to perform depreciation calculations. You can create as many methods as you wish. </p>
+                                                    <h3>To configure depreciation, you will need to carry out the folowing: </h3>
+                                                    <ol style="list-style-type: decimal;margin-left: 36pt;" start="1">
+                                                        <li value="1">
+<b class="Xref_outstanding">Define your CMDB Items.</b> </li>
+                                                        <li value="2">
+<a href="%7B%7B%20'help-depreciation-schedule#Adding'%7CstaticPage%20%7D%7D#Adding">Create one or more depreciation schedules.</a>
+                                                        </li>
+                                                        <li value="3">
+<a href="#Adding_a_Depreciation_Method">Define the parameters for one or more methods of depreciation.</a>
+                                                        </li>
+                                                        <li value="4">
+<a href="%7B%7B%20'help-depreciation-by-cmdb-item#Defining_depreciation_settings_for_a_CMDB_Item_Type'%7CstaticPage%20%7D%7D#Defining_depreciation_settings_for_a_CMDB_Item_Type">Link the schedules and methods to CMDB Item Types. </a>
+                                                        </li>
+                                                        <li value="5">
+<a href="%7B%7B%20'help-batch-runs#_Defining_the_Depreciation_Batch_Run_Parameters'%7CstaticPage%20%7D%7D#_Defining_the_Depreciation_Batch_Run_Parameters">Create and define your batch run parameters for each depreciation schedule</a>. This executes the depreciation calculation against the CMDB Items. </li>
+                                                        <li value="6">
+<a href="%7B%7B%20'help-batch-runs#Viewing_Scheduled_Batch_Runs'%7CstaticPage%20%7D%7D#Viewing_Scheduled_Batch_Runs">View a log of all the batch runs</a>. </li>
+                                                    </ol>
+                                                    <h2>
+<a name="Adding_a_Depreciation_Method"></a>Creating a Depreciation Method
+</h2>
+                                                    <h2 class="Prerequisite">Before You Start</h2>
+                                                    <p class="prereqtextlast">You must have <b>Depreciation Setup</b> enabled within your <a href="../admin%20security%20roles/general%20access%20security%20role%20-%20admin%20tab.htm">General Access Security Role</a> in order to configure any Depreciation administration settings.</p>
+                                                    <ol>
+                                                        <li value="1">Select <a href="../general%20topics/asmcorewindow.htm" style="font-weight: bold;"><span style="font-size: 24pt;">≡</span></a> &gt; <b>Admin</b> &gt;  <b>System Administration</b>. The System Administration window is displayed. In the Explorer pane, locate the <b>Depreciation</b> group. You may need to expand the group to see the options within it.</li>
+                                                        <li value="2"> Select <b>Depreciation Methods</b> to open the window.</li>
+                                                    </ol>
+                                                    <ol class="multilist" start="3">
+                                                        <li value="3">Select <img src="/storage/app/media/Help/images/add%20new.png">. A new row is added to the browse table.</li>
+                                                        <li value="4">
+<a name="Complete_the_details"></a>Complete the details as follows.  You can <a href="%7B%7B%20'help-general-topics-working-with-browse-tables#Changing'%7CstaticPage%20%7D%7D#Changing">adjust the column widths</a> if required.</li>
+                                                        <p>
+                                                            </p>
+<table class="TableStyle-FieldDesc_no_indent" style="mc-table-style: url('../../resources/tablestyles/fielddesc no indent.css');margin-left: 0;margin-right: auto;" cellspacing="0">
+                                                                <col class="TableStyle-FieldDesc_no_indent-Column-Column1">
+                                                                <col class="TableStyle-FieldDesc_no_indent-Column-Column2">
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">Depreciation Method</td>
+                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">
+                                                                            <p>Type the name for the new depreciation method</p>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">Depreciation Type</td>
+                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">
+                                                                            <p>Select a depreciation type from the drop down list. There are two depreciation types you can select; straight-line or reducing balance depreciation.</p>
+                                                                            <p><span class="bold">Straight Line</span> writes off an equal amount of the value of the asset each year</p>
+                                                                            <p><span class="bold">Reducing Balance</span> writes off a set percentage of the capital cost of the asset’s Net Book Value each year  </p>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">Writedown Interval</td>
+                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">Select the frequency with which the depreciation calculations are applied to the CMDB items (monthly, quarterly, biannually or yearly). The default selection is monthly.</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyB-Column1-">First Month</td>
+                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyA-Column2-">
+                                                                            <p>Type the number of the first month in the interval that the new diminished depreciation is calculated. </p>
+                                                                            <p>For example, if you are using a yearly interval and you put a 6 in the First Month field, then calculations will use the new diminished value starting in June.</p>
+                                                                        </td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        
+                                                        <li value="5">Select <img src="/storage/app/media/Help/images/save%20button.png">  to save the changes. Provide the <a href="../general%20topics/change%20reasons.htm">Change Reasons</a> if prompted to do so.</li>
+                                                    </ol>
+                                                    <h2>
+<span>Editing  a Depreciation Method</span>
+                                                    </h2>
+                                                    <h2 class="Prerequisite">Before You Start</h2>
+                                                    <p class="prereqtextlast">You must have <b>Depreciation Setup</b> enabled within your <a href="../admin%20security%20roles/general%20access%20security%20role%20-%20admin%20tab.htm">General Access Security Role</a> in order to configure any Depreciation administration settings.</p>
+                                                    <ol>
+                                                        <li value="1">Select <a href="../general%20topics/asmcorewindow.htm" style="font-weight: bold;"><span style="font-size: 24pt;">≡</span></a> &gt; <b>Admin</b> &gt;  <b>System Administration</b>. The System Administration window is displayed. In the Explorer pane, locate the <b>Depreciation</b> group. You may need to expand the group to see the options within it.</li>
+                                                        <li value="2"> Select <b>Depreciation Methods</b> to open the window.</li>
+                                                    </ol>
+                                                    <ol start="3">
+                                                        <li value="3">Select the entry you want to edit. </li>
+                                                        <li value="4">
+<a href="#Complete_the_details">Update the details</a> as necessary. </li>
+                                                        <li value="5">Select <img src="/storage/app/media/Help/images/save%20button.png">  to save the changes. Provide the <a href="../general%20topics/change%20reasons.htm">Change Reasons</a> if prompted to do so.</li>
+                                                    </ol>
+                                                    <h2>
+<span>Deleting a Depreciation Method</span>
+                                                    </h2>
+                                                    <h2 class="Prerequisite">Before You Start</h2>
+                                                    <p class="prereqtextlast">You must have <b>Depreciation Setup</b> enabled within your <a href="../admin%20security%20roles/general%20access%20security%20role%20-%20admin%20tab.htm">General Access Security Role</a> in order to configure any Depreciation administration settings.</p>
+                                                    <p class="warning">Warning: You cannot reverse this procedure. If you delete a Depreciation Method by mistake, you have to re-create the entry by <a href="#Adding_a_Depreciation_Method">adding a new Depreciation Method</a>. </p>
+                                                    <ol>
+                                                        <li value="1">Select <a href="../general%20topics/asmcorewindow.htm" style="font-weight: bold;"><span style="font-size: 24pt;">≡</span></a> &gt; <b>Admin</b> &gt;  <b>System Administration</b>. The System Administration window is displayed. In the Explorer pane, locate the <b>Depreciation</b> group. You may need to expand the group to see the options within it.</li>
+                                                        <li value="2"> Select <b>Depreciation Methods</b> to open the window.</li>
+                                                    </ol>
+                                                    <ol start="3">
+                                                        <li value="3">Select the Depreciation Method entry you want to delete. </li>
+                                                        <li value="4">Select <img src="/storage/app/media/Help/images/delete%20button.png">. If you attempt to delete the system default, you will receive a warning message. </li>
+                                                        <li value="5">Select <img src="/storage/app/media/Help/images/save%20button.png">  to save the changes. Provide the <a href="../general%20topics/change%20reasons.htm">Change Reasons</a> if prompted to do so.</li>
+                                                    </ol>
+                                                

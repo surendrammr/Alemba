@@ -1,0 +1,62 @@
+[viewBag]
+title = "Extending the Single Sign-On Connector"
+url = "/help/topics/sso-technical-reference-guide/sso-extending-connector"
+layout = "help"
+is_hidden = 0
+navigation_hidden = 0
+==
+                                                    <h1>Extending the Single Sign-On Connector</h1>
+                                                    <p>The Identity Provider sends a list of key value pairs as claims. Common attributes have been added to the connector, however, this list is not exhaustive or there may be custom attributes that you wish to add.</p>
+                                                    <p>The ICNF file for the connector is configured with a basic fieldset which makes those claims available in the <span class="GeneralVariablesProductName">ASM</span> resource mapping for Field Matching.</p>
+                                                    <p class="indent" style="color: #0096dc;margin-bottom: 12px;">&lt;fieldSets&gt;</p>
+                                                    <p class="indent" style="color: #0096dc;margin-bottom: 12px;">&lt;fieldSet xsi:type="mappedFieldSet" fieldSetID="UserProperties" queryID="TheRow"&gt;</p>
+                                                    <p class="indent" style="color: #0096dc;margin-bottom: 12px;">&lt;field xsi:type="mappedField" fieldID="Email Address" fieldDisplay="Email Address" dataType="string" select="Email Address" /&gt;</p>
+                                                    <p class="indent" style="color: #0096dc;margin-bottom: 12px;">&lt;field xsi:type="mappedField" fieldID="User Name" fieldDisplay="User Name" dataType="string" select="User Name" /&gt;</p>
+                                                    <p class="indent" style="color: #0096dc;margin-bottom: 12px;">&lt;field xsi:type="mappedField" fieldID="First Name" fieldDisplay="First Name" dataType="string" select="First Name" /&gt;</p>
+                                                    <p class="indent" style="color: #0096dc;margin-bottom: 12px;">&lt;field xsi:type="mappedField" fieldID="Surname" fieldDisplay="Surname" dataType="string" select="Surname" /&gt;</p>
+                                                    <p class="indent" style="color: #0096dc;margin-bottom: 12px;">&lt;field xsi:type="mappedField" fieldID="Member Of" fieldDisplay="Member Of" dataType="string" select="Member Of" /&gt;</p>
+                                                    <p class="indent" style="color: #0096dc;margin-bottom: 12px;">&lt;field xsi:type="mappedField" fieldID="User Principal Name" fieldDisplay="User Principal Name" dataType="string" select="User Principal Name" /&gt;</p>
+                                                    <p class="indent" style="color: #0096dc;margin-bottom: 12px;">&lt;field xsi:type="mappedField" fieldID="Account Name" fieldDisplay="Account Name" dataType="string" select="Account Name" /&gt;</p>
+                                                    <p class="indent" style="color: #0096dc;margin-bottom: 12px;">&lt;field xsi:type="mappedField" fieldID="Company" fieldDisplay="Company" dataType="string" select="Company" /&gt;</p>
+                                                    <p class="indent" style="color: #0096dc;margin-bottom: 12px;">&lt;/fieldSet&gt;</p>
+                                                    <p class="indent" style="color: #0096dc;margin-bottom: 12px;">&lt;/fieldSets&gt;</p>
+                                                    <p class="note">fieldID in the mappedField corresponds to the name of the claim.</p>
+                                                    <p>The claim names are user defined, although ADFS uses some standardised names by default.</p>
+                                                    <p class="exampletext">Given Name in ADFS is sent as <a href="http://schemas.xmlsoap.org/ws/2005/05/identity/claims/givenname">http://schemas.xmlsoap.org/ws/2005/05/identity/claims/givenname</a></p>
+                                                    <p>Some of these names are mapped in code to a more user friendly value:</p>
+                                                    <p>        Dictionary&lt;string, string&gt; claimTypeAliases = new Dictionary&lt;string, string&gt;</p>
+                                                    <p>        {</p>
+                                                    <p>            { ClaimTypes.Email, InternalClaimTypes.EmailAddress },</p>
+                                                    <p>            { GlobalClaimTypes.EmailAddress, InternalClaimTypes.EmailAddress },</p>
+                                                    <p>            { ClaimTypes.GivenName, InternalClaimTypes.FirstName },</p>
+                                                    <p>            { ClaimTypes.Surname, InternalClaimTypes.Surname },</p>
+                                                    <p>            { GlobalClaimTypes.MemberOf, InternalClaimTypes.MemberOf }</p>
+                                                    <p>        };</p>
+                                                    <p> </p>
+                                                    <p>        static class GlobalClaimTypes</p>
+                                                    <p>        {</p>
+                                                    <p>            public const string EmailAddress = "<a href="http://schemas.xmlsoap.org/claims/EmailAddress">http://schemas.xmlsoap.org/claims/EmailAddress</a>";</p>
+                                                    <p>            public const string MemberOf = "<a href="http://schemas.xmlsoap.org/claims/Group">http://schemas.xmlsoap.org/claims/Group</a>";</p>
+                                                    <p>        }</p>
+                                                    <p> </p>
+                                                    <p>        static class InternalClaimTypes</p>
+                                                    <p>        {</p>
+                                                    <p>            public const string UserName = "User Name";</p>
+                                                    <p>            public const string FirstName = "First Name";</p>
+                                                    <p>            public const string Surname = "Surname";</p>
+                                                    <p>            public const string EmailAddress = "Email Address";</p>
+                                                    <p>            public const string MemberOf = "Member Of";</p>
+                                                    <p>        }</p>
+                                                    <p class="note"> SAML supports free text definition of key names for claims (Outgoing Claim Types)</p>
+                                                    <p class="note"> All Claims are included in the standard <span class="GeneralVariablesProductName">ASM</span> Diagnostic Tracing to assist with troubleshooting issues. </p>
+                                                    <p> </p>
+                                                    <h2>Adding New Claims to the ICNF File</h2>
+                                                    <p>Additional claims can be defined by the Identity Provider. To make them available to the connector, those claims must be added to the ICNF File.</p>
+                                                    <p>To add support for a custom claim, you simply need to add a new field to the existing fieldSet.</p>
+                                                    <p class="exampletext">&lt;field xsi:type="mappedField" fieldID="Custom Claim Name" fieldDisplay="The name to display in the resource mapping drop down" dataType="string" select="Custom Claim Name" /&gt;</p>
+                                                    <p class="note"> Each SAML claim can define one or more values. E.g. a user could have multiple Email Addresses.</p>
+                                                    <p>In this case, the claim values are received as a list. This list is then converted to a semi-colon separated string.</p>
+                                                    <p class="exampletext">a.user@alembagroup.com;auser@alembagroup.com</p>
+                                                    <p>This value can then be parsed in the Resource Mapping by using a Transform.</p>
+                                                    <p> </p>
+                                                

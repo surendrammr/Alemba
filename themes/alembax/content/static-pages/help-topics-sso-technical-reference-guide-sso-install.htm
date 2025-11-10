@@ -1,0 +1,46 @@
+[viewBag]
+title = "Installing a Service Provider Signing Certificate"
+url = "/help/topics/sso-technical-reference-guide/sso-install"
+layout = "help"
+is_hidden = 0
+navigation_hidden = 0
+==
+                                                    <h1>Installing a Service Provider Signing Certificate</h1>
+                                                    <p>Service Provider (<span class="GeneralVariablesAppName">ASM app</span>) initiated sign on requires SSL Signing. This is configured in <span class="GeneralVariablesProductName">ASM</span> by defining a unique <span class="GeneralVariablesProductName">ASM</span> Identifier for the SSL Certificate. You may wish to create a resource mapping (if used) prior to carrying out this step, although this information can be added at a later date.</p>
+                                                    <h2>Adding a Signing Certificate</h2>
+                                                    <ol start="1">
+                                                        <li value="1">Select <a href="../general%20topics/asmcorewindow.htm"><span style="font-size: 24pt;">≡</span></a> &gt; <b>Admin</b> &gt; <b>Integration</b>.</li>
+                                                        <li value="2">In the Explorer pane, under <b>Single Sign On</b>, select <b>Signing Certificates</b>. </li>
+                                                        <li value="3">Select <img src="/storage/app/media/Help/images/add%20new.png">.</li>
+                                                        <li value="4">The Single Sign On Identity Provider Details window appears. <a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="../../resources/images/sso%20technical%20reference%20guide/sso%20id%20provider%20details%20complete.png"><img class="MCPopupThumbnail img imgthumbnail" data-mc-width="1542" data-mc-height="1020" src="/storage/app/media/Help/images/sso%20technical%20reference%20guide/sso%20id%20provider%20details%20complete_thumb_0_48.png" style="width: 382px;height: 227px;" tabindex=""></a>Complete the details.</li>
+                                                        <p>
+                                                            </p>
+<table style="width: 100%;mc-table-style: url('../../resources/tablestyles/fielddesc.css');margin-left: 0;margin-right: auto;" class="TableStyle-FieldDesc" cellspacing="0">
+                                                                <col class="TableStyle-FieldDesc-Column-Column1">
+                                                                <col class="TableStyle-FieldDesc-Column-Column2">
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyH-Column1-">Name</td>
+                                                                        <td class="TableStyle-FieldDesc-BodyG-Column2-">Add a Display Name for the Signing Certificate</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyB-Column1-">Certificate</td>
+                                                                        <td class="TableStyle-FieldDesc-BodyA-Column2-">
+                                Choose a Certificate to make this available to your Service Provider (The Certificate dropdown field shows all certificates installed in the Local Machine store of the <span class="GeneralVariablesProductName">ASM</span> web server)
+                            </td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        
+                                                        <li value="5"> Select <img src="/storage/app/media/Help/images/save%20button.png"> to save the details.</li>
+                                                    </ol>
+                                                    <p class="note">Certificates must have a private key and the IIS Application Pool must have full control of the certificate. Permissions for the certificate can be changed using <b>Manage Private Keys</b>.<a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="../../resources/images/sso%20technical%20reference%20guide/sso%20manage%20private%20keys.png"><img class="MCPopupThumbnail img imgthumbnail" data-mc-width="1489" data-mc-height="463" src="/storage/app/media/Help/images/sso%20technical%20reference%20guide/sso%20manage%20private%20keys_thumb_0_48.png" style="width: 617px;height: 195px;" tabindex=""></a></p>
+                                                    <h2 class="Prerequisite">If you are using the SHA-256 Secure Hash Algorithm (a Requirement for Azure AFDS for example), ensure that :</h2>
+                                                    <ul class="prereq">
+                                                        <li value="1">the certificate has been marked as exportable when it is installed<a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="../../resources/images/sso%20technical%20reference%20guide/sso%20cert.png"><img class="MCPopupThumbnail img imgthumbnail" data-mc-width="537" data-mc-height="526" src="/storage/app/media/Help/images/sso%20technical%20reference%20guide/sso%20cert_thumb_0_48.png" style="width: 285px;height: 279px;" tabindex=""></a>
+</li>
+                                                        <li style="list-style-type: disc;" value="2">the certificate contains the SHA-256 Signature Algorithm. You can find this information by viewing the certificate properties <a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="../../resources/images/sso%20technical%20reference%20guide/sso%20cert%20properties.png"><img class="MCPopupThumbnail img imgthumbnail" data-mc-width="405" data-mc-height="513" src="/storage/app/media/Help/images/sso%20technical%20reference%20guide/sso%20cert%20properties_thumb_0_48.png" style="width: 287px;height: 362px;" tabindex=""></a>
+</li>
+                                                    </ul>
+                                                    <p class="note"> An SHA256 certificate can be used to create SHA1 and SHA256 signatures. A SHA1 certificate cannot be used to create SHA256 signatures.</p>
+                                                

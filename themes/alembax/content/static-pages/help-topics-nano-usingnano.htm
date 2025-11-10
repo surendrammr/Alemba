@@ -1,0 +1,711 @@
+[viewBag]
+title = "Using Nano"
+url = "/help/topics/nano/usingnano"
+layout = "help"
+is_hidden = 0
+navigation_hidden = 0
+==
+                                                    <h1>
+<a name="aanchor294"></a>
+                                                        <concept term="Nanot"></concept><a name="top"></a>Using <span class="GeneralVariablesProduct2Name">Nano</span>
+</h1>
+                                                    <h2 class="Prerequisite" data-mc-conditions="Default.ScreenOnly">Before you start</h2>
+                                                    <p class="prereqtext1" data-mc-conditions="Default.ScreenOnly">Read <a href="introducingnano.htm" class="MCXref xref">Introduction to Nano</a> and the <a href="featurelist.htm" class="MCXref xref">Nano Feature List</a> before continuing.</p>
+                                                    <p class="prereqtext1" data-mc-conditions="Default.ScreenOnly">System Administrators must follow the instructions in <a href="configuringnano.htm" class="MCXref xref">Configuring Nano</a> before analysts start using <span class="GeneralVariablesProduct2Name">Nano</span>.</p>
+                                                    <p class="prereqtext" data-mc-conditions="Default.ScreenOnly"><span class="GeneralVariablesProduct2Name">Nano</span> is an interface to <span class="GeneralVariablesCoreName">ASM Core</span>, which must be installed on the server, and a system created in the <span class="GeneralVariablesCoreName">ASM Core</span> Server Console.</p>
+                                                    <p>This topic provides an overview for using <span class="GeneralVariablesProduct2Name">Nano</span>, including:</p>
+                                                    <ul>
+                                                        <li value="1">
+<a href="#Logging" class="MCXref xref">Logging into Nano</a>
+                                                        </li>
+                                                        <li value="2">
+<a href="#The" class="MCXref xref">About the Nano Page Header</a>
+                                                        </li>
+                                                        <li value="3">
+<a href="#MyOptions" class="MCXref xref">Using the Menu</a>
+                                                        </li>
+                                                        <li value="4">
+<a href="#Working" class="MCXref xref">Working with Calls</a>
+                                                        </li>
+                                                        <li value="5">
+<a href="#Working2" class="MCXref xref">Working with Requests</a>
+                                                        </li>
+                                                        <li value="6">
+<a href="#Working3" class="MCXref xref">Working with Tasks</a>
+                                                        </li>
+                                                    </ul>
+                                                    <p>Use the links in each topic to see more detailed information.</p>
+                                                    <h2>
+<a name="Logging"></a>Logging into <span class="GeneralVariablesProduct2Name">Nano</span>
+</h2>
+                                                    <p class="prereq">You must have <b>Analyst</b> selected in your Person Record.</p>
+                                                    <p>Analysts can log into <span class="GeneralVariablesProduct2Name">Nano</span> using the <span class="GeneralVariablesProduct2Name">Nano</span> URL. </p>
+                                                    <p><span class="GeneralVariablesProduct2Name">Nano</span> URL format <code>http://&lt;server_name&gt;/&lt;virtual_directory&gt;/<span class="GeneralVariablesProduct2Name">Nano</span>.aspx</code></p>
+                                                    <p>Replace <code>&lt;server_name&gt;</code> with your <span class="GeneralVariablesProductName">ASM</span> web server, <code>&lt;virtual_directory&gt;</code> with your <span class="GeneralVariablesProductName">ASM</span> virtual directory; and, if your <span class="GeneralVariablesSystemName">ASM System</span> uses SSL, replace <code>http</code> with <code>https</code>.</p>
+                                                    <p class="exampletext"><code>http://localhost/<span class="GeneralVariablesProductName">ASM</span>/<span class="GeneralVariablesProduct2Name">Nano</span>.aspx</code>
+                                                    </p>
+                                                    <p>The <span class="GeneralVariablesProduct2Name">Nano</span> login window appears. Enter the Login ID and Password configured in the analyst's Person Details.</p>
+                                                    <p>If <a href="../admin%20security/security%20settings.htm">Integrated Security</a> is enabled in System Administration, or if <a href="../sso%20technical%20reference%20guide/about%20sso.htm">SSO</a> is enabled in Integration settings, the login window does not appear and the analyst is logged in automatically.</p>
+                                                    <p class="note">Logging into <span class="GeneralVariablesProduct2Name">Nano</span> consumes concurrent and named licenses in the same way as <span class="GeneralVariablesCoreName">ASM Core</span>. An analyst who logs into <span class="GeneralVariablesProduct2Name">Nano</span> while logged into <span class="GeneralVariablesCoreName">ASM Core</span> will be logged out of Core, and vice versa.</p>
+                                                    <p class="note">Session timeout periods in <span class="GeneralVariablesProduct2Name">Nano</span> are the same as for <span class="GeneralVariablesCoreName">ASM Core</span>.</p>
+                                                    <h2>
+<a name="The"></a>About the <span class="GeneralVariablesProduct2Name">Nano</span> Page Header</h2>
+                                                    <p>The <span class="GeneralVariablesProduct2Name">Nano</span> page header is always visible and contains these functions and options: </p>
+                                                    <p><b>Welcome message</b> <img src="/storage/app/media/Help/images/nanowelcome.png"></p>
+                                                    <p>Displays the fist name of the logged in analyst.</p>
+                                                    <p><b>Log Out button</b> <img src="/storage/app/media/Help/images/nanologout.png"></p>
+                                                    <p>Logs the analyst out of <span class="GeneralVariablesProduct2Name">Nano</span>, ending their session, and displays the Log Out screen where the analyst can choose to log in again if they choose.</p>
+                                                    <p><b>Quick Search</b> <img src="/storage/app/media/Help/images/nanoquicksearch.png"></p>
+                                                    <p>Find a call, request, or task by entering its number into the input field and pressing Enter.  If only one item matches the entered number, that item is opened for review. If more than one item matches, a list  to choose from appears. </p>
+                                                    <p><b>Menu</b> <img src="/storage/app/media/Help/images/nanomenu.png"></p>
+                                                    <p>A menu of the functions available to the analyst in <span class="GeneralVariablesProduct2Name">Nano</span>. The functions displayed in the menu are dependent on the Security Roles assigned to the logged in analyst, and limited to the functions available in <span class="GeneralVariablesProduct2Name">Nano</span>.</p>
+                                                    <p><b>Home Page</b> <img src="/storage/app/media/Help/images/nanohomeblu_40x34.png" style="width: 40;height: 34;"></p>
+                                                    <p>Select to return to the Home page. The Home page contains a scrolling bulletin board, and the My Counts widget which shows the number of calls, tasks, requests the analyst has, as well as the workload total which combines all three. </p>
+                                                    <h2>
+<a name="MyOptions"></a>Using the Menu</h2>
+                                                    <table style="mc-table-style: url('../../resources/tablestyles/nanofielddesc.css');" class="TableStyle-nano_FieldDesc" cellspacing="0">
+                                                        <col class="TableStyle-nano_FieldDesc-Column-Column1">
+                                                        <col class="TableStyle-nano_FieldDesc-Column-Column2">
+                                                        <tbody>
+                                                            <tr class="TableStyle-nano_FieldDesc-Body-Body1">
+                                                                <td class="TableStyle-nano_FieldDesc-BodyE-Column1-Body1">New Call</td>
+                                                                <td class="TableStyle-nano_FieldDesc-BodyD-Column2-Body1">
+                                                                    <p>Select the type of call to create then <a href="calldetails.htm">complete the call details</a>. </p>
+                                                                    <p class="note">The submenu displays the available call types, or IPK Statuses and Streams, if enabled. </p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-nano_FieldDesc-Body-Body1">
+                                                                <td class="TableStyle-nano_FieldDesc-BodyE-Column1-Body1">New Request</td>
+                                                                <td class="TableStyle-nano_FieldDesc-BodyD-Column2-Body1">
+                                                                    <p>Select the type of request to create then <a href="requestdetails.htm">complete the request details</a>. </p>
+                                                                    <p class="note">The submenu displays the available <a href="../admin%20workflow%20mgt/workflow%20templates.htm">workflow templates</a>; there may be multiple tiers. </p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-nano_FieldDesc-Body-Body1">
+                                                                <td class="TableStyle-nano_FieldDesc-BodyE-Column1-Body1">Bulletin</td>
+                                                                <td class="TableStyle-nano_FieldDesc-BodyD-Column2-Body1">
+                                                                    <p>Select a mode for viewing bulletin articles from the submenu:</p>
+                                                                    <ul>
+                                                                        <li value="1">
+<b>Bulletin Board</b> contains all active bulletins</li>
+                                                                        <li value="2">
+<b>Bulletin View</b> displays a banner at the top of the screen which scrolls through active bulletins.</li>
+                                                                    </ul>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-nano_FieldDesc-Body-Body1">
+                                                                <td class="TableStyle-nano_FieldDesc-BodyE-Column1-Body1">View</td>
+                                                                <td class="TableStyle-nano_FieldDesc-BodyD-Column2-Body1">
+                                                                    <p>View work items requiring your attention. Select a type of work item, or see all in the Workload.</p>
+                                                                    <ul>
+                                                                        <li value="1">
+<b><a href="callsoutstanding.htm">Calls Outstanding</a></b> displays calls requiring your attention</li>
+                                                                        <li value="2">
+<b><a href="requestsoutstanding.htm">Requests Outstanding</a></b> displays requests requiring your attention</li>
+                                                                        <li value="3">
+<b><a href="nanotasksoutstanding.htm">Tasks Outstanding</a></b> displays tasks requiring your attention</li>
+                                                                        <li value="4">
+<b><a href="workload.htm">Workload Outstanding</a></b> displays calls requests and tasks requiring your attention</li>
+                                                                    </ul>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-nano_FieldDesc-Body-Body1">
+                                                                <td class="TableStyle-nano_FieldDesc-BodyB-Column1-Body1">Search</td>
+                                                                <td class="TableStyle-nano_FieldDesc-BodyA-Column2-Body1">
+                                                                    <p>Select the entity to search for from the submenu</p>
+                                                                    <ul>
+                                                                        <li style="font-weight: normal;" value="1">
+<b><a href="callsearch.htm">Call Search</a></b> provides options to search for calls</li>
+                                                                        <li style="font-weight: normal;" value="2">
+<b><a href="requestsearch.htm">Request Search</a></b> provides options to search for requests</li>
+                                                                        <li style="font-weight: normal;" value="3">
+<b><a href="tasksearch.htm">Task Search</a></b> provides options to search for tasks</li>
+                                                                        <li style="font-weight: normal;" value="4">
+<b><a href="kbsearch.htm">Knowledge Search</a></b> provides options to search for knowledge articles</li>
+                                                                        <li style="font-weight: normal;" value="5">
+<b><a href="cmdbitemsearch.htm">CMDB Search</a></b> provides options to search for CMDB Items, such as Services, etc.</li>
+                                                                        <li style="font-weight: normal;" value="6">
+<b><a href="personsearch.htm">People Search</a></b> provides options to search for analysts, users, and external contacts</li>
+                                                                    </ul>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <h2 class="Heading2">
+<a name="Working"></a>Working with Calls</h2>
+                                                    <p><span class="GeneralVariablesProduct2Name">Nano</span> provides a range of methods for working with  calls to suit different working styles. Calls can be closed or assigned to another analyst or group from the Search and Outstanding windows as well as from the Call Details window. While other actions, such as updating can only be done from the Call Details window,</p>
+                                                    <p>This topic provides an overview of the methods available for each type of action.</p>
+                                                    <p>For detailed information, see these topics:</p>
+                                                    <ul>
+                                                        <li value="1">
+<a href="calldetails.htm" class="MCXref xref">Using the Call Details window</a> - Explains how to open and update  calls, the call details fields and their purpose, and how to use the Status field to perform actions on the call.</li>
+                                                        <li value="2">
+<a href="callsoutstanding.htm" class="MCXref xref">Viewing Your Outstanding Calls</a> - The Outstanding window displays calls requiring your attention. This topic shows you how to adjust the filters and perform actions on calls from the table of results.</li>
+                                                        <li value="3">
+<a href="callsearch.htm" class="MCXref xref">Searching for Calls</a> -  Learn how to search for calls and perform actions on them from the table of results.</li>
+                                                    </ul> <table style="width: 100%;mc-table-style: url('../../resources/tablestyles/nanofielddesc.css');" class="TableStyle-nano_FieldDesc" cellspacing="0">
+<col class="TableStyle-nano_FieldDesc-Column-Column1">
+<col class="TableStyle-nano_FieldDesc-Column-Column2">
+<tbody>
+<tr class="TableStyle-nano_FieldDesc-Body-Body1">
+<td class="TableStyle-nano_FieldDesc-BodyE-Column1-Body1"><p style="font-weight: bold;">Log a call</p></td>
+<td class="TableStyle-nano_FieldDesc-BodyD-Column2-Body1"><ol>
+<li value="1">On the menu select <b>New Call</b>
+</li>
+<li value="2">Complete the <a href="calldetails.htm">Call Details</a>
+</li>
+<li value="3">Press <b>Save</b>.</li>
+</ol></td>
+</tr>
+<tr class="TableStyle-nano_FieldDesc-Body-Body1">
+<td class="TableStyle-nano_FieldDesc-BodyE-Column1-Body1"><p style="font-weight: bold;">Search for a call</p></td>
+<td class="TableStyle-nano_FieldDesc-BodyD-Column2-Body1">
+<p>Method 1: Call Search</p>
+<ol>
+<li value="1">On the menu select <b>Search</b>, then <b>Call Search</b>
+</li>
+<li value="2">Complete the <a href="callsearch.htm">Call Search</a> fields.</li>
+</ol>
+<p>Method 2: Calls Outstanding</p>
+<ol>
+<li value="1">On the menu select <b>View</b>, then <b>Calls Outstanding</b>
+</li>
+<li value="2">Adjust the <a href="callsoutstanding.htm">Calls Outstanding</a> filters if needed.</li>
+</ol>
+<p>Method 3: Quick Search</p>
+<ol>
+<li value="1">Type the call number into the <b>Quick Search</b> field.</li>
+<li value="2">A list of matching records is displayed</li>
+</ol>
+</td>
+</tr>
+<tr class="TableStyle-nano_FieldDesc-Body-Body1">
+<td class="TableStyle-nano_FieldDesc-BodyE-Column1-Body1">View call details</td>
+<td class="TableStyle-nano_FieldDesc-BodyD-Column2-Body1">
+<p>Method 1: Quick Search</p>
+<ol>
+<li value="1">Type the call number into Quick Search</li>
+<li value="2">Select the call from the listed results.</li>
+<li value="3">The <a href="calldetails.htm">Call Details</a> window is displayed.</li>
+</ol>
+<p>Method 2: <a href="callsearch.htm">Call Search</a> or <a href="callsoutstanding.htm">Calls Outstanding</a></p>
+<ol>
+<li value="1">Search the table of results for the request you want to view</li>
+<li value="2">Open the request using any of these methods:</li>
+</ol>
+<ul>
+<li value="1">Double-click on the call record; or</li>
+<li value="2">Right-click the call record and select <img src="/storage/app/media/Help/images/nanomenuaction_159x29.png" style="width: 159;height: 29;">; or</li>
+<li value="3">Right-click the call record and select <img src="/storage/app/media/Help/images/nanomenureview_165x28.png" style="width: 165;height: 28;">
+</li>
+</ul>
+<ol data-mc-continue="true"><li value="4">The <a href="calldetails.htm">Call Details</a> window is displayed.</li></ol>
+<p class="note"> The call window opens in edit mode or in review mode, depending on the method used to open the call, and the settings configured in your <a href="../admin%20security%20roles/ipk%20management%20security%20roles%20-%20options%20tab.htm">IPK Security Role</a>.</p>
+</td>
+</tr>
+<tr class="TableStyle-nano_FieldDesc-Body-Body1">
+<td class="TableStyle-nano_FieldDesc-BodyE-Column1-Body1">Update a call</td>
+<td class="TableStyle-nano_FieldDesc-BodyD-Column2-Body1"><ol>
+<li value="1">Select and open the call you want to update</li>
+<li value="2">The Call Details window is displayed</li>
+<li value="3">If the call is in review mode, press <b>Take Action</b>.</li>
+<li value="4">Update the <a href="calldetails.htm">Call Details</a> fields</li>
+<li value="5">Press <b>Save</b>.</li>
+</ol></td>
+</tr>
+<tr class="TableStyle-nano_FieldDesc-Body-Body1">
+<td class="TableStyle-nano_FieldDesc-BodyE-Column1-Body1">Assign a call</td>
+<td class="TableStyle-nano_FieldDesc-BodyD-Column2-Body1">
+<p>Method 1: Call Details</p>
+<ol>
+<li value="1">Select and open the call you want to assign</li>
+<li value="2">The <a href="calldetails.htm">Call Details</a> window is displayed</li>
+<li value="3">In the <b>Assign To</b> field select the analyst or group you want to assign to</li>
+<li value="4">Press <b>Save</b>.</li>
+</ol>
+<p>Method 2: <a href="callsearch.htm">Call Search</a> or <a href="callsoutstanding.htm">Calls Outstanding</a></p>
+<ol>
+<li value="1">Search the table of results for the request you want to assign</li>
+<li value="2">Forward the call using any of these methods:</li>
+</ol>
+<ul>
+<li value="1">Select the call record and select <img src="/storage/app/media/Help/images/nanoforward.png"> in the toolbar; or</li>
+<li value="2">Right-click the call record and select <img src="/storage/app/media/Help/images/nanomenufwd_177x32.png" style="width: 177;height: 32;">
+</li>
+</ul>
+<ol data-mc-continue="true">
+<li value="3">The <b>Call Forward</b> window is displayed</li>
+<li value="4">Complete the <a href="forward.htm">Call Forward</a> details</li>
+<li value="5">Press <b>OK</b>.</li>
+</ol>
+</td>
+</tr>
+<tr class="TableStyle-nano_FieldDesc-Body-Body1">
+<td class="TableStyle-nano_FieldDesc-BodyE-Column1-Body1">Close a call</td>
+<td class="TableStyle-nano_FieldDesc-BodyD-Column2-Body1">
+<p>Method 1: Call Details</p>
+<ol>
+<li value="1">Select and open the call you want to close</li>
+<li value="2">The <a href="calldetails.htm">Call Details</a> window is displayed</li>
+<li value="3">Change the <b>Status</b> field to a closure status</li>
+<p class="prereq">The selected status must have the <b>Close</b> setting enabled in System Admin <a href="../admin%20ipk%20management/call%20status%20titles.htm" class="MCXref xref">Call Status Titles</a>.</p>
+<li value="4">Press <b>Save</b>.</li>
+</ol>
+<p>Method 2: <a href="callsearch.htm">Call Search</a> or <a href="callsoutstanding.htm">Calls Outstanding</a></p>
+<ol>
+<li value="1">Search the table of results for the request you want to</li>
+<li value="2">Close the call using any of these methods:</li>
+</ol>
+<ul>
+<li value="1">Select the call record and select <img src="/storage/app/media/Help/images/nanoclose.png"> in the toolbar; or</li>
+<li value="2">Right-click the call record and select <img src="/storage/app/media/Help/images/nanomenuclose_176x30.png" style="width: 176;height: 30;">
+</li>
+</ul>
+<ol>
+<li value="1">The <b>Call Close</b> window is displayed</li>
+<li value="2">Complete the <a href="callclose.htm">Call Close</a> details</li>
+<li value="3">Press <b>OK</b>.</li>
+</ol>
+<p>Method 3: Kanban in <a href="callsearch.htm">Call Search</a> or <a href="callsoutstanding.htm">Calls Outstanding</a></p>
+<ol>
+<li value="1">In the Kanban, find the call you want to close</li>
+<li value="2">Drag the call to a column with a closure status</li>
+<p class="prereq">The selected status must have the <b>Close</b> setting enabled in System Admin <a href="../admin%20ipk%20management/call%20status%20titles.htm" class="MCXref xref">Call Status Titles</a>.</p>
+<li value="3">The <b>Call Close</b> window is displayed</li>
+<li value="4">Complete the <a href="callclose.htm">Call Close</a> details</li>
+<li value="5">Press <b>OK</b>.</li>
+</ol>
+</td>
+</tr>
+<tr class="TableStyle-nano_FieldDesc-Body-Body1"><td class="TableStyle-nano_FieldDesc-BodyD-Column1-Body1" colspan="2" style="font-weight: normal;">
+<p colspan="2" style="font-weight: normal;">The actions listed below affect the Service Level Agreements on the call.</p>
+<div class="MCDropDown MCDropDown_Closed dropDown">
+<span class="MCDropDownHead dropDownHead"><a href="#" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCHotSpotImage" aria-expanded="false"><img class="MCDropDown_Image_Icon" src="/storage/app/media/Help/images/transparent.gif" height="11" width="16" alt="Closed" data-mc-alt2="Open">About the SLA clock</a></span><div class="MCDropDownBody dropDownBody">
+<p colspan="2" style="font-weight: normal;">Once an agreement is attached to a work item, it begins running against a ‘clock’. <span class="GeneralVariablesProductName">ASM</span> continually monitors the amount of time the agreement has been in effect and checks if any events are scheduled to occur. An agreement may trigger a number of events such as escalations and finally a breach. </p>
+<p colspan="2" style="font-weight: normal;">You can <b>stop the clock</b> and <b>restart the clock</b> if you have sufficient permissions. While the clock is stopped, no time will accumulate on the agreement and no escalation or agreement breach events will occur. This may be required, for instance, if you are waiting on further information from a user and cannot proceed  until you get this information. </p>
+<p style="font-weight: normal;">You can <b>Resume Service</b> if you have sufficient permissions, to immediately close all events on all agreements on the work item. This is useful if the immediate issue has been resolved, but you wish to keep the work item open.</p>
+<p style="font-weight: normal;">Agreement events are closed when the work item is closed.</p>
+</div>
+</div>
+</td></tr>
+<tr class="TableStyle-nano_FieldDesc-Body-Body1">
+<td class="TableStyle-nano_FieldDesc-BodyE-Column1-Body1">Stop the clock</td>
+<td class="TableStyle-nano_FieldDesc-BodyD-Column2-Body1"><ol>
+<li value="1">Select and open the call for which you want to stop the clock</li>
+<li value="2">The <a href="calldetails.htm">Call Details</a> window is displayed</li>
+<li value="3">Change the <b>Status</b> field to a status that pauses the clock</li>
+<p class="prereq">The selected status must have the <b>Stop Clock</b> setting enabled in System Admin <a href="../admin%20ipk%20management/call%20status%20titles.htm" class="MCXref xref">Call Status Titles</a>.</p>
+<li value="4">Press <b>Save</b>.</li>
+</ol></td>
+</tr>
+<tr class="TableStyle-nano_FieldDesc-Body-Body1">
+<td class="TableStyle-nano_FieldDesc-BodyE-Column1-Body1">Start the clock</td>
+<td class="TableStyle-nano_FieldDesc-BodyD-Column2-Body1"><ol>
+<li value="1">Select and open the call for which you want to start the clock</li>
+<li value="2">The <a href="calldetails.htm">Call Details</a> window is displayed</li>
+<li value="3">Change the <b>Status</b> field to a status that does not pause the clock and does not resume service</li>
+<p class="prereq">The selected status must <b>not</b> have the <b>Stop Clock</b> setting or the <b>Resume Service</b> setting enabled in System Admin <a href="../admin%20ipk%20management/call%20status%20titles.htm" class="MCXref xref">Call Status Titles</a>.</p>
+<li value="4">Press <b>Save</b>.</li>
+</ol></td>
+</tr>
+<tr class="TableStyle-nano_FieldDesc-Body-Body1">
+<td class="TableStyle-nano_FieldDesc-BodyB-Column1-Body1">Resume Service</td>
+<td class="TableStyle-nano_FieldDesc-BodyA-Column2-Body1"><ol>
+<li value="1">Select and open the call for which you want to resume service</li>
+<li value="2">The <a href="calldetails.htm">Call Details</a> window is displayed</li>
+<li value="3">Change the <b>Status</b> field to a status that resumes service</li>
+<p class="prereq">The selected status must have the <b>Resume Service</b> setting enabled in System Admin <a href="../admin%20ipk%20management/call%20status%20titles.htm" class="MCXref xref">Call Status Titles</a>.</p>
+<li value="4">Press <b>Save</b>.</li>
+</ol></td>
+</tr>
+</tbody>
+</table>
+<p> </p>
+<h2 class="Heading2">
+<a name="Working2"></a>Working with Requests</h2>
+<p><span class="GeneralVariablesProduct2Name">Nano</span> provides a range of methods for working with  requests to suit different working styles. Requests can be closed or assigned to another analyst or group from the Search and Outstanding windows as well as from the Request Details window. While other actions, such as updating, authorizing, or rejecting requests can only be done from the Request Details window,</p>
+<p>This topic provides an overview of the methods available for each type of action.</p>
+<p>For detailed information, see these topics:</p>
+<ul>
+<li value="1">
+<a href="requestdetails.htm" class="MCXref xref">Using the Request Details Window</a> - Explains how to open and update  requests, the request details fields and their purpose, and how to use the Status field to perform actions on the request.</li>
+<li value="2">
+<a href="requestsoutstanding.htm" class="MCXref xref">Viewing your Outstanding Requests</a> - The Outstanding window displays requests requiring your attention. This topic shows you how to adjust the filters and perform actions on requests from the table of results.</li>
+<li value="3">
+<a href="requestsearch.htm" class="MCXref xref">Searching for Requests</a> -  Learn how to search for requests and perform actions on them from the table of results.</li>
+</ul>
+<table style="width: 100%;mc-table-style: url('../../resources/tablestyles/nanofielddesc.css');" class="TableStyle-nano_FieldDesc" cellspacing="0">
+<col class="TableStyle-nano_FieldDesc-Column-Column1">
+<col class="TableStyle-nano_FieldDesc-Column-Column2">
+<tbody>
+<tr class="TableStyle-nano_FieldDesc-Body-Body1">
+<td class="TableStyle-nano_FieldDesc-BodyE-Column1-Body1">Log a request</td>
+<td class="TableStyle-nano_FieldDesc-BodyD-Column2-Body1"><ol>
+<li value="1">On the menu select <b>New Request</b>
+</li>
+<li value="2">Complete the <a href="requestdetails.htm">Request Details</a>
+</li>
+<li value="3">Press <b>Save</b>.</li>
+</ol></td>
+</tr>
+<tr class="TableStyle-nano_FieldDesc-Body-Body1">
+<td class="TableStyle-nano_FieldDesc-BodyE-Column1-Body1">Search for a request</td>
+<td class="TableStyle-nano_FieldDesc-BodyD-Column2-Body1">
+<p>Method 1: Request Search</p>
+<ol>
+<li value="1">On the menu select <b>Search</b>, then <b>Request Search</b>
+</li>
+<li value="2">Complete the <a href="requestsearch.htm">Request Search</a> fields.</li>
+</ol>
+<p>Method 2: Request Outstanding</p>
+<ol>
+<li value="1">On the menu select <b>View</b>, then <b>Requests Outstanding</b>
+</li>
+<li value="2">Adjust the <a href="requestsoutstanding.htm">Request Outstanding</a> filters if needed.</li>
+</ol>
+<p>Method 3: Quick Search</p>
+<ol>
+<li value="1">Type the request number into the <b>Quick Search</b> field.</li>
+<li value="2">A list of matching records is displayed</li>
+</ol>
+</td>
+</tr>
+<tr class="TableStyle-nano_FieldDesc-Body-Body1">
+<td class="TableStyle-nano_FieldDesc-BodyE-Column1-Body1">View request details</td>
+<td class="TableStyle-nano_FieldDesc-BodyD-Column2-Body1">
+<p>Method 1: Quick Search</p>
+<ol>
+<li value="1">Type the request number into Quick Search</li>
+<li value="2">Select the request from the listed results.</li>
+<li value="3">The <a href="requestdetails.htm">Request Details</a> window is displayed.</li>
+</ol>
+<p>Method 2: <a href="requestsearch.htm">Request Search</a> or <a href="requestsoutstanding.htm">Request Outstanding</a></p>
+<ol>
+<li value="1">Search the table of results for the request you want to view</li>
+<li value="2">Open the request using any of these methods:
+								</li>
+</ol>
+<ul>
+<li value="1">Double-click on the request record; or</li>
+<li value="2">Right-click the request record and select <img src="/storage/app/media/Help/images/nanomenuaction_159x29.png" style="width: 159;height: 29;">; or</li>
+<li value="3">Right-click the request record and select <img src="/storage/app/media/Help/images/nanomenureview_165x28.png" style="width: 165;height: 28;">
+</li>
+</ul>
+<ol data-mc-continue="true"><li value="4">The <a href="requestdetails.htm">Request Details</a> window is displayed.</li></ol>
+<p class="note"> The request window opens in edit mode or in review mode, depending on the method used to open the request, and the settings configured in your <a href="../admin%20security%20roles/workflow%20mgt%20sec%20role%20-%20requests%20tab.htm">Workflow Security Role</a>.</p>
+</td>
+</tr>
+<tr class="TableStyle-nano_FieldDesc-Body-Body1">
+<td class="TableStyle-nano_FieldDesc-BodyE-Column1-Body1">Update a request</td>
+<td class="TableStyle-nano_FieldDesc-BodyD-Column2-Body1"><ol>
+<li value="1">Select and open the request you want to update</li>
+<li value="2">The Request Details window is displayed</li>
+<li value="3">If the request is in review mode, press <b>Take Action</b>.</li>
+<li value="4">Update the <a href="requestdetails.htm">Request Details</a> fields</li>
+<li value="5">Press <b>Save</b>.</li>
+</ol></td>
+</tr>
+<tr class="TableStyle-nano_FieldDesc-Body-Body1">
+<td class="TableStyle-nano_FieldDesc-BodyE-Column1-Body1">Authorize or Reject a request</td>
+<td class="TableStyle-nano_FieldDesc-BodyD-Column2-Body1"><ol>
+<li value="1">Select and open the request you want to authorize</li>
+<li value="2">The <a href="requestdetails.htm">Request Details</a> window is displayed</li>
+<li value="3">Enter your password, if required</li>
+<li value="4">Press <img src="/storage/app/media/Help/images/nanoauthblk_112x37.png" style="width: 112;height: 37;"> to authorize the request.</li>
+<li value="5">Press <img src="/storage/app/media/Help/images/nanorejectblk_91x32.png" style="width: 91;height: 32;"> to reject the request.</li>
+</ol></td>
+</tr>
+<tr class="TableStyle-nano_FieldDesc-Body-Body1">
+<td class="TableStyle-nano_FieldDesc-BodyE-Column1-Body1">Assign a request</td>
+<td class="TableStyle-nano_FieldDesc-BodyD-Column2-Body1">
+<p>Method 1: Request Details</p>
+<ol>
+<li value="1">Select and open the request you want to assign</li>
+<li value="2">The <a href="requestdetails.htm">Request Details</a> window is displayed</li>
+<li value="3">In the <b>Assign To</b> field select the analyst or group you want to assign to</li>
+<li value="4">Press <b>Save</b>.</li>
+</ol>
+<p>Method 2: <a href="requestsearch.htm">Request Search</a> or <a href="requestsoutstanding.htm">Request Outstanding</a></p>
+<ol>
+<li value="1">In the table of results, find the request you want to assign</li>
+<li value="2">Forward the request using any of these methods:
+								</li>
+</ol>
+<ul>
+<li value="1">Select the request record and select <img src="/storage/app/media/Help/images/nanoforward.png"> in the toolbar; or</li>
+<li value="2">Right-click the request record and select <img src="/storage/app/media/Help/images/nanomenufwd_177x32.png" style="width: 177;height: 32;">
+</li>
+</ul>
+<ol data-mc-continue="true">
+<li value="3">The <b>Request Forward</b> window is displayed</li>
+<li value="4">Complete the <a href="forward.htm">Request Forward</a> details</li>
+<li value="5">Press <b>OK</b>.</li>
+</ol>
+<p class="note">The terms "assign" and "forward" are interchangeable in this context.</p>
+</td>
+</tr>
+<tr class="TableStyle-nano_FieldDesc-Body-Body1">
+<td class="TableStyle-nano_FieldDesc-BodyE-Column1-Body1">Close a request</td>
+<td class="TableStyle-nano_FieldDesc-BodyD-Column2-Body1">
+<p>Method 1: Request Details</p>
+<ol>
+<li value="1">Select and open the request you want to close</li>
+<li value="2">The <a href="requestdetails.htm">Request Details</a> window is displayed</li>
+<li value="3">Change the <b>Status</b> field to a closure status</li>
+<p class="prereq">The selected status must have the <b>Close</b> setting enabled in System Admin <a href="../admin%20workflow%20mgt/request%20completion%20statuses.htm" class="MCXref xref">Request Completion Statuses</a>.</p>
+<li value="4">Press <b>Save</b>.</li>
+</ol>
+<p>Method 2: <a href="requestsearch.htm">Request Search</a> or <a href="requestsoutstanding.htm">Request Outstanding</a></p>
+<ol>
+<li value="1">In the table of results, find the request you want to close</li>
+<li value="2">Close the request using any of these methods:
+								</li>
+</ol>
+<ul>
+<li value="1">Select the request record and select <img src="/storage/app/media/Help/images/nanoclose.png"> in the toolbar; or</li>
+<li value="2">Right-click the request record and select <img src="/storage/app/media/Help/images/nanomenuclose_176x30.png" style="width: 176;height: 30;">
+</li>
+</ul>
+<ol data-mc-continue="true">
+<li value="3">The <b>Request Close</b> window is displayed</li>
+<li value="4">Complete the <a href="requestclose.htm">Request Close</a> details</li>
+<li value="5">Press <b>OK</b>.</li>
+</ol>
+<p>Method 3: Kanban in <a href="requestsearch.htm">Request Search</a> or <a href="requestsoutstanding.htm">Request Outstanding</a></p>
+<ol>
+<li value="1">In the Kanban, find the request you want to close</li>
+<li value="2">Drag the request to a column with a closure status</li>
+<p class="prereq">The selected status must have the <b>Close</b> setting enabled in System Admin <a href="../admin%20workflow%20mgt/request%20completion%20statuses.htm" class="MCXref xref">Request Completion Statuses</a>.</p>
+<li value="3">The <b>Request Close</b> window is displayed</li>
+<li value="4">Complete the <a href="requestclose.htm">Request Close</a> details</li>
+<li value="5">Press <b>OK</b>.</li>
+</ol>
+</td>
+</tr>
+<tr class="TableStyle-nano_FieldDesc-Body-Body1"><td class="TableStyle-nano_FieldDesc-BodyD-Column1-Body1" colspan="2">
+<p colspan="2" style="font-weight: normal;">The actions listed below affect the Service Level Agreements on the request.</p>
+<div class="MCDropDown MCDropDown_Closed dropDown">
+<span class="MCDropDownHead dropDownHead"><a href="#" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCHotSpotImage" aria-expanded="false"><img class="MCDropDown_Image_Icon" src="/storage/app/media/Help/images/transparent.gif" height="11" width="16" alt="Closed" data-mc-alt2="Open">About the SLA clock</a></span><div class="MCDropDownBody dropDownBody">
+<p colspan="2" style="font-weight: normal;">Once an agreement is attached to a work item, it begins running against a ‘clock’. <span class="GeneralVariablesProductName">ASM</span> continually monitors the amount of time the agreement has been in effect and checks if any events are scheduled to occur. An agreement may trigger a number of events such as escalations and finally a breach. </p>
+<p colspan="2" style="font-weight: normal;">You can <b>stop the clock</b> and <b>restart the clock</b> if you have sufficient permissions. While the clock is stopped, no time will accumulate on the agreement and no escalation or agreement breach events will occur. This may be required, for instance, if you are waiting on further information from a user and cannot proceed  until you get this information. </p>
+<p style="font-weight: normal;">You can <b>Resume Service</b> if you have sufficient permissions, to immediately close all events on all agreements on the work item. This is useful if the immediate issue has been resolved, but you wish to keep the work item open.</p>
+<p style="font-weight: normal;">Agreement events are closed when the work item is closed.</p>
+</div>
+</div>
+</td></tr>
+<tr class="TableStyle-nano_FieldDesc-Body-Body1">
+<td class="TableStyle-nano_FieldDesc-BodyE-Column1-Body1">Stop the clock</td>
+<td class="TableStyle-nano_FieldDesc-BodyD-Column2-Body1"><ol>
+<li value="1">Select and open the request for which you want to stop the clock</li>
+<li value="2">The <a href="requestdetails.htm">Request Details</a> window is displayed</li>
+<li value="3">Change the <b>Status</b> field to a status that stops the clock</li>
+<p class="prereq">The selected status must have the <b>Stop Clock</b> setting enabled in System Admin <a href="../admin%20workflow%20mgt/request%20completion%20statuses.htm" class="MCXref xref">Request Completion Statuses</a>.</p>
+<li value="4">Press <b>Save</b>.</li>
+</ol></td>
+</tr>
+<tr class="TableStyle-nano_FieldDesc-Body-Body1">
+<td class="TableStyle-nano_FieldDesc-BodyE-Column1-Body1">Start the clock</td>
+<td class="TableStyle-nano_FieldDesc-BodyD-Column2-Body1"><ol>
+<li value="1">Select and open the request for which you want to start the clock</li>
+<li value="2">The <a href="requestdetails.htm">Request Details</a> window is displayed</li>
+<li value="3">Change the <b>Status</b> field to a status that does not stop the clock and does not resume service</li>
+<p class="prereq">The selected status must <b>not</b> have the <b>Stop Clock</b> setting or the <b>Resume Service</b> setting enabled in System Admin <a href="../admin%20workflow%20mgt/request%20completion%20statuses.htm" class="MCXref xref">Request Completion Statuses</a>.</p>
+<li value="4">Press <b>Save</b>.</li>
+</ol></td>
+</tr>
+<tr class="TableStyle-nano_FieldDesc-Body-Body1">
+<td class="TableStyle-nano_FieldDesc-BodyB-Column1-Body1">Resume Service</td>
+<td class="TableStyle-nano_FieldDesc-BodyA-Column2-Body1"><ol>
+<li value="1">Select and open the request for which you want to resume service</li>
+<li value="2">The <a href="requestdetails.htm">Request Details</a> window is displayed</li>
+<li value="3">Change the <b>Status</b> field to a status that resumes service</li>
+<p class="prereq">The selected status must have the <b>Resume Service</b> setting enabled in System Admin <a href="../admin%20workflow%20mgt/request%20completion%20statuses.htm" class="MCXref xref">Request Completion Statuses</a>.</p>
+<li value="4">Press <b>Save</b>.</li>
+</ol></td>
+</tr>
+</tbody>
+</table>
+<p> </p>
+<h2 class="Heading2">
+<a name="Working3"></a>Working with Tasks</h2>
+<p><span class="GeneralVariablesProduct2Name">Nano</span> provides a range of methods for working with  tasks to suit different working styles. Tasks can be closed, approved, rejected, or assigned to another analyst or group from the Search and Outstanding windows as well as from the Task Details window. While other actions, such as updating can only be done from the Task Details window,</p>
+<p>This topic provides an overview of the methods available for each type of action.</p>
+<p>For detailed information, see these topics:</p>
+<ul>
+<li value="1">
+<a href="taskdetails.htm" class="MCXref xref">Using the Task Details Window</a> - Explains how to open and update  tasks, the task details fields and their purpose, and how to use the Status field to perform actions on the task.</li>
+<li value="2">
+<a href="nanotasksoutstanding.htm" class="MCXref xref">Viewing Your Outstanding Tasks</a> - The Outstanding window displays tasks requiring your attention. This topic shows you how to adjust the filters and perform actions on tasks from the table of results.</li>
+<li value="3">
+<a href="tasksearch.htm" class="MCXref xref">Searching for Tasks</a> -  Learn how to search for tasks and perform actions on them from the table of results.</li>
+</ul>
+<table style="width: 100%;mc-table-style: url('../../resources/tablestyles/nanofielddesc.css');" class="TableStyle-nano_FieldDesc" cellspacing="0">
+<col class="TableStyle-nano_FieldDesc-Column-Column1">
+<col class="TableStyle-nano_FieldDesc-Column-Column2">
+<tbody>
+<tr class="TableStyle-nano_FieldDesc-Body-Body1">
+<td class="TableStyle-nano_FieldDesc-BodyE-Column1-Body1"><b>Search for a task</b></td>
+<td class="TableStyle-nano_FieldDesc-BodyD-Column2-Body1">
+<p>Method 1: Task Search</p>
+<ol>
+<li value="1">On the menu select <b>Search</b>, then <b>Request Search</b>
+</li>
+<li value="2">Complete the <a href="tasksearch.htm">Task Search</a> fields.</li>
+</ol>
+<p>Method 2: Task Outstanding</p>
+<ol>
+<li value="1">On the menu select <b>View</b>, then <b>Requests Outstanding</b>
+</li>
+<li value="2">Adjust the <a href="nanotasksoutstanding.htm">Task Outstanding</a> filters if needed.</li>
+</ol>
+<p>Method 3: Quick Search</p>
+<ol>
+<li value="1">Type the task number into the <b>Quick Search</b> field.</li>
+<li value="2">A list of matching records is displayed</li>
+</ol>
+</td>
+</tr>
+<tr class="TableStyle-nano_FieldDesc-Body-Body1">
+<td class="TableStyle-nano_FieldDesc-BodyE-Column1-Body1">View task details</td>
+<td class="TableStyle-nano_FieldDesc-BodyD-Column2-Body1">
+<p>Method 1: Quick Search</p>
+<ol>
+<li value="1">Type the task number into Quick Search</li>
+<li value="2">Select the task from the listed results.</li>
+<li value="3">The <a href="taskdetails.htm">Task Details</a> window is displayed.</li>
+</ol>
+<p>Method 2: <a href="tasksearch.htm">Task Search</a> or <a href="nanotasksoutstanding.htm">Task Outstanding</a></p>
+<ol>
+<li value="1">Search the table of results for the task you want to view</li>
+<li value="2">Open the task using any of these methods:</li>
+</ol>
+<ul>
+<li value="1">Double-click on the task record; or</li>
+<li value="2">Right-click the task record and select <img src="/storage/app/media/Help/images/nanomenuaction_159x29.png" style="width: 159;height: 29;">; or</li>
+<li value="3">Right-click the task record and select <img src="/storage/app/media/Help/images/nanomenureview_165x28.png" style="width: 165;height: 28;">
+</li>
+</ul>
+<ol data-mc-continue="true"><li value="4">The <a href="taskdetails.htm">Task Details</a> window is displayed.</li></ol>
+<p class="note"> The task window opens in edit mode or in review mode, depending on the method used to open the task, and the settings configured in your <a href="../admin%20security%20roles/workflow%20mgt%20sec%20role%20-%20tasks%20tab.htm">Workflow Security Role</a>.</p>
+</td>
+</tr>
+<tr class="TableStyle-nano_FieldDesc-Body-Body1">
+<td class="TableStyle-nano_FieldDesc-BodyE-Column1-Body1"><b>Update a task</b></td>
+<td class="TableStyle-nano_FieldDesc-BodyD-Column2-Body1"><ol>
+<li value="1">Select and open the task you want to update</li>
+<li value="2">The Task Details window is displayed</li>
+<li value="3">If the task is in review mode, press <b>Take Action</b>.</li>
+<li value="4">Update the <a href="taskdetails.htm">Task Details</a> fields</li>
+<li value="5">Press <b>Save</b>.</li>
+</ol></td>
+</tr>
+<tr class="TableStyle-nano_FieldDesc-Body-Body1">
+<td class="TableStyle-nano_FieldDesc-BodyE-Column1-Body1"><b>Assign a task</b></td>
+<td class="TableStyle-nano_FieldDesc-BodyD-Column2-Body1">
+<p>Method 1: Task Details
+</p>
+<ol>
+<li value="1">Select and open the task you want to assign</li>
+<li value="2">The <a href="taskdetails.htm">Task Details</a> window is displayed</li>
+<li value="3">In the <b>Assign To</b> field select the analyst or group you want to assign to</li>
+<li value="4">Press <b>Save</b>.</li>
+</ol>
+<p>Method 2: <a href="tasksearch.htm">Task Search</a> or <a href="nanotasksoutstanding.htm">Task Outstanding</a></p>
+<ol>
+<li value="1">Search the table of results for the task you want to assign</li>
+<li value="2">Forward the request using any of these methods:
+									</li>
+</ol>
+<ul>
+<li value="1">Select the task record and select <img src="/storage/app/media/Help/images/nanoforward.png"> in the toolbar; or</li>
+<li value="2">Right-click the task record and select <img src="/storage/app/media/Help/images/nanomenufwd_177x32.png" style="width: 177;height: 32;">
+</li>
+</ul>
+<ol data-mc-continue="true">
+<li value="3">The <b>Task Forward</b> window is displayed</li>
+<li value="4">Complete the <a href="forward.htm">Task Forward</a> details</li>
+<li value="5">Press <b>OK</b>.</li>
+</ol>
+<p class="note">The terms "assign" and "forward" are interchangeable in this context.</p>
+</td>
+</tr>
+<tr class="TableStyle-nano_FieldDesc-Body-Body1">
+<td class="TableStyle-nano_FieldDesc-BodyE-Column1-Body1"><b>Approve or Reject an approval</b></td>
+<td class="TableStyle-nano_FieldDesc-BodyD-Column2-Body1">
+<p>Method 1: Approval Details</p>
+<ol>
+<li value="1">Select and open the approval you want to approve or reject</li>
+<li value="2">The <a href="taskdetails.htm">Task Details</a> window is displayed</li>
+<li value="3">Enter your password, if required</li>
+<li value="4">Press <img src="/storage/app/media/Help/images/nanoapproveblk_91x29.png" style="width: 91;height: 29;"> to approve and close the approval task.</li>
+<li value="5">Press <img src="/storage/app/media/Help/images/nanorejectblk_91x32.png" style="width: 91;height: 32;"> to reject and close the approval task.</li>
+</ol>
+<p>Method 2: <a href="tasksearch.htm">Task Search</a> or <a href="nanotasksoutstanding.htm">Task Outstanding</a></p>
+<ol>
+<li value="1">Search the table of results for the task you want to assign</li>
+<li value="2">Approve or reject the approval using any of these methods:
+					</li>
+</ol>
+<ul>
+<li value="1">Select the task record and select <img src="/storage/app/media/Help/images/nanoclose.png"> in the toolbar; or</li>
+<li value="2">Right-click the task record and select <img src="/storage/app/media/Help/images/nanomenuclose_176x30.png" style="width: 176;height: 30;">
+</li>
+</ul>
+<ol>
+<li value="1">The <b>Task Close</b> window is displayed</li>
+<li value="2">Enter your password, if required</li>
+<li value="3">Complete the other <a href="taskclose.htm">Task Close</a> details</li>
+<li value="4">Press <b>OK</b>.</li>
+</ol>
+<p>Method 3: Kanban in <a href="tasksearch.htm">Task Search</a> or <a href="nanotasksoutstanding.htm">Task Outstanding</a></p>
+<ol>
+<li value="1">In the Kanban, find the task you want to approve/reject</li>
+<li value="2">Drag the task to a column with a closure status</li>
+<p class="prereq">The selected status must have the <b>Close</b> setting enabled in System Admin <a href="../admin%20workflow%20mgt/task%20status%20titles.htm" class="MCXref xref">Task Status Titles</a>.</p>
+<li value="3">The <b>Task Close</b> window is displayed</li>
+<li value="4">Enter your password, if required</li>
+<li value="5">Complete the other<a href="taskclose.htm">Task Close</a> details</li>
+<li value="6">Press <b>OK</b>.</li>
+</ol>
+</td>
+</tr>
+<tr class="TableStyle-nano_FieldDesc-Body-Body1">
+<td class="TableStyle-nano_FieldDesc-BodyB-Column1-Body1">Close a task</td>
+<td class="TableStyle-nano_FieldDesc-BodyA-Column2-Body1">
+<p>Method 1: Task Details</p>
+<ol>
+<li value="1">Select and open the approval you want to close</li>
+<li value="2">The <a href="taskdetails.htm">Task Details</a> is displayed</li>
+<li value="3">Change the <b>Status</b> field to a closure status</li>
+<p class="prereq">The selected status must have the <b>Close</b> setting enabled in System Admin <a href="../admin%20workflow%20mgt/task%20status%20titles.htm" class="MCXref xref">Task Status Titles</a>.</p>
+<li value="4">Press <b>Save</b>.</li>
+</ol>
+<p>Method 2: <a href="tasksearch.htm">Task Search</a> or <a href="nanotasksoutstanding.htm">Task Outstanding</a></p>
+<ol>
+<li value="1">Search the table of results for the task you want to close</li>
+<li value="2">Close the task using any of these methods:</li>
+</ol>
+<ul>
+<li value="1">Select the task record and select <img src="/storage/app/media/Help/images/nanoclose.png"> in the toolbar; or</li>
+<li value="2">Right-click the task record and select <img src="/storage/app/media/Help/images/nanomenuclose_176x30.png" style="width: 176;height: 30;">
+</li>
+</ul>
+<ol>
+<li value="1">The <b>Task Close</b> window is displayed</li>
+<li value="2">Complete the <a href="taskclose.htm">Task Close</a> details</li>
+<li value="3">Press <b>OK</b>.</li>
+</ol>
+<p>Method 3: Kanban in <a href="tasksearch.htm">Task Search</a> or <a href="nanotasksoutstanding.htm">Task Outstanding</a></p>
+<ol>
+<li value="1">In the Kanban, find the task you want to close</li>
+<li value="2">Drag the task to a column with a closure status</li>
+<p class="prereq">The selected status must have the <b>Close</b> setting enabled in System Admin <a href="../admin%20workflow%20mgt/task%20status%20titles.htm" class="MCXref xref">Task Status Titles</a>.</p>
+<li value="3">The <b>Task Close</b> window is displayed</li>
+<li value="4">Complete the <a href="taskclose.htm">Task Close</a> details</li>
+<li value="5">Press <b>OK</b>.</li>
+</ol>
+</td>
+</tr>
+</tbody>
+</table>
+<p> </p>

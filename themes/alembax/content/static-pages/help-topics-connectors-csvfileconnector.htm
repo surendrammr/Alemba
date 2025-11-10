@@ -1,0 +1,179 @@
+[viewBag]
+title = "CSV File Connector"
+url = "/help/topics/connectors/csvfileconnector"
+layout = "help"
+is_hidden = 0
+navigation_hidden = 0
+==
+                                                    <h1>CSV File Connector</h1>
+                                                    <h2 class="Prerequisite">Before you start</h2>
+                                                    <p class="prereqtext">Before you read this documentation, it is recommended that you review the <b class="crossref">Integrated Platform Configuration</b> documentation.</p>
+                                                    <p>The CSV file Connector is implemented to link <span class="GeneralVariablesCoreName">ASM Core</span>  and any Comma Separated Value (CSV) data file. This section of the documentation provides a description of the  CSV file Connector. It lists the resource types that can be discovered on the application and the attributes of each resource type that can be imported into the <span class="GeneralVariablesCoreName">ASM Core</span> Configuration Management Database (CMDB).</p>
+                                                    <p class="note">If not specified, version <span class="GeneralVariablesProductVersion">10.1</span> should be assumed as the adequate version for <span class="GeneralVariablesCoreName">ASM Core</span>. For information about previous versions, see the documentation archive.</p>
+                                                    <p class="note">You should familiarize yourself with the information in <a href="connector%20installation%20guide.htm" class="MCXref xref">Installing Connectors</a> before installing any connectors, and read the <a href="../integration/integrate.htm" class="MCXref xref">Integration</a> topics for more information on how to configure them.</p>
+                                                    <h2>About the CSV File Connector</h2>
+                                                    <p>The  CSV Files Connector reads a <b>Comma Separated Value (CSV)</b> file from a location accessible to the <span class="GeneralVariablesCoreName">ASM Core</span> server, and interprets each row found within the file as a unique resource. Every column imported is interpreted as a property of that resource.</p>
+                                                    <p>The connector supports data retrieval from CSV files that can be correctly read and manipulated in Microsoft Excel, but does not support any other formats supported by Excel.</p>
+                                                    <h3>Assumptions</h3>
+                                                    <p>The assumptions about the  CSV file Connector are as follows:</p>
+                                                    <ul>
+                                                        <li value="1">That each CSV file has a header row. None of the cells in this row is imported. Its contents are used as property names for the data in the rows below.</li>
+                                                        <li value="2">That the CSV file has at least one column which can be used as a reliable unique identifier. This means that the unique identifier for a resource:<ul>
+<li value="1">Should be specified for every resource </li>
+<li value="2">Should not change over time</li>
+<li value="3">Should be distinct from the identifiers of the other resources in the file</li>
+</ul>
+</li>
+                                                        <li value="3">That the file has at least one column which can serve as a suitable descriptive name for the resource.</li>
+                                                    </ul>
+                                                    <h3>Permissions</h3>
+                                                    <p>The processes that use the connector, namely Microsoft Internet Information Services (IIS) and the <span class="GeneralVariablesCoreName">ASM Core</span> Connector Service, must have sufficient permissions to read the CSV file.</p>
+                                                    <p class="note">The connector requires only read permissions for the CSV file as it does not update the file.</p>
+                                                    <p>If <span class="GeneralVariablesCoreName">ASM Core</span> runs across multiple servers, the path specified for the file must be valid and accessible on all those servers. This means that if the data file is being read from a path in the local drive, for example, C:\Data\Resources.csv, then that location and the CSV file must be replicated across all servers so that it is valid for them all. This applies regardless of whether a server is set up purely to run the web server component or the polling service.</p>
+                                                    <p class="note">CSV data is arranged sequentially in a flat file. This means that ad hoc access through the connector to resources in larger CSV files will be necessarily slow. For this reason, it is recommended not to use the <b>External Resource Search</b> functionality against this connector. Though this functionality is supported, it may not perform well.</p>
+                                                    <h2>Use Case Scenario</h2>
+                                                    <table class="TableStyle-scenario_table" style="mc-table-style: url('../../resources/tablestyles/scenario table.css');" cellspacing="0">
+                                                        <col class="TableStyle-scenario_table-Column-Column1">
+                                                        <col class="TableStyle-scenario_table-Column-Column2">
+                                                        <tr class="TableStyle-scenario_table-Body-Body1">
+                                                            <td class="TableStyle-scenario_table-BodyE-Column1-Body1">
+                                                                <p class="Strong">Purpose</p>
+                                                            </td>
+                                                            <td class="TableStyle-scenario_table-BodyD-Column2-Body1">
+                                                                <p>An organization uses a CSV data file to maintain resources present in their networks.</p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="TableStyle-scenario_table-Body-Body1">
+                                                            <td class="TableStyle-scenario_table-BodyE-Column1-Body1">
+                                                                <p class="Strong">Role of the connector</p>
+                                                            </td>
+                                                            <td class="TableStyle-scenario_table-BodyD-Column2-Body1">
+                                                                <p>To expose the resources in the network in order to allow for population and ongoing consistency checks of the <span class="GeneralVariablesCoreName">ASM Core</span> CMDB.</p>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                    <h2>Connector Description</h2>
+                                                    <p>The table below provides a description of the CSV file Connector.</p>
+                                                    <table class="TableStyle-Rep_Hdr_Row" style="mc-table-style: url('../../resources/tablestyles/rep hdr row.css');margin-left: 0;margin-right: auto;" cellspacing="0">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column1">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column2">
+                                                        <thead>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Head-Header1">
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column1-Header1">
+                                                                    <p>Information field</p>
+                                                                </th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadD-Column2-Header1">
+                                                                    <p>Description</p>
+                                                                </th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Connector </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p>CSV data file &lt;-&gt; <span class="GeneralVariablesCoreName">ASM Core</span></p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Third-party application</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p>A plain text Comma Separated Value (CSV) file</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Assembly</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p>Infra.Connector.CSV.dll</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Connector class</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p>Infra.Connector.CSV.CSVConnector</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Configuration file</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p>Infra.Connector.CSV.icnf</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyB-Column1-Body1">
+                                                                    <p>Connection methodology</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyA-Column2-Body1">
+                                                                    <p>Reading a file from the local file system</p>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <h2>Config Portability with CSV Connectors (Upload option)</h2>
+                                                    <p>You port the settings, but not the CSV file itself. Therefore, when porting the settings for a CSV connector, take the following steps:</p>
+                                                    <ol>
+                                                        <li value="1">
+<a href="%7B%7B%20'help-config-port-porting-configuration-data#Selectin'%7CstaticPage%20%7D%7D#Selectin">Export the CSV Connector Settings</a> from the source system.</li>
+                                                        <li value="2">
+<a href="%7B%7B%20'help-config-port-porting-configuration-data#Importin'%7CstaticPage%20%7D%7D#Importin">Import the CSV Connector Settings</a> into the target system.</li>
+                                                        <li value="3">Open the CSV Connector Source in the target system.</li>
+                                                        <li value="4">Upload the CSV File.</li>
+                                                        <li value="5">Click <img src="/storage/app/media/Help/images/test%20connector%20btn.png"> to confirm that the target connector source system is working as expected.</li>
+                                                        <li value="6">Configure/review the Integration Resource, etc. as usual.</li>
+                                                    </ol>
+                                                    <h2>Connection Parameters</h2>
+                                                    <p>The table below provides the description of the connection parameters of the  CSV file Connector.</p>
+                                                    <table class="TableStyle-FieldDesc" style="margin-left: 0;margin-right: auto;mc-table-style: url('../../resources/tablestyles/fielddesc.css');" cellspacing="0">
+                                                        <col class="TableStyle-FieldDesc-Column-Column1">
+                                                        <col class="TableStyle-FieldDesc-Column-Column2">
+                                                        <tbody>
+                                                            <tr class="TableStyle-Table_with_Repeating_Header_Row-Body-Body1">
+                                                                <td class="TableStyle-FieldDesc-BodyH-Column1-">File Location</td>
+                                                                <td class="TableStyle-FieldDesc-BodyG-Column2-">Use the browse option to navigate to the file on your local system or server. Select the file and then select <b>Upload</b>.</td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Table_with_Repeating_Header_Row-Body-Body1">
+                                                                <td class="TableStyle-FieldDesc-BodyH-Column1-">Server/Network Path</td>
+                                                                <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                    <p>Specify the file system path of the CSV data file to import.</p>
+                                                                    <p class="note">This field was previously called Path on Server(s), and has been renamed to clarify functionality.</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Table_with_Repeating_Header_Row-Body-Body1">
+                                                                <td class="TableStyle-FieldDesc-BodyH-Column1-">
+                                                                    <p>Unique ID Column </p>
+                                                                </td>
+                                                                <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                    <p>The name of the unique identifier column</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Table_with_Repeating_Header_Row-Body-Body1">
+                                                                <td class="TableStyle-FieldDesc-BodyB-Column1-">
+                                                                    <p>Display Name Column</p>
+                                                                </td>
+                                                                <td class="TableStyle-FieldDesc-BodyA-Column2-">
+                                                                    <p>The name of the descriptive name column</p>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <h2>Connector Diagnostics</h2>
+                                                    <p>The connector has the facility to trace information. The data can be obtained through Polling tracing or Application tracing.</p>
+                                                    <h2>Resource types</h2>
+                                                    <ul>
+                                                        <li class="Bulleted_1" value="1">Specification of several resource and link types</li>
+                                                        <li class="Bulleted_1" value="2">Specification of several CSV files from which information can be extracted</li>
+                                                    </ul>
+                                                    <p>The import process, when extracting data from one or several CSV files, behaves similarly to any other Federated CMDB connector, notably in relation with the mapping capabilities of the Integration Platform.</p>
+                                                    <p>The column headers defined in the CSV files dictate the properties available for the resource type. Each header serves as both the key and the display name of the property.</p>
+                                                    <p>Following the same concept as for specifying several CSV files from which to extract information, the creation of link types is performed by modifying the configuration file. However, this modification should ideally be implemented after proper training and a clear understanding of the <b class="crossref">Integration Platform specifications</b>.</p>
+                                                    <p class="warning">Ensure that the header names remain consistent over time so that mappings are not invalidated.</p>
+                                                

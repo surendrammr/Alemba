@@ -1,0 +1,190 @@
+[viewBag]
+title = "Stored Procedure Connector"
+url = "/help/topics/connectors/storedproceduresconnector"
+layout = "help"
+is_hidden = 0
+navigation_hidden = 0
+==
+                                                    <h1>Stored Procedure Connector</h1>
+                                                    <p>This <conditionaltext data-mc-conditions="Default.ScreenOnly">topic </conditionaltext>provides details of the <span class="GeneralVariablesCompanyName2">Alemba®</span> Stored Procedure Connector, including:</p>
+                                                    <ul>
+                                                        <li value="1">The name of the .NET assembly file</li>
+                                                        <li value="2">The connection methodology</li>
+                                                        <li class="Bulleted_1" value="3">Use case scenarios</li>
+                                                        <li class="Bulleted_1" value="4">Architectural and functional details that ensure the running of the use case through the Outbound Action task in the Workflow Platform</li>
+                                                    </ul>
+                                                    <p class="note">For compatibility and version support details, refer to the <a href="connector%20matrix.htm" class="MCXref xref">ASM Connector Matrix</a>.</p>
+                                                    <p class="note">You should familiarize yourself with the information in <a href="connector%20installation%20guide.htm" class="MCXref xref">Installing Connectors</a> before installing any connectors, and read the <a href="../integration/integrate.htm" class="MCXref xref">Integration</a> topics for more information on how to configure them.</p>
+                                                    <h2>Overview</h2>
+                                                    <p>The <span class="GeneralVariablesCompanyName2">Alemba®</span> Stored Procedure Connector allows values to be passed between a workflow in <span class="GeneralVariablesProductName">ASM</span> and a stored procedure in the <span class="GeneralVariablesDatabaseName">ASM database</span>.</p>
+                                                    <p>This connector:</p>
+                                                    <ul>
+                                                        <li value="1"> Sends values from a request or task to the incoming parameters of the stored procedure in the <span class="GeneralVariablesDatabaseName">ASM database</span>.</li>
+                                                        <li value="2">Triggers the stored procedure to perform an action based on those values.</li>
+                                                        <li value="3"> Retrieves values from the outgoing parameters of the stored procedure and displays them in the request or task.</li>
+                                                    </ul>
+                                                    <h2>Use Case Scenario</h2>
+                                                    <table class="TableStyle-scenario_table" style="mc-table-style: url('../../resources/tablestyles/scenario table.css');" cellspacing="0">
+                                                        <col class="TableStyle-scenario_table-Column-Column1">
+                                                        <col class="TableStyle-scenario_table-Column-Column2">
+                                                        <tr class="TableStyle-scenario_table-Body-Body1">
+                                                            <td class="TableStyle-scenario_table-BodyE-Column1-Body1">
+                                                                <p class="Strong">Purpose</p>
+                                                            </td>
+                                                            <td class="TableStyle-scenario_table-BodyD-Column2-Body1">
+                                                                <p>Stored procedures allow for SQL Statements and logic to be executed from a single call/command.</p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="TableStyle-scenario_table-Body-Body1">
+                                                            <td class="TableStyle-scenario_table-BodyE-Column1-Body1">
+                                                                <p class="Strong">Role</p>
+                                                            </td>
+                                                            <td class="TableStyle-scenario_table-BodyD-Column2-Body1">
+                                                                <p>The role of this connector is to pass parameters from the Outbound Action task to the Stored Procedure and receive return parameters.</p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="TableStyle-scenario_table-Body-Body1">
+                                                            <td class="TableStyle-scenario_table-BodyE-Column1-Body1">Example</td>
+                                                            <td class="TableStyle-scenario_table-BodyD-Column2-Body1">As part of an off-boarding workflow request, a child Outbound Action task calls a stored procedure to identify if there are any active CMDB Items still linked to the employee  who is leaving, and return the value to the request or task.</td>
+                                                        </tr>
+                                                    </table>
+                                                    <h2>Connector Description and Components</h2>
+                                                    <p>The table below provides a description of the <span class="GeneralVariablesCompanyName2">Alemba®</span> Stored Procedure Connector.</p>
+                                                    <table class="TableStyle-Rep_Hdr_Row" style="mc-table-style: url('../../resources/tablestyles/rep hdr row.css');width: ;" cellspacing="0">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column1">
+                                                        
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column2">
+                                                        
+                                                        <thead>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Head-Header1">
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column1-Header1">
+                                                                    <p>Information fields</p>
+                                                                </th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadD-Column2-Header1">
+                                                                    <p>Name</p>
+                                                                </th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1" style="font-weight: bold;">
+                                                                    <p>Connector</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p> Stored Procedure &lt;-&gt; <span class="GeneralVariablesCoreName">ASM Core</span> workflow</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1" style="font-weight: bold;">Assembly</td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+<span class="GeneralVariablesCompanyName2">Alemba®</span>.Conenctor.StoredProcedure.dll</td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1" style="font-weight: bold;">Stored Procedure Exclusion File</td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">StoredProcedure.xml</td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyB-Column1-Body1" style="font-weight: bold;">Connection Methodology</td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyA-Column2-Body1">SQL Server Database</td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <h2>Connection Parameters</h2>
+                                                    <h2>Installation</h2>
+                                                    <p>No install is required for this connector. Upon <span class="GeneralVariablesCoreName">ASM Core</span> install, this connector is visible in the Integration module, ready to be configured.</p>
+                                                    <h2 class="Heading2">Diagnostics </h2>
+                                                    <p>Trace data for this connector can be obtained through Polling tracing or Application tracing. </p>
+                                                    <h2>Additional Information</h2>
+                                                    <p>This connector does not include any Federated CMDB population functionality.</p>
+                                                    <h1>Connector Operation</h1>
+                                                    <h2 class="Heading2">
+<a name="Configur"></a>Configuring a Source for the Stored Procedure Connector</h2>
+                                                    <ol start="1" class="ol_5">
+                                                        <li value="1">
+                                                            <p>Select <a href="../general%20topics/asmcorewindow.htm"><span style="font-size: 24pt;">≡</span></a> &gt; <b>Admin</b> &gt;  <b>Integration</b>. </p>
+                                                        </li>
+                                                        <li value="2">In the Explorer pane, under Integration, select <b>Sources</b>.</li>
+                                                        <li value="3">Select the <img src="/storage/app/media/Help/images/add%20new.png"> button on the toolbar. In the pop up window, select <b><span class="GeneralVariablesCompanyName3">Alemba</span> Stored Procedure Connector</b> from the drop-down list.</li>
+                                                        <li value="4">In the <b>Integration Source Details</b> window, complete the details.</li>
+                                                        <table class="TableStyle-Rep_Hdr_Row" style="mc-table-style: url('../../resources/tablestyles/rep hdr row.css');width: ;" cellspacing="0">
+                                                            <col class="TableStyle-Rep_Hdr_Row-Column-Column1">
+                                                            <col class="TableStyle-Rep_Hdr_Row-Column-Column2">
+                                                            <thead>
+                                                                <tr class="TableStyle-Rep_Hdr_Row-Head-Header1">
+                                                                    <th class="TableStyle-Rep_Hdr_Row-HeadE-Column1-Header1">
+                                                                        <p>Parameter</p>
+                                                                    </th>
+                                                                    <th class="TableStyle-Rep_Hdr_Row-HeadD-Column2-Header1">
+                                                                        <p>Description</p>
+                                                                    </th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                    <td class="TableStyle-Rep_Hdr_Row-BodyB-Column1-Body1" style="font-weight: bold;">
+                                                                        <p>Name</p>
+                                                                    </td>
+                                                                    <td class="TableStyle-Rep_Hdr_Row-BodyA-Column2-Body1">
+                                                                        <p> Type a name for the integration source</p>
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                        <p class="note">Further fields are displayed on this window, but you do not need to complete them at this stage.</p>
+                                                        <li value="5">Select the <img src="/storage/app/media/Help/images/test%20connector%20btn.png"> button on the toolbar to test the connection.</li>
+                                                        <li value="6">Save the details.</li>
+                                                    </ol>
+                                                    <p class="note">This Source can be used in any Outbound Action task in any workflow template. No further Sources for this connector need to be created.</p>
+                                                    <h2>
+<a name="Configur3"></a>Configuring Outbound Action Tasks</h2>
+                                                    <p>This connector is designed to be used by Outbound Action tasks in workflows.</p>
+                                                    <p>The information contained below relates directly, and only, to configuring task fields for the Stored Procedure Connector, and assumes a basic working knowledge of  tasks in workflow templates.</p>
+                                                    <p class="note">For general information on configuring Outbound Action tasks, refer to <a href="../tasks/creating%20an%20outbound%20action.htm" class="MCXref xref">Creating an Outbound Action Task</a>.</p>
+                                                    <p>In the <b>Mapping Details</b> section of the Outbound Action task, complete the details:</p>
+                                                    <ol>
+                                                        <li value="1">Expand the <b>Mapping Details</b> section, if necessary, and select the Source and Action.</li>
+                                                        <p>
+                                                            </p>
+<table style="width: 100%;mc-table-style: url('../../resources/tablestyles/fielddesc.css');margin-left: 0;margin-right: auto;" class="TableStyle-FieldDesc" cellspacing="0">
+                                                                <col class="TableStyle-FieldDesc-Column-Column1">
+                                                                <col class="TableStyle-FieldDesc-Column-Column2">
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyH-Column1-">Source</td>
+                                                                        <td class="TableStyle-FieldDesc-BodyG-Column2-">Select the <b>Source</b> configured for the Stored Procedure connector in the <a href="../integration/configuring%20integ%20source.htm">Integration Platform</a>.</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyB-Column1-">Action</td>
+                                                                        <td class="TableStyle-FieldDesc-BodyA-Column2-">
+                                                                            <p>Select the stored procedure to run. The list of stored procedures is populated from the <span class="GeneralVariablesDatabaseName">ASM database</span> and displays custom stored procedures and the standard stored procedure ALLOCATEUNIQUEREF. All other out-of-the-box stored procedures are intentionally excluded and unavailable.</p>
+                                                                            <p class="note">Deprecated stored procedures may be visible in the list. Additional stored procedures can be added to the exclusion list, to ensure they are not used. The exclusion list is contained in &lt;SystemPath&gt;/Config/<span class="GeneralVariablesCompanyName2">Alemba®</span>.Connector.StoredProcedure.xml</p>
+                                                                        </td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        
+                                                        <li value="2">Select the <b>Outgoing</b> tab to map the fields for outgoing field values from <span class="GeneralVariablesProductName">ASM</span>. This allows you to specify how field values from the <span class="GeneralVariablesProductName">ASM</span> request or task correlate to the incoming parameters in the stored procedure when this task activates. </li>
+                                                        </ol>
+<ul start="1">
+                                                            <li value="1">Click <b>Add</b>. In the <b>Add Fields</b> window, select the parameters (from the stored procedure) you want to map to fields on the task or parent request. Click <b>OK</b>.</li>
+                                                            <li value="2">On the browse table, click the corresponding cell in the <b>Internal Field</b> column. Then click the field selector button to pick a static value or a field from the task or request. </li>
+                                                            <p class="note">Depending on the field’s data type, additional options can be selected in the field selector, including: field transformations, profile maps, or resolution rules.</p>
+                                                            <li value="3">Add more field mappings if needed.</li>
+                                                            <li value="4">To delete any mapped fields, select the mapping and click <b>Remove</b>. In the warning dialog box, click <b>Yes</b> to remove the field mapping or No to cancel.</li>
+                                                            <p class="note">The <b>Send Notify</b> checkbox does not apply for the Stored Procedure Connector.</p>
+                                                        </ul>
+                                                        <li value="3">Select the <b>Incoming</b> tab  to map the incoming values from the stored procedure. This allows you to specify how the values from the outgoing parameters in the stored procedure correlate to fields in <span class="GeneralVariablesProductName">ASM</span> when a response is received from the stored procedure.</li>
+                                                        <ul start="1">
+                                                            <li value="1">Click <b>Add</b>. In the <b>Add Fields</b> window, select the task or request fields you want to map to outgoing parameters in the stored procedure. Click <b>OK</b>.</li>
+                                                            <li value="2">On the browse table, click the corresponding cell in the <b>Action Field</b> column. Then click the field selector button to pick a static value or a parameter from the stored procedure. These fields are defined at the level of the connector for the selected integration source.</li>
+                                                            <p class="note">Depending on the field’s data type, additional options can be selected in the field selector, including: field transformations, profile maps, or resolution rules. </p>
+                                                            <li value="3">In the <b>Update</b> column, select the conditions for populating the field in <span class="GeneralVariablesProductName">ASM</span>. <b>Always</b> always updates the <span class="GeneralVariablesProductName">ASM</span> field with the value from the stored procedure. <b>Only When Blank</b> only populates the <span class="GeneralVariablesProductName">ASM</span> field with the value of the stored procedure if the field in <span class="GeneralVariablesProductName">ASM</span> is blank. This means that an existing value in <span class="GeneralVariablesProductName">ASM</span> cannot be overridden.</li>
+                                                            <p class="note">
+                        The <b>On Initial Population Only</b> update condition does not apply.</p>
+                                                        </ul>
+                                                    
+                                                    <h3>Field Mappings</h3>
+                                                    <p>Learn more about <a href="../integration/defining%20profile%20maps.htm" class="MCXref xref">Defining Profile Maps</a></p>
+                                                    <p>Learn more about <a href="../integration/defining%20resolution%20rules.htm" class="MCXref xref">Defining Resolution Rules</a></p>
+                                                    <p>Learn more about <a href="../integration/defining%20property%20transforms.htm" class="MCXref xref">Defining Property Transforms</a></p>
+                                                

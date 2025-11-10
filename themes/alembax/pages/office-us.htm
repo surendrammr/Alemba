@@ -1,0 +1,346 @@
+url = "/region/us"
+layout = "home"
+title = "Alemba US"
+description = "US page"
+is_hidden = 0
+meta_title = "Alemba US | About Us - Alemba"
+meta_description = "Find out why Alemba Service Manager is the ITSM software solution of choice for businesses across the United States."
+robot_index = "index"
+robot_follow = "follow"
+seoOptionsEnabledInSitemap = 0
+seoOptionsUseUpdatedAt = 1
+seoOptionsRobotIndex = "index"
+seoOptionsRobotFollow = "follow"
+seoOptionsChangefreq = "daily"
+seoOptionsPriority = 0.5
+canonical_url = "https://alemba.com/region/us"
+seo_title = "Alemba US | About Us - Alemba"
+seo_description = "Find out why Alemba Service Manager is the ITSM software solution of choice for businesses across the United States."
+
+[viewBag]
+seo_title = "Alemba US | About Us - Alemba"
+seo_description = "Find out why Alemba Service Manager is the ITSM software solution of choice for businesses across the United States."
+robot_index = "index"
+robot_follow = "follow"
+==
+<?php
+use Alemba\Alemba\Models\Office;
+use Alemba\Alemba\Models\Event;
+
+function onStart()
+{
+	// Get all offices
+
+	$this['offices'] = Office::all();
+
+	$this['main_us_office'] = $this['offices']->where('id', 4)->first();
+
+	// Get all events in order of start date
+
+	$this['events'] = Event::where('location', 'like', '%, US')->whereDate('startdate', '>', date('Y-m-d') )->orderBy('startdate', 'asc')->take(4)->get();
+
+	// Count number of events to determine column count in the events section
+
+    if(count($this['events']) > 0) {
+
+    	$count = 12/count($this['events']);
+
+	    $this['col_sm'] = 'col-sm-'.$count;
+	    $this['col_xs'] = 'col-xs-'.$count * 2;
+	    
+    }
+
+	// Generate array of structured data (for Google)
+
+	$structured_data = [];
+
+	foreach($this['events'] as $event) {
+
+		$structured_data[] = [
+
+			"@context" => "http://schema.org",
+			"@type" => "Event",
+		    "name" => $event->name,
+		    "startDate" => $event->startdate->format('Y-m-d'),
+		    "endDate" => $event->finishdate->format('Y-m-d'),
+		    "url" => "https://alemba.com/events/".$event->slug,
+		    "description" => $event->intro,
+		    "location" => [
+		      "@type" => "PostalAddress",
+		      "name" => $event->location
+		    ]
+
+		];
+
+	}
+
+	$this['structured_data'] = $structured_data;
+
+}
+?>
+==
+<!-- Structured data -->
+
+<script type="application/ld+json">
+
+	{{ structured_data|json_encode(constant('JSON_PRETTY_PRINT'))|raw }}
+
+</script>
+
+<!-- banner -->
+
+<div class="jumbotron jumbotron-fluid banner pageBanner" style="background-image:url('{{ 'assets/img/banners/banner-usa@0.5x.jpg'|theme }}')">
+
+    <div class="container h-100">
+        <div class="row h-100">
+            <div class="col my-auto">
+                <h2 class="text-center">We Speak Your Language</h2>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!-- /banner -->
+
+<!-- copy -->
+
+<div class="container copy">
+
+	<header class="col-md-12 copy-heading">
+	
+		<h1>Alemba US</h1>
+		<h2>Bringing industry-leading enterprise ITSM to America for 25 years</h2>
+
+	</header>
+
+	<div class="row justify-content-center">
+
+		<div class="col-md-6 copy-main">
+
+			<p class="lead">Alemba is a registered US company and support many customers across the United States, Canada and the Caribbean.</p>
+
+			<p>Our US customers represent a wide variety of industries, including Defence, the Financial sector, Healthcare, Retail, Manufacturing, Utilities and Education. Individual uses for our systems are diverse and range from IT and business support services, to building maintenance &amp; support, to customer services and enquiries.</p>
+
+			<p>With offices in Minnesota and Nevada, you can be assured of local support for your Alemba Service Manager system.</p>
+
+		</div>
+
+		<div class="col-md-4">
+
+			<div class="usa-map-with-pins">
+
+				<img class="usa-map" src="{{ 'Offices/usa-map-grey-on-white.png'|media }}" class="USA map" />
+
+			</div>
+
+		</div>
+
+	</div>
+
+</div>
+
+<!-- copy-links -->
+
+<div class="container copy">
+
+	<div class="row justify-content-center">
+
+		<div class="col-md-10 copy-main">
+
+			<h2>What one US-based customer has to say about Alemba:</h2>
+
+			<div class="col-sm-12">
+
+				<div class="customer-quote">
+
+					<img class="customer-logo img-fluid d-block mx-auto" src="{{ 'Customers/Kroger-png.png'|media }}" alt="Kroger" />
+
+					<blockquote class="blockquote-right blockquote-full">
+						<p>&ldquo;One of the most important Service Management issues our business is facing at the moment is <a href="{{ 'itil-detail'|page({ 'slug':'change-release-management' }) }}">Change Management</a>. Alemba’s toolset is allowing us to balance the need for documentation and approval with the growing demand for automation and be successful in our business.&rdquo;</p>
+						<footer>Jim Weaver, Kroger</footer>
+					</blockquote>
+
+				</div>
+
+			</div>
+
+		</div>
+
+	</div>
+
+</div>
+
+<div class="container copy">
+
+	<div class="row justify-content-center">
+
+		<div class="col-md-10 copy-main">
+
+			<h2>Trusted Heritage</h2>
+
+			<p class="inner-lead">Alemba’s Enterprise Service Management technology has a rich history in the United States.</p>
+
+			<p>As the successor to VMware Service Manager (formerly infraEnterprise), Alemba Service Manager’s pedigree spans almost a quarter of a century, and our technology has grown and developed over that time.</p>
+
+			<div class="full-width-image">
+
+				<img src="{{ 'Diagrams/infra-to-alemba.png'|media }}" alt="From Infra to Alemba" />
+
+			</div>
+
+		</div>
+
+	</div>
+
+</div>
+
+<!-- /copy -->
+
+<div class="container copy">
+
+	<div class="row justify-content-center">
+
+		<div class="col-md-6 copy-main">
+
+			<h2>Do more for less</h2>
+			<h3 class="subheading-sm">Enterprise functionality at affordable prices</h3>
+
+			<p class="inner-lead">At Alemba, we are committed to bringing the cost of ownership of ITSM down, without compromising on functionality.</p>
+
+			<p>We know that many organizations do not need to purchase an expensive solution.  In fact, just because an Enterprise or ITSM Solution costs a lot of money doesn't mean it's the best solution for your business needs.</p>
+
+			<p>Some organizations want a solution that just looks after its IT needs like IT Asset Management or an Issue Tracking solution, others require the full ITSM Suite. We make sure we know what you want and, more importantly, we also make sure you know what you want!</p>
+
+			<a href="{{ 'blog-entry'|page({ 'slug':'real-cost-of-your-itsm-tool' }) }}" class="button-link">Find out why Alemba Service Manager is a low total cost of ownership investment</a>
+
+		</div>
+
+		<div class="col-md-4 copy-image d-flex">
+
+			<img src="{{ 'assets/img/interface-asmx.png'|theme }}" alt="Alemba Service Manager" class="img-fluid my-auto mx-auto" />
+
+		</div>
+
+	</div>
+
+</div>
+
+<!-- /copy -->
+
+<!-- copy-links -->
+
+<div class="container-fluid copy-links">
+
+	<div class="row justify-content-center">
+
+		<div class="col-sm-12 text-center">
+
+			<h4>Questions? <a href="{{ 'us-faq'|page }}">Read our FAQs</a></h4>
+
+		</div>
+
+	</div>
+
+</div>
+
+<!-- /copy-links -->
+
+<!-- copy-links -->
+
+<div class="container-fluid copy-links">
+
+	<div class="row">
+
+		<div class="col-sm-12 text-center">
+
+			<h2>See what Alemba Service Manager can do for you</h2>
+
+			<a href="{{ 'demo'|page }}" class="btn btn-primary">Request a Demo</a>
+
+		</div>
+
+	</div>
+
+</div>
+
+<!-- /copy-links -->
+
+<!-- events -->
+
+<div class="container">
+
+    {% if events|length > 0 %}
+    
+		{% for event in events %}
+
+			{# Start the <ul> the first time, then every four times #}
+
+			{% if loop.index in range(1, 20, 4) %}
+
+				<ul class="featured-links row">
+
+			{% endif %}
+
+				<li class="{{ col_sm }} {{ col_xs }}">
+
+					<div class="circle-link-with-text" onclick="window.location='{{ 'event-detail'|page({ slug: event.slug }) }}'">
+						<div class="circle-link-image" style="background-image: url('{{ event.thumbnail|media }}')"></div>
+
+						{# Only show the link if there's any intro text #}
+
+						{% if event.intro %} <h2><a href="{{ 'event-detail'|page({ slug: event.slug }) }}" class="button-link">{{ event.name_short }}</a></h2> {% else %} <h2 class="button-link-disabled">{{ event.name_short }}</h2> {% endif %}
+						<h2 class="subheading">{{ event.full_dates }}</h2>
+					</div>
+
+				</li>
+
+			{# Close the <ul> every fourth time, or the last #}
+
+			{% if (loop.index in range(4, 20, 4)) or loop.last %}
+
+				</ul>
+
+			{% endif %}
+
+		{% endfor %}
+	
+	{% endif %}
+
+</div>
+
+<!-- /events -->
+
+<div class="container badges">
+
+	<div class="row">
+
+		<div class="col-md-12">
+
+			<img src="{{ 'Misc/logo-vmware-tech-alliance.png'|media }}" alt="VMware" />
+
+			<a href="http://alemba/storage/app/media/Press/itsm-review-vfire-proactive-problem-management-article.pdf"><img src="{{ 'Press/itsm-review-best-in-class.png'|media }}" alt="The ITSM Review - Best in Class" /></a>
+
+			<a href="https://www.gartner.com/reviews/market/itssm-tools/vendor/alemba"><img src="{{ 'Misc/logo-gartner-peer-insights-50h.png'|media }}" alt="Gartner Peer Insights" /></a>
+
+			{# <a href="https://www.pinkelephant.com/en-ca/PinkVERIFY/PinkVERIFYCertification"><img src="{{ 'assets/img/partner-logos/logo-pinkverify13p-50h.png'|theme }}" alt="{{ itil.name }} in Alemba Service Manager has PinkVERIFY accreditation" /></a> #}
+
+		</div>
+
+	</div>
+
+</div>
+
+<div class="container copy">
+
+	<div class="row">
+
+		<div class="col-sm-12 text-center">
+
+			<p><small>Alemba is a company registered in the US. Registration number 5263467</small></p>
+
+		</div>
+
+	</div>
+
+</div>

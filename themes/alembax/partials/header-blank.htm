@@ -1,0 +1,42 @@
+description = "The header code (JavaScript, meta tags etc)"
+==
+<!DOCTYPE html>
+<html lang="en" {% if htmlClass %}class="{{ htmlClass }}"{% endif %}>
+<head>
+<meta charset="utf-8">
+
+{% if this.environment == 'production' and allow_cookies() %}
+
+    {% partial 'analytics-etc' %}
+
+{% endif %}
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="google-site-verification" content="cgpiWrzV47MUzoeYn2LTd0rApPYN5vBzYaocEWQZbVo" />
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<!-- Bootstrap etc-->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+<!-- Google Fonts -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300" type="text/css">
+
+<link rel="stylesheet" src="https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.min.css" />
+<link rel="stylesheet" type="text/css" media="all" href="{{ 'assets/css/style.css'|theme }}?v={{ 'now'|date('U') }}" />
+
+{% partial 'favicons' %}
+
+    {% component 'seoTags' %}
+
+<title>{{ this.page.title }}</title>
+
+</head>
+
+<body class="blank">
+
+    {% if this.environment == 'production' and allow_cookies() %}
+
+        {% partial 'google-tag-manager-noscript' %}
+
+    {% endif %}

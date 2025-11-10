@@ -1,0 +1,378 @@
+[viewBag]
+title = "HP Insight Connector"
+url = "/help/topics/connectors/hpinsightconnector"
+layout = "help"
+is_hidden = 0
+navigation_hidden = 0
+==
+                                                    <h1>HP Insight Connector</h1>
+                                                    <p>This section of the documentation contains technical specifications about the connector that is implemented to link <span class="GeneralVariablesCoreName">ASM Core</span> and HP Insight version 4.2 and 5.0 systems. It describes the details of the third-party application, that is, HP Insight, including:</p>
+                                                    <ul>
+                                                        <li value="1">The version for which the connector has been developed</li>
+                                                        <li value="2">The name of the .NET assembly file</li>
+                                                        <li value="3">Connection methodology</li>
+                                                        <li value="4">The resource and link types that can be discovered on the application</li>
+                                                        <li value="5">The attributes of each resource and link types that can be imported into the <span class="GeneralVariablesCoreName">ASM Core</span> Configuration Management Database (CMDB)</li>
+                                                    </ul>
+                                                    <p class="note">If not specified, version 4.2 and 5.0 of HP Insight should be assumed as the adequate versions.</p>
+                                                    <p class="note">You should familiarize yourself with the information in <a href="connector%20installation%20guide.htm" class="MCXref xref">Installing Connectors</a> before installing any connectors, and read the <a href="../integration/integrate.htm" class="MCXref xref">Integration</a> topics for more information on how to configure them.</p>
+                                                    <h2>Use Case Scenario</h2>
+                                                    <table class="TableStyle-scenario_table" style="mc-table-style: url('../../resources/tablestyles/scenario table.css');" cellspacing="0">
+                                                        <col style="width: 56pt;" class="TableStyle-scenario_table-Column-Column1">
+                                                        <col style="width: 413pt;" class="TableStyle-scenario_table-Column-Column2">
+                                                        <tr class="TableStyle-scenario_table-Body-Body1">
+                                                            <td class="TableStyle-scenario_table-BodyE-Column1-Body1">
+                                                                <p class="Strong">Purpose</p>
+                                                            </td>
+                                                            <td class="TableStyle-scenario_table-BodyD-Column2-Body1">
+                                                                <p>An organization uses HP Insight version 4.2 or 5.0 to discover and maintain resources present in its organization networks.</p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="TableStyle-scenario_table-Body-Body1">
+                                                            <td class="TableStyle-scenario_table-BodyE-Column1-Body1">
+                                                                <p class="Strong">Role</p>
+                                                            </td>
+                                                            <td class="TableStyle-scenario_table-BodyD-Column2-Body1">
+                                                                <p>The role of this connector is to expose the resources and their relationships in order to allow for population and ongoing consistency checks of the <span class="GeneralVariablesCoreName">ASM Core</span> CMDB.</p>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                    <h2>Connector Description</h2>
+                                                    <p>The table below provides a description of the HP Insight connector.</p>
+                                                    <table class="TableStyle-Rep_Hdr_Row" style="mc-table-style: url('../../resources/tablestyles/rep hdr row.css');" cellspacing="0">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column1">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column2">
+                                                        <thead>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Head-Header1">
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column1-Header1">
+                                                                    <p>Information fields</p>
+                                                                </th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadD-Column2-Header1">
+                                                                    <p>Names</p>
+                                                                </th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Connector </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p>HP Insight v4.2/5.0 &lt;-&gt; <span class="GeneralVariablesCoreName">ASM Core</span></p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Third-party application</p>
+                                                                    <p> </p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p>HP Insight</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Assembly</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p>Infra.Connector.HPSIM.dll</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Connector class</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p>Infra.Connector.HPSIM.HPSIMConnector</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                    <p>Configuration file</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">
+                                                                    <p>Infra.Connector.HPSIM.icnf</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyB-Column1-Body1">
+                                                                    <p>Connection methodology</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyA-Column2-Body1">
+                                                                    <p>ODBC connection to a SQL database</p>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <h2>Connection parameters</h2>
+                                                    <p>The table below provides a description of the HP Insight connection parameters.</p>
+                                                    <table class="TableStyle-FieldDesc" style="mc-table-style: url('../../resources/tablestyles/fielddesc.css');" cellspacing="0">
+                                                        <col style="width: 105pt;" class="TableStyle-FieldDesc-Column-Column1">
+                                                        <col style="width: 318pt;" class="TableStyle-FieldDesc-Column-Column2">
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">
+                                                                <p>Parameters</p>
+                                                            </td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                <p>Description</p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr style="height: 19pt;">
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">
+                                                                <p>DB connection</p>
+                                                            </td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                <p>Database connection string or system DSN to the HPSIM SQL database.</p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">
+                                                                <p>DB Login ID </p>
+                                                            </td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                <p>Database Login ID.</p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">
+                                                                <p>DB password</p>
+                                                            </td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                <p>Database password.</p>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                    <h2>Customization</h2>
+                                                    <p>This connector permits extensions to the schema through customization of the configuration file. The possible customizations are listed below. However, the customizations are not limited to these:</p>
+                                                    <ul>
+                                                        <li value="1">New resource types</li>
+                                                        <li value="2">New resource properties</li>
+                                                        <li value="3">New link types</li>
+                                                    </ul>
+                                                    <h2>Connector Diagnostics</h2>
+                                                    <p>The connector has the facility to trace information. The data can be obtained through Polling tracing or Application tracing.</p>
+                                                    <h1>Resource Types</h1>
+                                                    <h2>Resource types for HP Insight 4.2</h2>
+                                                    <p>This section lists the resource types and their properties that the connector has to discover on HP Insight v4.2 systems. The connector later imports the resource types it has discovered into the <span class="GeneralVariablesCoreName">ASM Core</span> CMDB.</p>
+                                                    <p>The exposed resource types are:</p>
+                                                    <ul>
+                                                        <li value="1">Cluster</li>
+                                                        <li value="2">Complex</li>
+                                                        <li value="3">Desktop</li>
+                                                        <li value="4">Enclosure</li>
+                                                        <li value="5">Environmental Monitor</li>
+                                                        <li value="6">Handled</li>
+                                                        <li value="7">Hub</li>
+                                                        <li value="8">KVM Switch</li>
+                                                        <li value="9">Management Processor</li>
+                                                        <li value="10">Notebook</li>
+                                                        <li value="11">Partition</li>
+                                                        <li value="12">Power Distribution Unit</li>
+                                                        <li value="13">Power Supply</li>
+                                                        <li value="14">Printer</li>
+                                                        <li value="15">Rack</li>
+                                                        <li value="16">Remote Access Device</li>
+                                                        <li value="17">Router</li>
+                                                        <li value="18">Server</li>
+                                                        <li value="19">Storage Device</li>
+                                                        <li value="20">Switch</li>
+                                                        <li value="21">Thin Client</li>
+                                                        <li value="22">Unknown</li>
+                                                        <li value="23">Unmanaged</li>
+                                                        <li value="24">UPS</li>
+                                                        <li value="25">Workstation</li>
+                                                    </ul>
+                                                    <p class="p_36">All resource types will have the following attributes:</p>
+                                                    <ul>
+                                                        <li value="1">Device Key</li>
+                                                        <li value="2">Device Name</li>
+                                                        <li value="3">Product Type</li>
+                                                        <li value="4">Product Sub Type</li>
+                                                        <li value="5">Status</li>
+                                                        <li value="6">Product Name</li>
+                                                        <li value="7">DNS Name</li>
+                                                        <li value="8">Date Discovered</li>
+                                                        <li value="9">Last Updated</li>
+                                                        <li value="10">Description</li>
+                                                        <li value="11">Location</li>
+                                                        <li value="12">Contact</li>
+                                                        <li value="13">Total Memory</li>
+                                                        <li value="14">ROM Memory</li>
+                                                        <li value="15">Serial No</li>
+                                                        <li value="16">Asset Tag</li>
+                                                        <li value="17">OS Name</li>
+                                                        <li value="18">OS Version</li>
+                                                        <li value="19">OS Type</li>
+                                                        <li value="20">OS Vendor</li>
+                                                        <li value="21">OS Description</li>
+                                                        <li value="22">Cluster Name</li>
+                                                        <li value="23">Trusted</li>
+                                                        <li value="24">Product ID</li>
+                                                        <li value="25">IP Address</li>
+                                                        <li value="26">MAC Address</li>
+                                                        <li value="27">IP Subnet Mask</li>
+                                                    </ul>
+                                                    <p>For resource type “<b>Cluster</b>”, additional attributes are exposed by the connector.</p>
+                                                    <ul class="ul_4">
+                                                        <li value="1">Cluster Product ID</li>
+                                                        <li value="2">Cluster Product Name</li>
+                                                        <li value="3">Cluster Vendor</li>
+                                                        <li value="4">Contact Person</li>
+                                                        <li value="5">Contact Phone</li>
+                                                        <li value="6">Contact Pager</li>
+                                                        <li value="7">Contact Email</li>
+                                                        <li value="8">Dial Out Modem</li>
+                                                        <li value="9">Dial In Modem</li>
+                                                        <li value="10">Cluster Location</li>
+                                                        <li value="11">Applications</li>
+                                                        <li value="12">Comments</li>
+                                                        <li value="13">Cluster Updated</li>
+                                                    </ul>
+                                                    <h2>Resource types for HP Insight 5.0</h2>
+                                                    <p>This section lists the resource types and their properties that the connector has to discover on HP Insight v5.0 systems. The connector later imports the resource types it has discovered into the <span class="GeneralVariablesCoreName">ASM Core</span> CMDB.</p>
+                                                    <p>The exposed resource types are:</p>
+                                                    <ul class="ul_4">
+                                                        <li value="1">Application</li>
+                                                        <li value="2">Cluster</li>
+                                                        <li value="3">Complex</li>
+                                                        <li value="4">Desktop</li>
+                                                        <li value="5">Enclosure</li>
+                                                        <li value="6">Environmental Monitor</li>
+                                                        <li value="7">Handled</li>
+                                                        <li value="8">Hub</li>
+                                                        <li value="9">KVM Switch</li>
+                                                        <li value="10">Management Processor</li>
+                                                        <li value="11">Notebook</li>
+                                                        <li value="12">Partition</li>
+                                                        <li value="13">Power Distribution Unit</li>
+                                                        <li value="14">Power Supply</li>
+                                                        <li value="15">Printer</li>
+                                                        <li value="16">Rack</li>
+                                                        <li value="17">Remote Access Device</li>
+                                                        <li value="18">Resource Partition</li>
+                                                        <li value="19">Router</li>
+                                                        <li value="20">Server</li>
+                                                        <li value="21">Share Resource Domain</li>
+                                                        <li value="22">Storage Device</li>
+                                                        <li value="23">Switch</li>
+                                                        <li value="24">Tape Library</li>
+                                                        <li value="25">Thin Client</li>
+                                                        <li value="26">Unknown</li>
+                                                        <li value="27">Unmanaged</li>
+                                                        <li value="28">UPS</li>
+                                                        <li value="29">Workstation</li>
+                                                    </ul>
+                                                    <p>All resource types will have the following properties:</p>
+                                                    <ul class="ul_4">
+                                                        <li value="1">Device Key</li>
+                                                        <li value="2">Device Name</li>
+                                                        <li value="3">Product Type</li>
+                                                        <li value="4">Product Sub Type</li>
+                                                        <li value="5">Status</li>
+                                                        <li value="6">Product Name</li>
+                                                        <li value="7">DNS Name</li>
+                                                        <li value="8">Date Discovered</li>
+                                                        <li value="9">Last Updated</li>
+                                                        <li value="10">Description</li>
+                                                        <li value="11">Location</li>
+                                                        <li value="12">Contact</li>
+                                                        <li value="13">Total Memory</li>
+                                                        <li value="14">ROM Memory</li>
+                                                        <li value="15">Serial No</li>
+                                                        <li value="16">Asset Tag</li>
+                                                        <li value="17">OS Name</li>
+                                                        <li value="18">OS Version</li>
+                                                        <li value="19">OS Type</li>
+                                                        <li value="20">OS Vendor</li>
+                                                        <li value="21">OS Description</li>
+                                                        <li value="22">Cluster Name</li>
+                                                        <li value="23">Trusted</li>
+                                                        <li value="24">Product ID</li>
+                                                        <li value="25">IP Address</li>
+                                                        <li value="26">MAC Address</li>
+                                                        <li value="27">IP Subnet Mask</li>
+                                                    </ul>
+                                                    <p>For resource type “<b>Cluster</b>”, additional attributes are exposed by the connector</p>
+                                                    <ul class="ul_4">
+                                                        <li value="1">Cluster Product ID</li>
+                                                        <li value="2">Cluster Product Name</li>
+                                                        <li value="3">Cluster Vendor</li>
+                                                        <li value="4">Contact Person</li>
+                                                        <li value="5">Contact Phone</li>
+                                                        <li value="6">Contact Pager</li>
+                                                        <li value="7">Contact Email</li>
+                                                        <li value="8">Dial Out Modem</li>
+                                                        <li value="9">Dial In Modem</li>
+                                                        <li value="10">Cluster Location</li>
+                                                        <li value="11">Applications</li>
+                                                        <li value="12">Comments</li>
+                                                        <li value="13">Cluster Updated</li>
+                                                    </ul>
+                                                    <h1>Link Types</h1>
+                                                    <p>A link is defined by its name, a higher resource type, and a lower resource type. The table below lists the link types the connector has the ability to discover on HP Insight systems. These links can then be imported into the  <span class="GeneralVariablesCoreName">ASM Core</span> CMDB.</p>
+                                                    <table class="TableStyle-Rep_Hdr_Row" style="mc-table-style: url('../../resources/tablestyles/rep hdr row.css');margin-left: 0;margin-right: auto;" cellspacing="0">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column1">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column2">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column1">
+                                                        <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                            <td rowspan="2" class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1" style="font-weight: bold;">
+                                                                <p>Link name</p>
+                                                            </td>
+                                                            <td colspan="2" class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1" style="font-weight: bold;">
+                                                                <p>Resource type</p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                            <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1" style="font-weight: bold;">
+                                                                <p>Higher resource type</p>
+                                                            </td>
+                                                            <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1" style="font-weight: bold;">
+                                                                <p>Lower resource type</p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                            <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                <p>Cluster to Device</p>
+                                                            </td>
+                                                            <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                <p>Cluster</p>
+                                                            </td>
+                                                            <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                <p>Device</p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                            <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                <p>Enclosure to Device</p>
+                                                            </td>
+                                                            <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                <p>Enclosure</p>
+                                                            </td>
+                                                            <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                <p>Device</p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                            <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                <p>Rack to Device</p>
+                                                            </td>
+                                                            <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                <p>Rack</p>
+                                                            </td>
+                                                            <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                <p>Device</p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                            <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1">
+                                                                <p>Rack to Enclosure</p>
+                                                            </td>
+                                                            <td class="TableStyle-Rep_Hdr_Row-BodyE-Column2-Body1">
+                                                                <p>Rack</p>
+                                                            </td>
+                                                            <td class="TableStyle-Rep_Hdr_Row-BodyD-Column1-Body1">
+                                                                <p>Enclosure</p>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                

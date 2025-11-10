@@ -1,0 +1,617 @@
+[viewBag]
+title = "Managing Event Type Mappings"
+url = "/help/topics/integration/managing-event-type-mappings"
+layout = "help"
+is_hidden = 0
+navigation_hidden = 0
+==
+                                                    <h1>
+<a name="top"></a>Managing Event Type Mappings</h1>
+                                                    <p>You can define the criteria for applying mapping for incoming events sent from the source, the action to be taken by <span class="GeneralVariablesCoreName">ASM Core</span> (such as, log a call) when the criteria is met, the fields to be updated between <span class="GeneralVariablesCoreName">ASM Core</span> and the source, and the criteria for creating an outage in <span class="GeneralVariablesCoreName">ASM Core</span> based on a call or request logged. </p>
+                                                    <h2>
+<a name="Creating2"></a>Creating an Event Type Mapping</h2>
+                                                    <h2 class="Prerequisite">Before you start</h2>
+                                                    <p class="prereqtextlast">You must have <b>Integration Setup</b> selected in the <a href="../admin%20security%20roles/general%20access%20security%20role%20-%20admin%20tab.htm">Admin</a> tab of your <b>General Access Security Role</b>. </p>
+                                                    <ol class="multilist">
+                                                        <li value="1">Select <a href="../general%20topics/asmcorewindow.htm"><span style="font-size: 24pt;">≡</span></a> &gt; <b>Admin</b> &gt; <b>Integration</b>.</li>
+                                                        <li value="2">In the Explorer pane, under <b>Integration</b>, select <b>Events</b>.</li>
+                                                        <li value="3">Select a source from the <b>Filter by Source</b> list to view all the event types discovered on the selected source by a connector with event management capability.</li>
+                                                        <li value="4">Select <img src="/storage/app/media/Help/images/add%20new.png"> to display the details window. The <b>Source</b> and <b>Event Type</b> fields are already populated based on the source and event type you selected to access this mapping. If groups are defined for the event types, an additional read-only field, <b>Group</b>, displays the event type group name. You can use this to <a href="#Creating">create a mapping by event group</a>.</li>
+                                                        <li value="5">Complete the details.</li>
+                                                        <p>
+                                                            </p>
+<table style="mc-table-style: url('../../resources/tablestyles/fielddesc no indent.css');" class="TableStyle-FieldDesc_no_indent" cellspacing="0">
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">Name</td>
+                                                                    <td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">Type a name for the mapping. This name appears in the <b>Mappings</b> table. This is a mandatory field.</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">When Received</td>
+                                                                    <td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">Select the action to be taken in <span class="GeneralVariablesProductName">ASM</span> when an event is received from the source (that is, when a Receive Transaction is sent by the external system):<table style="mc-table-style: url('../../resources/tablestyles/fielddesc no indent.css');" class="TableStyle-FieldDesc_no_indent" cellspacing="0">
+<tr>
+<td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">Log Call</td>
+<td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">logs a call in <span class="GeneralVariablesCoreName">ASM Core</span><p class="note">This enables the <b>Actions</b>, <b>Fields – Incoming</b>, <b>Fields – Outgoing</b>, and <b>Outages</b> tab on this window, where you can set up the mapping details further.</p>
+</td>
+</tr>
+<tr>
+<td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">Log Request</td>
+<td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">logs a request in <span class="GeneralVariablesCoreName">ASM Core</span><p class="note">This enables the <b>Actions</b>, <b>Fields – Incoming</b>, <b>Fields – Outgoing</b>, and <b>Outages</b> tab on this window, where you can set up the mapping details further.</p>
+</td>
+</tr>
+<tr>
+<td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">Take no action</td>
+<td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">ignores the event</td>
+</tr>
+</table>
+</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">Using Template</td>
+                                                                    <td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">
+                                                                        <p class="prereq">This is only active if you have selected <b>Log Call</b> or <b>Log Request</b>.</p>
+                                                                        <p>Select the <a href="../admingeneral/admin%20call%20template.htm">Call Template</a> or Workflow Template that <span class="GeneralVariablesCoreName">ASM Core</span> will use when logging the call or request. </p>
+                                                                        <p class="note"> If you save this mapping and open it later for editing, and change the Log Call or Log Request option, a warning message appears indicating that the criteria and field mappings will be cleared and you will have to redefine these. In the warning, click Yes to reset all the field mappings and configurations, or No to cancel.</p>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">Logging Analyst</td>
+                                                                    <td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">Select the person who must be set as logging analyst or request manager for the call or request logged as a result of the incoming event for this mapping. This is a mandatory field.<p class="note">If the call or workflow template does not have an assignee, then the call or request logged as a result of an incoming event using this mapping will be sent to the analyst you specify in the Logging Analyst field, but only if that analyst is permitted to own a call or request (as defined in the <a href="%7B%7B%20'help-admin-security-roles-ipk-management-security-roles---options-tab#IPK2'%7CstaticPage%20%7D%7D#IPK2">Options</a> tab of the <b>IPK Management security role</b>). If the analyst does not have this permission, then the call or request will be sent to the creator of the call or workflow template.</p>
+</td>
+                                                                </tr>
+                                                            </table>
+                                                        
+                                                        <li value="6">Select the <b>Criteria</b> tab to specify the conditions for applying this mapping to an incoming event:</li>
+                                                        <p>
+                                                            </p>
+<table style="mc-table-style: url('../../resources/tablestyles/fielddesc no indent.css');" class="TableStyle-FieldDesc_no_indent" cellspacing="0">
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">Default Mapping</td>
+                                                                    <td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">Select to flag this as the default mapping for this event type, that is, the mapping which will apply to an incoming event if no other mapping for the event type can be applied. <p class="note">You can only define one default mapping for the event type. If a default mapping has already been defined, then when you save the current mapping, a warning message displays, allowing you to set the current map as the default, or clear the default mapping setting for the current mapping.</p>
+<p>Clear to set the conditions for applying this mapping to an incoming event, using the <b>rules builder</b> pane. These conditions are set by defining a rule. For example, to specify that this mapping must be used when the severity of a problem is “Level 5”, you can build a rule: {[Event: Severity(1-5)}=”5”]}. </p>
+<p class="note">The fields you can pick in the left hand side of the rule statement correspond to the fields defined on the source. They are defined at the level of the connector, and cannot be modified. The values on the right hand side of the statement are values corresponding to the fields on the source. You cannot use <span class="GeneralVariablesCoreName">ASM Core</span> call or request fields in the criteria.</p>
+</td>
+                                                                </tr>
+                                                            </table>
+                                                        
+                                                        <li value="7">
+<a name="action_tab"></a>Select the <b>Action</b> tab and specify the <a href="#Rules">rules for Incoming Transactions</a> using this mapping and the <a href="#Rules2">rules for Outgoing Transactions</a> using this mapping, in other words, the actions that <span class="GeneralVariablesCoreName">ASM Core</span> must take when an incoming event matches the defined criteria, and the event mapping is set to log a call or request. </li>
+                                                        <li value="8">In the <b>Fields – Incoming</b> tab, specify how the fields on the call or request must be populated for an incoming event transaction sent from <span class="GeneralVariablesCoreName">ASM Core</span> for this mapping. Depending on the application with which <span class="GeneralVariablesCoreName">ASM Core</span> is connected, field names and values may not be the same on the two systems. The Field – Incoming tab allows you to reconcile the field names and values between the two systems. </li>
+                                                        <p>
+                                                            </p>
+</ol>
+<ul style="list-style-type: disc;">
+                                                                <li style="list-style-type: disc;" value="1">To map an internal field to an external field, select <b>Add</b>. In the <b>Add Fields</b> window, select the fields from the Call Template or Workflow Template you wish to map to external fields. Click OK. The selected field names appear in the <b>Internal Fields</b> column.</li>
+                                                                <li style="list-style-type: disc;" value="2">Click the corresponding cell in the <b>Event Field</b> column. Select <img src="/storage/app/media/Help/images/expandtiersbutton.png"> to pick a static value or select a field from the source, to map to the selected <span class="GeneralVariablesCoreName">ASM Core</span> call or request field. The source fields are defined for the connector. </li>
+                                                                <li value="3">
+                                                                    <p class="note">Depending on the internal field’s data type, additional options can be selected , including: field transformations, profile maps, or resolution rules.</p>
+                                                                </li>
+                                                                <li style="list-style-type: disc;" value="4">In the <b>Update</b> column, select the conditions for populating the field when the call or request is logged, updated, and so on:</li>
+                                                                <p>
+                                                                    </p>
+<table style="mc-table-style: url('../../resources/tablestyles/fielddesc no indent.css');margin-left: 0;margin-right: auto;" class="TableStyle-FieldDesc_no_indent" cellspacing="0">
+                                                                        <col class="TableStyle-FieldDesc_no_indent-Column-Column1">
+                                                                        <col class="TableStyle-FieldDesc_no_indent-Column-Column2">
+                                                                        <tr>
+                                                                            <td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">Always</td>
+                                                                            <td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">always matches the <span class="GeneralVariablesCoreName">ASM Core</span> field value with the value in the external system field. This means that any change to this field in the external system automatically updates the field value in the <span class="GeneralVariablesCoreName">ASM Core</span> call or request.</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">On Initial Population Only</td>
+                                                                            <td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">only applies the value of the external system field to the <span class="GeneralVariablesCoreName">ASM Core</span> field on logging. Any subsequent change made to this field in the external system will be treated as an UPDATE transaction but will not physically update the field value in the <span class="GeneralVariablesCoreName">ASM Core</span> call or request. If the call or request is closed, then reopened, the field values will not be updated.</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">Only When Blank</td>
+                                                                            <td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">only populates the <span class="GeneralVariablesCoreName">ASM Core</span> field with the value of the external system field if the field on the call or request is blank. This means that an existing value on the <span class="GeneralVariablesCoreName">ASM Core</span> call or request cannot be overridden by a field value in the external system.</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">Create Discrepancy Report</td>
+                                                                            <td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">creates a discrepancy report whenever a discrepancy is detected between a field value in the external system and the corresponding field value in the <span class="GeneralVariablesCoreName">ASM Core</span> call or request.</td>
+                                                                        </tr>
+                                                                    </table>
+                                                                
+                                                                <li style="list-style-type: disc;" value="5">Repeat to add other fields.</li>
+                                                                <p class="note">To delete any fields you have added, select them and click Remove. In the warning dialog box, click Yes to remove the selected field or No to cancel.</p>
+                                                            </ul>
+                                                        
+                                                        <li value="9">In the <b>Fields – Outgoing</b> tab, specify how the fields on the call or request must be populated for an outgoing event transaction sent from <span class="GeneralVariablesCoreName">ASM Core</span> for this mapping:<ul>
+<li style="list-style-type: disc;" value="1">To map an internal field to an external field, select <b>Add</b>. In the <b>Add Fields</b> window, select the fields from the source you wish to map to a field in <span class="GeneralVariablesCoreName">ASM Core</span>. Click <b>OK</b>. The selected field names appear in the <b>Event Field</b> column.</li>
+<li style="list-style-type: disc;" value="2">Click the corresponding cell in the <b>Internal Field</b> column. Select <img src="/storage/app/media/Help/images/expandtiersbutton.png"> to pick a static value or select a field from <span class="GeneralVariablesCoreName">ASM Core</span>, to map to the external field. The internal fields are determined by the template you selected earlier.</li>
+<li value="3"><p class="note">Depending on the internal field’s data type, additional options can be selected, including: field transformations, profile maps, or resolution rules. </p></li>
+</ul>
+</li>
+                                                        <li value="10">Select the <b>Outages</b> tab and complete the details.</li>
+                                                        <p>
+                                                            </p>
+<table style="mc-table-style: url('../../resources/tablestyles/fielddesc.css');" class="TableStyle-FieldDesc" cellspacing="0">
+                                                                <col class="TableStyle-FieldDesc-Column-Column1">
+                                                                <col class="TableStyle-FieldDesc-Column-Column2">
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Auto-create Outage</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">Specify the rules for automatically creating outages for CMDB items linked to the call or request logged for an incoming event using this event type mapping<table style="margin-left: 0;margin-right: auto;mc-table-style: url('../../resources/tablestyles/fielddesc no indent.css');" class="TableStyle-FieldDesc_no_indent" cellspacing="0">
+<col class="TableStyle-FieldDesc_no_indent-Column-Column1">
+<col class="TableStyle-FieldDesc_no_indent-Column-Column2">
+<tr>
+<td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">Never</td>
+<td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">never creates an outage for this event mapping. This is the default selection. Analysts actioning the call or request can still manually create an outage, if required.</td>
+</tr>
+<tr>
+<td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">When Call/Request logged</td>
+<td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">automatically creates an outage on the linked CMDB item(s) as soon as the call or request is logged. The outage is only created on the initial log of the call or request, and not when a call or request is reopened. When a call or request is reopened, it is forwarded to the appropriate analyst or group, who then determines whether an outage needs to be created regarding the reopened issue.</td>
+</tr>
+<tr>
+<td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">When criteria met</td>
+<td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">only creates an automatic outage when the specified criteria are satisfied. <p>To set these criteria, click Set Criteria. The criteria are evaluated on call or request logging as well as on every update of the call or request, including reopening.</p>
+</td>
+</tr>
+<tr>
+<td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">Outage Criteria</td>
+<td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">
+<p class="prereq">The text area is enabled if you select When criteria met at Auto-Create Outage. </p>
+<ul style="list-style-type: disc;margin-left: 18pt;">
+<li style="list-style-type: disc;" value="1">Click <b>Set Criteria</b> and use the rules builder interface to define the conditions (rules) for automatically creating outages. The left hand side criteria consists of the event fields from the source, while the right hand side criteria consists of the corresponding values for the field. For example, you can specify an outage be created when the event field, Severity, is set to a value of “1”.</li>
+<li style="list-style-type: disc;" value="2">At <b>Outage Type</b>, select the type of outage. Outage Types are defined by your system administrator.</li>
+<li style="list-style-type: disc;" value="3">At <b>Auto-end Outage</b>, select the rule for closing the outage created through an event using this event type mapping.</li>
+</ul>
+</td>
+</tr>
+</table>
+</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Auto close outage</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                        <table style="mc-table-style: url('../../resources/tablestyles/fielddesc no indent.css');" class="TableStyle-FieldDesc_no_indent" cellspacing="0">
+                                                                            <tr>
+                                                                                <td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">Never</td>
+                                                                                <td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">never automatically close an outage for this event mapping. Analysts actioning the call or request can still manually</td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">On Event Resolve/Delete</td>
+                                                                                <td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">automatically closes an outage if the criteria specified in the Outage Criteria text area is no longer met</td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">When criteria no longer met</td>
+                                                                                <td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">automatically closes an outage if the criteria specified in the Outage Criteria text area is no longer met</td>
+                                                                            </tr>
+                                                                        </table>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Outage Items</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">In the list box, add the CMDB item(s) on which the outage will be created</td>
+                                                                </tr>
+                                                            </table>
+                                                        
+                                                        <p>The outage will be created only if the selected fields are populated on the <span class="GeneralVariablesCoreName">ASM Core</span> call or request logged as a result of an event using this mapping. </p>
+                                                        <li value="11">Click <b>Add</b> to select fields from the Call Template or Workflow Template, such as: Configuration Item, Service, or Service Action. Click OK to add the fields to the Outage Items list box.</li>
+                                                        <p class="note">If the outage fields do not have values on the call or request, outages will not be created.</p>
+                                                        <li value="12">Click <b>Save</b> to store the mapping details for the selected event type. You will be returned to the <b>Event Type Mappings</b> window where you can add more mappings if needed.</li>
+                                                    
+                                                    <h2>
+<a name="Rules"></a>Rules for Incoming Transactions - Events</h2>
+                                                    <p>Rules for applying an event type mapping to Incoming Transactions for the selected event type are set in the Action tab on the Event Type Mapping Details window. The rules are described below.</p>
+                                                    <table style="mc-table-style: url('../../resources/tablestyles/fielddesc.css');" class="TableStyle-FieldDesc" cellspacing="0">
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">When Updated externally</td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">Select the action that must be taken if the call or request logged as a result of this event is still open:<table class="TableStyle-FieldDesc_no_indent" style="mc-table-style: url('../../resources/tablestyles/fielddesc no indent.css');margin-left: 0;margin-right: auto;" cellspacing="0">
+<col class="TableStyle-FieldDesc_no_indent-Column-Column1">
+<col class="TableStyle-FieldDesc_no_indent-Column-Column2">
+<tbody>
+<tr>
+<td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">Update </td>
+<td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">automatically updates the call or request with the details of the UPDATE transaction sent from the external system</td>
+</tr>
+<tr>
+<td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">Add note</td>
+<td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-"> automatically adds a note to the call or request with the details of the UPDATE transaction received from the external system</td>
+</tr>
+<tr>
+<td class="TableStyle-FieldDesc_no_indent-BodyB-Column1-">Take no action</td>
+<td class="TableStyle-FieldDesc_no_indent-BodyA-Column2-"> ignores the UPDATE transaction received from the external system</td>
+</tr>
+</tbody>
+</table>
+</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">When Updated externally and Call or Request is closed</td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">Select the action that must be taken if the call or request logged as a result of this event is closed:<table class="TableStyle-FieldDesc_no_indent" style="mc-table-style: url('../../resources/tablestyles/fielddesc no indent.css');margin-left: 0;margin-right: auto;" cellspacing="0">
+<col class="TableStyle-FieldDesc_no_indent-Column-Column1">
+<col class="TableStyle-FieldDesc_no_indent-Column-Column2">
+<tbody>
+<tr>
+<td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">Re-open</td>
+<td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">automatically reopens the call or request</td>
+</tr>
+<tr>
+<td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">Log new and link existing</td>
+<td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-"> automatically logs a new call or request and links the original call or request as a parent to this new call or request</td>
+</tr>
+<tr>
+<td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">Add note</td>
+<td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-"> leaves the call or request closed but automatically adds a note to it with the details of the UPDATE transaction received from the external system</td>
+</tr>
+<tr>
+<td class="TableStyle-FieldDesc_no_indent-BodyB-Column1-">Take no action</td>
+<td class="TableStyle-FieldDesc_no_indent-BodyA-Column2-"> ignores the UPDATE transaction received from the external system</td>
+</tr>
+</tbody>
+</table>
+</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">When Notified externally</td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">Select the rules that <span class="GeneralVariablesCoreName">ASM Core</span> must apply when receiving a NOTIFY transaction for an event using this mapping, specifically the action that must be taken if the call or request logged as a result of this event is still open:<table class="TableStyle-FieldDesc_no_indent" style="mc-table-style: url('../../resources/tablestyles/fielddesc no indent.css');margin-left: 0;margin-right: auto;" cellspacing="0">
+<col class="TableStyle-FieldDesc_no_indent-Column-Column1">
+<col class="TableStyle-FieldDesc_no_indent-Column-Column2">
+<tbody>
+<tr>
+<td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">Add note</td>
+<td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-"> automatically adds a note to the call or request with the details of the NOTIFY transaction received from the external system</td>
+</tr>
+<tr>
+<td class="TableStyle-FieldDesc_no_indent-BodyB-Column1-">Take no action</td>
+<td class="TableStyle-FieldDesc_no_indent-BodyA-Column2-"> ignores the NOTIFY transaction received from the external system</td>
+</tr>
+</tbody>
+</table>
+</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">When Notified externally and Call or Request is closed</td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">Select the rules that <span class="GeneralVariablesCoreName">ASM Core</span> must apply when receiving a NOTIFY transaction for an event using this mapping, specifically the action that must be taken if the call or request logged as a result of this event is closed:<table class="TableStyle-FieldDesc_no_indent" style="mc-table-style: url('../../resources/tablestyles/fielddesc no indent.css');margin-left: 0;margin-right: auto;" cellspacing="0">
+<col class="TableStyle-FieldDesc_no_indent-Column-Column1">
+<col class="TableStyle-FieldDesc_no_indent-Column-Column2">
+<tbody>
+<tr>
+<td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">Add note</td>
+<td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-"> leaves the call or request closed but automatically adds a note to it with the details of the NOTIFY transaction received from the external system</td>
+</tr>
+<tr>
+<td class="TableStyle-FieldDesc_no_indent-BodyB-Column1-">Take no action</td>
+<td class="TableStyle-FieldDesc_no_indent-BodyA-Column2-"> ignores the NOTIFY transaction received from the external system</td>
+</tr>
+</tbody>
+</table>
+</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">When Resolved externally</td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">Select the rules that <span class="GeneralVariablesCoreName">ASM Core</span> must apply when receiving a RESOLVE transaction for an event using this mapping, specifically, select the action that must be taken if the call or request logged as a result of this event is still open:<table class="TableStyle-FieldDesc_no_indent" style="mc-table-style: url('../../resources/tablestyles/fielddesc no indent.css');margin-left: 0;margin-right: auto;" cellspacing="0">
+<col class="TableStyle-FieldDesc_no_indent-Column-Column1">
+<col class="TableStyle-FieldDesc_no_indent-Column-Column2">
+<tbody>
+<tr>
+<td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">Close </td>
+<td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">automatically closes the call or request</td>
+</tr>
+<tr>
+<td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">Update </td>
+<td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">automatically updates the call or request with the details of the RESOLVE transaction received from the external system</td>
+</tr>
+<tr>
+<td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">Add note</td>
+<td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-"> automatically adds a note to the call or request with the details of the RESOLVE transaction received from the external system</td>
+</tr>
+<tr>
+<td class="TableStyle-FieldDesc_no_indent-BodyB-Column1-">Take no Action</td>
+<td class="TableStyle-FieldDesc_no_indent-BodyA-Column2-"> ignores the RESOLVE transaction received from the external system</td>
+</tr>
+</tbody>
+</table>
+</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">If child calls are present</td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">Select the action that must be taken if the call logged as a result of this event has calls linked as children:<table class="TableStyle-FieldDesc_no_indent" style="mc-table-style: url('../../resources/tablestyles/fielddesc no indent.css');margin-left: 0;margin-right: auto;" cellspacing="0">
+<col class="TableStyle-FieldDesc_no_indent-Column-Column1">
+<col class="TableStyle-FieldDesc_no_indent-Column-Column2">
+<tbody>
+<tr>
+<td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">Close child calls</td>
+<td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">automatically closes the calls linked as children</td>
+</tr>
+<tr>
+<td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">Add note to child calls</td>
+<td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-"> automatically adds a note to the child calls with the details of the RESOLVE transaction received from the external system</td>
+</tr>
+<tr>
+<td class="TableStyle-FieldDesc_no_indent-BodyB-Column1-">Take no Action</td>
+<td class="TableStyle-FieldDesc_no_indent-BodyA-Column2-"> takes no action on the child calls</td>
+</tr>
+</tbody>
+</table>
+</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">When Resolved externally and Call or Request is closed</td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">Select the rules that <span class="GeneralVariablesCoreName">ASM Core</span> must apply when receiving a RESOLVE transaction for an event using this mapping, specifically the action that must be taken if the call or request logged as a result of this event is closed:<table class="TableStyle-FieldDesc_no_indent" style="mc-table-style: url('../../resources/tablestyles/fielddesc no indent.css');margin-left: 0;margin-right: auto;" cellspacing="0">
+<col class="TableStyle-FieldDesc_no_indent-Column-Column1">
+<col class="TableStyle-FieldDesc_no_indent-Column-Column2">
+<tbody>
+<tr>
+<td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">Add note</td>
+<td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-"> leaves the call or request closed but automatically adds a note to it with the details of the RESOLVE transaction received from the external system</td>
+</tr>
+<tr>
+<td class="TableStyle-FieldDesc_no_indent-BodyB-Column1-">Take no action</td>
+<td class="TableStyle-FieldDesc_no_indent-BodyA-Column2-">ignores the RESOLVE transaction received from the external system</td>
+</tr>
+</tbody>
+</table>
+</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">When Deleted externally</td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">Select the rules that <span class="GeneralVariablesCoreName">ASM Core</span> must apply when receiving a DELETE transaction for an event using this mapping, specifically select the action that must be taken if the call or request logged as a result of this event is still open:<table class="TableStyle-FieldDesc_no_indent" style="mc-table-style: url('../../resources/tablestyles/fielddesc no indent.css');margin-left: 0;margin-right: auto;" cellspacing="0">
+<col class="TableStyle-FieldDesc_no_indent-Column-Column1">
+<col class="TableStyle-FieldDesc_no_indent-Column-Column2">
+<tbody>
+<tr>
+<td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">Close </td>
+<td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">automatically closes the call or request</td>
+</tr>
+<tr>
+<td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">Update </td>
+<td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">automatically updates the call or request with the details of the DELETE transaction received from the external system</td>
+</tr>
+<tr>
+<td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">Add note</td>
+<td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-"> automatically adds a note to the call or request with the details of the DELETE transaction received from the external system</td>
+</tr>
+<tr>
+<td class="TableStyle-FieldDesc_no_indent-BodyB-Column1-">Take no Action</td>
+<td class="TableStyle-FieldDesc_no_indent-BodyA-Column2-"> ignores the DELETE transaction received from the external system</td>
+</tr>
+</tbody>
+</table>
+</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">If child calls are present</td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">Select the action that must be taken if the call logged as a result of this event has calls linked as children:<table class="TableStyle-FieldDesc_no_indent" style="mc-table-style: url('../../resources/tablestyles/fielddesc no indent.css');margin-left: 0;margin-right: auto;" cellspacing="0">
+<col class="TableStyle-FieldDesc_no_indent-Column-Column1">
+<col class="TableStyle-FieldDesc_no_indent-Column-Column2">
+<tbody>
+<tr>
+<td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">Close child calls</td>
+<td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-"> automatically closes the calls linked as children</td>
+</tr>
+<tr>
+<td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">Add note to child calls</td>
+<td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">automatically adds a note to the child calls with the details of the DELETE transaction received from the external system</td>
+</tr>
+<tr>
+<td class="TableStyle-FieldDesc_no_indent-BodyB-Column1-">Take no Action</td>
+<td class="TableStyle-FieldDesc_no_indent-BodyA-Column2-">takes no action on the child calls</td>
+</tr>
+</tbody>
+</table>
+</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">When Deleted externally and Call or Request is closed</td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">Select the rules that <span class="GeneralVariablesCoreName">ASM Core</span> must apply when receiving a DELETE transaction for an event using this mapping, specifically, select the action that must be taken if the call or request logged as a result of this event is closed:<table class="TableStyle-FieldDesc_no_indent" style="mc-table-style: url('../../resources/tablestyles/fielddesc no indent.css');margin-left: 0;margin-right: auto;" cellspacing="0">
+<col class="TableStyle-FieldDesc_no_indent-Column-Column1">
+<col class="TableStyle-FieldDesc_no_indent-Column-Column2">
+<tbody>
+<tr>
+<td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">Add note</td>
+<td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-"> leaves the call or request closed but automatically adds a note to it with the details of the DELETE transaction received from the external system</td>
+</tr>
+<tr>
+<td class="TableStyle-FieldDesc_no_indent-BodyB-Column1-">Take no action</td>
+<td class="TableStyle-FieldDesc_no_indent-BodyA-Column2-"> ignores the DELETE transaction received from the external system</td>
+</tr>
+</tbody>
+</table>
+</td>
+                                                        </tr>
+                                                    </table>
+                                                    <h2>
+<a name="Rules2"></a>Rules for Outgoing Transactions - Events</h2>
+                                                    <p>Rules for applying an event type mapping to an Outgoing Transaction for the selected event type are set in the Outgoing Transactions section on the Event Type Mapping Details window. The rules are described below.</p>
+                                                    <table style="mc-table-style: url('../../resources/tablestyles/fielddesc no indent.css');margin-left: 0;margin-right: auto;" class="TableStyle-FieldDesc_no_indent" cellspacing="0">
+                                                        <col class="TableStyle-FieldDesc_no_indent-Column-Column1">
+                                                        <col class="TableStyle-FieldDesc_no_indent-Column-Column2">
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">Send Acknowledge</td>
+                                                            <td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">Select the rule that must apply for <span class="GeneralVariablesCoreName">ASM Core</span> to send an ACKNOWLEDGE transaction for an event using this mapping:<table class="TableStyle-FieldDesc_no_indent" style="mc-table-style: url('../../resources/tablestyles/fielddesc no indent.css');margin-left: 0;margin-right: auto;" cellspacing="0">
+<col class="TableStyle-FieldDesc_no_indent-Column-Column1">
+<col class="TableStyle-FieldDesc_no_indent-Column-Column2">
+<tbody>
+<tr>
+<td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">When logged</td>
+<td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">automatically sends an ACKNOWLEDGE transaction to the external system as soon as the call or request is logged within <span class="GeneralVariablesCoreName">ASM Core</span>
+</td>
+</tr>
+<tr>
+<td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">When actioned</td>
+<td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-"> automatically sends an ACKNOWLEDGE transaction to the external system as soon as an analyst takes action on the call or request logged as a result of the event</td>
+</tr>
+<tr>
+<td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">Manually </td>
+<td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">forces analysts to manually send the ACKNOWLEDGE transaction by clicking the Acknowledge Event button on the call or request</td>
+</tr>
+<tr>
+<td class="TableStyle-FieldDesc_no_indent-BodyB-Column1-">Never </td>
+<td class="TableStyle-FieldDesc_no_indent-BodyA-Column2-">never sends an ACKNOWLEDGE transaction to the external system for events using this mapping</td>
+</tr>
+</tbody>
+</table>
+</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">
+                                                                <p>Send Clear</p>
+                                                            </td>
+                                                            <td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">
+                                                                <p>Select the rule that must apply for <span class="GeneralVariablesCoreName">ASM Core</span> to send a CLEAR transaction for an event using this mapping:</p>
+                                                                <table class="TableStyle-FieldDesc_no_indent" style="mc-table-style: url('../../resources/tablestyles/fielddesc no indent.css');margin-left: 0;margin-right: auto;" cellspacing="0">
+                                                                    <col class="TableStyle-FieldDesc_no_indent-Column-Column1">
+                                                                    <col class="TableStyle-FieldDesc_no_indent-Column-Column2">
+                                                                    <tbody>
+                                                                        <tr>
+                                                                            <td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">When resolved or closed</td>
+                                                                            <td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">automatically sends a CLEAR transaction to the external system as soon as the call or request is closed or flagged as being resolved</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">When resolved</td>
+                                                                            <td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">automatically sends a CLEAR transaction to the external system as soon as the call or request is flagged as being resolved</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">When closed</td>
+                                                                            <td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-"> automatically sends a CLEAR transaction to the external system as soon as the call or request is closed</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td class="TableStyle-FieldDesc_no_indent-BodyB-Column1-">Never </td>
+                                                                            <td class="TableStyle-FieldDesc_no_indent-BodyA-Column2-">never sends a CLEAR transaction to the external system for events using this mapping</td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">
+                                                                <p>Send Update when Call or Request updated</p>
+                                                            </td>
+                                                            <td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">
+                                                                <p>Select this option to send an UPDATE transaction to the external system whenever an analyst updates the values on the call or request logged as a result of an event using this mapping.</p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">Send Notify when note added to Call or Request</td>
+                                                            <td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">Select this option to send a NOTIFY transaction to the external system whenever a note is added to the call or request logged as a result of an event using this mapping.</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">Send Notify for system generated history messages</td>
+                                                            <td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">Select this option to send a NOTIFY transaction to the external system whenever a system-generated entry (such as an agreement escalation) is added to the history of the call or request logged as a result of an event using this mapping.</td>
+                                                        </tr>
+                                                    </table>
+                                                    <h2>
+<a name="Creating"></a>Creating Event Type Mappings by Group</h2>
+                                                    <h2 class="Prerequisite">Before you start</h2>
+                                                    <p class="prereqtextlast">You must have <b>Integration Setup</b> selected in the <a href="../admin%20security%20roles/general%20access%20security%20role%20-%20admin%20tab.htm">Admin</a> tab of your <b>General Access Security Role</b>. </p>
+                                                    <ol class="multilist">
+                                                        <li value="1">Select <a href="../general%20topics/asmcorewindow.htm"><span style="font-size: 24pt;">≡</span></a> &gt; <b>Admin</b> &gt; <b>Integration</b>.</li>
+                                                        <li value="2">In the Explorer pane, under <b>Integration</b>, select <b>Events</b>.</li>
+                                                        <li value="3">Select a source from the <b>Filter by Source</b> list to view all the event types discovered on the selected source by a connector with event management capability.</li>
+                                                        <li value="4">Select <img src="/storage/app/media/Help/images/add%20new.png"> or select a mapping and then select to display the details window. The <b>Source</b> and <b>Event Type</b> fields are pre-populated based on the source and event type you selected to access this mapping. If groups are defined for the event types, an additional read-only field, <b>Group</b>, displays the event type group name.</li>
+                                                        <li value="5">Select <b>Add</b> on the <b>Groups</b> browse table to display the <b>Integration Group Search</b> window.</li>
+                                                        <li value="6">Complete the details.</li>
+                                                        <p>
+                                                            </p>
+<table class="TableStyle-FieldDesc" style="mc-table-style: url('../../resources/tablestyles/fielddesc.css');" cellspacing="0">
+                                                                <col class="TableStyle-FieldDesc-Column-Column1">
+                                                                <col class="TableStyle-FieldDesc-Column-Column2">
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyH-Column1-">Groups of type</td>
+                                                                        <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                Select a group type in the  drop-down list.
+                                <p class="note">Group types are defined at the level of the external system and cannot be edited within <span class="GeneralVariablesProductName">ASM</span>.</p>
+</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyB-Column1-">Groups with name</td>
+                                                                        <td class="TableStyle-FieldDesc-BodyA-Column2-">Type the name of the group you want to create a mapping for. You can also type only the first letters of the group name. If you do not know the name of the group, leave blank to find all groups belonging to the selected group type</td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        
+                                                        <li value="7">Select <b>Search</b>.</li>
+                                                        <li value="8">Select the group you want to create a mapping for, and select <b>Open</b>. The name of the group is added to the <b>Groups</b> browse table on the <b>Event Type Mappings</b> window.</li>
+                                                        <li value="9">Repeat for any other event group you want to define mappings for.</li>
+                                                        <li value="10">If you added several groups to the <b>Groups</b> browse table, select the first group you want to define mappings for.</li>
+                                                        <li value="11">Select <b>New</b>on the <b>Mappings</b> browse table. The <b>Event Type Mapping Details</b> window appears.</li>
+                                                        <li value="12">
+<a href="#top">Specify the details</a> of the mapping.</li>
+                                                        <li value="13">Select <img src="/storage/app/media/Help/images/save%20button.png">  to save the changes.</li>
+                                                    </ol>
+                                                    <h2>
+<a name="Viewing"></a>Viewing Event Type Mappings</h2>
+                                                    <h2 class="Prerequisite">Before you start</h2>
+                                                    <p class="prereqtextlast">You must have <b>Integration Setup</b> selected in the <a href="../admin%20security%20roles/general%20access%20security%20role%20-%20admin%20tab.htm">Admin</a> tab of your <b>General Access Security Role</b>. </p>
+                                                    <ol class="multilist">
+                                                        <li value="1">Select <a href="../general%20topics/asmcorewindow.htm"><span style="font-size: 24pt;">≡</span></a> &gt; <b>Admin</b> &gt; <b>Integration</b>.</li>
+                                                        <li value="2">In the Explorer pane, under <b>Integration</b>, select <b>Events</b>.</li>
+                                                        <li value="3">Select a source from the <b>Filter by Source</b> list to view all the event types discovered on the selected source by a connector with event management capability.</li>
+                                                        <li value="4">Select <img src="/storage/app/media/Help/images/action%20button.png"> to display the <b>Event Type Mappings</b> window, with the following fields:</li>
+                                                        <p>
+                                                            </p>
+<table class="TableStyle-FieldDesc" style="mc-table-style: url('../../resources/tablestyles/fielddesc.css');" cellspacing="0">
+                                                                <col class="TableStyle-FieldDesc-Column-Column1">
+                                                                <col class="TableStyle-FieldDesc-Column-Column2">
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyH-Column1-">Source </td>
+                                                                        <td class="TableStyle-FieldDesc-BodyG-Column2-">the name of the selected source</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyB-Column1-">Event Type</td>
+                                                                        <td class="TableStyle-FieldDesc-BodyA-Column2-">the name of the selected event type</td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        
+                                                        <li value="5">The Mappings browse table displays the list of mappings based on the event type. It displays three read-only columns:</li>
+                                                        <p>
+                                                            </p>
+<table class="TableStyle-FieldDesc" style="mc-table-style: url('../../resources/tablestyles/fielddesc.css');" cellspacing="0">
+                                                                <col class="TableStyle-FieldDesc-Column-Column1">
+                                                                <col class="TableStyle-FieldDesc-Column-Column2">
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyH-Column1-">Mapping </td>
+                                                                        <td class="TableStyle-FieldDesc-BodyG-Column2-">the name of the mapping</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyH-Column1-">Default </td>
+                                                                        <td class="TableStyle-FieldDesc-BodyG-Column2-">indicates that no specific criteria have to be met for this mapping to be applied. This means that this mapping will be used if no other appropriate mapping can be found for an event matching this event type</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyB-Column1-">Action </td>
+                                                                        <td class="TableStyle-FieldDesc-BodyA-Column2-">indicates which action <span class="GeneralVariablesProductName">ASM</span> will perform if this mapping is applied to the incoming event. Possible actions are: Ignore, Log Call or Log Request</td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        
+                                                        <li value="6">To view mappings based on event groups (as defined at the level of the external source), select <b>Map Events by Group</b>. The Event Type Mappings window includes two browse tables:</li>
+                                                        <li value="7">The <b>Groups</b> browse table displays the event groups for which mappings have been defined. The Total column on the Groups browse table indicates the number of mappings that have been defined for the selected group.</li>
+                                                        <li value="8">The <b>Mappings</b> browse table displays the names of the mappings defined for the group selected in the Groups browse table.</li>
+                                                    </ol>
+                                                    <h2>Updating an Event Type Mapping</h2>
+                                                    <h2 class="Prerequisite">Before you start</h2>
+                                                    <p class="prereqtextlast">You must have <b>Integration Setup</b> selected in the <a href="../admin%20security%20roles/general%20access%20security%20role%20-%20admin%20tab.htm">Admin</a> tab of your <b>General Access Security Role</b>. </p>
+                                                    <ol class="multilist">
+                                                        <li value="1">Select <a href="../general%20topics/asmcorewindow.htm"><span style="font-size: 24pt;">≡</span></a> &gt; <b>Admin</b> &gt; <b>Integration</b>.</li>
+                                                        <li value="2">In the Explorer pane, under <b>Integration</b>, select <b>Events</b>.</li>
+                                                        <li value="3">Select a source from the <b>Filter by Source</b> list to view all the event types discovered on the selected source by a connector with event management capability.</li>
+                                                        <li value="4">Select <img src="/storage/app/media/Help/images/action%20button.png"> to display the details window.</li>
+                                                        <li value="5">
+<a href="#Creating2">Update the details</a> as necessary.</li>
+                                                        <li value="6">Select <img src="/storage/app/media/Help/images/save%20button.png">  to save the changes.</li>
+                                                    </ol>
+                                                    <h2>Reordering the Event Type Mappings</h2>
+                                                    <p>If several mappings are defined for the same event type, <span class="GeneralVariablesProductName">ASM</span> applies the appropriate mapping by running through the mappings in the specified order on the <b>Mappings</b> browse table and applying the first mapping that matches the event details.</p>
+                                                    <p>If mappings are organized by group, <span class="GeneralVariablesProductName">ASM</span> first runs through the groups in the specified order on the <b>Groups</b> browse table and then the mappings within each group in the specified order on the <b>Mappings</b> browse table.</p>
+                                                    <h2 class="Prerequisite">Before you start</h2>
+                                                    <p class="prereqtextlast">You must have <b>Integration Setup</b> selected in the <a href="../admin%20security%20roles/general%20access%20security%20role%20-%20admin%20tab.htm">Admin</a> tab of your <b>General Access Security Role</b>. </p>
+                                                    <ol class="multilist">
+                                                        <li value="1">Select <a href="../general%20topics/asmcorewindow.htm"><span style="font-size: 24pt;">≡</span></a> &gt; <b>Admin</b> &gt; <b>Integration</b>.</li>
+                                                        <li value="2">In the Explorer pane, under <b>Integration</b>, select <b>Events</b>.</li>
+                                                        <li value="3">Select a source from the <b>Filter by Source</b> list to view all the event types discovered on the selected source by a connector with event management capability.</li>
+                                                        <li value="4">Select <img src="/storage/app/media/Help/images/action%20button.png"> to display the details window.</li>
+                                                        <li value="5">Use the <b>Move up</b> and<b>Move Down</b> buttons to reorder the entries.</li>
+                                                        <li value="6">Select <img src="/storage/app/media/Help/images/save%20button.png">  to save the changes.</li>
+                                                    </ol>
+                                                    <h2>Deleting an Event Type Mapping</h2>
+                                                    <h2 class="Prerequisite">Before you start</h2>
+                                                    <p class="prereqtextlast">You must have <b>Integration Setup</b> selected in the <a href="../admin%20security%20roles/general%20access%20security%20role%20-%20admin%20tab.htm">Admin</a> tab of your <b>General Access Security Role</b>. </p>
+                                                    <ol class="multilist">
+                                                        <li value="1">Select <a href="../general%20topics/asmcorewindow.htm"><span style="font-size: 24pt;">≡</span></a> &gt; <b>Admin</b> &gt; <b>Integration</b>.</li>
+                                                        <li value="2">In the Explorer pane, under <b>Integration</b>, select <b>Events</b>.</li>
+                                                        <li value="3">Select a source from the <b>Filter by Source</b> list to view all the event types discovered on the selected source by a connector with event management capability.</li>
+                                                        <li value="4">Select the mapping that you want to delete and select <b>Delete</b>. Confirm the deletion.</li>
+                                                    </ol>
+                                                

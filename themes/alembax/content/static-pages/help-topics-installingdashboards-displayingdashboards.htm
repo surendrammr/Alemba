@@ -1,0 +1,95 @@
+[viewBag]
+title = "Displaying a dashboard in ASM"
+url = "/help/topics/installingdashboards/displayingdashboards"
+layout = "help"
+is_hidden = 0
+navigation_hidden = 0
+==
+                                                    <h1>Displaying a dashboard in <span class="GeneralVariablesProductName">ASM</span>
+</h1>
+                                                    <p>After you have installed and configured the dashboard platform, you can configure the dashboard menu in <span class="GeneralVariablesProductName">ASM</span>. For example, the following dashboard menu appears in <span class="GeneralVariablesCoreName">ASM Core</span>:</p>
+                                                    <p>
+                                                        <img src="/storage/app/media/Help/images/installingdashboards/dashboardplaceholdersmenu_602x300.png" class="mobile" style="width: 602;height: 300;">
+                                                    </p>
+                                                    <p>Alemba supply five dashboard placeholders each for the dashboard menus in <span class="GeneralVariablesCoreName">ASM Core</span>, <span class="GeneralVariablesProduct2Name">Nano</span>, and <span class="GeneralVariablesSelfServicePortalName">Self Service Portal</span>. These placeholders are labelled Dashboard 1, Dashboard 2, and so on. You must configure each placeholder to display a specific dashboard.</p>
+                                                    <h2 class="Prerequisite">Before you start</h2>
+                                                    <p class="prereqtext1">Before you configure the <span class="GeneralVariablesProductNameFull">Alemba Service Manager™</span> dashboard menus:</p>
+                                                    <ul class="prereq">
+                                                        <li value="1">
+                                                            <p>Ensure you have correctly installed the dashboard platform. For more information, see <a href="installingdashboardplatform.htm" class="MCXref xref">Installing the dashboard platform</a>.</p>
+                                                        </li>
+                                                        <li value="2">
+                                                            <p>The dashboard must exist in <span class="GeneralVariablesDashboardServer">Dashboard Server</span>. For information about creating dashboards, see the online help.</p>
+                                                        </li>
+                                                        <li value="3">You must have the following privileges to see the dashboard menu in <span class="GeneralVariablesProductName">ASM</span>: <ul>
+<li value="1">For <span class="GeneralVariablesCoreName">ASM Core</span> and <span class="GeneralVariablesProduct2Name">Nano</span>, analysts must have the <b>General Access</b> Security Role set to <b>All</b> on their Person Details screen, and at least one IPK Management or Workflow Management Group selected.</li>
+<li value="2">For <span class="GeneralVariablesSelfServicePortalName">Self Service Portal</span>, users must have a <span style="font-weight: bold;" class="GeneralVariablesSelfServicePortalName">Self Service Portal</span><b> Role</b> selected in the User Details section of the Person Details screen, which enables access to the <span class="GeneralVariablesSelfServicePortalName">Self Service Portal</span>.</li>
+</ul>
+</li>
+                                                    </ul>
+                                                    <h2>
+<a name="Finding"></a>Finding the dashboard placeholder .HTM files</h2>
+                                                    <p>You configure the placeholders by editing supplied .HTM files, which are installed when you install <span class="GeneralVariablesProductName">ASM</span>. You can find them here, by default:</p>
+                                                    <p>C:\Program Files\Alemba\vFire\System1</p>
+                                                    <p><span class="GeneralVariablesCoreName">ASM Core</span>, <span class="GeneralVariablesProduct2Name">Nano</span>, and <span class="GeneralVariablesSelfServicePortalName">Self Service Portal</span> each have separate dashboard placeholder .HTM files, labelled 1 through 5. Search for the following in the System1 folder:</p>
+                                                    <ul>
+                                                        <li value="1">For <span class="GeneralVariablesCoreName">ASM Core</span>, search for <b>InDashboard*_Frame</b>
+</li>
+                                                        <li value="2">For <span class="GeneralVariablesProduct2Name">Nano</span>, search for <b>NanoDashboard</b>
+</li>
+                                                        <li value="3">For <span class="GeneralVariablesSelfServicePortalName">Self Service Portal</span>, search for <b>LiteDashboards</b>
+</li>
+                                                    </ul>
+                                                    <p>The returned results list the five relevant .HTM files. For example, for <span class="GeneralVariablesSelfServicePortalName">Self Service Portal</span>: LiteDashboards1, LiteDashboards2, LiteDashboards3, LiteDashboards4, and LiteDashboards5.</p>
+                                                    <h2>Linking an <span class="GeneralVariablesProductName">ASM</span> dashboard placeholder to an existing dashboard</h2>
+                                                    <p>To configure an <span class="GeneralVariablesProductName">ASM</span> dashboard placeholder to open a specific dashboard:</p>
+                                                    <ol>
+                                                        <li value="1">
+                                                            <p>Search for a product-related dashboard .HTM file.</p>
+                                                            <p>For more information, see <a href="#Finding" class="MCXref xref">Finding the dashboard placeholder .HTM files</a>.</p>
+                                                        </li>
+                                                        <li value="2">
+                                                            <p>Right-click the .HTM file you want to configure, then select <b>Open with</b> &gt; <b>Notepad</b> in the shortcut menu.</p>
+                                                            <p>For example, if you want to configure the <span class="GeneralVariablesCoreName">ASM Core</span> Dashboard 1 menu, open the InDashboardDashboard_1_Frame.htm file.</p>
+                                                        </li>
+                                                        <li value="3">
+                                                            <p>Using Notepad, search for <code>class="df-dashboard"</code>.</p>
+                                                        </li>
+                                                        <li value="4">
+                                                            <p>Replace <code>data-service-url='http://localhost/DashboardService/DashboardService.svc' </code></p>
+                                                            <p><code>data-dashboard-path='http://localhost/infra.web/dashboards/MasterFilter.sydx' </code>
+                                                            </p>
+                                                            <p>
+                                                                <img src="/storage/app/media/Help/images/installingdashboards/htmfile.png" class="screenshot">
+                                                            </p>
+                                                            <p>with:</p>
+                                                            <p><code>data-dashboard-path='<i>Category</i>/<i>DashboardName</i>'</code>
+                                                            </p>
+                                                            <p>where <code style="font-style: italic;">Category</code> is the category where the dashboard is grouped, and <code style="font-style: italic;">DashboardName</code> is the name of the dashboard in <span class="GeneralVariablesDashboardServer">Dashboard Server</span>.</p>
+                                                            <p>For example:</p>
+                                                            <p>
+                                                                <img src="/storage/app/media/Help/images/installingdashboards/htmfilereplacetext.png" class="screenshot">
+                                                            </p>
+                                                        </li>
+                                                        <li value="5">
+                                                            <p>If you are editing <span class="GeneralVariablesProduct2Name">Nano</span> or <span class="GeneralVariablesSelfServicePortalName">Self Service Portal</span> .HTM files, then adjust the height as follows:</p>
+                                                            <p><code>style="height: 800px;"</code>
+                                                            </p>
+                                                            <p>For example:</p>
+                                                            <p>
+                                                                <img src="/storage/app/media/Help/images/installingdashboards/htmfilereplacetext2.png">
+                                                            </p>
+                                                        </li>
+                                                        <li value="6">Save your changes.</li>
+                                                        <li value="7">
+                                                            <p>Using a command prompt, perform an iisreset to restart IIS.</p>
+                                                        </li>
+                                                        <li value="8">Clear the internet browser cache.</li>
+                                                        <li value="9">Log into the <span class="GeneralVariablesProductNameFull">Alemba Service Manager™</span> product where you have configured the dashboard menu.</li>
+                                                        <li value="10">
+                                                            <p>Select the dashboards placeholder you configured.</p>
+                                                            <p style="margin-top: -15px;">For example, in <span class="GeneralVariablesCoreName">ASM Core</span>, select <a href="../../../../DocumentationV10/Content/Topics/General%20Topics/ASMCoreWindow.htm"><span style="font-size: 24pt;">≡</span></a> &gt; Dashboards &gt;  Dashboards &gt; <i>Dashboard n</i>, where <i>Dashboard n</i> is the same number as the .HTM file you recently edited.</p>
+                                                            <p>The dashboard opens.</p>
+                                                        </li>
+                                                    </ol>
+                                                

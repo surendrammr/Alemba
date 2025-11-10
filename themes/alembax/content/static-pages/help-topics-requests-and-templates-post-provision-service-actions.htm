@@ -1,0 +1,32 @@
+[viewBag]
+title = "Setting Up Post Provision Service Actions"
+url = "/help/topics/requests-and-templates/post-provision-service-actions"
+layout = "help"
+is_hidden = 0
+navigation_hidden = 0
+==
+                                                    <h1>Setting Up Post Provision Service Actions</h1>
+                                                    <p>You can identify certain service actions as available for ordering after the provision of a configuration item that is linked to a VM. Typically, this can be used to, say, add RAM to a VM that has already been set up and appears as a CI. </p>
+                                                    <p class="prereq"><b>CIs</b> must be mapped to the <b>VC: Virtual Machine</b> in the <a href="%7B%7B%20'help-connectors-vmwarevroconnector#Connecto'%7CstaticPage%20%7D%7D#Connecto">vRO Connector settings</a>. The CIs must be linked to a VM.</p>
+                                                    <p>There are several steps involved in setting up post provisioning:</p>
+                                                    <ol>
+                                                        <li value="1">Ensure that there is an appropriate <a href="../admin%20cmdb/portal%20display%20categories.htm">Self Service Portal Display category</a> for the service actions that you want to make available post provision. </li>
+                                                        <li value="2">In the <a href="../adminselfserviceportal/cp%20settings.htm">Self Service Portal Settings</a> window, select the <b>Enable Post Provisioning Portal Display Category</b> checkbox, and then specify the category using the <b>Type Tiers</b> selector field below.</li>
+                                                        <p class="tip">You can only specify one <b>Type Tier</b> as being enabled for post provisioning, so if you have a category called IT Provision in Tier 1, and Software and Hardware in Tier 2, and you want software and hardware available, you should select IT Provision.</p>
+                                                        <li value="3">Create or identify the service actions that you want made available. In the <b>Service Action Details</b> window for each service action:<ul>
+<li value="1">Select the <b>Portal Display Category</b> that you have identified as being enabled for post provisioning, or a tier below. (Using our example, you could select IT Provision, Software or Hardware.)</li>
+<li value="2">Ensure that the <b>Portfolio Status</b> is set to <b><span class="GeneralVariablesServiceRequestCatalog">Service Request Catalog</span></b>.</li>
+<li value="3">Select <b>A Request</b> in the <b>Templates</b> section. </li>
+</ul>
+</li>
+                                                        <li value="4">Ensure that all of your settings have been saved, and test your post provision service actions in the portal:<ul>
+<li value="1">Place an order in the <span class="GeneralVariablesServiceRequestCatalog">Service Request Catalog</span> that results in provisioning the resources. </li>
+<li value="2">When the request has been processed, review the resources in the portal. You should see a <b>Post Submit Actions</b> button. <a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="../../resources/images/vss%20day%202%20action%20button.png"><img class="MCPopupThumbnail img imgthumbnail" data-mc-width="904" data-mc-height="344" src="/storage/app/media/Help/images/vss%20day%202%20action%20button_thumb_0_48.png" tabindex=""></a>
+</li>
+<li value="3">Select this button to display the <span class="GeneralVariablesServiceRequestCatalog">Service Request Catalog</span>. The screen is filtered to offer only the items with the portal display category that you have enabled for post provisioning. <a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="../../resources/images/vss%20day%202%20pp%20order.png"><img class="MCPopupThumbnail img imgthumbnail" data-mc-width="710" data-mc-height="347" src="/storage/app/media/Help/images/vss%20day%202%20pp%20order_thumb_0_48.png" tabindex=""></a>
+</li>
+<li value="4">Select <b>Order</b> as usual, to order the service action. The relevant form appears. If the <b>Request CIs</b> field is on the form, it will be automatically populated, and can then be used in the workflow to pass information about the configuration item to any outbound action.</li>
+</ul>
+</li>
+                                                    </ol>
+                                                

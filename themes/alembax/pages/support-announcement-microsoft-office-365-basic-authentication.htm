@@ -1,0 +1,120 @@
+title = "Support Announcement – Microsoft Office 365 Basic Authentication"
+url = "/annoucement-ms-365-basic-authentication"
+layout = "default"
+is_hidden = 0
+robot_index = "noindex"
+robot_follow = "nofollow"
+
+[viewBag]
+seo_title = "Support Announcement – Microsoft Office 365 Basic Authentication"
+seo_description = "Support Announcement – Microsoft Office 365 Basic Authentication"
+robot_index = "index"
+robot_follow = "follow"
+==
+<!-- banner -->
+
+<div class="jumbotron jumbotron-fluid banner pageBanner" style="background-image:url('{{ 'Banners/banner-sd-update-june2022@0.5x.jpg'|media }}')">
+    <div class="container h-100">
+        <div class="row h-100">
+            <div class="col my-auto text-center"></div>
+        </div>
+    </div>
+</div>
+
+<!-- /banner -->
+
+{% partial 'demo-button' %}
+
+<!-- copy -->
+
+<div class="container copy">
+
+	<header class="col-md-12 copy-heading">
+	
+		<h1>{{ this.page.title }}</h1>
+		<!-- <h2>Clever sub-heading??</h2> -->
+
+	</header>
+
+	<div class="row justify-content-center">
+
+		<div class="col-md-10 copy-main pb-0">
+		    <p class="lead"><a href="https://docs.microsoft.com/en-us/exchange/clients-and-mobile-in-exchange-online/deprecation-of-basic-authentication-exchange-online">Microsoft have announced</a> that effective of 1st October 2022 that they will start to permanently disable Basic Authentication (also known as Legacy Authentication) in all tenants with Microsoft Office 365/Exchange Online.</p>
+                    
+            <p>Basic Authentication is the use of a username and password to connect, for example, to your ASM Incoming or Outgoing Email Server(s).</p>
+            
+            <p>The following Protocols are affected: Exchange Web Services (EWS), POP, IMAP, Exchange ActiveSync (EAS), MAPI, RPC, Offline Address Book (OAB) and Remote PowerShell.</p>
+            
+            <p>SMTP Auth will also be disabled if it is not currently being used.</p>
+            
+            
+            <h3>How does this affect Alemba Customers?</h3>
+            
+            <p>All customers using Alemba Service Manager (ASM) and vFire Core who use Microsoft Office 365/Exchange Online to receive and process emails. This may include the sending of system notifications and the ability to log new calls, update calls, requests and tasks. It may also affect the use of the Email Event Connector.</p>
+            
+            <p>If you are hosting your own email services on a Microsoft Exchange server in your local domain, you <strong><i>should not</i></strong> be affected by this upcoming cloud service change by Microsoft. However, it is recommended that you confirm this directly with your Microsoft account manager.</p>
+            
+            
+            <h3>How will you know you may have a problem?</h3>
+            
+            <p>Incoming Emails will stop being processed from your configured Incoming Email Server(s) and you should see the following error in the Event Logs: HTTP 401 error: bad username or password.</p>
+            
+            
+            <h3>What options do Alemba provide?</h3>
+            
+            <p>Alemba Service Manager v10.3 (and above) already supports Modern Authentication to connect to Microsoft Office 365 using OAuth 2.0 through Exchange Web Services (EWS). Alemba recommends reconfiguring your Incoming Email Servers to use OAuth2.0/EWS as soon as possible to avoid any possible disruption.<br><a href="https://alemba.com/releases/asmx-10-3#oauth">https://alemba.com/releases/asmx-10-3#oauth</a></p>
+            
+            <p>Details of how to configure ASM for OAuth2.0/EWS can be found in <a href="https://alemba.com/storage/app/media/Downloads/ASM%20FAQ%20-%20Microsoft%20SMTP-POP3-IMAP%20OAuth%202%20Configuration.pdf">this document</a>.</p>
+            
+            <p>Alemba Service Manage EOS v10.5.5 (and above) customers can also use the <strong>MS Graph API</strong> for Incoming and Outgoing Email.</p>
+            
+            <p>Details of how to configure ASM to use the MS Graph API can be found in <a href="https://alemba.com/storage/app/media/Downloads/ASM%20FAQ%20-%20Email%20using%20the%20Microsoft%20Graph%20API.pdf">this document</a>.</p>
+            
+            
+            <h3>We are on an older version of vFire Core or Alemba Service Manager, what can we do?</h3>
+            
+            <p><strong>Upgrade to the latest version of Alemba Service Manager (currently ASM EOS v10.5.8) to use OAuth2.0/EWS or MS Graph API connections.</strong></p>
+            
+            <p>There are many great new features and performance improvements and Alemba recommends all customers to update the software to take advantage of these improvements. For more details on this release, please visit <a href="https://alemba.com/blog/news/announcing-alemba-service-manager-eos">our blog</a>.</p>
+            
+            <p>If this option is of interest, then please raise this with your Technical Account Manager or by raising a “Get Latest Version” request through the <a href="https://alemba.help">Alemba Support Portal</a>.</p>
+            
+            <div style="background-color: #fff9d9;border: 1px solid #ffe8a2;padding: 15px; border-radius: 5px;">
+                <h5>Update:</h5>
+                <p>Alemba are pleased to be able to announce that following our investigations we will be able to provide Customers with a patch to enable email connectivity via the Microsoft Graph API.</p>
+                    
+                <p>This patch is available to Customer Systems on vFire Core <strong>v9.3 and above</strong>. There is an expected lead time of 2 weeks to deliver the patch to customers.</p>
+                
+                <p>To request this patch, please use the “Add Me” button to the Known Issue available via the <a href="https://alemba.help/">Alemba Support Portal Homepage</a>.</p>
+                
+                <img src="https://alemba.com/storage/app/media/Emails/support-office365-update-jul2022-screenshot.jpg" alt="Known Issues - Add yourself to request patch - Alemba Support Portal">
+
+                <p>Details of how to configure vFire/ASM to use the MS Graph API can be found in <a href="https://alemba.com/storage/app/media/Downloads/ASM%20FAQ%20-%20Email%20using%20the%20Microsoft%20Graph%20API.pdf">this document</a>.</p>
+            </div>
+            
+            
+            <h3>MS Graph API</h3>
+            
+            <p>We are investigating the possibility of whether it is technically possible to support the use of the MS Graph API to older versions of Alemba Service Manager and vFire Core.</p>
+            
+            <p>Please register your interest by logging a Support Call through the <a href="https://alemba.help">Alemba Support Portal</a> and we will update you as to our progress investigating this option.</p>
+            
+            <p><strong>Please Note:</strong> There is no guarantee that this option will be technically possible, so customers are advised to also proceed with an alternate option as their primary solution to this issue. Alemba will provide an update at the end of June 2022.</p>
+            
+            
+            <h3>Alemba’s Ongoing Support</h3>
+            
+            <p>Alemba will continue to support customers and will provide the help and assistance required to transition to a Modern Authentication method during and after that date.</p>
+            
+            <p>You can see updated details of all our planned software releases and schedule at: <a href="https://alemba.com/product-roadmap">https://alemba.com/product-roadmap</a>.</p>
+		</div>
+
+	</div>
+
+</div>
+
+<!-- copy-links -->
+
+{% partial 'pagelinks-recent' %}
+
+<!-- /copy-links -->

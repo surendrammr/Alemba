@@ -1,0 +1,90 @@
+url = "/marketing/uk-user-conference-2019-gallery"
+layout = "nopopup"
+title = "UK User Conference 2019 Gallery"
+description = "A page for the UK User Conference 2019 gallery"
+is_hidden = 0
+meta_title = "UK User Conference 2019 Gallery"
+meta_description = "UK User Conference 2019 Gallery"
+robot_index = "noindex"
+robot_advanced = "https://alemba.com/marketing/uk-user-conference-2019-gallery"
+robot_follow = "follow"
+seoOptionsEnabledInSitemap = 0
+seoOptionsUseUpdatedAt = 1
+seoOptionsRobotIndex = "index"
+seoOptionsRobotFollow = "follow"
+seoOptionsChangefreq = "daily"
+seoOptionsPriority = 0.5
+
+[galleryId]
+idGallery = 7
+lang = "Gallery"
+jqueryinject = "yes"
+thumbnail = "true"
+caption = "true"
+desc = "true"
+counter = "true"
+controls = "true"
+preload = 1
+mode = "lg-slide"
+speed = 600
+loop = "true"
+auto = "false"
+pause = 2000
+escKey = "true"
+height = 70
+width = 100
+resizer = "auto"
+
+[viewBag]
+seo_title = "UK User Conference 2019 Gallery"
+seo_description = "UK User Conference 2019 Gallery"
+robot_index = "index"
+robot_follow = "follow"
+==
+<?php
+use Alemba\Alemba\Models\Event;
+
+function onStart()
+{
+	// Get selected event
+
+	$this['event'] = Event::where('slug', 'uk-user-conference-2019')->first();
+}
+?>
+==
+{% if event.banner_image %}
+
+	<!-- banner -->
+
+	<div class="container-fluid banner jumbotron jumbotron-fluid pageBanner" style="background-image:url('{{ event.banner_image|media }}')">
+	</div>
+
+{% endif %}
+
+<!-- /banner -->
+
+<!-- copy -->
+
+<div class="container copy">
+
+	<header class="col-md-12 copy-heading">
+	
+		<h1>{{ this.page.title }}</h1>
+		<h2><i class="fa fa-map-marker"></i>&nbsp;&nbsp;{{ event.location }}&nbsp;&nbsp;&nbsp;&bull;&nbsp;&nbsp;&nbsp;{{ event.full_dates }}</h2>
+
+	</header>
+
+	<div class="row justify-content-center">
+
+		<div class="col-md-8 col-md-offset-1 copy-main">
+
+			{% component 'galleryId' %}
+			
+		</div>
+
+	</div>
+
+</div>
+
+<!-- Load Font Awesome -->
+{% partial "font-awesome" %}

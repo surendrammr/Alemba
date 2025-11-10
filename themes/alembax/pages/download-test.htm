@@ -1,0 +1,75 @@
+title = "download test"
+url = "/download-test"
+layout = "home"
+is_hidden = 0
+robot_index = "noindex"
+robot_follow = "nofollow"
+
+[viewBag]
+seo_title = "download test"
+seo_description = "download test"
+robot_index = "index"
+robot_follow = "follow"
+==
+<?php
+use Alemba\Alemba\Models\DownloadTypes;
+
+function onStart()
+{
+	// Get the connector categorys
+    $this['download_categories'] = DownloadTypes::orderBy('name', 'asc')->get();
+
+}
+?>
+==
+<div class="jumbotron jumbotron-fluid banner pageBanner" style="background-image: url({{ 'assets/img/banners/banner-download@0.5x.jpg'|theme }})">
+    <div class="container"></div>
+</div>
+
+{% partial 'demo-button' %}
+
+<!-- copy -->
+
+<div class="container article-cards article-index">
+
+	<header class="col-md-12 copy-heading">
+	
+		<h1>{{ this.page.title }}</h1>
+		<h2>Some Alemba goodies, just for you</h2>
+
+	</header>
+
+        {% for category in download_categories %}
+        <hr>
+        <h2>{{ category.name }}</h2>
+		<div class="row">
+            
+			{% for download in category.downloads %}
+			
+				<div class="col-sm-6 col-lg-3">
+
+				<div class="card d-flex align-items-stretch">
+				    <div class="card-img-top" style="background: url({% if download.thumbnail %}{{ download.thumbnail|media }}{% else %}{{'assets/img/thumbnail-default.png'|theme }}{% endif %});"></div>
+                    
+                    <div class="card-body">
+                        <h4 class="card-title text-center">{{ download.name }}</h4>
+                        <h5 class="subheading text-center">{{ download.type }}</h5>
+                        <p class="card-text text-center">{{ download.intro }}</p>
+                        
+                        <div class="text-center">
+                            <a href="{{ 'download'|page({ slug: download.slug }) }}" class="btn btn-primary">Download</a>
+                        </div>
+                    </div>
+                    
+                </div>
+
+			</div>
+
+			{% endfor %}
+
+		</div>
+        {% endfor %}
+
+</div>
+
+<!-- /copy -->

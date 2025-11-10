@@ -1,0 +1,188 @@
+[viewBag]
+title = "Asset Management Transactions in a Manage CMDB Task"
+url = "/help/topics/tasks/asset-mgt-txns"
+layout = "help"
+is_hidden = 0
+navigation_hidden = 0
+==
+                                                    <h1>Asset Management Transactions in a Manage CMDB Task</h1>
+                                                    <p>You can set up an asset management transaction to run automatically through an activated Manage CMDB task. <span style="background-color: #da70d6;" data-mc-conditions="Default.Work in Progress">For an overview of important concepts relating to asset management in <span class="GeneralVariablesProductName">ASM</span>, view Managing Your Assets. </span></p>
+                                                    <p>Asset management can perform various transactions on Inventory or Software Product CMDB items, such as ordering inventory items or licenses, adding inventory items or software licenses to your CMDB once the order has been received, reserving inventory items or licenses for certain customers, or retiring inventory items or licenses. You can automate asset management processes through the following transactions:</p>
+                                                    <table style="width: 100%;mc-table-style: url('../../resources/tablestyles/fielddesc.css');margin-left: 0;margin-right: auto;" class="TableStyle-FieldDesc" cellspacing="0">
+                                                        <col class="TableStyle-FieldDesc-Column-Column1">
+                                                        <col class="TableStyle-FieldDesc-Column-Column2">
+                                                        <tbody>
+                                                            <tr>
+                                                                <td class="TableStyle-FieldDesc-BodyH-Column1-">Order </td>
+                                                                <td class="TableStyle-FieldDesc-BodyG-Column2-">a transaction for items your organization has ordered but not yet actually purchased</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="TableStyle-FieldDesc-BodyH-Column1-">Purchase </td>
+                                                                <td class="TableStyle-FieldDesc-BodyG-Column2-">a transaction for items your organization has actually purchased</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="TableStyle-FieldDesc-BodyH-Column1-">Receive Order</td>
+                                                                <td class="TableStyle-FieldDesc-BodyG-Column2-">a transaction for receiving previously ordered items as purchased</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="TableStyle-FieldDesc-BodyH-Column1-">Allocate from On Hand</td>
+                                                                <td class="TableStyle-FieldDesc-BodyG-Column2-">a transaction for allocating items to a CMDB item or person. The allocated items are transferred from the ordered or purchased items</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="TableStyle-FieldDesc-BodyH-Column1-">Allocate from Reservation</td>
+                                                                <td class="TableStyle-FieldDesc-BodyG-Column2-">a transaction for allocating items to a CMDB item or person. The allocated items are transferred from the reserved items</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="TableStyle-FieldDesc-BodyH-Column1-">Reserve </td>
+                                                                <td class="TableStyle-FieldDesc-BodyG-Column2-">a transaction for reserving items for use by a CMDB item or person</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="TableStyle-FieldDesc-BodyH-Column1-">Retire </td>
+                                                                <td class="TableStyle-FieldDesc-BodyG-Column2-">a transaction for retiring items. After retirement, the items are no longer available for allocating</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="TableStyle-FieldDesc-BodyH-Column1-">Return to the On Hand from In Use</td>
+                                                                <td class="TableStyle-FieldDesc-BodyG-Column2-">a transaction for making items available again</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="TableStyle-FieldDesc-BodyB-Column1-">Return to the On Hand from Reserved</td>
+                                                                <td class="TableStyle-FieldDesc-BodyA-Column2-">a transaction for releasing reserved items and making them available again</td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <h2>Asset management transaction item pools</h2>
+                                                    <p>Asset management transactions enable you to automate the transfer of bulk quantities of a particular license or inventory within the CMDB. The items are transferred to (or from) an item pool such as the Ordered pool, the On Hand pool, the In Use pool, depending on the type of transaction performed.</p>
+                                                    <p class="exampletext">You may have a workflow for new employees with various tasks and approvals for setting the new employee up with access to IT services and hardware items. You can add a Manage CMDB task to automatically create new people and automatically allocate licenses or inventory items to them. </p>
+                                                    <p class="exampletext">To take another example, for a procurement workflow for software purchases, you might set up a Manage CMDB task to automatically manage the number of items of a particular Inventory or Software Product from ordering items, to receiving the items as available and allocating items to, for example, the customers and/or configuration items linked to the request. </p>
+                                                    <h2>Adding Order or Purchase transactions</h2>
+                                                    <ol start="1">
+                                                        <li value="1">
+<a href="manage%20cmdb%20task.htm">Create the Manage CMDB task</a>. </li>
+                                                        <li value="2">At <b>Transaction Type</b> choose <b>Asset Management Transaction</b> and click <b>Add</b>.</li>
+                                                        <li value="3">Complete the details.</li>
+                                                        <p>
+                                                            </p>
+<table class="TableStyle-FieldDesc" style="mc-table-style: url('../../resources/tablestyles/fielddesc.css');" cellspacing="0">
+                                                                <col class="TableStyle-FieldDesc-Column-Column1">
+                                                                <col class="TableStyle-FieldDesc-Column-Column2">
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyH-Column1-">Name</td>
+                                                                        <td class="TableStyle-FieldDesc-BodyG-Column2-">Type the name of the task</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyH-Column1-">Description</td>
+                                                                        <td class="TableStyle-FieldDesc-BodyG-Column2-">If necessary, add a description</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyH-Column1-">Type</td>
+                                                                        <td class="TableStyle-FieldDesc-BodyG-Column2-">Select <b>License</b> or <b>Inventory</b>
+</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyH-Column1-">Transaction</td>
+                                                                        <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                Select from:
+                                <ul>
+<li value="1">New Order</li>
+<li value="2">Receive Order</li>
+<li value="3">Purchase</li>
+<li value="4">Allocate from On Hand</li>
+<li value="5">Reserve</li>
+<li value="6">Allocate from Reservation</li>
+<li value="7">Unallocate</li>
+<li value="8">Retire</li>
+</ul>
+</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyB-Column1-">Mapping Table</td>
+                                                                        <td class="TableStyle-FieldDesc-BodyA-Column2-">
+                                                                            <p>Specify the software product or inventory for which to order or purchase the items, the quantity of items order or purchase, and the transaction status to apply to the items.</p>
+                                                                            <p class="note">The <b>Update</b> column is not displayed on the Mapping Table for the asset management transactions.</p>
+                                                                        </td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        
+                                                        <li value="4">Add fields to the Mapping Table:</li>
+                                                        </ol>
+<ul start="1">
+                                                            <li value="1">Click <b>Add</b>. </li>
+                                                            <li value="2">In the <b>Add fields</b> window, select the fields you want to map, most importantly, <b>CMDB Item</b>, <b>Quantity</b>, and <b>Transaction Status</b>. </li>
+                                                            <li value="3">Click <b>OK</b>.</li>
+                                                            <li value="4">Specify the values for the added fields.</li>
+                                                        </ul>
+                                                        <li value="5">To specify the Software Product or Inventory for which items are ordered or purchased, click <img src="/storage/app/media/Help/images/qd%20button.png" alt="" title=""> in the <b>Value</b> column for the CMDB Item field. </li>
+                                                        <ul>
+                                                            <li value="1">Select <b>(Value)</b> to select a CMDB item.</li>
+                                                            <li value="2">Select <b>(Quick Search</b>) to select a CMDB item from the CMDB Item Quick Search window.</li>
+                                                            <li value="3">Alternatively double-click a request CMDB item field to dynamically create an order or purchase for the CMDB item populating that field when the transaction runs. This list includes CMDB items or any field that might lead to a CMDB item. </li>
+                                                            <p class="exampletext">Selecting the value <b>Config Item</b> selects the configuration item linked to the request, or selecting the value <b>Base CMDB Item</b> selects the CMDB item from which the current CMDB item on the request was cloned. </p>
+                                                            <p class="note">While you can drill down into any request field, such as Customer, not all fields necessarily lead to a CMDB item. Also, if a field is italicized in this multi-tiered list, you can only drill down into it.</p>
+                                                        </ul>
+                                                        <li value="6">To specify the quantity of items to be ordered or purchased, click <img src="/storage/app/media/Help/images/qd%20button.png" alt="" title=""> in the <b>Value</b> column for the <b>Quantity</b> field.</li>
+                                                        <ul>
+                                                            <li value="1">Select <b>(Value)</b> to specify a quantity in the <b>Value</b> column.</li>
+                                                            <li value="2">Alternatively, double-click a request CMDB field to base the quantity on a value populating that field at runtime</li>
+                                                        </ul>
+                                                        <li value="7">To specify the transaction status of the items to be ordered or purchased, click <img src="/storage/app/media/Help/images/qd%20button.png" alt="" title=""> in the Value column for the <b>Transaction Status</b> field.</li>
+                                                        <ul>
+                                                            <li value="1">Select <b>(Value)</b> to drill down into the base transaction status types and select the suitable transaction status.</li>
+                                                        </ul>
+                                                        <p class="note">
+                                                            </p>
+<p>Although it is possible to map any transaction status for a given transaction type, invalid status values will be ignored at run time. For example, if you map the transaction status for an Order transaction to Purchased, the transaction will fail.</p>
+                                                        
+                                                        <p class="note">When specifying the values for fields in the mapping table, the data type of the fields shown as options in the Value column (that is, the options shown when you select <img src="/storage/app/media/Help/images/expandtiersbutton.png">) does not necessarily match the data type of the field specified in the Field column. The transaction will not fail however <span class="GeneralVariablesCompanyName2">Alemba®</span> recommends that you match fields in this way only if it meets a particular requirement of your database.</p>
+                                                        <li value="8">Select <b>Error to fail the transaction</b> if an error is encountered when the task runs.</li>
+                                                        <li value="9">Click <b>OK</b>.</li>
+                                                    
+                                                    <h2>Adding Receive Order, Allocate, Reserve, Retire, or Return transactions</h2>
+                                                    <ol start="1">
+                                                        <li value="1">
+<a href="manage%20cmdb%20task.htm">Create the Manage CMDB task</a>. At <b>Transaction Type</b> choose ‘Asset Management Transaction’ and click <b>Add</b>.</li>
+                                                        <li value="2">In the <b>Transaction Details window</b>, complete the <b>Transaction Name</b> and, if necessary, <b>Description</b> fields.</li>
+                                                        <li value="3">At <b>Transaction Type</b>, select the appropriate asset transaction type. If you select another type, a warning message appears. Click <b>Yes</b> to refresh the screen for the particular transaction type, or <b>No</b> to continue to add the details for the current transaction type.</li>
+                                                        <li value="4">In the field below, specify the criteria for selecting items on which to perform the transaction. When the task is activated as part of a workflow, the system will search the specified transaction pool or group of items based on your selection here to calculate the total number of items available for transfer. </li>
+                                                        <p class="note">The label of this field depends on the type of asset management transaction and will indicate the item pool from which the items will be transferred, such as “Choose On Hand Items” if you are setting up an ‘Allocate from On Hand’ transaction.</p>
+                                                        <p>
+                                                            </p>
+<p>The following options display on the menu:</p>
+                                                            <table style="width: 100%;mc-table-style: url('../../resources/tablestyles/fielddesc.css');margin-left: 0;margin-right: auto;" class="TableStyle-FieldDesc" cellspacing="0">
+                                                                <col class="TableStyle-FieldDesc-Column-Column1">
+                                                                <col class="TableStyle-FieldDesc-Column-Column2">
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyH-Column1-">Advanced</td>
+                                                                        <td class="TableStyle-FieldDesc-BodyG-Column2-">select this option to define rules for specifying the selection criteria in the rules builder. For example, you can add a rule {Orders:Contract}={Request:UC/Contract} which would select only items in the Ordered pool that are linked to the same contract as the UC attached to the request</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyB-Column1-">Transaction Output</td>
+                                                                        <td class="TableStyle-FieldDesc-BodyA-Column2-">select this option to drill down into previous transactions defined on the same task, and therefore select the output pool from a previous transaction</td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        
+                                                        <li value="5">Click <b>Add to List</b>.</li>
+                                                        <li value="6">Repeat to add another transaction pool.</li>
+                                                        <li value="7">In the <b>Mapping Table</b>, add the <b>CMDB item</b> or <b>Person</b> to or for which to transfer the items, specify the <b>Quantity</b> of items to transfer, and the <b>Transaction Status</b> to apply to the transferred items. Specify these values by clicking in the <b>Value</b> column of each row in the table. Depending on the type of asset management transaction you are adding, you may be able to add and specify other transaction fields and details.</li>
+                                                        <p>
+                                                            </p>
+<p class="note">Note the following when completing the details:
+                </p>
+</ol>
+<ul class="prereq">
+<li value="1">If you add a multi-select field and multiple items are selected in that field when the transaction runs, a separate transaction record is created for each one.</li>
+<li value="2">Although it is possible to map a new CMDB item for a <b>Receive Order</b> transaction, the mapping will be ignored at run time and the purchase created will always use the CMDB item specified on the original <b>Order</b> transaction. In addition, for a <b>Retire</b> or <b>Return to On Hand</b> transaction, the CMDB item or Person mapping will be ignored as they are not relevant to these transactions.</li>
+<li value="3">Although it is possible to map any transaction status for a given transaction type, invalid status values will be ignored at run time. For example, if you map the transaction status for a <b>Receive Order</b> transaction to <b>Reserved</b>, the transaction will fail. </li>
+<li value="4">When specifying the values for fields in the mapping table, the data type of the fields shown as options in the <b>Value</b> column (that is, the options shown when you select <img src="/storage/app/media/Help/images/expandtiersbutton.png">) does not necessarily match the data type of the field specified in the <b>Field</b> column. The transaction will not fail but you should only match fields in this way if it meets a particular requirement of your database.</li>
+</ul>
+                                                        
+                                                        <li value="8">Click <b>OK</b>.</li>
+                                                    
+                                                    <h2>How asset management transactions are executed</h2>
+                                                    <p>When the <b>Manage CMDB</b> task is activated by a workflow, <span class="GeneralVariablesProductName">ASM</span> will evaluate the transactions added to the task.</p>
+                                                    <p>For asset management transactions in which items are ordered or purchased, <span class="GeneralVariablesProductName">ASM</span> uses the quantity specified in the mapping table to work out the number of transaction records to create and the number of items to add. Order transactions add items to the Ordered transaction pool. Purchase transactions add items to the On Hand transaction pool. The mapping table enables the system to determine the number of software licenses or inventory items to transfer to the Ordered or On Hand pool.</p>
+                                                    <p>For asset management transactions whereby items are received, allocated, reserved, retired or returned, <span class="GeneralVariablesProductName">ASM</span> will calculate whether the number of available items meets or exceeds the number of items to be transferred by the particular transaction (that is the amount specified in the Quantity field in the Mapping Table). If so, the transaction runs, otherwise it fails. The system also checks whether any usage restrictions apply to the particular Software Product or Inventory from which items are being selected for transfer, against the CMDB Item specified in the mapping table.</p>
+                                                

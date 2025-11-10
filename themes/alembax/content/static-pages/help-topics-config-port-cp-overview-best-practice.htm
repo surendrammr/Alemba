@@ -1,0 +1,109 @@
+[viewBag]
+title = "Config Port Overview & Best Practices"
+url = "/help/topics/config-port/cp-overview-best-practice"
+layout = "help"
+is_hidden = 0
+navigation_hidden = 0
+==
+                                                    <h1>Config Port Overview &amp; Best Practices</h1>
+                                                    <p class="intro">Config Port is a powerful tool for developing and transferring screens, email templates, and system settings between systems; however if used incorrectly problems may occur. This topic contains an overview explaining the basic principles behind Config Port, as well as recommended best practices to avoid the common pitfalls. A detailed explanation of Config Port is available in the <a href="configuration%20portability.htm" class="MCXref xref">Configuration Portability</a> topic.</p>
+                                                    <h2 class="Prerequisite">Terms Used</h2>
+                                                    <ul class="prereq">
+                                                        <li value="1">The Production (PROD) system is the <b>master target system</b> - the final destination for all the changes being developed</li>
+                                                        <li value="2">The Development (DEV) system is the <b>source system</b> - where all the changes are developed</li>
+                                                        <li value="3">The Test system is the <b>target system</b> - where the import is tested priority to import into Production</li>
+                                                    </ul>
+                                                    <h2>How Config Port Works</h2>
+                                                    <h3>Export</h3>
+                                                    <ul>
+                                                        <li value="1">On the Config Port Source (DEV) environment the elements to export are selected<ul><li value="1">Config Port is run and the data exported to file</li></ul>
+</li>
+                                                        <li value="2">Where there is a null CONFIG_PORT_GUID the value is allocated<ul>
+<li value="1">Static records are allocated static GUIDs during install and patch</li>
+<li value="2">User-created records are allocated GUIDs during export, the GUIDs are created by an algorithm</li>
+<li value="3">User-created records are allocated GUIDs a record at a time, and then all are exported to file</li>
+</ul>
+</li>
+                                                    </ul>
+                                                    <h3>Import</h3>
+                                                    <ul>
+                                                        <li value="1">On the Target system areas to import are selected from export file<ul><li value="1">Config Port is run and the data imported</li></ul>
+</li>
+                                                        <li value="2">GUIDs from the Config Port Source (DEV) are matched to GUIDs on the Target environment<ul>
+<li value="1">If there is no match on GUID, various properties of the item are looked up, generally name and partition</li>
+<li value="2">When matching on properties, the Config Port excludes all items with a GUID</li>
+<li value="3">If a match on properties is identified:<ul>
+<li value="1">the GUID is set so the items are always in sync in the future (between the Source and Target environments)</li>
+<li value="2">other properties are updated (i.e. status)</li>
+</ul>
+</li>
+<li value="4">If there is no match on GUID and no match on defined properties, a new record is created on the Target environment with the GUID set from the  Source environment (DEV)</li>
+</ul>
+</li>
+                                                    </ul>
+                                                    <h2>Best Practice</h2>
+                                                    <h3>Required Export / Import Sequence</h3>
+                                                    <p>The import and export sequence is critically important to a successful outcome. Follow these steps to ensure all changes are developed on the correct database and imported successfully to the master target system.</p>
+                                                    <ol>
+                                                        <li value="1">Copy the Production database to your development environment. </li>
+                                                        <p class="note">For detailed instructions refer to .</p>
+                                                        <li value="2">Develop the required screens, emails, and system setting changes on the DEV system</li>
+                                                        <li value="3">When complete, run Config Export on the DEV system to create a config file</li>
+                                                        <li value="4">Copy the Production database to your test environment.</li>
+                                                        <li value="5">Run Config Import on the test system</li>
+                                                        <li value="6">Perform tests on the test system to ensure the import was successful<ul><li value="1">If testing reveals there were problems with the changes or the import, go back to Step 2.</li></ul>
+</li>
+                                                        <li value="7">Run Config Import on the PROD system using the config file from step 3.<ul><li value="1">Back up the PROD database prior to import</li></ul>
+</li>
+                                                    </ol>
+                                                    <p>
+                                                        <img src="/storage/app/media/Help/images/cp_port-sequence_664x266.png" style="width: 664;height: 266;">
+                                                    </p>
+                                                    <p>
+                                                        <img src="/storage/app/media/Help/images/cp_dodont_667x371.png" style="width: 667;height: 371;">
+                                                    </p>
+                                                    <h3>More Best Practice Recommendations</h3>
+                                                    <p class="tip" style="font-weight: bold;">There can be only one Config Port Source, and one Master Target</p>
+                                                    <ul>
+                                                        <li value="1">The Config Port Source is typically a DEV environment, the Master Target is Production (PROD)</li>
+                                                        <li value="2">Before backing up the Master Target (PROD), always run the <b>Config Portability GUID Assignment.scp</b> from the Server Console – this fills any blank static GUIDS to prevent mismatches</li>
+                                                    </ul>
+                                                    <p class="tip" style="font-weight: bold;">Version alignment</p>
+                                                    <ul>
+                                                        <li value="1">Source and Target environments need to be the same VSM/<span class="GeneralVariablesProductName">ASM</span> patch version<ul><li value="1">i.e. Major.Minor.Maintenance values must match across environments</li></ul>
+</li>
+                                                        <li value="2">After an <span class="GeneralVariablesProductName">ASM</span> upgrade, the Config Port Source (and any other Target environments) should always be overwritten with a new database copy from the Master Target (PROD)</li>
+                                                    </ul>
+                                                    <p class="tip" style="font-weight: bold;">Back up the Target environment(s)</p>
+                                                    <ul>
+                                                        <li value="1">Backup routine should always occur prior to porting to facilitate rollback if needed</li>
+                                                    </ul>
+                                                    <p class="tip" style="font-weight: bold;">Code and configuration freeze on Target environment(s)</p>
+                                                    <ul>
+                                                        <li value="1">Configuration changes should only be made on the Source system (DEV) and then ported</li>
+                                                        <li value="2">Manual changes should not be performed on Master Target (PROD) or other Target (TEST) environments<ul><li value="1">Manual changes risk being overwritten by the porting process</li></ul>
+</li>
+                                                    </ul>
+                                                    <p class="tip" style="font-weight: bold;">Be specific</p>
+                                                    <ul>
+                                                        <li value="1">Only port the specific elements you want to port<ul><li value="1">Config Port will maintain system/data relationships; i.e. porting a specific request screen will also port across any dependent data linked to that screen (linked fields in the screen set, fields linked to the parent request screen set and lookup data)</li></ul>
+</li>
+                                                    </ul>
+                                                    <h2>Typical Mistakes</h2>
+                                                    <p style="font-weight: bold;">That can cause data corruption</p>
+                                                    <ul>
+                                                        <li value="1">Config Port Source (DEV) and other Targets are not synced with the Master Target (PROD) before development starts</li>
+                                                        <li value="2">Config file from Target (TEST) is imported into Master Target (PROD), instead of the Config file from  Source (DEV)</li>
+                                                        <li value="3">Importing Config files from multiple environments into Master Target (PROD)</li>
+                                                        <li value="4">No Test environment</li>
+                                                        <li value="5">Exporting from an environment that has partitioning enabled, and importing into a system that does not (and vice versa) may result in errors in the export and/or import process.  In addition, partition names must be unique across Source and Target(s) for the process to be successful</li>
+                                                    </ul>
+                                                    <p style="font-weight: bold;">That confuse Administrators</p>
+                                                    <ul>
+                                                        <li value="1">Expectation that Workflow Templates are ported as part of Config Port</li>
+                                                        <li value="2">Not running Config Port and Workflow Port in the correct sequence, which is: <ul><p>Config Port -&gt; Workflow Port -&gt; Config Port (if Workflow Port log has warnings)</p></ul>
+</li>
+                                                        <li value="3">Expectation that exporting a child item (e.g. email template) also exports the parent item (e.g. screen set)</li>
+                                                    </ul>
+                                                    <p> </p>
+                                                

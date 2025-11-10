@@ -1,0 +1,154 @@
+[viewBag]
+title = "Configuring external network access to ASM"
+url = "/help/topics/installation-and-upgrade/install-and-upgrade/install-appendixb--config-dmz"
+layout = "help"
+is_hidden = 0
+navigation_hidden = 0
+==
+                                                    <h1>Configuring external network access to <span class="GeneralVariablesProductName">ASM</span>
+</h1>
+                                                    <p>You can configure <span class="GeneralVariablesProductName">ASM</span> so users on a public network can access <span class="GeneralVariablesSelfServicePortalName">Self Service Portal</span> and the <span class="GeneralVariablesAppName">ASM app</span> without needing to log into the corporate network.</p>
+                                                    <p> Depending on organizational security requirements, the recommended environment and security configurations may differ. The most common security recommendation is to create a demilitarized zone (DMZ) containing a reverse proxy server buffered by firewalls. </p>
+                                                    <p class="prereq">Work with your Network Administration teams to configure reverse proxy servers, DMZ, and IIS redirection.</p>
+                                                    <p>We outline three DMZ scenarios, based on whether or not Windows Authentication is enabled on the <span class="GeneralVariablesSystemName">ASM System</span> within the secure network:</p>
+                                                    <ul>
+                                                        <li value="1">
+                                                            <p>DMZ with a web server where <span class="GeneralVariablesCoreName">ASM Core</span> is installed. The <span class="GeneralVariablesSystemName">ASM System</span> within the secure network may / may not have Windows Authentication enabled. </p>
+                                                            <p>For more information, see <a href="#Option" class="MCXref xref">Option 1: Install a second ASM System on a web server in the DMZ</a>.</p>
+                                                        </li>
+                                                        <li value="2">
+                                                            <p>DMZ with a reverse proxy server. The <span class="GeneralVariablesSystemName">ASM System</span> within the secure network has Windows Authentication disabled.</p>
+                                                            <p>For more information, see <a href="#Option2" class="MCXref xref">Option 2: Set up a Reverse Proxy Server in the DMZ,  Authentication Disabled</a>. </p>
+                                                        </li>
+                                                        <li value="3">
+                                                            <p>DMZ with a reverse proxy server. The <span class="GeneralVariablesSystemName">ASM System</span> within the secure network has Windows Authentication enabled.</p>
+                                                            <p>For more information, see <a href="#Option3" class="MCXref xref">Option 3: Set up a Reverse Proxy Server in the DMZ,  Authentication Enabled</a>.</p>
+                                                        </li>
+                                                    </ul>
+                                                    <h3>Ports to open in the firewalls</h3>
+                                                    <table style="mc-table-style: url('../../../resources/tablestyles/rep hdr row.css');margin-left: 0;margin-right: auto;width: 583px;" class="TableStyle-Rep_Hdr_Row" cellspacing="0">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column1" style="width: 110px;">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column2" style="width: 110px;">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column1" style="width: 110px;">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column2" style="width: 217px;">
+                                                        <thead>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Head-Header1">
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column1-Header1"> </th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column2-Header1">HTTP</th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column1-Header1">HTTPS</th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadD-Column2-Header1">SQL</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyB-Column1-Body1" style="font-weight: bold;text-align: center;">Ports</td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyB-Column2-Body1" style="text-align: center;">80</td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyB-Column1-Body1" style="text-align: center;">443</td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyA-Column2-Body1" style="text-align: center;">TCP 1433, UDP 1434</td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <h2>
+<a name="Option"></a>Option 1: Install a second <span class="GeneralVariablesSystemName">ASM System</span> on a web server in the DMZ</h2>
+                                                    <table style="width: 100%;mc-table-style: url('../../../resources/tablestyles/scenario table.css');margin-left: 0;margin-right: auto;" class="TableStyle-scenario_table" cellspacing="0">
+                                                        <col class="TableStyle-scenario_table-Column-Column1">
+                                                        <col class="TableStyle-scenario_table-Column-Column2">
+                                                        <tbody>
+                                                            <tr class="TableStyle-scenario_table-Body-Body1">
+                                                                <td class="TableStyle-scenario_table-BodyE-Column1-Body1">Internal network</td>
+                                                                <td class="TableStyle-scenario_table-BodyD-Column2-Body1">Install the primary <span class="GeneralVariablesSystemName">ASM System</span> on the internal server. You may choose to enable Windows Authentication or not; it has no effect on this configuration.</td>
+                                                            </tr>
+                                                            <tr class="TableStyle-scenario_table-Body-Body1">
+                                                                <td class="TableStyle-scenario_table-BodyE-Column1-Body1">DMZ</td>
+                                                                <td class="TableStyle-scenario_table-BodyD-Column2-Body1">Configure a second web server within the DMZ to act as a reverse proxy server.<p>On this web server in the DMZ:</p>
+<ul>
+<li value="1">Create an <span class="GeneralVariablesSystemName">ASM System</span> that points to the same database as the internal <span class="GeneralVariablesSystemName">ASM System</span>.<p class="warning">During system creation, when prompted to update the database, select <b>No</b></p>
+</li>
+<li value="2">In the virtual directory for this system, disable Windows Authentication  and enable Anonymous Authentication.</li>
+<li value="3">Stop all <span class="GeneralVariablesCoreName">ASM Core</span> services and set their "Start Up" property to <b>Manual</b>; except for the <span class="GeneralVariablesProductName">ASM</span> Administrative Service.</li>
+<li value="4">Ensure the <span class="GeneralVariablesProductName">ASM</span> Administrative Service is running and the "Start Up" property is set to <b>Automatic</b>.</li>
+<li value="5">Using the registry key, disable the database upgrade via registry string <code style="font-size: 10pt;">SkipDatabaseUpgrade</code> = <b>1</b><br><img src="/storage/app/media/Help/images/regkeyskipdb_778x238.png" style="width: 778;height: 238;" class="screenshot"><br>
+</li>
+</ul>
+</td>
+                                                            </tr>
+                                                            <tr class="TableStyle-scenario_table-Body-Body1">
+                                                                <td class="TableStyle-scenario_table-BodyB-Column1-Body1">URL for External Users</td>
+                                                                <td class="TableStyle-scenario_table-BodyA-Column2-Body1">The URL points to the server and virtual directory within the DMZ.<p><img src="/storage/app/media/Help/images/dmz-appserver_711x360.png" style="width: 711;height: 360;" class="img_no_border"></p>
+</td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <p> </p>
+                                                    <h2>
+<a name="Option2"></a>Option 2: Set up a Reverse Proxy Server in the DMZ,  Authentication Disabled</h2>
+                                                    <table style="width: 100%;margin-left: 0;margin-right: auto;mc-table-style: url('../../../resources/tablestyles/scenario table.css');" class="TableStyle-scenario_table" cellspacing="0">
+                                                        <col class="TableStyle-scenario_table-Column-Column1">
+                                                        <col class="TableStyle-scenario_table-Column-Column2">
+                                                        <tbody>
+                                                            <tr class="TableStyle-scenario_table-Body-Body1">
+                                                                <td class="TableStyle-scenario_table-BodyE-Column1-Body1">Internal network</td>
+                                                                <td class="TableStyle-scenario_table-BodyD-Column2-Body1">Install the primary <span class="GeneralVariablesSystemName">ASM System</span> on the internal server. Do not enable Windows Authentication.</td>
+                                                            </tr>
+                                                            <tr class="TableStyle-scenario_table-Body-Body1">
+                                                                <td class="TableStyle-scenario_table-BodyE-Column1-Body1">DMZ</td>
+                                                                <td class="TableStyle-scenario_table-BodyD-Column2-Body1">
+                                                                    <p>Configure a reverse proxy server within the DMZ. </p>
+                                                                    <p>On this server in the DMZ:</p>
+                                                                    <ul>
+                                                                        <li value="1">Install IIS</li>
+                                                                        <li value="2">Create a virtual directory; disable Windows Authentication and enable Anonymous Authentication</li>
+                                                                        <li value="3"> Configure IIS to redirect traffic to the <span class="GeneralVariablesCoreName">ASM Core</span> application server and virtual directory within the internal secure network.</li>
+                                                                    </ul>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-scenario_table-Body-Body1">
+                                                                <td class="TableStyle-scenario_table-BodyB-Column1-Body1">URL for External Users</td>
+                                                                <td class="TableStyle-scenario_table-BodyA-Column2-Body1">The URL  points to the reverse proxy server and virtual directory within the DMZ.<p><img src="/storage/app/media/Help/images/dmz-proxyanon_718x367.png" style="width: 718;height: 367;" class="img_no_border"></p>
+</td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <p> </p>
+                                                    <h2>
+<a name="Option3"></a>Option 3: Set up a Reverse Proxy Server in the DMZ,  Authentication Enabled</h2>
+                                                    <table style="width: 100%;margin-left: 0;margin-right: auto;mc-table-style: url('../../../resources/tablestyles/scenario table.css');" class="TableStyle-scenario_table" cellspacing="0">
+                                                        <col class="TableStyle-scenario_table-Column-Column1">
+                                                        <col class="TableStyle-scenario_table-Column-Column2">
+                                                        <tbody>
+                                                            <tr class="TableStyle-scenario_table-Body-Body1">
+                                                                <td class="TableStyle-scenario_table-BodyE-Column1-Body1">Internal network</td>
+                                                                <td class="TableStyle-scenario_table-BodyD-Column2-Body1">
+                                                                    <p>Enable Windows Authentication on the internal server's <span class="GeneralVariablesSystemName">ASM System</span>. </p>
+                                                                    <p>On the internal server:</p>
+                                                                    <ul>
+                                                                        <li value="1">Create a second <span class="GeneralVariablesSystemName">ASM System</span> that points to the same database as the primary <span class="GeneralVariablesSystemName">ASM System</span>.</li>
+                                                                        <p class="warning">During system creation, when prompted to update the database, select <b>No</b></p>
+                                                                        <li value="2">In the virtual directory for the new system, disable Windows Authentication and enable Anonymous Authentication.</li>
+                                                                        <li value="3">Using the registry key for the new system, disable polling of services via registry string <code style="font-size: 10pt;">PollingDisabled</code> = <b>1</b>
+</li>
+                                                                        <li value="4">Using the registry key for the new system, disable the database upgrade via registry string <code style="font-size: 10pt;">SkipDatabaseUpgrade</code> = <b>1</b><br><img src="/storage/app/media/Help/images/regkey_skipdbpolling_816x250.png" style="width: 816;height: 250;" class="screenshot"><br>
+</li>
+                                                                    </ul>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-scenario_table-Body-Body1">
+                                                                <td class="TableStyle-scenario_table-BodyE-Column1-Body1">DMZ</td>
+                                                                <td class="TableStyle-scenario_table-BodyD-Column2-Body1">
+                                                                    <p>Configure a reverse proxy server within the DMZ. </p>
+                                                                    <p>On this server in the DMZ:</p>
+                                                                    <ul>
+                                                                        <li value="1">Install IIS</li>
+                                                                        <li value="2">Create a virtual directory; disable Windows Authentication and enable Anonymous Authentication</li>
+                                                                        <li value="3"> Configure IIS to redirect traffic to the internal application server and the virtual directory that has Anonymous Authentication enabled</li>
+                                                                    </ul>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="TableStyle-scenario_table-Body-Body1">
+                                                                <td class="TableStyle-scenario_table-BodyB-Column1-Body1">URL for External Users</td>
+                                                                <td class="TableStyle-scenario_table-BodyA-Column2-Body1">The URL points to the reverse proxy server and virtual directory within the DMZ.<p><img src="/storage/app/media/Help/images/dmz-proxyauth_768x350.png" style="width: 768;height: 350;" class="img_no_border"></p>
+</td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                

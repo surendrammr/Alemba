@@ -1,0 +1,37 @@
+tabs:
+    fields:
+        name:
+            label: Name
+            span: full
+            required: 1
+            type: text
+            tab: Setup
+        body:
+            label: Body
+            commentAbove: 'Use {{ firstname }} where the user’s name should show.'
+            size: giant
+            language: php
+            span: full
+            required: 1
+            type: codeeditor
+            tab: Setup
+        preview:
+            span: full
+            path: $/alemba/alemba/partials/_email_preview.htm
+            type: partial
+            tab: Preview
+        recipients:
+            label: Recipients
+            nameFrom: name
+            descriptionFrom: description
+            span: auto
+            context:
+                - update
+                - preview
+            type: relation
+            tab: Recipients
+        send:
+            span: full
+            path: $/alemba/alemba/partials/_email_send.htm
+            type: partial
+            tab: Recipients

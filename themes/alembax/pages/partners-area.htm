@@ -1,0 +1,125 @@
+title = "Partner resources"
+url = "/partner-zone"
+layout = "home"
+description = "Partner resources page"
+is_hidden = 0
+canonical_url = "https://alemba.com/partner-zone"
+meta_title = "Partner resources"
+meta_description = "Partner resources"
+robot_index = "index"
+robot_follow = "follow"
+seoOptionsEnabledInSitemap = 0
+seoOptionsUseUpdatedAt = 1
+seoOptionsRobotIndex = "index"
+seoOptionsRobotFollow = "follow"
+seoOptionsChangefreq = "daily"
+seoOptionsPriority = 0.5
+
+[session]
+security = "partner"
+
+[account]
+paramCode = "code"
+forceSecure = 0
+requirePassword = 0
+
+[viewBag]
+seo_title = "Partner resources"
+seo_description = "Partner resources"
+robot_index = "index"
+robot_follow = "follow"
+==
+<?php
+use Alemba\Alemba\Models\PartnerResourceGroup;
+
+function onStart()
+{
+	
+	$this['resource_groups'] = PartnerResourceGroup::has('resources')->orderBy('sort_order')->get();
+
+}
+?>
+==
+<!-- banner -->
+
+<div class="jumbotron jumbotron-fluid banner dark pageBanner" style="background-image:url('{{ 'assets/img/banners/banner-esm@0.5x.jpg'|theme }}')">
+
+	<div class="container h-100">
+	    <div class="row h-100">
+    	    <div class="col my-auto">
+    		    <h1 class="text-center xl-header">{{ this.page.title }}</h1>
+    		    {% if user %}
+
+					<h2 class="text-center">Welcome, {{ user.name }}!</h2>
+
+					<ul class="mt-3 text-center list-inline">
+						<li class="list-inline-item"><small>Resources</small></li>
+						<li class="list-inline-item"><small><a href="{{ 'partner-details'|page }}">Your details</a></small></li>
+						<li class="list-inline-item"><small><a data-request="onLogout">Sign out</a></small></li>
+					</ul>
+
+    		    {% endif %}
+		    </div>
+		</div>
+	</div>
+
+</div>
+
+<!-- copy -->
+
+<div class="container copy pb-0">
+
+	<div class="row justify-content-center pb-0">
+
+		<div class="col-md-10 copy-main pb-0">
+	        {% if user %}
+                <img src="{{ user.partner.logo|media }}" alt="{{ user.partner.name }}" class="partner-logo d-block mx-auto mb-5">
+            {% endif %}
+			<p class="mb-5 lead">We'll be collecting all our collateral on this page for you to download and use as you see fit. If you need anything specific – or would like some collateral to be co-branded - please contact the <a href="mailto:marketing@alemba.com">Marketing Team</a>.</p>
+
+			{% if user %}
+
+				{% for group in resource_groups %}
+
+					<h4 class="mb-4">{{ group.name }}</h4>
+
+					<table class="table table-striped">
+						<thead>
+							<tr>
+								<th scope="col" width="20%"></th>
+								<th scope="col" width="30%">Name</th>
+								<th scope="col" width="25%">Description</th>
+								<th scope="col" width="10%">Type</th>
+								<th scope="col" width="15%">Last updated</th>
+							</tr>
+						</thead>
+						<tbody>
+
+							{% for resource in group.resources %}
+
+								<tr>
+									<th scope="row"><a href="{{ resource.path|media }}" download><img class="img-fluid" width="100" src="{{ resource.thumbnail|media }}" alt="{{ resource.name }}"></a></th>
+									<td><a href="{{ resource.path|media }}" download>{{ resource.name }}</a></td>
+									<td>{{ resource.description }}</td>
+									<td>{{ resource.type|upper }}</td>
+									<td>{{ resource.updated_at|date('d M Y') }}</td>
+								</tr>
+
+							{% endfor %}
+							
+						</tbody>
+					</table>
+
+				{% endfor %}
+
+			{% else %}
+
+				{% component 'account' %}
+
+			{% endif %}
+
+		</div>
+		
+	</div>
+	
+</div>

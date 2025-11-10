@@ -1,0 +1,67 @@
+[viewBag]
+title = "Call Impact"
+url = "/help/topics/admin-ipk-management/call-impact"
+layout = "help"
+is_hidden = 0
+navigation_hidden = 0
+==
+                                                    <h1>Call Impact</h1>
+                                                    <p class="intro">According to ITIL, the priority of a call should be derived from its <b>urgency</b> and its <b>impact</b>.  Impact levels represent how many people are affected by a disruption, whereas <a href="call%20urgency.htm">urgency</a> levels represent how quickly the disruption in service is going to affect people.  The <b>Call Impact</b> window enables you to create and define impact levels and specify what their criteria are.</p>
+                                                    <p class="warning">If call impact is not configured properly, the system will not be able to derive the priority correctly. </p>
+                                                    <p class="note"> If <span style="font-weight: bold;">Impact-Urgency-Priority Definition</span> is selected in <a href="ipk%20settings.htm" name="aanchor218">IPK Settings</a>, Impact and Urgency are the two fields that are used to calculate the priority of a call in the <a href="priority%20matrix.htm">Priority Matrix</a> window.</p>
+                                                    <p class="note">If your system is partitioned, you should create and define Call Impact, Call Urgency, Call Priority levels, and a Priority Matrix in each partition to ensure that calls logged via an incoming email account are allocated the correct Call Priority.</p>
+                                                    <h2>Creating  Impact Values</h2>
+                                                    <h2 class="Prerequisite">Before you start</h2>
+                                                    <p class="prereqtext1">As some parameters are read from the database at application start-up, we recommend that there are no Analysts logged on when you make changes to system settings. </p>
+                                                    <p class="prereqtext1"><a href="%7B%7B%20'help-general-topics-changing-your-partition#Selectin'%7CstaticPage%20%7D%7D#Selectin">Ensure you are in the correct partition</a> before applying the settings.</p>
+                                                    <p class="prereqtextlast">You must have <b>IPK Set Up</b> selected in the <a href="../admin%20security%20roles/general%20access%20security%20role%20-%20admin%20tab.htm">Admin</a> tab of your <b>General Access Security Role</b> to configure the IPK management settings.</p>
+                                                    <ol>
+                                                        <li value="1">
+                                                            <p>Select <a href="../general%20topics/asmcorewindow.htm"><span style="font-size: 24pt;">≡</span></a> &gt; <b>Admin</b> &gt;  <b>System Administration</b>.   </p>
+                                                            <p>The System Administration window appears. </p>
+                                                            <p>In the Explorer pane, expand <b>IPK Management</b>.</p>
+                                                        </li>
+                                                        <li value="2">Select <b>Call Impact</b> to open the window <a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="../../resources/images/call%20impact%20window.png"><img class="MCPopupThumbnail img imgthumbnail" data-mc-width="204" data-mc-height="164" src="/storage/app/media/Help/images/call%20impact%20window_thumb_0_48.png" tabindex=""></a>.  You can <a href="%7B%7B%20'help-general-topics-working-with-browse-tables#Changing'%7CstaticPage%20%7D%7D#Changing">adjust the column widths</a> if required.</li>
+                                                    </ol>
+                                                    <ol start="3">
+                                                        <li value="3">Select <img src="/storage/app/media/Help/images/add%20new.png">. A row is inserted in the impact browse table. The system automatically inserts a row for a higher impact with default values in the <span style="font-weight: bold;">From</span> and <span style="font-weight: bold;">To</span> columns. This row is inserted above the current highest impact. </li>
+                                                        <li value="4">Type a name for the impact type in the <span style="font-weight: bold;">Impact</span> column.</li>
+                                                        <li value="5">Define the impact levels using the <span style="font-weight: bold;">From</span> and <span style="font-weight: bold;">To</span> values to set the impact level.  These numbers reflect the minimum and maximum number of Incidents relating to the particular issue for that impact level. </li>
+                                                        <p class="exampletext">You create an impact level of Low with a <span style="font-weight: bold;">From</span> number of one and a <span style="font-weight: bold;">To</span> number of 10, and a Medium impact level with a <span style="font-weight: bold;">From</span> number of 11 and a <span style="font-weight: bold;">To</span> number of 20. An Incident is logged, from which a Problem is logged, and other Incidents are linked to it. When that number of Incidents reaches 11, the Problem will automatically switch from an impact level of Low to Medium.</p>
+                                                        <li value="6">Repeat these steps to add more impact types.</li>
+                                                        <li value="7">To set one value as the default for the current partition, select in the box in the <span style="font-weight: bold;">Default</span> column.</li>
+                                                        <li value="8">To change the order of the impacts in the table, select an impact and then use  <img src="/storage/app/media/Help/images/move%20up.png"> or  <img src="/storage/app/media/Help/images/move%20down.png"> to change its position in the table. </li>
+                                                        <p class="note">This only changes the order in which the impact types are displayed in other windows. It does not change its impact in the <b>From</b> and <b>To</b> columns. When you change the order of impact states, you need to manually change these values to ensure that the highest impact is first, and the lowest impact state is last in the list of impact states.</p>
+                                                        <li value="9">Select <img src="/storage/app/media/Help/images/save%20button.png">  to save the changes. Provide the <a href="../general%20topics/change%20reasons.htm">Change Reasons</a> if prompted to do so.</li>
+                                                    </ol>
+                                                    <h2>Renaming Impact Values</h2>
+                                                    <h2 class="Prerequisite">Before you start</h2>
+                                                    <p class="prereqtextlast">You must have <b>IPK Setup</b> selected in the <a href="../admin%20security%20roles/general%20access%20security%20role%20-%20admin%20tab.htm">Admin</a> tab of your <b>General Access Security Role</b>.</p>
+                                                    <ol>
+                                                        <li value="1">
+                                                            <p>Select <a href="../general%20topics/asmcorewindow.htm"><span style="font-size: 24pt;">≡</span></a> &gt; <b>Admin</b> &gt;  <b>System Administration</b>.   </p>
+                                                            <p>The System Administration window appears. </p>
+                                                            <p>In the Explorer pane, expand <b>IPK Management</b>.</p>
+                                                        </li>
+                                                        <li value="2">Select <b>Call Impact</b> to open the window <a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="../../resources/images/call%20impact%20window.png"><img class="MCPopupThumbnail img imgthumbnail" data-mc-width="204" data-mc-height="164" src="/storage/app/media/Help/images/call%20impact%20window_thumb_0_48.png" tabindex=""></a>.  You can <a href="%7B%7B%20'help-general-topics-working-with-browse-tables#Changing'%7CstaticPage%20%7D%7D#Changing">adjust the column widths</a> if required.</li>
+                                                    </ol>
+                                                    <ol start="3">
+                                                        <li value="3">To rename an existing impact type, select it and type over the name. </li>
+                                                        <li value="4">Select <img src="/storage/app/media/Help/images/save%20button.png">  to save the changes. Provide the <a href="../general%20topics/change%20reasons.htm">Change Reasons</a> if prompted to do so.</li>
+                                                    </ol>
+                                                    <h2>Deleting Impact Values</h2>
+                                                    <h2 class="Prerequisite">Before you start</h2>
+                                                    <p class="prereqtextlast">You must have <b>IPK Setup</b> selected in the <a href="../admin%20security%20roles/general%20access%20security%20role%20-%20admin%20tab.htm">Admin</a> tab of your <b>General Access Security Role</b>.</p>
+                                                    <ol>
+                                                        <li value="1">
+                                                            <p>Select <a href="../general%20topics/asmcorewindow.htm"><span style="font-size: 24pt;">≡</span></a> &gt; <b>Admin</b> &gt;  <b>System Administration</b>.   </p>
+                                                            <p>The System Administration window appears. </p>
+                                                            <p>In the Explorer pane, expand <b>IPK Management</b>.</p>
+                                                        </li>
+                                                        <li value="2">Select <b>Call Impact</b> to open the window <a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="../../resources/images/call%20impact%20window.png"><img class="MCPopupThumbnail img imgthumbnail" data-mc-width="204" data-mc-height="164" src="/storage/app/media/Help/images/call%20impact%20window_thumb_0_48.png" tabindex=""></a>.  You can <a href="%7B%7B%20'help-general-topics-working-with-browse-tables#Changing'%7CstaticPage%20%7D%7D#Changing">adjust the column widths</a> if required.</li>
+                                                    </ol>
+                                                    <ol start="3">
+                                                        <li value="3">Highlight the impact type you want to delete. Select <img src="/storage/app/media/Help/images/delete%20button.png">. If you attempt to delete the system default, you will receive a warning message.</li>
+                                                        <li value="4">Select <img src="/storage/app/media/Help/images/save%20button.png">  to save the changes. Provide the <a href="../general%20topics/change%20reasons.htm">Change Reasons</a> if prompted to do so.</li>
+                                                    </ol>
+                                                

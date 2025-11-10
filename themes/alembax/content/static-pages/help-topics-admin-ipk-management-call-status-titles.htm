@@ -1,0 +1,191 @@
+[viewBag]
+title = "Call Status Titles"
+url = "/help/topics/admin-ipk-management/call-status-titles"
+layout = "help"
+is_hidden = 0
+navigation_hidden = 0
+==
+                                                    <h1>Call Status Titles</h1>
+                                                    <p class="intro">Analysts can select a Call Status Title when forwarding, deferring or closing a call, to indicate the status of the call (such as Resolved, In Progress, Investigation). You can create, rename and delete Call Status Titles, as well as change the order in which they are displayed.</p>
+                                                    <h2>Creating a Call Status Title</h2>
+                                                    <h2 class="Prerequisite">Before you start</h2>
+                                                    <p class="prereqtext1">As some parameters are read from the database at application start-up, we recommend that there are no Analysts logged on when you make changes to system settings. </p>
+                                                    <p class="prereqtext1"><a href="%7B%7B%20'help-general-topics-changing-your-partition#Selectin'%7CstaticPage%20%7D%7D#Selectin">Ensure you are in the correct partition</a> before applying the settings.</p>
+                                                    <p class="prereqtextlast">You must have <b><a name="aanchor296"></a><concept term="IPK"></concept>IPK Setup</b> selected in the <a href="../admin%20security%20roles/general%20access%20security%20role%20-%20admin%20tab.htm">Admin</a> tab of your <b>General Access Security Role</b> in order to configure any IPK administration settings.</p>
+                                                    <ol>
+                                                        <li value="1">
+                                                            <p>Select <a href="../general%20topics/asmcorewindow.htm"><span style="font-size: 24pt;">≡</span></a> &gt; <b>Admin</b> &gt;  <b>System Administration</b>.   </p>
+                                                            <p>The System Administration window appears. </p>
+                                                            <p>In the Explorer pane, expand <b>IPK Management</b>.</p>
+                                                        </li>
+                                                        <li value="2">Select <b>Call Status Titles</b> to open the window. A list of existing call status titles appears.  You can <a href="%7B%7B%20'help-general-topics-working-with-browse-tables#Changing'%7CstaticPage%20%7D%7D#Changing">adjust the column widths</a> if required.</li>
+                                                        <li value="3">Select <img src="/storage/app/media/Help/images/add%20new.png">. A new row is inserted in the browse table.</li>
+                                                        <li value="4">Type the name of the call status you want to create. </li>
+                                                        <li value="5">Define settings for the call status:</li>
+                                                    </ol>
+                                                    <table style="mc-table-style: url('../../resources/tablestyles/fielddesc.css');" class="TableStyle-FieldDesc" cellspacing="0">
+                                                        <col class="TableStyle-FieldDesc-Column-Column1">
+                                                        <col class="TableStyle-FieldDesc-Column-Column2">
+                                                        <tbody>
+                                                            <tr>
+                                                                <td class="TableStyle-FieldDesc-BodyH-Column1-">Default</td>
+                                                                <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                    <p class="pnano">This field has a specific impact on fields in <span class="GeneralVariablesProduct2Name">Nano</span>, which differs to its use in Core.</p>
+                                                                    <p>Default status to display on the Call Defer window in Core, and the default status assigned to new calls created in <span class="GeneralVariablesProduct2Name">Nano</span>.</p>
+                                                                    <p class="warning">Only one status can be set as a default status.</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="TableStyle-FieldDesc-BodyH-Column1-">Resolve</td>
+                                                                <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                    <p>Default status to display on the Call Close window in Core.</p>
+                                                                    <p class="warning">Only one status can be set as a resolve status.</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr data-mc-conditions="">
+                                                                <td class="TableStyle-FieldDesc-BodyH-Column1-">Parent Status</td>
+                                                                <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                    <p colspan="2" class="pnano">This setting applies only to <span class="GeneralVariablesProduct2Name">Nano</span>. </p>
+                                                                    <p>Select to designate a status as the parent of the statuses beneath it.  Multiple parent statuses can be defined, turning each status between them into 'child' statuses of the parent above. Only statuses defined as Parents appear as columns in the Kanban layout in <span class="GeneralVariablesProduct2Name">Nano</span>, and each call appears within its parent status column. <br></p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="TableStyle-FieldDesc-BodyH-Column1-">Close</td>
+                                                                <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                    <p colspan="2" class="pnano">This setting applies only to <span class="GeneralVariablesProduct2Name">Nano</span>. </p>
+                                                                    <p>When a status with this setting is assigned to a call in <span class="GeneralVariablesProduct2Name">Nano</span>, that call is closed. 
+                        </p>
+                                                                    <p>Closed calls can be reopened in <span class="GeneralVariablesProduct2Name">Nano</span> using the Re-Open button; changing the status will not automatically re-open it.<br></p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="TableStyle-FieldDesc-BodyH-Column1-">Clock Stop</td>
+                                                                <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                    <p colspan="2" class="pnano">This setting applies only to <span class="GeneralVariablesProduct2Name">Nano</span>. </p>
+                                                                    <p></p>
+                                                                    <p>Selecting this status for a call in <span class="GeneralVariablesProduct2Name">Nano</span> will stop the SLA clock. Statuses without this setting will start the SLA clock.
+                        
+                            
+                    </p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="TableStyle-FieldDesc-BodyH-Column1-">Resume Service</td>
+                                                                <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                    <p colspan="2" class="pnano">This setting applies only to <span class="GeneralVariablesProduct2Name">Nano</span>. </p>
+                                                                    <p>Selecting this status on a call in <span class="GeneralVariablesProduct2Name">Nano</span> resumes service. SLA events will be closed; changing the status will not re-start the clock.</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="TableStyle-FieldDesc-BodyB-Column1-">Image</td>
+                                                                <td class="TableStyle-FieldDesc-BodyA-Column2-">
+                                                                    <p colspan="2" class="pnano">This setting applies only to <span class="GeneralVariablesProduct2Name">Nano</span>. </p>
+                                                                    <p>Select an image from the list to indicate to users in <span class="GeneralVariablesProduct2Name">Nano</span> what function or action will be performed on the work item when it is saved with that status. Any image can be assigned to any status. Select <b>None</b> to display no image.</p>
+                                                                    <p>This table shows the corresponding image that appears in <span class="GeneralVariablesProduct2Name">Nano</span> per image name. </p>
+                                                                    <p class="exampletext"> A status configured to close the call should be assigned the <b>Close</b> image.</p>
+                                                                    <table style="mc-table-style: url('../../resources/tablestyles/fielddesc no indent.css');" class="TableStyle-FieldDesc_no_indent" cellspacing="0">
+                                                                        <col class="TableStyle-FieldDesc_no_indent-Column-Column1">
+                                                                        <col class="TableStyle-FieldDesc_no_indent-Column-Column2">
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">Approve</td>
+                                                                                <td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">
+                                                                                    <img src="/storage/app/media/Help/images/approved.png">
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">Authorize</td>
+                                                                                <td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">
+                                                                                    <img src="/storage/app/media/Help/images/nanoauth.png">
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">Close</td>
+                                                                                <td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">
+                                                                                    <img src="/storage/app/media/Help/images/close%20x%20button.png">
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">None</td>
+                                                                                <td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">no image</td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">Reject</td>
+                                                                                <td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">
+                                                                                    <img src="/storage/app/media/Help/images/nanorejected.png">
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">Service Resume</td>
+                                                                                <td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">
+                                                                                    <img src="/storage/app/media/Help/images/nanoresumeservice.png">
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">Stop Clock</td>
+                                                                                <td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">
+                                                                                    <img src="/storage/app/media/Help/images/stop%20sla%20clock.png">
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">Unauthorize</td>
+                                                                                <td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">
+                                                                                    <img src="/storage/app/media/Help/images/nanounauth.png">
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">Update</td>
+                                                                                <td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">
+                                                                                    <img src="/storage/app/media/Help/images/nanoupdateicon.png">
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td class="TableStyle-FieldDesc_no_indent-BodyB-Column1-">User</td>
+                                                                                <td class="TableStyle-FieldDesc_no_indent-BodyA-Column2-">
+                                                                                    <img src="/storage/app/media/Help/images/nanousericon.png">
+                                                                                </td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <ol data-mc-continue="true">
+                                                        <li value="6">Select <img src="/storage/app/media/Help/images/save%20button.png">  to save the changes. Provide the <a href="../general%20topics/change%20reasons.htm">Change Reasons</a> if prompted to do so.</li>
+                                                    </ol>
+                                                    <h2>Updating a Call Status Title</h2>
+                                                    <h2 class="Prerequisite">Before you start</h2>
+                                                    <p class="prereqtext1">As some parameters are read from the database at application start-up, we recommend that there are no Analysts logged on when you make changes to system settings. </p>
+                                                    <p class="prereqtext1"><a href="%7B%7B%20'help-general-topics-changing-your-partition#Selectin'%7CstaticPage%20%7D%7D#Selectin">Ensure you are in the correct partition</a> before applying the settings.</p>
+                                                    <p class="prereqtextlast">You must have <b>IPK Setup</b> selected in the <a href="../admin%20security%20roles/general%20access%20security%20role%20-%20admin%20tab.htm">Admin</a> tab of your <b>General Access Security Role</b> in order to configure any IPK administration settings.</p>
+                                                    <ol>
+                                                        <li value="1">
+                                                            <p>Select <a href="../general%20topics/asmcorewindow.htm"><span style="font-size: 24pt;">≡</span></a> &gt; <b>Admin</b> &gt;  <b>System Administration</b>.   </p>
+                                                            <p>The System Administration window appears. </p>
+                                                            <p>In the Explorer pane, expand <b>IPK Management</b>.</p>
+                                                        </li>
+                                                        <li value="2">Select <b>Call Status Titles</b> to open the window.</li>
+                                                    </ol>
+                                                    <ol start="3">
+                                                        <li value="3">Select the status you want to update and make the necessary changes. You can overwrite the existing name with a new one, select/deselect the setting checkboxes, or change the order in which the statuses are listed  on the defer, forward, or close windows using the <img src="/storage/app/media/Help/images/move%20up.png"> and <img src="/storage/app/media/Help/images/move%20down.png"> buttons.</li>
+                                                        <li value="4">Select <img src="/storage/app/media/Help/images/save%20button.png">  to save the changes. Provide the <a href="../general%20topics/change%20reasons.htm">Change Reasons</a> if prompted to do so.</li>
+                                                    </ol>
+                                                    <h2>Deleting a Call Status Title</h2>
+                                                    <h2 class="Prerequisite">Before you start</h2>
+                                                    <p class="prereqtext1">As some parameters are read from the database at application start-up, we recommend that there are no Analysts logged on when you make changes to system settings. </p>
+                                                    <p class="prereqtext1"><a href="%7B%7B%20'help-general-topics-changing-your-partition#Selectin'%7CstaticPage%20%7D%7D#Selectin">Ensure you are in the correct partition</a> before applying the settings.</p>
+                                                    <p class="prereqtextlast">You must have <b>IPK Setup</b> selected in the <a href="../admin%20security%20roles/general%20access%20security%20role%20-%20admin%20tab.htm">Admin</a> tab of your <b>General Access Security Role</b> in order to configure any IPK administration settings.</p>
+                                                    <ol>
+                                                        <li value="1">
+                                                            <p>Select <a href="../general%20topics/asmcorewindow.htm"><span style="font-size: 24pt;">≡</span></a> &gt; <b>Admin</b> &gt;  <b>System Administration</b>.   </p>
+                                                            <p>The System Administration window appears. </p>
+                                                            <p>In the Explorer pane, expand <b>IPK Management</b>.</p>
+                                                        </li>
+                                                        <li value="2">Select <b>Call Status Titles</b> to open the window.</li>
+                                                    </ol>
+                                                    <ol start="3">
+                                                        <li value="3">Select the call status title you want to delete. Select <img src="/storage/app/media/Help/images/delete%20button.png">. If you attempt to delete the system default, you will receive a warning message.</li>
+                                                        <li value="4">Select <img src="/storage/app/media/Help/images/save%20button.png">  to save the changes. Provide the <a href="../general%20topics/change%20reasons.htm">Change Reasons</a> if prompted to do so.</li>
+                                                    </ol>
+                                                

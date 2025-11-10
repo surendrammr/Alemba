@@ -1,0 +1,32 @@
+description = "The help menu"
+==
+<?php
+
+use Alemba\Alemba\Models\HelpArticle;
+
+function onStart()
+{
+
+	$this['root_menu_items'] = HelpArticle::where('is_topic', 1)->where('top_level', 1)->whereNotNull('link_name')->orderBy('sort_order')->get();
+
+}
+?>
+==
+
+<nav class="main-nav" id="MAIN_NAV">
+	<ul class="nav nav-list" role="menu">
+
+		<li class="nav-item active">
+			<a class="nav-link" href="{{ 'help'|page }}">Home <span class="sr-only">(current)</span></a>
+		</li>
+
+		{% for item in root_menu_items %}
+
+			<li class="nav-item {% if id == item.id %} active {% endif %}">
+				<a class="nav-link" href="{{ 'help-article'|page({ topic:'topics', slug:item.slug }) }}">{{ item.link_name }}</a>
+			</li>
+
+		{% endfor %}
+
+	</ul>
+</nav>

@@ -1,0 +1,148 @@
+fields:
+    name:
+        label: Name
+        span: full
+        type: text
+    name_short:
+        label: 'Name (shortened)'
+        span: left
+        type: text
+        commentAbove: 'This is a brief heading that is displayed on links. Aim for no more than 50 characters'
+    slug:
+        label: Slug
+        span: right
+        preset:
+            field: name
+            type: slug
+        type: text
+tabs:
+    fields:
+        location_type:
+            label: 'Location type'
+            options:
+                physical: Physical
+                virtual: Virtual
+            emptyOption: 'Select one...'
+            showSearch: true
+            span: auto
+            required: 1
+            type: dropdown
+            tab: 'Main information'
+        registration_url:
+            label: 'Registration URL'
+            span: auto
+            type: text
+            comment: 'This is required by Google for structured data purposes'
+            tab: 'Main information'
+            trigger:
+                action: show
+                field: location_type
+                condition: 'value[virtual]'
+        location:
+            label: 'Location name'
+            span: left
+            type: text
+            tab: 'Main information'
+        address:
+            label: 'Location address'
+            span: auto
+            required: true
+            type: text
+            comment: 'This is required for Google Structured Data. Exclude the location name.'
+            tab: 'Main information'
+        region:
+            label: Region
+            nameFrom: name
+            descriptionFrom: description
+            span: auto
+            emptyOption: 'Select one...'
+            type: relation
+            tab: 'Main information'
+        full_dates:
+            label: Dates
+            span: left
+            required: true
+            type: text
+            commentAbove: 'Dates formatted for the subheading, in this style: 12 - 15 Nov 2016'
+            tab: 'Main information'
+        startdate:
+            label: 'Start date'
+            mode: date
+            span: left
+            required: true
+            type: datepicker
+            tab: 'Main information'
+        finishdate:
+            label: 'Finish date'
+            mode: date
+            span: right
+            required: true
+            type: datepicker
+            tab: 'Main information'
+        thumbnail:
+            label: 'Thumbnail image'
+            type: mediafinder
+            mode: image
+            span: left
+            required: true
+            tab: 'Main information'
+        intro:
+            label: Intro
+            size: large
+            span: full
+            type: textarea
+            tab: Text
+        text:
+            label: Text
+            size: giant
+            mode: tab
+            span: full
+            type: markdown
+            tab: Text
+        featured:
+            label: 'Featured?'
+            span: left
+            type: switch
+            tab: Featured
+            commentAbove: 'If switched-on, event will appear as the Events page banner (if no more recent events have been marked as Featured as well)'
+        featured_heading:
+            label: 'Banner heading'
+            type: text
+            span: full
+            tab: Featured
+            commentAbove: 'This is the heading used when the event is featured on the Events page - something snappy!'
+        featured_image:
+            label: 'Banner image'
+            type: mediafinder
+            mode: image
+            span: full
+            tab: Featured
+        banner_image:
+            label: 'Banner image'
+            mode: image
+            span: left
+            type: mediafinder
+            tab: Images
+        banner_image_email:
+            label: 'E-mail signature banner'
+            mode: file
+            span: auto
+            type: mediafinder
+            tab: Images
+        images:
+            label: Images
+            type: repeater
+            span: full
+            tab: Images
+            form:
+                fields:
+                    image:
+                        label: Image
+                        type: mediafinder
+                        mode: image
+                    caption_heading:
+                        label: 'Caption heading'
+                        type: text
+                    caption_description:
+                        label: 'Caption description'
+                        type: text

@@ -1,0 +1,71 @@
+[viewBag]
+title = "Batch run parameters"
+url = "/help/topics/depreciation/batch-runs"
+layout = "help"
+is_hidden = 0
+navigation_hidden = 0
+==
+                                                    <h1>Batch run parameters</h1>
+                                                    <p class="intro">Batch runs are <a href="depreciation%20schedule.htm">depreciation schedules</a> that run automatically. They make scheduled depreciation calculations against items in your CMDB and you can filter them for specific CMDB items, users, organizations or locations. The <span style="font-weight: bold;" class="GeneralVariablesCoreName">ASM Core</span><b> polling service</b> activates the depreciation schedule in a batch run.<b class="Xref_outstanding"></b> </p>
+                                                    <h2>
+<a name="_Defining_the_Depreciation_Batch_Run_Parameters"></a> Defining the Depreciation batch run parameters</h2>
+                                                    <h2 class="Prerequisite">Before You Start</h2>
+                                                    <p class="prereqtext1">Enable the <b>Depreciation Setup</b> within your <a href="../admin%20security%20roles/general%20access%20security%20role%20-%20admin%20tab.htm">General Access Security Role</a> in order to configure any Depreciation administration settings.</p>
+                                                    <p class="prereqtext1">You must first configure your <a href="depreciation%20schedule.htm">Depreciation Schedule</a> and <a href="depreciation%20methods.htm">Depreciation Methods</a> before configuring batch runs.</p>
+                                                    <p class="prereqtext">You must have system administrator privileges to configure batch runs.</p>
+                                                    <ol>
+                                                        <li value="1">
+                                                            <p>Select <a href="../general%20topics/asmcorewindow.htm" style="font-weight: bold;"><span style="font-size: 24pt;">≡</span></a> &gt; <b>Admin</b> &gt;  <b>System Administration</b>. </p>
+                                                            <p>The System Administration window is displayed. </p>
+                                                            <p>In the Explorer pane, locate the <b>Depreciation</b> group. You may need to expand the group to see the options within it.</p>
+                                                        </li>
+                                                        <li value="2">Select <span class="Bold" style="font-weight: bold;">Batch Run Parameters</span> to display the window.</li>
+                                                    </ol>
+                                                    <ol start="3">
+                                                        <li value="3">Complete the details, as follows:</li>
+                                                        <p>
+                                                            </p>
+<table class="TableStyle-FieldDesc" style="mc-table-style: url('../../resources/tablestyles/fielddesc.css');margin-left: 0;margin-right: auto;" cellspacing="0">
+                                                                <col class="TableStyle-FieldDesc-Column-Column1">
+                                                                <col class="TableStyle-FieldDesc-Column-Column2">
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyH-Column1-">Depreciation Schedule Name</td>
+                                                                        <td class="TableStyle-FieldDesc-BodyG-Column2-">Select the depreciation schedule for the batch run from the  list. You can only run one schedule at a time as part of a batch job. You can create new schedule names in the <a href="%7B%7B%20'help-depreciation-schedule#Adding_a_Depreciation_Schedule_Name'%7CstaticPage%20%7D%7D#Adding_a_Depreciation_Schedule_Name">Depreciation Schedule Names</a> window.</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyH-Column1-">Batch Number</td>
+                                                                        <td class="TableStyle-FieldDesc-BodyG-Column2-">The  batch number is automatically set by the system and cannot be edited</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyH-Column1-">Month Ending </td>
+                                                                        <td class="TableStyle-FieldDesc-BodyG-Column2-">The final month and year for this batch run in the field. The depreciation calculation will be performed up to this month. When you click on the right arrow in the calendar, the calendar closes.</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyH-Column1-">Filter Options</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyH-Column1-">CMDB Item Type</td>
+                                                                        <td class="TableStyle-FieldDesc-BodyG-Column2-">Use the menu button to <a href="../general%20topics/using%20the%20multi-tier%20selector.htm">search for and identify</a> the item type</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyH-Column1-">User</td>
+                                                                        <td class="TableStyle-FieldDesc-BodyG-Column2-">Use the search button to <a href="../general%20topics/searching%20for%20items.htm">search for and identify</a>a specific User</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyH-Column1-">Organization</td>
+                                                                        <td class="TableStyle-FieldDesc-BodyG-Column2-">Use the search button to <a href="../general%20topics/searching%20for%20items.htm">search for and identify</a>a specific organization</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyB-Column1-">Location</td>
+                                                                        <td class="TableStyle-FieldDesc-BodyA-Column2-">Use the search button to <a href="../general%20topics/searching%20for%20items.htm">search for and identify</a>a specific location</td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                            <p class="warning">Before you continue, re-check all the parameters you have set because once this process starts, it cannot be canceled.</p>
+                                                            <p class="exampletext">Let's assume you have linked CMDB types A and B to your depreciation schedule. In the filter options, you select to filter the batch run to a certain location. However, the only CMDB items at that location are of CMDB type C, which isn’t linked to the schedule. The batch run will be performed, but no write down calculations will occur since CMDB type C is not linked to the particular schedule.</p>
+                                                        
+                                                        <li value="4">Select  <img src="/storage/app/media/Help/images/execute.jpg">. A message will display on the toolbar informing you that the batch run has been scheduled. The actual calculations will be performed the next time the <span class="GeneralVariablesCoreName">ASM Core</span> polling service is invoked. </li>
+                                                        <li value="5">To view the results of the batch run, select the <a href="batch%20run%20history.htm">Batch Run History</a> option.</li>
+                                                    </ol>
+                                                

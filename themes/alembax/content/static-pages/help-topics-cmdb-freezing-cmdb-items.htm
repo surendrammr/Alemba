@@ -1,0 +1,52 @@
+[viewBag]
+title = "Freezing CMDB Items"
+url = "/help/topics/cmdb/freezing-cmdb-items"
+layout = "help"
+is_hidden = 0
+navigation_hidden = 0
+==
+                                                    <h1>
+<a name="aanchor291"></a>
+                                                        <concept term="CMDB"></concept>Freezing CMDB Items</h1>
+                                                    <p class="intro"><span class="GeneralVariablesCoreName">ASM Core</span> gives you the ability to ‘freeze’ items within the CMDB. Freezing an item sets a lock on the item. This means no modifications can be made to the item unless the item is part of a change request. </p>
+                                                    <h2>
+<a name="Freezing"></a>Freezing a CMDB item</h2>
+                                                    <h2 class="Prerequisite">Before you start</h2>
+                                                    <p class="prereqtext1">You must have <b>CMDB Item Freeze</b> selected in the <b><a href="../admin%20security%20roles/config%20mgt%20sec%20role%20-%20cmdb.htm">CMDB</a></b> Items tab of your <b>Configuration Management security role</b>.</p>
+                                                    <p class="prereqtext1">At least one <a href="../admin%20cmdb/freeze%20statuses.htm">freeze status</a> must have been defined, with the <b>Frozen</b> option selected.</p>
+                                                    <p class="prereqtext">You can link a non-frozen CMDB item to a frozen item. However, if two linked CMDB items are frozen, you will not be able to modify the link between them. If only one item is frozen, the link can be modified from the CMDB item that is not frozen. </p>
+                                                    <ol>
+                                                        <li value="1">Display the <b>&lt;Entity&gt; Details</b> window, if it is not already on screen by <a href="%7B%7B%20'help-managing-cmdb-items#Searchin'%7CstaticPage%20%7D%7D#Searchin">searching for the CMDB Item</a> and then selecting it from the browse table.</li>
+                                                        <li value="2">Select <img src="/storage/app/media/Help/images/freeze%20button.png">. The Freeze/Unfreeze dialog box appears <a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="../../resources/images/freeze%20unfreeze%20db.png"><img class="MCPopupThumbnail img imgthumbnail" data-mc-width="640" data-mc-height="368" src="/storage/app/media/Help/images/freeze%20unfreeze%20db_thumb_0_48.png" tabindex=""></a>. </li>
+                                                        <li value="3">Select a <b>Freeze Status</b> for the CMDB item. </li>
+                                                        <li value="4">To freeze CMDB items linked to the current item:</li>
+                                                        </ol>
+<ul>
+                                                            <li value="1">In the <b>Propagate Freeze/Unfreeze</b> browse table, select the <b>Link Type</b> you wish to propagate the freeze to.</li>
+                                                            <li value="2">In the Levels column, click on the current level to see a drop down arrow.</li>
+                                                            <li value="3">Click on the down arrow to see a list of available levels <a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="../../resources/images/freeze%20unfreeze%20link%20levels.png"><img class="MCPopupThumbnail img imgthumbnail" data-mc-width="214" data-mc-height="128" src="/storage/app/media/Help/images/freeze%20unfreeze%20link%20levels_thumb_0_48.png" tabindex=""></a>.</li>
+                                                            <li value="4">Select a Level (1, 2, 3, or Unlimited) to propagate the freeze to the linked item, as well as items linked to that item. If you select 1, the items listed under the Linked Items tab (matching the particular Link Type, Role, and CMDB Type) are also frozen. If you select 2, the freeze is also applied to the items listed under the Linked Items tab for the linked items (and so on).</li>
+                                                            <p class="note">If a frozen item is encountered when a freeze is being propagated, the propagation stops at the frozen item and the freeze will not apply to items beyond the encountered frozen item irrespective of the level that has been selected.</p>
+                                                        </ul>
+                                                        <li value="5">Select <b>OK</b> to apply the freeze. </li>
+                                                        <li value="6">The details are redisplayed, with a banner across the top declaring that the item is frozen. The fields within the <b>Details</b> window are grayed out and disabled and the <img src="/storage/app/media/Help/images/freeze%20button.png"> button is replaced with a <img src="/storage/app/media/Help/images/unfreeze%20button.png"> button, allowing you to unfreeze the item. </li>
+                                                    
+                                                    <h2>
+<a name="Unfreezi"></a>Unfreezing a CMDB item </h2>
+                                                    <p class="intro">Unfreezing a frozen CMDB item releases the lock on the item. This means you can edit the item.</p>
+                                                    <h2 class="Prerequisite">Before you start</h2>
+                                                    <p class="prereqtext1">You must have <b>CMDB Item Unfreeze</b> selected in the <b><a href="../admin%20security%20roles/config%20mgt%20sec%20role%20-%20cmdb.htm">CMDB</a></b> Items tab of your <b>Configuration Management security role</b>.</p>
+                                                    <p class="prereqtext">At least one <a href="../admin%20cmdb/freeze%20statuses.htm">freeze status</a> must have been defined, with the <b>Frozen</b> option deselected.</p>
+                                                    <ol>
+                                                        <li value="1">Display the <b>&lt;Entity&gt; Details</b> window, if it is not already on screen by <a href="%7B%7B%20'help-managing-cmdb-items#Searchin'%7CstaticPage%20%7D%7D#Searchin">searching for the CMDB Item</a> and then selecting it from the browse table. The banner at the top of the Details window will state that the item is frozen.</li>
+                                                        <li value="2">Select <img src="/storage/app/media/Help/images/unfreeze%20button.png">. The <b>Freeze/Unfreeze</b> dialog box appears.</li>
+                                                        <li value="3">From the <b>Freeze Status</b> list, select an option. This is the unfreeze status that will be allocated to the CMDB item. </li>
+                                                        <p class="note">Only statuses with <b>Frozen</b> deselected in the <a href="../admin%20cmdb/freeze%20statuses.htm">Freeze Status</a> window are displayed. </p>
+                                                        <li value="4">In the <b>Propagate Freeze/Unfreeze</b> browse table, select the <b>Link Type</b> you wish to unfreeze from the browse table.</li>
+                                                        <li value="5">Select <b>Propagate</b> and select the number of levels you want to unfreeze to in the Levels column. All CMDB items matching the selected link details will be unfrozen.</li>
+                                                        <li value="6">Select <b>OK</b> to unfreeze the item. </li>
+                                                    </ol>
+                                                    <h2>Automating Freezing and Unfreezing</h2>
+                                                    <p>You can make one or many CMDB items frozen as part of a workflow using the <a href="../tasks/manage%20cmdb%20task.htm">Manage CMDB task</a>. Use a Transaction Type of <b>Update Item</b> to set the <a href="../admin%20cmdb/freeze%20statuses.htm">Freeze Status</a> attribute for the Linked CIs on the request to a value that has the Frozen flag selected.</p>
+                                                    <p>If you use the <a href="../requests%20and%20templates/scheduling%20requests.htm">Request Scheduling</a> feature, you can use the above method to automatically make items frozen at a planned point in the future. The same techniques can be used to automate the unfreezing of items.</p>
+                                                

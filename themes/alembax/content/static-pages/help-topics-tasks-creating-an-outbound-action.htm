@@ -1,0 +1,106 @@
+[viewBag]
+title = "Creating an Outbound Action Task"
+url = "/help/topics/tasks/creating-an-outbound-action"
+layout = "help"
+is_hidden = 0
+navigation_hidden = 0
+==
+                                                    <h1>Creating an Outbound Action Task</h1>
+                                                    <p>An Outbound Action task is used as part of a workflow to automatically send an Outbound Action to another system as part of the workflow. This task facilitates initiating an Outbound Action outside of the Service Desk, that is, without having to forward a call or task externally. </p>
+                                                    <p class="prereq">The Connector Polling Service must be running for the Outbound Action to be sent successfully to the external system. Your organization must be licensed for each connector if you want to connect to external systems other than products of the <span class="GeneralVariablesProductName">ASM</span> family and LDAP-compliant directory servers.</p>
+                                                    <ol style="list-style-type: decimal;margin-left: 36pt;" start="1">
+                                                        <li value="1">
+<a href="%7B%7B%20'help-requests-and-templates-searching-for-requests#top'%7CstaticPage%20%7D%7D#top">Search for </a>the <b>Request Details</b> window, if it is not already on screen.</li>
+                                                        <li value="2">
+                                                            <div class="MCDropDown MCDropDown_Closed dropDown">
+<span class="MCDropDownHead dropDownHead"><a href="#" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCHotSpotImage" aria-expanded="false"><img class="MCDropDown_Image_Icon" src="/storage/app/media/Help/images/transparent.gif" height="11" width="16" alt="Closed" data-mc-alt2="Open">Display the dependency diagram.</a></span>
+                                                                <div class="MCDropDownBody dropDownBody">
+                                                                    <p>Click the <b>Dependencies</b> button <img src="/storage/app/media/Help/images/dependencies%20button.png"> on the toolbar or select the <b>Update Dependencies</b> explorer option on the <b>Request Details</b> or <b>Task Details</b> window.</p>
+                                                                </div>
+                                                            </div>
+                                                        </li>
+                                                        <p>
+                                                            </p>
+<p class="note">If you are working on a specific request, and the workflow template you have used to create the request already has tasks defined in it, you will see these tasks here. You can open them and change their details such as dates, assignment, or expenses. You can add new tasks or delete them from the current request without affecting the template.</p>
+                                                        
+                                                        <li value="3">
+                                                            <div class="MCDropDown MCDropDown_Closed dropDown">
+<span class="MCDropDownHead dropDownHead"><a href="#" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCHotSpotImage" aria-expanded="false"><img class="MCDropDown_Image_Icon" src="/storage/app/media/Help/images/transparent.gif" height="11" width="16" alt="Closed" data-mc-alt2="Open">Add the <b>Outbound Action task</b>  to the Dependency Diagram.</a></span>
+                                                                <div class="MCDropDownBody dropDownBody">
+                                                                    <p>Select the <img src="/storage/app/media/Help/images/outbound%20action%20task%20icon.png" style="width: 38px;height: 41px;"> icon from the task palette and drag it to position. Alternatively, right-click in the window, and from the menu that appears, select <b>New</b> and then the <b>Outbound Action</b> task entity type. Then <a href="%7B%7B%20'help-requests-and-templates-dependency-diagrams#Linking'%7CstaticPage%20%7D%7D#Linking">link the task</a> to the previous task in the workflow.</p>
+                                                                </div>
+                                                            </div>
+                                                        </li>
+                                                        <li value="4">Double-click the <a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="../../resources/images/outbound%20action%20task%20icon.png"><img class="MCPopupThumbnail img imgthumbnail" data-mc-width="38" data-mc-height="41" src="/storage/app/media/Help/images/outbound%20action%20task%20icon_thumb_0_48.png" tabindex=""></a>task icon on the dependency diagram to display the <b>Outbound Action Details</b> window.</li>
+                                                        <li value="5">
+<a href="%7B%7B%20'help-creating-a-task#Complete_the_common_task_fields'%7CstaticPage%20%7D%7D#Complete_the_common_task_fields">Complete the common task fields</a> on the Outbound Action Details window.</li>
+                                                        <li value="6">Expand the <b>Mapping Details</b> section, if necessary, and complete the details.</li>
+                                                        <p>
+                                                            </p>
+<table class="TableStyle-FieldDesc_no_indent" cellspacing="0" style="mc-table-style: url('../../resources/tablestyles/fielddesc no indent.css');">
+                                                                <col class="TableStyle-FieldDesc_no_indent-Column-Column1">
+                                                                <col class="TableStyle-FieldDesc_no_indent-Column-Column2">
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyH-Column1-">Source</td>
+                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyG-Column2-">Select the external system to which you want to send the Outbound Action, or the integration source for the <a href="../connectors/storedproceduresconnector.htm">stored procedure</a> you wish to run. Integration sources are configured in the <a href="../integration/configuring%20integ%20source.htm">Integration Platform</a>.</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyB-Column1-">Action</td>
+                                                                        <td class="TableStyle-FieldDesc_no_indent-BodyA-Column2-">Select the Outbound Action the task must create in the external system. These values are defined on the integration source.</td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        
+                                                        <li value="7">Select the <b>Outgoing</b> tab to map the fields for outgoing messages related to this Outbound Action. This allows you to specify how field values from <span class="GeneralVariablesProductName">ASM</span> must correlate with the field values on the external system when an outgoing message is sent by <span class="GeneralVariablesProductName">ASM</span> relating to the Outbound Action. </li>
+                                                        </ol>
+<ul start="1">
+                                                            <li value="1">Click <b>Add</b>. In the <b>Add Fields</b> window, select the fields (from the external system) you want to map to fields on the task. Click <b>OK</b>.</li>
+                                                            <li value="2">On the browse table, click the corresponding cell in the <b>Internal Field</b> column. Then select <img src="/storage/app/media/Help/images/expandtiersbutton.png"> to pick a static value or a field from the task or request. </li>
+                                                            <p class="note">Depending on the field’s data type, additional options can be selected, including: field transformations, profile maps, or resolution rules.</p>
+                                                            <li value="3">Add more field mappings if needed.</li>
+                                                            <li value="4">To delete any mapped fields, select the mapping and click <b>Remove</b>. In the warning dialog box, click <b>Yes</b> to remove the field mapping or No to cancel.</li>
+                                                            <li value="5">Select <b>Send Notify</b> for system generated history messages to send a NOTIFY outgoing message to the external system whenever a system-generated entry (such as an agreement escalation) is added to the history of the task.</li>
+                                                        </ul>
+                                                        <li value="8">Select the <b>Incoming</b> tab (see the steps for incoming messages below) to map the fields for incoming messages related to this Outbound Action. This allows you to specify how the field values from the external system must match the field values in <span class="GeneralVariablesProductName">ASM</span> when an incoming message is received by <span class="GeneralVariablesProductName">ASM</span>.</li>
+                                                        <ul start="1">
+                                                            <li value="1">Click <b>Add</b>. In the <b>Add Fields</b> window, select the task or request fields you want to map to fields used in the external system. Click <b>OK</b>.</li>
+                                                            <li value="2">On the browse table, click the corresponding cell in the <b>Action Field</b> column. Then select <img src="/storage/app/media/Help/images/expandtiersbutton.png"> to pick a static value or a field from the external system. These fields are defined at the level of the connector for the selected integration source.</li>
+                                                            <p class="note">Depending on the field’s data type, additional options can be selected, including: field transformations, profile maps, or resolution rules. </p>
+                                                            <li value="3">In the <b>Update</b> column, select the conditions for populating the field in <span class="GeneralVariablesProductName">ASM</span>. <b>Always</b> always matches the <span class="GeneralVariablesProductName">ASM</span> field value with the value in the external system field. This means that any change to this field in the external system automatically updates the field value in <span class="GeneralVariablesProductName">ASM</span>. <b>Only When Blank</b> only populates the <span class="GeneralVariablesProductName">ASM</span> field with the value of the external system field if the field in <span class="GeneralVariablesProductName">ASM</span> is blank. This means that an existing value in <span class="GeneralVariablesProductName">ASM</span> cannot be overridden by a field value in the external system.</li>
+                                                            <p class="note">
+                        The <b>On Initial Population Only</b> update condition does not apply to Outbound Actions.</p>
+                                                            <li value="4">Add more field mappings if needed. To delete any mapped fields, select the mapping and click <b>Remove</b>. In the warning dialog box, click <b>Yes</b> to remove the field mapping or <b>No</b> to cancel.</li>
+                                                        </ul>
+                                                        <li value="9">Save the task details.</li>
+                                                    
+                                                    <h2>Actioning an Outbound Action Task</h2>
+                                                    <p>If necessary, you can manually action the task by selecting:</p>
+                                                    <p>
+                                                        </p>
+<table class="TableStyle-FieldDesc">
+                                                            <col class="TableStyle-FieldDesc-Column-Column1">
+                                                            <col class="TableStyle-FieldDesc-Column-Column2">
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Take Back</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">to send a CANCEL message to the external system. The analyst can then action the task as required.</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyH-Column1-">Complete </td>
+                                                                    <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                        <p>to manually close the task and allow the workflow to proceed down the successful branch. This sends a COMPLETE message to the external system and the workflow follows the Success branch.</p>
+                                                                        <p class="note">The Success branch is also followed if <span class="GeneralVariablesProductName">ASM</span> receives a COMPLETE message from the external system for this Outbound Action. The Outbound Action Task is automatically closed upon receipt of this COMPLETE message.</p>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="TableStyle-FieldDesc-BodyB-Column1-">Not Complete</td>
+                                                                    <td class="TableStyle-FieldDesc-BodyA-Column2-">to manually complete the task and allow the workflow to proceed down the failed branch. This sends an NOT COMPLETE message to the external system.</td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    
+                                                    <p>When the task is activated as part of a request, a CREATE message is automatically sent to the external system specified in the task details. When the required action is taken on the external system, an incoming message from the external system can automatically complete or ‘not complete’ the task. This sends a COMPLETE or NOT COMPLETE message. On completing successfully, the workflow follows the successful branch, otherwise, it follows the failure branch.</p>
+                                                    <p>The task history is updated regardless of selection.</p>
+                                                    <p>All incoming and outgoing messages relating to the Outbound Action task can be viewed by clicking <a href="outbound%20actions%20explorer.htm"><b>Outbound Actions</b></a> on the <b>Task Details</b> explorer pane.</p>
+                                                

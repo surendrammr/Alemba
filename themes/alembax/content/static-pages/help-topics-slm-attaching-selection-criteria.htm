@@ -1,0 +1,94 @@
+[viewBag]
+title = "Attaching Selection Criteria to Agreements"
+url = "/help/topics/slm/attaching-selection-criteria"
+layout = "help"
+is_hidden = 0
+navigation_hidden = 0
+==
+                                                    <h1>
+<a name="top"></a>Attaching Selection Criteria to Agreements</h1>
+                                                    <p>Agreements have selection criteria attached to them. These are rules which tell <span class="GeneralVariablesCoreName">ASM Core</span> when to apply the agreement. Agreements are selected and applied to calls, requests, and tasks based on the IPK and Workflow selection criteria, respectively. Updates to call or request details may trigger a new agreement to be applied to the call/request, if these details affect the selection criteria. </p>
+                                                    <p>Your administrator defines the criteria you can select through the Agreement Selection Priority window. When evaluating the selection criteria, <span class="GeneralVariablesCoreName">ASM Core</span> also checks the CMDB Selection Priority to identify which CMDB item to use if multiple CMDB items are linked to the call, request, or task.</p>
+                                                    <p class="note">If you apply an agreement to a call, request, or task manually, changing the details will not automatically select and apply a different agreement. If a new agreement is applicable in this case, it has to be applied to the call, request, or task manually. </p>
+                                                    <p class="exampletext">You set up a certain User against an SLA as selection criteria. If a call is logged from that User, <span class="GeneralVariablesCoreName">ASM Core</span> will automatically locate that agreement and apply it to the call depending on other agreement selection criteria configured.</p>
+                                                    <p class="exampletext">If you link a User J Smith and a config item of Main Server as selection criteria, then any calls from J Smith or with the config item Main Server will automatically pick up this agreement.</p>
+                                                    <h2>Adding SLA Selection Criteria</h2>
+                                                    <p>You can apply a wide variety of IPK or Workflow selection criteria to an SLA. IPK selection criteria are used while selecting an agreement to apply to a call, and Workflow selection criteria are used while selecting an agreement to apply to a request.</p>
+                                                    <p class="note">When the IPK Status of a call is changed, the SLA linked to the call will continue to be applied and events will be calculated until the Service Resumed button on the Service Window in the Call Details Explorer panel is clicked. This button will close all events for all agreements linked to the call.</p>
+                                                    <h2 class="Prerequisite">Before you start</h2>
+                                                    <p class="prereqtext">You must have <b>Agreement New</b> selected in the <a href="../admin%20security%20roles/slm%20sec%20role%20-%20options%20tab.htm">Options</a> tab of your <b>Service Level Management security role</b> to create agreements. You must have <b>Agreement Update</b> selected in the same tab to update the information.</p>
+                                                    <ol>
+                                                        <li value="1">Display the <b>Agreement Details</b> window, if it is not already visible on screen, by <a href="#top">searching for the agreement</a>.</li>
+                                                        <li value="2">In the Explorer pane, expand <b>Agreement</b>, then select either <b>IPK Selection Criteria</b> or <b>Workflow Selection Criteria</b>.</li>
+                                                        <li value="3">From the <b>Available Types</b> table, select the type of entity and then select <b>Add to List</b>. </li>
+                                                        <p>
+                                                            </p>
+<p class="note">For <b>IPK Selection Criteria</b> the options are: Rules Builder, Person Service Level, Org. Service Level, Service Level - Service. For <b>Workflow Selection</b> the option is Workflow Template.</p>
+                                                        
+                                                        <li value="4">Search for and select the person or entity.</li>
+                                                        <li value="5">You will be taken to a search window or select list for that type of entity or value, such as the Person Search window, the Call Priority window, or the Service Level window.</li>
+                                                        <li value="6">Repeat to add other selection criteria if necessary.</li>
+                                                        <p class="note">You can apply multiple selection criteria to an agreement. You can also apply the same entity (for example a particular person, organization, and so on) to multiple SLA agreements, for example to allow for agreements that are valid for different time periods.  If you try to link an agreement to an entity that is already the criteria for another agreement, a warning message will be displayed; this warning can be ignored. If an entity is linked to more than one active agreement, and no other settings in the agreements influence selection (for example IPK Status), <span class="GeneralVariablesCoreName">ASM Core</span> will apply the agreement with the latest end date. </p>
+                                                    </ol>
+                                                    <h2>
+<a name="Adding2"></a>Adding OLA Selection Criteria</h2>
+                                                    <p>You can apply IPK or Workflow selection criteria to an OLA. </p>
+                                                    <h2 class="Prerequisite">Before you start</h2>
+                                                    <p class="prereqtext">You must have <b>Agreement New</b> selected in the <a href="../admin%20security%20roles/slm%20sec%20role%20-%20options%20tab.htm">Options</a> tab of your <b>Service Level Management security role</b> to create agreements. You must have <b>Agreement Update</b> selected in the same tab to update the information.</p>
+                                                    <ol>
+                                                        <li value="1">Display the <b>Agreement Details</b> window, if it is not already visible on screen, by <a href="#top">searching for the agreement</a>.</li>
+                                                        <li value="2">In the Explorer pane, expand <b>Agreement</b>, then select either <b>IPK Selection Criteria</b> or <b>Workflow Selection Criteria</b>.</li>
+                                                        <li value="3">From the <b>Available Types</b> table, select the type of entity and then select <b>Add to List</b>. </li>
+                                                        <li value="4">Add the required group(s).</li>
+                                                        <li value="5">Select <img src="/storage/app/media/Help/images/save%20button.png"> to save the changes.</li>
+                                                    </ol>
+                                                    <p class="note">Multiple groups can be linked to an OLA. The OLA will be picked up when the call/task is forwarded to any of those groups.</p>
+                                                    <p class="note">A group can be linked to multiple OLA agreements. If a group has already been linked to a different OLA, a warning will appear. This warning can be ignored, however consideration needs to be given to prevent in the wrong OLA being picked up when a call/task is forwarded to that group. </p>
+                                                    <h2>
+<a name="Adding"></a>Adding UC Selection Criteria</h2>
+                                                    <p>You can link external suppliers and contracts to a UC as selection criteria. If a call is forwarded to the selected external supplier, or forwarded externally with that contract selected, <span class="GeneralVariablesCoreName">ASM Core</span> will automatically apply the UC to the call. </p>
+                                                    <p>If a UC has both an external supplier and a contract as selection criteria, the UC is only applied to a call if the call matches with both the external supplier and the contract. If a UC only has an external supplier as selection criteria, it is applied to a call if the call has a matching external supplier, regardless of contract. Similarly, if a UC only has a contract as selection criteria, it is applied to a call if the call has a matching contract, regardless of external supplier.</p>
+                                                    <h2 class="Prerequisite">Before you start</h2>
+                                                    <p class="prereqtext">You must have <b>Agreement New</b> selected in the <a href="../admin%20security%20roles/slm%20sec%20role%20-%20options%20tab.htm">Options</a> tab of your <b>Service Level Management security role</b> to create agreements. You must have <b>Agreement Update</b> selected in the same tab to update the information.</p>
+                                                    <ol>
+                                                        <li value="1">Display the <b>Agreement Details</b> window, if it is not already visible on screen, by <a href="#top">searching for the agreement</a>.</li>
+                                                        <li value="2">In the Explorer pane, expand <b>Agreement</b>, then select either <b>IPK Selection Criteria</b> or <b>Workflow Selection Criteria</b>.</li>
+                                                        <li value="3">Complete the details.</li>
+                                                        <li value="4">
+                                                            <table style="width: 100%;mc-table-style: url('../../resources/tablestyles/fielddesc.css');margin-left: 0;margin-right: auto;" class="TableStyle-FieldDesc" cellspacing="0">
+                                                                <col class="TableStyle-FieldDesc-Column-Column1">
+                                                                <col class="TableStyle-FieldDesc-Column-Column2">
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyH-Column1-">Contract </td>
+                                                                        <td class="TableStyle-FieldDesc-BodyG-Column2-">Search for the contract.</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyB-Column1-">External Supplier</td>
+                                                                        <td class="TableStyle-FieldDesc-BodyA-Column2-">Search for the external supplier.</td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        </li>
+                                                        <p class="note">You can also view the details of the contract or external supplier once they are selected.</p>
+                                                        <li value="5">Select <b>Add to List </b>to add the item as a new row in the list or select <b>Update List</b> to replace an existing item with the new item.</li>
+                                                        <li value="6">Select <img src="/storage/app/media/Help/images/save%20button.png"> to save the changes.</li>
+                                                    </ol>
+                                                    <h2>Viewing Selection Criteria</h2>
+                                                    <h2 class="Prerequisite">Before you start</h2>
+                                                    <p class="prereqtext">You must have <b>Agreement Read</b> selected in the <a href="../admin%20security%20roles/slm%20sec%20role%20-%20options%20tab.htm">Options</a> tab of your <b>Service Level Management security role</b>.</p>
+                                                    <ol>
+                                                        <li value="1">Display the <b>Agreement Details</b> window, if it is not already visible on screen, by <a href="#top">searching for the agreement</a>.</li>
+                                                        <li value="2">In the Explorer pane, expand <b>Agreement</b>, then select either <b>IPK Selection Criteria</b> or <b>Workflow Selection Criteria</b>.</li>
+                                                        <li value="3">From the <b>Agreement Selection Criteria</b> table, select the type of entity and then select <b>Open</b>. </li>
+                                                    </ol>
+                                                    <h2>Removing Selection Criteria</h2>
+                                                    <h2 class="Prerequisite">Before you start</h2>
+                                                    <p class="prereqtext">You must have <b>Agreement Update</b> selected in the <a href="../admin%20security%20roles/slm%20sec%20role%20-%20options%20tab.htm">Options</a> tab of your <b>Service Level Management security role</b> to update the agreement information.</p>
+                                                    <ol>
+                                                        <li value="1">Display the <b>Agreement Details</b> window, if it is not already visible on screen, by <a href="#top">searching for the agreement</a>.</li>
+                                                        <li value="2">In the Explorer pane, expand <b>Agreement</b>, then select either <b>IPK Selection Criteria</b> or <b>Workflow Selection Criteria</b>.</li>
+                                                        <li value="3">From the <b>Agreement Selection Criteria</b> table, select the type of entity and then select <b>Remove</b>. </li>
+                                                        <li value="4">Select <img src="/storage/app/media/Help/images/save%20button.png"> to save the changes.</li>
+                                                    </ol>
+                                                

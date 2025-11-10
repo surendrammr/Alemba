@@ -1,0 +1,115 @@
+url = "/webinar/register"
+layout = "nopopup"
+title = "Webinar"
+is_hidden = 0
+meta_title = "Webinar"
+meta_description = "Webinar"
+robot_index = "noindex"
+robot_advanced = "https://alemba.com/webinar/register"
+robot_follow = "follow"
+seo_title = "Webinar"
+seo_description = "Webinar"
+seoOptionsEnabledInSitemap = 0
+seoOptionsUseUpdatedAt = 1
+seoOptionsRobotIndex = "noindex"
+seoOptionsRobotFollow = "nofollow"
+seoOptionsChangefreq = "daily"
+seoOptionsPriority = 0.5
+seoOptionsOgCard = "summary_large_image"
+
+[renderForm]
+formCode = "webinar"
+
+[renderForm newsletterForm]
+formCode = "newsletter"
+
+[viewBag]
+seo_title = "Webinar"
+seo_description = "Webinar"
+robot_index = "index"
+robot_follow = "follow"
+==
+<?php
+function onStart()
+{
+
+	// Populate the form if the e-mail has been supplied
+	
+	$this['name'] = \Input::has('n') ? \Input::get('n') : false;
+	$this['company'] = \Input::has('c') ? \Input::get('c') : false;
+	$this['email'] = \Input::has('e') ? \Input::get('e') : false;
+	$this['webinar'] = \Input::has('webinar') ? \Input::get('webinar') : false;
+	
+}
+?>
+==
+<script>
+
+	/*
+
+	document.addEventListener("DOMContentLoaded", function(){
+	    var name = '{{ name }}';
+		var company = '{{ company }}';
+		var email = '{{ email }}';
+		var webinar = '{{ webinar }}';
+		
+		$('#webinar [name="name"]').val(name);
+		$('#webinar [name="company"]').val(company);
+		$('#webinar [name="email"]').val(email);
+		$('#webinar [name="webinar"]').val(webinar);
+    });
+
+    */
+
+</script>
+
+<!-- banner -->
+
+<div class="jumbotron jumbotron-fluid banner dark pageBanner" style="background-image:url('{{ 'Banners/banner-generic-office@0.5x.jpg'|media }}')">
+
+	<div class="container h-100">
+	    <div class="row h-100">
+    	    <div class="col my-auto">
+		    </div>
+		</div>
+	</div>
+
+</div>
+
+<!-- /banner -->
+
+{% partial 'demo-button' %}
+
+<!-- copy -->
+
+<div class="container copy">
+
+	<header class="col-md-12 copy-heading">
+	
+		<h1>{{ this.page.title }}</h1>
+		<!--<h2>Register now</h2>-->
+
+	</header>
+
+	<div class="row justify-content-center">
+
+		<div class="col-md-10 col-md-offset-1 copy-main">
+		    <p class="lead">We don't have any webinars planned at the moment. Please sign up to our newsletter to receive updates on any future events.</p>
+		    
+		    {% component 'newsletterForm' %}
+		    
+            {#
+			<p class="lead">Fill in your details below to register for our webinar. <strong>Only one person per form, please.</strong></p>
+
+            {% component 'renderForm' %}
+            #}
+
+		</div>
+
+	</div>
+
+</div>
+
+<!-- /copy -->
+
+{% partial 'pagelinks-recent' %}

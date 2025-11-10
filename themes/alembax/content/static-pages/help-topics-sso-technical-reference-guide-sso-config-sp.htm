@@ -1,0 +1,85 @@
+[viewBag]
+title = "Configuring the Service Provider"
+url = "/help/topics/sso-technical-reference-guide/sso-config-sp"
+layout = "help"
+is_hidden = 0
+navigation_hidden = 0
+==
+                                                    <h1>Configuring the Service Provider</h1>
+                                                    <p>You must configure Service Providers for each <span class="GeneralVariablesProductName">ASM</span> resource <span class="GeneralVariablesCoreName">ASM Core</span>, or <span class="GeneralVariablesSelfServicePortalName">Self Service Portal</span>.</p>
+                                                    <p class="note">When a web request is received using a URL which has a configured Service Provider, that request will be authenticated using SSO, irrespective of other authentication settings.</p>
+                                                    <h2>Adding a Service Provider</h2>
+                                                    <p>Adding a new Service Provider will enable SSO for the URL configured.</p>
+                                                    <ol>
+                                                        <li value="1">Select <a href="../general%20topics/asmcorewindow.htm"><span style="font-size: 24pt;">≡</span></a> &gt; <b>Admin</b> &gt; <b>Integration</b>.</li>
+                                                        <li value="2">In the Explorer pane, under <b>Single Sign On</b>, select <b>Service Providers</b>. </li>
+                                                        <li value="3">Select <img src="/storage/app/media/Help/images/add%20new.png">, then complete the following details: </li>
+                                                        <p>
+                                                            </p>
+<table style="width: 100%;mc-table-style: url('../../resources/tablestyles/fielddesc.css');margin-left: 0;margin-right: auto;" class="TableStyle-FieldDesc" cellspacing="0">
+                                                                <col class="TableStyle-FieldDesc-Column-Column1">
+                                                                <col class="TableStyle-FieldDesc-Column-Column2">
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyH-Column1-">User Interface</td>
+                                                                        <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                Choose a User Interface from the dropdown
+                            </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyH-Column1-">Service Identifier</td>
+                                                                        <td class="TableStyle-FieldDesc-BodyG-Column2-">A Service Identifier will be automatically generated. This Identifier must be unique to the <span class="GeneralVariablesSystemName">ASM System</span> and must be unique to the Identity Provider. Therefore this value is editable, and can be changed at any time to meet these requirements.</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyH-Column1-">Public Url</td>
+                                                                        <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                            <p>The Public URL for the service will be generated based upon the URL of the current session but this URL is editable to allow for flexible configuration. This URL will be used to specify the redirect URL used by the Identity Provider. It does not need to be Internet facing, but must be resolvable by all users of the service. </p>
+                                                                            <p>This URL is used to select an Identity Provider when a web request is received. It does not include the specific interface e.g. core.aspx or core.aspx?lite </p>
+                                                                            <p class="note">Multiple Service Providers can be configured for a single service using different URLs and service identifiers. This allows for flexible configuration of SSO in a variety of environments. However, in this version you are unable to configure the Public URL to direct to a specific Portal System.</p>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyH-Column1-">Identity Provider</td>
+                                                                        <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                Select the Identity Provider from the drop-down field
+                            </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyH-Column1-">Signing Certificate</td>
+                                                                        <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                            <p>Select the Signing Certificate from the drop-down field</p>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyH-Column1-">Resource Mapping</td>
+                                                                        <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                            <p>Select the <a href="../integration/defining%20a%20resource%20mapping.htm">Resource Mapping</a> from the drop-down field. (This information can be updated later if the required resource mapping has not been configured.)</p>
+                                                                            <p>Resource Mapping defaults to disabled, if this is set on the Service Provider configuration then the SSO Connector will not attempt to update User Records.</p>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyB-Column1-">Service Provider Metadata</td>
+                                                                        <td class="TableStyle-FieldDesc-BodyA-Column2-">This field will display any changes made by changing the values in the Service Provider details.</td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        
+                                                        <li value="4">Select <img src="/storage/app/media/Help/images/save%20button.png"> to save the details. This will update the metadata. Then select <img src="/storage/app/media/Help/images/close%20x%20button.png" alt="" title=""> to close the window.</li>
+                                                    </ol>
+                                                    <h3> Partitioning</h3>
+                                                    <p>If Users are partitioned, SSO for the <span class="GeneralVariablesSelfServicePortalName">Self Service Portal</span> can be configured per partition. If you choose <span class="GeneralVariablesSelfServicePortalName">Self Service Portal</span> in the User Interface dropdown field and Users are partitioned then an additional Partition dropdown field will be displayed allowing for you to set the User Partition parameter for the Service Provider.</p>
+                                                    <p>Users of the <span class="GeneralVariablesSelfServicePortalName">Self Service Portal</span> must then access the service using a partitioned URL:</p>
+                                                    <p class="exampletext"><a href="http://server/system/core.aspx?lite&amp;PARTITION=1">http://server/system/core.aspx?lite&amp;PARTITION=1</a> where 1 = the Ref value of the Partition.</p>
+                                                    <p>This does not affect the partitions the User has access to within <span class="GeneralVariablesProductName">ASM</span>, it is used by the Identity Provider for logins to the <span class="GeneralVariablesSelfServicePortalName">Self Service Portal</span>.</p>
+                                                    <p class="warning">Changes to the settings on the Service Provider Details screen has the ability to break the communications between the Identity Provider and the Service Provider. If the Signing Certificate, Service Identifier or Public URL changes, the details must be updated on the Identity Provider (by using the updated metadata xml).</p>
+                                                    <h2 class="newpage">Deleting a Service Provider</h2>
+                                                    <ol>
+                                                        <li value="1">Select <a href="../general%20topics/asmcorewindow.htm"><span style="font-size: 24pt;">≡</span></a> &gt; <b>Admin</b> &gt; <b>Integration</b>.</li>
+                                                        <li value="2">In the Explorer pane, under <b>Single Sign On</b>, select <b>Service Providers</b>. </li>
+                                                        <li value="3">
+                                                            <p>Select the listed Service Provider you want to delete, then select <img src="/storage/app/media/Help/images/delete%20button.png">.</p>
+                                                            <p>A warning appears.</p>
+                                                        </li>
+                                                        <li value="4">Select <b>Yes</b> to confirm the deletion.</li>
+                                                    </ol>
+                                                

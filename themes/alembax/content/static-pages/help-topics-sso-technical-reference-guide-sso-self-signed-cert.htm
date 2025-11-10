@@ -1,0 +1,55 @@
+[viewBag]
+title = "Creating a Self Signed Certificate"
+url = "/help/topics/sso-technical-reference-guide/sso-self-signed-cert"
+layout = "help"
+is_hidden = 0
+navigation_hidden = 0
+==
+                                                    <h1>Creating a Self Signed Certificate</h1>
+                                                    <p>This appendix provides useful information on how to create a Self-Signed Certificate on the <span class="GeneralVariablesProductName">ASM</span> Web Server. SAML requires an SSL Certificate so for testing purposes you may wish self-signing certificate to be added to the certificate store.</p>
+                                                    <p class="note"> You are also able to use a 3rd Party Certificate as long as this has been installed to the Local Certificate store.
+</p>
+                                                    <ol>
+                                                        <li value="1">Open <b>Internet Information Services(IIS) Manager</b>.</li>
+                                                        <li value="2">
+Select the <b>Local Machine</b> from the <b>Connections</b> tree
+</li>
+                                                        <li value="3">Select <b>Server Certificates</b> from the IIS section. <a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="../../resources/images/sso%20technical%20reference%20guide/sso%20ssc%20server%20cert.png"><img class="MCPopupThumbnail img imgthumbnail" data-mc-width="620" data-mc-height="300" src="/storage/app/media/Help/images/sso%20technical%20reference%20guide/sso%20ssc%20server%20cert_thumb_0_48.png" tabindex=""></a>
+</li>
+                                                        <li value="4">Select <b>Create Self-Signed Certificate</b>. 
+<a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="../../resources/images/sso%20technical%20reference%20guide/sso%20ssc%20create.png"><img class="MCPopupThumbnail img imgthumbnail" data-mc-width="349" data-mc-height="267" src="/storage/app/media/Help/images/sso%20technical%20reference%20guide/sso%20ssc%20create_thumb_0_48.png" tabindex=""></a>
+</li>
+                                                        <li value="5">Assign a friendly name to the certificate. 
+<a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="../../resources/images/sso%20technical%20reference%20guide/sso%20ssc%20name.png"><img class="MCPopupThumbnail img imgthumbnail" data-mc-width="704" data-mc-height="530" src="/storage/app/media/Help/images/sso%20technical%20reference%20guide/sso%20ssc%20name_thumb_0_48.png" tabindex=""></a>
+</li>
+                                                        <li value="6">Click OK.
+</li>
+                                                        <li value="7">Open the <b>Microsoft Management Console</b> (type MMC in app search).</li>
+                                                        <li value="8">Select <b>File &gt; Add/Remove Snap-in</b>.
+</li>
+                                                        <li value="9">Select <b>Certificates</b> from the list and click <b>Add</b>. <a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="../../resources/images/sso%20technical%20reference%20guide/sso%20ssc%20add.png"><img class="MCPopupThumbnail img imgthumbnail" data-mc-width="701" data-mc-height="483" src="/storage/app/media/Help/images/sso%20technical%20reference%20guide/sso%20ssc%20add_thumb_0_48.png" tabindex=""></a>
+</li>
+                                                        <li value="10">Select <b>Computer Account</b>.</li>
+                                                        <li value="11">Click <b>Next</b>.</li>
+                                                        <li value="12">Select  <b>Local Computer</b>.</li>
+                                                        <li value="13">Click <b>Finish</b>.</li>
+                                                        <li value="14">Within the MMC Console, expand <b>Certificates</b> tree, expand <b>Personal</b> Tree, and then select <b>Certificates</b>.<a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="../../resources/images/sso%20technical%20reference%20guide/sso%20ssc%20personal%20cert.png"><img class="MCPopupThumbnail img imgthumbnail" data-mc-width="1152" data-mc-height="421" src="/storage/app/media/Help/images/sso%20technical%20reference%20guide/sso%20ssc%20personal%20cert_thumb_0_48.png" tabindex=""></a>
+</li>
+                                                        <li value="15">
+Right Click your certificate from the list (check <b>Friendly Name</b> column to find the one you just created).
+</li>
+                                                        <li value="16">Select <b>All Tasks &gt; Manage Private Keys</b>.
+</li>
+                                                        <li value="17">Click <b>Add</b>.<a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="../../resources/images/sso%20technical%20reference%20guide/sso%20ssc%20add%20permissions.png"><img class="MCPopupThumbnail img imgthumbnail" data-mc-width="384" data-mc-height="465" src="/storage/app/media/Help/images/sso%20technical%20reference%20guide/sso%20ssc%20add%20permissions_thumb_0_48.png" tabindex=""></a>
+</li>
+                                                        <li value="18">In the <b>Enter the object name to Select</b> field, type <b>Network</b>. <a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="../../resources/images/sso%20technical%20reference%20guide/sso%20ssc%20network.png"><img class="MCPopupThumbnail img imgthumbnail" data-mc-width="479" data-mc-height="269" src="/storage/app/media/Help/images/sso%20technical%20reference%20guide/sso%20ssc%20network_thumb_0_48.png" tabindex=""></a>
+</li>
+                                                        <li value="19">Click  the <b>Check Names</b> button.</li>
+                                                        <li value="20">If prompted, login with your standard domain credentials.</li>
+                                                        <li value="21">Select Network Service from the list. 
+<a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="../../resources/images/sso%20technical%20reference%20guide/sso%20ssc%20network%20svc.png"><img class="MCPopupThumbnail img imgthumbnail" data-mc-width="585" data-mc-height="350" src="/storage/app/media/Help/images/sso%20technical%20reference%20guide/sso%20ssc%20network%20svc_thumb_0_48.png" tabindex=""></a>
+</li>
+                                                        <li value="22">Click <b>OK</b>, <b>Apply</b> and <b>OK</b> again. The certificate should now appear in the list of Signing Certificates in <span class="GeneralVariablesCoreName">ASM Core</span>. <a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="../../resources/images/sso%20technical%20reference%20guide/sso%20ssc%20completed%20cert.png"><img class="MCPopupThumbnail img imgthumbnail" data-mc-width="460" data-mc-height="274" src="/storage/app/media/Help/images/sso%20technical%20reference%20guide/sso%20ssc%20completed%20cert_thumb_0_48.png" tabindex=""></a>
+</li>
+                                                    </ol>
+                                                

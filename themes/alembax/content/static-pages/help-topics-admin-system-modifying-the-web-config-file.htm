@@ -1,0 +1,26 @@
+[viewBag]
+title = "Modifying Web.config and IIS"
+url = "/help/topics/admin-system/modifying-the-web-config-file"
+layout = "help"
+is_hidden = 0
+navigation_hidden = 0
+==
+                                                    <h1>
+<a name="top"></a>Modifying Web.config and IIS</h1>
+                                                    <p>Changing the maximum object size in <a href="system%20settings.htm">System Settings</a> may require modification of the Web.config file in the <span class="GeneralVariablesSystemName">ASM System</span> directory <b>and</b> the Request Filtering Settings in Internet Information Services (IIS) Manager. Ensure the web.config and IIS Request Filtering Settings are equal to the <b>Max Object Size</b> value set in <a href="system%20settings.htm">System Settings</a>.</p>
+                                                    <p class="note">When an object exceeds the max upload size setting, warning messages are displayed. These vary depending on the source of the limit.</p>
+                                                    <ol>
+                                                        <li value="1">Access the web.config file.</li>
+                                                        <p class="tip">The WEB.CONFIG file exists in each <span class="GeneralVariablesSystemName">ASM System</span> directory (e.g.: C:\Program Files\<span class="GeneralVariablesCompanyName3">Alemba</span>\<span class="GeneralVariablesProductName">ASM</span>\System1)  and is required to be set for the virtual directory to access the <span class="GeneralVariablesSystemName">ASM System</span>. </p>
+                                                        <li value="2">Locate the following line: <code>&lt;httpRuntime maxRequestLength="100000" executionTimeout="1800" /&gt;</code>.</li>
+                                                        <li value="3">Change the <b>maxRequestLength</b> to a value (in KB) equal to the maximum object size configured in <span class="GeneralVariablesProductName">ASM</span>. The maximum value supported for web.config is 2147483647. </li>
+                                                        <li value="4">In <b>Internet Information Services (IIS) Manager</b>, select the website for the <span class="GeneralVariablesSystemName">ASM System</span>.</li>
+                                                        <li value="5">Select <b>Request Filtering</b>.</li>
+                                                        <li value="6">From the <b>Actions</b> menu, select <b>Edit Feature Settings</b>. </li>
+                                                        <li value="7">Change the <b>Maximum allowed content length (Bytes)</b> field to a value (in Bytes) equal to the maximum object size configured in <span class="GeneralVariablesProductName">ASM</span>.<a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="../../resources/images/iisrequestfiltering.png"><img class="MCPopupThumbnail img imgthumbnail" data-mc-width="1053" data-mc-height="761" src="/storage/app/media/Help/images/iisrequestfiltering_thumb_0_48.png" style="width: 604px;height: 435px;" tabindex=""></a>
+</li>
+                                                        <li value="8">Large uploads may timeout before completion depending on environmental factors such as IIS configuration or network limits. Extend the connection time out to an appropriate length of time.</li>
+                                                        <li value="9">Reset the IIS.</li>
+                                                    </ol>
+                                                    <p class="warning">When you upgrade, some of these settings can be overwritten and need to be set again.</p>
+                                                

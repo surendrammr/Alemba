@@ -1,0 +1,289 @@
+[viewBag]
+title = "Workflow Management Settings"
+url = "/help/topics/admin-workflow-mgt/workflow-management-settings"
+layout = "help"
+is_hidden = 0
+navigation_hidden = 0
+==
+                                                    <h1>
+<a name="top"></a>Workflow Management Settings</h1>
+                                                    <p class="intro">You can enable global workflow management settings regarding task forwarding, screen sets, approvals, request history, request forwarding, data calculation, authorization, escalation, activation rules, templates, version control, surveys and auditing.</p>
+                                                    <h2 class="Prerequisite">Before you start</h2>
+                                                    <p class="prereqtext1">You must have <b>Workflow Management Set Up</b> enabled within your <a href="../admin%20security%20roles/general%20access%20security%20role.htm">General Access Security Role</a> to configure the workflow management settings.</p>
+                                                    <p class="warning">The <span class="GeneralVariablesCoreName">ASM Core</span> Workflow Polling Service must be running on the <span class="GeneralVariablesCoreName">ASM Core</span> server to execute workflow-related activations (such as closing delay tasks that have reached their target times or activating dependent tasks when parent tasks are closed). For more information on <span class="GeneralVariablesCoreName">ASM Core</span> polling services, refer to the <b class="Bold">Server Console Guide</b>.</p>
+                                                    <ol>
+                                                        <li value="1">
+                                                            <p>Select <a href="../general%20topics/asmcorewindow.htm"><span style="font-size: 24pt;">≡</span></a> &gt; <b>Admin</b> &gt;  <b>System Administration</b>.   </p>
+                                                            <p>The System Administration window appears.</p>
+                                                            <p> In the Explorer pane, expand  <b>Workflow Management</b>.</p>
+                                                        </li>
+                                                        <li value="2">Select <b class="Bold">Workflow Management Settings</b> to display the <b>Workflow Management Settings</b> window.</li>
+                                                        <li value="3">Complete the details, selecting the appropriate settings where necessary.</li>
+                                                    </ol>
+                                                    <table class="TableStyle-FieldDesc" style="mc-table-style: url('../../resources/tablestyles/fielddesc.css');" cellspacing="0">
+                                                        <col class="TableStyle-FieldDesc-Column-Column1">
+                                                        <col class="TableStyle-FieldDesc-Column-Column2">
+                                                        <tr>
+                                                            <td colspan="2" class="TableStyle-FieldDesc-BodyG-Column1-" style="font-weight: normal;">You can use the <b class="Bold">Task Forwarding</b> options to set the default task recipients to be displayed on the <b class="Xref_outstanding">Forward Task Internally</b> window. </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">Analysts Default</td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">Automatically lists all Analysts defined in the system when forwarding a task.<p class="note">If the system is partitioned, only the Analysts with access to that partition will be displayed.</p>
+</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">Groups Default</td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">Automatically displays all workflow groups defined on the system to which the Analyst forwarding the task has access. The Analyst can then select the group to which the task is to be sent. <p class="warning">The Analysts in each group are not displayed in this view.</p>
+</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">Analysts by Groups Default</td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">Automatically displays all workflow groups to which the Analyst forwarding the task has access, and the Analysts within them. The Analyst can choose to forward the task to the entire group or an Analyst in a group.<p class="warning">The Analyst can change the view by selecting a different option on the <b class="Bold">Forward Task Internally window</b>.</p>
+</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td colspan="2" class="TableStyle-FieldDesc-BodyG-Column1-">
+                                                                <p style="font-weight: normal;">You can select from the following settings for <b class="Bold">Approvals</b>.</p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">Forwarding</td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">Enables the <b class="Bold">Internal</b> button (or the <b class="Bold">Internal</b> option on the explorer pane) on the <b class="Bold">Approval Details window</b> used to forward approvals to other Analysts within the organization. <p class="warning">If this option is cleared, the Analyst to whom an approval is assigned must approve or reject it. They cannot forward the approval.</p>
+</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">Require Token for Email Approval</td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">Adds a security token to outgoing approval emails. To approve an approval task by incoming email, the token must be present. Security tokens are specific to the approval task that generated the email.</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td colspan="2" class="TableStyle-FieldDesc-BodyG-Column1-">
+                                                                <p style="font-weight: normal;">The <b class="Bold">Request Forwarding</b> options enable you to set the default recipients to be displayed on the <b class="Bold">Forward Request Internally</b> window. </p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">Analysts Default</td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">Automatically lists all Analysts defined in the system when forwarding a request.</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">Groups Default</td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">Automatically displays all workflow groups to which the Analyst forwarding the request has access. The Analyst can select the group to which the request is to be sent. The Analysts in each group are not displayed in this view.</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">Analyst by Groups Default</td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">Automatically displays all workflow groups to which the Analyst forwarding the request has access, and the Analysts within those groups. The forwarding Analyst can choose to forward the request to a group or to an Analyst in a group.<p class="note">A support Analyst can change the default view by selecting a different option on the <b class="Bold">Forward Request Internally</b> window.</p>
+</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column1-" colspan="2" style="font-weight: normal;">The <b>Authorization</b> options enable you to define how authorization is handled by the system.</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">Authorization</td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">Select this option to suspend tasks when they are created. A request manager must then authorize them  before other Analysts can complete them. Deselect to authorize all tasks as soon as the request is submitted (pre-authorize).<p class="note">Selecting this option enables the <b class="Bold">Authorization</b> option on the <b class="Bold">Request Details </b><b class="Bold">Explorer pane</b>. To authorize a request and release all the tasks in the request, the Analyst can select the <b class="Bold">Authorization</b> option and complete the fields. </p>
+</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">
+                                                                <p>Lock Request on Auth</p>
+                                                            </td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">Select to prevent any changes being made to a <b class="Xref_outstanding">request dependency diagram</b> (request workflow) once a request is authorized. This means Analysts cannot add or update tasks once a request is authorized or pre-authorized.</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">Lock Request Desc on Auth</td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">Select to prevent Analysts from updating the request description after the request has been authorized. <p class="note">If the request is pre-authorized, Analysts can update the request description until the request is either submitted, deferred, or forwarded.</p>
+</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">Lock Task Desc on Auth</td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">Prevents Analysts from updating the task description after the task has been authorized.</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td colspan="2" class="TableStyle-FieldDesc-BodyG-Column1-">
+                                                                <p style="font-weight: normal;">The <b>Escalation</b> options relate to how tasks are escalated in the system.</p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">Target Date</td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">Select to escalate tasks if they have not been completed by the <b class="Bold">Target Date</b> (the date on which the task is expected to be completed). A task’s target date is set on the <b class="Xref_outstanding">Task Details window.</b><p class="note">Selecting this option enables the <b class="Bold">Target Date Exceeded</b> option on the <b class="Bold">Service Level Management </b>explorer option on the <b class="Bold">Task Details</b> window. The  option is used to send out notifications to the request manager when the target date of a task has passed.</p>
+</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">Planned Date</td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">Select to escalate tasks if they have not started on the <b class="Bold">Planned Start</b> date, as set on the <b class="Xref_outstanding">Task Details window.</b><p class="note">Selecting this option enables the <b class="Bold">Planned Start Date Exceeded</b> option on the <b class="Bold">Service Level Management</b> explorer option on the <b>Task Details</b> window. The  option is used to send out notifications to the request manager when the planned start date of a task has passed.</p>
+</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td colspan="2" class="TableStyle-FieldDesc-BodyG-Column1-">
+                                                                <p style="font-weight: normal;">There are two options for <b class="Bold">Activation Rules</b> (used on Activation Tasks)</p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">Incl. Tasks in Rules</td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">Select to include tasks in activation rules. Deselect to restrict activation score weightings to approvals.</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">Close Inactive Tasks/Approvals</td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                <p>Select to display the <b>Close Incomplete</b> checkbox in the Activation Rules.</p>
+                                                                <p class="note">When the <b>Close Incomplete</b> check box is enabled for a task in the Activation Rules of a request, that task will be automatically closed if still incomplete when sufficient activation points have been reached.</p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td colspan="2" class="TableStyle-FieldDesc-BodyG-Column1-">
+                                                                <p style="font-weight: normal;">The options under <b class="Bold">Workflow Template</b> set the defaults for when an Analyst creates a request from a template. They permit the list of templates to be reduced and enable Analysts to find the most appropriate template easily.</p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">All Templates</td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">Select to display all the templates defined on your system on the <b class="Xref_outstanding">Workflow Template Administration</b> and <b class="Xref_outstanding">Request from Workflow Template</b> windows.</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">Templates for Types</td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">Select to display only those templates that are linked to the request type the Analyst selects on the <b class="Xref_outstanding">Workflow Template Administration</b> and <b class="Xref_outstanding">Request from Workflow Template </b>windows.</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td colspan="2" class="TableStyle-FieldDesc-BodyG-Column1-">
+                                                                <p style="font-weight: normal;">The options under <b class="Bold">Template Hunting Default</b> set what templates to display when an Analyst creates a request from a template. The hunting options are only available for selection if <b class="Bold">Templates by Type</b> is selected on the <b class="Bold">Workflow Template Administration window.</b></p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">Hunt Up</td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                <p>Select to display the names of any templates created with that type, plus any parent templates when an Analyst selects a template type.</p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">Hunt Down</td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">Select to display the names of any templates created with that type, plus any child templates, when an Analyst selects a template type.</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">Don’t Hunt</td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">Select to display only the templates created with the type specified by the Analyst. <p class="note">This is the default setting.</p>
+</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td colspan="2" class="TableStyle-FieldDesc-BodyG-Column1-">
+                                                                <p style="font-weight: normal;">The options under <b class="Bold">Multiple Screen Sets</b> enable Analysts to select <b class="Xref_outstanding">Request Details windows</b> which have been configured in the <a href="../designer/screen%20sets.htm"><span class="GeneralVariablesDesignerName">ASM Designer</span></a> as well as the standard window.</p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">Request Screen Sets</td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">Select to make multiple configured <b class="Bold">Request Details</b> screen sets available to Analysts. Analysts can change the screen set by selecting the <b class="Bold">Screen Set</b> option on the <b class="Bold">Request Details </b>Explorer pane. <p class="note">You can restrict the access of individual Analysts to certain screens based on their <a href="%7B%7B%20'help-admin-security-roles-workflow-mgt-sec-role#top'%7CstaticPage%20%7D%7D#top">Workflow Management security role</a>.</p>
+</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">Analyst Security</td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                <p class="prereq"><b class="Bold">Request Screen Sets</b> must be selected to make this option available. </p>
+                                                                <p>Select to restrict Analysts to the configured request and task screen sets to which they have been linked as part of their <a href="%7B%7B%20'help-admin-security-roles-workflow-mgt-sec-role#top'%7CstaticPage%20%7D%7D#top">Workflow Management security role</a>. Deselect to allow Analysts to access all request and task screen sets.</p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">Multiple Task Screen Sets</td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                <p class="prereq"><b class="Bold">Request Screen Sets</b> must be selected to make this option available.</p>
+                                                                <p>Select to enable multiple custom task and approval screen sets to be used on your system. Analysts can change the screen set used for logging the task or approval from the <b class="Xref_outstanding">Task Details</b> or <b class="Xref_outstanding">Approval Details </b>window.</p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td colspan="2" class="TableStyle-FieldDesc-BodyG-Column1-">
+                                                                <p style="font-weight: normal;">The options under <b class="Bold">History</b> indicate whether task and request actions should display on the <span class="GeneralVariablesSelfServicePortalName">Self Service Portal</span>. History entries are added when a request or task is actioned, forwarded, or escalated.</p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">Task History Private</td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">Select to prevent the comments added to tasks (in the <b class="Bold">Actions</b> field) from appearing on the <span class="GeneralVariablesSelfServicePortalName">Self Service Portal</span>
+</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">Request History Private</td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">Select to prevent the comments added to requests (in the <b class="Bold">Actions &amp; Solutions</b> field) from appearing on the <span class="GeneralVariablesSelfServicePortalName">Self Service Portal</span>
+</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td colspan="2" class="TableStyle-FieldDesc-BodyG-Column1-">
+                                                                <p style="font-weight: normal;">The options under <b class="Bold">Date Calculation</b> enable you to automatically update start and end dates for requests, tasks, and approvals.</p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">Calculate Dates</td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">Select to automatically calculate the start and end dates for tasks and approvals, based on the specified durations for each task or approval in the <b class="Bold">Planned Time</b> field. </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">Maintain Dates</td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                <p class="prereq">This option is enabled when you select <b class="Bold">Calculate Dates</b>. </p>
+                                                                <p>Select to make <b class="Bold">Auto-calculate Target Date</b> default on the <b class="Bold">Task Details</b> or <b class="Bold">Approval Details</b> windows. </p>
+                                                                <p class="warning">Analysts can still clear or select <b class="Bold">Auto-calculate Target Date</b> on a task or approval.</p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">Set Target No. Days</td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">Select to set the <b class="Bold">Target Date</b> of tasks, approvals and requests to the date on which they were created plus the number of days specified in the <b class="Bold">Target No. Days</b> fields.</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">Request Target No. Days</td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">Type the number of days from the date on which the request was created to its target date. Analysts can change the target date on the <b class="Bold">Request Details</b> window. <p class="prereq">To use this option, the request manager should include durations when creating workflow templates. </p>
+</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">Task Target No. Days</td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">Type the number of days from the date on which the task is created to its <b class="Bold">Target Date</b>. This is broken down into the hours and minutes displayed in the <b class="Bold">Planned Time</b> field on the <b class="Xref_outstanding">Task Details</b> or <b class="Xref_outstanding">Approval Details</b> windows.<p class="note"> Analysts can change the target date on the <b class="Xref_outstanding">Task Details</b> window.</p>
+</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td colspan="2" class="TableStyle-FieldDesc-BodyG-Column1-">
+                                                                <p style="font-weight: normal;">The options under <b class="Bold">Requests Pre-Create and Completion Status</b> enable the automation and number of requests generated by the polling service, as well as the automated progression of tasks.</p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">Number Pre-Create Requests from Templates</td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">The number of requests to be periodically pre-generated from templates by the polling service, allowing the polling service to create temporary requests in the database that can be used to more quickly create a real request when the Analyst requires one.<p class="warning" data-mc-conditions="Default.For next release">We recommend that you do not set the number of pre-generated requests to any more than 5. Above this may impact performance.</p>
+</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">Set Request Completion Status</td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">Select to enable the status of the request to be updated when the task is closed to the status specified in the <b class="Bold">Request Status on Completion</b> field in the task template. For example, the status could change from “Testing Complete” to “Budget Approved”. <p class="warning">The request manager will still be able to set the status manually.</p>
+</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td colspan="2" class="TableStyle-FieldDesc-BodyG-Column1-">
+                                                                <p style="font-weight: normal;">The <b class="Bold">Options</b> section includes general workflow management options and settings.</p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">User Survey</td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">Select to enable the system to send User Surveys for requests.</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">Request Object Version Control</td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">Select to enable object version control for requests. This means that the system will track and store versions of objects (files) attached to requests when they are updated, and also enable Analysts to check in and check out different versions.</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">Change Calendar Object Version Control</td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">Select to enable object version control for change calendars. This means that the system will track and store versions of objects (files) attached to change calendars when they are updated, and also enable Analysts to check in and check out different versions.</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">User Approval Access to Request Objects</td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">Select to show the objects (files) attached to a request or task on the same request or User approval task in the <span class="GeneralVariablesSelfServicePortalName">Self Service Portal</span>
+</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td colspan="2" class="TableStyle-FieldDesc-BodyG-Column1-">
+                                                                <p style="font-weight: normal;">The <b class="Bold">Audit</b> options enable auditing on requests, templates and tasks.</p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">Audit Workflow</td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">Select to enable auditing on requests and workflow templates. <p class="note">Selecting this option enables the <a href="../cmdb%20explorer%20options/audit%20explorer%20option.htm"><b class="Bold">Audit</b></a> explorer option on the <b class="Bold">Request Details</b> and <b class="Bold">Workflow Template</b> <b class="Bold">Details</b> windows. </p>
+</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-">Audit Task</td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">Select to enable auditing on tasks and approvals. <p class="note">Selecting this option enables the <a href="../cmdb%20explorer%20options/audit%20explorer%20option.htm"><b class="Bold">Audit</b></a> explorer option on the <b class="Bold">Task Details</b> and <b class="Bold">Approval Details</b> windows.</p>
+</td>
+                                                        </tr>
+                                                    </table>
+                                                    <ol data-mc-continue="true">
+                                                        <li value="4">Select <img src="/storage/app/media/Help/images/save%20button.png">  to save the changes. Provide the <a href="../general%20topics/change%20reasons.htm">Change Reasons</a> if prompted to do so.</li>
+                                                    </ol>
+                                                

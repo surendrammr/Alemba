@@ -1,0 +1,208 @@
+[viewBag]
+title = "Stored Procedures"
+url = "/help/topics/admin-system/stored-procedures"
+layout = "help"
+is_hidden = 0
+navigation_hidden = 0
+==
+                                                    <h1>
+<a name="top"></a>Stored Procedures</h1>
+                                                    <p class="intro">Stored procedures are programs precompiled by <span class="GeneralVariablesCompanyName2">Alemba®</span> that can be used to configure your system. You can view a list of them and activate the ones you want to use.</p>
+                                                    <h2>Managing Stored Procedures</h2>
+                                                    <h2 class="Prerequisite">Before you start</h2>
+                                                    <p class="prereqtext">You must have <b>System Set Up</b> selected in the <a href="../admin%20security%20roles/general%20access%20security%20role%20-%20admin%20tab.htm">Admin</a> tab of your <b>General Access security role</b>.</p>
+                                                    <ol>
+                                                        <li value="1">
+                                                            <p>Select <a href="../general%20topics/asmcorewindow.htm"><span style="font-size: 24pt;">≡</span></a> &gt; <b>Admin</b> &gt;  <b>System Administration</b>.   </p>
+                                                            <p>The System Administration window appears.</p>
+                                                        </li>
+                                                        <li value="2">In the Explorer pane, expand <b>System</b>, then select <b>Stored Procedures</b>. The <b>Stored Procedures</b> window appears. Select the required stored procedure(s), by selecting the checkbox next to the name(s):</li>
+                                                    </ol>
+                                                    <table class="TableStyle-FieldDesc" style="mc-table-style: url('../../resources/tablestyles/fielddesc.css');" cellspacing="0">
+                                                        <col class="TableStyle-FieldDesc-Column-Column1">
+                                                        <col class="TableStyle-FieldDesc-Column-Column2">
+                                                        <tbody>
+                                                            <tr>
+                                                                <td class="TableStyle-FieldDesc-BodyG-Column1-" colspan="2" style="font-weight: normal;">Within <b>IPK</b>, you can select from the following call management procedures:</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="TableStyle-FieldDesc-BodyH-Column1-">New Call</td>
+                                                                <td class="TableStyle-FieldDesc-BodyG-Column2-">When a new call is logged, default values are entered in the <b>Call Number</b> and <b>Call Reference</b> fields on the <b>Call Details</b> window.</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="TableStyle-FieldDesc-BodyH-Column1-">Allocate Config Item Ref</td>
+                                                                <td class="TableStyle-FieldDesc-BodyG-Column2-">Assigns specific configuration item prefixes to certain configuration items, depending on the Analyst who enters the item into the database.</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="TableStyle-FieldDesc-BodyH-Column1-">Config Item Description</td>
+                                                                <td class="TableStyle-FieldDesc-BodyG-Column2-">If the Analyst does not specify a configuration item description in the <b>Description</b> field of the <b>Call Details</b> window, this allows a default description</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="TableStyle-FieldDesc-BodyH-Column1-">Custom Config Item, User, Organization, Location, Call, Service</td>
+                                                                <td class="TableStyle-FieldDesc-BodyG-Column2-">Selecting the relevant option enables more fields when configuring a <b>Call Details</b> window in the <a href="../designer/configuring%20screens.htm"><span class="GeneralVariablesDesignerName">ASM Designer</span></a>.</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="TableStyle-FieldDesc-BodyH-Column1-">Validate External</td>
+                                                                <td class="TableStyle-FieldDesc-BodyG-Column2-">Runs when a call is forwarded externally to check that it has the required information stored against it.</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="TableStyle-FieldDesc-BodyH-Column1-">Post Update</td>
+                                                                <td class="TableStyle-FieldDesc-BodyG-Column2-">Runs against a call as soon as it is logged, deferred or forwarded, and the information entered into the database</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="TableStyle-FieldDesc-BodyH-Column1-">Build Forums</td>
+                                                                <td class="TableStyle-FieldDesc-BodyG-Column2-">Can be called before or after a forum is built to modify the forum, add Analysts to it, and so on</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="TableStyle-FieldDesc-BodyG-Column1-" colspan="2" style="font-weight: normal;">Within <b>Request</b>, you can select from the following request management procedures:</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="TableStyle-FieldDesc-BodyH-Column1-">Request Partition</td>
+                                                                <td class="TableStyle-FieldDesc-BodyG-Column2-">Used to override partition allocation to requests</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="TableStyle-FieldDesc-BodyH-Column1-">Updating a Request</td>
+                                                                <td class="TableStyle-FieldDesc-BodyG-Column2-">Used to modify request data, start another stored procedure, or send an email, when the request is saved</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="TableStyle-FieldDesc-BodyG-Column1-" colspan="2" style="font-weight: normal;">Within <b>Task</b>, you can select from the following task management procedures:</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="TableStyle-FieldDesc-BodyH-Column1-">Task/Approval Partition</td>
+                                                                <td class="TableStyle-FieldDesc-BodyG-Column2-">Tasks and approvals inherit the partition allocated from the request to which they are linked. This procedure is called to do more complex partition allocation</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="TableStyle-FieldDesc-BodyH-Column1-">Updating a Task/Approval</td>
+                                                                <td class="TableStyle-FieldDesc-BodyG-Column2-">Used to modify task or approval data, start another stored procedure, or send an email, when the request is saved</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="TableStyle-FieldDesc-BodyH-Column1-">Task/Approval Rules</td>
+                                                                <td class="TableStyle-FieldDesc-BodyG-Column2-">Can be used to build dependency rules</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="TableStyle-FieldDesc-BodyG-Column1-" colspan="2" style="font-weight: normal;">Within <b>SLM</b>, you can select from the following Service Level Management  procedures</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="TableStyle-FieldDesc-BodyH-Column1-">Calculate Escalation Recipient</td>
+                                                                <td class="TableStyle-FieldDesc-BodyG-Column2-">Used to identify the Analysts who are to receive an alarm in their escalated calls list and an email (if configured)</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="TableStyle-FieldDesc-BodyH-Column1-">Find Agreement</td>
+                                                                <td class="TableStyle-FieldDesc-BodyG-Column2-">Overwrites the core functionality that identifies the Agreement (such as, SLA, OLA and UC) for a call, task or request. It is called after an item (call, task, or request) is inserted or updated. Select to run the procedure is run.</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="TableStyle-FieldDesc-BodyH-Column1-">Calculate Escalation Target Time</td>
+                                                                <td class="TableStyle-FieldDesc-BodyG-Column2-">Used to overwrite the escalation matrix or working hours and holidays of an agreement when the agreement is selected</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="TableStyle-FieldDesc-BodyH-Column1-">Calculate Escalation Period</td>
+                                                                <td class="TableStyle-FieldDesc-BodyG-Column2-">Used to calculate the escalation time (in minutes)</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="TableStyle-FieldDesc-BodyG-Column1-" colspan="2" style="font-weight: normal;">Within <b><span class="GeneralVariablesSelfServicePortalName">Self Service Portal</span></b>, you can select from the following Service Level Management  procedures:</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="TableStyle-FieldDesc-BodyH-Column1-">
+<span class="GeneralVariablesSelfServicePortalName">Self Service Portal</span> Log Call</td>
+                                                                <td class="TableStyle-FieldDesc-BodyG-Column2-">Can be used to perform form validation on a call logged on the Portal</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="TableStyle-FieldDesc-BodyH-Column1-">
+<span class="GeneralVariablesSelfServicePortalName">Self Service Portal</span> Log Request</td>
+                                                                <td class="TableStyle-FieldDesc-BodyG-Column2-">Can be used to perform form validation on a request logged on the Portal</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="TableStyle-FieldDesc-BodyH-Column1-">
+<span class="GeneralVariablesSelfServicePortalName">Self Service Portal</span> Self Administration</td>
+                                                                <td class="TableStyle-FieldDesc-BodyG-Column2-">Enables configuration of the registration information that a User records on the Portal.</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="TableStyle-FieldDesc-BodyG-Column1-" colspan="2" style="font-weight: normal;">  Within <b>Messaging</b>, you can select from the following  procedures:</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="TableStyle-FieldDesc-BodyH-Column1-">Incoming Email Update</td>
+                                                                <td class="TableStyle-FieldDesc-BodyG-Column2-">Allows a call logged on a compatible email system to be closed (in addition to being logged). Also provides support for custom email messages being sent to compatible email systems</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="TableStyle-FieldDesc-BodyH-Column1-">Incoming Email Update 2</td>
+                                                                <td class="TableStyle-FieldDesc-BodyG-Column2-">Enables updating email messages being sent to compatible email systems </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="TableStyle-FieldDesc-BodyH-Column1-">Reply Email</td>
+                                                                <td class="TableStyle-FieldDesc-BodyG-Column2-">Can be used to configure an email received by an Analyst to modify its content or to forward it to another Analyst, etc</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="TableStyle-FieldDesc-BodyH-Column1-">Sending Email</td>
+                                                                <td class="TableStyle-FieldDesc-BodyG-Column2-">Changes the format of the email message sent when a call is forwarded or escalated</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="TableStyle-FieldDesc-BodyH-Column1-">Sending Pager</td>
+                                                                <td class="TableStyle-FieldDesc-BodyG-Column2-">Changes the format of the pager message sent when a call is forwarded or escalated</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="TableStyle-FieldDesc-BodyH-Column1-">Format Message Template, Format Pager Template</td>
+                                                                <td class="TableStyle-FieldDesc-BodyG-Column2-">Can be used to configure the process by which email and pager messages are formatted</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="TableStyle-FieldDesc-BodyH-Column1-">Override MMA URL</td>
+                                                                <td class="TableStyle-FieldDesc-BodyG-Column2-">Enables specification of a custom MMA URL, to be used in place of the default MMA URL generated by the system</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="TableStyle-FieldDesc-BodyH-Column1-">Repeat Reminders</td>
+                                                                <td class="TableStyle-FieldDesc-BodyG-Column2-">Can be used to override reminder events or perform additional database actions</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="TableStyle-FieldDesc-BodyG-Column1-" colspan="2" style="font-weight: normal;">  Within <b>IPK Rules</b>, you can select from the following  procedures:</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="TableStyle-FieldDesc-BodyH-Column1-">Find Rule</td>
+                                                                <td class="TableStyle-FieldDesc-BodyG-Column2-">Can be used to bypass the core functionality that identifies the IPK rules applying to a particular call or configuration item. It is called any time an IPK rule may be applied, such as when a call is deferred, forwarded or closed.</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="TableStyle-FieldDesc-BodyH-Column1-">Match Rule</td>
+                                                                <td class="TableStyle-FieldDesc-BodyG-Column2-">Run when a matching IPK rule is found, and can be then used to stop the rule matching, or change the rule found.</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="TableStyle-FieldDesc-BodyH-Column1-">Workflow Update</td>
+                                                                <td class="TableStyle-FieldDesc-BodyG-Column2-">Can be used to change the templates of forums associated with a particular workflow phase. Any parameters within this stored procedure may be returned to alter the behavior of the <span class="GeneralVariablesCoreName">ASM Core</span> application. It is run both before and after the phrase is added or updated to the database.</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="TableStyle-FieldDesc-BodyH-Column1-">Apply Rule</td>
+                                                                <td class="TableStyle-FieldDesc-BodyG-Column2-">Used to add further functionality to IPK rules. It is executed both before and after an IPK rule is applied</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="TableStyle-FieldDesc-BodyG-Column1-" colspan="2" style="font-weight: normal;">  Within <b>Availability</b>, you can select from the following  procedures:</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="TableStyle-FieldDesc-BodyH-Column1-">Outage Update</td>
+                                                                <td class="TableStyle-FieldDesc-BodyG-Column2-">Used to perform various database functions, including sending an email or storing data in an alternate source. It is called when an outage is updated, inserted, called back or closed.</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="TableStyle-FieldDesc-BodyH-Column1-">Outage Link</td>
+                                                                <td class="TableStyle-FieldDesc-BodyG-Column2-">Used to perform standard database functions, such as updating various tables and records. It is called both before and after an outage link is inserted.</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="TableStyle-FieldDesc-BodyH-Column1-">Outage Downtime</td>
+                                                                <td class="TableStyle-FieldDesc-BodyG-Column2-">Used to override the standard <span class="GeneralVariablesCoreName">ASM Core</span> procedures to calculate outage downtime. It is called whenever availability downtime is calculated, including when a configuration item’s availability performance is calculated, an outage is inserted or updated, the application checks for an outage breach, or an event is created.</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="TableStyle-FieldDesc-BodyG-Column1-" colspan="2" style="font-weight: normal;">  Within <b>Miscellaneous</b>, you can select from the following  procedures:</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="TableStyle-FieldDesc-BodyH-Column1-">Login</td>
+                                                                <td class="TableStyle-FieldDesc-BodyG-Column2-">Called after a failed or successful login, and can then be used to write records to any log file or table that may be required.</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="TableStyle-FieldDesc-BodyH-Column1-">Log Out</td>
+                                                                <td class="TableStyle-FieldDesc-BodyG-Column2-">Called when an Analyst logs out or is logged out by <span class="GeneralVariablesCoreName">ASM Core</span>. It can then be used to write records to any log file or table that may be required.</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="TableStyle-FieldDesc-BodyB-Column1-">Federated CMDB Update</td>
+                                                                <td class="TableStyle-FieldDesc-BodyA-Column2-">Used before or after integrating with a directory server, and can be used, for example, to update the imported Analysts, or link them to Users or organizations.</td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <ol data-mc-continue="true">
+                                                        <li value="3">Select <img src="/storage/app/media/Help/images/save%20button.png">  to save the changes. Provide the <a href="../general%20topics/change%20reasons.htm">Change Reasons</a> if prompted to do so.</li>
+                                                    </ol>
+                                                

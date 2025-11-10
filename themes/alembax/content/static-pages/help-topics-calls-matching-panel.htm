@@ -1,0 +1,226 @@
+[viewBag]
+title = "About the Matching Panel"
+url = "/help/topics/calls/matching-panel"
+layout = "help"
+is_hidden = 0
+navigation_hidden = 0
+==
+                                                    <h1>
+<a name="top"></a>About the Matching Panel</h1>
+                                                    <p class="onlysql">This feature is only available on SQL systems.</p>
+                                                    <p class="intro">The Matching Panel enables faster call resolution by providing an at-a-glance list of Calls and Knowledge Articles relevant to the current call. The list dynamically updates as you provide more call details. Selecting a Call or Knowledge article from the list displays more details in Quick View within the panel. One-click actions enable Analysts to link/unlink calls or knowledge, email knowledge content to Users, or automatically close the call using a selected Knowledge Article.  The Matching Panel can be re-sized or collapsed, as can each section within the panel allowing the Analyst to view only Calls or only Knowledge, or both.</p>
+                                                    <p class="intro"> </p>
+                                                    <p>In the Matching Panel you can:</p>
+                                                    <ul>
+                                                        <li value="1">
+                                                            <conditionaltext data-mc-conditions="Default.ScreenOnly"> <a href="#View" class="MCXref xref" data-mc-conditions="Default.ScreenOnly">View Matching Calls and Knowledge</a></conditionaltext>
+                                                        </li>
+                                                        <li value="2">
+                                                            <conditionaltext data-mc-conditions="Default.ScreenOnly"> <a href="#Perform" class="MCXref xref">Perform Actions on Matching Items</a></conditionaltext>
+                                                        </li>
+                                                        <li value="3">
+                                                            <conditionaltext data-mc-conditions="Default.ScreenOnly"> <a href="#Using" class="MCXref xref">Apply Filters to the Result Set</a></conditionaltext>
+                                                        </li>
+                                                        <li value="4">
+                                                            <conditionaltext data-mc-conditions="Default.ScreenOnly"> <a href="#Show/Hid" class="MCXref xref">Show/Hide or Resize the Panel</a></conditionaltext>
+                                                        </li>
+                                                    </ul>
+                                                    <h2 class="Prerequisite">Before you start</h2>
+                                                    <p class="prereqtext1">Matching Panel must be enabled in  System Admin: in the <a href="../admin%20ipk%20management/ipk%20statuses.htm" class="MCXref xref">IPK Statuses</a> screen for systems using IPK Statuses; or in the <a href="../admin%20ipk%20management/ipk%20settings.htm" class="MCXref xref">Configuring IPK Settings</a> screen for systems not using IPK Statuses.</p>
+                                                    <p class="prereqtext1">You must have <b>Search</b> selected in <a href="../admin%20security%20roles/knowledge%20mgt%20sec%20role%20-%20options.htm" class="MCXref xref">Knowledge Management Security Role: Options Tab</a> to see Matching Knowledge.</p>
+                                                    <p class="prereqtext1">The <b class="Bold"><span class="GeneralVariablesProductName">ASM</span> Indexing Service</b> must be running, and an indexing cycle successfully completed in order for items to appear in the Matching Panel. The first indexing cycle after upgrade may take some time to complete.</p>
+                                                    <h2 class="Heading2">
+<a name="View"></a>View Matching Calls and Knowledge</h2>
+                                                    <p>The Matching Panel displays calls and knowledge articles that contain values matching the currently active call based on which filters are enabled in the matching panel. </p>
+                                                    <p class="note">No matching occurs on blank fields, fields added to the screen in <span class="GeneralVariablesDesignerName">ASM Designer</span>, or fields correlating to unselected filters.</p>
+                                                    <p><b>To display results</b> in the Matching Call and Matching Knowledge sections, enter data into the call, or take action on a call that already contains data. The matching panel will begin populating with results 2 seconds after you stop typing.</p>
+                                                    <p><b>To change the listed results</b> modify the data in the call fields, or change filtering options by selecting <img src="/storage/app/media/Help/images/filter%20button_22x19.png" style="width: 22;height: 19;"> and selecting or deselecting filters. Refer to <a href="#Using" class="MCXref xref">Apply Filters to the Result Set</a> for a description of each filter.</p>
+                                                    <p>The Matching Calls and Matching Knowledge sections each display the top 20 matching call and knowledge articles in order of relevancy. If there are more than 20 items that match, the results total appears in red: <b>Results - <span style="color: #ff0000;">20</span></b>. </p>
+                                                    <p><b>To see more than 20 matching items</b> launch a full search in a new Search window by selecting <img src="/storage/app/media/Help/images/call%20search_20x20.png" style="width: 20;height: 20;"> or <img src="/storage/app/media/Help/images/knowledge%20search%20icon.png">. Call data for filters selected in the Matching Panel will be applied as search criteria in the Search window. All matching calls or knowledge articles are displayed in the full search, not only the top 20.</p>
+                                                    <p class="note">When launching a full search from the Matching Panel, the Text search criteria field option <b>Logical</b> is selected by default on the Call or Knowledge Search screen as this is the text search method used by Matching Panel.<br><b>Logical</b> searches utilize the SQL Server text search engine.</p>
+                                                    <p><b>To see more details for a call or knowledge article</b>:</p>
+                                                    <ul>
+                                                        <li value="1">
+<b>Open the Quick View</b> by clicking in the header of the call or knowledge article. Quick View opens within the Matching Panel, so you can view the call and knowledge details without leaving the call. To close Quick View and return to the list of results, select <img src="/storage/app/media/Help/images/close%20x%20button.png">.</li>
+                                                        <li value="2">
+<b>Open the details window</b> by selecting <img src="/storage/app/media/Help/images/review%20button.png"> to open the call or knowledge article in a new tab.</li>
+                                                    </ul>
+                                                    <p><b>To change the number of characters required for the search to begin:</b>
+                                                    </p>
+                                                    <p>Matching Panel takes the number of characters that must be entered for the search to begin from the setting in the <a href="%7B%7B%20'help-admin-text-retrieval-text-retrieval-settings#Setting'%7CstaticPage%20%7D%7D#Setting">Text Retrieval Settings</a> window. You can change this value in this window if you have the correct permissions.</p>
+                                                    <h2 class="Heading2">
+<a name="Perform"></a>Perform Actions on Matching Items</h2>
+                                                    <table class="TableStyle-FieldDesc" style="margin-left: 0;margin-right: auto;mc-table-style: url('../../resources/tablestyles/fielddesc.css');width: 100%;" cellspacing="0">
+                                                        <col class="TableStyle-FieldDesc-Column-Column1">
+                                                        <col class="TableStyle-FieldDesc-Column-Column2" style="width: 85%;">
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column1-" colspan="2" style="text-align: left;">
+                                                                <p>Actions available for calls:</p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-" style="text-align: right;">
+                                                                <img src="/storage/app/media/Help/images/review%20button.png">
+                                                            </td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                <p>The <b>Review</b> button opens the call details in a new tab.</p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-" style="text-align: right;">
+                                                                <img src="/storage/app/media/Help/images/link%20as%20child.png">
+                                                            </td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">The <b>Link As Child</b> button links the  call as a child of the current call. This button is hidden if the call is already linked.</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-" style="text-align: right;">
+                                                                <img src="/storage/app/media/Help/images/link%20as%20parent.png">
+                                                            </td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                <p>The <b>Link As Parent</b> button links the call as a parent of the current call. This button is hidden if the call is already linked.</p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-" style="text-align: right;">
+                                                                <img src="/storage/app/media/Help/images/unlink%20button.png">
+                                                            </td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">The <b>Unlink</b> button unlinks the call from the current call. This button is hidden if the call is not linked.</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td colspan="2" class="TableStyle-FieldDesc-BodyG-Column1-" style="font-weight: normal;text-align: left;">
+                                                                <p>Actions available for knowledge articles:</p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-" style="text-align: right;">
+                                                                <img src="/storage/app/media/Help/images/review%20button.png">
+                                                            </td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">The <b>Review</b> button opens the knowledge article in a new tab.</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-" style="text-align: right;">
+                                                                <img src="/storage/app/media/Help/images/link%20button.png">
+                                                            </td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                <p>The <b>Link</b> button links the knowledge article to the current call. This button is hidden of the knowledge article is already linked.</p>
+                                                                <p class="note">Linked knowledge articles are listed in the call's <b>Linked Knowledge Entries</b> screen which is accessed from the Explorer Menu.</p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-" style="text-align: right;">
+                                                                <img src="/storage/app/media/Help/images/unlink%20button.png">
+                                                            </td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">The <b>Unlink</b> button unlinks the knowledge article from the current call. This button is hidden if the knowledge article is not linked.</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-" style="text-align: right;">
+                                                                <img src="/storage/app/media/Help/images/email%20arrow%20button.png">
+                                                            </td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">The <b>Email Knowledge</b> button opens the <a href="../general%20topics/sending%20an%20email.htm">Send Email</a> window with the following fields pre-populated:  the Subject and Body contain contents from the knowledge article, the Recipient field contains  the User of the call.</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="TableStyle-FieldDesc-BodyH-Column1-" style="text-align: right;">
+                                                                <p>
+                                                                    <img src="/storage/app/media/Help/images/resolvecall.png">
+                                                                </p>
+                                                            </td>
+                                                            <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                <p>Use the <b>Resolve Call</b> button to automatically link the knowledge article and close the call. The call's closure Reason and Call Status fields are populated with values defined in the <b>Call Resolution by Knowledge</b> section in System Admin <a href="../admin%20ipk%20management/ipk%20settings.htm" class="MCXref xref">Configuring IPK Settings</a>, and the One Liner field with  "Resolved by Knowledge Article <i style="font-weight: bold;">x</i>" (where <b style="font-style: italic;">x</b> is the article number).</p>
+                                                                <p>If Closure Rules are enabled in System Admin <a href="../admin%20ipk%20management/ipk%20settings%20(partitioned).htm" class="MCXref xref">IPK Settings (Partitioned)</a>, the call is resolved with the closure field values as described above, and then the appropriate closure rule is applied.</p>
+                                                                <p class="note">Upon selecting <img src="/storage/app/media/Help/images/resolvecall.png">, you may be prompted to enter outage information; only do so if you wish to create an open outage for that linked CMDB item. </p>
+                                                                <p class="note">The resolving knowledge article is listed in the call's <b>Linked Knowledge Entries</b> screen with a tick in the <b>Resolved By</b> column. Its Help Factor is incremented. The <b>Help Factor</b> rating is visible in the Info Panel of each knowledge article, when you display it using <b><a href="%7B%7B%20'help-knowledge-bank-managing-knowledge-entries#Knowledg'%7CstaticPage%20%7D%7D#Knowledg">Admin\Knowledge Bank</a></b>. This value represents the number of times that knowledge article  deflected a call in the <span class="GeneralVariablesSelfServicePortalName">Self Service Portal</span> or was used to resolve a call by the service desk.</p>
+                                                                <p class="warning">If a call was resolved by a knowledge article and then reopened, selecting <img src="/storage/app/media/Help/images/resolvecall.png"> on a different knowledge article will not switch this flag to the new article. It is recommended to remove the link to the previous knowledge article.</p>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                    <h2 class="Heading2">
+<a name="Using"></a>Apply Filters to the Result Set</h2>
+                                                    <p>Filters in each of the Knowledge and Calls sections can be used to refine the list of items returned in the results. </p>
+                                                    <p colspan="2" style="font-weight: normal;">To filter the results in the Matching Call and Matching Knowledge sections, select <img src="/storage/app/media/Help/images/filter%20button_19x16.png" style="width: 19;height: 16;"> to display the list of filter options per section.</p>
+                                                    <p colspan="2" style="font-weight: normal;">Select a filter to limit the results to only those containing the same value as that in the correlating call field. Each filter correlates to a standard field on the screen (except Open, Closed, and IPK Status). </p>
+                                                    <p colspan="2" class="exampletext" style="font-weight: normal;">If the User field on the call screen contains "Joe Blogg", selecting the User filter limits the call results to only calls that have "Joe Blogg" in their User field.</p>
+                                                    <p>At least one filter must be selected for the Matching Panel to return results. At least one of the selected filters must contain a value in the corresponding field in the current call.  (Except Open, Closed, and IPK Status.)</p>
+                                                    <p class="exampletext">If only the Service filter is selected, and the Service field in the call is blank, no results are returned.</p>
+                                                    <p colspan="2" class="note" style="font-weight: normal;">Fields that are renamed or removed from the screen in <span class="GeneralVariablesDesignerName">ASM Designer</span> are renamed or hidden, respectively, in the filter set. Screen fields that are hidden (not removed) are visible in the filter set.</p>
+                                                    <h3>Filter Options</h3>
+                                                    <p>
+                                                        </p>
+<table class="TableStyle-FieldDesc" style="margin-left: 0;margin-right: auto;mc-table-style: url('../../resources/tablestyles/fielddesc.css');width: 100%;" cellspacing="0">
+                                                            <col class="TableStyle-FieldDesc-Column-Column1">
+                                                            <col class="TableStyle-FieldDesc-Column-Column2" style="width: 85%;">
+                                                            <tr>
+                                                                <td class="TableStyle-FieldDesc-BodyG-Column1-" colspan="2">
+                                                                    <p colspan="2" style="font-weight: normal;">The <b>Search on</b> section contains filters for text searching. Deselect this option to exclude text searching and return results based only on the call fields. Selected by default. These filters apply to both Matching Call and Matching Knowledge results. </p>
+                                                                    <p colspan="2" class="note" style="font-weight: normal;">When searching calls for matching text, only the Description field is included; call history entries are not searched.</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="TableStyle-FieldDesc-BodyH-Column1-" style="text-align: right;">Description</td>
+                                                                <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                    <p>Performs a text search using the text from the call's Description field. This text search uses 'Any + Exact' search logic. Calls and Knowledge Articles are returned if they contain <b>any</b> of the words (in any order) entered into the current call's Description field.</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="TableStyle-FieldDesc-BodyH-Column1-" style="text-align: right;">Text</td>
+                                                                <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                    <p>Performs a text search on text typed into this field. This text search uses 'All + Exact' search logic. Calls and Knowledge Articles are returned if they contain <b>all</b> of the words (in any order) entered into this filter.</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td colspan="2" class="TableStyle-FieldDesc-BodyG-Column1-">
+                                                                    <p style="font-weight: normal;">Filters in the <b>Matching Call</b> and <b>Matching Knowledge</b> sections are accessed by selecting  <img src="/storage/app/media/Help/images/filter%20button_21x18.png" style="width: 21;height: 18;"> in each section. These filters offer:</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="TableStyle-FieldDesc-BodyH-Column1-" style="text-align: right;">Logged</td>
+                                                                <td class="TableStyle-FieldDesc-BodyG-Column2-">Returns matching calls logged within the specified period. Only applies to calls. This filter is visible on the Matching Calls section header.</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="TableStyle-FieldDesc-BodyH-Column1-" style="text-align: right;">User</td>
+                                                                <td class="TableStyle-FieldDesc-BodyG-Column2-">Select to display only calls that contain the same value in the User field as the current call. Only available for calls.</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="TableStyle-FieldDesc-BodyH-Column1-" style="text-align: right;">Location</td>
+                                                                <td class="TableStyle-FieldDesc-BodyG-Column2-">Select to display only calls that contain the same value in the Location field as the current call. Only available for calls.</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="TableStyle-FieldDesc-BodyH-Column1-" style="text-align: right;">Organization</td>
+                                                                <td class="TableStyle-FieldDesc-BodyG-Column2-">Select to display only calls that contain the same value in the Organization field as the current call. Only available for calls.</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="TableStyle-FieldDesc-BodyH-Column1-" style="text-align: right;">Type</td>
+                                                                <td class="TableStyle-FieldDesc-BodyG-Column2-">Returns only Calls and Knowledge Articles that contain the same value in their Type field as the current call. This filter is available in both the Matching Call and Matching Knowledge filter lists.</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="TableStyle-FieldDesc-BodyH-Column1-" style="text-align: right;">Service</td>
+                                                                <td class="TableStyle-FieldDesc-BodyG-Column2-">When this filter is selected for calls, only calls that contain the same value in the Service field are displayed. When this filter is select for Knowledge, only Knowledge Articles that contain the same value in the Linked CMDB Items field are displayed.</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="TableStyle-FieldDesc-BodyH-Column1-" style="text-align: right;">Configuration Item</td>
+                                                                <td class="TableStyle-FieldDesc-BodyG-Column2-">When this filter is selected for calls, only calls that contain the same value in the Configuration Item field are displayed. When this filter is select for Knowledge, only Knowledge Articles that contain the same value in the Linked CMDB Items field are displayed.</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="TableStyle-FieldDesc-BodyH-Column1-" style="text-align: right;">Open</td>
+                                                                <td class="TableStyle-FieldDesc-BodyG-Column2-">Deselect to exclude open calls  in the Matching Call results. Selected by default. Only available for calls.</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="TableStyle-FieldDesc-BodyH-Column1-" style="text-align: right;">Closed</td>
+                                                                <td class="TableStyle-FieldDesc-BodyG-Column2-">Select to include closed calls in the Matching Call results. Only available for calls.</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="TableStyle-FieldDesc-BodyH-Column1-" style="text-align: right;">IPK Status</td>
+                                                                <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                    <p>Filters the Matching Call results by the selected IPK Status. By default this is set to <b>(Any)</b> which  displays calls of all IPK Statuses.</p>
+                                                                    <p class="prereq">This filter is not available if IPK Statuses are not enabled in the system</p>
+                                                                </td>
+                                                            </tr>
+                                                        </table>
+                                                        <h2 class="Heading2">
+<a name="Show/Hid"></a>Show/Hide or Resize the Panel</h2>
+                                                        <p>The panel is visible in calls that are in 'actioned' mode in <span class="GeneralVariablesCoreName">ASM Core</span>. It is not displayed in calls that are in 'review' mode, or that have an IPK Status for which <b>Matching Knowledge</b> or <b>Matching Calls</b> is unselected in System Admin.</p>
+                                                        <p class="note">While the Matching Panel is hidden it does not perform any searching or matching functions.</p>
+                                                        <p><b>Show or hide the Matching Panel</b> by selecting <img src="/storage/app/media/Help/images/arrowdoubleleft_14x21.png" style="width: 14;height: 21;"> and <img src="/storage/app/media/Help/images/arrowdoubleright_15x22.png" style="width: 15;height: 22;">. The show/hide state of the panel in the last call defered/closed/forwarded will be applied to the next call that is actioned or created by the analyst. </p>
+                                                        <p><b>Expand or collapse each section</b> within the panel   by selecting <img src="/storage/app/media/Help/images/down%20arrow%20blue_16x12.png" style="width: 16;height: 12;"> beside the Matching Call title or Matching Knowledge title.</p>
+                                                        <p><b>Adjust the width</b> of the panel by dragging the left edge horizontally across the screen.</p>
+                                                    
+                                                

@@ -1,0 +1,181 @@
+[viewBag]
+title = "Using the AI Ops Wizard"
+url = "/help/topics/ai-ops/ai-ops-wizard"
+layout = "help"
+is_hidden = 0
+navigation_hidden = 0
+==
+                                                    <h1>Using the AI Ops Wizard</h1>
+                                                    <p>Use the AI Ops Wizard to set up an AI Ops rule. The wizard will take you through the steps required to configure a rule.</p>
+                                                    <p>When you have completed one step, click Next to proceed to the next one.</p>
+                                                    <p class="note">If a step or option is mandatory it is flagged with an asterisk (*). Once a step is complete it is marked with a green tick, except the <b>Welcome</b> and <b>Summary</b> steps.</p>
+                                                    <h2>Step 1 Welcome</h2>
+                                                    <p>This step provides an overview of the steps for setting up your AI Ops. You can clear <b>Show Welcome at startup</b> to skip this step on creating new AI Ops rules or editing existing rules.</p>
+                                                    <h2>Step 2 Title and Description</h2>
+                                                    <table class="TableStyle-FieldDesc" style="mc-table-style: url('../../resources/tablestyles/fielddesc.css');margin-left: 0;margin-right: auto;" cellspacing="0">
+                                                        <col class="TableStyle-FieldDesc-Column-Column1">
+                                                        <col class="TableStyle-FieldDesc-Column-Column2">
+                                                        <tbody>
+                                                            <tr>
+                                                                <td class="TableStyle-FieldDesc-BodyH-Column1-">Title</td>
+                                                                <td class="TableStyle-FieldDesc-BodyG-Column2-">Mandatory title  for the rule. An explanatory title will help others identify the purpose of this analysis.</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="TableStyle-FieldDesc-BodyB-Column1-">Description </td>
+                                                                <td class="TableStyle-FieldDesc-BodyA-Column2-">Use this field to describe the rule more fully.  If your system is set up for HTML text formatting in the <a href="../admin%20system/system%20settings.htm">System Settings</a>, you may apply formatting such as bold or italic to your description.</td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <h2>
+<a name="Step"></a>Step 3 Data Set</h2>
+                                                    <p>In this step, select and define the activity you want to analyze:</p>
+                                                    <table class="TableStyle-FieldDesc" style="mc-table-style: url('../../resources/tablestyles/fielddesc.css');margin-left: 0;margin-right: auto;" cellspacing="0">
+                                                        <col class="TableStyle-FieldDesc-Column-Column1">
+                                                        <col class="TableStyle-FieldDesc-Column-Column2">
+                                                        <tbody>
+                                                            <tr>
+                                                                <td class="TableStyle-FieldDesc-BodyH-Column1-">Select Your Data</td>
+                                                                <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                    <p>Use the drop-down list to select the data to include in the rule.</p>
+                                                                    <table class="TableStyle-FieldDesc" style="mc-table-style: url('../../resources/tablestyles/fielddesc.css');margin-left: 0;margin-right: auto;" cellspacing="0">
+                                                                        <col class="TableStyle-FieldDesc-Column-Column1">
+                                                                        <col class="TableStyle-FieldDesc-Column-Column2">
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td class="TableStyle-FieldDesc-BodyH-Column1-">All Open</td>
+                                                                                <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                                    <p>Select to include calls or requests that are open at the start of the schedule period of the rule in the analysis.</p>
+                                                                                    <p>Analyzing all calls and requests allows you to generate a call or request when a certain count is reached, or when there is a surge or decrease in activity.</p>
+                                                                                    <p class="note">If analyzing all data, this mean that a rule can potentially be met based on activity prior to the start date of the rule’s running period (set in Step 6 Schedule). This is because the rule will include all calls or requests that are currently open.</p>
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td class="TableStyle-FieldDesc-BodyB-Column1-">Only New</td>
+                                                                                <td class="TableStyle-FieldDesc-BodyA-Column2-">Select to analyze only new activity with each run of the rule</td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="TableStyle-FieldDesc-BodyH-Column1-">Calls, Requests</td>
+                                                                <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                    <p>Select <b>Calls</b> to analyze call activity or <b>Requests</b> to analyze request activity.</p>
+                                                                    <p class="note">an AI Ops rule will consider open calls or requests for analysis, including a call has been created but not yet forwarded to anyone.</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="TableStyle-FieldDesc-BodyH-Column1-">Screen Set</td>
+                                                                <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                    <p>Use the drop-down list to select a screen set to filter the call or request attributes (such as the call or request fields) available for selecting as the rule criteria in the next step. </p>
+                                                                    <p class="note">Selecting the screen set does not restrict the call or request data analyzed, it only filters the values you can select in Step 4 of the wizard when specifying the criteria for the rule.</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="TableStyle-FieldDesc-BodyH-Column1-">In the Period of</td>
+                                                                <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                    <p class="prereq">This field is only available if <b>Only New</b> is selected in the <b>Select Your Data</b> field.</p>
+                                                                    <p>Specify a time period (within the scheduled running period of the rule) within which to analyze new call or request activity. type a number and then use the drop down list to specify days, weeks, months and so on.</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="TableStyle-FieldDesc-BodyB-Column1-">Set Threshold</td>
+                                                                <td class="TableStyle-FieldDesc-BodyA-Column2-">
+                                                                    <p>Set the threshold for the AI Ops rule, that is, the point at which the number of events counted by the rule will trigger a new call or request. </p>
+                                                                    <p>Select the <b>As Count</b> option to specify a number of events that need to occur. </p>
+                                                                    <p>Select the <b>As Change</b> option to specify a percentage change over one running period to the next that must be met. </p>
+                                                                    <p>To specify a percentage of decrease in the number of logged calls or requests, specify a negative number, such as -20.</p>
+                                                                    <p class="note">Events that occur outside of working hours or during holidays which have been defined for your system are still counted towards the threshold. Events occurring in these periods are likely to be as a result of critical incidents and should not be disregarded.</p>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <h2>Step 4 Selection Criteria</h2>
+                                                    <p>In this step, select the values and operators to build your AI Ops rule using the rules builder in <span class="GeneralVariablesProductName">ASM</span>. </p>
+                                                    <p>When setting up your AI Ops, you can use a wide range of Call or Request attributes as the criteria for the rule, including criteria for IPK, Workflow, Availability, CMDB, and SLM. The values you can use are filtered by the Screen Set selected in Step 3 Data Set, as well as by your security role.</p>
+                                                    <ol style="list-style-type: decimal;margin-left: 36pt;" start="1">
+                                                        <li value="1">To start your statement, click the question mark in the editing box. </li>
+                                                        <li value="2">Click <img src="/storage/app/media/Help/images/expandtiersbutton.png"> to view a list of all possible values from a multi-tiered list. </li>
+                                                        <li value="3">Select a criterion, such as <b>Call Priority</b> if you are analyzing call data. On selecting a criterion, the operator and corresponding value fields appear in the rules builder panel.</li>
+                                                        <li value="4">Select an <a href="../general%20topics/rule%20operators.htm">operator</a> (that is, equal (=), less than (&lt;), greater than (&gt;)) from the list.</li>
+                                                        <p class="note">The operators you can pick depend on the item you selected.</p>
+                                                        <li value="5">Click <img src="/storage/app/media/Help/images/expandtiersbutton.png"> to select the final part of the criteria as the corresponding value for a <b>Call Priority</b> criterion.</li>
+                                                        <p class="note">
+                                                            </p>
+<p>The items you can select on the right-hand side of the operator are filtered to show relevant fields of the same data type as the selected field. If an item is not available for selection, it is shown in italics allowing you to expand the next tier in a multi-tier list to choose an item from a lower tier.</p>
+                                                        
+                                                        <li value="6">To add another criterion, select the <b>And</b>, <b>Or</b>, or <b>Not</b> buttons.</li>
+                                                        <p class="tip">You can group your criteria using the <b>Group</b> button. This will insert parentheses around the selected part of a statement. Those criteria contained within the parentheses are evaluated first and the result then processed as part of the entire statement. Otherwise, <b>Not</b> statements will be evaluated before <b>And</b>, and <b>And</b> before <b>Or</b>. To ungroup a group, simply select the criterion and click <b>Ungroup</b>.</p>
+                                                        <li value="7">To delete a criterion, select the criterion and click <b>Delete</b>.</li>
+                                                    </ol>
+                                                    <h2>
+<a name="Step2"></a>Step 5 Grouping Criteria</h2>
+                                                    <p>This optional step allows you to run the analysis for each member of a “group” (that is, all the items you add to the grouping criteria). Using grouping criteria means that an AI Ops rule will trigger a call or request if the threshold in the rule is met for any of the “members” in this group. </p>
+                                                    <p>If you use a multi-select list as a Grouping Criteria, the rule will group the analysis by any item in the list. For example if the threshold for the rule is 10 calls, and you add a User multi-select list as the grouping criteria, then, a new call/event may be triggered if the threshold in the rule is reached for any User in the list.</p>
+                                                    <p class="exampletext"><b>Scenario for using Grouping Criteria</b>
+                                                        <br>
+                                                        <br>The Problem Manager configures an automated AI Ops rule to log a call whenever more than 5 high priority outage calls are logged against critical servers. She applies a Grouping Criteria = CI. This means that the rule will log a new call if 5 high priority outage calls are logged against any critical server within the group, and also allows multiple calls to be logged within each run of the rule (per group item if applicable). If the Problem Manager had not applied the Grouping Criteria, then the rule would log a call if more than 5 high priority outage calls were logged against the whole group of critical servers. |end|</p>
+                                                    <ol start="1">
+                                                        <li value="1">To add a grouping criterion, click <img src="/storage/app/media/Help/images/expandtiersbutton.png">  to view a list of all possible values from a multi-tiered list.</li>
+                                                        <li value="2">Make your selection and click <b>Add to List</b> to add the value.</li>
+                                                        <li value="3">Repeat to add another value. </li>
+                                                    </ol>
+                                                    <p class="warning">Fields containing unique data are unsuitable to use as grouping criteria, since they would result in a group with only one item, undermining the purpose of grouping analyzed data. Furthermore grouping on such values can have an adverse effect on performance. Some unique fields are unavailable for grouping, these include: ‘Call No’, ‘Request No’, text area fields such as the call description, and date/time fields.</p>
+                                                    <h2>Step 6 Schedule</h2>
+                                                    <p>In this step, schedule the time frame for your analysis, that is, when and how often the rule should run.</p>
+                                                    <p>How often you want the rule to run depends on how important the information being analyzed is. If you are seeking to identify a major incident then a shorter running time is desirable. Analysis of changes might be run over a much longer time period. If you have a lot of analyses within short running times, consider the impact this will have on the performance of the application.</p>
+                                                    <p>Complete the details:</p>
+                                                    <table class="TableStyle-FieldDesc" style="mc-table-style: url('../../resources/tablestyles/fielddesc.css');margin-left: 0;margin-right: auto;" cellspacing="0">
+                                                        <col class="TableStyle-FieldDesc-Column-Column1">
+                                                        <col class="TableStyle-FieldDesc-Column-Column2">
+                                                        <tbody>
+                                                            <tr>
+                                                                <td class="TableStyle-FieldDesc-BodyH-Column1-">Running Time</td>
+                                                                <td class="TableStyle-FieldDesc-BodyG-Column2-">
+                                                                    <p>Specify how often you want the rule to run. type a value and then use the drop-down list to select Month, Week, Day, Hour, or Minute.</p>
+                                                                    <p class="note">If you specify a Running Time that is longer than the period specified in <a href="#Step">Step 3 Data Set</a>, you will get a warning when you click <b>Next</b> or <b>Back</b> “The Running Time in Step 6 is longer than your Threshold period in Step 3. There will be gaps in your analysis”. The same warning displays if you click <b>Cancel</b> and save the rule.</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="TableStyle-FieldDesc-BodyB-Column1-">Running Dates</td>
+                                                                <td class="TableStyle-FieldDesc-BodyA-Column2-">
+                                                                    <p>Specify the start and end date for the rule to run. </p>
+                                                                    <p>You must specify a start date. </p>
+                                                                    <p>If you do not specify an end date, the rule will run indefinitely. If you specify an end date prior to today’s date, the rule will expire immediately. An expired rule is prefixed with [Expired] in the <b><a href="%7B%7B%20'help-setting-up-ai-ops-rule#The'%7CstaticPage%20%7D%7D#The">AI Ops Rules</a></b> window.</p>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <h2>
+<a name="Step3"></a>Step 7 Logging Output</h2>
+                                                    <p>In this step, select the output of your analysis, that is, the event (call or request) that will be triggered if the rule finds activity that reaches the threshold you have set.</p>
+                                                    <p>Complete the details:</p>
+                                                    <table style="margin-left: 0;margin-right: auto;mc-table-style: url('../../resources/tablestyles/fielddesc.css');" class="TableStyle-FieldDesc" cellspacing="0">
+                                                        <col class="TableStyle-FieldDesc-Column-Column1">
+                                                        <col class="TableStyle-FieldDesc-Column-Column2">
+                                                        <tbody>
+                                                            <tr>
+                                                                <td class="TableStyle-FieldDesc-BodyH-Column1-">Create A Call</td>
+                                                                <td class="TableStyle-FieldDesc-BodyG-Column2-">Select the option to create a new call. Then <a href="../general%20topics/using%20the%20search%20button.htm">use the search function</a> to select a call template for the rule to use</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="TableStyle-FieldDesc-BodyH-Column1-">Create A Request</td>
+                                                                <td class="TableStyle-FieldDesc-BodyG-Column2-">Select the option to create a new request. Then <a href="../general%20topics/using%20the%20search%20button.htm">use the search function</a> to select a workflow template for the rule to use.</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="TableStyle-FieldDesc-BodyH-Column1-">Always Create a Call or Request</td>
+                                                                <td class="TableStyle-FieldDesc-BodyG-Column2-">Select this option if you want the rule to trigger a new call or request even if the previous call or request logged by the rule is still open. Clear this option if you only want the rule to trigger a call or request if the previous call or request logged by the rule is closed.</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="TableStyle-FieldDesc-BodyB-Column1-">Associate call or request triggers</td>
+                                                                <td class="TableStyle-FieldDesc-BodyA-Column2-">Select this option to enable the AI Ops explorer option for a call or request generated by the AI Ops rule. This explorer option allows analysts access the calls or requests that triggered the AI Ops call or request, and to manually link the generated call or request to the calls or requests that triggered it.</td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <h2>Step 8 Summary</h2>
+                                                    <p>In this step, review the rule setup you have specified in the previous steps.</p>
+                                                    <p>Click <b>Back</b> to review an earlier step. </p>
+                                                    <p>Click <b>Cancel</b> to close the wizard without adding the rule. On clicking Cancel, you will be able to save the rule. If no information has been added, a blank entry will be added with a rule title of “Incomplete”. </p>
+                                                    <p>When you are done, click <b>Finish</b>. </p>
+                                                    <p class="warning">On the <b>AI Ops Rules</b> window, ensure that you <a href="%7B%7B%20'help-setting-up-ai-ops-rule#Activati'%7CstaticPage%20%7D%7D#Activati">activate the rule</a> by selecting the checkbox in the Active column. </p>
+                                                

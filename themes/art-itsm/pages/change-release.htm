@@ -1,0 +1,572 @@
+url = "/change-release"
+layout = "landingpage"
+title = "change-release"
+description = "The Change Release Page"
+is_hidden = 0
+meta_title = "ITSM Tool for Smart IT Service Management | Alemba"
+meta_description = "Alemba Service Manager is an ITIL-aligned ITSM tool that automates workflows and elevates IT service delivery across your organization."
+class = "bkg-dark"
+robot_index = "index"
+robot_follow = "follow"
+seoOptionsEnabledInSitemap = 1
+seoOptionsUseUpdatedAt = 1
+seoOptionsRobotIndex = "index"
+seoOptionsRobotFollow = "follow"
+seoOptionsChangefreq = "daily"
+seoOptionsPriority = 0.5
+canonical_url = "https://alemba.com/change-release"
+seoOptionsCanonicalUrl = "https://alemba.com/change-release "
+seoOptionsOgCard = "summary_large_image"
+==
+<?php
+use Alemba\Alemba\Models\Release;
+
+function onStart()
+{
+    // Get latest release (as an array to avoid it overriding the homepage SEO tags)
+
+    $this['latest_release'] = Release::where('live', 1)->orderBy('date', 'desc')->first()->toArray();
+
+}
+?>
+==
+<script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "url": "https://alemba.com",
+      "logo": "{{ 'assets/images/alemba-logo.svg'|theme }}"
+    }
+</script>
+
+
+{#
+    <div class="jumbotron jumbotron-fluid homepage-banner-strip py-2">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col homepage-banner-strip-content">
+                    <img class="img-fluid" src="/storage/app/media/Misc/logo-govuk.png" alt="gov.uk">
+                    <h5><a style="text-decoration:none" href="{{ 'blog-entry'|page({ category: 'news', slug: 'alemba-service-manager-g-cloud-14-framework-appointment' }) }}">Now available on G-Cloud 14</a></h5>
+                </div>
+            </div>
+        </div>
+    </div>
+    #}
+    
+    <div class="jumbotron jumbotron-fluid homepage-banner-strip py-2">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col homepage-banner-strip-content">
+                    <h5><a style="text-decoration:none" href="{{ 'blog-entry'|page({ category: 'news', slug: 'alemba-service-manager-certified-22-pinkverify-processes' }) }}">ASM is now PinkVERIFY&reg; Certified for 22 Processes - #1 Certified Vendor in the world</a></h5>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    {#
+    <div class="jumbotron jumbotron-fluid homepage-banner-strip py-2">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col homepage-banner-strip-content">
+                    <i class="fa fa-calendar me-2"></i>
+                    <h5><a style="text-decoration:none" href="https://alemba.com/events/alemba-customer-lunch-learn-sessions-uk-ireland-2025">Join our free customer Lunch & Learn sessions across the UK & Ireland – Sign up today <svg width="22" height="16" viewBox="0 0 22 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M21.6334 6.86518L21.6322 6.864L15.1007 0.363996C14.6114 -0.122942 13.82 -0.12113 13.3329 0.368246C12.8459 0.857558 12.8478 1.649 13.3371 2.136L17.7224 6.5H1.25C0.559625 6.5 0 7.05962 0 7.75C0 8.44037 0.559625 9 1.25 9H17.7223L13.3372 13.364C12.8479 13.851 12.846 14.6424 13.333 15.1317C13.8201 15.6212 14.6116 15.6229 15.1008 15.136L21.6323 8.636L21.6334 8.63481C22.123 8.14618 22.1214 7.35218 21.6334 6.86518Z" fill="#0096DC"/>
+</svg>
+</a></h5>
+                </div>
+            </div>
+        </div>
+    </div>
+    #}
+    
+    <main class="container-fluid" id="homepage-container">
+
+
+      <section id="Lp" class="hero-section position-relative text-white py-5 ">
+
+      
+        <div class="container text-center py-5">
+      
+          <h1 class="display-5 fw-semibold mb-3">
+            Change, Release, and Deployment Management
+          </h1>
+      
+          <p class="h5 fw-medium mb-3">
+            Streamline with Confidence
+          </p>
+      
+          <p class="mb-4 mx-auto text-white" style="max-width: 650px;">
+            Reduce outages, accelerate delivery, and gain full visibility into your IT changes and 
+            deployments with Alemba Service Manager.
+          </p>
+      
+          <a href="#" class="btn btn-pink px-4 py-2">
+            Request a Demo
+          </a>
+      
+        </div>
+      </section>
+      
+      <!-- Trust Banner Section -->
+
+
+      <div class=" bkg-light pt-3 pb-3 px-3 ">
+        <div class="client-logos-grid container mt-4 px-3  ">
+          <img class="lazyload" src="{{ 'Customers/Barts Health NHS Trust logo.svg'|media }}" alt="Barts Health NHS Trust" />
+          <img class="lazyload" src="{{ 'Customers/logo-ppg.svg'|media }}" alt="PPG" />
+          <img class="lazyload" src="{{ 'Customers/aps-bank-logo.png'|media }}" alt="APS Bank" />
+          <img class="lazyload" src="{{ 'Customers/customer-liverpool.png'|media }}" alt="Liverpool City Council" />
+          <img class="lazyload" src="{{ 'Customers/Kroger-200w.png'|media }}" alt="Kroger" />
+          <img class="lazyload" src="{{ 'Customers/customer-wilfred-laurier.png'|media }}" alt="Wilfred Laurier" />
+          <img class="lazyload" src="{{ 'Customers/North Yorkshire Police logo.svg'|media }}" alt="North Yorkshire Police" />
+          <img class="lazyload" src="{{ 'Customers/Idaho Power logo.svg'|media }}" alt="Idaho Power" />
+      </div>
+      
+    
+      </div>
+    
+
+        <!-- Manage Change Without Disruption section -->
+
+        <section class="section-change py-5 py-lg-6 bkg-light">
+          <div class="container">
+            <div class="row align-items-center g-5">
+        
+              <!-- Image (left on desktop) -->
+              <div class="col-12 col-lg-5 text-center">
+                <img
+                  class="img-fluid change-mockup lazyload"
+                  src="{{ 'assets/images/asm-screen-fp-banner.png'|theme }}"
+                  srcset="{{ 'assets/images/asm-screen-fp-banner.png'|theme }} 2x"
+                  alt="Alemba Service Manager workflow on iMac"
+                />
+              </div>
+        
+              <!-- Copy (right on desktop) -->
+              <div class="col-12 col-lg-7">
+                <h2 class="h1 display-6 fw-semibold mb-3 mb-lg-4">Manage Change Without Disruption</h2>
+        
+                <p class=" mb-3">
+                  Managing IT change doesn’t have to mean risking disruption. Alemba’s Change,
+                  Release, and Deployment Management solution provides a structured, automated
+                  approach to delivering updates and improvements across your IT environment,
+                  without compromising service stability.
+                </p>
+        
+                <p class="mb-0">
+                  Alemba Service Manager aligns with ITIL&nbsp;4 practices to help teams plan, authorize, and
+                  implement changes and releases efficiently. Whether it's a routine update or a complex
+                  release pipeline, you gain full visibility, reduce risk, and accelerate value delivery with
+                  intelligent automation and proactive governance.
+                </p>
+              </div>
+        
+            </div>
+          </div>
+        </section>
+        
+
+        <!-- ITIL 4-Aligned Change, Release, and Deployment Practices -->
+
+        <section class="section-itil bg-ink text-white py-5 py-lg-6">
+          <div class="container">
+        
+            <!-- Heading -->
+            <div class="text-center mb-4 mb-lg-5">
+              <h2 class="display-6 fw-semibold mb-2">
+                ITIL 4-Aligned Change, Release, and Deployment Practices
+              </h2>
+              <h4 class="text-white mb-0 mt-4">
+                Alemba Service Manager supports best-practice processes defined in ITIL 4:
+              </h4>
+            </div>
+        
+            <!-- Cards -->
+            <div class="row g-2 g-lg-5 align-items-stretch">
+        
+              <!-- Change Enablement -->
+              <div class="col-12 col-md-6 col-lg-4 p-2">
+                <div class="card card-dark h-100 border-0 rounded-1 shadow-sm">
+                  <div class="card-body p-4 p-lg-5">
+                    <div class=" mb-3">
+                      <img src="/storage/app/media/Icons/New-pages-icons/cycle 1.svg" alt="Incident" class="img-fluid icon-img">
+
+
+                    </div>
+                    <h3 class="h4 fw-semibold brand-pink mb-2">Change Enablement</h3>
+                    <p class="mb-0 text-light-70">
+                      ensures every change is assessed for risk, authorized appropriately, and implemented
+                      with minimal disruption.
+                    </p>
+                  </div>
+                </div>
+              </div>
+        
+              <!-- Deployment Management -->
+              <div class="col-12 col-md-6 col-lg-4 p-2">
+                <div class="card card-dark h-100 border-0 rounded-1 shadow-sm">
+                  <div class="card-body p-4 p-lg-5">
+                    <div class=" mb-3">
+                      <img src="/storage/app/media/Icons/New-pages-icons/startup 1.svg" alt="Incident" class="img-fluid icon-img">
+
+                    </div>
+                    <h3 class="h4 fw-semibold brand-pink mb-2">Deployment Management</h3>
+                    <p class="mb-0 text-light-70">
+                      controls how service components are deployed across development, test, and production
+                      environments, guaranteeing consistency and reducing failure rates.
+                    </p>
+                  </div>
+                </div>
+              </div>
+        
+              <!-- Release Management -->
+              <div class="col-12 col-md-6 col-lg-4 p-2">
+                <div class="card card-dark h-100 border-0 rounded-1 shadow-sm">
+                  <div class="card-body p-4 p-lg-5">
+                    <div class=" mb-3">
+                      <img src="/storage/app/media/Icons/New-pages-icons/rising 1.svg" alt="Incident" class="img-fluid icon-img">
+
+                    </div>
+                    <h3 class="h4 fw-semibold brand-pink mb-2">Release Management</h3>
+                    <p class="mb-0 text-light-70">
+                      coordinates the availability of new or updated services so they deliver value when needed.
+                    </p>
+                  </div>
+                </div>
+              </div>
+        
+            </div>
+        
+            <!-- Footnote -->
+            <p class="text-center mt-4 mt-lg-5 fw-semibold brand-pink">
+              Alemba is PinkVERIFY™ certified for all three practice areas.
+            </p>
+        
+          </div>
+        </section>
+        
+
+        <!-- Change Management section start  -->
+
+        <section class="change-section py-5">
+          <div class="container">
+            <div class="row align-items-center">
+              <!-- Text Column -->
+              <div class="col-12 col-lg-6">
+                <h2 class="section-title">
+                  What You’ll Gain with Smarter<br class="d-none d-lg-block" />Change Management
+                </h2>
+        
+                <ul class="gain-list list-unstyled mt-4">
+                  <li>Prevent outages with structured impact analysis, approval gates, and back-out plans</li>
+                  <li>Speed up delivery through reusable pipelines, templates, and automation</li>
+                  <li>Maintain audit-ready compliance with approval logs, role separation, and e-signatures</li>
+                  <li>Increase confidence using forward schedules, CAB meetings, and live notifications</li>
+                  <li>Reduce operational noise by avoiding change collisions and last-minute firefighting</li>
+                  <li>Improve release quality through mandatory test gates and phased deployment models, such as blue-green</li>
+                  <li>Drive continuous improvement using KPIs like change success rate, MTTR, and deployment frequency</li>
+                  <li>Support DevOps through API-first automation, CI/CD integration, and shift-left controls</li>
+                </ul>
+              </div>
+        
+              <!-- Image Column (blank placeholder - replace with your image) -->
+              <div class="col-12 col-lg-6 text-center mt-4 mt-lg-0">
+                <!--
+                  Blank image placeholder. To use your own image either:
+                  1) Set a background-image in the CSS for .image-placeholder, or
+                  2) Replace this <div> with an <img src="path/to/your-image.png" class="img-fluid">.
+                -->
+                <div class="image-placeholder mx-auto" role="img" aria-label="replace with image"></div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+                <!-- Key Capabilities Section -->
+
+                <section class="services-features py-5">
+                  <div class="container">
+                
+                    <!-- Main heading -->
+                    <div class="text-center mb-5">
+                      <h2 class="h1 fw-bold mb-2">Key Capabilities of Alemba Service Manager</h2>
+                    </div>
+                
+                    <!-- Group: Service Operations -->
+                    <div class="group mb-5">
+                      <div class="row gx-3 gy-4">
+                
+                        <!-- Card 1 -->
+                        <div class="col-12 col-md-6 col-lg-4">
+                          <div class="card h-100 shadow-sm border-light rounded-3">
+                            <div class="card-body d-flex flex-column">
+                              <div class="icon mb-3">
+                                <img src="/storage/app/media/Icons/New-pages-icons/upload 1.svg" alt="Incident" class="img-fluid icon-img">
+                              </div>
+                              <h4 class="card-title h5 text-pink fw-semibold">Zero-Code Workflow Automation</h4>
+                              <p class="card-text text-muted small mb-3">
+                                Design and automate the entire change lifecycle, from request to post-implementation review, with a visual drag-and-drop workflow engine. Handle standard, normal, and emergency changes without writing code. Define risk-based approvals, task sequences, and audit gates in minutes.
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                
+                        <!-- Card 2 -->
+                        <div class="col-12 col-md-6 col-lg-4">
+                          <div class="card h-100 shadow-sm border-light rounded-3">
+                            <div class="card-body d-flex flex-column">
+                              <div class="icon mb-3">
+                                <img src="/storage/app/media/Icons/New-pages-icons/schedule 1.svg" alt="Problem" class="img-fluid icon-img">
+                              </div>
+                              <h4 class="card-title h5 text-pink fw-semibold">Live Change Calendar and Forward Schedule</h4>
+                              <p class="card-text text-muted small mb-3">
+                                Plan changes with confidence using a colour-coded Release Calendar and live Forward Schedule of Change. Track dependencies, coordinate release windows, and avoid change collisions across your service ecosystem.
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                
+                        <!-- Card 3 -->
+                        <div class="col-12 col-md-6 col-lg-4">
+                          <div class="card h-100 shadow-sm border-light rounded-3">
+                            <div class="card-body d-flex flex-column">
+                              <div class="icon mb-3">
+                                <img src="/storage/app/media/Icons/New-pages-icons/aware 1.svg" alt="SLM" class="img-fluid icon-img">
+                              </div>
+                              <h4 class="card-title h5 text-pink fw-semibold">Risk-Aware Approvals and CMDB Integration</h4>
+                              <p class="card-text text-muted small mb-3">
+                                Changes are linked to configuration items (CIs) in the CMDB, enabling automated risk scoring and visual impact analysis. Approvers can assess the full impact of a change before authorizing its implementation.
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                
+                        <!-- Card 4 -->
+                        <div class="col-12 col-md-6 col-lg-4">
+                          <div class="card h-100 shadow-sm border-light rounded-3">
+                            <div class="card-body d-flex flex-column">
+                              <div class="icon mb-3">
+                                <img src="/storage/app/media/Icons/New-pages-icons/control-panel 1.svg" alt="Knowledge" class="img-fluid icon-img">
+                              </div>
+                              <h4 class="card-title h5 text-pink fw-semibold">Version-Controlled Release Management</h4>
+                              <p class="card-text text-muted small mb-3">
+                                Coordinate releases across environments with version-controlled packages. Trigger scripts, use Alemba Integration Hub playbooks, or launch Azure DevOps pipelines via REST APIs to ensure consistent deployments.
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                
+                        <!-- Card 5 -->
+                        <div class="col-12 col-md-6 col-lg-4">
+                          <div class="card h-100 shadow-sm border-light rounded-3">
+                            <div class="card-body d-flex flex-column">
+                              <div class="icon mb-3">
+                                <img src="/storage/app/media/Icons/New-pages-icons/self-service 1.svg" alt="Change" class="img-fluid icon-img">
+                              </div>
+                              <h4 class="card-title h5 text-pink fw-semibold">Self-Service Change Requests</h4>
+                              <p class="card-text text-muted small mb-3">
+                                Empower business stakeholders to submit and approve change requests through an intuitive portal. Submissions are intelligently routed based on risk level, service type, or CI linkage, improving transparency and reducing IT bottlenecks.
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                
+                        <!-- Card 6 -->
+                        <div class="col-12 col-md-6 col-lg-4">
+                          <div class="card h-100 shadow-sm border-light rounded-3">
+                            <div class="card-body d-flex flex-column">
+                              <div class="icon mb-3">
+                                <img src="/storage/app/media/Icons/New-pages-icons/statistics 1.svg" alt="Release" class="img-fluid icon-img">
+                              </div>
+                              <h4 class="card-title h5 text-pink fw-semibold">Built-in Reporting and KPIs</h4>
+                              <p class="card-text text-muted small mb-3">
+                                Track performance metrics in real time. Dashboards show change success rates, failure trends, and deployment frequency. Data exports integrate with Power BI for advanced reporting and insights.
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                
+                        <!-- Card 7 -->
+                        <div class="col-12 col-md-6 col-lg-4">
+                          <div class="card h-100 shadow-sm border-light rounded-3">
+                            <div class="card-body d-flex flex-column">
+                              <div class="icon mb-3">
+                                <img src="/storage/app/media/Icons/New-pages-icons/settings 1.svg" alt="Asset & CMDB" class="img-fluid icon-img">
+                              </div>
+                              <h4 class="card-title h5 text-pink fw-semibold">Seamless DevOps and Toolchain Integration</h4>
+                              <p class="card-text text-muted small mb-3">
+                                Alemba integrates with Jira, Jenkins, SCCM (now known as Microsoft Endpoint Configuration Manager), and other monitoring platforms, as well as various tools, utilizing REST APIs. Automate handoffs across your CI/CD pipeline and introduce shift-left controls to detect risks earlier in the development lifecycle.
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                
+                      </div>
+                    </div>
+                
+                  </div>
+                </section>
+                
+
+
+                <!-- Certified and Compliant by Design section start -->
+
+                <section class="certified-section py-5">
+                  <div class="container">
+                    <div class="row align-items-center gy-4">
+                
+                      <!-- Text column -->
+                      <div class="col-12 col-lg-7">
+                        <h2 class="cert-title mb-3">Certified and Compliant by Design</h2>
+                        <p class="cert-lead mb-0">
+                          Alemba Service Manager is PinkVERIFY™ certified for ITIL 4-aligned Change Enablement,
+                          Release Management, and Deployment Management. Available as a SaaS or on-premise solution,
+                          the platform supports scalable, secure, and fully auditable change workflows.
+                        </p>
+                      </div>
+                
+                      <!-- Badges column -->
+                      <div class="col-12 col-lg-5 text-lg-end">
+                        <div class="badges d-flex flex-wrap justify-content-lg-end gap-3 align-items-center">
+                
+                          <!-- Badge 1 -->
+                          <div class="badge-placeholder" role="img" aria-label="Badge 1 — Gigaom Outperformer">
+                            <a href="{{ 'blog'|page({ 'category':'news', 'slug':'gigaom-outperformer-alemba-radar-report-it-service-management-itsm-2023' }) }}?utm_source=website+footer&utm_medium=footer&utm_id=GigaOm">
+                              <img
+                                class="lazyload"
+                                style="height:100%;"
+                                src="{{ 'Badges/badge_gigaom_2023_outperformer.svg'|media }}" alt="Gigaom Radar Report: ITSM Outperformer 2023" 
+                                alt="Gigaom Radar Report: ITSM Outperformer 2023"
+                              />
+                            </a>
+                          </div>
+                
+                          <!-- Badge 2 -->
+                          <div class="badge-placeholder" role="img" aria-label="Badge 2 — Gigaom Leader">
+                            <a href="{{ 'blog'|page({ 'category':'news', 'slug':'gigaom-outperformer-alemba-radar-report-it-service-management-itsm-2023' }) }}?utm_source=website+footer&utm_medium=footer&utm_id=GigaOm">
+                              <img
+                                class="lazyload"
+                                style="height:100%;"
+                                src="{{ 'Badges/badge_gigaom_2023_leader.svg' | media }}"
+                                alt="Gigaom Radar Report: ITSM Leader 2023"
+                              />
+                            </a>
+                          </div>
+                
+                          <!-- Badge 3 -->
+                          <div class="badge-wide-placeholder" role="img" aria-label="PinkVERIFY badge">
+                            <a href="https://alemba.com/pinkverify">
+                              <img
+                                class="lazyload"
+                                style="height:100%;"
+                                src="{{ 'Badges/badge_pinkverify_certified_22p@2x.png' | media }}"
+                                alt="PinkVERIFY Certified"
+                              />
+                            </a>
+                          </div>
+                
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </section>
+                
+
+
+<!-- 1USE CASE SECTION -->
+
+
+<section class="usecase-section py-5">
+  <div class="container">
+    <div class="row align-items-start justify-content-start" style="gap:50px ;">
+
+      <!-- Left: Benefits List -->
+      <div class="col-12 col-lg-5">
+        <ul class="benefit-list list-unstyled mb-0">
+      
+          <li class="benefit-item d-flex align-items-center mb-4 pb-4 border-bottom border-secondary">
+            <div class="benefit-icon me-3">
+              <img src="{{ '/Icons/New-pages-icons/discount 1.svg' | media }}" alt="Reduced change lead times" class="img-fluid">
+            </div>
+            <p class="mb-0 benefit-text">Reduced change lead <br>times by two-thirds</p>
+          </li>
+      
+          <li class="benefit-item d-flex align-items-center mb-4 pb-4 border-bottom border-secondary">
+            <div class="benefit-icon me-3">
+              <img src="{{ '/Icons/New-pages-icons/video-call 1 (1).svg' | media }}" alt="Unplanned outages" class="img-fluid">
+            </div>
+            <p class="mb-0 benefit-text">Virtually eliminated unplanned outages</p>
+          </li>
+      
+          <li class="benefit-item d-flex align-items-center">
+            <div class="benefit-icon me-3">
+              <img src="{{ '/Icons/New-pages-icons/advisory 1.svg' | media }}" alt="CAB efficiency" class="img-fluid">
+            </div>
+            <p class="mb-0 benefit-text">
+              Allowed the Change Advisory Board (CAB) to focus on strategic <br>decisions rather than routine approvals
+            </p>
+          </li>
+      
+        </ul>
+      </div>
+      
+
+      <!-- Right: Use Case Text -->
+      <div class="col-12 col-lg-6">
+        <h2 class="usecase-title text-pink fw-semibold mb-3">Use Case: Modernizing<br> Change in Government</h2>
+        <p class="usecase-desc text-muted mb-0">
+          A leading U.S. state government department implemented Alemba Service Manager to modernize its change, release,
+          and deployment workflows. The platform’s AI-powered risk calculator detected scheduling conflicts, recommended
+          mitigations, and automatically identified the least disruptive change windows.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!--  CERTIFICATION BANNER -->
+<section class="cert-banner py-3">
+  <div class="container">
+    <div class="cert-box text-center border rounded-3 py-3">
+      <p class="mb-0 text-pink fw-semibold fs-6">
+        Alemba’s visual tools and intelligent scheduling helped the department deliver reliable, compliant change at scale.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!--  CALL TO ACTION (CTA) -->
+<section class="cta-section py-5">
+  <div class="container text-center">
+    <div class="cta-box py-5 px-4 rounded-4 mx-auto">
+      <h2 class="cta-title text-white mb-3 fw-semibold">Ready to Take Control of Change?</h2>
+      <p class="cta-text mb-4 text-white">
+        Alemba helps you deliver change with speed, confidence, and control. Book a demo today and see
+        how easy it is to modernize your change, release, and deployment management.
+      </p>
+      <a href="#" class="btn th-cta  fw-semibold px-4 py-2">Request a Demo</a>
+    </div>
+  </div>
+</section>
+</main>
+
+
+<footer class="footer-section py-3">
+  <div class="container">
+    <div class="row align-items-center">
+      <!-- Left: Logo -->
+      <div class="col-12 col-md-6 text-center text-md-start mb-3 mb-md-0">
+        <div class="footer-logo">
+          <!-- Replace with your logo image -->
+          <img style="width:180px;" class="lazyload" src="{{ 'Alemba logos/Alembalogo.svg' | media }}" alt="Alemba" />
+
+        </div>
+      </div>
+
+      <!-- Right: Copyright -->
+      <div class="col-12 col-md-6 text-center text-md-end">
+        <p class="footer-copy mb-0 text-white">Copyright © 2025, All rights reserved.</p>
+      </div>
+    </div>
+  </div>
+</footer>

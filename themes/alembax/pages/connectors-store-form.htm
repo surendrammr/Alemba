@@ -1,0 +1,95 @@
+url = "/connectors-store/form"
+layout = "home"
+title = "Connectors Store"
+description = "Connectors Store Contact form"
+is_hidden = 0
+meta_title = "Service Management Integration Library | ITSM Services - Alemba"
+meta_description = "Request further information on your chosen connector for Alemba Service Manager."
+robot_index = "noindex"
+robot_follow = "follow"
+seoOptionsEnabledInSitemap = 0
+seoOptionsUseUpdatedAt = 1
+seoOptionsRobotIndex = "index"
+seoOptionsRobotFollow = "follow"
+seoOptionsChangefreq = "daily"
+seoOptionsPriority = 0.5
+canonical_url = "https://alemba.com/connectors-store/form"
+seoOptionsOgCard = "summary_large_image"
+
+[renderForm connectorForm]
+formCode = "connector-form"
+
+[viewBag]
+seo_title = "Service Management Integration Library | ITSM Services - Alemba"
+seo_description = "Request further information on your chosen connector for Alemba Service Manager."
+robot_index = "index"
+robot_follow = "follow"
+==
+<?php
+function onStart()
+{
+
+	// Populate the form if the e-mail has been supplied
+	
+	$this['connector'] = \Input::has('e') ? \Input::get('e') : false;
+	
+	$this->page->meta_title = "Alemba ".$this['connector']." Connector | ITSM Services";
+	$this->page->meta_description = "Request further information on the Alemba Service Manager ".$this['connector']." connector.";
+	
+}
+?>
+==
+<script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", function(){
+        var selected = '{{ connector }}';
+        $('#connector-field').val(selected);
+    });
+</script>
+
+<!-- banner -->
+
+<div class="jumbotron jumbotron-fluid banner dark pageBanner" style="background-image:url('{{ 'assets/img/banners/banner-bg-connectors@0.5x.jpg'|theme }}')">
+
+	<div class="container-fluid h-100">
+	    <div class="row h-100">
+    	    <div class="col my-auto text-center">
+    	        <h2 class="xl-heading text-center">{{ this.page.title }}</h2>
+		    </div>
+		</div>
+	</div>
+
+</div>
+
+<!-- /banner -->
+
+{% partial 'demo-button' %}
+
+<div class="container copy">
+
+    <header class="col-md-12 copy-heading">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb justify-content-center">
+                <li class="breadcrumb-item"><a href="{{ 'integration-platform'|page }}">Integration Platform</a></li>
+                <li class="breadcrumb-item"><a href="{{ 'connectors-store'|page }}">Connectors Store</a></li>
+                <li class="breadcrumb-item active">{{ connector }}</li>
+            </ol>
+        </nav>
+	
+		<h1>Alemba Service Manager Integration Library</h1>
+
+	</header>
+	    
+    <div class="row justify-content-center">
+    
+        <div class="col-md-10 copy-main">
+            <p class="lead mb-3">Thank you for your interest in the {{ connector }} connector. Please fill out the form below and one of our team will be in touch.</p>
+            {% component 'connectorForm' %}
+        </div>
+        
+    </div>
+
+</div>
+
+{% partial 'banners/banner-connectors' %}
+
+{% partial 'pagelinks-recent' %}

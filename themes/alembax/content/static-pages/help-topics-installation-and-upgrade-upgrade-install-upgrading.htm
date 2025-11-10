@@ -1,0 +1,147 @@
+[viewBag]
+title = "Upgrading your system"
+url = "/help/topics/installation-and-upgrade/upgrade/install-upgrading"
+layout = "help"
+is_hidden = 0
+navigation_hidden = 0
+==
+                                                    <h1>Upgrading your system</h1>
+                                                    <p>You can upgrade your system using the <span class="GeneralVariablesProductNameFull">Alemba Service Manager™</span> Patch Tool. We recommend that you read this section fully before applying a patch. </p>
+                                                    <p>Prior to upgrading a live Production system, we recommend you replicate the Production system to a lower environment and perform the upgrade on the replicated system. For more information, contact <span class="GeneralVariablesSupport">Alemba Support</span>. </p>
+                                                    <h2 class="Prerequisite">
+<a name="Before"></a>Before you start</h2>
+                                                    <p class="prereqtext1">The Patch Tool <b>will not</b> create a backup. Before upgrading, create a backup of your databases, including your system files and registry settings. Ideally, create a snapshot or backup of the virtual web server, enabling a swift and simple rollback should the need arise.</p>
+                                                    <p class="prereqtext1">Close the <span class="GeneralVariablesProductName">ASM</span> Server Console and ensure that you are not logged into the database before running the upgrade, otherwise an error will occur.</p>
+                                                    <p class="prereqtextlast">If you are performing an upgrade from a version lower than 9.2.0, it will invalidate your existing license key. You must have an updated license key to run <span class="GeneralVariablesProductNameFull">Alemba Service Manager™</span>. Contact <span class="GeneralVariablesCompanyName2">Alemba®</span> Support for more details if necessary.</p>
+                                                    <h2>Upgrade overview
+</h2>
+                                                    <ol>
+                                                        <li value="1">
+                                                            <p>Back up your system. </p>
+                                                            <p>For more information, see <a href="#Creating" class="MCXref xref">Creating a Backup</a>.</p>
+                                                        </li>
+                                                        <li value="2">
+                                                            <p>Ensure that your system meets the prerequisites.</p>
+                                                            <p>For more information, see <a href="../../prerequisites/prereq%20checklist.htm" class="MCXref xref">Prerequisites checklist</a>.</p>
+                                                        </li>
+                                                        <li value="3">
+                                                            <p>Familiarize yourself with the <b>Installing or Patching</b> section. </p>
+                                                            <p>For more information, see <a href="%7B%7B%20'help-install-and-upgrade-install-install-v-patch#top'%7CstaticPage%20%7D%7D#top" class="MCXref xref">About Installing or Patching to ASM 10.1</a>.</p>
+                                                        </li>
+                                                        <li value="4">
+                                                            <p>If required, carry out a Screen Pre-upgrade. </p>
+                                                            <p>For more information, see <a href="%7B%7B%20'help-install-screens-pre-upgrade#top'%7CstaticPage%20%7D%7D#top" class="MCXref xref">Screens Pre-Upgrade</a>.</p>
+                                                        </li>
+                                                        <li value="5">
+                                                            <p>If required, install the <span class="GeneralVariablesProductName">ASM</span> Patch Tool. </p>
+                                                            <p>For more information, see <a href="%7B%7B%20'help-install-install-patch-tool#top'%7CstaticPage%20%7D%7D#top" class="MCXref xref">Installing the Patch Tool</a>. </p>
+                                                        </li>
+                                                        <li value="6">
+                                                            <p>Run the <span class="GeneralVariablesProductName">ASM</span> Patch Tool.</p>
+                                                            <p>For more information, see <a href="%7B%7B%20'help-install-running-the-patch#top'%7CstaticPage%20%7D%7D#top" class="MCXref xref">Running the ASM Patch Tool</a>.</p>
+                                                        </li>
+                                                        <li value="7">
+                                                            <p>If required, apply the license key.</p>
+                                                            <p>For more information, see <a href="%7B%7B%20'help-install-running-the-patch#top'%7CstaticPage%20%7D%7D#top" class="MCXref xref">Running the ASM Patch Tool</a>.</p>
+                                                        </li>
+                                                        <li value="8">
+                                                            <p>Familiarize yourself with the steps to roll back the upgrade. </p>
+                                                            <p>For more information, see <a href="#Rolling" class="MCXref xref">Rolling Back the Upgrade</a></p>
+                                                        </li>
+                                                    </ol>
+                                                    <h3>Locating and running upgrade files</h3>
+                                                    <p>From 10.1.0, you can find upgrade files here by default: C:\Program Files\<span class="GeneralVariablesCompanyName3">Alemba</span>\<span class="GeneralVariablesProductName">ASM</span>\<i style="color: #0000ff;">WebServer</i>\Config\<i style="color: #0000ff;">Version</i>, where:</p>
+                                                    <ul>
+                                                        <li value="1">
+<b style="font-style: italic; font-weight: normal; color: #0000ff;">WebServer</b> is the Web Server you are using </li>
+                                                        <li value="2">
+<b style="font-style: italic; color: #0000ff; font-weight: normal;">Version </b>is the upgrade version number that is used as a folder name.</li>
+                                                    </ul>
+                                                    <p class="exampletext">For example, for 10.2.1: <code style="font-size: 10pt;">C:\Program Files\Alemba\ASM\System1\Config\100201</code></p>
+                                                    <p>Depending on which version you selected, the upgrade script files are either SCP files, or use the new XML format.</p>
+                                                    <h2>
+<a name="Creating"></a>Creating a Backup</h2>
+                                                    <h4>For virtual servers </h4>
+                                                    <p>Create a snapshot or backup of the virtual web server and the virtual database server.</p>
+                                                    <h4>For physical servers</h4>
+                                                    <ol>
+                                                        <li value="1">Stop the <b><span class="GeneralVariablesProductName">ASM</span> Administrative Service</b>, which will stop all <span class="GeneralVariablesProductName">ASM</span> Services.</li>
+                                                        <li value="2">
+                                                            <p>Stop the <span class="GeneralVariablesProductName">ASM</span> application pools and websites. </p>
+                                                            <p><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="../../../resources/images/maintenace%20package%20installation/stop%20application%20pools%20and.png"><img class="MCPopupThumbnail img imgthumbnail" data-mc-width="882" data-mc-height="521" src="/storage/app/media/Help/images/maintenace%20package%20installation/stop%20application%20pools%20and_thumb_0_48.png" tabindex=""></a>
+                                                            </p>
+                                                        </li>
+                                                        <li value="3">Create a backup of the system database.</li>
+                                                        <li value="4">Create a backup of the <span class="GeneralVariablesProductName">ASM</span> registry keys (e.g.: export to file HKEY_LOCAL_MACHINE\SOFTWARE\<span class="GeneralVariablesCompanyName3">Alemba</span>\<span class="GeneralVariablesProductName">ASM</span>Core).</li>
+                                                        <li value="5">Create a folder in the same location as the extracted zip file.</li>
+                                                        <p class="exampletext">Create new folder C:\<span class="GeneralVariablesCompanyName3">Alemba</span>\944Backup<br></p>
+                                                        <li value="6">
+                                                            <p>Back up the files in the <b><span class="GeneralVariablesProductName">ASM</span></b> directory, as well as the system directory, for example, C:\Program Files\<span class="GeneralVariablesCompanyName3">Alemba</span>\<span class="GeneralVariablesProductName">ASM</span>\<i style="color: #0000ff;">WebServer</i>, where <i style="color: #0000ff;">WebServer</i> is your web server. </p>
+                                                        </li>
+                                                    </ol>
+                                                    <h2>
+<a name="Rolling"></a>Rolling Back the Upgrade</h2>
+                                                    <p>You may need to roll back the upgrade and return your system to its previous version.</p>
+                                                    <h4>For virtual servers </h4>
+                                                    <p>Restore the web server and database server to the snapshot or backup you took prior to applying the upgrade.</p>
+                                                    <h4>For physical servers </h4>
+                                                    <ol>
+                                                        <li value="1">Stop the <b><span class="GeneralVariablesProductName">ASM</span> Administrative Service</b>. </li>
+                                                        <li value="2">
+                                                            <p>Stop the <span class="GeneralVariablesProductName">ASM</span> application pools and websites. </p>
+                                                            <p><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="../../../resources/images/maintenace%20package%20installation/stop%20application%20pools%20and.png"><img class="MCPopupThumbnail img imgthumbnail" data-mc-width="882" data-mc-height="521" src="/storage/app/media/Help/images/maintenace%20package%20installation/stop%20application%20pools%20and_thumb_0_48.png" style="width: 86px;height: 50px;" tabindex=""></a>
+                                                            </p>
+                                                        </li>
+                                                        <li value="3">Restore the system directory and files from the backup location you created prior to upgrading.</li>
+                                                        <li value="4">Restore the database from the backup.</li>
+                                                        <li value="5">Restore the registry keys from the backup.</li>
+                                                        <li value="6">Restart the <span class="GeneralVariablesProductName">ASM</span> Services.</li>
+                                                        <li value="7">Restart the <span class="GeneralVariablesProductName">ASM</span> website and application pool. </li>
+                                                        <li value="8">Restart IIS.</li>
+                                                    </ol>
+                                                    <h2>Considerations before upgrading to 9.3 or above</h2>
+                                                    <p>If you used the features and functions listed below prior to <span class="GeneralVariablesProductName">ASM</span> 9.3, then you must perform these extra steps after upgrading:</p>
+                                                    <ol>
+                                                        <li value="1">Have the correct licenses to use the Integration Connectors. See <a href="#Licensin" class="MCXref xref">Licensing integration connectors</a>.</li>
+                                                        <li value="2">Reconfigure the Jira connector if upgrading from <span class="GeneralVariablesProductName">ASM</span> 9.8 or 9.9 to <span class="GeneralVariablesProductName">ASM</span> 9.10 or higher. See <a href="#Upgradin" class="MCXref xref">Upgrading the Jira connector</a>.</li>
+                                                        <li value="3">Configure your Reminder columns if upgrading from 9.5 or below. See <a href="#Configur" class="MCXref xref">Configuring Reminder columns on Calls Outstanding</a>.</li>
+                                                        <li value="4">Reapply search fields on Self Service Portal screens if upgrading from 9.2 or below. See <a href="#Redesign" class="MCXref xref">Redesigning search fields on Self Service Portal screens</a>.</li>
+                                                        <li value="5">Reconfigure personalized column selections on search windows if upgrading from 9.2 or below. See <a href="#Reconfig" class="MCXref xref">Reconfiguring personalized Column configurations</a>.</li>
+                                                        <li value="6">If using a SAM connector, ensure you have the correct Java installation, and your environment is configured correctly. For more information, see <a href="#Configur2" class="MCXref xref">Upgrading your system</a>.</li>
+                                                    </ol>
+                                                    <h4>
+<a name="Licensin"></a>Licensing integration connectors</h4>
+                                                    <p>Your existing integration settings will continue to function after upgrading to v<span class="GeneralVariablesProductVersion">10.1</span>, with no additional steps required. </p>
+                                                    <p> If you want to add a licensed connector to your integration platform,  contact your Sales Manager to purchase a license key.</p>
+                                                    <h4>
+<a name="Upgradin"></a>Upgrading the Jira connector</h4>
+                                                    <p>The Jira connector was introduced in 9.8 and updated in 9.10.0 to support a single integration source for multiple projects. If you are upgrading from 9.8 or 9.9, to 9.10 or above, you need to remove the Jira Integration Source(s) and recreate them using the new connector. You also need to update any tasks previously set up to use Jira outbound actions, and reconfigure them. Refer to the 9.10 Release Notes for information about setting up and using the Jira connector.</p>
+                                                    <h4>
+<a name="Configur"></a>Configuring Reminder columns on Calls Outstanding</h4>
+                                                    <p>If you are using Reminder columns and are upgrading from 9.5 or below, to 9.6 or above, remove and re-add them to your column configuration after upgrading.</p>
+                                                    <h4>
+<a name="Redesign"></a>Redesigning search fields on <span class="GeneralVariablesSelfServicePortalName">Self Service Portal</span> screens</h4>
+                                                    <p>If you are upgrading from 9.2 or below, the following fields may stop working on Self Service submissions screens:</p>
+                                                    <ul>
+                                                        <li value="1">Multi-value search fields that reference <b>External Suppliers</b>
+</li>
+                                                        <li value="2">Search fields that reference <b>SLA</b>, <b>OLA</b>, and  <b>UC Agreements</b>
+</li>
+                                                    </ul>
+                                                    <p>After the upgrade, use <span class="GeneralVariablesDesignerName">ASM Designer</span> to remove these fields and reapply them to the screen.</p>
+                                                    <h4>
+<a name="Reconfig"></a>Reconfiguring personalized Column configurations</h4>
+                                                    <p>If you are upgrading from 9.2 or below, to 9.3 or above, you must reconfigure personalized column selections on the following search windows: </p>
+                                                    <ul>
+                                                        <li value="1">Organizations</li>
+                                                        <li value="2">Locations</li>
+                                                        <li value="3">Subscriber Groups</li>
+                                                        <li value="4">Contracts</li>
+                                                        <li value="5">Cost Centers</li>
+                                                        <li value="6">Jurisdictions</li>
+                                                        <li value="7">Knowledge Admin</li>
+                                                        <li value="8">Agreements</li>
+                                                        <li value="9">Bulletin Administration</li>
+                                                    </ul>
+                                                    <p>From 9.3.0, column selections on these search windows are reset to default as a result of an enhancement, which extends the Configurable Column and Advanced Search functionality to these searches.</p>
+                                                

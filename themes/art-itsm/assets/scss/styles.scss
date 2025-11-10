@@ -1,0 +1,940 @@
+@import '../node_modules/bootstrap/scss/functions';
+@import '../node_modules/bootstrap/scss/variables';
+@import '../node_modules/bootstrap/scss/mixins/_breakpoints';
+@import 'colours';
+@import 'variables';
+
+@mixin vendor-prefixes($name, $value) {
+  @each $vendor in ('-webkit-', '-moz-', '-ms-', '-o-', '') {
+    #{$vendor}#{$name}: #{$value};
+  }
+}
+
+@import 'jumbotrons';
+@import 'releases';
+@import 'nav';
+@import 'forms';
+@import 'roadmap';
+@import 'features';
+@import 'contact';
+@import 'fsvs';
+@import 'itil';
+@import 'partners';
+@import 'verticals';
+@import 'accessibility';
+@import 'values';
+@import 'tags';
+@import 'search';
+
+body {
+	background-color: $darkpurple;
+	color: white;
+	font-family: 'ArticulatCF-Normal', Helvetica, Arial, Sans-Serif;
+	-moz-font-feature-settings:'aalt=0,ccmp=0,dlig=0,dnom=0,frac=0,locl=0,numr=0,ordn=0,ss01=0,ss02=0,ss03=0,ss04=0,ss05=0,sups=0';
+}
+
+strong {
+	font-family: 'ArticulatCF-Bold', Helvetica, Arial, Sans-Serif;
+	-moz-font-feature-settings:'aalt=0,ccmp=0,dlig=0,dnom=0,frac=0,locl=0,numr=0,ordn=0,ss01=0,ss02=0,ss03=0,ss04=0,ss05=0,sups=0';
+	font-weight: normal;
+}
+
+h1 {
+	font-size: 2.5rem;
+	line-height: 2.75rem;
+
+	@media (min-width: 768px) {
+		font-size: 5rem;
+		line-height: 4.8rem;
+		margin-bottom: 4rem;
+
+	}
+}
+
+h1 + h5 {
+	@media (min-width: 768px) {
+		margin-top: -3rem;
+	}
+}
+
+h2 {
+	margin-bottom: 2rem;
+}
+
+h3 {
+	color: $alembablue;
+	margin-bottom: 1.5rem;
+}
+
+h3 + h5 {
+	//margin-top: -1rem;
+}
+
+a {
+	color: $alembapink;
+
+	&:hover {
+		color: $alembablue;
+	}
+}
+
+li {
+	margin-bottom: 0.25rem;
+}
+
+p {
+	color: $darkgrey;
+
+	&.dark {
+		color: $darkgrey !important;
+	}
+}
+
+.bkg-light {
+	color: $darkgrey;
+	background-color: white;
+
+	& p {
+		color: $grey !important;
+	}
+}
+
+.bkg-dark {
+	background-color: $darkpurple;
+
+	& p {
+		color: white;
+	}
+
+	& h3 {
+		color: $alembapink;
+	}
+}
+
+.copy h2, .copy h3 {
+	margin-top: 3rem;
+}
+
+.heading-block {
+	border-bottom: 1px solid white;
+}
+
+.btn-outline {
+	color: white;
+	border-color: white;
+
+	&:hover, &.hover-blue {
+		color: $alembablue;
+		border-color: $alembablue;
+	}
+
+	&.hover-pink:hover {
+		color: $alembapink;
+		border-color: $alembapink;
+	}
+
+	&.pink {
+		color: $alembapink;
+		border-color: $alembapink;
+
+		&:hover {
+			color: white;
+			border-color: white;
+		}
+	}
+
+	&.light-bkg {
+
+		&:hover {
+			color: $alembablue;
+			border-color: $alembablue;
+		}
+
+	}
+
+	&.fill-white {
+		background-color: white;
+	}
+}
+
+.button-link {
+	width: 100%;
+	padding-top: 0.5rem;
+	padding-bottom: 0.5rem;
+}
+
+.btn-icon {
+	height: 3rem;
+	vertical-align: middle;
+}
+
+.btn-text {
+	vertical-align: middle;
+}
+
+.badge.rounded-pill {
+	text-decoration: none;
+	font-weight: normal;
+	background-color: $alembablue;
+
+	&:hover {
+		background-color: $orange !important;
+	}
+}
+
+.circle-link-image {
+    width: 125px;
+    height: 125px;
+    display: block;
+    margin: 0 auto 1rem auto;
+    @include vendor-prefixes(border-radius, 50%);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+.caption {
+	margin-top: 1rem;
+}
+
+.picture-caption {
+	opacity: 0.8;
+	font-size: 0.8rem;
+	font-style: italic;
+	margin-top: -1.5rem; // To be used when the picture has a bottom margin
+	margin-bottom: 2rem;
+}
+
+.imac-mask {
+	mask-image: url('/storage/app/media/Misc/pic-imac-mask.svg?v=2');
+	width: 800px;
+}
+
+.feature-box {
+	color: white;
+	padding: 2rem;
+	margin: 2rem 0 2rem;
+
+	h5 {
+		color: $darkpurple;
+	}
+
+	a {
+		color: $orange;
+
+		&:hover {
+			color: white;
+		}
+	}
+
+	p:last-child {
+		margin-bottom: 0;
+	}
+
+	.form-label {
+		color: $alembablue;
+	}
+
+	.icon {
+		color: $orange !important;
+	}
+}
+
+.feature-box-magenta {
+	@extend .feature-box;
+	background-color: $alembapink;
+}
+
+.feature-box-white {
+	@extend .feature-box;
+	background-color: white;
+
+	h3 {
+		margin-top: 0;
+	}
+
+	p {
+		color: $darkgrey;
+	}
+
+	a:hover {
+		color: $alembablue;
+	}
+}
+
+// Homepage-specific
+
+body {
+	background-repeat: no-repeat;
+	background-position: top left;
+	background-size: contain;
+
+	&.page-home {
+		background-image: url('/storage/app/media/Backgrounds/bkg-paint-blue-1.jpg');
+	}
+
+}
+
+.homepage-hero {
+	position: absolute;
+	right: 0;
+	top: 0;
+	z-index: 0;
+
+	img {
+
+		@media screen and (min-width: 768px) {
+			position: absolute;
+			right: -250px;
+			width: 600px;
+			top: 130px;
+		}
+
+		@media screen and (min-width: 1110px) {
+			right: -360px;
+			top: -60px;
+			width: 800px;
+		}
+
+		@media screen and (min-width: 1200px) {
+			right: -240px;
+		}
+
+	}
+}
+
+#homepage-banner-badges {
+	z-index: 5;
+}
+
+.homepage-below-banner {
+	background-color: $darkpurple;
+}
+
+.sector-card {
+	a {
+		text-decoration: none;	
+	}
+}
+
+#version-badge {
+	position: absolute;
+	top: 660px;
+	left: -170px;
+	z-index: 100;
+
+	@media screen and (max-width: 768px) {
+		top: 710px;
+		left: -220px;
+	}
+
+	a {
+		text-decoration: none;
+	}
+}
+
+#homepage-container {
+	position: relative;
+	overflow: hidden;
+
+	.lead {
+		margin-right: 0;
+
+		@media screen and (min-width: 768px) {
+			margin-right: 300px;
+			font-size: 1.2rem;
+		}
+
+		@media screen and (min-width: 1110px) {
+			margin-right: 0;
+			font-size: 1.25rem;
+		}
+	}
+
+}
+
+.picture-card {
+	border-radius: 10px;
+	background-repeat: no-repeat;
+	background-position: top left;
+	background-size: cover;
+	padding: 2rem;
+	color: white;
+	min-height: 20rem;
+	cursor: pointer;
+
+	h4 {
+		font-size: 2rem;
+	}
+}
+
+#homepage-featured {
+	border-top: 1px solid white;
+}
+
+#homepage-carousel {
+	max-width: 500px;
+	min-height: 400px;
+	max-height: 450px;
+
+	p.caption {
+		font-size: 1.1rem;
+	}
+}
+
+.carousel-control-prev {
+	left: -15%;
+}
+
+.carousel-control-next {
+	right: -15%;
+}
+
+.featured {
+	background-repeat: no-repeat;
+	background-position: top left;
+	background-size: cover;
+
+	&.text-light {
+		color: white !important;
+	}
+
+	&.text-dark {
+		color: $darkgrey !important;
+
+		.btn:hover {
+			color: $alembablue;
+			border-color: $alembablue;
+		}
+	}
+
+	.featured-text {
+		.btn {
+			margin-top: 2rem;
+		}
+	}
+
+	.featured-image {
+
+		img {
+			display: block;
+			margin-left: auto;
+			margin-right: auto;
+			max-width: 100px;
+			max-height: 60%;
+		}
+	}
+}
+
+.itil-list {
+	a {
+		text-decoration: none;
+		color: white;
+
+		&:hover {
+			color: $alembapink;
+		}
+	}
+
+	li {
+		vertical-align: top;
+	}
+
+}
+
+#homepage-roadmap {
+	background-position: center center;
+	background-repeat: no-repeat;
+	border-radius: 10px;
+	text-align: center;
+
+	h3, h5 {
+		color: white;
+	}
+}
+
+// Structure
+
+.pageBanner {
+	padding-top: 5rem;
+
+	&.dark {
+		* {
+			color: white;
+		}
+	}
+}
+
+.copy-heading {
+	margin-top: 2rem;
+	margin-bottom: 3rem;
+
+	@media (min-width: 768px) {
+		margin-bottom: 5rem;
+	}
+}
+
+.copy {
+	@media (min-width: 768px) {
+		padding-top: 5rem;
+		padding-bottom: 5rem;
+	}
+}
+
+.quote-banner {
+	background-color: $verylightgrey;
+}
+
+// Nav
+
+.dropdown-menu {
+	background-color: $darkgrey;
+
+	.dropdown-item a {
+		letter-spacing: 0 !important;
+		text-transform: none !important;
+		font-size: 0.9rem;
+		margin-left: 1rem;
+	}
+}
+
+.dropdown-item:hover {
+	background-color: $alembapink;
+
+	a {
+		color: white !important;
+	}
+}
+
+.fullwidth-dropdown {
+	background-color: white;
+	display: none;
+}
+
+#nav-demo-link a {
+	color: $alembapink;
+	text-transform: uppercase;
+
+	&:hover {
+		color: $alembablue;
+	}
+}
+
+// Cards
+
+.article-cards {
+    
+    &.article-index {
+        padding-top: 3rem;
+    }
+    
+    .card {
+        margin-bottom: 2rem;
+        max-width: 270px;
+        border: 1px solid lighten($midgrey, 25%);
+        border-radius: 5px;
+        
+        .card-img-top {
+            border-radius: 5px 5px 0 0;
+            width:100%;
+            padding-top: 100%;
+            overflow: hidden;
+            background-color: $offwhite;
+            background-position: top center !important;
+            background-repeat: no-repeat !important;
+            background-size: cover !important;
+            
+            &.connector {
+                padding-top: 80%;
+                background-position: center center !important;
+                background-color: white;
+                background-size: 80% !important;
+            }
+        }
+        
+        .card-body {
+            display: flex;
+            flex-direction: column;
+            height: 300px;
+            
+            &.connector {
+                height: 175px;
+                border-top: 1px solid $verylightgrey;
+            }
+        }
+        
+        h4.card-title {
+            margin-bottom: 0.5rem;
+        }
+        
+        h5.subheading {
+            font-size: 12px;
+            color: $midgrey;
+        }
+        
+        .card-text {
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-line-clamp: 5;
+            -webkit-box-orient: vertical;
+            max-height: 7.5rem;
+            flex-grow: 1;
+        }
+    }
+}
+
+// Bootstrap overrides
+
+.lead {
+	margin-bottom: 5rem;
+}
+
+figure {
+	width: 50%;
+
+	.blockquote {
+		margin-bottom: 1.5rem;
+		font-style: italic;
+
+		p {
+			color: $alembablue;
+		}
+
+	}
+
+	&.text-end {
+		float: right;
+		margin: 3rem 0 3rem 3rem;
+	}
+
+	@media (max-width: 767.98px) {
+		width: 100%;
+		float: none !important;
+		margin: 2rem 0 !important;
+	}
+
+}
+
+.breadcrumb {
+	color: white;
+	margin-bottom: 2rem;
+
+	li {
+		@media (min-width: 768px) {
+			font-size: 1.3rem;
+		}
+	}
+
+	a {
+		color: $alembapink;
+
+		&:hover {
+			color: $alembablue;
+		}
+	}
+
+	.breadcrumb-item+.breadcrumb-item::before, .active {
+		color: white;
+		content: '→';
+	}
+
+}
+
+.btn {
+	color: white;
+	font-size: 0.9rem;
+}
+
+.btn-primary {
+	background-color: $alembapink;
+	border-color: $alembapink;
+
+	&:hover {
+		background-color: $alembablue;
+		border-color: $alembablue;
+	}
+}
+
+.btn-bright {
+	background-color: $orange;
+	border-color: $orange;
+	color: $darkpurple;
+
+	&:hover {
+		background-color: $alembablue;
+		border-color: $alembablue;
+		color: white;
+	}
+}
+
+// Elements
+
+.magenta {
+	color: $alembapink;
+}
+
+.blue {
+	color: $alembablue;
+}
+
+.green {
+	color: $green;
+}
+
+.orange {
+	color: $orange;
+}
+
+.bkg-white {
+	background-color: white; 
+	color: $darkgrey;
+}
+
+.bkg-navyblue {
+	background-color: $navyblue;
+}
+
+.bkg-dark .table-dark {
+
+	th {
+		color: $alembablue;
+		font-size: 0.8rem;
+		font-weight: normal;
+	}
+
+	th, td {
+		background-color: transparent;
+	}
+
+}
+
+.banner-magenta {
+	background-color: $alembapink;
+	color: white;
+	padding: 2rem 0 2rem 0;
+
+	h3 {
+		color: white;
+	}
+
+	.btn {
+		position: relative;
+		z-index: 10;
+	}
+
+}
+
+.badge-white {
+	background-color: white;
+	box-shadow: 0 0 10px rgba(0,0,0,0.5);
+	color: $grey;
+	width: 8rem;
+	height: 8rem;
+
+	.badge-text {
+		position: absolute;
+		top: 50%;
+		transform: translateY(-50%);
+
+		span {
+			display: block;
+			vertical-align: middle;
+			width: 8rem;
+			text-align: center;
+			margin-left: auto;
+			margin-right: auto;
+		}
+
+		.badge-text-big {
+			font-size: 3rem;
+			line-height: 3rem;
+		}
+
+		.badge-text-small {
+			font-size: 1rem;
+		}
+
+	}
+}
+
+.floating-button-block {
+    position: fixed;
+    bottom: -1.9rem;
+    left: 0;
+    right: 0;
+    z-index: 20;
+    display: flex;
+    >.btn {
+        flex-grow: 1;
+        background-color: $alembapink;
+        border-bottom: 0;
+        color: white;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        font-size: 10px;
+        padding: 0.7rem;
+        height: 4rem;
+        border-radius: 0;
+        transition: all .2s ease;
+        +.btn {
+            margin-left: 2px;
+        }
+        &:hover, &:active, &:focus {
+            background-color: lighten($alembapink, 2%) !important;
+            margin-top: -5px;
+        }
+    }
+}
+
+@include media-breakpoint-up(md) {
+    .floating-button-block {
+        position: -webkit-sticky;
+        position: sticky;
+        width: 0;
+        height: 0;
+        top: 0;
+        display: block;
+        >.btn {
+            padding: 0.75rem;
+            height: auto;
+            display: block;
+            position: absolute;
+            width: 6rem;
+	        border-radius: 0;
+            +.btn, +.btn:hover {
+                top: 2.7rem;
+                margin-left: 0;
+            }
+            &:hover, &:active, &:focus {
+                margin-top: 0;
+                width: 6.5rem;
+            }
+        }
+    }
+}
+
+.filter-gold {
+    filter: invert(66%) sepia(72%) saturate(388%) hue-rotate(1deg) brightness(100%) contrast(93%);
+}
+
+.icon-itil {
+	text-align: center;
+	width: 7rem;
+	margin-right: 2rem;
+	margin-bottom: 2rem;
+
+	.icon-itil-graphic {
+		display: block;
+		margin-bottom: 1rem;
+		width: 60%;
+		height: 5.5rem;
+		margin-left: auto;
+		margin-right: auto;
+		@extend .filter-gold;
+	}
+
+	.icon-itil-name {
+		display: block;
+		text-align: center;
+		font-size: 0.9rem;
+	}
+}
+
+.icon {
+	color: $orange;
+}
+
+.list-icon {
+	float: left;
+	width: 2.5rem;
+}
+
+.list-icon-text {
+	margin-left: 2.5rem;
+	display: block;
+}
+
+.box-with-icon {
+	background-color: $orange;
+	padding: 1rem;
+	margin-bottom: 1rem;
+	border-radius: 0.25rem;
+
+	.list-icon {
+		color: $darkpurple;
+		font-size: 3rem;
+	}
+
+	.list-icon-text {
+		color: $darkpurple;
+		margin-left: 5.5rem;
+	}
+}
+
+.white-box-with-icon {
+	@extend .box-with-icon;
+	background-color: white;
+
+	.list-icon {
+		color: $orange;
+	}
+}
+
+.small-box-with-icon {
+	@extend .box-with-icon;
+
+	.list-icon {
+		font-size: 1rem;
+	}
+
+	.list-icon-text {
+		margin-left: 1.5rem;
+	}
+}
+
+.side-menu {
+
+	li {
+		padding: 0.5rem;
+		border-radius: 0.5rem;
+
+		&.active {
+			background-color: rgba(255,255,255,0.1);
+		}
+	}
+
+	.side-menu-icon {
+		display: block;
+		float: left;
+		margin-top: 0.2rem;
+	}
+
+	.side-menu-text {
+		display: block;
+		margin-left: 2rem;
+	}
+}
+
+// Success Stories
+
+.success-story-table h3 {
+	margin-top: 0;
+}
+
+.success-story-logo img {
+    max-height: 5rem;
+}
+
+// Customers
+
+.customers {
+
+	img {
+		max-height: 80px;
+		max-width: 100%;
+		display: block;
+		margin-left: auto;
+		margin-right: auto;
+	}
+
+}

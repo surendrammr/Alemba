@@ -1,0 +1,63 @@
+[viewBag]
+title = "Mapping Fields to be Updated by a Transaction"
+url = "/help/topics/tasks/mapping-fields-to-be-updated"
+layout = "help"
+is_hidden = 0
+navigation_hidden = 0
+==
+                                                    <h1>Mapping Fields to be Updated by a Transaction</h1>
+                                                    <p>When adding the transaction details, you can map fields to be updated by the transaction. Fields are defined in the mapping table on the <b>Manage CMDB transaction details</b> window. </p>
+                                                    <p>For the transactions which delete items or links, the fields will firstly be updated to the values set in the mapping table, before the items/links are deleted. In the case of transactions which manage links between CMDB entities, you can map fields relating to the Link Details.</p>
+                                                    <p>You can map the fields relating to the Transaction Details record(s) created by the particular asset management transaction. </p>
+                                                    <p>You can map both standard data fields as well as custom fields added through the <a href="../designer/creating%20fields.htm"><span class="GeneralVariablesDesignerName">ASM Designer</span></a>.</p>
+                                                    <ol start="1">
+                                                        <li value="1">In the Mapping Table on the <b>Transaction Details</b> window, click the <b>Add</b> button.</li>
+                                                        <li value="2">From the <b>Add Fields</b> popup, select a field. The fields are filtered by the selected transaction type. Note that CTRL-SHIFT-click will allow you to select multiple records one record at a time. SHIFT-click will select all records within the first and second click.</li>
+                                                        <p class="exampletext">For an <b>Update Item</b> transaction on a CMDB item, you can map the field <b>Freeze Status</b> to set the freeze status of the updated CMDB item. For a <b>Create Link</b>, <b>Update Link</b>, or <b>Delete Link</b> transaction, you can map the fields <b>Impacts Upper</b> and <b>Impacts Lower</b> to set the impact relationships of the links created, updated, or deleted by these transactions.</p>
+                                                        <li value="3">Click <b>OK</b> to add the selected fields to the mapping table.</li>
+                                                        <li value="4">To remove any mapped fields, select the field in the mapping table and click <b>Remove</b>. </li>
+                                                        <li value="5">For each mapped field, specify the value to be set in the field after the transaction in the <b>Value</b> column: </li>
+                                                        </ol>
+<ul>
+                                                            <li value="1">Select <b>(Value)</b> to specify a value (such as a CMDB Template for a CMDB item field). </li>
+                                                            <li value="2">Select a request field for a variable value, that is, the field will be updated with the value in the specified field at the time the transaction runs. </li>
+                                                        </ul>
+                                                        <p class="note">The <b>(Advanced)</b> option is available on selected asset management transactions. Selecting this option returns a value for the field based on rules you create in the rules builder.</p>
+                                                        <p class="note">If <b>Quantity</b> is changed, <b>Create item for each field value</b> is selected, then any item mapped to the Iterator entity will be removed from the Mapping Table. A warning will appear when change is attempted.</p>
+                                                        <li value="6">To set the condition for when the field will be updated to the specified value, select the checkbox in the <b>Update</b> column in the browse table. You can select from:</li>
+                                                        <p>
+                                                            </p>
+<table style="width: 100%;mc-table-style: url('../../resources/tablestyles/fielddesc.css');margin-left: 0;margin-right: auto;" class="TableStyle-FieldDesc" cellspacing="0">
+                                                                <col class="TableStyle-FieldDesc-Column-Column1">
+                                                                <col class="TableStyle-FieldDesc-Column-Column2">
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyH-Column1-">Always </td>
+                                                                        <td class="TableStyle-FieldDesc-BodyG-Column2-">the field will be updated regardless of whether it is already assigned a value</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyH-Column1-">On Initial Population Only</td>
+                                                                        <td class="TableStyle-FieldDesc-BodyG-Column2-">the field will only be updated if it has never had a value before</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyH-Column1-">Only When Blank</td>
+                                                                        <td class="TableStyle-FieldDesc-BodyG-Column2-">the field will only be updated if it is currently blank</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="TableStyle-FieldDesc-BodyB-Column1-">Create Item for each field value</td>
+                                                                        <td class="TableStyle-FieldDesc-BodyA-Column2-">
+                                                                            <p>"Iterator" will appear as a selectable item. From there you can select "Current Value". Current value refers to the current item that is within a multiple value field that may be selected in the Quantity field. For example, if "Request CIs" is selected in the Quantity field, then "Iterator" is referring to Request CIs and "Current Value" is referring to the first, second, third and so on of the items in the Request CIs fields.</p>
+                                                                            <p>
+                                    If "Request CIs" is instead selected as the value for a mapped item, then the value of the created items will always be the value of the first item specified in "Request CIs." That is, it doesn't set the value according to the first, second, third and so on of the "Request CIs".
+                                </p>
+                                                                            <p class="note">If you change from Create item for each field value to another selection, then any item mapped to the Iterator entity will be removed from the Mapping Table. A warning will appear when change is attempted.</p>
+                                                                        </td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        
+                                                        <li value="7">The <b>Update</b> column is not displayed on the Mapping Table for the asset management transactions.</li>
+                                                        <li value="8">To specify that the transaction fails if encounters an error (such as when it cannot update a mapped field or a specified CMDB item), select the <b>Error</b> option.</li>
+                                                        <li value="9">Save the transaction details.</li>
+                                                    
+                                                

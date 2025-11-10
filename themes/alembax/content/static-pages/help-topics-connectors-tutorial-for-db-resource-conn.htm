@@ -1,0 +1,258 @@
+[viewBag]
+title = "Tutorial for Configuring the Database Resources Connector "
+url = "/help/topics/connectors/tutorial-for-db-resource-conn"
+layout = "help"
+is_hidden = 0
+navigation_hidden = 0
+==
+                                                    <h1>
+<a name="top"></a>Tutorial for Configuring the Database Resources Connector </h1>
+                                                    <h3>About the Database Resources Connector</h3>
+                                                    <p>The Database Resources Connector is a highly configurable connector that enables <span class="GeneralVariablesCoreName">ASM Core</span> to import resources from external databases. The connector requires configuration of the associated ICNF file within the <span class="GeneralVariablesCoreName">ASM Core</span> folder structure so that it can cater for any schema in third-party databases. This connector can import external resource data into <span class="GeneralVariablesCoreName">ASM Core</span> as Configuration Items, Services, Service Actions, Person records, Knowledge articles, Organization, Location, Cost Center, and Contract records. The connector can retrieve data from many tables in a database and define links and views for the elements imported.</p>
+                                                    <p>The Database Resources Connector comes standard with <span class="GeneralVariablesCoreName">ASM Core</span>. No additional steps are required for it to appear in the list of connectors on the Integration Connectors window.</p>
+                                                    <p>Resources cannot be imported until the associated ICNF file has been configured for the target database.</p>
+                                                    <h3>About this tutorial</h3>
+                                                    <p class="warning">This tutorial has been provided as a guide on how to configure the ICNF file for this connector. For further assistance with configuring your ICNF file, contact your Account Manager to engage an <span class="GeneralVariablesCompanyName2">Alemba®</span> Professional Services Consultant.</p>
+                                                    <p class="prereq">The tutorial assumes that the reader possesses basic SQL Server Management Studio skills, basic ICNF configuration file knowledge, and knows how to configure the <a href="../integration/managing%20integration.htm">integration platform</a>. </p>
+                                                    <p class="note">You should familiarize yourself with the information in <a href="connector%20installation%20guide.htm" class="MCXref xref">Installing Connectors</a> before installing any connectors, and read the <a href="../integration/integrate.htm" class="MCXref xref">Integration</a> topics for more information on how to configure them.</p>
+                                                    <p>This tutorial takes you through steps for configuring the ICNF file for the Database Resources Connector so that resource data can be retrieved from external databases and imported into <span class="GeneralVariablesCoreName">ASM Core</span>. A sample database for MS SQL Server is provided and used in this tutorial as a reference for those steps. </p>
+                                                    <p>The tutorial is organized into 5 sets of steps representing the 5 major modifications to the ICNF file</p>
+                                                    <table class="TableStyle-Table_with_borders" style="margin-left: 0;margin-right: auto;mc-table-style: url('../../resources/tablestyles/table_with_borders.css');width: 793px;" cellspacing="0">
+                                                        <col class="TableStyle-Table_with_borders-Column-Column1">
+                                                        <col class="TableStyle-Table_with_borders-Column-Column1">
+                                                        <tr class="TableStyle-Table_with_borders-Body-Body1">
+                                                            <td class="TableStyle-Table_with_borders-BodyE-Column1-Body1">
+                                                                <p>Stage 0</p>
+                                                            </td>
+                                                            <td class="TableStyle-Table_with_borders-BodyD-Column1-Body1">The base ICNF file.</td>
+                                                        </tr>
+                                                        <tr style="height: 15pt;" class="TableStyle-Table_with_borders-Body-Body1">
+                                                            <td class="TableStyle-Table_with_borders-BodyE-Column1-Body1">
+                                                                <p>Stage 1</p>
+                                                            </td>
+                                                            <td class="TableStyle-Table_with_borders-BodyD-Column1-Body1">Contains code  to import records of one resource type. </td>
+                                                        </tr>
+                                                        <tr style="height: 15pt;" class="TableStyle-Table_with_borders-Body-Body1">
+                                                            <td class="TableStyle-Table_with_borders-BodyE-Column1-Body1">
+                                                                <p>Stage 2</p>
+                                                            </td>
+                                                            <td class="TableStyle-Table_with_borders-BodyD-Column1-Body1">Contains code  to import records of a second resource type.</td>
+                                                        </tr>
+                                                        <tr style="height: 15pt;" class="TableStyle-Table_with_borders-Body-Body1">
+                                                            <td class="TableStyle-Table_with_borders-BodyE-Column1-Body1">
+                                                                <p>Stage 3</p>
+                                                            </td>
+                                                            <td class="TableStyle-Table_with_borders-BodyD-Column1-Body1">Contains code to define links between imported resources.</td>
+                                                        </tr>
+                                                        <tr style="height: 15pt;" class="TableStyle-Table_with_borders-Body-Body1">
+                                                            <td class="TableStyle-Table_with_borders-BodyE-Column1-Body1">Stage 4</td>
+                                                            <td class="TableStyle-Table_with_borders-BodyD-Column1-Body1">Contains code defining views to expose external data</td>
+                                                        </tr>
+                                                    </table>
+                                                    <p>Files required for this tutorial:</p>
+                                                    <table class="TableStyle-Rep_Hdr_Row" style="mc-table-style: url('../../resources/tablestyles/rep hdr row.css');" cellspacing="0">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column1">
+                                                        <col class="TableStyle-Rep_Hdr_Row-Column-Column2">
+                                                        <thead>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Head-Header1">
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadE-Column1-Header1">
+                                                                    <p class="Strong">File Name</p>
+                                                                </th>
+                                                                <th class="TableStyle-Rep_Hdr_Row-HeadD-Column2-Header1">
+                                                                    <p class="Strong">Purpose</p>
+                                                                </th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyE-Column1-Body1" style="font-weight: bold;">
+                                                                    <p><span class="GeneralVariablesCompanyName2">Alemba®</span>.Connector.SQL.FedCMDB.DemoData.sql</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyD-Column2-Body1">Creates the sample database schema and content. <a href="../../resources/multimedia/demodatabase.zip">Download</a> and extract the file.</td>
+                                                            </tr>
+                                                            <tr class="TableStyle-Rep_Hdr_Row-Body-Body1">
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyB-Column1-Body1" style="font-weight: bold;">
+                                                                    <p><span class="GeneralVariablesCompanyName2">Alemba®</span>.Connector.SQL.FedCMDB.icnf</p>
+                                                                </td>
+                                                                <td class="TableStyle-Rep_Hdr_Row-BodyA-Column2-Body1">Code change steps are performed in this file. The base version of this file comes standard with <span class="GeneralVariablesCoreName">ASM Core</span>.</td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <h2>Stage 0 - The base ICNF file</h2>
+                                                    <p class="objective">In this stage you will:</p>
+                                                    <ul class="prereq">
+                                                        <li value="1">View the base code in the icnf file</li>
+                                                        <li value="2">Create a blank database</li>
+                                                        <li value="3">Populate that database with sample data for this tutorial</li>
+                                                        <li value="4">Configure the connector to connect to the database</li>
+                                                    </ul>
+                                                    <p>On the web server where <span class="GeneralVariablesCoreName">ASM Core</span> is installed, navigate to the <b>Config</b> folder of the <span class="GeneralVariablesSystemName">ASM System</span> directory.</p>
+                                                    <p>Open <b><span class="GeneralVariablesCompanyName2">Alemba®</span>.Connector.SQL.FedCMDB.icnf</b>. At this stage it contains only generic code for the connector with no code for resources, fields, or links.</p>
+                                                    <p><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="../../resources/images/conntut-stage0.png"><img class="MCPopupThumbnail img imgthumbnail" data-mc-width="726" data-mc-height="185" src="/storage/app/media/Help/images/conntut-stage0_thumb_0_48.png" style="width: 436px;height: 111px;" tabindex=""></a>
+                                                    </p>
+                                                    <h3>Step 1: Set up the database for the tutorial</h3>
+                                                    <p>In SQL Server Management Studio create a new database with the database name of <b>Sample</b>.</p>
+                                                    <p>In the blank database <b>Sample</b>, open and execute <b><span class="GeneralVariablesCompanyName2">Alemba®</span>.Connector.SQL.FedCMDB.DemoData.sql</b></p>
+                                                    <p>This creates basic tables for a sample environment with data and linkages. The tables are:</p>
+                                                    <ul>
+                                                        <li value="1">Computers – data records for computers, such as Desktop 01, Notebook 02</li>
+                                                        <li value="2">ComputerLink – links computers with computers</li>
+                                                        <li value="3">Devices – data records for devices, such as phones</li>
+                                                        <li value="4">DeviceLink – links devices with computers and the last updated date</li>
+                                                        <li value="5">Software – data records for software, such as MS Word 2016</li>
+                                                        <li value="6">ComputerSoftware – links software with computers and contains install date data</li>
+                                                    </ul>
+                                                    <h3>Step 2: Configure <span class="GeneralVariablesCoreName">ASM Core</span> to connect to the database</h3>
+                                                    <p>In <span class="GeneralVariablesCoreName">ASM Core</span>, create a <a href="../integration/configuring%20integ%20source.htm">Source</a> for the <b>Database Resources Connector</b>, complete the <a href="dbresourcesconnector.htm">database connection details,</a> and confirm the test connect is successful.</p>
+                                                    <h2>Stage 1 - Modify the ICNF to expose and import one resource type</h2>
+                                                    <p class="objective">In this stage you will:</p>
+                                                    <ul class="prereq">
+                                                        <li value="1">Add code to the icnf file that define the table schema, queries, and field sets for one resource type</li>
+                                                        <li value="2">Save and apply the modified ICNF file</li>
+                                                        <li value="3">Map the database table fields exposed by the ICNF file to fields in <span class="GeneralVariablesCoreName">ASM Core</span>
+</li>
+                                                        <li value="4">Scan the database and import Computer resources</li>
+                                                    </ul>
+                                                    <h3>Step 1: </h3>
+                                                    <p>Open <span class="GeneralVariablesCompanyName2">Alemba®</span>.Connector.SQL.FedCMDB.icnf. Identify the line pair that contain <code style="font-size: 10pt;">&lt;resources&gt;</code> and <code style="font-size: 10pt;">&lt;/resources&gt;</code> respectively. Between these two lines, insert code from steps 2 and 3 below. Code from steps 4 and 5 is inserted between the lines that contain <code style="font-size: 10pt;">&lt;/resources&gt;</code> and <code style="font-size: 10pt;">&lt;/connector&gt;</code> respectively.</p>
+                                                    <p><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="../../resources/images/conntut_stage1-1.png"><img class="MCPopupThumbnail img imgthumbnail" data-mc-width="726" data-mc-height="185" src="/storage/app/media/Help/images/conntut_stage1-1_thumb_0_48.png" style="width: 408px;height: 102px;" tabindex=""></a>
+                                                    </p>
+                                                    <h3>Step 2: Define the table schema that contains data for Computers</h3>
+                                                    <p>Add code to the icnf file as shown in the image below, from line 7 to 16. This defines the table schema for the Computers table.</p>
+                                                    <p><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="../../resources/images/conntut_stage1-2.png"><img class="MCPopupThumbnail img imgthumbnail" data-mc-width="850" data-mc-height="259" src="/storage/app/media/Help/images/conntut_stage1-2_thumb_0_48.png" style="width: 409px;height: 124px;" tabindex=""></a>
+                                                    </p>
+                                                    <h3>Step 3: Define the names of the queries that will retrieve data from the Computers table.</h3>
+                                                    <p>Add code to the icnf file as shown in the image below, from line 17 to 24. </p>
+                                                    <p>For this tutorial the query names are “Computer Search”, “Computer All”, and “Computer Retrieve”.</p>
+                                                    <p><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="../../resources/images/conntut_stage1-3.png"><img class="MCPopupThumbnail img imgthumbnail" data-mc-width="1091" data-mc-height="235" src="/storage/app/media/Help/images/conntut_stage1-3_thumb_0_48.png" style="width: 444px;height: 95px;" tabindex=""></a>
+                                                    </p>
+                                                    <h3>Step 4: Define the fields to be exposed corresponding to the query results</h3>
+                                                    <p>Add code to the icnf file as shown in the image below, from line 26 to 35. Ensure this code is added after the line that contains <code style="font-size: 10pt;">&lt;/resources&gt;</code>.</p>
+                                                    <p><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="../../resources/images/conntut_stage1-4.png"><img class="MCPopupThumbnail img imgthumbnail" data-mc-width="1386" data-mc-height="262" src="/storage/app/media/Help/images/conntut_stage1-4_thumb_0_48.png" style="width: 449px;height: 84px;" tabindex=""></a>
+                                                    </p>
+                                                    <h3>Step 5: Define the queries for each of the query names defined in step 3 above</h3>
+                                                    <p>Add code to the icnf file as shown in the image below, from line 36 to 71. </p>
+                                                    <p><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="../../resources/images/conntut_stage1-5.png"><img class="MCPopupThumbnail img imgthumbnail" data-mc-width="1263" data-mc-height="801" src="/storage/app/media/Help/images/conntut_stage1-5_thumb_0_48.png" style="width: 537px;height: 339px;" tabindex=""></a>
+                                                    </p>
+                                                    <h3>Step 6: Apply the ICNF file and import the resource</h3>
+                                                    <p>Copy the updated icnf file to the Config folder in the <span class="GeneralVariablesSystemName">ASM System</span> directory; overwrite existing file when prompted. Restart the <span class="GeneralVariablesProductName">ASM</span> Services and perform an IISreset to ensure the updated file is used.</p>
+                                                    <p>In <span class="GeneralVariablesCoreName">ASM Core</span>, under Integration &gt; Resources, select the source created in Stage 0 Step 2. <b>Computer</b> now appears as an available resource type.<br><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="../../resources/images/conntut_stage1-6.png"><img class="MCPopupThumbnail img imgthumbnail" data-mc-width="690" data-mc-height="303" src="/storage/app/media/Help/images/conntut_stage1-6_thumb_0_48.png" style="width: 216px;height: 92px;" tabindex=""></a></p>
+                                                    <p>Select  <b>Computer</b> and <a href="../integration/managing%20resource%20types.htm">create a new mapping</a>. For the purpose of this tutorial configure the following options for the mapping:</p>
+                                                    <ul>
+                                                        <li value="1">On the <b>Action</b> tab of the Mapping window select 'CMDB Item' from the <b>Import As</b> field and select an appropriate CMDB template for the <b>Using Template</b> field. </li>
+                                                        <li value="2">On the <b>Fields</b> tab of the Mapping window map internal fields to the database fields that are exposed from the icnf file<br><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="../../resources/images/conntut_stage1-6a.png"><img class="MCPopupThumbnail img imgthumbnail" data-mc-width="620" data-mc-height="540" src="/storage/app/media/Help/images/conntut_stage1-6a_thumb_0_48.png" style="width: 230px;height: 198px;" tabindex=""></a>
+</li>
+                                                    </ul>
+                                                    <p><a href="../integration/managing%20scheduled%20integration%20scans.htm">Schedule a full scan</a> to import data from the Computers table into <span class="GeneralVariablesCoreName">ASM Core</span> using these mappings.</p>
+                                                    <h2>Stage 2 - Modify the ICNF to expose an additional resource type</h2>
+                                                    <p class="objective">In this stage you will:</p>
+                                                    <ul class="prereq">
+                                                        <li value="1">Add code to the icnf file that define the table schema, queries, and field sets for a second resource type</li>
+                                                        <li value="2">Save and apply the modified ICNF file</li>
+                                                        <li value="3">Map the database table fields exposed by the ICNF file to fields in <span class="GeneralVariablesCoreName">ASM Core</span>
+</li>
+                                                        <li value="4">Scan the database and import Device resources</li>
+                                                    </ul>
+                                                    <h3>Step 1: </h3>
+                                                    <p>Open the <span class="GeneralVariablesCompanyName2">Alemba®</span>.Connector.SQL.FedCMDB.icnf file that was modified during Stage 1. Code for the additional resource type is inserted into existing corresponding sections of the icnf file.</p>
+                                                    <h3>Step 2: Define the table schema that contains data for Devices </h3>
+                                                    <p>Add code to the icnf file as shown in the image below, from line 16 to 23. This defines the table schema for the Devices table.</p>
+                                                    <p><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="../../resources/images/conntut_stage2-2.png"><img class="MCPopupThumbnail img imgthumbnail" data-mc-width="838" data-mc-height="441" src="/storage/app/media/Help/images/conntut_stage2-2_thumb_0_48.png" style="width: 488px;height: 255px;" tabindex=""></a>
+                                                    </p>
+                                                    <h3>Step 3: Define the names of the queries that will retrieve data from the Devices table.</h3>
+                                                    <p>Add code to the icnf file as shown in the image below, from line 33 to 40. </p>
+                                                    <p>For this tutorial the query names are “Device Search”, “Device All”, and “Device Retrieve”.</p>
+                                                    <p><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="../../resources/images/conntut_stage2-3.png"><img class="MCPopupThumbnail img imgthumbnail" data-mc-width="1097" data-mc-height="393" src="/storage/app/media/Help/images/conntut_stage2-3_thumb_0_48.png" style="width: 503px;height: 180px;" tabindex=""></a>
+                                                    </p>
+                                                    <h3>Step 4: Define the fields to be exposed corresponding to the query results</h3>
+                                                    <p>Add code to the icnf file as shown in the image below, from line 51 to 56. Ensure this code is added after the line that contains <code style="font-size: 10pt;">&lt;/resources&gt;</code>.</p>
+                                                    <p><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="../../resources/images/conntut_stage2-4.png"><img class="MCPopupThumbnail img imgthumbnail" data-mc-width="1390" data-mc-height="395" src="/storage/app/media/Help/images/conntut_stage2-4_thumb_0_48.png" style="width: 513px;height: 145px;" tabindex=""></a>
+                                                    </p>
+                                                    <h3>Step 5: Define the queries for each of the query names defined in step 3 above</h3>
+                                                    <p>Add code to the icnf file as shown in the image below, from line 93 to 126. </p>
+                                                    <p><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="../../resources/images/conntut_stage2-5.png"><img class="MCPopupThumbnail img imgthumbnail" data-mc-width="1247" data-mc-height="839" src="/storage/app/media/Help/images/conntut_stage2-5_thumb_0_48.png" style="width: 527px;height: 353px;" tabindex=""></a>
+                                                    </p>
+                                                    <h3>Step 6: Apply the ICNF file and import the resource</h3>
+                                                    <p>Copy the updated icnf file to the Config folder in the <span class="GeneralVariablesSystemName">ASM System</span> directory; overwrite existing file when prompted. Restart the <span class="GeneralVariablesProductName">ASM</span> Services and perform an IISreset to ensure the updated file is used.</p>
+                                                    <p>In <span class="GeneralVariablesCoreName">ASM Core</span>, under Integration &gt; Resources, select the source created in Stage 0 Step 2. <b>Device</b> now appears as an available resource type.<br><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="../../resources/images/conntut_stage2-6.png"><img class="MCPopupThumbnail img imgthumbnail" data-mc-width="782" data-mc-height="307" src="/storage/app/media/Help/images/conntut_stage2-6_thumb_0_48.png" style="width: 250px;height: 96px;" tabindex=""></a></p>
+                                                    <p>Select  <b>Device</b> and <a href="../integration/managing%20resource%20types.htm">create a new mapping</a>. For the purpose of this tutorial configure the following options for the mapping:</p>
+                                                    <ul>
+                                                        <li value="1">On the <b>Action</b> tab of the Mapping window select 'CMDB Item' from the <b>Import As</b> field and select an appropriate CMDB template for the <b>Using Template</b> field. </li>
+                                                        <li value="2">On the <b>Fields</b> tab of the Mapping window map internal fields to the database fields that are exposed from the icnf file<br><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="../../resources/images/conntut_stage2-6a.png"><img class="MCPopupThumbnail img imgthumbnail" data-mc-width="605" data-mc-height="537" src="/storage/app/media/Help/images/conntut_stage2-6a_thumb_0_48.png" style="width: 188px;height: 166px;" tabindex=""></a>
+</li>
+                                                    </ul>
+                                                    <p><a href="../integration/managing%20scheduled%20integration%20scans.htm">Schedule a full scan</a> to import data from the Devices table into <span class="GeneralVariablesCoreName">ASM Core</span> using these mappings.</p>
+                                                    <h2>Stage 3 - Modify the ICNF file to define link types and expose links between resources</h2>
+                                                    <p class="objective">In this stage you will:</p>
+                                                    <ul class="prereq">
+                                                        <li value="1">Add code to the icnf file that define the link types and link queries</li>
+                                                        <li value="2">Save and apply the modified ICNF file</li>
+                                                        <li value="3">Map the link types exposed by the ICNF file to the resources in <span class="GeneralVariablesCoreName">ASM Core</span>
+</li>
+                                                    </ul>
+                                                    <h3>Step 1: </h3>
+                                                    <p>Open the <span class="GeneralVariablesCompanyName2">Alemba®</span>.Connector.SQL.FedCMDB.icnf file that was modified during Stage 2. </p>
+                                                    <h3>Step 2: Define links between the Computer and Device resources </h3>
+                                                    <p>Identify the line pair that contain <code style="font-size: 10pt;">&lt;/resource&gt;</code> and <code style="font-size: 10pt;">&lt;/resources&gt;</code> respectively. Between those lines add code to the icnf file as shown in the image below, from line 41 to 66. </p>
+                                                    <p>For this tutorial Computers can be linked to Computers and Devices, but Devices can only be linked to Computers.</p>
+                                                    <p><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="../../resources/images/conntut_stage3-2.png"><img class="MCPopupThumbnail img imgthumbnail" data-mc-width="1057" data-mc-height="650" src="/storage/app/media/Help/images/conntut_stage3-2_thumb_0_48.png" style="width: 525px;height: 322px;" tabindex=""></a>
+                                                    </p>
+                                                    <h3>Step 3: Define the queries to identify the links</h3>
+                                                    <p>Identify the line pair that contain <code style="font-size: 10pt;">&lt;/query&gt;</code> and <code style="font-size: 10pt;">&lt;/queries&gt;</code> respectively. Between those lines add code as shown in the image below, from line 154 to 168.</p>
+                                                    <p>For this tutorial the two columns returned in the query represent Resource Type A (Computer) and Resource Type B (Computer or Device).</p>
+                                                    <p><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="../../resources/images/conntut_stage3-3png.png"><img class="MCPopupThumbnail img imgthumbnail" data-mc-width="639" data-mc-height="418" src="/storage/app/media/Help/images/conntut_stage3-3png_thumb_0_48.png" style="width: 421px;height: 273px;" tabindex=""></a>
+                                                    </p>
+                                                    <h3>Step 4: Apply the ICNF file and define the links</h3>
+                                                    <p>Copy the updated icnf file to the Config folder in the <span class="GeneralVariablesSystemName">ASM System</span> directory; overwrite existing file when prompted. Restart the <span class="GeneralVariablesProductName">ASM</span> Services and perform an IISreset to ensure the updated file is used.</p>
+                                                    <p>In <span class="GeneralVariablesCoreName">ASM Core</span>, under Integration &gt; Links, select the source created in Stage 0 Step 2. The links between Computers and Devices, and Computers and Computers, now appear.<br><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="../../resources/images/conntut_stage3-4.png"><img class="MCPopupThumbnail img imgthumbnail" data-mc-width="611" data-mc-height="309" src="/storage/app/media/Help/images/conntut_stage3-4_thumb_0_48.png" style="width: 223px;height: 111px;" tabindex=""></a></p>
+                                                    <p>For each link type, <a href="../integration/defining%20link%20type%20mapping.htm">configure a link mapping</a>. For the purpose of this tutorial select the <b>Default</b> mapping option.<br><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="../../resources/images/conntut_stage3-4a.png"><img class="MCPopupThumbnail img imgthumbnail" data-mc-width="612" data-mc-height="529" src="/storage/app/media/Help/images/conntut_stage3-4a_thumb_0_48.png" style="width: 206px;height: 177px;" tabindex=""></a></p>
+                                                    <p><a href="../integration/managing%20scheduled%20integration%20scans.htm">Schedule a full scan</a> to create links between the imported resources in <span class="GeneralVariablesCoreName">ASM Core</span>.</p>
+                                                    <h2>Stage 4 - Modify the ICNF file to contain view definitions</h2>
+                                                    <p>Views can be added to the ICNF to display data from the database without importing that data into <span class="GeneralVariablesCoreName">ASM Core</span>. This is useful in cases such as when sets of data are constantly changing and a real-time view is required.</p>
+                                                    <p class="objective">In this stage you will:</p>
+                                                    <ul class="prereq">
+                                                        <li value="1">Add code to the icnf file that define the ID, schema, field sets, and queries of a view for the Software table</li>
+                                                        <li value="2">Save and apply the modified ICNF file</li>
+                                                        <li value="3">View the data exposed by the view in the External Resources window of imported CMDB Items</li>
+                                                    </ul>
+                                                    <h3>Step 1: </h3>
+                                                    <p>Open the <span class="GeneralVariablesCompanyName2">Alemba®</span>.Connector.SQL.FedCMDB.icnf file that was modified during Stage 3. </p>
+                                                    <h3>Step 2: Define the view ID for Software in the Computers resources</h3>
+                                                    <p>Within the resource section for Computers, add code to the icnf file as shown in the image below, from line 30 to 32. </p>
+                                                    <p><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="../../resources/images/conntut_stage4-2.png"><img class="MCPopupThumbnail img imgthumbnail" data-mc-width="1098" data-mc-height="302" src="/storage/app/media/Help/images/conntut_stage4-2_thumb_0_48.png" style="width: 510px;height: 139px;" tabindex=""></a>
+                                                    </p>
+                                                    <h3>Step 3: Define the fields to be exposed by the Software view</h3>
+                                                    <p>Within the fieldSets section, add code to the icnf file as shown in the image below, from line 86 to 90.</p>
+                                                    <p><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="../../resources/images/conntut_stage4-3.png"><img class="MCPopupThumbnail img imgthumbnail" data-mc-width="1408" data-mc-height="488" src="/storage/app/media/Help/images/conntut_stage4-3_thumb_0_48.png" style="width: 552px;height: 191px;" tabindex=""></a>
+                                                    </p>
+                                                    <h3>Step 4: Define the view schema for Software in the Computers resources</h3>
+                                                    <p>Identify the line pair that contain <code style="font-size: 10pt;">&lt;/fieldSets&gt;</code> and <code style="font-size: 10pt;">&lt;queries&gt;</code> respectively. Between those lines add code as shown in the image below, from line 92 to 103.</p>
+                                                    <p>Views can be nested to expose tiered levels of data. There can be multiple levels of nesting. The nested view shown in the image below results in a Product tier (software item) under the Software tier. The Product tier contains details of the software application.</p>
+                                                    <p><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="../../resources/images/conntut_stage4-4.png"><img class="MCPopupThumbnail img imgthumbnail" data-mc-width="992" data-mc-height="355" src="/storage/app/media/Help/images/conntut_stage4-4_thumb_0_48.png" style="width: 533px;height: 190px;" tabindex=""></a>
+                                                    </p>
+                                                    <h3>Step 5: Define queries for the Software view</h3>
+                                                    <p>Within the queries section, add code to the icnf file as shown in the image below, from line 189 to 206.</p>
+                                                    <p><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="../../resources/images/conntut_stage4-5.png"><img class="MCPopupThumbnail img imgthumbnail" data-mc-width="1112" data-mc-height="469" src="/storage/app/media/Help/images/conntut_stage4-5_thumb_0_48.png" style="width: 544px;height: 229px;" tabindex=""></a>
+                                                    </p>
+                                                    <h3>Step 6: Apply the ICNF file and define the links</h3>
+                                                    <p>Copy the updated icnf file to the Config folder in the <span class="GeneralVariablesSystemName">ASM System</span> directory; overwrite existing file when prompted. Restart the <span class="GeneralVariablesProductName">ASM</span> Services and perform an IISreset to ensure the updated file is used.</p>
+                                                    <p>In <span class="GeneralVariablesCoreName">ASM Core</span>, data exposed by the view appears in the <a href="../cmdb%20explorer%20options/external%20resources%20explorer.htm">External Resources</a> window of imported CMDB Items.<br><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="../../resources/images/conntut_stage4-6.png"><img class="MCPopupThumbnail img imgthumbnail" data-mc-width="654" data-mc-height="465" src="/storage/app/media/Help/images/conntut_stage4-6_thumb_0_48.png" style="width: 314px;height: 221px;" tabindex=""></a></p>
+                                                    <h2>Addendum - Enabling multiple integration sources for the connector</h2>
+                                                    <p>The Integration framework supports the concept of versions for connectors and underlying database schema. Versioning within the icnf file enables a single connector to have multiple integration sources configured, with each integration source exposing data from a different database and /or data schema. </p>
+                                                    <p> The steps below provide a brief sample for enabling versioning in the icnf file.</p>
+                                                    <h3>Step 1: Insert the appVersion and Connector elements for the different sources</h3>
+                                                    <p style="font-weight: normal;">Identify the line pair that contain <code style="font-size: 10pt;">&lt;xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"&gt;</code> and <code style="font-size: 10pt;">&lt;resources&gt;</code> respectively. Between those lines add code as shown in the image below, from line 6 to 33.</p>
+                                                    <p style="font-weight: normal;">For the purpose of this example the sources are two SQL Databases, referenced as SQL Source A and SQL Source B.</p>
+                                                    <p style="font-weight: normal;"><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="../../resources/images/conntut_stage5-2.png"><img class="MCPopupThumbnail img imgthumbnail" data-mc-width="899" data-mc-height="698" src="/storage/app/media/Help/images/conntut_stage5-2_thumb_0_48.png" style="width: 494px;height: 382px;" tabindex=""></a>
+                                                    </p>
+                                                    <h3>Step 3: Define queries for the different sources</h3>
+                                                    <p>Within the queries section, add code to the icnf file as shown in the image below, from line 234 to 244.</p>
+                                                    <p>The Integration framework supports engineVersion "SQLSERVER" or "ORACLE"</p>
+                                                    <p><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="../../resources/images/conntut_stage5-3.png"><img class="MCPopupThumbnail img imgthumbnail" data-mc-width="1117" data-mc-height="705" src="/storage/app/media/Help/images/conntut_stage5-3_thumb_0_48.png" style="width: 429px;height: 270px;" tabindex=""></a>
+                                                    </p>
+                                                    <h3>Step 4: Insert the forVersion attribute into the resource query name section</h3>
+                                                    <p>Within the resource section where the query names are defined, insert the forVersion attribute to identify the intended source. Add code to the icnf file as shown in the image below, to lines 56 and 67.</p>
+                                                    <p><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="../../resources/images/conntut_stage5-4.png"><img class="MCPopupThumbnail img imgthumbnail" data-mc-width="1084" data-mc-height="489" src="/storage/app/media/Help/images/conntut_stage5-4_thumb_0_48.png" style="width: 546px;height: 245px;" tabindex=""></a>
+                                                    </p>
+                                                    <p class="note">The <b>forVersion</b> attribute can also be applied to queries to execute different syntax.</p>
+                                                
